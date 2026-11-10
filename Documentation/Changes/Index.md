@@ -10,6 +10,7 @@ Every new feature, API, adapter, command, configuration option, workflow, tool, 
 - [Documentation and wiki foundation](DocumentationFoundation.md)
 - [Retire the aggregate bootstrap](AggregateBootstrap.md)
 - [Review bot configuration and required skill activation](ReviewBotConfiguration.md)
+- [Fusion research import and explicit reader](FusionResearchImport.md)
 - [Review provider exclusions from CI aggregation](ReviewProviderExclusions.md)
 - [Transient CI artifact publication errors](ArtifactPublication.md)
 - [Pyright compatibility](PyrightCompatibility.md)

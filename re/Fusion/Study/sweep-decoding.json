@@ -1,0 +1,1123 @@
+{
+  "scope": "Observed single sketch-profile, single sketch Line/Arc path sweeps with no guide rail or guide surfaces. Control selection and stored parameter evidence only; no native regeneration.",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateSweepModes.py",
+  "capture_folder": "sweeps-5f87eff25e24",
+  "summary": {
+    "capture_samples": 8,
+    "api_control_comparisons_per_sample": 11,
+    "all_comparisons_passed": true,
+    "prior_circle_profile_samples_checked": 2,
+    "malformed_input_checks": 3
+  },
+  "layout": {
+    "class_guid": "FCBB1707-4450-46B3-9E65-0F61682EA8CA",
+    "attribute_header": "body[1] marks optional observed attributes; NewBody uses empty table, Cut omits it. Remaining offsets relative to cursor after optional table.",
+    "operation": {
+      "relative_offset": 0,
+      "observed_native_codes": {
+        "2": "Cut",
+        "4": "NewBody"
+      }
+    },
+    "is_solid_relative_offset": 11,
+    "orientation": {
+      "relative_offset": 128,
+      "observed_native_codes": {
+        "1": "Parallel",
+        "2": "Perpendicular"
+      },
+      "api_enum_mapping": {
+        "0": "Parallel",
+        "1": "Perpendicular"
+      }
+    },
+    "path_proxy_relative_offset": 83,
+    "profile_proxy_relative_offset": 136,
+    "profile_count_relative_offset": 132,
+    "binding_relative_offsets": {
+      "AgainstDistance": 38,
+      "AgainstRailDistance": 49,
+      "AlongDistance": 60,
+      "AlongRailDistance": 71,
+      "TaperAngle": 106,
+      "TwistAngle": 117
+    }
+  },
+  "notes": [
+    "Parallel orientation retains native taper/twist bindings, but the API returns null for those inactive parameters; stored values and active values are kept separately.",
+    "The cached AgainstDistance is zero for every captured one-sided path although the public distanceTwo getter returns null.",
+    "Profile and path provenance is decoded via explicit typed native references. Profile curve ordering and general trimmed curves remain unresolved.",
+    "Inactive rail-distance caches remain in single-path definitions. Their presence does not establish an active guide rail."
+  ],
+  "limitations": [
+    "No composite path, closed path, bidirectional profile/path, or BRep edge path variants.",
+    "No guide rail/surface or solid-body Sweep variants.",
+    "Join, Intersect, and NewComponent operations unverified.",
+    "Cut participant bodies and persistent topology are not resolved here.",
+    "No exact swept geometry reconstruction or file writer."
+  ],
+  "samples": [
+    {
+      "file": "sweeps-5f87eff25e24/line_perpendicular.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchLine"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": true,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.0,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": 0.0,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 295,
+          "AgainstRailDistance": 301,
+          "AlongDistance": 292,
+          "AlongRailDistance": 298,
+          "TaperAngle": 307,
+          "TwistAngle": 304
+        },
+        "path": {
+          "selection_record_object_id": 284,
+          "descriptor_object_id": 287,
+          "terminal_object_id": 290,
+          "sketch_object_id": 243,
+          "curve_object_id": 272,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 277,
+          "descriptor_object_id": 280,
+          "loop_definition_object_id": 283,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/arc_perpendicular.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchArc"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": true,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.0,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": 0.0,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 297,
+          "AgainstRailDistance": 303,
+          "AlongDistance": 294,
+          "AlongRailDistance": 300,
+          "TaperAngle": 309,
+          "TwistAngle": 306
+        },
+        "path": {
+          "selection_record_object_id": 286,
+          "descriptor_object_id": 289,
+          "terminal_object_id": 292,
+          "sketch_object_id": 243,
+          "curve_object_id": 274,
+          "curve_entity_tag": 113,
+          "kind": "Arc",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 279,
+          "descriptor_object_id": 282,
+          "loop_definition_object_id": 285,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/arc_parallel.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "orientation": 0,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchArc"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Parallel",
+        "stored_orientation_code": 1,
+        "is_solid": true,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": null,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": null,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 297,
+          "AgainstRailDistance": 303,
+          "AlongDistance": 294,
+          "AlongRailDistance": 300,
+          "TaperAngle": 309,
+          "TwistAngle": 306
+        },
+        "path": {
+          "selection_record_object_id": 286,
+          "descriptor_object_id": 289,
+          "terminal_object_id": 292,
+          "sketch_object_id": 243,
+          "curve_object_id": 274,
+          "curve_entity_tag": 113,
+          "kind": "Arc",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 279,
+          "descriptor_object_id": 282,
+          "loop_definition_object_id": 285,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/arc_partial.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 0.65,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchArc"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": true,
+        "path_fraction": 0.65,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.0,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": 0.0,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 297,
+          "AgainstRailDistance": 303,
+          "AlongDistance": 294,
+          "AlongRailDistance": 300,
+          "TaperAngle": 309,
+          "TwistAngle": 306
+        },
+        "path": {
+          "selection_record_object_id": 286,
+          "descriptor_object_id": 289,
+          "terminal_object_id": 292,
+          "sketch_object_id": 243,
+          "curve_object_id": 274,
+          "curve_entity_tag": 113,
+          "kind": "Arc",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 279,
+          "descriptor_object_id": 282,
+          "loop_definition_object_id": 285,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_taper.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.03490658503988659,
+        "twist_angle_radians": 0.0,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchLine"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": true,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.0,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": 0.03490658503988659,
+        "stored_taper_angle_radians": 0.03490658503988659,
+        "parameter_bindings": {
+          "AgainstDistance": 295,
+          "AgainstRailDistance": 301,
+          "AlongDistance": 292,
+          "AlongRailDistance": 298,
+          "TaperAngle": 307,
+          "TwistAngle": 304
+        },
+        "path": {
+          "selection_record_object_id": 284,
+          "descriptor_object_id": 287,
+          "terminal_object_id": 290,
+          "sketch_object_id": 243,
+          "curve_object_id": 272,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 277,
+          "descriptor_object_id": 280,
+          "loop_definition_object_id": 283,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_twist.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.5235987755982988,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchLine"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": true,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.5235987755982988,
+        "stored_twist_angle_radians": 0.5235987755982988,
+        "taper_angle_radians": 0.0,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 295,
+          "AgainstRailDistance": 301,
+          "AlongDistance": 292,
+          "AlongRailDistance": 298,
+          "TaperAngle": 307,
+          "TwistAngle": 304
+        },
+        "path": {
+          "selection_record_object_id": 284,
+          "descriptor_object_id": 287,
+          "terminal_object_id": 290,
+          "sketch_object_id": 243,
+          "curve_object_id": 272,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 277,
+          "descriptor_object_id": 280,
+          "loop_definition_object_id": 283,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_surface.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          false
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchLine"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": false,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.0,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": 0.0,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 295,
+          "AgainstRailDistance": 301,
+          "AlongDistance": 292,
+          "AlongRailDistance": 298,
+          "TaperAngle": 307,
+          "TwistAngle": 304
+        },
+        "path": {
+          "selection_record_object_id": 284,
+          "descriptor_object_id": 287,
+          "terminal_object_id": 290,
+          "sketch_object_id": 243,
+          "curve_object_id": 272,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 277,
+          "descriptor_object_id": 280,
+          "loop_definition_object_id": 283,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000000101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_cut.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 1,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "profile_type": "adsk::fusion::Profile",
+        "profile_sketch_name": "SweepSection",
+        "profile_loop_count": 1,
+        "path_entity_count": 1,
+        "path_entity_types": [
+          "adsk::fusion::SketchLine"
+        ],
+        "guide_rail_present": false,
+        "guide_surface_count": 0
+      },
+      "decoded": {
+        "operation": "Cut",
+        "stored_operation_code": 2,
+        "orientation": "Perpendicular",
+        "stored_orientation_code": 2,
+        "is_solid": true,
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "twist_angle_radians": 0.0,
+        "stored_twist_angle_radians": 0.0,
+        "taper_angle_radians": 0.0,
+        "stored_taper_angle_radians": 0.0,
+        "parameter_bindings": {
+          "AgainstDistance": 381,
+          "AgainstRailDistance": 387,
+          "AlongDistance": 378,
+          "AlongRailDistance": 384,
+          "TaperAngle": 393,
+          "TwistAngle": 390
+        },
+        "path": {
+          "selection_record_object_id": 370,
+          "descriptor_object_id": 373,
+          "terminal_object_id": 376,
+          "sketch_object_id": 322,
+          "curve_object_id": 351,
+          "curve_entity_tag": 121,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "profile": {
+          "selection_record_object_id": 363,
+          "descriptor_object_id": 366,
+          "loop_definition_object_id": 369,
+          "sketch_object_id": 282,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 318,
+                  "entity_kind": "Line",
+                  "entity_tag": 117,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 315,
+                  "entity_kind": "Line",
+                  "entity_tag": 114,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 317,
+                  "entity_kind": "Line",
+                  "entity_tag": 116,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 316,
+                  "entity_kind": "Line",
+                  "entity_tag": 115,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "uninterpreted_control_header_hex": "01030000000000010101000000000000f03f00000000000000000000000000000000",
+        "stored_inactive_rail_fraction_values": {
+          "AgainstRailDistance": 1.0,
+          "AlongRailDistance": 1.0
+        },
+        "guide_status": "No guide rail/surfaces in observed control prefix; guide variants unsupported",
+        "input_selection_status": "Single sketch line/arc path and single sketch-profile membership resolved; general trims and composite/solid-body/guide paths unsupported"
+      },
+      "comparisons": {
+        "operation": true,
+        "orientation": true,
+        "is_solid": true,
+        "path_fraction": true,
+        "distance_two": true,
+        "profile_loop_count": true,
+        "profile_sketch_name": true,
+        "path_kind": true,
+        "no_guides": true,
+        "taper_angle_radians": true,
+        "twist_angle_radians": true
+      }
+    }
+  ],
+  "legacy_samples": [
+    {
+      "file": "moretools-88a2cd6cad0b/Sweep.f3d",
+      "previous_controls_preserved": true,
+      "path": {
+        "selection_record_object_id": 275,
+        "descriptor_object_id": 278,
+        "terminal_object_id": 281,
+        "sketch_object_id": 234,
+        "curve_object_id": 263,
+        "curve_entity_tag": 106,
+        "kind": "Line",
+        "is_closed": false
+      },
+      "profile": {
+        "selection_record_object_id": 268,
+        "descriptor_object_id": 271,
+        "loop_definition_object_id": 274,
+        "sketch_object_id": 202,
+        "sketch_name": "SweepSection",
+        "loops": [
+          {
+            "is_outer": true,
+            "curve_references": [
+              {
+                "entity_id": 230,
+                "entity_kind": "Circle",
+                "entity_tag": 102,
+                "secondary_tag": 0,
+                "stored_direction_flag": 0
+              }
+            ],
+            "order_status": "Stored membership order; traversal ordering not decoded"
+          }
+        ],
+        "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+      }
+    },
+    {
+      "file": "moretools-380212ab6368/SweepPartial.f3d",
+      "previous_controls_preserved": true,
+      "path": {
+        "selection_record_object_id": 275,
+        "descriptor_object_id": 278,
+        "terminal_object_id": 281,
+        "sketch_object_id": 234,
+        "curve_object_id": 263,
+        "curve_entity_tag": 106,
+        "kind": "Line",
+        "is_closed": false
+      },
+      "profile": {
+        "selection_record_object_id": 268,
+        "descriptor_object_id": 271,
+        "loop_definition_object_id": 274,
+        "sketch_object_id": 202,
+        "sketch_name": "SweepSection",
+        "loops": [
+          {
+            "is_outer": true,
+            "curve_references": [
+              {
+                "entity_id": 230,
+                "entity_kind": "Circle",
+                "entity_tag": 102,
+                "secondary_tag": 0,
+                "stored_direction_flag": 0
+              }
+            ],
+            "order_status": "Stored membership order; traversal ordering not decoded"
+          }
+        ],
+        "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+      }
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "unsupported_orientation",
+      "rejected": true,
+      "reason": "Unobserved Sweep orientation"
+    },
+    {
+      "case": "nonboolean_solid",
+      "rejected": true,
+      "reason": "Unsupported observed single-path Sweep control layout"
+    },
+    {
+      "case": "profile_proxy_owner_mismatch",
+      "rejected": true,
+      "reason": "Sweep selection owner disagrees with feature"
+    }
+  ]
+}

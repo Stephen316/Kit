@@ -1,0 +1,261 @@
+"""Three owned mesh captures; dispatch only through Fusion's run entry point.
+
+The initially inspected SDK defs lack MeshPlaneCutFeatures, while actual runtime
+capability is present. This batch records it without invoking PlaneCut or UI
+commands. BaseFeature sourceBodies/bodies are
+BRep collections; their counts are not a mesh source/result correspondence.
+"""
+from datetime import datetime, timezone
+import hashlib
+import json
+import math
+from pathlib import Path
+import traceback
+import uuid
+
+import adsk.core
+import adsk.fusion
+
+
+VERTICES = ((0., 0., 0.), (2., 0., 0.), (0., 3., 0.), (0., 0., 4.))
+# Outward orientation: three coordinate-plane facets and the opposite facet.
+TRIANGLES = ((0, 2, 1), (0, 1, 3), (0, 3, 2), (1, 2, 3))
+CASES = ('stl_centimeter', 'stl_millimeter', 'triangle_data_centimeter')
+
+
+def _stl():
+    lines, normals = ['solid owned_tetra'], []
+    for indices in TRIANGLES:
+        a, b, c = (VERTICES[i] for i in indices)
+        u, v = [b[i]-a[i] for i in range(3)], [c[i]-a[i] for i in range(3)]
+        n = (u[1]*v[2]-u[2]*v[1], u[2]*v[0]-u[0]*v[2], u[0]*v[1]-u[1]*v[0])
+        length = math.sqrt(sum(x*x for x in n))
+        normal = [x/length for x in n]
+        normals.append(normal)
+        lines += ['  facet normal '+' '.join(format(x, '.17g') for x in normal), '    outer loop']
+        lines += ['      vertex '+' '.join(format(x, '.17g') for x in point) for point in (a, b, c)]
+        lines += ['    endloop', '  endfacet']
+    return '\n'.join(lines+['endsolid owned_tetra', '']), normals
+
+
+def run(context):
+    app = adsk.core.Application.get()
+    cases = CASES
+    if isinstance(context, dict) and 'cases' in context:
+        requested = context['cases']
+        if not isinstance(requested, (list, tuple)) or not requested or len(set(requested)) != len(requested) or set(requested)-set(CASES):
+            raise ValueError('cases must select one to three unique known mesh cases')
+        cases = tuple(name for name in CASES if name in requested)
+    source = Path(__file__).resolve()
+    output = source.parent / ('meshcontrasts-'+uuid.uuid4().hex[:12])
+    output.mkdir()
+    executed = source.read_bytes()
+    (output/'executed-generator-source.txt').write_bytes(executed)
+    stl_text, normals = _stl()
+    stl_path = output/'owned-tetra.stl'
+    stl_path.write_text(stl_text, encoding='ascii')
+    truth = {
+        'fusion_version': app.version, 'samples': [], 'errors': [],
+        'executed_generator_sha256': hashlib.sha256(executed).hexdigest(),
+        'planned_cases': list(cases),
+        'source_mesh': {'file': stl_path.name, 'format': 'ASCII STL',
+                        'sha256': hashlib.sha256(stl_path.read_bytes()).hexdigest(),
+                        'numeric_vertices': VERTICES, 'triangle_vertex_indices': TRIANGLES,
+                        'facet_normals': normals,
+                        'unit_scope': 'STL numbers are unitless; each import explicitly supplies MeshUnits. Triangle-data coordinates use Fusion internal centimetres.',
+                        'analytic_controls': {'signed_tetra_volume_numeric_units_cubed': 4.0}},
+        'scope': 'At most three newly owned parametric documents, local owned mesh source and local exports only. No BRep conversion, UI commands or mesh regeneration claim.',
+        'ownership_scope': 'MeshBodies and BaseFeature.meshBodies are observed directly before/after edit. BaseFeature.sourceBodies/bodies are BRep-only getters; no source/result mesh identity is inferred from them.',
+        'plane_cut_scope': 'Initially inspected SDK defs lack PlaneCut declarations but runtime capability is present in the executable package. This batch records actual capabilities only; PlaneCut is not attempted.'}
+
+    def persist():
+        (output/'ground_truth.json').write_text(json.dumps(truth, indent=2)+'\n')
+
+    def journal(phase, case=None, **fields):
+        event = {'time_utc': datetime.now(timezone.utc).isoformat(), 'phase': phase,
+                 'case': case, 'sample_count': len(truth['samples']),
+                 'error_count': len(truth['errors']), **fields}
+        with (output/'journal.jsonl').open('a') as stream:
+            stream.write(json.dumps(event)+'\n')
+        (output/'progress.json').write_text(json.dumps(event, indent=2)+'\n')
+        persist()
+
+    def observe(label, getter, errors):
+        try:
+            return getter()
+        except Exception:
+            errors.append({'getter': label, 'error': traceback.format_exc()})
+            return None
+
+    def identity(entity):
+        if entity is None:
+            return None
+        errors, result = [], {}
+        for prop in ('objectType', 'name', 'entityToken', 'isValid'):
+            result[prop] = observe(prop, lambda prop=prop: getattr(entity, prop), errors)
+        result['getter_errors'] = errors
+        return result
+
+    def points(point):
+        return [point.x, point.y, point.z]
+
+    def mesh_data(mesh, display=False):
+        if mesh is None:
+            return None
+        result, errors = {}, []
+        properties = ('objectType', 'nodeCount', 'nodeCoordinatesAsDouble', 'triangleCount',
+                      'normalVectorsAsDouble')
+        properties += ('nodeIndices', 'surfaceTolerance') if display else (
+            'quadCount', 'polygonCount', 'triangleNodeIndices', 'quadNodeIndices',
+            'polygonNodeIndices', 'nodeCountPerPolygon', 'triangleFaceGroupTempIds')
+        for prop in properties:
+            result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)
+        result['getter_errors'] = errors
+        return result
+
+    def mesh_body(body):
+        result, errors = identity(body), []
+        for prop in ('area', 'volume', 'isClosed', 'isOriented', 'isVisible', 'isLightBulbOn'):
+            result[prop] = observe(prop, lambda prop=prop: getattr(body, prop), errors)
+        result['bounding_box_cm'] = observe('boundingBox', lambda: {
+            'min': points(body.boundingBox.minPoint), 'max': points(body.boundingBox.maxPoint)}, errors)
+        for prop in ('baseOrFormFeature', 'parentComponent', 'assemblyContext', 'nativeObject'):
+            result[prop] = observe(prop, lambda prop=prop: identity(getattr(body, prop)), errors)
+        result['original_polygon_mesh'] = observe('mesh', lambda: mesh_data(body.mesh), errors)
+        result['display_triangle_mesh'] = observe('displayMesh', lambda: mesh_data(body.displayMesh, True), errors)
+        result['mesh_getter_errors'] = errors
+        return result
+
+    def collection_items(collection):
+        # SWIG API collections expose count/item; BaseFeature mesh getters return lists.
+        if hasattr(collection, 'item') and hasattr(collection, 'count'):
+            return [collection.item(i) for i in range(collection.count)]
+        # SWIG MeshBodyVector/BRepBodyVector are iterable, not Python lists and
+        # do not expose the API collection count/item interface.
+        return list(collection)
+
+    def state(root, base, created=None):
+        errors, result = [], {'getter_errors': []}
+        result['component_mesh_bodies'] = observe('component.meshBodies', lambda: [mesh_body(b) for b in collection_items(root.meshBodies)], errors)
+        result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)
+        result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)
+        result['base_brep_bodies'] = observe('base.bodies', lambda: [identity(b) for b in collection_items(base.bodies)], errors)
+        result['base'] = identity(base)
+        for prop in ('healthState', 'errorOrWarningMessage', 'isParametric'):
+            result['base'][prop] = observe('base.'+prop, lambda prop=prop: int(base.healthState) if prop == 'healthState' else getattr(base, prop), errors)
+        if created is not None:
+            result['created_mesh_handle'] = observe('created mesh handle', lambda: mesh_body(created), errors)
+            result['created_mesh_owner_is_base'] = observe('baseOrFormFeature == base', lambda: created.baseOrFormFeature == base, errors)
+        result['getter_errors'] = errors
+        return result
+
+    journal('batch_begin', output_directory=str(output), planned_sample_count=len(cases))
+    for case in cases:
+        doc, design, base, editing = None, None, None, False
+        sample = {'case': case, 'file': case+'.f3d', 'getter_errors': [], 'phase': 'begin'}
+        truth['active_sample'] = sample
+        try:
+            journal('document_create_begin', case)
+            doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+            journal('owned_document_created', case)
+            design = adsk.fusion.Design.cast(doc.products.itemByProductType('DesignProductType'))
+            if design is None:
+                raise RuntimeError('Owned document has no Design product')
+            design.designType = adsk.fusion.DesignTypes.ParametricDesignType
+            root = design.rootComponent
+            sample['actual_design_type'] = int(design.designType)
+            sample['root_component'] = identity(root)
+            sample['runtime_plane_cut_capability'] = {
+                'module_has_MeshPlaneCutFeatures': hasattr(adsk.fusion, 'MeshPlaneCutFeatures'),
+                'features_has_meshPlaneCutFeatures': hasattr(root.features, 'meshPlaneCutFeatures'),
+                'plane_cut_attempted': False,
+                'status': 'Not attempted in this import/data batch; actual capability booleans are authoritative, not the stale inspected SDK defs'}
+            base = root.features.baseFeatures.add()
+            if base is None:
+                raise RuntimeError('BaseFeatures.add returned null')
+            base.name = 'Owned tetra mesh '+case
+            sample['before_edit'] = state(root, base)
+            journal('base_edit_begin', case)
+            started = base.startEdit()
+            sample['start_edit_returned'] = bool(started)
+            if not started:
+                raise RuntimeError('BaseFeature.startEdit returned false')
+            editing = True
+            sample['phase'] = 'mesh_creation'
+            if case.startswith('stl_'):
+                units = (adsk.fusion.MeshUnits.CentimeterMeshUnit if case == 'stl_centimeter'
+                         else adsk.fusion.MeshUnits.MillimeterMeshUnit)
+                sample['requested'] = {'method': 'MeshBodies.add', 'units_enum': int(units),
+                                       'numeric_to_internal_cm_scale': 1.0 if case == 'stl_centimeter' else 0.1,
+                                       'explicit_base_feature_argument': True}
+                created_list = root.meshBodies.add(str(stl_path), units, base)
+                if created_list is None or created_list.count != 1:
+                    raise RuntimeError('Owned STL import did not return exactly one MeshBody')
+                created = created_list.item(0)
+                sample['add_returned_mesh_count'] = created_list.count
+            else:
+                sample['requested'] = {'method': 'MeshBodies.addByTriangleMeshData',
+                                       'coordinates_cm': [v for point in VERTICES for v in point],
+                                       'coordinate_indices': [v for triangle in TRIANGLES for v in triangle],
+                                       'normal_vectors': [], 'normal_indices': [],
+                                       'ownership_scope': 'No explicit BaseFeature parameter exists; creation is attempted during this owned BaseFeature edit and actual ownership is observed.'}
+                created = root.meshBodies.addByTriangleMeshData(
+                    sample['requested']['coordinates_cm'], sample['requested']['coordinate_indices'], [], [])
+                if created is None:
+                    raise RuntimeError('addByTriangleMeshData returned null during owned BaseFeature edit')
+            created.name = 'OwnedTetra_'+case
+            sample['during_edit'] = state(root, base, created)
+            journal('mesh_created_and_observed', case)
+            finished = base.finishEdit()
+            sample['finish_edit_returned'] = bool(finished)
+            if not finished:
+                raise RuntimeError('BaseFeature.finishEdit returned false')
+            editing = False
+            design.timeline.moveToEnd()
+            sample['compute_all_returned'] = bool(design.computeAll())
+            sample['after_edit'] = state(root, base, created)
+            sample['timeline_count'] = design.timeline.count
+            sample['timeline_marker_position'] = design.timeline.markerPosition
+            destination = output/sample['file']
+            sample['phase'] = 'export'
+            journal('local_export_begin', case, file=sample['file'])
+            succeeded = design.exportManager.execute(design.exportManager.createFusionArchiveExportOptions(str(destination)))
+            if not succeeded or not destination.is_file() or destination.stat().st_size == 0:
+                raise RuntimeError('Local Fusion archive export did not complete')
+            sample['export'] = {'returned_success': bool(succeeded), 'size_bytes': destination.stat().st_size,
+                                'sha256': hashlib.sha256(destination.read_bytes()).hexdigest()}
+            sample['phase'] = 'export_complete'
+            truth['samples'].append(sample)
+            truth.pop('active_sample', None)
+            journal('local_export_complete', case, file=sample['file'])
+        except Exception:
+            truth['errors'].append({'case': case, 'phase': sample['phase'],
+                                    'error': traceback.format_exc(), 'partial_sample': sample})
+            truth.pop('active_sample', None)
+            journal('case_error', case)
+        finally:
+            if editing and base is not None:
+                try:
+                    returned = base.finishEdit()
+                    journal('cleanup_base_finish_edit_returned', case, returned=bool(returned))
+                    if not returned:
+                        truth['errors'].append({'case': case, 'phase': 'cleanup_finish_edit', 'error': 'finishEdit returned false'})
+                except Exception:
+                    truth['errors'].append({'case': case, 'phase': 'cleanup_finish_edit', 'error': traceback.format_exc()})
+            if design is not None:
+                try:
+                    design.timeline.moveToEnd()
+                except Exception:
+                    truth['errors'].append({'case': case, 'phase': 'restore_owned_timeline', 'error': traceback.format_exc()})
+            if doc is not None:
+                try:
+                    journal('owned_document_close_begin', case, save=False)
+                    closed = doc.close(False)
+                    journal('owned_document_close_returned', case, returned=bool(closed), save=False)
+                    if not closed:
+                        truth['errors'].append({'case': case, 'phase': 'close_owned_document', 'error': 'close(False) returned false'})
+                except Exception:
+                    truth['errors'].append({'case': case, 'phase': 'close_owned_document', 'error': traceback.format_exc()})
+            persist()
+    journal('batch_complete', planned_sample_count=len(cases), exported_sample_count=len(truth['samples']))
+    (output/'complete.txt').write_text('terminal; inspect ground_truth.json for actual successes and retained failures\n')

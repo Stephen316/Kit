@@ -1,0 +1,2668 @@
+{
+  "file": "splines-9a18bae21127/splines.f3d",
+  "status": "experimental partial decoder",
+  "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+  "limitations": [
+    "Candidate header boundaries and field semantics are inferred from a small corpus.",
+    "Type codes are local to the document and not treated as universal feature identifiers.",
+    "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
+    "No exact profile selection, topology, general sketch solver or native writer.",
+    "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+    "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+  ],
+  "streams": [
+    {
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "features": [
+        {
+          "kind": "Sketch",
+          "object_id": 207,
+          "native_kind_label": "Sketch",
+          "stored_index": 1,
+          "record_offset": 25283,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeFittedOpen",
+          "sketch_object_id": 202,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 205,
+              "sketch_object_id": 202,
+              "record_offset": 25025,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 100,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 228,
+              "sketch_object_id": 202,
+              "record_offset": 26610,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 101,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 230,
+              "sketch_object_id": 202,
+              "record_offset": 26879,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 102,
+              "position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 232,
+              "sketch_object_id": 202,
+              "record_offset": 27148,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 103,
+              "position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 234,
+              "sketch_object_id": 202,
+              "record_offset": 27417,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 104,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "kind": "FittedSpline",
+              "object_id": 236,
+              "entity_tag": 105,
+              "sketch_object_id": 202,
+              "record_offset": 27686,
+              "geometry_record_offset": 27879,
+              "start_point_id": 228,
+              "end_point_id": 234,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 5,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.06666666666666667,
+                  0.13333333333333333,
+                  0.2,
+                  0.26666666666666666,
+                  0.3333333333333333,
+                  0.39999999999999997,
+                  0.4666666666666666,
+                  0.5333333333333333,
+                  0.6,
+                  0.6666666666666666,
+                  0.7333333333333333,
+                  0.7999999999999999,
+                  0.8666666666666666,
+                  0.9333333333333332,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    0.7256145589110092,
+                    1.3861929563835713,
+                    0.0
+                  ],
+                  [
+                    0.7817802354137695,
+                    1.9130436901029446,
+                    0.0
+                  ],
+                  [
+                    0.8808382779901887,
+                    2.566715651403102,
+                    0.0
+                  ],
+                  [
+                    1.042751383367472,
+                    3.163071177607446,
+                    0.0
+                  ],
+                  [
+                    1.2951150349505884,
+                    3.4484093234197726,
+                    0.0
+                  ],
+                  [
+                    1.5959108442942629,
+                    3.290386455732144,
+                    0.0
+                  ],
+                  [
+                    1.9401309097254458,
+                    2.740335425265733,
+                    0.0
+                  ],
+                  [
+                    2.31749731289243,
+                    1.9017119806361922,
+                    0.0
+                  ],
+                  [
+                    2.7143982114281298,
+                    0.9109835832243887,
+                    0.0
+                  ],
+                  [
+                    3.1155796773148303,
+                    -0.07916341335688529,
+                    0.0
+                  ],
+                  [
+                    3.5058225395093072,
+                    -0.9165830721929745,
+                    0.0
+                  ],
+                  [
+                    3.8715025308190953,
+                    -1.4653503427251122,
+                    0.0
+                  ],
+                  [
+                    4.202443078857506,
+                    -1.624541359606539,
+                    0.0
+                  ],
+                  [
+                    4.493244802231127,
+                    -1.341721058981829,
+                    0.0
+                  ],
+                  [
+                    4.74159310880867,
+                    -0.595460142286554,
+                    0.0
+                  ],
+                  [
+                    4.9060427107749085,
+                    0.3737364126744511,
+                    0.0
+                  ],
+                  [
+                    5.010362905148232,
+                    1.307144249052488,
+                    0.0
+                  ],
+                  [
+                    5.071519381228206,
+                    2.0205289994599567,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "is_rational": true,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "fit_point_ids": [
+                228,
+                230,
+                232,
+                234
+              ],
+              "fit_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ],
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  0.7256145589110092,
+                  1.3861929563835713,
+                  0.0
+                ],
+                [
+                  0.7817802354137695,
+                  1.9130436901029446,
+                  0.0
+                ],
+                [
+                  0.8808382779901887,
+                  2.566715651403102,
+                  0.0
+                ],
+                [
+                  1.042751383367472,
+                  3.163071177607446,
+                  0.0
+                ],
+                [
+                  1.2951150349505884,
+                  3.4484093234197726,
+                  0.0
+                ],
+                [
+                  1.5959108442942629,
+                  3.290386455732144,
+                  0.0
+                ],
+                [
+                  1.9401309097254458,
+                  2.740335425265733,
+                  0.0
+                ],
+                [
+                  2.31749731289243,
+                  1.9017119806361922,
+                  0.0
+                ],
+                [
+                  2.7143982114281298,
+                  0.9109835832243887,
+                  0.0
+                ],
+                [
+                  3.1155796773148303,
+                  -0.07916341335688529,
+                  0.0
+                ],
+                [
+                  3.5058225395093072,
+                  -0.9165830721929745,
+                  0.0
+                ],
+                [
+                  3.8715025308190953,
+                  -1.4653503427251122,
+                  0.0
+                ],
+                [
+                  4.202443078857506,
+                  -1.624541359606539,
+                  0.0
+                ],
+                [
+                  4.493244802231127,
+                  -1.341721058981829,
+                  0.0
+                ],
+                [
+                  4.74159310880867,
+                  -0.595460142286554,
+                  0.0
+                ],
+                [
+                  4.9060427107749085,
+                  0.3737364126744511,
+                  0.0
+                ],
+                [
+                  5.010362905148232,
+                  1.307144249052488,
+                  0.0
+                ],
+                [
+                  5.071519381228206,
+                  2.0205289994599567,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 204,
+            "record_offset": 24991,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 247,
+          "native_kind_label": "Sketch",
+          "stored_index": 2,
+          "record_offset": 29881,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeFittedClosed",
+          "sketch_object_id": 243,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 245,
+              "sketch_object_id": 243,
+              "record_offset": 29623,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 106,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 268,
+              "sketch_object_id": 243,
+              "record_offset": 31208,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 107,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 270,
+              "sketch_object_id": 243,
+              "record_offset": 31477,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 108,
+              "position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 272,
+              "sketch_object_id": 243,
+              "record_offset": 31746,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 109,
+              "position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 274,
+              "sketch_object_id": 243,
+              "record_offset": 32015,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 110,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "kind": "FittedSpline",
+              "object_id": 276,
+              "entity_tag": 111,
+              "sketch_object_id": 243,
+              "record_offset": 32284,
+              "geometry_record_offset": 32477,
+              "start_point_id": 268,
+              "end_point_id": 268,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 5,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2,
+                  0.25,
+                  0.3,
+                  0.35,
+                  0.39999999999999997,
+                  0.44999999999999996,
+                  0.49999999999999994,
+                  0.5499999999999999,
+                  0.6,
+                  0.65,
+                  0.7000000000000001,
+                  0.7500000000000001,
+                  0.8000000000000002,
+                  0.8500000000000002,
+                  0.9000000000000002,
+                  0.9500000000000003,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    0.6346603428912784,
+                    1.1637140408392403,
+                    0.0
+                  ],
+                  [
+                    0.5440399869260979,
+                    1.3369553804257839,
+                    0.0
+                  ],
+                  [
+                    0.528714308582729,
+                    1.7241548100227582,
+                    0.0
+                  ],
+                  [
+                    0.7227933062704907,
+                    2.3969219955694974,
+                    0.0
+                  ],
+                  [
+                    1.1778812223320374,
+                    3.1195612397970005,
+                    0.0
+                  ],
+                  [
+                    1.6823306486672853,
+                    3.3580990343395993,
+                    0.0
+                  ],
+                  [
+                    2.1197632828436683,
+                    2.921057985825034,
+                    0.0
+                  ],
+                  [
+                    2.47183310417237,
+                    1.916532990374541,
+                    0.0
+                  ],
+                  [
+                    2.777516641608769,
+                    0.6288681919643816,
+                    0.0
+                  ],
+                  [
+                    3.104181114778369,
+                    -0.5721485243438039,
+                    0.0
+                  ],
+                  [
+                    3.512942515522795,
+                    -1.3375169088355034,
+                    0.0
+                  ],
+                  [
+                    4.030743524699328,
+                    -1.426707276502865,
+                    0.0
+                  ],
+                  [
+                    4.608676560579476,
+                    -0.8339724431846837,
+                    0.0
+                  ],
+                  [
+                    5.123995318031696,
+                    0.2067413255356147,
+                    0.0
+                  ],
+                  [
+                    5.430713320838486,
+                    1.3527156758901862,
+                    0.0
+                  ],
+                  [
+                    5.399440049883571,
+                    2.250742283883525,
+                    0.0
+                  ],
+                  [
+                    4.956826615412211,
+                    2.636581758014673,
+                    0.0
+                  ],
+                  [
+                    4.138492700291338,
+                    2.462295574656167,
+                    0.0
+                  ],
+                  [
+                    3.093440455180841,
+                    1.9155058014401778,
+                    0.0
+                  ],
+                  [
+                    2.0224534343175162,
+                    1.2910137372342227,
+                    0.0
+                  ],
+                  [
+                    1.3119342321921008,
+                    0.9797910269658209,
+                    0.0
+                  ],
+                  [
+                    0.9360779295784272,
+                    0.9546711353903425,
+                    0.0
+                  ],
+                  [
+                    0.7653396571087214,
+                    1.03628595916076,
+                    0.0
+                  ],
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ]
+                ],
+                "weights": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "is_rational": true,
+                "is_periodic": true,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "fit_point_ids": [
+                268,
+                270,
+                272,
+                274
+              ],
+              "fit_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ],
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  0.6346603428912784,
+                  1.1637140408392403,
+                  0.0
+                ],
+                [
+                  0.5440399869260979,
+                  1.3369553804257839,
+                  0.0
+                ],
+                [
+                  0.528714308582729,
+                  1.7241548100227582,
+                  0.0
+                ],
+                [
+                  0.7227933062704907,
+                  2.3969219955694974,
+                  0.0
+                ],
+                [
+                  1.1778812223320374,
+                  3.1195612397970005,
+                  0.0
+                ],
+                [
+                  1.6823306486672853,
+                  3.3580990343395993,
+                  0.0
+                ],
+                [
+                  2.1197632828436683,
+                  2.921057985825034,
+                  0.0
+                ],
+                [
+                  2.47183310417237,
+                  1.916532990374541,
+                  0.0
+                ],
+                [
+                  2.777516641608769,
+                  0.6288681919643816,
+                  0.0
+                ],
+                [
+                  3.104181114778369,
+                  -0.5721485243438039,
+                  0.0
+                ],
+                [
+                  3.512942515522795,
+                  -1.3375169088355034,
+                  0.0
+                ],
+                [
+                  4.030743524699328,
+                  -1.426707276502865,
+                  0.0
+                ],
+                [
+                  4.608676560579476,
+                  -0.8339724431846837,
+                  0.0
+                ],
+                [
+                  5.123995318031696,
+                  0.2067413255356147,
+                  0.0
+                ],
+                [
+                  5.430713320838486,
+                  1.3527156758901862,
+                  0.0
+                ],
+                [
+                  5.399440049883571,
+                  2.250742283883525,
+                  0.0
+                ],
+                [
+                  4.956826615412211,
+                  2.636581758014673,
+                  0.0
+                ],
+                [
+                  4.138492700291338,
+                  2.462295574656167,
+                  0.0
+                ],
+                [
+                  3.093440455180841,
+                  1.9155058014401778,
+                  0.0
+                ],
+                [
+                  2.0224534343175162,
+                  1.2910137372342227,
+                  0.0
+                ],
+                [
+                  1.3119342321921008,
+                  0.9797910269658209,
+                  0.0
+                ],
+                [
+                  0.9360779295784272,
+                  0.9546711353903425,
+                  0.0
+                ],
+                [
+                  0.7653396571087214,
+                  1.03628595916076,
+                  0.0
+                ],
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 244,
+            "record_offset": 29589,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 290,
+          "native_kind_label": "Sketch",
+          "stored_index": 3,
+          "record_offset": 34734,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeControlCubic",
+          "sketch_object_id": 286,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 288,
+              "sketch_object_id": 286,
+              "record_offset": 34476,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 112,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 311,
+              "sketch_object_id": 286,
+              "record_offset": 36061,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 113,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 313,
+              "sketch_object_id": 286,
+              "record_offset": 36341,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 114,
+              "position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 315,
+              "sketch_object_id": 286,
+              "record_offset": 36621,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 115,
+              "position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 317,
+              "sketch_object_id": 286,
+              "record_offset": 36901,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 116,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "kind": "ControlPointSpline",
+              "object_id": 322,
+              "entity_tag": 120,
+              "sketch_object_id": 286,
+              "record_offset": 38249,
+              "geometry_record_offset": 38442,
+              "start_point_id": 311,
+              "end_point_id": 317,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 3,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    1.6,
+                    3.2,
+                    0.0
+                  ],
+                  [
+                    3.8,
+                    -1.3,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [],
+                "is_rational": false,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "object_id": 319,
+              "sketch_object_id": 286,
+              "record_offset": 37181,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 311,
+              "end_point_id": 313,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "entity_tag": 117,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 320,
+              "sketch_object_id": 286,
+              "record_offset": 37537,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 313,
+              "end_point_id": 315,
+              "start_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "end_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "entity_tag": 118,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_end_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 321,
+              "sketch_object_id": 286,
+              "record_offset": 37893,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 315,
+              "end_point_id": 317,
+              "start_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "entity_tag": 119,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 287,
+            "record_offset": 34442,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 334,
+          "native_kind_label": "Sketch",
+          "stored_index": 4,
+          "record_offset": 40035,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeControlQuintic",
+          "sketch_object_id": 330,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 332,
+              "sketch_object_id": 330,
+              "record_offset": 39777,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 121,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 355,
+              "sketch_object_id": 330,
+              "record_offset": 41362,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 122,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 357,
+              "sketch_object_id": 330,
+              "record_offset": 41642,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 123,
+              "position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 359,
+              "sketch_object_id": 330,
+              "record_offset": 41922,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 124,
+              "position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 361,
+              "sketch_object_id": 330,
+              "record_offset": 42202,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 125,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "object_id": 363,
+              "sketch_object_id": 330,
+              "record_offset": 42482,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 126,
+              "position_cm": [
+                6.7,
+                4.1,
+                0.0
+              ],
+              "component_position_cm": [
+                6.7,
+                4.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 365,
+              "sketch_object_id": 330,
+              "record_offset": 42762,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 127,
+              "position_cm": [
+                8.4,
+                0.8,
+                0.0
+              ],
+              "component_position_cm": [
+                8.4,
+                0.8,
+                0.0
+              ]
+            },
+            {
+              "kind": "ControlPointSpline",
+              "object_id": 372,
+              "entity_tag": 133,
+              "sketch_object_id": 330,
+              "record_offset": 44822,
+              "geometry_record_offset": 45015,
+              "start_point_id": 355,
+              "end_point_id": 365,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                8.4,
+                0.8,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 5,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    1.6,
+                    3.2,
+                    0.0
+                  ],
+                  [
+                    3.8,
+                    -1.3,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ],
+                  [
+                    6.7,
+                    4.1,
+                    0.0
+                  ],
+                  [
+                    8.4,
+                    0.8,
+                    0.0
+                  ]
+                ],
+                "weights": [],
+                "is_rational": false,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                8.4,
+                0.8,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ],
+                [
+                  6.7,
+                  4.1,
+                  0.0
+                ],
+                [
+                  8.4,
+                  0.8,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "object_id": 367,
+              "sketch_object_id": 330,
+              "record_offset": 43042,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 355,
+              "end_point_id": 357,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "entity_tag": 128,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 368,
+              "sketch_object_id": 330,
+              "record_offset": 43398,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 357,
+              "end_point_id": 359,
+              "start_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "end_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "entity_tag": 129,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_end_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 369,
+              "sketch_object_id": 330,
+              "record_offset": 43754,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 359,
+              "end_point_id": 361,
+              "start_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "entity_tag": 130,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "object_id": 370,
+              "sketch_object_id": 330,
+              "record_offset": 44110,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 361,
+              "end_point_id": 363,
+              "start_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "end_cm": [
+                6.7,
+                4.1,
+                0.0
+              ],
+              "entity_tag": 131,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_end_cm": [
+                6.7,
+                4.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 371,
+              "sketch_object_id": 330,
+              "record_offset": 44466,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 363,
+              "end_point_id": 365,
+              "start_cm": [
+                6.7,
+                4.1,
+                0.0
+              ],
+              "end_cm": [
+                8.4,
+                0.8,
+                0.0
+              ],
+              "entity_tag": 132,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                6.7,
+                4.1,
+                0.0
+              ],
+              "component_end_cm": [
+                8.4,
+                0.8,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 331,
+            "record_offset": 39743,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 384,
+          "native_kind_label": "Sketch",
+          "stored_index": 5,
+          "record_offset": 46628,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeFixedRational",
+          "sketch_object_id": 380,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 382,
+              "sketch_object_id": 380,
+              "record_offset": 46370,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 134,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 405,
+              "sketch_object_id": 380,
+              "record_offset": 47955,
+              "entity_genesis": 64,
+              "kind": "Point",
+              "entity_tag": 135,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 407,
+              "sketch_object_id": 380,
+              "record_offset": 48224,
+              "entity_genesis": 64,
+              "kind": "Point",
+              "entity_tag": 136,
+              "position_cm": [
+                5.099999999999998,
+                2.3999999999999995,
+                0.0
+              ],
+              "component_position_cm": [
+                5.099999999999998,
+                2.3999999999999995,
+                0.0
+              ]
+            },
+            {
+              "kind": "FixedSpline",
+              "object_id": 409,
+              "entity_tag": 137,
+              "sketch_object_id": 380,
+              "record_offset": 48493,
+              "geometry_record_offset": 48686,
+              "start_point_id": 405,
+              "end_point_id": 407,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.099999999999998,
+                2.3999999999999995,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 3,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    1.6,
+                    3.2,
+                    0.0
+                  ],
+                  [
+                    3.8,
+                    -1.3,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [
+                  1.0,
+                  0.5,
+                  2.0,
+                  1.0
+                ],
+                "is_rational": true,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.099999999999998,
+                2.3999999999999995,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 381,
+            "record_offset": 46336,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 420,
+          "native_kind_label": "Sketch",
+          "stored_index": 6,
+          "record_offset": 49996,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeFixedNonRational",
+          "sketch_object_id": 416,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 418,
+              "sketch_object_id": 416,
+              "record_offset": 49738,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 138,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 441,
+              "sketch_object_id": 416,
+              "record_offset": 51323,
+              "entity_genesis": 64,
+              "kind": "Point",
+              "entity_tag": 139,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 443,
+              "sketch_object_id": 416,
+              "record_offset": 51592,
+              "entity_genesis": 64,
+              "kind": "Point",
+              "entity_tag": 140,
+              "position_cm": [
+                5.1000000000000005,
+                2.3999999999999972,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1000000000000005,
+                2.3999999999999972,
+                0.0
+              ]
+            },
+            {
+              "kind": "FixedSpline",
+              "object_id": 445,
+              "entity_tag": 141,
+              "sketch_object_id": 416,
+              "record_offset": 51861,
+              "geometry_record_offset": 52054,
+              "start_point_id": 441,
+              "end_point_id": 443,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.1000000000000005,
+                2.3999999999999972,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 3,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    1.6,
+                    3.2,
+                    0.0
+                  ],
+                  [
+                    3.8,
+                    -1.3,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [],
+                "is_rational": false,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1000000000000005,
+                2.3999999999999972,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 417,
+            "record_offset": 49704,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 456,
+          "native_kind_label": "Sketch",
+          "stored_index": 7,
+          "record_offset": 53337,
+          "type_code": "335",
+          "parameters": [],
+          "name": "ProbeEllipticalArc",
+          "sketch_object_id": 452,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 454,
+              "sketch_object_id": 452,
+              "record_offset": 53079,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 142,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 477,
+              "sketch_object_id": 452,
+              "record_offset": 54664,
+              "entity_genesis": 0,
+              "kind": "Point",
+              "entity_tag": 143,
+              "position_cm": [
+                1.3,
+                -0.6,
+                0.0
+              ],
+              "component_position_cm": [
+                1.3,
+                -0.6,
+                0.0
+              ]
+            },
+            {
+              "object_id": 479,
+              "sketch_object_id": 452,
+              "record_offset": 54933,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 144,
+              "position_cm": [
+                3.160069877529139,
+                1.5252117999755743,
+                0.0
+              ],
+              "component_position_cm": [
+                3.160069877529139,
+                1.5252117999755743,
+                0.0
+              ]
+            },
+            {
+              "object_id": 481,
+              "sketch_object_id": 452,
+              "record_offset": 55202,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 145,
+              "position_cm": [
+                -1.2204842427247917,
+                -1.5237981098783482,
+                0.0
+              ],
+              "component_position_cm": [
+                -1.2204842427247917,
+                -1.5237981098783482,
+                0.0
+              ]
+            },
+            {
+              "object_id": 483,
+              "sketch_object_id": 452,
+              "record_offset": 55471,
+              "entity_genesis": 2,
+              "kind": "EllipticalArc",
+              "center_point_id": 477,
+              "center_cm": [
+                1.3,
+                -0.6,
+                0.0
+              ],
+              "major_radius_cm": 3.0000000000000004,
+              "minor_radius_cm": 1.5000000000000002,
+              "stored_major_axis": [
+                0.8000000000000002,
+                0.6000000000000001,
+                0.0
+              ],
+              "stored_minor_axis": [
+                -0.6000000000000001,
+                0.8000000000000002,
+                0.0
+              ],
+              "start_point_id": 479,
+              "end_point_id": 481,
+              "start_cm": [
+                3.160069877529139,
+                1.5252117999755743,
+                0.0
+              ],
+              "end_cm": [
+                -1.2204842427247917,
+                -1.5237981098783482,
+                0.0
+              ],
+              "start_angle_radians": 0.39999999999999997,
+              "end_angle_radians": 2.6,
+              "entity_tag": 146,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                3.160069877529139,
+                1.5252117999755743,
+                0.0
+              ],
+              "component_end_cm": [
+                -1.2204842427247917,
+                -1.5237981098783482,
+                0.0
+              ],
+              "component_center_cm": [
+                1.3,
+                -0.6,
+                0.0
+              ],
+              "component_stored_major_axis": [
+                0.8000000000000002,
+                0.6000000000000001,
+                0.0
+              ],
+              "component_stored_minor_axis": [
+                -0.6000000000000001,
+                0.8000000000000002,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 453,
+            "record_offset": 53045,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 491,
+          "native_kind_label": "Sketch",
+          "stored_index": 8,
+          "record_offset": 56591,
+          "type_code": "335",
+          "parameters": [
+            {
+              "role": "Conic-Curve1-Rho",
+              "parameter_name": "d1",
+              "display_units": "",
+              "raw_float64": 0.65,
+              "role_offset": 59369,
+              "value_offset": 59421,
+              "expression_candidates": [
+                "0.65"
+              ],
+              "parameter_object_id": 519,
+              "declared_binding_object_id": 520,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "unitless",
+              "binding_object_id": 520,
+              "binding_offset": 59441,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "name": "ProbeConic",
+          "sketch_object_id": 487,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 489,
+              "sketch_object_id": 487,
+              "record_offset": 56333,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 147,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 512,
+              "sketch_object_id": 487,
+              "record_offset": 57959,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 148,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 514,
+              "sketch_object_id": 487,
+              "record_offset": 58228,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 149,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "object_id": 516,
+              "sketch_object_id": 487,
+              "record_offset": 58497,
+              "entity_genesis": 0,
+              "kind": "Point",
+              "entity_tag": 150,
+              "position_cm": [
+                2.6,
+                4.2,
+                0.0
+              ],
+              "component_position_cm": [
+                2.6,
+                4.2,
+                0.0
+              ]
+            },
+            {
+              "kind": "Conic",
+              "object_id": 518,
+              "entity_tag": 151,
+              "sketch_object_id": 487,
+              "record_offset": 58766,
+              "rho": 0.65,
+              "start_point_id": 512,
+              "end_point_id": 514,
+              "apex_point_id": 516,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "apex_cm": [
+                2.6,
+                4.2,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 2,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  5.581905154687498,
+                  5.581905154687498,
+                  5.581905154687498
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    2.6,
+                    4.2,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [
+                  1.0,
+                  1.8571428571428574,
+                  1.0
+                ],
+                "is_rational": true,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  5.581905154687498
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Conic construction/fixed state not decoded",
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_apex_cm": [
+                2.6,
+                4.2,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  2.6,
+                  4.2,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 488,
+            "record_offset": 56299,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        }
+      ],
+      "unbound_parameters": [],
+      "rejected_parameters": [],
+      "candidate_record_headers": 497,
+      "sketch_decoding": {
+        "unsupported_curves": [],
+        "unknown_constraint_codes": [
+          {
+            "object_id": 326,
+            "code": 2147483648
+          },
+          {
+            "object_id": 376,
+            "code": 2147483648
+          }
+        ],
+        "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+      },
+      "modeling_decoding": {
+        "unresolved": [],
+        "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+      },
+      "placement_decoding": {
+        "decoded_sketch_placements": 8,
+        "unresolved_sketches": [],
+        "decoded_construction_planes": 0,
+        "scope": "Observed rigid sketch transforms and offset/angle plane geometry"
+      }
+    }
+  ],
+  "focused_validation": {
+    "checks": [
+      {
+        "name": "ProbeFittedOpen",
+        "kind": "FittedSpline",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": false
+      },
+      {
+        "name": "ProbeFittedClosed",
+        "kind": "FittedSpline",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": true
+      },
+      {
+        "name": "ProbeControlCubic",
+        "kind": "ControlPointSpline",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": false
+      },
+      {
+        "name": "ProbeControlQuintic",
+        "kind": "ControlPointSpline",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": false
+      },
+      {
+        "name": "ProbeFixedRational",
+        "kind": "FixedSpline",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": false
+      },
+      {
+        "name": "ProbeFixedNonRational",
+        "kind": "FixedSpline",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": false
+      },
+      {
+        "name": "ProbeEllipticalArc",
+        "kind": "EllipticalArc",
+        "api_geometry_matches": true
+      },
+      {
+        "name": "ProbeConic",
+        "kind": "Conic",
+        "control_points_weights_and_degree_match": true,
+        "api_curve_evaluations_match": 5,
+        "periodic_api_knot_array_shorter_than_file": false
+      }
+    ],
+    "scope": "Eight generated primary curves plus their auxiliary lines; seven NURBS evaluated at five API sample parameters each. Periodic full knots are taken from file because this API returned a shortened knot array."
+  }
+}

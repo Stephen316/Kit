@@ -1,0 +1,316 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "composite_line_arc.f3d",
+      "requested": {
+        "path": {
+          "count": 2,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                3.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "source_kind": "SketchArc",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                1.5707963267948966
+              ],
+              "curve_endpoints_cm": [
+                [
+                  3.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  3.999999999999999,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "is_solid": true
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 2,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                3.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "source_kind": "SketchArc",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surfaces": [],
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "is_chain_selection": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d5",
+          "role": "TwistAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d6",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "closed_circle.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": true,
+          "entities": [
+            {
+              "source_kind": "SketchCircle",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                6.283185307179586
+              ],
+              "curve_endpoints_cm": [
+                [
+                  4.0,
+                  3.999999999999999,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.999999999999999,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "is_solid": true
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": 1.0,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": true,
+          "entities": [
+            {
+              "source_kind": "SketchCircle",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surfaces": [],
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "is_chain_selection": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d2",
+          "role": "AgainstDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d5",
+          "role": "TwistAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d6",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "case": "rail_scale",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 108, in run\n    sample[\"settings\"] = {\"operation\": feature.operation, \"orientation\": feature.orientation,\n                                                                         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+    },
+    {
+      "case": "rail_stretch",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 108, in run\n    sample[\"settings\"] = {\"operation\": feature.operation, \"orientation\": feature.orientation,\n                                                                         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+    },
+    {
+      "case": "rail_no_scaling",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 108, in run\n    sample[\"settings\"] = {\"operation\": feature.operation, \"orientation\": feature.orientation,\n                                                                         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+    },
+    {
+      "case": "rail_full_extents",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 108, in run\n    sample[\"settings\"] = {\"operation\": feature.operation, \"orientation\": feature.orientation,\n                                                                         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+    },
+    {
+      "case": "guide_surface",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 108, in run\n    sample[\"settings\"] = {\"operation\": feature.operation, \"orientation\": feature.orientation,\n                                                                         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+    },
+    {
+      "case": "guide_surface_chain",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 108, in run\n    sample[\"settings\"] = {\"operation\": feature.operation, \"orientation\": feature.orientation,\n                                                                         ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+    }
+  ]
+}

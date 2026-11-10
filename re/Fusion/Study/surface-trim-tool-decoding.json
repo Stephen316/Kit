@@ -1,0 +1,1205 @@
+{
+  "scope": "Two actual healthy SurfaceTrim face/body source tools exported from interrupted batches. No batch completion is asserted. Common recipe/target parsing retained; selected-cell semantics and uncaptured sketch-Line support unresolved.",
+  "interface": "decode_surface_trim_tools(data,records,features)->decoded/unresolved/scope; rows feature_object_id/kind/name/settings",
+  "shared_hook": "decode_surface_tool(...,trim_tool_resolver=None). Default ConstructionPlane path unchanged; opt-in five-argument callback closes over features, requires matching owner/selection IDs and BRepFace/BRepBody kind, and cannot overwrite common recipe/target/status fields.",
+  "integration": {
+    "stream": "surface_trim_tools",
+    "settings_field": "settings",
+    "cleared_old_reason": "Only observed planar trim tools supported",
+    "decode_level": "Observed SurfaceTrim face/body tool and typed source; selected-cell recipe, persistent topology and regeneration unresolved",
+    "source_stream": "surface_trim_sources",
+    "source_feature_field": "surface_trim_source",
+    "native_source_evidence_path": "settings.tool.native_source_evidence",
+    "scope": "Only qualified same-feature old plane-only rejection replaced. Existing target/recipe bytes and unresolved cell status retained; old surface controls and unrelated diagnostics exact."
+  },
+  "execution_scope": {
+    "live_calls_made_by_validator": false,
+    "filesystem_evidence": "Both truth files lack terminal_status and both folders lack complete.txt; last journal/progress phase records owned document close returnedTrue after one valid export.",
+    "separately_reported_session_evidence": "User reported repeated Fusion crashes; parent observed each owning process absent after the captured case. These observations do not establish a crash cause or universal API failure.",
+    "uncaptured_case": "sketch_line",
+    "uncaptured_case_status": "No export/native proof; remains unsupported; planned generator is not execution evidence.",
+    "live_work_stopped_after_user_crash_report": true
+  },
+  "captures": [
+    {
+      "directory": "surfacetrimtools-c507461585b5",
+      "state": "PartialNoTerminalMarker",
+      "ground_truth_sha256": "8c3c07fcaa42976eda83002bd4190d52f1bf3f224726233614950b8255bc75d3",
+      "planned_cases": [
+        "sheet_face",
+        "sheet_body",
+        "sketch_line"
+      ],
+      "exported_cases": [
+        "sheet_face"
+      ],
+      "terminal_status": null,
+      "complete_marker_present": false,
+      "last_progress": {
+        "time_utc": "2026-10-21T15:43:05.857306+00:00",
+        "phase": "owned_document_close_returned",
+        "case": "sheet_face",
+        "sample_count": 1,
+        "error_count": 0,
+        "save": false,
+        "returned": true
+      },
+      "executed_generator_sha256": "6c1756d6b418c6ee3f949f17ce0ec8bdca8909f1376e8bc13b257ee437813d32",
+      "executed_sdk_surface_sha256": "2a889ec27dea5b23493204e3101efd26c35942a56611d2fce91e7a6ffa09a11d",
+      "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+      "fusion_version": "2705.1.30",
+      "entrypoint_provenance": null,
+      "case_errors": [],
+      "scope": "Observed capture files only; batch success and failure cause not inferred"
+    },
+    {
+      "directory": "surfacetrimtools-ce3c7e1c703e",
+      "state": "PartialNoTerminalMarker",
+      "ground_truth_sha256": "679948677652f24690f370d094421ce691c1426913a123e300bd3f7a28607b38",
+      "planned_cases": [
+        "sheet_body",
+        "sketch_line"
+      ],
+      "exported_cases": [
+        "sheet_body"
+      ],
+      "terminal_status": null,
+      "complete_marker_present": false,
+      "last_progress": {
+        "time_utc": "2026-10-21T15:45:53.600968+00:00",
+        "phase": "owned_document_close_returned",
+        "case": "sheet_body",
+        "sample_count": 1,
+        "error_count": 0,
+        "save": false,
+        "returned": true
+      },
+      "executed_generator_sha256": "6a77d71b4b8045e883866a1521949b61735f34fa5b103ae4e107598d1381d5d9",
+      "executed_sdk_surface_sha256": "2a889ec27dea5b23493204e3101efd26c35942a56611d2fce91e7a6ffa09a11d",
+      "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+      "fusion_version": "2705.1.30",
+      "entrypoint_provenance": {
+        "source_path": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceTrimRemainingContrasts.py",
+        "sha256": "032493682831598f112ebef768c61878109ac9a81cf2ca8349e99303058cbca8",
+        "executed_snapshot": "executed-entrypoint-source.txt",
+        "invocation": "Absolute runpy of GenerateSurfaceTrimToolContrasts.py; remaining sheet_body/sketch_line only"
+      },
+      "case_errors": [],
+      "scope": "Observed capture files only; batch success and failure cause not inferred"
+    }
+  ],
+  "samples": [
+    {
+      "archive": "surfacetrimtools-c507461585b5/sheet_face.f3d",
+      "archive_sha256": "5b0b6a741e6e968768fc253986e3eef2b4fec268521a628a785353a852af3cb4",
+      "capture_state": "PartialNoTerminalMarker",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 898,
+            "kind": "SurfaceTrim",
+            "name": "OwnedSurfaceTrim_sheet_face",
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "tool": {
+                "selection_record_object_id": 906,
+                "entity": {
+                  "kind": "BRepFace",
+                  "native_body_object_id": 366
+                },
+                "native_source_evidence": {
+                  "feature_object_id": 898,
+                  "tool_selection_record_object_id": 906,
+                  "tool_descriptor_object_ids": [
+                    909
+                  ],
+                  "source_kind": "BRepFace",
+                  "source_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 906,
+                      "attributes": {},
+                      "faces": [
+                        {
+                          "descriptor_object_id": 909,
+                          "body_anchor_object_id": 370,
+                          "native_body_object_id": 366,
+                          "source_owner_object_id": 331,
+                          "namespace_text": "7dc6667f-cf59-4853-adb0-58835248fd99",
+                          "entity_guid_text": "940d86ef-fbaa-4dca-9081-62cca8df6eae",
+                          "context_record_object_ids": [
+                            1004
+                          ],
+                          "recipe": {
+                            "object_id": 912,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 45342,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 303,
+                                    "numeric_record_collision": {
+                                      "object_id": 303,
+                                      "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                                      "record_offset": 35822,
+                                      "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "face_recipe_data",
+                            "payload_relative_offset": 63,
+                            "payload_length": 8,
+                            "payload_hex": "00000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 909,
+                      "body_anchor_object_id": 370,
+                      "native_body_object_id": 366,
+                      "source_owner_object_id": 331,
+                      "namespace_text": "7dc6667f-cf59-4853-adb0-58835248fd99",
+                      "entity_guid_text": "940d86ef-fbaa-4dca-9081-62cca8df6eae",
+                      "context_record_object_ids": [
+                        1004
+                      ],
+                      "recipe": {
+                        "object_id": 912,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 45342,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 303,
+                                "numeric_record_collision": {
+                                  "object_id": 303,
+                                  "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                                  "record_offset": 35822,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 909,
+                      "owner_object_id": 898,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 912,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 45342,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 303,
+                                "numeric_record_collision": {
+                                  "object_id": 303,
+                                  "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                                  "record_offset": 35822,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 1004,
+                      "namespace_text": "7dc6667f-cf59-4853-adb0-58835248fd99",
+                      "entity_guid_text": "940d86ef-fbaa-4dca-9081-62cca8df6eae",
+                      "stored_context_index_field": 14,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 370,
+                      "native_body_object_id": 366,
+                      "source_owner_object_id": 331,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "historical_native_body_object_id": 366,
+                  "source_body_properties": {
+                    "object_id": 366,
+                    "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                    "record_offset": 41882,
+                    "name": "OwnedTrimTool_sheet_face_Body",
+                    "name_status": "Stored custom name recovered",
+                    "collection_object_id": 7,
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                    "stored_body_tag": "0_366",
+                    "name_helper_object_id": 367,
+                    "name_field_offset": 42474,
+                    "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                  },
+                  "native_component_object_id": 3,
+                  "native_feature_record_offset": 43357,
+                  "stored_tool_operand_hex": "018a030000000000000000",
+                  "selected_asm_face_id": null,
+                  "native_API_source_assignment": null,
+                  "cell_selection_status": "Source identity only; native Trim cell recipe and kept/removed region meaning unresolved",
+                  "scope": "Observed singleton SurfaceTrim source-tool identity through typed owned selectors. Historical source provenance and component ownership remain separate from target cells and resulting geometry; selected-cell meaning, selected ASMface/API identity, lifecycle and regeneration unresolved."
+                },
+                "scope": "Observed singleton SurfaceTrim source-tool identity through typed owned selectors. Historical source provenance and component ownership remain separate from target cells and resulting geometry; selected-cell meaning, selected ASMface/API identity, lifecycle and regeneration unresolved."
+              },
+              "tool_selection": {
+                "selection_record_object_id": 906,
+                "descriptor_object_ids": [
+                  909
+                ],
+                "stored_descriptor_count": 1
+              },
+              "target_selection": {
+                "selection_record_object_id": 899,
+                "descriptor_object_ids": [
+                  902
+                ],
+                "stored_descriptor_count": 1
+              },
+              "recipe_record_object_id": 942,
+              "recipe_definition_object_id": 943,
+              "stored_recipe_payload_hex": "000001000000030000000900000001000000010000003502000000010000002d010000000000000100000001000000310000000001000000300100000000000001000000010000003501000000010000002d010000000000000100000002000000313100000000000000000000000001000000010000003100000000010000002d010000000000000100000002000000313000000000000000000000000001000000010000003300000000010000002d0100000000000001000000010000003400000000010000002d01000000000000010000000200000031340000000000000000000000000000000018000000626f756e6465645f666163655f7265636970655f6461746100000000ffffffff0400000001000000ffffffff0200000000000000ffffffff02000000ffffffff02000000030000000200000000000000ffffffff02000000ffffffff0300000004000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff04000000ffffffff0000000000000000ffffffff00000000050000000200000000000000ffffffff02000000ffffffff0300000006000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff06000000ffffffff0000000000000000ffffffff00000000ffffffff06000000ffffffff0000000000000000ffffffff07000000ffffffff0100000000000000ffffffff02000000080000000100000000000000ffffffff0200000006000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff0100000000000000ffffffff0200000004000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff",
+              "trim_cell_status": "Selected-cell semantics and bounded-face recipe undecoded; original recipe retained"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SurfaceTrim singleton owned face/body tool source and target selection references through the common prefix/wrapper/target codec. Full selected-cell recipe bytes remain opaque; persistent selected topology, general projection/cell semantics, lifecycle and regeneration unresolved."
+      },
+      "expected_default_failure": {
+        "error_type": "ValueError",
+        "reason": "Only observed planar trim tools supported"
+      },
+      "actual_input_tool_type": "BRepFace",
+      "actual_feature_tool_type": "BRepFace",
+      "actual_selected_input_cell_enumeration_indices": [
+        1
+      ],
+      "native_cell_recipe_assignment": null,
+      "exact_recipe_wrapper_payload_hex": "00000100000001af030000000000000000",
+      "exact_selected_cell_recipe_bytes_replayed": 690,
+      "actual_current_BRep_count": 2,
+      "actual_timeline_end_feature_BRep_count": 1,
+      "owned_case_exported_and_closed_true": true,
+      "batch_terminal_success_claimed": false
+    },
+    {
+      "archive": "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d",
+      "archive_sha256": "013412f19df98f93a03b6a21020df68014c32babfe568be12fc4daaeeb09b103",
+      "capture_state": "PartialNoTerminalMarker",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 833,
+            "kind": "SurfaceTrim",
+            "name": "OwnedSurfaceTrim_sheet_body",
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "tool": {
+                "selection_record_object_id": 841,
+                "entity": {
+                  "kind": "BRepBody",
+                  "native_body_object_id": 366
+                },
+                "native_source_evidence": {
+                  "feature_object_id": 833,
+                  "tool_selection_record_object_id": 841,
+                  "tool_descriptor_object_ids": [
+                    844
+                  ],
+                  "source_kind": "BRepBody",
+                  "source_route": {
+                    "kind": "Body",
+                    "selection": {
+                      "selection_record_object_id": 841,
+                      "owner_object_id": 833,
+                      "attributes": {},
+                      "descriptor_object_ids": [
+                        844
+                      ],
+                      "native_body_object_ids": [
+                        366
+                      ],
+                      "association": "Explicit counted proxy list with matching descriptor owners"
+                    },
+                    "descriptor": {
+                      "object_id": 844,
+                      "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                      "owner_object_id": 833,
+                      "body_anchor_object_id": 370,
+                      "native_body_object_id": 366,
+                      "body_properties": {},
+                      "source_owner_object_id": 331,
+                      "recipe_record_object_id": 847,
+                      "stored_identifier": 303,
+                      "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                      "stored_kind_field": 3,
+                      "namespace_text": "0ec8aa51-0a46-4814-bfbe-741c1d9f15a1",
+                      "entity_uuid_text": "03e79106-f9e9-4812-94af-0ec1721709f2",
+                      "context_record_object_ids": [
+                        921
+                      ],
+                      "stored_trailer_kind_field": 9,
+                      "uninterpreted_trailer_field_hex": "00000000000000000000",
+                      "uninterpreted_cached_scalar": 0.00010287499999999967,
+                      "helper_record_object_id": 846,
+                      "support_record_object_id": 845,
+                      "support_reference_object_ids": [
+                        331
+                      ],
+                      "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                      "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                    },
+                    "recipe": {
+                      "object_id": 847,
+                      "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                      "record_offset": 45440,
+                      "stored_header_fields": [
+                        1,
+                        3
+                      ],
+                      "name_table": [
+                        {
+                          "table_index": 0,
+                          "terms": [
+                            {
+                              "name": "303",
+                              "stored_index": 6,
+                              "stored_reference_tag": 0,
+                              "stored_reference_value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "payload_kind": "body_recipe_data",
+                      "payload_relative_offset": 61,
+                      "payload_length": 8,
+                      "payload_hex": "00000000ffffffff",
+                      "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                      "uninterpreted_payload_int32": [
+                        0,
+                        -1
+                      ]
+                    },
+                    "typed_context": {
+                      "context_object_id": 921,
+                      "stored_index_field": 13,
+                      "namespace_text": "0ec8aa51-0a46-4814-bfbe-741c1d9f15a1",
+                      "entity_guid_text": "03e79106-f9e9-4812-94af-0ec1721709f2",
+                      "stored_context_payload_hex": "00000d0000000000000024000000300065006300380061006100350031002d0030006100340036002d0034003800310034002d0062006600620065002d0037003400310063003100640039006600310035006100310024000000300033006500370039003100300036002d0066003900650039002d0034003800310032002d0039003400610066002d003000650063003100370032003100370030003900660032000200000000000000019a030000000000000000",
+                      "body_identity_link_object_id": 922,
+                      "body_identity_leaf_object_id": 923,
+                      "leaf_native_body_object_id": 366,
+                      "stored_leaf_payload_hex": "00006e01000000000000"
+                    }
+                  },
+                  "historical_native_body_object_id": 366,
+                  "source_body_properties": {
+                    "object_id": 366,
+                    "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                    "record_offset": 41882,
+                    "name": "OwnedTrimTool_sheet_body_Body",
+                    "name_status": "Stored custom name recovered",
+                    "collection_object_id": 7,
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                    "stored_body_tag": "0_366",
+                    "name_helper_object_id": 367,
+                    "name_field_offset": 42474,
+                    "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                  },
+                  "native_component_object_id": 3,
+                  "native_feature_record_offset": 43357,
+                  "stored_tool_operand_hex": "0149030000000000000000",
+                  "selected_asm_face_id": null,
+                  "native_API_source_assignment": null,
+                  "cell_selection_status": "Source identity only; native Trim cell recipe and kept/removed region meaning unresolved",
+                  "scope": "Observed singleton SurfaceTrim source-tool identity through typed owned selectors. Historical source provenance and component ownership remain separate from target cells and resulting geometry; selected-cell meaning, selected ASMface/API identity, lifecycle and regeneration unresolved."
+                },
+                "scope": "Observed singleton SurfaceTrim source-tool identity through typed owned selectors. Historical source provenance and component ownership remain separate from target cells and resulting geometry; selected-cell meaning, selected ASMface/API identity, lifecycle and regeneration unresolved."
+              },
+              "tool_selection": {
+                "selection_record_object_id": 841,
+                "descriptor_object_ids": [
+                  844
+                ],
+                "stored_descriptor_count": 1
+              },
+              "target_selection": {
+                "selection_record_object_id": 834,
+                "descriptor_object_ids": [
+                  837
+                ],
+                "stored_descriptor_count": 1
+              },
+              "recipe_record_object_id": 856,
+              "recipe_definition_object_id": 857,
+              "stored_recipe_payload_hex": "000001000000030000000900000001000000010000003502000000010000002d010000000000000100000001000000310000000001000000300100000000000001000000010000003501000000010000002d010000000000000100000002000000313100000000000000000000000001000000010000003100000000010000002d010000000000000100000002000000313000000000000000000000000001000000010000003300000000010000002d0100000000000001000000010000003400000000010000002d01000000000000010000000200000031340000000000000000000000000000000018000000626f756e6465645f666163655f7265636970655f6461746100000000ffffffff0400000001000000ffffffff0200000000000000ffffffff02000000ffffffff02000000030000000200000000000000ffffffff02000000ffffffff0300000004000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff04000000ffffffff0000000000000000ffffffff00000000050000000200000000000000ffffffff02000000ffffffff0300000006000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff06000000ffffffff0000000000000000ffffffff00000000ffffffff06000000ffffffff0000000000000000ffffffff07000000ffffffff0100000000000000ffffffff02000000080000000100000000000000ffffffff0200000006000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff0100000000000000ffffffff0200000004000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff",
+              "trim_cell_status": "Selected-cell semantics and bounded-face recipe undecoded; original recipe retained"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SurfaceTrim singleton owned face/body tool source and target selection references through the common prefix/wrapper/target codec. Full selected-cell recipe bytes remain opaque; persistent selected topology, general projection/cell semantics, lifecycle and regeneration unresolved."
+      },
+      "expected_default_failure": {
+        "error_type": "ValueError",
+        "reason": "Only observed planar trim tools supported"
+      },
+      "actual_input_tool_type": "BRepBody",
+      "actual_feature_tool_type": "BRepBody",
+      "actual_selected_input_cell_enumeration_indices": [
+        1
+      ],
+      "native_cell_recipe_assignment": null,
+      "exact_recipe_wrapper_payload_hex": "0000010000000159030000000000000000",
+      "exact_selected_cell_recipe_bytes_replayed": 690,
+      "actual_current_BRep_count": 2,
+      "actual_timeline_end_feature_BRep_count": 1,
+      "owned_case_exported_and_closed_true": true,
+      "batch_terminal_success_claimed": false
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reserved Trim prefix differs",
+      "absolute_mutation_offset": 43376,
+      "rejected": true,
+      "reason": "Unsupported surface trim prefix"
+    },
+    {
+      "guard": "Selected-cell recipe wrapper framing differs",
+      "absolute_mutation_offset": 48289,
+      "rejected": true,
+      "reason": "Unsupported trim recipe wrapper"
+    },
+    {
+      "guard": "Unobserved target count2",
+      "absolute_mutation_offset": 43416,
+      "rejected": true,
+      "reason": "Unsupported surface-tool reference count"
+    },
+    {
+      "guard": "Tool proxy owner differs",
+      "absolute_mutation_offset": 44756,
+      "rejected": true,
+      "reason": "Surface-tool proxy owner disagrees with feature"
+    },
+    {
+      "guard": "Target descriptor owner differs",
+      "absolute_mutation_offset": 44301,
+      "rejected": true,
+      "reason": "Surface-tool descriptor owner disagrees with feature"
+    },
+    {
+      "guard": "Callback source selection differs",
+      "rejected": true,
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Callback native owner differs",
+      "rejected": true,
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Callback native evidence missing",
+      "rejected": true,
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Uncaptured SketchLine callback kind rejected",
+      "rejected": true,
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_natural.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "96ff2b1e852d821d79cc3b6ac97fc332f8564b9fc4f38253aefbb99fca55a45d"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_tangent.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "352afd23b0d1a117f2d9d469df1e4ca5369f8ee871befd9be54072fdfc094e7a"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_perpendicular.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "4f505a3e5f3552bb2123f60cd1ebdf04139dd7b66cf80ec040e631b6428f7480"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_perpendicular_negative.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "92fbeaf2778ff2901fadae5e86522637fefa1b45f9c78f8af93404caee27ed05"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_aligned.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b70dbe99f2f3f18699e1e0a93565b5cd42235ab9fb0a672b3c06556d26572d32"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_two_edges.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "45fccc487bde0ca1dff5511ed1eb3ec38367b9a6cf5d750580a80d9aa65236c1"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_internal.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "f197e0bd5d220db5e049c25fdb8b06e61088edba206a298914baa25be84639c2"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_external.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "c0c25843da5ae430931fccad928d2199c1f2c0fa915c3e0eebfc9ef35dd674af"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_all.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "467f3577e193d289feae2b455bd7f083c529b1c713dbedb4ecbe59ef854ac5ee"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_manual.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "c9a3e5b8a592083390ea7e1d85aa11747286e2c0a46c3cd0bb9ccc4e49f4e87a"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_tangent.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b76efcbd33760d1d8260e1b2e3cdcce277454fc651c91d2591fbd9d3cdba6e41"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_normal.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "c0b3c09f41909aebfe247ab1533e972fc18dfe2cffad0c70627a8091cd7a4eb7"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "8d82b7c61f41d8d370231a0361d4caf0126b4802dd3b296e0e020bbf3075a480"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "2e8c9e0a658a217356c4eace480f4fc21e2ab97f6e8dca95252a564b479e1a96"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/trim_positive.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 297,
+          "kind": "SurfaceTrim",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "b2264a0b929930f2893a98dc0f35ce93d998c7c7f92e6cb2c04f49e8c2219ec8"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/trim_negative.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 297,
+          "kind": "SurfaceTrim",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "d5945f6d36dbdf46165809ff4dc3ddde31dd24eacd9e9ed36f555604685ff5f7"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-8804bbf80755/extend_no_chain.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "a7f71b28ef60452ed3b45709859734f8e7aaa51c23b0c54210ddc29e6549e36c"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/patch_rectangle.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/patch_circle.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 234,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "a11ce7743e9f34b4edb30f22658e3b2a84ca382cbee56a98ea06fbdcc7eda06a"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_positive.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceOffset",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "5d662c4664d5d22ed7d5f36759b44b364da9e7212cbaf969bb4623fccb16f4bf"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_negative.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceOffset",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "6e9b81c0debfd1798fd556b390945a14a3180e6aed075551580c06dcfbddfbd0"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_rounded.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceOffset",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "61ce619f5182355173346fa4eae901ef85950f1306dd94ebbfdd1e73ba28e76b"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/stitch_tight.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 325,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "df5217639d556e4bc57374fcb7c11f739a71a0e9e744c139c8258d7ed33d5ec1"
+        },
+        {
+          "feature_object_id": 365,
+          "kind": "SurfaceStitch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "3791a910f77040c167a18e1d08aa77d74dad266c3dc113744278c052f7f970fb"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 325,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "df5217639d556e4bc57374fcb7c11f739a71a0e9e744c139c8258d7ed33d5ec1"
+        },
+        {
+          "feature_object_id": 365,
+          "kind": "SurfaceStitch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "8efd0e1dcfecc994a759c7cf88a2c003ede0bb953eda664c4c517fb665363fc5"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/unstitch_face.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 282,
+          "kind": "Unstitch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "4ae99095486391459cdec2b034e1e299c902f2ecc206b8131e7cd01c7c91f6e2"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/unstitch_chain.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 282,
+          "kind": "Unstitch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "6a1b54d7278cf78f7b8874cb263460f1e0b7e6f669eebf1db73d98bd4d9ad7f8"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/reverse_normal.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "ReverseNormal",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "81d44882ef4e74eeabe93ec4b90ddd9b929821351a8d40024993c6682128b7e3"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/delete_opening.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 282,
+          "kind": "SurfaceDeleteFace",
+          "full_pinned_default_outcome_exact": true,
+          "full_historical_settings_exact": true,
+          "current_decoded": true,
+          "outcome_sha256": "1ca70f1371f7df3d85235fe3429dc4f8f789bbaffab0dbfa88604643d76f7981"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    }
+  ],
+  "limitations": [
+    "Only captured singleton BRepFace/BRepBody tool sources from owned Patch sheets are qualified. No SketchLine implementation or source-kind allowance is added.",
+    "These are valid case exports/healthy features/owned closes within PartialNoTerminalMarker folders, not completed capture batches; empty case-error arrays do not prove process or batch success.",
+    "Native selected-cell recipe wrapper/definition identities and full bytes are preserved. Actual API selected cell indices remain enumeration indices, with no native recipe/kept-region mapping inferred.",
+    "Historical source BODY/component routes do not prove persistent selected ASMface/API handle identity, target/result pairing, lifecycle or regeneration.",
+    "Target proxy/descriptor ownership remains the existing common parser evidence; no additional target topology semantics are invented.",
+    "No crash cause, universal Trim support restriction or safe retry recommendation is inferred. Live API/UI/capture work stopped by the parent after the crash report; validation is offline only."
+  ],
+  "default_preservation": {
+    "pinned_revision": "a8e8e93",
+    "pinned_surface_tools_sha256": "cfc04a4c5068dc1f15db3dbd023c14111b4dae90ddedf408fcf22d7c9e10f43b",
+    "legacy_files": 28,
+    "legacy_decoded_surface_features": 53,
+    "old_ConstructionPlane_Trim_features": 2,
+    "scope": "Direct common decoder only; full pinned dictionaries/errors compared, historical settings compared when published. No main-reader execution."
+  },
+  "source_sha256": {
+    "decode_surface_tools.py": "2b7ab09d9050355015a5043aaf12f0e1a14312428cf655570b0951df4237670b",
+    "decode_surface_trim_tools.py": "0442e1cd3c23f5e93c06185d496483f8e89c184fa1f68ab8d1410f84b755bac0",
+    "decode_surface_trim_sources.py": "0d47c34b2a684677d12d4ce7c28ea280bd430db8a98e97f3c2a8ea88f22a3da2",
+    "validate_surface_trim_tools.py": "fcaa998a09c9350e171b1ee11b98269b15008a2c94c299df39634d0004a673ac"
+  },
+  "validation": {
+    "actual_exports": 2,
+    "healthy_features": 2,
+    "owned_case_closes_true": 2,
+    "partial_capture_folders": 2,
+    "terminal_complete_batches": 0,
+    "decoded_face_sources": 1,
+    "decoded_body_sources": 1,
+    "SketchLine_support_added": false,
+    "opaque_recipe_bytes_replayed": 1380,
+    "malformed_guards": 9,
+    "exact_legacy_surface_files": 28,
+    "no_live_calls": true,
+    "no_main_calls": true
+  }
+}

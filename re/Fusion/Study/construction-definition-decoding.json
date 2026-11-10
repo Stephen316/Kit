@@ -1,0 +1,499 @@
+{
+  "status": "Observed native construction-axis/point definition provenance",
+  "corpus_scan": {
+    "archives_inspected": 310,
+    "recognized_custom_axis_features": 2,
+    "recognized_custom_point_features": 3,
+    "archives_with_recognized_custom_axis_or_point_features": 4,
+    "scope": "Native WorkAxis/WorkPoint labels and existing recognized feature classes; default component origin entities are not parametric construction features"
+  },
+  "checks": {
+    "cached_geometry_matches_recorded_api": 5,
+    "method_matches_controlled_generator": 5,
+    "ordered_support_roles_match_controlled_generator": 5,
+    "explicit_support_plane_geometry_matches_recorded_api": 5,
+    "support_geometry_matches_controlled_generator": 4,
+    "support_constraints_match_cached_result": 5
+  },
+  "samples": [
+    {
+      "file": "discovery-08660c033d4d/discovery.f3d",
+      "definitions": [
+        {
+          "feature_object_id": 269,
+          "kind": "ConstructionAxis",
+          "name": "IntersectionAxis",
+          "native_geometry_object_id": 268,
+          "backend_object_id": 270,
+          "definition_kind": "TwoPlanes",
+          "api_definition_class": "ConstructionAxisTwoPlaneDefinition",
+          "stored_feature_variant_code": 2,
+          "stored_backend_method_code": 8,
+          "support_inputs": [
+            {
+              "role": "planarEntityOne",
+              "descriptor_object_id": 273,
+              "terminal_object_id": 276,
+              "namespace_text": "6514b7d7-3202-4b31-a9b2-c5400b3e5233",
+              "entity_guid_text": "8651f133-389e-417e-8756-36a9259bdcb2",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "PlaneXY17",
+                "object_id": 202,
+                "feature_object_id": 203,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  1.7000000000000002
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            },
+            {
+              "role": "planarEntityTwo",
+              "descriptor_object_id": 277,
+              "terminal_object_id": 280,
+              "namespace_text": "6514b7d7-3202-4b31-a9b2-c5400b3e5233",
+              "entity_guid_text": "8651f133-389e-417e-8756-36a9259bdcb2",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "PlaneYZ31",
+                "object_id": 246,
+                "feature_object_id": 247,
+                "origin_cm": [
+                  3.1,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            }
+          ],
+          "cached_geometry": {
+            "origin_cm": [
+              3.1,
+              0.0,
+              1.7000000000000002
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          "support_consistency": {
+            "matches": true,
+            "origin_plane_residuals_cm": [
+              0.0,
+              0.0
+            ],
+            "direction_dot_support_normals": [
+              0.0,
+              0.0
+            ],
+            "scope": "Cached line lies on both explicit planes; axis anchor point and direction sign are retained from the native geometry"
+          },
+          "backend_geometry_prefix_hex": "cdcccccccccc08400000000000000000343333333333fb3f0000000000000000000000000000f0bf0000000000000000000000000000000000000000000000001000000000000000000000f0bf000000000000f0bf000000000000f0bf",
+          "backend_prefix_scope": "Stored geometry/auxiliary fields retained; general field meanings are not interpreted",
+          "definition_evidence_scope": "Observed native layout matched to controlled generator invocation and exported API geometry; API definition getters were not captured",
+          "coordinate_scope": "Native component coordinates; occurrence transforms are not inferred",
+          "geometry_status": "Cached native geometry and explicit defining supports decoded; general construction regeneration is not implemented"
+        },
+        {
+          "feature_object_id": 292,
+          "kind": "ConstructionPoint",
+          "name": "IntersectionPoint",
+          "native_geometry_object_id": 291,
+          "backend_object_id": 293,
+          "definition_kind": "ThreePlanes",
+          "api_definition_class": "ConstructionPointThreePlanesDefinition",
+          "stored_feature_variant_code": 2,
+          "stored_backend_method_code": 8,
+          "support_inputs": [
+            {
+              "role": "planeOne",
+              "descriptor_object_id": 296,
+              "terminal_object_id": 299,
+              "namespace_text": "6514b7d7-3202-4b31-a9b2-c5400b3e5233",
+              "entity_guid_text": "8651f133-389e-417e-8756-36a9259bdcb2",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "PlaneXY17",
+                "object_id": 202,
+                "feature_object_id": 203,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  1.7000000000000002
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            },
+            {
+              "role": "planeTwo",
+              "descriptor_object_id": 300,
+              "terminal_object_id": 303,
+              "namespace_text": "6514b7d7-3202-4b31-a9b2-c5400b3e5233",
+              "entity_guid_text": "8651f133-389e-417e-8756-36a9259bdcb2",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "PlaneXZMinus23",
+                "object_id": 224,
+                "feature_object_id": 225,
+                "origin_cm": [
+                  0.0,
+                  -2.3000000000000003,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            },
+            {
+              "role": "planeThree",
+              "descriptor_object_id": 304,
+              "terminal_object_id": 307,
+              "namespace_text": "6514b7d7-3202-4b31-a9b2-c5400b3e5233",
+              "entity_guid_text": "8651f133-389e-417e-8756-36a9259bdcb2",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "PlaneYZ31",
+                "object_id": 246,
+                "feature_object_id": 247,
+                "origin_cm": [
+                  3.1,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            }
+          ],
+          "cached_geometry": {
+            "position_cm": [
+              3.1,
+              -2.3000000000000003,
+              1.7000000000000002
+            ]
+          },
+          "support_consistency": {
+            "matches": true,
+            "plane_residuals_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal_matrix_determinant": -1.0,
+            "scope": "Cached point satisfies three independent explicit support-plane equations"
+          },
+          "backend_geometry_prefix_hex": "000000000000f0bf000000000000f0bf000000000000f0bf",
+          "backend_prefix_scope": "Stored geometry/auxiliary fields retained; general field meanings are not interpreted",
+          "definition_evidence_scope": "Observed native layout matched to controlled generator invocation and exported API geometry; API definition getters were not captured",
+          "coordinate_scope": "Native component coordinates; occurrence transforms are not inferred",
+          "geometry_status": "Cached native geometry and explicit defining supports decoded; general construction regeneration is not implemented"
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+      "definitions": [
+        {
+          "feature_object_id": 382,
+          "kind": "ConstructionAxis",
+          "name": "OffsetZAxis",
+          "native_geometry_object_id": 381,
+          "backend_object_id": 383,
+          "definition_kind": "TwoPlanes",
+          "api_definition_class": "ConstructionAxisTwoPlaneDefinition",
+          "stored_feature_variant_code": 2,
+          "stored_backend_method_code": 8,
+          "support_inputs": [
+            {
+              "role": "planarEntityOne",
+              "descriptor_object_id": 386,
+              "terminal_object_id": 389,
+              "namespace_text": "0d7c9bcf-27a8-4592-b783-0854b5b790f6",
+              "entity_guid_text": "4ca16f90-fd8b-488a-ace5-302a4c2c0258",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": null,
+                "object_id": 359,
+                "feature_object_id": 360,
+                "origin_cm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            },
+            {
+              "role": "planarEntityTwo",
+              "descriptor_object_id": 390,
+              "terminal_object_id": 393,
+              "namespace_text": "0d7c9bcf-27a8-4592-b783-0854b5b790f6",
+              "entity_guid_text": "4ca16f90-fd8b-488a-ace5-302a4c2c0258",
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "XZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "y_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "object_id": 43,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            }
+          ],
+          "cached_geometry": {
+            "origin_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          "support_consistency": {
+            "matches": true,
+            "origin_plane_residuals_cm": [
+              0.0,
+              0.0
+            ],
+            "direction_dot_support_normals": [
+              0.0,
+              0.0
+            ],
+            "scope": "Cached line lies on both explicit planes; axis anchor point and direction sign are retained from the native geometry"
+          },
+          "backend_geometry_prefix_hex": "000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000000000000000000000001000000000000000000000f0bf000000000000f0bf000000000000f0bf",
+          "backend_prefix_scope": "Stored geometry/auxiliary fields retained; general field meanings are not interpreted",
+          "definition_evidence_scope": "Observed native layout matched to controlled generator invocation and exported API geometry; API definition getters were not captured",
+          "coordinate_scope": "Native component coordinates; occurrence transforms are not inferred",
+          "geometry_status": "Cached native geometry and explicit defining supports decoded; general construction regeneration is not implemented"
+        }
+      ]
+    },
+    {
+      "file": "movemodes-34cba3ced135/point_to_point.f3d",
+      "definitions": [
+        {
+          "feature_object_id": 313,
+          "kind": "ConstructionPoint",
+          "name": "DestinationPoint",
+          "native_geometry_object_id": 312,
+          "backend_object_id": 314,
+          "definition_kind": "ByPoint",
+          "api_definition_class": "ConstructionPointPointDefinition",
+          "stored_feature_variant_code": 0,
+          "stored_backend_method_code": 10,
+          "support_inputs": [
+            {
+              "role": "pointEntity",
+              "descriptor_object_id": 317,
+              "terminal_object_id": 320,
+              "namespace_text": "46503665-2f7d-4495-9566-0113c65b3413",
+              "entity_guid_text": "e6356bd6-58d4-4286-b9b8-3f8dba1ce4ba",
+              "entity": {
+                "kind": "SketchPoint",
+                "sketch_object_id": 282,
+                "sketch_name": null,
+                "point_object_id": 307,
+                "point_entity_tag": 110,
+                "component_position_cm": [
+                  1.3,
+                  -0.7,
+                  0.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            }
+          ],
+          "cached_geometry": {
+            "position_cm": [
+              1.3,
+              -0.7,
+              0.0
+            ]
+          },
+          "support_consistency": {
+            "matches": true,
+            "coordinate_scope": "Native component",
+            "point_component_position_cm": [
+              1.3,
+              -0.7,
+              0.0
+            ],
+            "scope": "Independently decoded sketch placement agrees with the native construction point cache"
+          },
+          "backend_geometry_prefix_hex": "000000000000f0bf000000000000f0bf000000000000f0bf",
+          "backend_prefix_scope": "Stored geometry/auxiliary fields retained; general field meanings are not interpreted",
+          "definition_evidence_scope": "Observed native layout matched to controlled generator invocation and exported API geometry; API definition getters were not captured",
+          "coordinate_scope": "Native component coordinates; occurrence transforms are not inferred",
+          "geometry_status": "Cached native geometry and explicit defining supports decoded; general construction regeneration is not implemented"
+        }
+      ]
+    },
+    {
+      "file": "movemodes-34cba3ced135/point_to_position.f3d",
+      "definitions": [
+        {
+          "feature_object_id": 313,
+          "kind": "ConstructionPoint",
+          "name": "MoveOrigin",
+          "native_geometry_object_id": 312,
+          "backend_object_id": 314,
+          "definition_kind": "ByPoint",
+          "api_definition_class": "ConstructionPointPointDefinition",
+          "stored_feature_variant_code": 0,
+          "stored_backend_method_code": 10,
+          "support_inputs": [
+            {
+              "role": "pointEntity",
+              "descriptor_object_id": 317,
+              "terminal_object_id": 320,
+              "namespace_text": "702e5517-442c-43e6-8cf5-826f6d695aba",
+              "entity_guid_text": "20f59a37-4999-48c9-bbc6-bee567836524",
+              "entity": {
+                "kind": "SketchPoint",
+                "sketch_object_id": 282,
+                "sketch_name": null,
+                "point_object_id": 307,
+                "point_entity_tag": 110,
+                "component_position_cm": [
+                  0.4,
+                  0.8,
+                  0.0
+                ]
+              },
+              "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+            }
+          ],
+          "cached_geometry": {
+            "position_cm": [
+              0.4,
+              0.8,
+              0.0
+            ]
+          },
+          "support_consistency": {
+            "matches": true,
+            "coordinate_scope": "Native component",
+            "point_component_position_cm": [
+              0.4,
+              0.8,
+              0.0
+            ],
+            "scope": "Independently decoded sketch placement agrees with the native construction point cache"
+          },
+          "backend_geometry_prefix_hex": "000000000000f0bf000000000000f0bf000000000000f0bf",
+          "backend_prefix_scope": "Stored geometry/auxiliary fields retained; general field meanings are not interpreted",
+          "definition_evidence_scope": "Observed native layout matched to controlled generator invocation and exported API geometry; API definition getters were not captured",
+          "coordinate_scope": "Native component coordinates; occurrence transforms are not inferred",
+          "geometry_status": "Cached native geometry and explicit defining supports decoded; general construction regeneration is not implemented"
+        }
+      ]
+    }
+  ],
+  "grounding_sources": [
+    {
+      "generator": "GenerateDiscoverySamples.py",
+      "api_ground_truth": "discovery-08660c033d4d/ground_truth.json",
+      "scope": "setByTwoPlanes and setByThreePlanes invocations plus exported axis/point and plane transform API geometry"
+    },
+    {
+      "generator": "GenerateCircularPatternModes.py",
+      "api_ground_truth": "circularmodes-45f859c1f1b6/ground_truth.json",
+      "scope": "setByTwoPlanes(10mm YZ offset,XZ) invocation plus actual pattern axis API origin/direction"
+    },
+    {
+      "generator": "GenerateMoveModes.py",
+      "api_ground_truth": "movemodes-34cba3ced135/ground_truth.json",
+      "scope": "setByPoint(sketchPoint) invocation plus actual Move construction-point API geometry"
+    }
+  ],
+  "limitations": [
+    "Only three methods are decoded: axes through two construction planes, three-plane intersection points, and sketch-point reference points.",
+    "Stored method/feature codes are accepted only in the observed typed class/layout combinations.",
+    "Method names and ordered support roles are grounded in controlled generator invocations, owned native reference tables and local SDK definitions; the older fixtures did not capture API definition getters directly.",
+    "Geometry is read from checked native caches and compared with explicit supports; general construction regeneration is not implemented.",
+    "Axis direction sign and anchor point are retained from the cached native line; an arbitrary canonical intersection line is not substituted.",
+    "General backend auxiliary fields, assembly occurrence context, face/edge/vertex construction supports and other methods remain unsupported.",
+    "No new Fusion captures, UI access, shared file edits or native file writing were used for this stage."
+  ],
+  "guard_rejections": [
+    {
+      "case": "Unobserved axis feature variant",
+      "reason": "Only observed two-plane axis feature variant is decoded"
+    },
+    {
+      "case": "Unobserved point backend method",
+      "reason": "Unsupported construction point feature/backend method combination"
+    },
+    {
+      "case": "Axis support descriptor owner disagrees",
+      "reason": "Unsupported construction support descriptor layout/owner"
+    },
+    {
+      "case": "ByPoint support has an unknown sketch entity tag",
+      "reason": "Construction sketch-point support/tag/placement unresolved"
+    }
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "archives": 4,
+    "definitions_matching_stage_report": 5,
+    "stream_key": "construction_definitions",
+    "feature_attachments_match": true
+  }
+}

@@ -1,0 +1,2293 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "fixed_three",
+      "file": "fixed_three.f3d",
+      "getter_errors": [],
+      "setter_errors": [],
+      "unsplit_wall": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/6WQMU7GMAyFkbiILxDJcdw2HViQ+DdW1ip1UsQCCME52DgBd+AQMHMBDsDMgEScgiDlp0gQRcrT8xc/JwgEFlwLETnIxN50hGx4ws4ECa0RH8j2sYuee8DMKo+qyGdlgdVpYff68e7p4fD1Zu/+OL3cPmeCtG8SDG6copGuDYbZs/G+EWPdSGJRQsx9cO6xs1glD6HEMThoegt6ZLcEa9mhLWeZZWG4pdEsDfpiIIxnV6cxxWEKkoaLJCfnaYjhMsD+BmADOqfR3IMss5g3fVZUvHtHM+LqIlWURlac+yjjN24t0m2JXGm1nePqwm+RvPZKrp77z0iqoD9+7M+jvQHejoffAAMAAA==",
+        "temp_id": 2,
+        "body_name": "PartingDraftSeedBody",
+        "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+        "geometry_type": "adsk::core::Plane",
+        "point_on_face_cm": [
+          1.5,
+          0.0,
+          1.0
+        ],
+        "centroid_cm": [
+          1.5,
+          0.0,
+          1.0
+        ],
+        "area_cm2": 6.0,
+        "is_param_reversed": false,
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "plane_normal": [
+          0.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "setter_returns": {
+        "setup.setByOffset": true,
+        "setSingleAngle": true,
+        "setFixedPartingLineDraftFeatureType": true
+      },
+      "setup_split_health": 0,
+      "setup_split_warning": "",
+      "requested": {
+        "mode": "FixedPartingLine",
+        "angle": "3 deg",
+        "is_chained": false,
+        "is_tangent_chain": false,
+        "is_direction_flipped": false,
+        "is_symmetric": true,
+        "moving_direction": null,
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QMU7EMBBE4iP7gZXW9ibxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrkFN8dzmkJJE8mp2dmZhAgwJTQyB2vmeLjSZG7qlB512N3jqtVqEJlldASSt6EqRtQgpYmBpOnz5eP98vfp7P3q7i98tXUmjxjZ6c6fqAvqkdMltGayuPynTaK/IuJB8aPE52npxHkOMYDDTKQDrqpM7BMjaUJTy2+iOHocAJMb+m59bUSFS7hJoQBN3t402Ioe2dj+199Nd3sQ3uwcH5BmAD8oso2WuQW8P86TzQArcKDZcJohQohqZQqcKH8nt4j0bAc3vrYW9ayRyrRHuVqtFsafUDFagwX1ihNNnewn+RfCxy32rhxf8CgeEOmHoDAAA=",
+            "temp_id": 9,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRMU7EMBBE4iP7gZXW9jrxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrXOByJKFAJJEymp3ZHa8JNCgwFURiHzp2WGti5I5q9MFXGJzXahXr6HgFlLWiJ0HaZaSAhang8O7l8fX55OP+6OksvT+8ZYWWvimQN20XMdSVR2bH6JwNqEyrg6LgY+5DfY+DvafMIyjjGAzUykD+VVldBkvZUJHwNpXekn1R4A4xb1NzNjUQdp/QOwRBe3l7EVNsOh9Sc53C+VVqor/xcLwB2IAcEWX2GmRrWD79XRCge+40Q5QAo6IZqdSoD5V32qcHwHO+de+bjMRLkX5vPe3jAdhBuRTBLkWwo/X8ceTXiuk/LuJH1E/MROgdegMAAA==",
+            "temp_id": 2,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ],
+        "pull_geometry": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHUgRSZGAPBWiieHAAAA",
+          "name": "XY",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parting_line_curves": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/41QMU4EMQxE4iP+gCXH8WazBSV0tLQnn5M90SHEP+h4AX/gEXc1H+AB1BRIxFlOukUgkUTKaDwzdkLAECAmKCRqs2QcmQRlphHVNKFl5TCVsWSZgJrW9eSIc0MBxJkE54+vL2+H68+ni/2ufjy/NwV7bjXSuJ0L2pgURbJgzoNhiFu2QKal5dCScfZj9X4EvZ1ABJ4StGtorA/dy5Gk2/skC9E98j0m/0sVTlSr8HAkhhOCoJZd3dxXu72rm6IPCpfgr8Dgh+EK/G8adMALd9MgevCqGFeqsMqhvn/38RHIH74vuDKAx9kBAAA=",
+            "temp_id": 6,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRMU7EMBBE4iP7gZXW9jrxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrXOByJKFAJJEymp3ZHa8JNCgwFURiHzp2WGti5I5q9MFXGJzXahXr6HgFlLWiJ0HaZaSAhang8O7l8fX55OP+6OksvT+8ZYWWvimQN20XMdSVR2bH6JwNqEyrg6LgY+5DfY+DvafMIyjjGAzUykD+VVldBkvZUJHwNpXekn1R4A4xb1NzNjUQdp/QOwRBe3l7EVNsOh9Sc53C+VVqor/xcLwB2IAcEWX2GmRrWD79XRCge+40Q5QAo6IZqdSoD5V32qcHwHO+de+bjMRLkX5vPe3jAdhBuRTBLkWwo/X8ceTXiuk/LuJH1E/MROgdegMAAA==",
+                "temp_id": 2,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QMU7EMBBE4iP7gZXW9ibxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrkFN8dzmkJJE8mp2dmZhAgwJTQyB2vmeLjSZG7qlB512N3jqtVqEJlldASSt6EqRtQgpYmBpOnz5eP98vfp7P3q7i98tXUmjxjZ6c6fqAvqkdMltGayuPynTaK/IuJB8aPE52npxHkOMYDDTKQDrqpM7BMjaUJTy2+iOHocAJMb+m59bUSFS7hJoQBN3t402Ioe2dj+199Nd3sQ3uwcH5BmAD8oso2WuQW8P86TzQArcKDZcJohQohqZQqcKH8nt4j0bAc3vrYW9ayRyrRHuVqtFsafUDFagwX1ihNNnewn+RfCxy32rhxf8CgeEOmHoDAAA=",
+                "temp_id": 9,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                -0.75,
+                2.25
+              ],
+              "parameters": [
+                -0.75,
+                0.75,
+                2.25
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  1.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  1.0
+                ]
+              ]
+            }
+          }
+        ],
+        "fixed_edges": []
+      },
+      "before_body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+        "name": "PartingDraftSeedBody",
+        "parent_component_name": "(Unsaved)",
+        "is_solid": true,
+        "face_count": 7,
+        "edge_count": 15,
+        "volume_cm3": 12.0,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            3.0,
+            2.0,
+            2.0
+          ]
+        }
+      },
+      "before_root_body_count": 1,
+      "actual_input_types": {
+        "draft_type": 1,
+        "parting_line_type": 0,
+        "moving_direction": null
+      },
+      "compute_returned": true,
+      "feature_identity": {
+        "name": "ProbePartingDraftFixedThree",
+        "entity_type": "adsk::fusion::DraftFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHUgRSZGJgByYyxOiAAAAA==",
+        "timeline_index": 4
+      },
+      "settings": {
+        "draft_type": 1,
+        "parting_line_type": 0,
+        "is_direction_flipped": false,
+        "is_tangent_chain": false,
+        "moving_direction": null,
+        "definition": {
+          "entity_type": "adsk::fusion::AngleExtentDefinition",
+          "angle_mode": "SingleAngle",
+          "is_symmetric": true,
+          "angle_one_radians": 0.05235987755982989,
+          "angle_two_radians": null
+        },
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QMU7EMBBE4iP7gZXW9ibxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrkFN8dzmkJJE8mp2dmZhAgwJTQyB2vmeLjSZG7qlB512N3jqtVqEJlldASSt6EqRtQgpYmBpOnz5eP98vfp7P3q7i98tXUmjxjZ6c6fqAvqkdMltGayuPynTaK/IuJB8aPE52npxHkOMYDDTKQDrqpM7BMjaUJTy2+iOHocAJMb+m59bUSFS7hJoQBN3t402Ioe2dj+199Nd3sQ3uwcH5BmAD8oso2WuQW8P86TzQArcKDZcJohQohqZQqcKH8nt4j0bAc3vrYW9ayRyrRHuVqtFsafUDFagwX1ihNNnewn+RfCxy32rhxf8CgeEOmHoDAAA=",
+            "temp_id": 32,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRMU7EMBBE4iP7gZXW9jrxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrXOByJKFAJJEymp3ZHa8JNCgwFURiHzp2WGti5I5q9MFXGJzXahXr6HgFlLWiJ0HaZaSAhang8O7l8fX55OP+6OksvT+8ZYWWvimQN20XMdSVR2bH6JwNqEyrg6LgY+5DfY+DvafMIyjjGAzUykD+VVldBkvZUJHwNpXekn1R4A4xb1NzNjUQdp/QOwRBe3l7EVNsOh9Sc53C+VVqor/xcLwB2IAcEWX2GmRrWD79XRCge+40Q5QAo6IZqdSoD5V32qcHwHO+de+bjMRLkX5vPe3jAdhBuRTBLkWwo/X8ceTXiuk/LuJH1E/MROgdegMAAA==",
+            "temp_id": 33,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ],
+        "pull_geometry": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHUgRSZGAPBWiieHAAAA",
+          "name": "XY",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parting_line_curves": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/41QMU4EMQxE4iP+gCXH8WazBSV0tLQnn5M90SHEP+h4AX/gEXc1H+AB1BRIxFlOukUgkUTKaDwzdkLAECAmKCRqs2QcmQRlphHVNKFl5TCVsWSZgJrW9eSIc0MBxJkE54+vL2+H68+ni/2ufjy/NwV7bjXSuJ0L2pgURbJgzoNhiFu2QKal5dCScfZj9X4EvZ1ABJ4StGtorA/dy5Gk2/skC9E98j0m/0sVTlSr8HAkhhOCoJZd3dxXu72rm6IPCpfgr8Dgh+EK/G8adMALd9MgevCqGFeqsMqhvn/38RHIH74vuDKAx9kBAAA=",
+            "temp_id": 34,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRMU7EMBBE4iP7gZXW9jrxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrXOByJKFAJJEymp3ZHa8JNCgwFURiHzp2WGti5I5q9MFXGJzXahXr6HgFlLWiJ0HaZaSAhang8O7l8fX55OP+6OksvT+8ZYWWvimQN20XMdSVR2bH6JwNqEyrg6LgY+5DfY+DvafMIyjjGAzUykD+VVldBkvZUJHwNpXekn1R4A4xb1NzNjUQdp/QOwRBe3l7EVNsOh9Sc53C+VVqor/xcLwB2IAcEWX2GmRrWD79XRCge+40Q5QAo6IZqdSoD5V32qcHwHO+de+bjMRLkX5vPe3jAdhBuRTBLkWwo/X8ceTXiuk/LuJH1E/MROgdegMAAA==",
+                "temp_id": 33,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QMU7EMBBE4iP7gZXW9ibxFTRIdx0tbeTYDqIBhOAddLyAP/AIqPkAD6CmQMLrkFN8dzmkJJE8mp2dmZhAgwJTQyB2vmeLjSZG7qlB512N3jqtVqEJlldASSt6EqRtQgpYmBpOnz5eP98vfp7P3q7i98tXUmjxjZ6c6fqAvqkdMltGayuPynTaK/IuJB8aPE52npxHkOMYDDTKQDrqpM7BMjaUJTy2+iOHocAJMb+m59bUSFS7hJoQBN3t402Ioe2dj+199Nd3sQ3uwcH5BmAD8oso2WuQW8P86TzQArcKDZcJohQohqZQqcKH8nt4j0bAc3vrYW9ayRyrRHuVqtFsafUDFagwX1ihNNnewn+RfCxy32rhxf8CgeEOmHoDAAA=",
+                "temp_id": 32,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                -0.75,
+                2.25
+              ],
+              "parameters": [
+                -0.75,
+                0.75,
+                2.25
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  1.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  1.0
+                ]
+              ]
+            }
+          }
+        ],
+        "moving_fixed_edges": null,
+        "is_chained": null,
+        "is_chained_status": "Requested False; installed DraftFeature has no independent public parting-line chaining getter"
+      },
+      "health_state": 0,
+      "warning": "",
+      "is_suppressed": false,
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+          "name": "PartingDraftSeedBody",
+          "parent_component_name": "(Unsaved)",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 15,
+          "volume_cm3": 11.842776662150875,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              -3.469446951953614e-18
+            ],
+            "max": [
+              3.0,
+              2.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAnP/te2Pz/j+nWZ7Oj3155L3QBVGCsZmCqnJBonGSWkpusnmZom6JiYWJroWFqbJuobGSUbJhgbJiSlGFmC1QDMY0ADYPgMFsHVgReamABPb0UCIAAAA",
+          "name": "PartingDraftSeedBody",
+          "parent_component_name": "(Unsaved)",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 15,
+          "volume_cm3": 11.842776662150875,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              -3.469446951953614e-18
+            ],
+            "max": [
+              3.0,
+              2.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "PartingDraftSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PartingDraftSeedExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10 mm",
+          "created_by": "PartingDraftMiddlePlane"
+        },
+        {
+          "name": "d5",
+          "role": "Angle1",
+          "value": 0.05235987755982989,
+          "unit": "deg",
+          "expression": "3 deg",
+          "created_by": "ProbePartingDraftFixedThree"
+        },
+        {
+          "name": "d6",
+          "role": "Angle2",
+          "value": 0.05235987755982989,
+          "unit": "deg",
+          "expression": "3 deg",
+          "created_by": "ProbePartingDraftFixedThree"
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 71985,
+        "sha256": "87b499b3d9ce3d1fcb87fadd9f22eb76dd3c6365fb2214fc80d12b1c070d0729"
+      },
+      "close_owned_document_returned": true
+    },
+    {
+      "case": "fixed_seven",
+      "file": "fixed_seven.f3d",
+      "getter_errors": [],
+      "setter_errors": [],
+      "unsplit_wall": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/6WQTUoEMRCFXbvwDLVwG6if/G6FGRfu3TbpdDe4cVT0TG4FPYU3EcEbCCYZRdOOLWgI5PHqS71KEBgIxMKA3lmyTkViq3SwgwqBogpoMPkgMjkBzGzhsSj2WRHo4lg4PLm8f3xZHd8e7D/dPT+8ZoJLX5fE92RZJd8npYlyX6agrOFJOBrvkq9s7rE3WzUPocZpEDCBoBzZrcGlLEj1rLPMDJkbZm7wFwOh39ycD+PQTTGN3dWYzi7GbojXEY7WAGsoc6qSu8oyi+3mz0oR797pFpG2yA1VIhtOPsr4jVuKlB2RC612c7q58FukXnqlbp77z0huoD9+7M+jvQGn6aFnAAMAAA==",
+        "temp_id": 2,
+        "body_name": "PartingDraftSeedBody",
+        "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+        "geometry_type": "adsk::core::Plane",
+        "point_on_face_cm": [
+          1.5,
+          0.0,
+          1.0
+        ],
+        "centroid_cm": [
+          1.5,
+          0.0,
+          1.0
+        ],
+        "area_cm2": 6.0,
+        "is_param_reversed": false,
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "plane_normal": [
+          0.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "setter_returns": {
+        "setup.setByOffset": true,
+        "setSingleAngle": true,
+        "setFixedPartingLineDraftFeatureType": true
+      },
+      "setup_split_health": 0,
+      "setup_split_warning": "",
+      "requested": {
+        "mode": "FixedPartingLine",
+        "angle": "7 deg",
+        "is_chained": false,
+        "is_tangent_chain": false,
+        "is_direction_flipped": false,
+        "is_symmetric": true,
+        "moving_direction": null,
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QS0rEQBR07cIzvIXbhvfp9GcrZFy4dxs6nQTc+EPP5FbQU3gTEbyBYHePGZKZyQiTBLqoV6+q0ggMBGKgQ2cNGasCsVHam055T0F5rDA6LzJYAUzarMeM2CVEoDNj4Pzq4e3ju758OTv9fP16/0kKzr42imvJsIqujUoTJV8mr0zFg3ConI2uaJPHydZT8hBKnAYBSwLpMEldgvNYsEj02OqPXA8znBDLa7y0RiNRbRM0IRDau+fbru+aIcS+eezjzX3fdOEpwMUKYAX5F1XOriHfmioflwFnuFEwXCeocoHZUGYqmvlgeffv4Qj00l693ptWkkOVcKdSNZodW31PBZyZH1lhbrK5hf8i9aHIXasjL/4XDTWfWnoDAAA=",
+            "temp_id": 9,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRO07FMBCkpuAMW9Ba2l3/W6Q8CnrayHESiYaf4Ey0SHAKboKQuAEStvMCL48kFIgkUkazM7vjNQIDgTTQorOGjBWB2AjlTSu8pyA8aozOS9lbCZi0WY8ZsUuIQGXGwPHZzdPLe3X6cHT4+vj2/JEUnPvaKF1DhkV0TRSKKPVl8sJo7iUH7Wx0RZt6HOw9ZR5CGadAgiUJ6WeSugzOZYlForapeEsOxQx3iGUbLdloJPQ+wTsEQnN1f9l2bd2H2NW3Xby47uo23AU42QBsIB9R5NkV5K2J8vF3IQMeuPMERQ4wKcqJiiZ9sLzzPh6BWvJVg282klqL9HvreZ8agR6VaxH0WgQ9Wc8fR36tGP/jIn5E/QRAkHnfegMAAA==",
+            "temp_id": 2,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ],
+        "pull_geometry": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqQIhMjADnizoGHAAAA",
+          "name": "XY",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parting_line_curves": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/41QS0pEMRB07cIz9MJtoD9JJznA6MK92yGT90bcOeKd3Ap6Cm8igjcQ7M44ME8UTAIpqquqO0FgIBCFCUtW0hwasYZYdQq1UgsVE/ZSRbZZAE3renTExRBBdEbh/Gr3/Pqxunw8O317en/5NAV7bu5SNqQcetn0EIksl6kGTbwVbqnkXobWMk5+rNEPYbSLIMBVwa5krA89yoJx2Mcke2J44veY/C8VHakW4XQg0hGBME838/p+7rd383pqDw1W4K8I5IfhAvxvDDrgPXdtMHjwoigLFS1ycOzffXwA8Q/fF2Sva4DZAQAA",
+            "temp_id": 6,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRO07FMBCkpuAMW9Ba2l3/W6Q8CnrayHESiYaf4Ey0SHAKboKQuAEStvMCL48kFIgkUkazM7vjNQIDgTTQorOGjBWB2AjlTSu8pyA8aozOS9lbCZi0WY8ZsUuIQGXGwPHZzdPLe3X6cHT4+vj2/JEUnPvaKF1DhkV0TRSKKPVl8sJo7iUH7Wx0RZt6HOw9ZR5CGadAgiUJ6WeSugzOZYlForapeEsOxQx3iGUbLdloJPQ+wTsEQnN1f9l2bd2H2NW3Xby47uo23AU42QBsIB9R5NkV5K2J8vF3IQMeuPMERQ4wKcqJiiZ9sLzzPh6BWvJVg282klqL9HvreZ8agR6VaxH0WgQ9Wc8fR36tGP/jIn5E/QRAkHnfegMAAA==",
+                "temp_id": 2,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QS0rEQBR07cIzvIXbhvfp9GcrZFy4dxs6nQTc+EPP5FbQU3gTEbyBYHePGZKZyQiTBLqoV6+q0ggMBGKgQ2cNGasCsVHam055T0F5rDA6LzJYAUzarMeM2CVEoDNj4Pzq4e3ju758OTv9fP16/0kKzr42imvJsIqujUoTJV8mr0zFg3ConI2uaJPHydZT8hBKnAYBSwLpMEldgvNYsEj02OqPXA8znBDLa7y0RiNRbRM0IRDau+fbru+aIcS+eezjzX3fdOEpwMUKYAX5F1XOriHfmioflwFnuFEwXCeocoHZUGYqmvlgeffv4Qj00l693ptWkkOVcKdSNZodW31PBZyZH1lhbrK5hf8i9aHIXasjL/4XDTWfWnoDAAA=",
+                "temp_id": 9,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                -0.75,
+                2.25
+              ],
+              "parameters": [
+                -0.75,
+                0.75,
+                2.25
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  1.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  1.0
+                ]
+              ]
+            }
+          }
+        ],
+        "fixed_edges": []
+      },
+      "before_body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+        "name": "PartingDraftSeedBody",
+        "parent_component_name": "(Unsaved)",
+        "is_solid": true,
+        "face_count": 7,
+        "edge_count": 15,
+        "volume_cm3": 12.0,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            3.0,
+            2.0,
+            2.0
+          ]
+        }
+      },
+      "before_root_body_count": 1,
+      "actual_input_types": {
+        "draft_type": 1,
+        "parting_line_type": 0,
+        "moving_direction": null
+      },
+      "compute_returned": true,
+      "feature_identity": {
+        "name": "ProbePartingDraftFixedSeven",
+        "entity_type": "adsk::fusion::DraftFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqQIhMjEwDSXTKsiAAAAA==",
+        "timeline_index": 4
+      },
+      "settings": {
+        "draft_type": 1,
+        "parting_line_type": 0,
+        "is_direction_flipped": false,
+        "is_tangent_chain": false,
+        "moving_direction": null,
+        "definition": {
+          "entity_type": "adsk::fusion::AngleExtentDefinition",
+          "angle_mode": "SingleAngle",
+          "is_symmetric": true,
+          "angle_one_radians": 0.12217304763960307,
+          "angle_two_radians": null
+        },
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QS0rEQBR07cIzvIXbhvfp9GcrZFy4dxs6nQTc+EPP5FbQU3gTEbyBYHePGZKZyQiTBLqoV6+q0ggMBGKgQ2cNGasCsVHam055T0F5rDA6LzJYAUzarMeM2CVEoDNj4Pzq4e3ju758OTv9fP16/0kKzr42imvJsIqujUoTJV8mr0zFg3ConI2uaJPHydZT8hBKnAYBSwLpMEldgvNYsEj02OqPXA8znBDLa7y0RiNRbRM0IRDau+fbru+aIcS+eezjzX3fdOEpwMUKYAX5F1XOriHfmioflwFnuFEwXCeocoHZUGYqmvlgeffv4Qj00l693ptWkkOVcKdSNZodW31PBZyZH1lhbrK5hf8i9aHIXasjL/4XDTWfWnoDAAA=",
+            "temp_id": 32,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRO07FMBCkpuAMW9Ba2l3/W6Q8CnrayHESiYaf4Ey0SHAKboKQuAEStvMCL48kFIgkUkazM7vjNQIDgTTQorOGjBWB2AjlTSu8pyA8aozOS9lbCZi0WY8ZsUuIQGXGwPHZzdPLe3X6cHT4+vj2/JEUnPvaKF1DhkV0TRSKKPVl8sJo7iUH7Wx0RZt6HOw9ZR5CGadAgiUJ6WeSugzOZYlForapeEsOxQx3iGUbLdloJPQ+wTsEQnN1f9l2bd2H2NW3Xby47uo23AU42QBsIB9R5NkV5K2J8vF3IQMeuPMERQ4wKcqJiiZ9sLzzPh6BWvJVg282klqL9HvreZ8agR6VaxH0WgQ9Wc8fR36tGP/jIn5E/QRAkHnfegMAAA==",
+            "temp_id": 33,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ],
+        "pull_geometry": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqQIhMjADnizoGHAAAA",
+          "name": "XY",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parting_line_curves": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/41QS0pEMRB07cIz9MJtoD9JJznA6MK92yGT90bcOeKd3Ap6Cm8igjcQ7M44ME8UTAIpqquqO0FgIBCFCUtW0hwasYZYdQq1UgsVE/ZSRbZZAE3renTExRBBdEbh/Gr3/Pqxunw8O317en/5NAV7bu5SNqQcetn0EIksl6kGTbwVbqnkXobWMk5+rNEPYbSLIMBVwa5krA89yoJx2Mcke2J44veY/C8VHakW4XQg0hGBME838/p+7rd383pqDw1W4K8I5IfhAvxvDDrgPXdtMHjwoigLFS1ycOzffXwA8Q/fF2Sva4DZAQAA",
+            "temp_id": 34,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRO07FMBCkpuAMW9Ba2l3/W6Q8CnrayHESiYaf4Ey0SHAKboKQuAEStvMCL48kFIgkUkazM7vjNQIDgTTQorOGjBWB2AjlTSu8pyA8aozOS9lbCZi0WY8ZsUuIQGXGwPHZzdPLe3X6cHT4+vj2/JEUnPvaKF1DhkV0TRSKKPVl8sJo7iUH7Wx0RZt6HOw9ZR5CGadAgiUJ6WeSugzOZYlForapeEsOxQx3iGUbLdloJPQ+wTsEQnN1f9l2bd2H2NW3Xby47uo23AU42QBsIB9R5NkV5K2J8vF3IQMeuPMERQ4wKcqJiiZ9sLzzPh6BWvJVg282klqL9HvreZ8agR6VaxH0WgQ9Wc8fR36tGP/jIn5E/QRAkHnfegMAAA==",
+                "temp_id": 33,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QS0rEQBR07cIzvIXbhvfp9GcrZFy4dxs6nQTc+EPP5FbQU3gTEbyBYHePGZKZyQiTBLqoV6+q0ggMBGKgQ2cNGasCsVHam055T0F5rDA6LzJYAUzarMeM2CVEoDNj4Pzq4e3ju758OTv9fP16/0kKzr42imvJsIqujUoTJV8mr0zFg3ConI2uaJPHydZT8hBKnAYBSwLpMEldgvNYsEj02OqPXA8znBDLa7y0RiNRbRM0IRDau+fbru+aIcS+eezjzX3fdOEpwMUKYAX5F1XOriHfmioflwFnuFEwXCeocoHZUGYqmvlgeffv4Qj00l693ptWkkOVcKdSNZodW31PBZyZH1lhbrK5hf8i9aHIXasjL/4XDTWfWnoDAAA=",
+                "temp_id": 32,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                -0.75,
+                2.25
+              ],
+              "parameters": [
+                -0.75,
+                0.75,
+                2.25
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  1.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  1.0
+                ]
+              ]
+            }
+          }
+        ],
+        "moving_fixed_edges": null,
+        "is_chained": null,
+        "is_chained_status": "Requested False; installed DraftFeature has no independent public parting-line chaining getter"
+      },
+      "health_state": 0,
+      "warning": "",
+      "is_suppressed": false,
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+          "name": "PartingDraftSeedBody",
+          "parent_component_name": "(Unsaved)",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 15,
+          "volume_cm3": 11.631646317291285,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              3.0,
+              2.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgop34eZT71zdl/NxvdzwestfoAojBWMzBfNkY4skQzMj3WSLpGRdE0PDFF1LI0NLXTNTozRjo0RTC/NkC7BaoBkMaABsn4EC2DqwInNTALPlz6KIAAAA",
+          "name": "PartingDraftSeedBody",
+          "parent_component_name": "(Unsaved)",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 15,
+          "volume_cm3": 11.631646317291285,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              3.0,
+              2.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "PartingDraftSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PartingDraftSeedExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10 mm",
+          "created_by": "PartingDraftMiddlePlane"
+        },
+        {
+          "name": "d5",
+          "role": "Angle1",
+          "value": 0.12217304763960307,
+          "unit": "deg",
+          "expression": "7 deg",
+          "created_by": "ProbePartingDraftFixedSeven"
+        },
+        {
+          "name": "d6",
+          "role": "Angle2",
+          "value": 0.12217304763960307,
+          "unit": "deg",
+          "expression": "7 deg",
+          "created_by": "ProbePartingDraftFixedSeven"
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 72020,
+        "sha256": "96b55b3a2dfc93b7ed71a27d8568e5782fff898d7053a6ee1847c19d39e176e2"
+      },
+      "close_owned_document_returned": true
+    },
+    {
+      "case": "moving_both_three",
+      "file": "moving_both_three.f3d",
+      "getter_errors": [],
+      "setter_errors": [],
+      "unsplit_wall": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/6WQwU0EMQxFqYAGuLiBSB7bM5McQbAHCuDAZZRMMhIXQGi3D6qAE3RAB9ADpRBnQZBhGSSIIuXr+8XfCQJBA9xBEttRIm/66NmIk2gsezSjsyQxcJzGCTCzyqMqslk1IOp08Hx+d/p4fCi3rwcPL0/795kg7eu6nlycGsMtBSO9SyaEXoxHikEY0Vpb2Nxjb7ZKHkKJE2BoXQN6ZLcEa5mxKWeZZWbw3GjnBn0xEMLV5jKmOEx+TMNNGi+u0xD92sPRCmAFOqfR3JMss9hu+qyoePfOtgjXRaoojaw4/ijjN24pkndELrTazUl14bdIWXqlVM/9ZyRV0B8/9ufR3gASjLGvAAMAAA==",
+        "temp_id": 2,
+        "body_name": "PartingDraftSeedBody",
+        "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+        "geometry_type": "adsk::core::Plane",
+        "point_on_face_cm": [
+          1.5,
+          0.0,
+          1.0
+        ],
+        "centroid_cm": [
+          1.5,
+          0.0,
+          1.0
+        ],
+        "area_cm2": 6.0,
+        "is_param_reversed": false,
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "plane_normal": [
+          0.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "setter_returns": {
+        "setup.setByOffset": true,
+        "setMovingPartingLineDraftFeatureType": true
+      },
+      "setup_split_health": 0,
+      "setup_split_warning": "",
+      "requested": {
+        "mode": "MovingPartingLine",
+        "angle": "3 deg",
+        "is_chained": false,
+        "is_tangent_chain": false,
+        "is_direction_flipped": false,
+        "is_symmetric": null,
+        "moving_direction": 2,
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QwU3EMBCkAhrgsw2stF5vYucJ4u5BATz4RHbsSHwAIeiDKuAFHdAB9EAp2D5ySu4uh5QkkkezszMTEzAo0DVEsTVHdmiC0yiNBLTaEXaNZQleh77rgZI26ykjtgkpkMzU8HXzevVxeS4vP2fv35+nb0nB2bepDTehV6gr9iimiei9EXTEwYsmstYWbfI42XlKHkGJE9BglIZ01EldgvNYU5HI0OqP3AwzHBHzazy3pgai2iXUiCDw9893IYa2d11sH2N3+xDb4J4cXKwB1pB/EXP2CvKtYfm4DDjDrYLhOkHMBSZDPVGpiQ+V9/AeDUDm9labvXElfawS7VWqBrOl1Q9UoIn5wgpTk+0t/BcpxyL3rRZe/C9RpRonegMAAA==",
+            "temp_id": 9,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRwU3EMBCkAhrgsw2stF5vEucJ4u5BATz4RHbsSHwAobs+qAJe0AEdQA+Ugu1c4HIk4YFIImU0O7M7XhMwKNAlBDElB7ZYeatRavFotCVsa8PinfZd2wFFbdJTQmwiUiCJKeHt6vHi5fxUHj5Ont9fj5+iglPfuqy49p1CXbBDqeqAzlWCltg70UTGmKyNPY4OnjyPII8T0FApDfFXRnUenMqaskR2qXhH9sUE94h5m5qzqYEoDgneIwjc7fbGB990tg3NfWiv70Lj7cbC2RpgDemImGavIG0N88ffhQS45y4jxBRgVNQjlRr1ofxO+3gAMudb9b7JSLIU6ffW0z4ZQDEolyIUSxGK0Xr+OPJrxfQfF/Ej6iccAPyiegMAAA==",
+            "temp_id": 2,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ],
+        "pull_geometry": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqQIhMjAMJcgwuHAAAA",
+          "name": "XY",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parting_line_curves": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/41QwU0DMRCkAhrgsw2stN7d89nPSMCDAvLgE9lnH+KHUAqhiuQFHdAB9JBS8DpEyiGQsC15NDszuzYBgwPxUDV4rpxwLElQoxYMkginGFhLljJPM1DTmp4McWjIgRrj4eN+d/d2vdKXw9Xr5/vlvinYcqMfOZbZoQycUcdYMedRMRGXrEIUQujalnHxY/V+BL2dggBHD+0aGmtD97KQdnuf5Eh0j36Pyf9SuTPVItydiOGMIKjloW6e6/T4VDclbRPcgL0CnR2GW7C/adAAH7l1g2jBi6IsVG6RQ33/7uMT0D98X0iej+vZAQAA",
+            "temp_id": 6,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRwU3EMBCkAhrgsw2stF5vEucJ4u5BATz4RHbsSHwAobs+qAJe0AEdQA+Ugu1c4HIk4YFIImU0O7M7XhMwKNAlBDElB7ZYeatRavFotCVsa8PinfZd2wFFbdJTQmwiUiCJKeHt6vHi5fxUHj5Ont9fj5+iglPfuqy49p1CXbBDqeqAzlWCltg70UTGmKyNPY4OnjyPII8T0FApDfFXRnUenMqaskR2qXhH9sUE94h5m5qzqYEoDgneIwjc7fbGB990tg3NfWiv70Lj7cbC2RpgDemImGavIG0N88ffhQS45y4jxBRgVNQjlRr1ofxO+3gAMudb9b7JSLIU6ffW0z4ZQDEolyIUSxGK0Xr+OPJrxfQfF/Ej6iccAPyiegMAAA==",
+                "temp_id": 2,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QwU3EMBCkAhrgsw2stF5vYucJ4u5BATz4RHbsSHwAIeiDKuAFHdAB9EAp2D5ySu4uh5QkkkezszMTEzAo0DVEsTVHdmiC0yiNBLTaEXaNZQleh77rgZI26ykjtgkpkMzU8HXzevVxeS4vP2fv35+nb0nB2bepDTehV6gr9iimiei9EXTEwYsmstYWbfI42XlKHkGJE9BglIZ01EldgvNYU5HI0OqP3AwzHBHzazy3pgai2iXUiCDw9893IYa2d11sH2N3+xDb4J4cXKwB1pB/EXP2CvKtYfm4DDjDrYLhOkHMBSZDPVGpiQ+V9/AeDUDm9labvXElfawS7VWqBrOl1Q9UoIn5wgpTk+0t/BcpxyL3rRZe/C9RpRonegMAAA==",
+                "temp_id": 9,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                -0.75,
+                2.25
+              ],
+              "parameters": [
+                -0.75,
+                0.75,
+                2.25
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  1.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  1.0
+                ]
+              ]
+            }
+          }
+        ],
+        "fixed_edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OwU1DMQyGOwEL9OIFLDm2+5IckQoHBuDApUpe8hA3hBikU7Qn2IANYAdGIU5fRVs1spRfvz/9vwkYHMgAVcPAlRP6kgQ1asEgiXCMgbVkKdM4ATXWeDLFoSkHas4A30+7h8/1rW5/lx8/Xzf7RrDlxsFzLJNDWXFG9bFizl4xEZesQhRC6GzLWFy83kfQ6xQEmD20zxp7sa2FOqLHq2bzsOwH/lPdkEtjdWIQ1PJcN291fHmtm5LeE9xBAHTzMNyDndukidl7PCByvuQzyrKvc+4oZOb+AImd0z+UAQAA",
+            "temp_id": 12,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QwU3EMBCkAhrgsw2stF5vYucJ4u5BATz4RHbsSHwAIeiDKuAFHdAB9EAp2D5ySu4uh5QkkkezszMTEzAo0DVEsTVHdmiC0yiNBLTaEXaNZQleh77rgZI26ykjtgkpkMzU8HXzevVxeS4vP2fv35+nb0nB2bepDTehV6gr9iimiei9EXTEwYsmstYWbfI42XlKHkGJE9BglIZ01EldgvNYU5HI0OqP3AwzHBHzazy3pgai2iXUiCDw9893IYa2d11sH2N3+xDb4J4cXKwB1pB/EXP2CvKtYfm4DDjDrYLhOkHMBSZDPVGpiQ+V9/AeDUDm9labvXElfawS7VWqBrOl1Q9UoIn5wgpTk+0t/BcpxyL3rRZe/C9RpRonegMAAA==",
+                "temp_id": 9,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42QwU3EMBBFqYAGuEwDlpyZiWMfQbAHCuDAJbJjR+KyIAR9UAWcoAM6gB4oBY+zhM0mWiWy5O8/3/PG0YBQARlIbA0m9KqJnhQ7jsqS16pzFjkGin3Xg85ZyWtRaLOqgMUx8HX7ev1xec4vP2fv35+nbzmB0teZBl3sK0U1BsWNSyqEhpXXGAOT1tbaks09Tg6+wtNQcAwEpkLIW53dgpYy6WEXeWiYPQOhzPpv5MPuITuT/67VeykN4f55G1Nse9+l9jF1dw+pjf7Jw8UGYAMyvJLOV1lmMSwslSLHCMLNEKHi4aQ4xgU5ydGkPF6Q3AISVyF51mrtaAtIPoakWSs+jpyPtoCkVcj5D1s52i/cwRHNFQMAAA==",
+                "temp_id": 5,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  1.0,
+                  0.0
+                ],
+                "centroid_cm": [
+                  1.5,
+                  1.0,
+                  0.0
+                ],
+                "area_cm2": 6.0,
+                "is_param_reversed": true,
+                "plane_origin_cm": [
+                  1.5,
+                  1.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                0.0,
+                3.0
+              ],
+              "parameters": [
+                0.0,
+                1.5,
+                3.0
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  0.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          },
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OwW0CMRBFU0EayGUaGGl2ZljbRyTIIQVw4ILstRdxiyIKoQo4kQ7SQdIDpeAxKyVBWJb89ef5/yFg6EB6KOp7LhzR5SioQTN6iYRD8Kw5SR6HEaiyxpMp9lV1oOb08L0+vn0u5nq4vJx/vp5PlWDLDb3jkMcOZcYJ1YWCKTnFSJyTCpH3vrE14+nutD6CVqcgwOygPtbYim0s1BCdtuLJvA3bur9UM+TemP0xCErels1HGXbvZZPjPsISPGA3XYZXsHWrNDF5qxsiD4Ym2IRlP+bk34fKXQFWmrJxlAEAAA==",
+            "temp_id": 27,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              2.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRwU3EMBCkAhrgsw2stF5vEucJ4u5BATz4RHbsSHwAobs+qAJe0AEdQA+Ugu1c4HIk4YFIImU0O7M7XhMwKNAlBDElB7ZYeatRavFotCVsa8PinfZd2wFFbdJTQmwiUiCJKeHt6vHi5fxUHj5Ont9fj5+iglPfuqy49p1CXbBDqeqAzlWCltg70UTGmKyNPY4OnjyPII8T0FApDfFXRnUenMqaskR2qXhH9sUE94h5m5qzqYEoDgneIwjc7fbGB990tg3NfWiv70Lj7cbC2RpgDemImGavIG0N88ffhQS45y4jxBRgVNQjlRr1ofxO+3gAMudb9b7JSLIU6ffW0z4ZQDEolyIUSxGK0Xr+OPJrxfQfF/Ej6iccAPyiegMAAA==",
+                "temp_id": 2,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RwU3EMBBFqYAGuEwDlsYzE8c5soI9UAAHLpEdOxKXBaGlD6qAE3RAB9ADpWA7yrLZDdFGkfwz8+b/SYJAoIENRLGGIjlVB8dKGgnKskPVNZYkeA591wMmNvOYFdmkNEiuGPi6e735uLqUl5+L9+/P87dEUPZtTE1N6LXiirySuonK+1qUQwpeGNFaW9jkcXZwlTyEEifAYDRBOqpULYvkNqMuZ5aHBbNXICi7/hXSw/Aio4+MY9UeheAfnjchhrZ3XWyfYnf/GNvgtg5Wa4A15OVVdr5OMonhptIpcocQ3A4IlxqNzSmVIyccT9q7gczNRPJS5ILVPCdHq81EykmRx1bzXwMnA/9E0lLkgtWJP+AXnD7tMxUDAAA=",
+                "temp_id": 4,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  1.0,
+                  2.0
+                ],
+                "centroid_cm": [
+                  1.5,
+                  1.0,
+                  2.0
+                ],
+                "area_cm2": 6.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  1.5,
+                  1.0,
+                  2.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              2.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                0.0,
+                3.0
+              ],
+              "parameters": [
+                0.0,
+                1.5,
+                3.0
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  2.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  2.0
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "before_body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+        "name": "PartingDraftSeedBody",
+        "parent_component_name": "(Unsaved)",
+        "is_solid": true,
+        "face_count": 7,
+        "edge_count": 15,
+        "volume_cm3": 12.0,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            3.0,
+            2.0,
+            2.0
+          ]
+        }
+      },
+      "before_root_body_count": 1,
+      "actual_input_types": {
+        "draft_type": 1,
+        "parting_line_type": 1,
+        "moving_direction": 2
+      },
+      "compute_returned": true,
+      "feature_identity": {
+        "name": "ProbePartingDraftMovingBothThree",
+        "entity_type": "adsk::fusion::DraftFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqQIhNLMwAfgy2LiAAAAA==",
+        "timeline_index": 4
+      },
+      "settings": {
+        "draft_type": 1,
+        "parting_line_type": 1,
+        "is_direction_flipped": false,
+        "is_tangent_chain": false,
+        "moving_direction": 2,
+        "definition": {
+          "entity_type": "adsk::fusion::AngleExtentDefinition",
+          "angle_mode": "SingleAngle",
+          "is_symmetric": false,
+          "angle_one_radians": 0.05235987755982989,
+          "angle_two_radians": null
+        },
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QwU3EMBCkAhrgsw2stF5vYucJ4u5BATz4RHbsSHwAIeiDKuAFHdAB9EAp2D5ySu4uh5QkkkezszMTEzAo0DVEsTVHdmiC0yiNBLTaEXaNZQleh77rgZI26ykjtgkpkMzU8HXzevVxeS4vP2fv35+nb0nB2bepDTehV6gr9iimiei9EXTEwYsmstYWbfI42XlKHkGJE9BglIZ01EldgvNYU5HI0OqP3AwzHBHzazy3pgai2iXUiCDw9893IYa2d11sH2N3+xDb4J4cXKwB1pB/EXP2CvKtYfm4DDjDrYLhOkHMBSZDPVGpiQ+V9/AeDUDm9labvXElfawS7VWqBrOl1Q9UoIn5wgpTk+0t/BcpxyL3rRZe/C9RpRonegMAAA==",
+            "temp_id": 32,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              0.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRwU3EMBCkAhrgsw2stF5vEucJ4u5BATz4RHbsSHwAobs+qAJe0AEdQA+Ugu1c4HIk4YFIImU0O7M7XhMwKNAlBDElB7ZYeatRavFotCVsa8PinfZd2wFFbdJTQmwiUiCJKeHt6vHi5fxUHj5Ont9fj5+iglPfuqy49p1CXbBDqeqAzlWCltg70UTGmKyNPY4OnjyPII8T0FApDfFXRnUenMqaskR2qXhH9sUE94h5m5qzqYEoDgneIwjc7fbGB990tg3NfWiv70Lj7cbC2RpgDemImGavIG0N88ffhQS45y4jxBRgVNQjlRr1ofxO+3gAMudb9b7JSLIU6ffW0z4ZQDEolyIUSxGK0Xr+OPJrxfQfF/Ej6iccAPyiegMAAA==",
+            "temp_id": 33,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Plane",
+            "point_on_face_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "centroid_cm": [
+              1.5,
+              0.0,
+              1.5
+            ],
+            "area_cm2": 3.0,
+            "is_param_reversed": false,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "plane_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ],
+        "pull_geometry": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqQIhMjAMJcgwuHAAAA",
+          "name": "XY",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parting_line_curves": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/41QwU0DMRCkAhrgsw2stN7d89nPSMCDAvLgE9lnH+KHUAqhiuQFHdAB9JBS8DpEyiGQsC15NDszuzYBgwPxUDV4rpxwLElQoxYMkginGFhLljJPM1DTmp4McWjIgRrj4eN+d/d2vdKXw9Xr5/vlvinYcqMfOZbZoQycUcdYMedRMRGXrEIUQujalnHxY/V+BL2dggBHD+0aGmtD97KQdnuf5Eh0j36Pyf9SuTPVItydiOGMIKjloW6e6/T4VDclbRPcgL0CnR2GW7C/adAAH7l1g2jBi6IsVG6RQ33/7uMT0D98X0iej+vZAQAA",
+            "temp_id": 34,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRwU3EMBCkAhrgsw2stF5vEucJ4u5BATz4RHbsSHwAobs+qAJe0AEdQA+Ugu1c4HIk4YFIImU0O7M7XhMwKNAlBDElB7ZYeatRavFotCVsa8PinfZd2wFFbdJTQmwiUiCJKeHt6vHi5fxUHj5Ont9fj5+iglPfuqy49p1CXbBDqeqAzlWCltg70UTGmKyNPY4OnjyPII8T0FApDfFXRnUenMqaskR2qXhH9sUE94h5m5qzqYEoDgneIwjc7fbGB990tg3NfWiv70Lj7cbC2RpgDemImGavIG0N88ffhQS45y4jxBRgVNQjlRr1ofxO+3gAMudb9b7JSLIU6ffW0z4ZQDEolyIUSxGK0Xr+OPJrxfQfF/Ej6iccAPyiegMAAA==",
+                "temp_id": 33,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QwU3EMBCkAhrgsw2stF5vYucJ4u5BATz4RHbsSHwAIeiDKuAFHdAB9EAp2D5ySu4uh5QkkkezszMTEzAo0DVEsTVHdmiC0yiNBLTaEXaNZQleh77rgZI26ykjtgkpkMzU8HXzevVxeS4vP2fv35+nb0nB2bepDTehV6gr9iimiei9EXTEwYsmstYWbfI42XlKHkGJE9BglIZ01EldgvNYU5HI0OqP3AwzHBHzazy3pgai2iXUiCDw9893IYa2d11sH2N3+xDb4J4cXKwB1pB/EXP2CvKtYfm4DDjDrYLhOkHMBSZDPVGpiQ+V9/AeDUDm9labvXElfawS7VWqBrOl1Q9UoIn5wgpTk+0t/BcpxyL3rRZe/C9RpRonegMAAA==",
+                "temp_id": 32,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              1.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                -0.75,
+                2.25
+              ],
+              "parameters": [
+                -0.75,
+                0.75,
+                2.25
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  1.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  1.0
+                ]
+              ]
+            }
+          }
+        ],
+        "moving_fixed_edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OwU1DMQyGOwEL9OIFLDm2+5IckQoHBuDApUpe8hA3hBikU7Qn2IANYAdGIU5fRVs1spRfvz/9vwkYHMgAVcPAlRP6kgQ1asEgiXCMgbVkKdM4ATXWeDLFoSkHas4A30+7h8/1rW5/lx8/Xzf7RrDlxsFzLJNDWXFG9bFizl4xEZesQhRC6GzLWFy83kfQ6xQEmD20zxp7sa2FOqLHq2bzsOwH/lPdkEtjdWIQ1PJcN291fHmtm5LeE9xBAHTzMNyDndukidl7PCByvuQzyrKvc+4oZOb+AImd0z+UAQAA",
+            "temp_id": 37,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/51QwU3EMBCkAhrgsw2stF5vYucJ4u5BATz4RHbsSHwAIeiDKuAFHdAB9EAp2D5ySu4uh5QkkkezszMTEzAo0DVEsTVHdmiC0yiNBLTaEXaNZQleh77rgZI26ykjtgkpkMzU8HXzevVxeS4vP2fv35+nb0nB2bepDTehV6gr9iimiei9EXTEwYsmstYWbfI42XlKHkGJE9BglIZ01EldgvNYU5HI0OqP3AwzHBHzazy3pgai2iXUiCDw9893IYa2d11sH2N3+xDb4J4cXKwB1pB/EXP2CvKtYfm4DDjDrYLhOkHMBSZDPVGpiQ+V9/AeDUDm9labvXElfawS7VWqBrOl1Q9UoIn5wgpTk+0t/BcpxyL3rRZe/C9RpRonegMAAA==",
+                "temp_id": 32,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  0.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42QwU3EMBBFqYAGuEwDlpyZiWMfQbAHCuDAJbJjR+KyIAR9UAWcoAM6gB4oBY+zhM0mWiWy5O8/3/PG0YBQARlIbA0m9KqJnhQ7jsqS16pzFjkGin3Xg85ZyWtRaLOqgMUx8HX7ev1xec4vP2fv35+nbzmB0teZBl3sK0U1BsWNSyqEhpXXGAOT1tbaks09Tg6+wtNQcAwEpkLIW53dgpYy6WEXeWiYPQOhzPpv5MPuITuT/67VeykN4f55G1Nse9+l9jF1dw+pjf7Jw8UGYAMyvJLOV1lmMSwslSLHCMLNEKHi4aQ4xgU5ydGkPF6Q3AISVyF51mrtaAtIPoakWSs+jpyPtoCkVcj5D1s52i/cwRHNFQMAAA==",
+                "temp_id": 41,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  1.0,
+                  0.0
+                ],
+                "centroid_cm": [
+                  1.5,
+                  1.0,
+                  0.0
+                ],
+                "area_cm2": 6.0,
+                "is_param_reversed": true,
+                "plane_origin_cm": [
+                  1.5,
+                  1.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                0.0,
+                3.0
+              ],
+              "parameters": [
+                0.0,
+                1.5,
+                3.0
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  0.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          },
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OwW0CMRBFU0EayGUaGGl2ZljbRyTIIQVw4ILstRdxiyIKoQo4kQ7SQdIDpeAxKyVBWJb89ef5/yFg6EB6KOp7LhzR5SioQTN6iYRD8Kw5SR6HEaiyxpMp9lV1oOb08L0+vn0u5nq4vJx/vp5PlWDLDb3jkMcOZcYJ1YWCKTnFSJyTCpH3vrE14+nutD6CVqcgwOygPtbYim0s1BCdtuLJvA3bur9UM+TemP0xCErels1HGXbvZZPjPsISPGA3XYZXsHWrNDF5qxsiD4Ym2IRlP+bk34fKXQFWmrJxlAEAAA==",
+            "temp_id": 38,
+            "body_name": "PartingDraftSeedBody",
+            "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+            "geometry_type": "adsk::core::Line3D",
+            "start_vertex_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "end_vertex_cm": [
+              3.0,
+              0.0,
+              2.0
+            ],
+            "length_cm": 3.0,
+            "adjacent_faces": [
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/7VRwU3EMBCkAhrgsw2stF5vEucJ4u5BATz4RHbsSHwAobs+qAJe0AEdQA+Ugu1c4HIk4YFIImU0O7M7XhMwKNAlBDElB7ZYeatRavFotCVsa8PinfZd2wFFbdJTQmwiUiCJKeHt6vHi5fxUHj5Ont9fj5+iglPfuqy49p1CXbBDqeqAzlWCltg70UTGmKyNPY4OnjyPII8T0FApDfFXRnUenMqaskR2qXhH9sUE94h5m5qzqYEoDgneIwjc7fbGB990tg3NfWiv70Lj7cbC2RpgDemImGavIG0N88ffhQS45y4jxBRgVNQjlRr1ofxO+3gAMudb9b7JSLIU6ffW0z4ZQDEolyIUSxGK0Xr+OPJrxfQfF/Ej6iccAPyiegMAAA==",
+                "temp_id": 33,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "centroid_cm": [
+                  1.5,
+                  0.0,
+                  1.5
+                ],
+                "area_cm2": 3.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::BRepFace",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RwU3EMBBFqYAGuEwDlsYzE8c5soI9UAAHLpEdOxKXBaGlD6qAE3RAB9ADpWA7yrLZDdFGkfwz8+b/SYJAoIENRLGGIjlVB8dKGgnKskPVNZYkeA591wMmNvOYFdmkNEiuGPi6e735uLqUl5+L9+/P87dEUPZtTE1N6LXiirySuonK+1qUQwpeGNFaW9jkcXZwlTyEEifAYDRBOqpULYvkNqMuZ5aHBbNXICi7/hXSw/Aio4+MY9UeheAfnjchhrZ3XWyfYnf/GNvgtg5Wa4A15OVVdr5OMonhptIpcocQ3A4IlxqNzSmVIyccT9q7gczNRPJS5ILVPCdHq81EykmRx1bzXwMnA/9E0lLkgtWJP+AXnD7tMxUDAAA=",
+                "temp_id": 44,
+                "body_name": "PartingDraftSeedBody",
+                "body_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+                "geometry_type": "adsk::core::Plane",
+                "point_on_face_cm": [
+                  1.5,
+                  1.0,
+                  2.0
+                ],
+                "centroid_cm": [
+                  1.5,
+                  1.0,
+                  2.0
+                ],
+                "area_cm2": 6.0,
+                "is_param_reversed": false,
+                "plane_origin_cm": [
+                  1.5,
+                  1.0,
+                  2.0
+                ],
+                "plane_normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "line_start_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "line_end_cm": [
+              3.0,
+              0.0,
+              2.0
+            ],
+            "actual_trimmed_evaluator": {
+              "parameter_extents": [
+                0.0,
+                3.0
+              ],
+              "parameters": [
+                0.0,
+                1.5,
+                3.0
+              ],
+              "points_cm": [
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  1.5,
+                  0.0,
+                  2.0
+                ],
+                [
+                  3.0,
+                  0.0,
+                  2.0
+                ]
+              ]
+            }
+          }
+        ],
+        "is_chained": null,
+        "is_chained_status": "Requested False; installed DraftFeature has no independent public parting-line chaining getter"
+      },
+      "health_state": 0,
+      "warning": "",
+      "is_suppressed": false,
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+          "name": "PartingDraftSeedBody",
+          "parent_component_name": "(Unsaved)",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 15,
+          "volume_cm3": 12.157223337849123,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              -0.05240777928304121,
+              0.0
+            ],
+            "max": [
+              3.0,
+              2.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpmoZV7rXBxNJjyQXnt2L99yoAojBWMzBUszcyPLlDRDXWNToyRdE3PLVN2kJHMT3UQDo5QkE2MDAwsLC7BaoBkMaABsn4EC2DqwInNTAJmDKoiIAAAA",
+          "name": "PartingDraftSeedBody",
+          "parent_component_name": "(Unsaved)",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 15,
+          "volume_cm3": 12.157223337849123,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              -0.05240777928304121,
+              0.0
+            ],
+            "max": [
+              3.0,
+              2.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "PartingDraftSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PartingDraftSeedExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10 mm",
+          "created_by": "PartingDraftMiddlePlane"
+        },
+        {
+          "name": "d5",
+          "role": "Angle1",
+          "value": 0.05235987755982989,
+          "unit": "deg",
+          "expression": "3 deg",
+          "created_by": "ProbePartingDraftMovingBothThree"
+        },
+        {
+          "name": "d6",
+          "role": "Angle2",
+          "value": 0.05235987755982989,
+          "unit": "deg",
+          "expression": "3 deg",
+          "created_by": "ProbePartingDraftMovingBothThree"
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 72054,
+        "sha256": "a5bfdc9a53afb3b29d247c869ef4b2c155dbbc33a34df454a40d61485c78d5f3"
+      },
+      "close_owned_document_returned": true
+    }
+  ],
+  "errors": [],
+  "requested_cases": [
+    "fixed_three",
+    "fixed_seven",
+    "moving_both_three"
+  ],
+  "executed_generator_sha256": "0ab31f579cdad5fe0f98cc1430f3afd76a96b58f399809d7f650b597841dede4",
+  "sdk_scope": "Installed preview DraftFeatureInput setters; fixed parting line remains in place, moving line shifts with opposing edges fixed. Actual getter/exception evidence decides support.",
+  "setup_scope": "One owned box wall split at mid-height. Geometric selectors choose actual API setup entities; coordinates/order are never asserted to identify serialized persistent topology.",
+  "terminal_status": "complete",
+  "exported_sample_count": 3
+}

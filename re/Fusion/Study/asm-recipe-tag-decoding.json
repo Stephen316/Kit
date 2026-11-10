@@ -1,0 +1,4290 @@
+{
+  "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims",
+  "interfaces": {
+    "tag_catalog": "decode_asm_generic_tags(blob,parsed=None)",
+    "replay": "encode_generic_tag_payload(tag) reproduces exact encoded payload bytes beginning at definition name",
+    "candidates": "match_recipe_tag_names(recipe,tag_summary,*,parsed=None)",
+    "Pipe_evidence": "inspect_pipe_recipe_tags(data,records,body,feature,features,member,members,body_identifier_summary,*,source_evidence=None)",
+    "validator": "decode_asm_recipe_tags.validate_fixtures(root,zstd_library=None)",
+    "integration": "Generic-tag catalogs and naming candidate evidence only. All initial geometry owners participate in uniqueness checks; never filter duplicate tags by coordinates, root order, or source-body membership to claim selected-source closure. All six full Pipe settings failures remain unresolved.",
+    "expected_outputs": "samples[].expected_pipe_evidence contains complete candidate output; samples[].expected_tag_catalog contains all framed initial attributes."
+  },
+  "grammar": {
+    "attribute_header": "Typed ATTRIB_CUSTOM-attrib owner pointer4 plus owner attribute-head and reciprocal next/previous chain pointers2/3. Observed owner kinds BODY/face/edge only; all pointers stay in initial geometry.",
+    "definition_fields": "String generic_tag_attrib_def, integer schema fields[3,3,-1], literal namespace string generic_tag_attrib_def followed by one space. Definition strings are checked; no unobserved definition-object pointer is invented.",
+    "payload": "Integer term_count1/2; each term integer ASCII byte length, short ASCII string, integer stored_index, integer component_count0/1, that many signed32-range integer components, separate integerzero terminator. No remaining tokens permitted.",
+    "native_correspondence": "The full ordered term group (ASCII name,stored index,counted signed components) matches the separately framed native recipe name-table group exactly. Numeric components are never looked up as native design-object IDs.",
+    "byte_encoding": "Observed integer token4+int64, string token7+u8 byte length+ASCII bytes. Exact payload replay preserves every parsed definition/schema/namespace/term byte.",
+    "namespace_scope": "Native descriptor UUID namespaces are not literal ASM generic-tag namespaces. Both are retained separately and matches are scoped through the explicitly referenced same-asset history blob."
+  },
+  "limitations": [
+    "Circle source term(-1,index0,components[301]) matches two distinct initial edge owners: detached edge2 and an edge in the explicitly mapped source BODY. Both candidates are retained; neither is chosen.",
+    "Open-line recipe entries match named source faces, while the detached auxiliary line edge is untagged. Native edge operation/intersection payload grammar remains uninterpreted, so face-name correspondences do not reconstruct a selected edge.",
+    "Candidate curve-kind and endpoint-identity agreement can corroborate candidates but cannot establish selected source identity or closure.",
+    "Only initial geometry and observed generic tag term counts1/2 and component counts0/1 are admitted. Known timestamp and sketch-coedge attribute layouts are independently framed and excluded without interpreting sketch text. Other custom definitions cause unresolved coverage rather than being silently skipped. History snapshots, generic-tag count2+ component arrays, non-ASCII tags and persistent regeneration are outside this stage."
+  ],
+  "samples": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "expected_pipe_evidence": {
+        "feature_object_id": 330,
+        "source_descriptor_object_id": 334,
+        "source_recipe_object_id": 337,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "mapping_record_object_id": 8,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6e54ac-a55e-4352-9610-0e846d97cc10.smbh",
+        "stored_source_body_handle": 20,
+        "explicit_asm_source_body_index": 1,
+        "initial_generic_tag_count": 13,
+        "native_descriptor_namespace_text": "6ae43388-50e0-4168-ad5f-faac945dfc1c",
+        "native_descriptor_entity_guid_text": "f363a9dd-4274-4b5e-a82f-79ae0fbe6936",
+        "namespace_scope": "Native descriptor UUID namespace and literal ASM generic-tag namespace retained separately; only explicit same-asset blob scope joins them, not presumed namespace-text equality",
+        "recipe_naming_correspondence": {
+          "recipe_object_id": 337,
+          "payload_kind": "edge_recipe_data",
+          "name_entries": [
+            {
+              "name_table_index": 0,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 54,
+                  "owner_record_index": 39,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 1,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 38,
+                  "owner_record_index": 28,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 2,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 109,
+                  "owner_record_index": 80,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 3,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 79,
+                  "owner_record_index": 55,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            }
+          ],
+          "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+          "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+        },
+        "source_edge_is_closed": null,
+        "source_curve_geometry": null,
+        "tool_settings_status": "Unresolved; exact stored naming candidates retained without selecting a source edge or closure",
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "expected_tag_catalog": {
+        "tags": [
+          {
+            "attribute_record_index": 11,
+            "owner_record_index": 1,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              4,
+              11
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "301",
+                "stored_index": 7,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1037,
+            "payload_end_offset": 1163,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040700000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 15,
+            "owner_record_index": 3,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              9,
+              15
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "303",
+                "stored_index": 5,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1432,
+            "payload_end_offset": 1558,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333033040500000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 19,
+            "owner_record_index": 17,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              19
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "6",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1869,
+            "payload_end_offset": 2002,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 23,
+            "owner_record_index": 18,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              23
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2337,
+            "payload_end_offset": 2470,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 27,
+            "owner_record_index": 20,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              27
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2842,
+            "payload_end_offset": 2975,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070135040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 32,
+            "owner_record_index": 24,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              32
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 3410,
+            "payload_end_offset": 3543,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 38,
+            "owner_record_index": 28,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              38
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4039,
+            "payload_end_offset": 4172,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 48,
+            "owner_record_index": 33,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              48
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5135,
+            "payload_end_offset": 5268,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 54,
+            "owner_record_index": 39,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              54
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5820,
+            "payload_end_offset": 5953,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 76,
+            "owner_record_index": 53,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              76
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8042,
+            "payload_end_offset": 8176,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 79,
+            "owner_record_index": 55,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              79
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8438,
+            "payload_end_offset": 8571,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 105,
+            "owner_record_index": 75,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              105
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11006,
+            "payload_end_offset": 11140,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d33040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 109,
+            "owner_record_index": 80,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              109
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11462,
+            "payload_end_offset": 11595,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          }
+        ],
+        "ignored_validated_other_definition_attributes": [
+          {
+            "attribute_record_index": 4,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 1,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 9,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 3,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 43,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 31,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 59,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 42,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 68,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 46,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 84,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 58,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 91,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 62,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 101,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 69,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 112,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 83,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 116,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 87,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "API_evidence_status": "Source getters independently corroborate candidate primitive families only; no API geometry or closedness is injected into native selected-source fields"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "expected_pipe_evidence": {
+        "feature_object_id": 330,
+        "source_descriptor_object_id": 334,
+        "source_recipe_object_id": 337,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "mapping_record_object_id": 8,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6be85fa6-4695-4089-a1a1-409537f8835f.smbh",
+        "stored_source_body_handle": 20,
+        "explicit_asm_source_body_index": 1,
+        "initial_generic_tag_count": 13,
+        "native_descriptor_namespace_text": "75a8ffd5-8b22-4d5a-aee8-3dd3be1fab2b",
+        "native_descriptor_entity_guid_text": "a0c47818-d743-49b8-aa42-c8039ef6eab8",
+        "namespace_scope": "Native descriptor UUID namespace and literal ASM generic-tag namespace retained separately; only explicit same-asset blob scope joins them, not presumed namespace-text equality",
+        "recipe_naming_correspondence": {
+          "recipe_object_id": 337,
+          "payload_kind": "edge_recipe_data",
+          "name_entries": [
+            {
+              "name_table_index": 0,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 54,
+                  "owner_record_index": 39,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 1,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 38,
+                  "owner_record_index": 28,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 2,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 109,
+                  "owner_record_index": 80,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 3,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 79,
+                  "owner_record_index": 55,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            }
+          ],
+          "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+          "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+        },
+        "source_edge_is_closed": null,
+        "source_curve_geometry": null,
+        "tool_settings_status": "Unresolved; exact stored naming candidates retained without selecting a source edge or closure",
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "expected_tag_catalog": {
+        "tags": [
+          {
+            "attribute_record_index": 11,
+            "owner_record_index": 1,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              4,
+              11
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "301",
+                "stored_index": 7,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1037,
+            "payload_end_offset": 1163,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040700000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 15,
+            "owner_record_index": 3,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              9,
+              15
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "303",
+                "stored_index": 5,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1432,
+            "payload_end_offset": 1558,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333033040500000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 19,
+            "owner_record_index": 17,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              19
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "6",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1869,
+            "payload_end_offset": 2002,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 23,
+            "owner_record_index": 18,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              23
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2337,
+            "payload_end_offset": 2470,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 27,
+            "owner_record_index": 20,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              27
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2842,
+            "payload_end_offset": 2975,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070135040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 32,
+            "owner_record_index": 24,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              32
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 3410,
+            "payload_end_offset": 3543,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 38,
+            "owner_record_index": 28,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              38
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4039,
+            "payload_end_offset": 4172,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 48,
+            "owner_record_index": 33,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              48
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5135,
+            "payload_end_offset": 5268,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 54,
+            "owner_record_index": 39,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              54
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5820,
+            "payload_end_offset": 5953,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 76,
+            "owner_record_index": 53,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              76
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8042,
+            "payload_end_offset": 8176,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 79,
+            "owner_record_index": 55,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              79
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8438,
+            "payload_end_offset": 8571,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 105,
+            "owner_record_index": 75,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              105
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11006,
+            "payload_end_offset": 11140,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d33040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 109,
+            "owner_record_index": 80,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              109
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11462,
+            "payload_end_offset": 11595,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          }
+        ],
+        "ignored_validated_other_definition_attributes": [
+          {
+            "attribute_record_index": 4,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 1,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 9,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 3,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 43,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 31,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 59,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 42,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 68,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 46,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 84,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 58,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 91,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 62,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 101,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 69,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 112,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 83,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 116,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 87,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "distance_one": 0.4,
+        "distance_two": null
+      },
+      "API_evidence_status": "Source getters independently corroborate candidate primitive families only; no API geometry or closedness is injected into native selected-source fields"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "expected_pipe_evidence": {
+        "feature_object_id": 330,
+        "source_descriptor_object_id": 334,
+        "source_recipe_object_id": 337,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "mapping_record_object_id": 8,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.450ca4e7-360a-45c1-aa4c-a78ed6be53c3.smbh",
+        "stored_source_body_handle": 20,
+        "explicit_asm_source_body_index": 1,
+        "initial_generic_tag_count": 13,
+        "native_descriptor_namespace_text": "97f5a4f0-92fa-488c-babf-5cf97bfdf279",
+        "native_descriptor_entity_guid_text": "8074a71c-619b-4459-b1c2-7a9cbc9ca16c",
+        "namespace_scope": "Native descriptor UUID namespace and literal ASM generic-tag namespace retained separately; only explicit same-asset blob scope joins them, not presumed namespace-text equality",
+        "recipe_naming_correspondence": {
+          "recipe_object_id": 337,
+          "payload_kind": "edge_recipe_data",
+          "name_entries": [
+            {
+              "name_table_index": 0,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 54,
+                  "owner_record_index": 39,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 1,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 19,
+                  "owner_record_index": 17,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 2,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 79,
+                  "owner_record_index": 55,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 3,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 108,
+                  "owner_record_index": 80,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            }
+          ],
+          "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+          "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+        },
+        "source_edge_is_closed": null,
+        "source_curve_geometry": null,
+        "tool_settings_status": "Unresolved; exact stored naming candidates retained without selecting a source edge or closure",
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "expected_tag_catalog": {
+        "tags": [
+          {
+            "attribute_record_index": 11,
+            "owner_record_index": 1,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              4,
+              11
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "301",
+                "stored_index": 7,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1037,
+            "payload_end_offset": 1163,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040700000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 15,
+            "owner_record_index": 3,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              9,
+              15
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "303",
+                "stored_index": 5,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1432,
+            "payload_end_offset": 1558,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333033040500000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 19,
+            "owner_record_index": 17,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              19
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "6",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1869,
+            "payload_end_offset": 2002,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 23,
+            "owner_record_index": 18,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              23
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2337,
+            "payload_end_offset": 2470,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 27,
+            "owner_record_index": 20,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              27
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2842,
+            "payload_end_offset": 2975,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070135040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 32,
+            "owner_record_index": 24,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              32
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 3410,
+            "payload_end_offset": 3543,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 38,
+            "owner_record_index": 28,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              38
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4039,
+            "payload_end_offset": 4172,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 48,
+            "owner_record_index": 33,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              48
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5135,
+            "payload_end_offset": 5268,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 54,
+            "owner_record_index": 39,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              54
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5820,
+            "payload_end_offset": 5953,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 76,
+            "owner_record_index": 53,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              76
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8042,
+            "payload_end_offset": 8176,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 79,
+            "owner_record_index": 55,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              79
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8438,
+            "payload_end_offset": 8571,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 104,
+            "owner_record_index": 75,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              104
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 10945,
+            "payload_end_offset": 11079,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d33040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 108,
+            "owner_record_index": 80,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              108
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11401,
+            "payload_end_offset": 11534,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          }
+        ],
+        "ignored_validated_other_definition_attributes": [
+          {
+            "attribute_record_index": 4,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 1,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 9,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 3,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 43,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 31,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 59,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 42,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 68,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 46,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 83,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 58,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 90,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 62,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 100,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 69,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 111,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 82,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 115,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 86,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "distance_one": 0.4,
+        "distance_two": null
+      },
+      "API_evidence_status": "Source getters independently corroborate candidate primitive families only; no API geometry or closedness is injected into native selected-source fields"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "expected_pipe_evidence": {
+        "feature_object_id": 315,
+        "source_descriptor_object_id": 319,
+        "source_recipe_object_id": 322,
+        "source_body_anchor_object_id": 266,
+        "native_source_body_object_id": 260,
+        "mapping_record_object_id": 8,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+        "stored_source_body_handle": 3,
+        "explicit_asm_source_body_index": 1,
+        "initial_generic_tag_count": 9,
+        "native_descriptor_namespace_text": "0cf8ab91-b320-4188-9858-452bc080eac5",
+        "native_descriptor_entity_guid_text": "7abfa282-59d8-4855-8393-35d7ce2b6d87",
+        "namespace_scope": "Native descriptor UUID namespace and literal ASM generic-tag namespace retained separately; only explicit same-asset blob scope joins them, not presumed namespace-text equality",
+        "recipe_naming_correspondence": {
+          "recipe_object_id": 322,
+          "payload_kind": "edge_recipe_data",
+          "name_entries": [
+            {
+              "name_table_index": 0,
+              "term_count": 1,
+              "candidate_count": 2,
+              "candidates": [
+                {
+                  "attribute_record_index": 6,
+                  "owner_record_index": 2,
+                  "owner_kind": "edge",
+                  "body_graph_membership": [],
+                  "curve_index": 8,
+                  "curve_kind": "ellipse-curve",
+                  "endpoint_vertex_indices": [
+                    7,
+                    7
+                  ],
+                  "cached_endpoint_identity_same": true
+                },
+                {
+                  "attribute_record_index": 39,
+                  "owner_record_index": 35,
+                  "owner_kind": "edge",
+                  "body_graph_membership": [
+                    1
+                  ],
+                  "curve_index": 41,
+                  "curve_kind": "ellipse-curve",
+                  "endpoint_vertex_indices": [
+                    40,
+                    40
+                  ],
+                  "cached_endpoint_identity_same": true
+                }
+              ],
+              "status": "AmbiguousStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 1,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 18,
+                  "owner_record_index": 16,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 2,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 24,
+                  "owner_record_index": 19,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            }
+          ],
+          "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+          "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+        },
+        "source_edge_is_closed": null,
+        "source_curve_geometry": null,
+        "tool_settings_status": "Unresolved; exact stored naming candidates retained without selecting a source edge or closure",
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "expected_tag_catalog": {
+        "tags": [
+          {
+            "attribute_record_index": 6,
+            "owner_record_index": 2,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              6
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 644,
+            "payload_end_offset": 778,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 11,
+            "owner_record_index": 1,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              4,
+              11
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "301",
+                "stored_index": 4,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1210,
+            "payload_end_offset": 1336,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040400000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 14,
+            "owner_record_index": 3,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              9,
+              14
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "303",
+                "stored_index": 6,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1545,
+            "payload_end_offset": 1671,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333033040600000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 18,
+            "owner_record_index": 16,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              18
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1982,
+            "payload_end_offset": 2115,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 22,
+            "owner_record_index": 17,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              22
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 2,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              },
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2487,
+            "payload_end_offset": 2668,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040200000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000040100000000000000070135040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 24,
+            "owner_record_index": 19,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              24
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2879,
+            "payload_end_offset": 3012,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 30,
+            "owner_record_index": 25,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              30
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 3508,
+            "payload_end_offset": 3641,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 39,
+            "owner_record_index": 35,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              39
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4521,
+            "payload_end_offset": 4655,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 43,
+            "owner_record_index": 38,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              43
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-102",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5047,
+            "payload_end_offset": 5183,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004040000000000000007042d313032040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          }
+        ],
+        "ignored_validated_other_definition_attributes": [
+          {
+            "attribute_record_index": 4,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 1,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 9,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 3,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 37,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 34,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "102 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 42,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 36,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "102 0 0 0 1 1"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Circle3D",
+        "path_is_closed": true,
+        "distance_one": 1.0,
+        "distance_two": 0.0
+      },
+      "API_evidence_status": "Source getters independently corroborate candidate primitive families only; no API geometry or closedness is injected into native selected-source fields"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "expected_pipe_evidence": {
+        "feature_object_id": 315,
+        "source_descriptor_object_id": 319,
+        "source_recipe_object_id": 322,
+        "source_body_anchor_object_id": 266,
+        "native_source_body_object_id": 260,
+        "mapping_record_object_id": 8,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9567852f-6f54-4a8f-a8d8-88009da4deb9.smbh",
+        "stored_source_body_handle": 3,
+        "explicit_asm_source_body_index": 1,
+        "initial_generic_tag_count": 13,
+        "native_descriptor_namespace_text": "eb35ab0a-c844-48ae-9d8d-40f5c19a7c6a",
+        "native_descriptor_entity_guid_text": "78c20fd0-709f-41a3-b3d8-2abec8903e8a",
+        "namespace_scope": "Native descriptor UUID namespace and literal ASM generic-tag namespace retained separately; only explicit same-asset blob scope joins them, not presumed namespace-text equality",
+        "recipe_naming_correspondence": {
+          "recipe_object_id": 322,
+          "payload_kind": "edge_recipe_data",
+          "name_entries": [
+            {
+              "name_table_index": 0,
+              "term_count": 1,
+              "candidate_count": 2,
+              "candidates": [
+                {
+                  "attribute_record_index": 6,
+                  "owner_record_index": 2,
+                  "owner_kind": "edge",
+                  "body_graph_membership": [],
+                  "curve_index": 8,
+                  "curve_kind": "ellipse-curve",
+                  "endpoint_vertex_indices": [
+                    7,
+                    7
+                  ],
+                  "cached_endpoint_identity_same": true
+                },
+                {
+                  "attribute_record_index": 52,
+                  "owner_record_index": 42,
+                  "owner_kind": "edge",
+                  "body_graph_membership": [
+                    1
+                  ],
+                  "curve_index": 54,
+                  "curve_kind": "ellipse-curve",
+                  "endpoint_vertex_indices": [
+                    53,
+                    53
+                  ],
+                  "cached_endpoint_identity_same": true
+                }
+              ],
+              "status": "AmbiguousStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 1,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 18,
+                  "owner_record_index": 16,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 2,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 26,
+                  "owner_record_index": 19,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            }
+          ],
+          "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+          "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+        },
+        "source_edge_is_closed": null,
+        "source_curve_geometry": null,
+        "tool_settings_status": "Unresolved; exact stored naming candidates retained without selecting a source edge or closure",
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "expected_tag_catalog": {
+        "tags": [
+          {
+            "attribute_record_index": 6,
+            "owner_record_index": 2,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              6
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 644,
+            "payload_end_offset": 778,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 11,
+            "owner_record_index": 1,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              4,
+              11
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "301",
+                "stored_index": 4,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1210,
+            "payload_end_offset": 1336,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040400000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 14,
+            "owner_record_index": 3,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              9,
+              14
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "303",
+                "stored_index": 6,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1545,
+            "payload_end_offset": 1671,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333033040600000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 18,
+            "owner_record_index": 16,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              18
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1982,
+            "payload_end_offset": 2115,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 22,
+            "owner_record_index": 17,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              22
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2487,
+            "payload_end_offset": 2620,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 26,
+            "owner_record_index": 19,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              26
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2955,
+            "payload_end_offset": 3088,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 32,
+            "owner_record_index": 23,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              32
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 2,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              },
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 3584,
+            "payload_end_offset": 3765,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040200000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000040100000000000000070135040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 37,
+            "owner_record_index": 27,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              37
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4218,
+            "payload_end_offset": 4351,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 43,
+            "owner_record_index": 33,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              43
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4903,
+            "payload_end_offset": 5036,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 52,
+            "owner_record_index": 42,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              52
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5877,
+            "payload_end_offset": 6011,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 57,
+            "owner_record_index": 48,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              57
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 6473,
+            "payload_end_offset": 6607,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 61,
+            "owner_record_index": 51,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              61
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-102",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 6999,
+            "payload_end_offset": 7135,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004040000000000000007042d313032040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 68,
+            "owner_record_index": 65,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              68
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 7675,
+            "payload_end_offset": 7809,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          }
+        ],
+        "ignored_validated_other_definition_attributes": [
+          {
+            "attribute_record_index": 4,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 1,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 9,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 3,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 50,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 41,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "102 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 60,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 49,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "102 0 0 0 1 1"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Circle3D",
+        "path_is_closed": true,
+        "distance_one": 0.35,
+        "distance_two": 0.2
+      },
+      "API_evidence_status": "Source getters independently corroborate candidate primitive families only; no API geometry or closedness is injected into native selected-source fields"
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "expected_pipe_evidence": {
+        "feature_object_id": 306,
+        "source_descriptor_object_id": 310,
+        "source_recipe_object_id": 313,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "mapping_record_object_id": 8,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b6eb5dba-03d3-4fc1-8c9e-ff9446a6e261.smbh",
+        "stored_source_body_handle": 20,
+        "explicit_asm_source_body_index": 1,
+        "initial_generic_tag_count": 13,
+        "native_descriptor_namespace_text": "46491eeb-a3ea-4026-a78f-5297d24d027d",
+        "native_descriptor_entity_guid_text": "29fc18a2-f355-46a4-83bc-a6224e2188f1",
+        "namespace_scope": "Native descriptor UUID namespace and literal ASM generic-tag namespace retained separately; only explicit same-asset blob scope joins them, not presumed namespace-text equality",
+        "recipe_naming_correspondence": {
+          "recipe_object_id": 313,
+          "payload_kind": "edge_recipe_data",
+          "name_entries": [
+            {
+              "name_table_index": 0,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 54,
+                  "owner_record_index": 39,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 1,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 38,
+                  "owner_record_index": 28,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 2,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 109,
+                  "owner_record_index": 80,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            },
+            {
+              "name_table_index": 3,
+              "term_count": 1,
+              "candidate_count": 1,
+              "candidates": [
+                {
+                  "attribute_record_index": 79,
+                  "owner_record_index": 55,
+                  "owner_kind": "face",
+                  "body_graph_membership": [
+                    1
+                  ]
+                }
+              ],
+              "status": "UniqueStoredNamingCorrespondence",
+              "selected_source_owner_record_index": null,
+              "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+            }
+          ],
+          "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+          "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+        },
+        "source_edge_is_closed": null,
+        "source_curve_geometry": null,
+        "tool_settings_status": "Unresolved; exact stored naming candidates retained without selecting a source edge or closure",
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "expected_tag_catalog": {
+        "tags": [
+          {
+            "attribute_record_index": 11,
+            "owner_record_index": 1,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              4,
+              11
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "301",
+                "stored_index": 7,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1037,
+            "payload_end_offset": 1163,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040700000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 15,
+            "owner_record_index": 3,
+            "owner_kind": "body",
+            "owner_attribute_chain": [
+              9,
+              15
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "303",
+                "stored_index": 5,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1432,
+            "payload_end_offset": 1558,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333033040500000000000000040000000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 19,
+            "owner_record_index": 17,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              19
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "6",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 1869,
+            "payload_end_offset": 2002,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 23,
+            "owner_record_index": 18,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              23
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2337,
+            "payload_end_offset": 2470,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 27,
+            "owner_record_index": 20,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              27
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 2842,
+            "payload_end_offset": 2975,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070135040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 32,
+            "owner_record_index": 24,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              32
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 3410,
+            "payload_end_offset": 3543,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 38,
+            "owner_record_index": 28,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              38
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 4039,
+            "payload_end_offset": 4172,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 48,
+            "owner_record_index": 33,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              48
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5135,
+            "payload_end_offset": 5268,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 54,
+            "owner_record_index": 39,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              54
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 5820,
+            "payload_end_offset": 5953,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 76,
+            "owner_record_index": 53,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              76
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8042,
+            "payload_end_offset": 8176,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d31040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 79,
+            "owner_record_index": 55,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              79
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 8438,
+            "payload_end_offset": 8571,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 105,
+            "owner_record_index": 75,
+            "owner_kind": "edge",
+            "owner_attribute_chain": [
+              105
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "-3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  303
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11006,
+            "payload_end_offset": 11140,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d33040000000000000000040100000000000000042f01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          },
+          {
+            "attribute_record_index": 109,
+            "owner_record_index": 80,
+            "owner_kind": "face",
+            "owner_attribute_chain": [
+              109
+            ],
+            "definition_name": "generic_tag_attrib_def",
+            "stored_definition_schema_fields": [
+              3,
+              3,
+              -1
+            ],
+            "stored_namespace_text": "generic_tag_attrib_def ",
+            "stored_term_count": 1,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_terminator_uint32": 0
+              }
+            ],
+            "payload_offset": 11462,
+            "payload_end_offset": 11595,
+            "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040100000000000000042d01000000000000040000000000000000",
+            "scope": "Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved"
+          }
+        ],
+        "ignored_validated_other_definition_attributes": [
+          {
+            "attribute_record_index": 4,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 1,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 9,
+            "definition_name": "Timestamp_attrib_def",
+            "owner_record_index": 3,
+            "owner_kind": "body"
+          },
+          {
+            "attribute_record_index": 43,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 31,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 59,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 42,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 68,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 46,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "107 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 84,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 58,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 91,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 62,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "106 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 101,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 69,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 112,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 83,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "108 0 0 0 1 1"
+          },
+          {
+            "attribute_record_index": 116,
+            "definition_name": "sketch_attrib_def",
+            "owner_record_index": 87,
+            "owner_kind": "coedge",
+            "uninterpreted_text": "105 0 0 0 1 1"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "API_evidence_status": "Source getters independently corroborate candidate primitive families only; no API geometry or closedness is injected into native selected-source fields"
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d complete initial generic-tag coverage",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d all tag payloads replay byte-exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d native source body name agrees actual source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d source edge closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d source curve geometry remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry0 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry0 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry1 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry1 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry2 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry2 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry3 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d entry3 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d line recipe name entries match faces rather than a selected edge",
+      "actual": [
+        "face"
+      ],
+      "expected": [
+        "face"
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d complete initial generic-tag coverage",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d all tag payloads replay byte-exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d native source body name agrees actual source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d source edge closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d source curve geometry remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry0 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry0 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry1 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry1 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry2 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry2 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry3 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d entry3 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d line recipe name entries match faces rather than a selected edge",
+      "actual": [
+        "face"
+      ],
+      "expected": [
+        "face"
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d complete initial generic-tag coverage",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d all tag payloads replay byte-exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d native source body name agrees actual source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d source edge closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d source curve geometry remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry0 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry0 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry1 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry1 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry2 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry2 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry3 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d entry3 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d line recipe name entries match faces rather than a selected edge",
+      "actual": [
+        "face"
+      ],
+      "expected": [
+        "face"
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d complete initial generic-tag coverage",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d all tag payloads replay byte-exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d native source body name agrees actual source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d source edge closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d source curve geometry remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d entry0 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d ambiguous tuple is retained",
+      "actual": "AmbiguousStoredNamingCorrespondence",
+      "expected": "AmbiguousStoredNamingCorrespondence",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d entry1 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d entry1 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d entry2 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d entry2 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d exact edge naming tuple remains ambiguous",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d ambiguity includes detached and source BODY owners",
+      "actual": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d all matching edge caches have ellipse primitive",
+      "actual": [
+        "ellipse-curve"
+      ],
+      "expected": [
+        "ellipse-curve"
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d every matching candidate repeats one endpoint vertex identity",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d every candidate cached ellipse ratio agrees Circle3D getter family",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d complete initial generic-tag coverage",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d all tag payloads replay byte-exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d native source body name agrees actual source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d source edge closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d source curve geometry remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d entry0 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d ambiguous tuple is retained",
+      "actual": "AmbiguousStoredNamingCorrespondence",
+      "expected": "AmbiguousStoredNamingCorrespondence",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d entry1 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d entry1 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d entry2 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d entry2 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d exact edge naming tuple remains ambiguous",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d ambiguity includes detached and source BODY owners",
+      "actual": [
+        [],
+        [
+          1
+        ]
+      ],
+      "expected": [
+        [],
+        [
+          1
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d all matching edge caches have ellipse primitive",
+      "actual": [
+        "ellipse-curve"
+      ],
+      "expected": [
+        "ellipse-curve"
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d every matching candidate repeats one endpoint vertex identity",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d every candidate cached ellipse ratio agrees Circle3D getter family",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d complete initial generic-tag coverage",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d all tag payloads replay byte-exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d native source body name agrees actual source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d source edge closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d source curve geometry remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry0 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry0 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry1 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry1 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry2 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry2 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry3 chooses no owner",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d entry3 unique typed name owner belongs to explicit source BODY",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d line recipe name entries match faces rather than a selected edge",
+      "actual": [
+        "face"
+      ],
+      "expected": [
+        "face"
+      ],
+      "passed": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Unobserved generic tag term count",
+      "rejected": true,
+      "attribute_reason": "ASM generic tag integer kind/range mismatch",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Explicit name byte length disagreement",
+      "rejected": true,
+      "attribute_reason": "ASM generic-tag explicit name length disagrees",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Unobserved generic tag component count",
+      "rejected": true,
+      "attribute_reason": "ASM generic tag integer kind/range mismatch",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Nonreciprocal attribute owner pointer",
+      "rejected": true,
+      "attribute_reason": "ASM generic tag is absent from its claimed owner attribute chain",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Wrong framed namespace literal",
+      "rejected": true,
+      "attribute_reason": "Unobserved ASM generic-tag definition/schema namespace",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Unknown custom definition cannot silently remove a naming candidate",
+      "rejected": true,
+      "attribute_reason": "Unobserved custom attribute definition prevents complete generic-tag audit",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Nonzero generic tag term terminator",
+      "rejected": true,
+      "attribute_reason": "ASM generic tag integer kind/range mismatch",
+      "candidate_reason": "Incomplete initial-geometry generic-tag coverage prevents uniqueness claims"
+    },
+    {
+      "label": "Cross-asset/mismatched history blob association",
+      "rejected": true,
+      "reason": "Pipe explicit same-asset history blob association disagrees"
+    }
+  ],
+  "next_discriminating_capture": {
+    "proposal": "Two Pipe features in one document, selecting different top/bottom circular edges of one support body, with distinct fractions; additionally capture an open curved BRep edge as an independent open/curved contrast.",
+    "capture": "Actual rolled-back Path members/source body+edge tokens, vertex identities, natural/trimmed evaluators and all native feature refs; local archive only.",
+    "purpose": "Test whether detached-cache named copies have an additional per-feature serialized association or shared generic tags. Source-body ownership and duplicate term groups must remain visible. An open arc distinguishes primitive family from topological closure.",
+    "remaining_requirement": "An explicit typed per-feature source/recipe-operation relation is still required; exact geometry agreement among duplicated candidates alone cannot resolve selected-source closure."
+  },
+  "validation": {
+    "saved_files": 6,
+    "framed_initial_generic_tag_attributes": 74,
+    "framed_generic_tag_terms": 76,
+    "exact_attribute_payload_replays": 74,
+    "unique_recipe_name_entry_correspondences": 20,
+    "ambiguous_recipe_name_entry_correspondences": 2,
+    "comparisons_passed": 88,
+    "malformed_guards_passed": 8,
+    "full_Pipe_settings_failures_cleared": 0,
+    "selected_source_closure_claims": 0,
+    "new_API_calls": 0
+  }
+}

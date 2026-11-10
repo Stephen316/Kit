@@ -1,0 +1,434 @@
+{
+  "status": "complete",
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "blank_diameter_08",
+      "file": "blank_diameter_08.f3d",
+      "requested": {
+        "diameter_cm": 0.8,
+        "position_plane_z_cm": 1.5,
+        "side": "side2",
+        "is_default_direction": true,
+        "offset_cm": 0.0,
+        "shape": "Blank",
+        "rib_shape": "None",
+        "draft_angle_radians": 0.0,
+        "root_radius_cm": 0.0,
+        "tip_radius_cm": 0.0,
+        "base_top_z_cm": 0.3
+      },
+      "status": "error",
+      "getter_errors": [],
+      "source_before_boss": {
+        "position": {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgth65UxRCUf7yQs4fum8sdAAqjBSMDZTsDROTDRMTkzSNTNINdE1STQy0LVINjHTtbCwTEwyTDMxNkpKAasFmsGABsD2GSiArTMyNQOSxgYmCoaGBgCXACWvjgAAAA==",
+          "sketch_name": "BossPositionSketch",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgth65UxRCUf7yQs4fum8sdAAqjBSMDZTsDROTDRMTkzSNTNINdE1STQy0LVINjHTtbCwTEwyTDMxNkpKAasFmsGABsD2GSiArQNZb2xgAgAHgB2DiAAAAA==",
+          "world_cm": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "sketch_local_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "participant_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "BossParticipant",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgth65UxRCUf7yQs4fum8sdAAqjBSMDZTsDROTDRMTkzSNTNINdE1STQy0LVINjHTtbCwTEwyTDMxNkpKAasFmsGABsD2GSiArQNZb2RuCgBhTJm6iAAAAA==",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 4.800000000000001,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.30000000000000004
+          ]
+        },
+        "position_plane_origin_cm": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "position_plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "new_input_side_nulls": {
+        "side1": true,
+        "side2": true
+      },
+      "actual_input_before_add": {
+        "entity_type": "adsk::fusion::BossFeatureInput",
+        "is_default_direction": true,
+        "offset": {
+          "entity_type": "adsk::core::ValueInput",
+          "value_type": 1,
+          "real_value": 0.0
+        },
+        "side1": {
+          "is_null": true
+        },
+        "side2": {
+          "is_null": false,
+          "entity_type": "adsk::fusion::BossFeatureSideInput",
+          "alignment_type": 0,
+          "rib_type": 0,
+          "diameter": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.8
+          },
+          "draftAngle": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "offsetClearance": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "rootRadius": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "tipRadius": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          }
+        },
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "BossParticipant",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgth65UxRCUf7yQs4fum8sdAAqjBSMDZTsDROTDRMTkzSNTNINdE1STQy0LVINjHTtbCwTEwyTDMxNkpKAasFmsGABsD2GSiArQNZb2RuCgBhTJm6iAAAAA==",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 4.800000000000001,
+            "bounds_min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "bounds_max_cm": [
+              2.0,
+              2.0,
+              0.30000000000000004
+            ]
+          }
+        ]
+      },
+      "close_owned_document_result": true
+    },
+    {
+      "case": "blank_diameter_12",
+      "file": "blank_diameter_12.f3d",
+      "requested": {
+        "diameter_cm": 1.2,
+        "position_plane_z_cm": 1.5,
+        "side": "side2",
+        "is_default_direction": true,
+        "offset_cm": 0.0,
+        "shape": "Blank",
+        "rib_shape": "None",
+        "draft_angle_radians": 0.0,
+        "root_radius_cm": 0.0,
+        "tip_radius_cm": 0.0,
+        "base_top_z_cm": 0.3
+      },
+      "status": "error",
+      "getter_errors": [],
+      "source_before_boss": {
+        "position": {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsYHOYkTEd6zlq/i114QInoRqMJIwdhMIc3EwNAiKclS19zCKFHXxCIxSdfCwjRJN9nIyNDAODE50cDYAqwWaAYDGgDbZ6AAts7I1AxIGhuYKBgaGgAA8nNy1I4AAAA=",
+          "sketch_name": "BossPositionSketch",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsYHOYkTEd6zlq/i114QInoRqMJIwdhMIc3EwNAiKclS19zCKFHXxCIxSdfCwjRJN9nIyNDAODE50cDYAqwWaAYDGgDbZ6AAtg6kyNjABADo2kibiAAAAA==",
+          "world_cm": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "sketch_local_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "participant_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "BossParticipant",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsYHOYkTEd6zlq/i114QInoRqMJIwdhMIc3EwNAiKclS19zCKFHXxCIxSdfCwjRJN9nIyNDAODE50cDYAqwWaAYDGgDbZ6AAtg6syNwUAI4WzKKIAAAA",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 4.800000000000001,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.30000000000000004
+          ]
+        },
+        "position_plane_origin_cm": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "position_plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "new_input_side_nulls": {
+        "side1": true,
+        "side2": true
+      },
+      "actual_input_before_add": {
+        "entity_type": "adsk::fusion::BossFeatureInput",
+        "is_default_direction": true,
+        "offset": {
+          "entity_type": "adsk::core::ValueInput",
+          "value_type": 1,
+          "real_value": 0.0
+        },
+        "side1": {
+          "is_null": true
+        },
+        "side2": {
+          "is_null": false,
+          "entity_type": "adsk::fusion::BossFeatureSideInput",
+          "alignment_type": 0,
+          "rib_type": 0,
+          "diameter": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 1.2
+          },
+          "draftAngle": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "offsetClearance": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "rootRadius": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "tipRadius": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          }
+        },
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "BossParticipant",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsYHOYkTEd6zlq/i114QInoRqMJIwdhMIc3EwNAiKclS19zCKFHXxCIxSdfCwjRJN9nIyNDAODE50cDYAqwWaAYDGgDbZ6AAtg6syNwUAI4WzKKIAAAA",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 4.800000000000001,
+            "bounds_min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "bounds_max_cm": [
+              2.0,
+              2.0,
+              0.30000000000000004
+            ]
+          }
+        ]
+      },
+      "close_owned_document_result": true
+    },
+    {
+      "case": "blank_taller_position",
+      "file": "blank_taller_position.f3d",
+      "requested": {
+        "diameter_cm": 0.8,
+        "position_plane_z_cm": 2.2,
+        "side": "side2",
+        "is_default_direction": true,
+        "offset_cm": 0.0,
+        "shape": "Blank",
+        "rib_shape": "None",
+        "draft_angle_radians": 0.0,
+        "root_radius_cm": 0.0,
+        "tip_radius_cm": 0.0,
+        "base_top_z_cm": 0.3
+      },
+      "status": "error",
+      "getter_errors": [],
+      "source_before_boss": {
+        "position": {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn1XUW7DI5+efZ0H054JSrIBVRgpGJspGFokGhtbpJrrJqUZpemaJCYa6CaaGRvrGpimGCWaWRinGSSmgNUCzWBAA2D7DBTA1hmZmgFJYwMTBUNDAwA9nqVSjgAAAA==",
+          "sketch_name": "BossPositionSketch",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn1XUW7DI5+efZ0H054JSrIBVRgpGJspGFokGhtbpJrrJqUZpemaJCYa6CaaGRvrGpimGCWaWRinGSSmgNUCzWBAA2D7DBTA1oGsNzYwAQDYej5niAAAAA==",
+          "world_cm": [
+            0.0,
+            0.0,
+            2.2
+          ],
+          "sketch_local_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "participant_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "BossParticipant",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn1XUW7DI5+efZ0H054JSrIBVRgpGJspGFokGhtbpJrrJqUZpemaJCYa6CaaGRvrGpimGCWaWRinGSSmgNUCzWBAA2D7DBTA1oGsNzI3BQC+trpeiAAAAA==",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 4.800000000000001,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.30000000000000004
+          ]
+        },
+        "position_plane_origin_cm": [
+          0.0,
+          0.0,
+          2.2
+        ],
+        "position_plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "new_input_side_nulls": {
+        "side1": true,
+        "side2": true
+      },
+      "actual_input_before_add": {
+        "entity_type": "adsk::fusion::BossFeatureInput",
+        "is_default_direction": true,
+        "offset": {
+          "entity_type": "adsk::core::ValueInput",
+          "value_type": 1,
+          "real_value": 0.0
+        },
+        "side1": {
+          "is_null": true
+        },
+        "side2": {
+          "is_null": false,
+          "entity_type": "adsk::fusion::BossFeatureSideInput",
+          "alignment_type": 0,
+          "rib_type": 0,
+          "diameter": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.8
+          },
+          "draftAngle": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "offsetClearance": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "rootRadius": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          },
+          "tipRadius": {
+            "entity_type": "adsk::core::ValueInput",
+            "value_type": 1,
+            "real_value": 0.0
+          }
+        },
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "BossParticipant",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn1XUW7DI5+efZ0H054JSrIBVRgpGJspGFokGhtbpJrrJqUZpemaJCYa6CaaGRvrGpimGCWaWRinGSSmgNUCzWBAA2D7DBTA1oGsNzI3BQC+trpeiAAAAA==",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 4.800000000000001,
+            "bounds_min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "bounds_max_cm": [
+              2.0,
+              2.0,
+              0.30000000000000004
+            ]
+          }
+        ]
+      },
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [
+    {
+      "case": "blank_diameter_08",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateBossContrasts.py\", line 107, in run\n    bosses=component.features.bossFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 15442, in add\n    return _fusion.BossFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Design Extension is not available.\n"
+    },
+    {
+      "case": "blank_diameter_12",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateBossContrasts.py\", line 107, in run\n    bosses=component.features.bossFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 15442, in add\n    return _fusion.BossFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Design Extension is not available.\n"
+    },
+    {
+      "case": "blank_taller_position",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateBossContrasts.py\", line 107, in run\n    bosses=component.features.bossFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 15442, in add\n    return _fusion.BossFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Design Extension is not available.\n"
+    }
+  ],
+  "executed_generator_sha256": "e16a320e593a69475350d93ef110c2bdaf5c2e389db3d1f438d375aea1443171",
+  "SDK_scope": "BossFeatures.createInput/setPositionBySketchPoints/createSideInput/setBlank/participantBodies/side2/add; actual BossFeature.createInput requires rollback. Solid participants only; ray attachment inferred by Fusion. No public shank-height input.",
+  "availability_scope": "Installed public methods verified offline; license/design support is determined only by actual returned API results/errors"
+}

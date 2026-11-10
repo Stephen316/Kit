@@ -1,0 +1,3235 @@
+{
+  "scope": "Exactly15 saved archives named by the two edgemodes ground_truth sample lists; not the full559-file corpus",
+  "files_inspected": [
+    "edgemodes-52695761f185/fillet_curvature.f3d",
+    "edgemodes-52695761f185/chamfer_multiple.f3d",
+    "edgemodes-87edbf67527b/fillet_constant.f3d",
+    "edgemodes-87edbf67527b/fillet_tangent.f3d",
+    "edgemodes-87edbf67527b/fillet_setback.f3d",
+    "edgemodes-87edbf67527b/fillet_multiple.f3d",
+    "edgemodes-87edbf67527b/fillet_variable.f3d",
+    "edgemodes-87edbf67527b/fillet_chord.f3d",
+    "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+    "edgemodes-87edbf67527b/chamfer_equal.f3d",
+    "edgemodes-87edbf67527b/chamfer_tangent.f3d",
+    "edgemodes-87edbf67527b/chamfer_two.f3d",
+    "edgemodes-87edbf67527b/chamfer_two_flipped.f3d",
+    "edgemodes-87edbf67527b/chamfer_angle.f3d",
+    "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d"
+  ],
+  "baseline": {
+    "revision": "508b426",
+    "source": "git show508b426:decode_pcurve.py",
+    "source_sha256": "d5b4db721f5086e148fbbd8cdbe5d5d4c9209d4a5c1c6f727666515c31f36722",
+    "comparison": "Exact full successful result-dictionary equality, not selected fields or sample coordinates"
+  },
+  "integration": {
+    "reader": "decode_pcurve.decode_pcurve(record)",
+    "validator": "/usr/bin/python3 validate_pcurve_cache_modes.py",
+    "reader_changes_by_this_task": false
+  },
+  "new_caches": [
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.15e46248-e0bb-4458-b94a-6415a37d0e03.smbh",
+      "record_index": 25,
+      "record_offset": 5413,
+      "payload_replay": {
+        "full_record_bytes": 546,
+        "typed_fields_replayed": 69,
+        "sha256": "e7312697abbba0e73c5ab20531a9858dfeb78208f5581962c3d07f3338047f25",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 3,
+        "knots": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.054123771815659576,
+          0.054123771815659576,
+          0.054123771815659576,
+          0.10702943014982032,
+          0.10702943014982032,
+          0.10702943014982032,
+          0.19422238436421219,
+          0.19422238436421219,
+          0.19422238436421219,
+          0.2490177547051895,
+          0.2490177547051895,
+          0.2490177547051895,
+          0.31448248135166856,
+          0.31448248135166856,
+          0.31448248135166856,
+          0.31448248135166856
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            3
+          ],
+          [
+            0.054123771815659576,
+            3
+          ],
+          [
+            0.10702943014982032,
+            3
+          ],
+          [
+            0.19422238436421219,
+            3
+          ],
+          [
+            0.2490177547051895,
+            3
+          ],
+          [
+            0.31448248135166856,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            0.0,
+            2.2499999999999996
+          ],
+          [
+            0.07656947398435583,
+            2.2499999999999996
+          ],
+          [
+            0.1599725455258862,
+            2.2499999999999996
+          ],
+          [
+            0.2521014298575624,
+            2.2499999999999996
+          ],
+          [
+            0.34215685492586567,
+            2.2499999999999996
+          ],
+          [
+            0.40872916548195914,
+            2.2499999999999996
+          ],
+          [
+            0.45219683258355103,
+            2.2499999999999996
+          ],
+          [
+            0.5238351870948361,
+            2.2499999999999996
+          ],
+          [
+            0.6014291766495153,
+            2.2499999999999996
+          ],
+          [
+            0.6922576991810004,
+            2.2499999999999996
+          ],
+          [
+            0.7493377989950177,
+            2.2499999999999996
+          ],
+          [
+            0.8010030305708744,
+            2.2499999999999996
+          ],
+          [
+            0.8461288495905002,
+            2.2499999999999996
+          ],
+          [
+            0.9000412401526112,
+            2.2499999999999996
+          ],
+          [
+            0.9511103767273783,
+            2.2499999999999996
+          ],
+          [
+            1.0,
+            2.2499999999999996
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            0.0,
+            2.2499999999999996
+          ],
+          [
+            0.07656947398435583,
+            2.2499999999999996
+          ],
+          [
+            0.1599725455258862,
+            2.2499999999999996
+          ],
+          [
+            0.2521014298575624,
+            2.2499999999999996
+          ],
+          [
+            0.34215685492586567,
+            2.2499999999999996
+          ],
+          [
+            0.40872916548195914,
+            2.2499999999999996
+          ],
+          [
+            0.45219683258355103,
+            2.2499999999999996
+          ],
+          [
+            0.5238351870948361,
+            2.2499999999999996
+          ],
+          [
+            0.6014291766495153,
+            2.2499999999999996
+          ],
+          [
+            0.6922576991810004,
+            2.2499999999999996
+          ],
+          [
+            0.7493377989950177,
+            2.2499999999999996
+          ],
+          [
+            0.8010030305708744,
+            2.2499999999999996
+          ],
+          [
+            0.8461288495905002,
+            2.2499999999999996
+          ],
+          [
+            0.9000412401526112,
+            2.2499999999999996
+          ],
+          [
+            0.9511103767273783,
+            2.2499999999999996
+          ],
+          [
+            1.0,
+            2.2499999999999996
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          0.31448248135166856
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 1.8198008487381975e-05,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": true,
+        "stored_control_count": 16,
+        "stored_span_count": 5,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent cubic Bernstein evaluation at three interior points of every C0 span",
+        "sample_count": 15,
+        "maximum_error_uv": 4.577566798522237e-16,
+        "samples": [
+          {
+            "span": 0,
+            "fraction": 0.25,
+            "parameter": 0.013530942953914894,
+            "independent_uv": [
+              0.05873797089325228,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.05873797089325228,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.5,
+            "parameter": 0.027061885907829788,
+            "independent_uv": [
+              0.12021593604853606,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.12021593604853606,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.75,
+            "parameter": 0.04059282886174468,
+            "independent_uv": [
+              0.18461129064394244,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.18461129064394244,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.25,
+            "parameter": 0.06735018639919976,
+            "independent_uv": [
+              0.3152458282980272,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.3152458282980273,
+              2.2499999999999996
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 1,
+            "fraction": 0.5,
+            "parameter": 0.08057660098273994,
+            "independent_uv": [
+              0.36961954045807344,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.36961954045807344,
+              2.249999999999999
+            ],
+            "error_uv": 4.440892098500626e-16
+          },
+          {
+            "span": 1,
+            "fraction": 0.75,
+            "parameter": 0.09380301556628012,
+            "independent_uv": [
+              0.4152580479993614,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.4152580479993614,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.25,
+            "parameter": 0.12882766870341827,
+            "independent_uv": [
+              0.5071560128178608,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.5071560128178608,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.5,
+            "parameter": 0.15062590725701624,
+            "independent_uv": [
+              0.5650309528747007,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.5650309528747006,
+              2.249999999999999
+            ],
+            "error_uv": 4.577566798522237e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.75,
+            "parameter": 0.17242414581061422,
+            "independent_uv": [
+              0.6265040494353282,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.6265040494353282,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.25,
+            "parameter": 0.20792122694945653,
+            "independent_uv": [
+              0.7340349152418885,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.7340349152418886,
+              2.2499999999999996
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 3,
+            "fraction": 0.5,
+            "parameter": 0.22162006953470084,
+            "independent_uv": [
+              0.7736761296836471,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.7736761296836472,
+              2.2499999999999996
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 3,
+            "fraction": 0.75,
+            "parameter": 0.23531891211994516,
+            "independent_uv": [
+              0.8110759164764574,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.8110759164764574,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 4,
+            "fraction": 0.25,
+            "parameter": 0.26538393636680924,
+            "independent_uv": [
+              0.8860404033376627,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.8860404033376628,
+              2.2499999999999996
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 4,
+            "fraction": 0.5,
+            "parameter": 0.28175011802842903,
+            "independent_uv": [
+              0.9249479625288086,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.9249479625288086,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 4,
+            "fraction": 0.75,
+            "parameter": 0.2981162996900488,
+            "independent_uv": [
+              0.9629137528531753,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.9629137528531753,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "previous_failure": "Only observed single-span UV curve grids supported"
+    },
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.15e46248-e0bb-4458-b94a-6415a37d0e03.smbh",
+      "record_index": 34,
+      "record_offset": 6825,
+      "payload_replay": {
+        "full_record_bytes": 222,
+        "typed_fields_replayed": 33,
+        "sha256": "ab3fe3f216bb7687762bd3dd8eafd4a7f4cc3fb586d96fde493f24d558543c44",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 1,
+        "knots": [
+          -1.3700010000000002,
+          -1.3700010000000002,
+          2.8700010000000002,
+          2.8700010000000002
+        ],
+        "stored_compact_knots": [
+          [
+            -1.3700010000000002,
+            1
+          ],
+          [
+            2.8700010000000002,
+            1
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            1.0,
+            -1.3700010000000002
+          ],
+          [
+            1.0,
+            2.8700010000000002
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            1.0,
+            -1.3700010000000002
+          ],
+          [
+            1.0,
+            2.8700010000000002
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          -1.3700010000000002,
+          2.8700010000000002
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 0.0,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": true,
+        "stored_support_surface_flag": true,
+        "stored_control_count": 2,
+        "stored_span_count": 1,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent linear interpolation at three interior parameters",
+        "sample_count": 3,
+        "maximum_error_uv": 0.0,
+        "samples": [
+          {
+            "fraction": 0.25,
+            "independent_uv": [
+              1.0,
+              -0.3100005000000001
+            ],
+            "deboor_uv": [
+              1.0,
+              -0.3100005000000001
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.5,
+            "independent_uv": [
+              1.0,
+              0.75
+            ],
+            "deboor_uv": [
+              1.0,
+              0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.75,
+            "independent_uv": [
+              1.0,
+              1.8100005000000001
+            ],
+            "deboor_uv": [
+              1.0,
+              1.8100005000000001
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "previous_failure": "Unsupported pcurve prefix flags"
+    },
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.15e46248-e0bb-4458-b94a-6415a37d0e03.smbh",
+      "record_index": 37,
+      "record_offset": 7245,
+      "payload_replay": {
+        "full_record_bytes": 222,
+        "typed_fields_replayed": 33,
+        "sha256": "e69baf53c86a984718d908047a49bc14be19481734aabc1615135e9bb761ed85",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 1,
+        "knots": [
+          -1.3700010000000002,
+          -1.3700010000000002,
+          2.8700010000000002,
+          2.8700010000000002
+        ],
+        "stored_compact_knots": [
+          [
+            -1.3700010000000002,
+            1
+          ],
+          [
+            2.8700010000000002,
+            1
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            0.0,
+            -1.3700010000000002
+          ],
+          [
+            0.0,
+            2.8700010000000002
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            0.0,
+            -1.3700010000000002
+          ],
+          [
+            0.0,
+            2.8700010000000002
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          -1.3700010000000002,
+          2.8700010000000002
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 0.0,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": true,
+        "stored_control_count": 2,
+        "stored_span_count": 1,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent linear interpolation at three interior parameters",
+        "sample_count": 3,
+        "maximum_error_uv": 0.0,
+        "samples": [
+          {
+            "fraction": 0.25,
+            "independent_uv": [
+              0.0,
+              -0.3100005000000001
+            ],
+            "deboor_uv": [
+              0.0,
+              -0.3100005000000001
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.5,
+            "independent_uv": [
+              0.0,
+              0.75
+            ],
+            "deboor_uv": [
+              0.0,
+              0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.75,
+            "independent_uv": [
+              0.0,
+              1.8100005000000001
+            ],
+            "deboor_uv": [
+              0.0,
+              1.8100005000000001
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "previous_failure": "Unsupported pcurve support-surface reference wrapper"
+    },
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.15e46248-e0bb-4458-b94a-6415a37d0e03.smbh",
+      "record_index": 55,
+      "record_offset": 10179,
+      "payload_replay": {
+        "full_record_bytes": 546,
+        "typed_fields_replayed": 69,
+        "sha256": "5201bd33fe069a92159113dd41e4bad4c4958c9ab3302fe677394535106fa1d3",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 3,
+        "knots": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.05412377181566615,
+          0.05412377181566615,
+          0.05412377181566615,
+          0.10702943014985963,
+          0.10702943014985963,
+          0.10702943014985963,
+          0.19422238436443637,
+          0.19422238436443637,
+          0.19422238436443637,
+          0.24901775470560605,
+          0.24901775470560605,
+          0.24901775470560605,
+          0.31448248135245505,
+          0.31448248135245505,
+          0.31448248135245505,
+          0.31448248135245505
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            3
+          ],
+          [
+            0.05412377181566615,
+            3
+          ],
+          [
+            0.10702943014985963,
+            3
+          ],
+          [
+            0.19422238436443637,
+            3
+          ],
+          [
+            0.24901775470560605,
+            3
+          ],
+          [
+            0.31448248135245505,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            1.0,
+            -0.75
+          ],
+          [
+            0.923430526015635,
+            -0.75
+          ],
+          [
+            0.8400274544741109,
+            -0.75
+          ],
+          [
+            0.7478985701424375,
+            -0.75
+          ],
+          [
+            0.6578431450740923,
+            -0.75
+          ],
+          [
+            0.5912708345179831,
+            -0.75
+          ],
+          [
+            0.5478031674164487,
+            -0.75
+          ],
+          [
+            0.476164812905151,
+            -0.75
+          ],
+          [
+            0.3985708233504726,
+            -0.75
+          ],
+          [
+            0.3077423008189999,
+            -0.75
+          ],
+          [
+            0.250662201004911,
+            -0.75
+          ],
+          [
+            0.19899696942903058,
+            -0.75
+          ],
+          [
+            0.15387115040949995,
+            -0.75
+          ],
+          [
+            0.09995875984738714,
+            -0.75
+          ],
+          [
+            0.048889623272616,
+            -0.75
+          ],
+          [
+            0.0,
+            -0.75
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            1.0,
+            -0.75
+          ],
+          [
+            0.923430526015635,
+            -0.75
+          ],
+          [
+            0.8400274544741109,
+            -0.75
+          ],
+          [
+            0.7478985701424375,
+            -0.75
+          ],
+          [
+            0.6578431450740923,
+            -0.75
+          ],
+          [
+            0.5912708345179831,
+            -0.75
+          ],
+          [
+            0.5478031674164487,
+            -0.75
+          ],
+          [
+            0.476164812905151,
+            -0.75
+          ],
+          [
+            0.3985708233504726,
+            -0.75
+          ],
+          [
+            0.3077423008189999,
+            -0.75
+          ],
+          [
+            0.250662201004911,
+            -0.75
+          ],
+          [
+            0.19899696942903058,
+            -0.75
+          ],
+          [
+            0.15387115040949995,
+            -0.75
+          ],
+          [
+            0.09995875984738714,
+            -0.75
+          ],
+          [
+            0.048889623272616,
+            -0.75
+          ],
+          [
+            0.0,
+            -0.75
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          0.31448248135245505
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 1.8198008487040922e-05,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": true,
+        "stored_control_count": 16,
+        "stored_span_count": 5,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent cubic Bernstein evaluation at three interior points of every C0 span",
+        "sample_count": 15,
+        "maximum_error_uv": 1.1102230246251565e-16,
+        "samples": [
+          {
+            "span": 0,
+            "fraction": 0.25,
+            "parameter": 0.013530942953916537,
+            "independent_uv": [
+              0.9412620291067435,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.9412620291067434,
+              -0.75
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 0,
+            "fraction": 0.5,
+            "parameter": 0.027061885907833073,
+            "independent_uv": [
+              0.8797840639514594,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.8797840639514594,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.75,
+            "parameter": 0.040592828861749614,
+            "independent_uv": [
+              0.815388709356055,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.815388709356055,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.25,
+            "parameter": 0.06735018639921451,
+            "independent_uv": [
+              0.684754171701947,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.6847541717019469,
+              -0.75
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 1,
+            "fraction": 0.5,
+            "parameter": 0.0805766009827629,
+            "independent_uv": [
+              0.630380459541889,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.6303804595418891,
+              -0.75
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 1,
+            "fraction": 0.75,
+            "parameter": 0.09380301556631127,
+            "independent_uv": [
+              0.5847419520006083,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.5847419520006083,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.25,
+            "parameter": 0.12882766870350382,
+            "independent_uv": [
+              0.492843987182132,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.49284398718213196,
+              -0.75
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 2,
+            "fraction": 0.5,
+            "parameter": 0.150625907257148,
+            "independent_uv": [
+              0.43496904712528994,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.43496904712528994,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.75,
+            "parameter": 0.17242414581079218,
+            "independent_uv": [
+              0.3734959505646651,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.3734959505646651,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.25,
+            "parameter": 0.20792122694972878,
+            "independent_uv": [
+              0.2659650847580683,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.26596508475806824,
+              -0.75
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 3,
+            "fraction": 0.5,
+            "parameter": 0.22162006953502122,
+            "independent_uv": [
+              0.2263238703162906,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.22632387031629053,
+              -0.75
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 3,
+            "fraction": 0.75,
+            "parameter": 0.23531891212031364,
+            "independent_uv": [
+              0.18892408352349255,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.18892408352349255,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 4,
+            "fraction": 0.25,
+            "parameter": 0.2653839363673183,
+            "independent_uv": [
+              0.11395959666233586,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.11395959666233593,
+              -0.75
+            ],
+            "error_uv": 6.938893903907228e-17
+          },
+          {
+            "span": 4,
+            "fraction": 0.5,
+            "parameter": 0.28175011802903055,
+            "independent_uv": [
+              0.07505203747118867,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.07505203747118867,
+              -0.75
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 4,
+            "fraction": 0.75,
+            "parameter": 0.2981162996907428,
+            "independent_uv": [
+              0.03708624714682213,
+              -0.75
+            ],
+            "deboor_uv": [
+              0.03708624714682206,
+              -0.75
+            ],
+            "error_uv": 6.938893903907228e-17
+          }
+        ]
+      },
+      "previous_failure": "Only observed single-span UV curve grids supported"
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "record_index": 25,
+      "record_offset": 7940,
+      "payload_replay": {
+        "full_record_bytes": 474,
+        "typed_fields_replayed": 61,
+        "sha256": "fb5e8fbd8f8566bfc37b751b625848f2873138fb932c6ecb93b56024762d3875",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 3,
+        "knots": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.056019607287793975,
+          0.056019607287793975,
+          0.056019607287793975,
+          0.11272072741977923,
+          0.11272072741977923,
+          0.11272072741977923,
+          0.16723215467339458,
+          0.16723215467339458,
+          0.16723215467339458,
+          0.2228558118554978,
+          0.2228558118554978,
+          0.2228558118554978,
+          0.2228558118554978
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            3
+          ],
+          [
+            0.056019607287793975,
+            3
+          ],
+          [
+            0.11272072741977923,
+            3
+          ],
+          [
+            0.16723215467339458,
+            3
+          ],
+          [
+            0.2228558118554978,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            1.0,
+            3.0
+          ],
+          [
+            0.9066339878536769,
+            3.0
+          ],
+          [
+            0.8215759867543202,
+            3.0
+          ],
+          [
+            0.738765154297966,
+            3.0
+          ],
+          [
+            0.6549468773290639,
+            3.0
+          ],
+          [
+            0.5751987820889655,
+            3.0
+          ],
+          [
+            0.4945347397011231,
+            3.0
+          ],
+          [
+            0.4169857941358134,
+            3.0
+          ],
+          [
+            0.34012090408358503,
+            3.0
+          ],
+          [
+            0.259495160890055,
+            3.0
+          ],
+          [
+            0.1772243614376013,
+            3.0
+          ],
+          [
+            0.09270609530350536,
+            3.0
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            1.0,
+            3.0
+          ],
+          [
+            0.9066339878536769,
+            3.0
+          ],
+          [
+            0.8215759867543202,
+            3.0
+          ],
+          [
+            0.738765154297966,
+            3.0
+          ],
+          [
+            0.6549468773290639,
+            3.0
+          ],
+          [
+            0.5751987820889655,
+            3.0
+          ],
+          [
+            0.4945347397011231,
+            3.0
+          ],
+          [
+            0.4169857941358134,
+            3.0
+          ],
+          [
+            0.34012090408358503,
+            3.0
+          ],
+          [
+            0.259495160890055,
+            3.0
+          ],
+          [
+            0.1772243614376013,
+            3.0
+          ],
+          [
+            0.09270609530350536,
+            3.0
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          0.2228558118554978
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 7.777700144159994e-08,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": false,
+        "stored_control_count": 13,
+        "stored_span_count": 4,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent cubic Bernstein evaluation at three interior points of every C0 span",
+        "sample_count": 12,
+        "maximum_error_uv": 1.1102230246251565e-16,
+        "samples": [
+          {
+            "span": 0,
+            "fraction": 0.25,
+            "parameter": 0.014004901821948494,
+            "independent_uv": [
+              0.9314385422990019,
+              3.0
+            ],
+            "deboor_uv": [
+              0.9314385422990019,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.5,
+            "parameter": 0.028009803643896988,
+            "independent_uv": [
+              0.8654243847652446,
+              3.0
+            ],
+            "deboor_uv": [
+              0.8654243847652446,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.75,
+            "parameter": 0.04201470546584548,
+            "independent_uv": [
+              0.8013893234233566,
+              3.0
+            ],
+            "deboor_uv": [
+              0.8013893234233566,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.25,
+            "parameter": 0.0701948873207903,
+            "independent_uv": [
+              0.676586697381744,
+              3.0
+            ],
+            "deboor_uv": [
+              0.676586697381744,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.5,
+            "parameter": 0.08437016735378661,
+            "independent_uv": [
+              0.6154671090316471,
+              3.0
+            ],
+            "deboor_uv": [
+              0.615467109031647,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 1,
+            "fraction": 0.75,
+            "parameter": 0.09854544738678292,
+            "independent_uv": [
+              0.5549389396654989,
+              3.0
+            ],
+            "deboor_uv": [
+              0.554938939665499,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.25,
+            "parameter": 0.12634858423318307,
+            "independent_uv": [
+              0.4364318392381188,
+              3.0
+            ],
+            "deboor_uv": [
+              0.4364318392381188,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.5,
+            "parameter": 0.1399764410465869,
+            "independent_uv": [
+              0.3781687494061716,
+              3.0
+            ],
+            "deboor_uv": [
+              0.3781687494061716,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.75,
+            "parameter": 0.15360429785999075,
+            "independent_uv": [
+              0.3193287600189332,
+              3.0
+            ],
+            "deboor_uv": [
+              0.3193287600189332,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.25,
+            "parameter": 0.18113806896892037,
+            "independent_uv": [
+              0.19727784313403546,
+              3.0
+            ],
+            "deboor_uv": [
+              0.19727784313403546,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.5,
+            "parameter": 0.1950439832644462,
+            "independent_uv": [
+              0.13366081638917188,
+              3.0
+            ],
+            "deboor_uv": [
+              0.13366081638917188,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.75,
+            "parameter": 0.208949897559972,
+            "independent_uv": [
+              0.06808717167223612,
+              3.0
+            ],
+            "deboor_uv": [
+              0.06808717167223606,
+              3.0
+            ],
+            "error_uv": 5.551115123125783e-17
+          }
+        ]
+      },
+      "previous_failure": "Only observed single-span UV curve grids supported"
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "record_index": 34,
+      "record_offset": 9280,
+      "payload_replay": {
+        "full_record_bytes": 222,
+        "typed_fields_replayed": 33,
+        "sha256": "6cb237e689bd64169bd8256f579f1a60074956cb85a7c9ef85619eb2f39b2ed1",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 1,
+        "knots": [
+          1.7763568394002505e-15,
+          1.7763568394002505e-15,
+          2.9999999999999996,
+          2.9999999999999996
+        ],
+        "stored_compact_knots": [
+          [
+            1.7763568394002505e-15,
+            1
+          ],
+          [
+            2.9999999999999996,
+            1
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            0.0,
+            -9.992007221626409e-16
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            0.0,
+            -9.992007221626409e-16
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          1.7763568394002505e-15,
+          2.9999999999999996
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 0.0,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": true,
+        "stored_support_surface_flag": false,
+        "stored_control_count": 2,
+        "stored_span_count": 1,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent linear interpolation at three interior parameters",
+        "sample_count": 3,
+        "maximum_error_uv": 0.0,
+        "samples": [
+          {
+            "fraction": 0.25,
+            "independent_uv": [
+              0.0,
+              0.7499999999999992
+            ],
+            "deboor_uv": [
+              0.0,
+              0.7499999999999992
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.5,
+            "independent_uv": [
+              0.0,
+              1.4999999999999996
+            ],
+            "deboor_uv": [
+              0.0,
+              1.4999999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.75,
+            "independent_uv": [
+              0.0,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              0.0,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "previous_failure": "Unsupported pcurve prefix flags"
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "record_index": 55,
+      "record_offset": 13264,
+      "payload_replay": {
+        "full_record_bytes": 474,
+        "typed_fields_replayed": 61,
+        "sha256": "40213a6eddd8f35868319f5bbf1db8c22ff17e0aa5169041cc0457305991d526",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 3,
+        "knots": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.05601960728779435,
+          0.05601960728779435,
+          0.05601960728779435,
+          0.11272072741977979,
+          0.11272072741977979,
+          0.11272072741977979,
+          0.1672321546733946,
+          0.1672321546733946,
+          0.1672321546733946,
+          0.2228558118554978,
+          0.2228558118554978,
+          0.2228558118554978,
+          0.2228558118554978
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            3
+          ],
+          [
+            0.05601960728779435,
+            3
+          ],
+          [
+            0.11272072741977979,
+            3
+          ],
+          [
+            0.1672321546733946,
+            3
+          ],
+          [
+            0.2228558118554978,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            0.0,
+            -5.551115123125783e-16
+          ],
+          [
+            0.09336601214632394,
+            -5.551115123125783e-16
+          ],
+          [
+            0.1784240132456817,
+            -5.551115123125783e-16
+          ],
+          [
+            0.261234845702036,
+            -5.551115123125783e-16
+          ],
+          [
+            0.3450531226709379,
+            -5.551115123125783e-16
+          ],
+          [
+            0.42480121791103687,
+            -5.551115123125783e-16
+          ],
+          [
+            0.5054652602988794,
+            -5.551115123125783e-16
+          ],
+          [
+            0.5830142058641883,
+            -5.551115123125783e-16
+          ],
+          [
+            0.6598790959164168,
+            -5.551115123125783e-16
+          ],
+          [
+            0.7405048391099461,
+            -5.551115123125783e-16
+          ],
+          [
+            0.8227756385623999,
+            -5.551115123125783e-16
+          ],
+          [
+            0.907293904696495,
+            -5.551115123125783e-16
+          ],
+          [
+            1.0,
+            -5.551115123125783e-16
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            0.0,
+            -5.551115123125783e-16
+          ],
+          [
+            0.09336601214632394,
+            -5.551115123125783e-16
+          ],
+          [
+            0.1784240132456817,
+            -5.551115123125783e-16
+          ],
+          [
+            0.261234845702036,
+            -5.551115123125783e-16
+          ],
+          [
+            0.3450531226709379,
+            -5.551115123125783e-16
+          ],
+          [
+            0.42480121791103687,
+            -5.551115123125783e-16
+          ],
+          [
+            0.5054652602988794,
+            -5.551115123125783e-16
+          ],
+          [
+            0.5830142058641883,
+            -5.551115123125783e-16
+          ],
+          [
+            0.6598790959164168,
+            -5.551115123125783e-16
+          ],
+          [
+            0.7405048391099461,
+            -5.551115123125783e-16
+          ],
+          [
+            0.8227756385623999,
+            -5.551115123125783e-16
+          ],
+          [
+            0.907293904696495,
+            -5.551115123125783e-16
+          ],
+          [
+            1.0,
+            -5.551115123125783e-16
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          0.2228558118554978
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 7.777700108464456e-08,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": false,
+        "stored_control_count": 13,
+        "stored_span_count": 4,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent cubic Bernstein evaluation at three interior points of every C0 span",
+        "sample_count": 12,
+        "maximum_error_uv": 2.220446049250313e-16,
+        "samples": [
+          {
+            "span": 0,
+            "fraction": 0.25,
+            "parameter": 0.014004901821948587,
+            "independent_uv": [
+              0.06856145770099872,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.06856145770099871,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 1.3877787807814457e-17
+          },
+          {
+            "span": 0,
+            "fraction": 0.5,
+            "parameter": 0.028009803643897175,
+            "independent_uv": [
+              0.1345756152347566,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.1345756152347566,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.75,
+            "parameter": 0.042014705465845764,
+            "independent_uv": [
+              0.1986106765766452,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.1986106765766452,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.25,
+            "parameter": 0.07019488732079071,
+            "independent_uv": [
+              0.32341330261825796,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.323413302618258,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 1,
+            "fraction": 0.5,
+            "parameter": 0.08437016735378707,
+            "independent_uv": [
+              0.38453289096835497,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.38453289096835486,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 1,
+            "fraction": 0.75,
+            "parameter": 0.09854544738678342,
+            "independent_uv": [
+              0.4450610603345034,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.4450610603345034,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.25,
+            "parameter": 0.1263485842331835,
+            "independent_uv": [
+              0.5635681607618832,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.5635681607618832,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.5,
+            "parameter": 0.13997644104658719,
+            "independent_uv": [
+              0.6218312505938302,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.6218312505938299,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 2.220446049250313e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.75,
+            "parameter": 0.1536042978599909,
+            "independent_uv": [
+              0.6806712399810684,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.6806712399810684,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.25,
+            "parameter": 0.1811380689689204,
+            "independent_uv": [
+              0.8027221568659656,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.8027221568659655,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 3,
+            "fraction": 0.5,
+            "parameter": 0.19504398326444622,
+            "independent_uv": [
+              0.8663391836108288,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.866339183610829,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 3,
+            "fraction": 0.75,
+            "parameter": 0.208949897559972,
+            "independent_uv": [
+              0.9319128283277642,
+              -5.551115123125783e-16
+            ],
+            "deboor_uv": [
+              0.9319128283277641,
+              -5.551115123125783e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          }
+        ]
+      },
+      "previous_failure": "Only observed single-span UV curve grids supported"
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+      "record_index": 25,
+      "record_offset": 8355,
+      "payload_replay": {
+        "full_record_bytes": 546,
+        "typed_fields_replayed": 69,
+        "sha256": "2cbb3d11dacdadc49c4f52360afe32fa986361a1359b2e9501371694f9ccb7f8",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 3,
+        "knots": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.020806595231881202,
+          0.020806595231881202,
+          0.020806595231881202,
+          0.046346915416707546,
+          0.046346915416707546,
+          0.046346915416707546,
+          0.0871261652082907,
+          0.0871261652082907,
+          0.0871261652082907,
+          0.15530441416501994,
+          0.15530441416501994,
+          0.15530441416501994,
+          0.21693614417715154,
+          0.21693614417715154,
+          0.21693614417715154,
+          0.21693614417715154
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            3
+          ],
+          [
+            0.020806595231881202,
+            3
+          ],
+          [
+            0.046346915416707546,
+            3
+          ],
+          [
+            0.0871261652082907,
+            3
+          ],
+          [
+            0.15530441416501994,
+            3
+          ],
+          [
+            0.21693614417715154,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            1.0,
+            3.0
+          ],
+          [
+            0.9509583847271106,
+            3.0
+          ],
+          [
+            0.905444651649819,
+            3.0
+          ],
+          [
+            0.8623198247175634,
+            3.0
+          ],
+          [
+            0.8093836342697691,
+            3.0
+          ],
+          [
+            0.7619423784041585,
+            3.0
+          ],
+          [
+            0.7187153638526822,
+            3.0
+          ],
+          [
+            0.6496964474341512,
+            3.0
+          ],
+          [
+            0.5890971508731108,
+            3.0
+          ],
+          [
+            0.5349125584899139,
+            3.0
+          ],
+          [
+            0.4443221075129817,
+            3.0
+          ],
+          [
+            0.35544032157785027,
+            3.0
+          ],
+          [
+            0.2612326416702832,
+            3.0
+          ],
+          [
+            0.176070843267137,
+            3.0
+          ],
+          [
+            0.09075395644859194,
+            3.0
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            1.0,
+            3.0
+          ],
+          [
+            0.9509583847271106,
+            3.0
+          ],
+          [
+            0.905444651649819,
+            3.0
+          ],
+          [
+            0.8623198247175634,
+            3.0
+          ],
+          [
+            0.8093836342697691,
+            3.0
+          ],
+          [
+            0.7619423784041585,
+            3.0
+          ],
+          [
+            0.7187153638526822,
+            3.0
+          ],
+          [
+            0.6496964474341512,
+            3.0
+          ],
+          [
+            0.5890971508731108,
+            3.0
+          ],
+          [
+            0.5349125584899139,
+            3.0
+          ],
+          [
+            0.4443221075129817,
+            3.0
+          ],
+          [
+            0.35544032157785027,
+            3.0
+          ],
+          [
+            0.2612326416702832,
+            3.0
+          ],
+          [
+            0.176070843267137,
+            3.0
+          ],
+          [
+            0.09075395644859194,
+            3.0
+          ],
+          [
+            0.0,
+            3.0
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          0.21693614417715154
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 1.6619447170042377e-06,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": false,
+        "stored_control_count": 16,
+        "stored_span_count": 5,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent cubic Bernstein evaluation at three interior points of every C0 span",
+        "sample_count": 15,
+        "maximum_error_uv": 1.1102230246251565e-16,
+        "samples": [
+          {
+            "span": 0,
+            "fraction": 0.25,
+            "parameter": 0.005201648807970301,
+            "independent_uv": [
+              0.9638624699562176,
+              3.0
+            ],
+            "deboor_uv": [
+              0.9638624699562175,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 0,
+            "fraction": 0.5,
+            "parameter": 0.010403297615940601,
+            "independent_uv": [
+              0.928941116731044,
+              3.0
+            ],
+            "deboor_uv": [
+              0.9289411167310441,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 0,
+            "fraction": 0.75,
+            "parameter": 0.015604946423910901,
+            "independent_uv": [
+              0.8951291613197394,
+              3.0
+            ],
+            "deboor_uv": [
+              0.8951291613197394,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.25,
+            "parameter": 0.027191675278087787,
+            "independent_uv": [
+              0.8236279712835639,
+              3.0
+            ],
+            "deboor_uv": [
+              0.8236279712835638,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 1,
+            "fraction": 0.5,
+            "parameter": 0.033576755324294376,
+            "independent_uv": [
+              0.7868766533240035,
+              3.0
+            ],
+            "deboor_uv": [
+              0.7868766533240035,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.75,
+            "parameter": 0.039961835370500964,
+            "independent_uv": [
+              0.7519458058450028,
+              3.0
+            ],
+            "deboor_uv": [
+              0.7519458058450029,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.25,
+            "parameter": 0.05654172786460333,
+            "independent_uv": [
+              0.6684985284545689,
+              3.0
+            ],
+            "deboor_uv": [
+              0.6684985284545688,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.5,
+            "parameter": 0.06673654031249912,
+            "independent_uv": [
+              0.6212510896580479,
+              3.0
+            ],
+            "deboor_uv": [
+              0.6212510896580478,
+              3.0
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.75,
+            "parameter": 0.07693135276039491,
+            "independent_uv": [
+              0.5767850866181518,
+              3.0
+            ],
+            "deboor_uv": [
+              0.5767850866181518,
+              3.0
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.25,
+            "parameter": 0.10417072744747301,
+            "independent_uv": [
+              0.46718017996795497,
+              3.0
+            ],
+            "deboor_uv": [
+              0.4671801799679549,
+              3.0
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 3,
+            "fraction": 0.5,
+            "parameter": 0.12121528968665532,
+            "independent_uv": [
+              0.39942906092908664,
+              3.0
+            ],
+            "deboor_uv": [
+              0.3994290609290866,
+              3.0
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 3,
+            "fraction": 0.75,
+            "parameter": 0.13825985192583762,
+            "independent_uv": [
+              0.33099971146572427,
+              3.0
+            ],
+            "deboor_uv": [
+              0.3309997114657243,
+              3.0
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 4,
+            "fraction": 0.25,
+            "parameter": 0.17071234666805285,
+            "independent_uv": [
+              0.19724968283355743,
+              3.0
+            ],
+            "deboor_uv": [
+              0.19724968283355734,
+              3.0
+            ],
+            "error_uv": 8.326672684688674e-17
+          },
+          {
+            "span": 4,
+            "fraction": 0.5,
+            "parameter": 0.18612027917108576,
+            "independent_uv": [
+              0.13271338010218375,
+              3.0
+            ],
+            "deboor_uv": [
+              0.13271338010218373,
+              3.0
+            ],
+            "error_uv": 2.7755575615628914e-17
+          },
+          {
+            "span": 4,
+            "fraction": 0.75,
+            "parameter": 0.20152821167411863,
+            "independent_uv": [
+              0.06712854773728905,
+              3.0
+            ],
+            "deboor_uv": [
+              0.06712854773728907,
+              3.0
+            ],
+            "error_uv": 2.7755575615628914e-17
+          }
+        ]
+      },
+      "previous_failure": "Only observed single-span UV curve grids supported"
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+      "record_index": 34,
+      "record_offset": 9767,
+      "payload_replay": {
+        "full_record_bytes": 222,
+        "typed_fields_replayed": 33,
+        "sha256": "93f66b580b4e1ca0468f0f229efb25236f278711d9b8ac04b17f70f866becb6a",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 1,
+        "knots": [
+          0.0,
+          0.0,
+          3.0,
+          3.0
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            1
+          ],
+          [
+            3.0,
+            1
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          [
+            0.0,
+            3.0000000000000004
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          [
+            0.0,
+            3.0000000000000004
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 0.0,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": true,
+        "stored_support_surface_flag": false,
+        "stored_control_count": 2,
+        "stored_span_count": 1,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent linear interpolation at three interior parameters",
+        "sample_count": 3,
+        "maximum_error_uv": 0.0,
+        "samples": [
+          {
+            "fraction": 0.25,
+            "independent_uv": [
+              0.0,
+              0.7500000000000002
+            ],
+            "deboor_uv": [
+              0.0,
+              0.7500000000000002
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.5,
+            "independent_uv": [
+              0.0,
+              1.5000000000000002
+            ],
+            "deboor_uv": [
+              0.0,
+              1.5000000000000002
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.75,
+            "independent_uv": [
+              0.0,
+              2.2500000000000004
+            ],
+            "deboor_uv": [
+              0.0,
+              2.2500000000000004
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "previous_failure": "Unsupported pcurve prefix flags"
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+      "record_index": 55,
+      "record_offset": 13895,
+      "payload_replay": {
+        "full_record_bytes": 546,
+        "typed_fields_replayed": 69,
+        "sha256": "7f94657c60f2a79928e5ae6895d519517bd095743ac7e57eabb028d5ffb59269",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 3,
+        "knots": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.13414546479414294,
+          0.13414546479414294,
+          0.13414546479414294,
+          0.21786053917489323,
+          0.21786053917489323,
+          0.21786053917489323,
+          0.2640307192246388,
+          0.2640307192246388,
+          0.2640307192246388,
+          0.28369544139733865,
+          0.28369544139733865,
+          0.28369544139733865,
+          0.3018765506193496,
+          0.3018765506193496,
+          0.3018765506193496,
+          0.3018765506193496
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            3
+          ],
+          [
+            0.13414546479414294,
+            3
+          ],
+          [
+            0.21786053917489323,
+            3
+          ],
+          [
+            0.2640307192246388,
+            3
+          ],
+          [
+            0.28369544139733865,
+            3
+          ],
+          [
+            0.3018765506193496,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          [
+            0.15809194636893315,
+            1.1102230246251565e-16
+          ],
+          [
+            0.2916144071301366,
+            1.1102230246251565e-16
+          ],
+          [
+            0.4270484655937399,
+            1.1102230246251565e-16
+          ],
+          [
+            0.5115677021953373,
+            1.1102230246251565e-16
+          ],
+          [
+            0.5940801362419169,
+            1.1102230246251565e-16
+          ],
+          [
+            0.6801341901894479,
+            1.1102230246251565e-16
+          ],
+          [
+            0.7275943542537782,
+            1.1102230246251565e-16
+          ],
+          [
+            0.7803409216383526,
+            1.1102230246251565e-16
+          ],
+          [
+            0.840067095094724,
+            1.1102230246251565e-16
+          ],
+          [
+            0.8655055622220468,
+            1.1102230246251565e-16
+          ],
+          [
+            0.8920832374856114,
+            1.1102230246251565e-16
+          ],
+          [
+            0.920033547547362,
+            1.1102230246251565e-16
+          ],
+          [
+            0.9458751351151354,
+            1.1102230246251565e-16
+          ],
+          [
+            0.972462228812662,
+            1.1102230246251565e-16
+          ],
+          [
+            1.0,
+            1.1102230246251565e-16
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          [
+            0.15809194636893315,
+            1.1102230246251565e-16
+          ],
+          [
+            0.2916144071301366,
+            1.1102230246251565e-16
+          ],
+          [
+            0.4270484655937399,
+            1.1102230246251565e-16
+          ],
+          [
+            0.5115677021953373,
+            1.1102230246251565e-16
+          ],
+          [
+            0.5940801362419169,
+            1.1102230246251565e-16
+          ],
+          [
+            0.6801341901894479,
+            1.1102230246251565e-16
+          ],
+          [
+            0.7275943542537782,
+            1.1102230246251565e-16
+          ],
+          [
+            0.7803409216383526,
+            1.1102230246251565e-16
+          ],
+          [
+            0.840067095094724,
+            1.1102230246251565e-16
+          ],
+          [
+            0.8655055622220468,
+            1.1102230246251565e-16
+          ],
+          [
+            0.8920832374856114,
+            1.1102230246251565e-16
+          ],
+          [
+            0.920033547547362,
+            1.1102230246251565e-16
+          ],
+          [
+            0.9458751351151354,
+            1.1102230246251565e-16
+          ],
+          [
+            0.972462228812662,
+            1.1102230246251565e-16
+          ],
+          [
+            1.0,
+            1.1102230246251565e-16
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          0.3018765506193496
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 1.2407851005079275e-06,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+        "cache_status": "Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout",
+        "stored_prefix_flag_4": false,
+        "stored_support_surface_flag": false,
+        "stored_control_count": 16,
+        "stored_span_count": 5,
+        "flag_scope": "Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred"
+      },
+      "evaluation_check": {
+        "method": "Independent cubic Bernstein evaluation at three interior points of every C0 span",
+        "sample_count": 15,
+        "maximum_error_uv": 2.220446049250313e-16,
+        "samples": [
+          {
+            "span": 0,
+            "fraction": 0.25,
+            "parameter": 0.033536366198535734,
+            "independent_uv": [
+              0.11437594815197132,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.11437594815197133,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 1.3877787807814457e-17
+          },
+          {
+            "span": 0,
+            "fraction": 0.5,
+            "parameter": 0.06707273239707147,
+            "independent_uv": [
+              0.22202094076136863,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.22202094076136863,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 0,
+            "fraction": 0.75,
+            "parameter": 0.10060909859560721,
+            "independent_uv": [
+              0.3254175793885166,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.32541757938851656,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 5.551115123125783e-17
+          },
+          {
+            "span": 1,
+            "fraction": 0.25,
+            "parameter": 0.15507423338933052,
+            "independent_uv": [
+              0.49014831166674666,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.49014831166674666,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.5,
+            "parameter": 0.17600300198451807,
+            "independent_uv": [
+              0.5530157713868689,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.5530157713868689,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 1,
+            "fraction": 0.75,
+            "parameter": 0.19693177057970565,
+            "independent_uv": [
+              0.6161710093593535,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.6161710093593534,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.25,
+            "parameter": 0.22940308418732963,
+            "independent_uv": [
+              0.7167469701532343,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.7167469701532345,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 2.220446049250313e-16
+          },
+          {
+            "span": 2,
+            "fraction": 0.5,
+            "parameter": 0.240945629199766,
+            "independent_uv": [
+              0.7555008891200705,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.7555008891200705,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 2,
+            "fraction": 0.75,
+            "parameter": 0.2524881742122024,
+            "independent_uv": [
+              0.7965546848479144,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.7965546848479143,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 3,
+            "fraction": 0.25,
+            "parameter": 0.2689468997678137,
+            "independent_uv": [
+              0.8593631942573544,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.8593631942573543,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 3,
+            "fraction": 0.5,
+            "parameter": 0.2738630803109887,
+            "independent_uv": [
+              0.8791083802206325,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.8791083802206325,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 3,
+            "fraction": 0.75,
+            "parameter": 0.2787792608541637,
+            "independent_uv": [
+              0.899324536734116,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.8993245367341162,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 1.1102230246251565e-16
+          },
+          {
+            "span": 4,
+            "fraction": 0.25,
+            "parameter": 0.2882407187028414,
+            "independent_uv": [
+              0.9395577264250217,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.9395577264250217,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "span": 4,
+            "fraction": 0.5,
+            "parameter": 0.2927859960083441,
+            "independent_uv": [
+              0.9593807049163443,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.9593807049163441,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 2.220446049250313e-16
+          },
+          {
+            "span": 4,
+            "fraction": 0.75,
+            "parameter": 0.29733127331384684,
+            "independent_uv": [
+              0.9795217178363352,
+              1.1102230246251565e-16
+            ],
+            "deboor_uv": [
+              0.9795217178363352,
+              1.1102230246251565e-16
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "previous_failure": "Only observed single-span UV curve grids supported"
+    }
+  ],
+  "previous_outputs": [
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "record_index": 37,
+      "record_offset": 9700,
+      "payload_replay": {
+        "full_record_bytes": 222,
+        "typed_fields_replayed": 33,
+        "sha256": "0cedfc4fec0f6a5b928ddc4baf8a963ad1fde92afa44742e817551daf728ee7a",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 1,
+        "knots": [
+          1.7763568394002505e-15,
+          1.7763568394002505e-15,
+          2.9999999999999996,
+          2.9999999999999996
+        ],
+        "stored_compact_knots": [
+          [
+            1.7763568394002505e-15,
+            1
+          ],
+          [
+            2.9999999999999996,
+            1
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            1.0,
+            -9.992007221626409e-16
+          ],
+          [
+            1.0,
+            3.0
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            1.0,
+            -9.992007221626409e-16
+          ],
+          [
+            1.0,
+            3.0
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          1.7763568394002505e-15,
+          2.9999999999999996
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 0.0,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit degree-one/cubic non-rational UV cache; exact coedge parameterization is not reconstructed",
+        "cache_status": "Matches observed API spline geometry; sampled exact coedge evaluations may differ"
+      },
+      "evaluation_check": {
+        "method": "Independent linear interpolation at three interior parameters",
+        "sample_count": 3,
+        "maximum_error_uv": 0.0,
+        "samples": [
+          {
+            "fraction": 0.25,
+            "independent_uv": [
+              1.0,
+              0.7499999999999992
+            ],
+            "deboor_uv": [
+              1.0,
+              0.7499999999999992
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.5,
+            "independent_uv": [
+              1.0,
+              1.4999999999999996
+            ],
+            "deboor_uv": [
+              1.0,
+              1.4999999999999996
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.75,
+            "independent_uv": [
+              1.0,
+              2.2499999999999996
+            ],
+            "deboor_uv": [
+              1.0,
+              2.2499999999999996
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "exact_previous_dictionary_equality": true
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+      "record_index": 37,
+      "record_offset": 10187,
+      "payload_replay": {
+        "full_record_bytes": 222,
+        "typed_fields_replayed": 33,
+        "sha256": "324b9731a0e01d4dea8ebe3b734e8b74ce93ef7b2977e87a643fd7d0a9bfd915",
+        "exact_name_fields_and_terminator": true
+      },
+      "cache": {
+        "degree": 1,
+        "knots": [
+          0.0,
+          0.0,
+          3.0,
+          3.0
+        ],
+        "stored_compact_knots": [
+          [
+            0.0,
+            1
+          ],
+          [
+            3.0,
+            1
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            1.0,
+            1.1102230246251565e-16
+          ],
+          [
+            1.0,
+            3.0000000000000004
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            1.0,
+            1.1102230246251565e-16
+          ],
+          [
+            1.0,
+            3.0000000000000004
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "stored_form_code": 0,
+        "uninterpreted_cache_scalar": 0.0,
+        "stored_inline_surface_ref": 0,
+        "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+        "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+        "representation": "Stored explicit degree-one/cubic non-rational UV cache; exact coedge parameterization is not reconstructed",
+        "cache_status": "Matches observed API spline geometry; sampled exact coedge evaluations may differ"
+      },
+      "evaluation_check": {
+        "method": "Independent linear interpolation at three interior parameters",
+        "sample_count": 3,
+        "maximum_error_uv": 0.0,
+        "samples": [
+          {
+            "fraction": 0.25,
+            "independent_uv": [
+              1.0,
+              0.7500000000000002
+            ],
+            "deboor_uv": [
+              1.0,
+              0.7500000000000002
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.5,
+            "independent_uv": [
+              1.0,
+              1.5000000000000002
+            ],
+            "deboor_uv": [
+              1.0,
+              1.5000000000000002
+            ],
+            "error_uv": 0.0
+          },
+          {
+            "fraction": 0.75,
+            "independent_uv": [
+              1.0,
+              2.2500000000000004
+            ],
+            "deboor_uv": [
+              1.0,
+              2.2500000000000004
+            ],
+            "error_uv": 0.0
+          }
+        ]
+      },
+      "exact_previous_dictionary_equality": true
+    }
+  ],
+  "unresolved": [],
+  "guards": [
+    {
+      "case": "Unsupported degree/form pair",
+      "rejected": true,
+      "reason": "Only observed degree-one/cubic UV curve forms supported"
+    },
+    {
+      "case": "Non-increasing compact knots",
+      "rejected": true,
+      "reason": "Compact knot values are not strictly increasing"
+    },
+    {
+      "case": "Compact multiplicity exceeds degree",
+      "rejected": true,
+      "reason": "Unsupported compact knot multiplicity"
+    },
+    {
+      "case": "Unexpected trailing field",
+      "rejected": true,
+      "reason": "Unsupported explicit pcurve trailer length"
+    },
+    {
+      "case": "Control point must have double type",
+      "rejected": true,
+      "reason": "Unexpected spline-cache token at field 23"
+    },
+    {
+      "case": "Support ref wrapper has wrong closing token",
+      "rejected": true,
+      "reason": "Unsupported pcurve support-surface reference wrapper"
+    }
+  ],
+  "limitations": [
+    "Only stored non-rational degree-one/cubic exp_par_cur caches are evaluated.",
+    "Wrapper flags are literal stored booleans. No reversal, parameter remapping, active/final lifecycle or coedge sense is inferred.",
+    "Inline support ref remains in its unresolved namespace; it is not treated as an ASM entity index.",
+    "Independent Bernstein agreement validates cached polynomial evaluation, not exact procedural trimmed-face geometry or an API evaluator match.",
+    "Full typed record bytes are replayed exactly; this is validation of existing stored payloads, not a native CAD writer.",
+    "No direct API UV-cache/evaluator getters were captured for the new layouts. Native offset fields are applied exactly as the existing cache reader specifies."
+  ],
+  "summary": {
+    "archives_inspected": 15,
+    "new_caches": 10,
+    "files_with_new_caches": 3,
+    "new_cubic_multispan_caches": 6,
+    "new_linear_flag_variants": 4,
+    "previous_dictionary_outputs_unchanged": 2,
+    "complete_typed_record_replays": 12,
+    "cubic_spans_bernstein_checked": 28,
+    "independent_cubic_interior_evaluations": 84,
+    "independent_linear_interior_evaluations": 18,
+    "maximum_independent_evaluation_error_uv": 4.577566798522237e-16,
+    "malformed_guards": 6,
+    "unresolved_pcurves_in_scope": 0
+  }
+}

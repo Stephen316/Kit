@@ -1,0 +1,4660 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "circle_lens",
+      "file": "circle_lens.f3d",
+      "requested": {
+        "sources": "Two radius-2cm circles centered at(-1,0) and(1,0)",
+        "selection": "Minimum area lens"
+      },
+      "getter_errors": [],
+      "sketch_name": "TrimmedProfileSources",
+      "source_curves": [
+        {
+          "source_index": 0,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwC0DrADkgAAAA==",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -3.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 1,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEABnI9B5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -1.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        }
+      ],
+      "available_profile_count": 3,
+      "selected_candidate_index": 0,
+      "candidate_profiles": [
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwC0DrADkgAAAA==",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        0.5000000000000001,
+                        -0.8660254037844386,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.220446049250313e-16,
+                            -1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.0471975511965976,
+                        "result_cm": [
+                          true,
+                          [
+                            1.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.0943951023931953,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEABnI9B5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        -0.49999999999999983,
+                        0.8660254037844387,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            3.3306690738754696e-16,
+                            1.7320508075688774,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.047197551196598,
+                        "result_cm": [
+                          true,
+                          [
+                            -1.0,
+                            -2.220446049250313e-16,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.094395102393196,
+                        "result_cm": [
+                          true,
+                          [
+                            1.1102230246251565e-15,
+                            -1.7320508075688776,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5BbGHM9d7aD2KpVE68wqB1SA4obKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTSLNMNks0MjXQTUy1TNY1MbW00E1KS03WNU0yskxOTE5OMTM3gdnMgAbA9hkogK0zMjCB2GcIcQPYNVD3GJhAlAChAQBZegldygAAAA==",
+          "area_cm2": 4.913478794435028,
+          "centroid_cm": [
+            -3.6152732386107775e-16,
+            -1.3557274644790417e-16,
+            0.0
+          ]
+        },
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEABnI9B5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        -0.49999999999999983,
+                        -0.8660254037844387,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      4.1887902047863905
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      4.1887902047863905
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            3.3306690738754696e-16,
+                            -1.7320508075688774,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 2.0943951023931953,
+                        "result_cm": [
+                          true,
+                          [
+                            3.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 4.1887902047863905,
+                        "result_cm": [
+                          true,
+                          [
+                            6.661338147750939e-16,
+                            1.7320508075688776,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwC0DrADkgAAAA==",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        0.5000000000000001,
+                        -0.8660254037844386,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.220446049250313e-16,
+                            -1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.0471975511965976,
+                        "result_cm": [
+                          true,
+                          [
+                            1.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.0943951023931953,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5BbGHM9d7aD2KpVE68wqB1SA4obKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTSLNMNks0MjXQTUy1TNY1MbW00E1KS03WNU0yskxOTE5OMTM3gdnMgAbA9hkogK0zMjCB2GcIcQPUNRC2CcRFQLYBANGAS83KAAAA",
+          "area_cm2": 7.652891819924145,
+          "centroid_cm": [
+            1.6420421077484577,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEABnI9B5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        -0.49999999999999983,
+                        0.8660254037844387,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            3.3306690738754696e-16,
+                            1.7320508075688774,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.047197551196598,
+                        "result_cm": [
+                          true,
+                          [
+                            -1.0,
+                            -2.220446049250313e-16,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.094395102393196,
+                        "result_cm": [
+                          true,
+                          [
+                            1.1102230246251565e-15,
+                            -1.7320508075688776,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwC0DrADkgAAAA==",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        -0.0,
+                        1.0
+                      ],
+                      [
+                        0.5000000000000001,
+                        0.8660254037844386,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      4.188790204786391
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      4.188790204786391
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.220446049250313e-16,
+                            1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 2.0943951023931957,
+                        "result_cm": [
+                          true,
+                          [
+                            -3.0,
+                            -1.1102230246251565e-16,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 4.188790204786391,
+                        "result_cm": [
+                          true,
+                          [
+                            4.440892098500626e-16,
+                            -1.732050807568877,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5BbGHM9d7aD2KpVE68wqB1SA4obKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTSLNMNks0MjXQTUy1TNY1MbW00E1KS03WNU0yskxOTE5OMTM3gdnMgAbA9hkogK0zMjCB2GcIcQPYNSB9ILYJ1GVAMQBpKuSoygAAAA==",
+          "area_cm2": 7.652891819924146,
+          "centroid_cm": [
+            -1.6420421077484577,
+            8.704341188265961e-17,
+            0.0
+          ]
+        }
+      ],
+      "selected_profile": {
+        "getter_errors": [],
+        "loops": [
+          {
+            "loop_index": 0,
+            "getter_errors": [],
+            "curves": [
+              {
+                "curve_index": 0,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  0
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwC0DrADkgAAAA==",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                "geometry_type": 1,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Arc3D",
+                  "data": [
+                    true,
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.5000000000000001,
+                      -0.8660254037844386,
+                      0.0
+                    ],
+                    2.0,
+                    0.0,
+                    2.0943951023931953
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    2.0943951023931953
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          2.220446049250313e-16,
+                          -1.7320508075688772,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 1.0471975511965976,
+                      "result_cm": [
+                        true,
+                        [
+                          1.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 2.0943951023931953,
+                      "result_cm": [
+                        true,
+                        [
+                          0.0,
+                          1.7320508075688772,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "curve_index": 1,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  1
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEABnI9B5IAAAA=",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                "geometry_type": 1,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Arc3D",
+                  "data": [
+                    true,
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      -0.49999999999999983,
+                      0.8660254037844387,
+                      0.0
+                    ],
+                    2.0,
+                    0.0,
+                    2.094395102393196
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    2.094395102393196
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          3.3306690738754696e-16,
+                          1.7320508075688774,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 1.047197551196598,
+                      "result_cm": [
+                        true,
+                        [
+                          -1.0,
+                          -2.220446049250313e-16,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 2.094395102393196,
+                      "result_cm": [
+                        true,
+                        [
+                          1.1102230246251565e-15,
+                          -1.7320508075688776,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "is_outer": true
+          }
+        ],
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5BbGHM9d7aD2KpVE68wqB1SA4obKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTSLNMNks0MjXQTUy1TNY1MbW00E1KS03WNU0yskxOTE5OMTM3gdnMgAbA9hkogK0zMjCB2GcIcQPYNVD3GJhAlAChAQBZegldygAAAA==",
+        "area_cm2": 4.913478794435028,
+        "centroid_cm": [
+          -3.6152732386107775e-16,
+          -1.3557274644790417e-16,
+          0.0
+        ]
+      },
+      "feature_name": "SelectedTrimmedProfile",
+      "timeline_marker": 2,
+      "timeline_count": 2,
+      "post_feature_source_curves": [
+        {
+          "source_index": 0,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwC0DrADkgAAAA==",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -3.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 1,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtzCmOu5sx3EVq2aeIVB7ZAaUIWRgrGZQpplslmikamBbmKqZbKuiamlhW5SWmqyrmmSkWVyYnJyipm5CVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEABnI9B5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -1.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        }
+      ],
+      "result_bodies": [
+        {
+          "volume_cm3": 4.9134787944350276,
+          "bounds_cm": [
+            [
+              -1.0,
+              -1.7320508075688774,
+              0.0
+            ],
+            [
+              1.0,
+              1.7320508075688774,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "size_bytes": 104479,
+        "sha256": "806c168b06375b7ddffc38b983ff57838ccb60f0821a013d9e88631f42e385e4"
+      }
+    },
+    {
+      "case": "circle_right_complement",
+      "file": "circle_right_complement.f3d",
+      "requested": {
+        "sources": "Two radius-2cm circles centered at(-1,0) and(1,0)",
+        "selection": "Maximum centroid-X complementary crescent"
+      },
+      "getter_errors": [],
+      "sketch_name": "TrimmedProfileSources",
+      "source_curves": [
+        {
+          "source_index": 0,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwAH415RkgAAAA==",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -3.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 1,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUTAAALWf01WSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -1.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        }
+      ],
+      "available_profile_count": 3,
+      "selected_candidate_index": 1,
+      "candidate_profiles": [
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwAH415RkgAAAA==",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        0.5000000000000001,
+                        -0.8660254037844386,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.220446049250313e-16,
+                            -1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.0471975511965976,
+                        "result_cm": [
+                          true,
+                          [
+                            1.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.0943951023931953,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUTAAALWf01WSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        -0.49999999999999983,
+                        0.8660254037844387,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            3.3306690738754696e-16,
+                            1.7320508075688774,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.047197551196598,
+                        "result_cm": [
+                          true,
+                          [
+                            -1.0,
+                            -2.220446049250313e-16,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.094395102393196,
+                        "result_cm": [
+                          true,
+                          [
+                            1.1102230246251565e-15,
+                            -1.7320508075688776,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOvQ3CQAyF0zAFzVvgJP+cj6PLBpGiLJAjZBoaVqGiY5cog8S6Ew0Sbvzpydb3CCogCDjhNYyP89bvn9P+fnbT5jlDISSV/Ma3k2QnRvz7JdAEmvMyF+GQEl1DvBcO2bQEM+Wb8braZfmau5+pPkLVCcXm49aBYosrS2vkTAfABkW7ygAAAA==",
+          "area_cm2": 4.913478794435028,
+          "centroid_cm": [
+            -3.6152732386107775e-16,
+            -1.3557274644790417e-16,
+            0.0
+          ]
+        },
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUTAAALWf01WSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        -0.49999999999999983,
+                        -0.8660254037844387,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      4.1887902047863905
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      4.1887902047863905
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            3.3306690738754696e-16,
+                            -1.7320508075688774,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 2.0943951023931953,
+                        "result_cm": [
+                          true,
+                          [
+                            3.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 4.1887902047863905,
+                        "result_cm": [
+                          true,
+                          [
+                            6.661338147750939e-16,
+                            1.7320508075688776,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwAH415RkgAAAA==",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        0.5000000000000001,
+                        -0.8660254037844386,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.0943951023931953
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.220446049250313e-16,
+                            -1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.0471975511965976,
+                        "result_cm": [
+                          true,
+                          [
+                            1.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.0943951023931953,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U9jkH9Qj/cjhyX7WJzsmMoQ8AoobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMEi0SElMMjLUNTMzsNQ1SU0y1LUwNU7SNTU1Nkw2NUxLMzVPgdnMgAbA9hkogK0zMjCB2GcIcYOBCcQVYDbEZSC2AQDwVqhOygAAAA==",
+          "area_cm2": 7.652891819924145,
+          "centroid_cm": [
+            1.6420421077484577,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUTAAALWf01WSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      [
+                        -0.49999999999999983,
+                        0.8660254037844387,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      2.094395102393196
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            3.3306690738754696e-16,
+                            1.7320508075688774,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 1.047197551196598,
+                        "result_cm": [
+                          true,
+                          [
+                            -1.0,
+                            -2.220446049250313e-16,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 2.094395102393196,
+                        "result_cm": [
+                          true,
+                          [
+                            1.1102230246251565e-15,
+                            -1.7320508075688776,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwAH415RkgAAAA==",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                  "geometry_type": 1,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Arc3D",
+                    "data": [
+                      true,
+                      [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        -0.0,
+                        1.0
+                      ],
+                      [
+                        0.5000000000000001,
+                        0.8660254037844386,
+                        0.0
+                      ],
+                      2.0,
+                      0.0,
+                      4.188790204786391
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      4.188790204786391
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.220446049250313e-16,
+                            1.7320508075688772,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 2.0943951023931957,
+                        "result_cm": [
+                          true,
+                          [
+                            -3.0,
+                            -1.1102230246251565e-16,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 4.188790204786391,
+                        "result_cm": [
+                          true,
+                          [
+                            4.440892098500626e-16,
+                            -1.732050807568877,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U9jkH9Qj/cjhyX7WJzsmMoQ8AoobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMEi0SElMMjLUNTMzsNQ1SU0y1LUwNU7SNTU1Nkw2NUxLMzVPgdnMgAbA9hkogK0zMjCB2GcIcYOBCdQ1ILYRRAkQGgAASPwHK8oAAAA=",
+          "area_cm2": 7.652891819924146,
+          "centroid_cm": [
+            -1.6420421077484577,
+            8.704341188265961e-17,
+            0.0
+          ]
+        }
+      ],
+      "selected_profile": {
+        "getter_errors": [],
+        "loops": [
+          {
+            "loop_index": 0,
+            "getter_errors": [],
+            "curves": [
+              {
+                "curve_index": 0,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  1
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUTAAALWf01WSAAAA",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                "geometry_type": 1,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Arc3D",
+                  "data": [
+                    true,
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      -0.49999999999999983,
+                      -0.8660254037844387,
+                      0.0
+                    ],
+                    2.0,
+                    0.0,
+                    4.1887902047863905
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    4.1887902047863905
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          3.3306690738754696e-16,
+                          -1.7320508075688774,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 2.0943951023931953,
+                      "result_cm": [
+                        true,
+                        [
+                          3.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 4.1887902047863905,
+                      "result_cm": [
+                        true,
+                        [
+                          6.661338147750939e-16,
+                          1.7320508075688776,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "curve_index": 1,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  0
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwAH415RkgAAAA==",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchCircle",
+                "geometry_type": 1,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Arc3D",
+                  "data": [
+                    true,
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.5000000000000001,
+                      -0.8660254037844386,
+                      0.0
+                    ],
+                    2.0,
+                    0.0,
+                    2.0943951023931953
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    2.0943951023931953
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          2.220446049250313e-16,
+                          -1.7320508075688772,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 1.0471975511965976,
+                      "result_cm": [
+                        true,
+                        [
+                          1.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 2.0943951023931953,
+                      "result_cm": [
+                        true,
+                        [
+                          0.0,
+                          1.7320508075688772,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "is_outer": true
+          }
+        ],
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U9jkH9Qj/cjhyX7WJzsmMoQ8AoobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMEi0SElMMjLUNTMzsNQ1SU0y1LUwNU7SNTU1Nkw2NUxLMzVPgdnMgAbA9hkogK0zMjCB2GcIcYOBCcQVYDbEZSC2AQDwVqhOygAAAA==",
+        "area_cm2": 7.652891819924145,
+        "centroid_cm": [
+          1.6420421077484577,
+          0.0,
+          0.0
+        ]
+      },
+      "feature_name": "SelectedTrimmedProfile",
+      "timeline_marker": 2,
+      "timeline_count": 2,
+      "post_feature_source_curves": [
+        {
+          "source_index": 0,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwAH415RkgAAAA==",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -3.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 1,
+          "object_type": "adsk::fusion::SketchCircle",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwib/oB7pRw5P9rM+2TGRIeQRUIWRgrGZgkGiRUpikpGhrpmZgaWuSWqSoa6FqXGSrqmpsWGyqWFamql5Clgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUTAAALWf01WSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Circle3D",
+            "data": [
+              true,
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              2.0
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              6.283185307179586
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 3.141592653589793,
+                "result_cm": [
+                  true,
+                  [
+                    -1.0,
+                    2.4492935982947064e-16,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 6.283185307179586,
+                "result_cm": [
+                  true,
+                  [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        }
+      ],
+      "result_bodies": [
+        {
+          "volume_cm3": 7.652891819924145,
+          "bounds_cm": [
+            [
+              3.3306690738754696e-16,
+              -2.0,
+              0.0
+            ],
+            [
+              3.0,
+              2.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "size_bytes": 108580,
+        "sha256": "dec5f7c61b1041e8ef1ee7ca6720df3a3392aa3e2cbe2e64724375ef11a80780"
+      }
+    },
+    {
+      "case": "rectangle_overlap",
+      "file": "rectangle_overlap.f3d",
+      "requested": {
+        "sources": "Rectangles [0,0]-[4,3] and[2,-1]-[5,2]cm",
+        "selection": "Minimum area overlap [2,0]-[4,2]cm; four truncated source Lines"
+      },
+      "getter_errors": [],
+      "sketch_name": "TrimmedProfileSources",
+      "source_curves": [
+        {
+          "source_index": 0,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoA1AIACduqK5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                4.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 1,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgpmAAAFBl7CmSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                4.0,
+                0.0,
+                0.0
+              ],
+              [
+                4.0,
+                3.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    1.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 2,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgrmAAAGcPLiiSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                4.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                3.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 3,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoAdAwAWkhyI5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    1.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 4,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGporGAAAN7Am5eSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                2.0,
+                -1.0,
+                0.0
+              ],
+              [
+                5.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    3.5,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 5,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpoomAAAFvW1JKSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                5.0,
+                -1.0,
+                0.0
+              ],
+              [
+                5.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    0.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 6,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoI1AIAbLwWk5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                5.0,
+                2.0,
+                0.0
+              ],
+              [
+                2.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    3.5,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 7,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVApUawAANQJQkZIAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                2.0,
+                2.0,
+                0.0
+              ],
+              [
+                2.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    0.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        }
+      ],
+      "available_profile_count": 3,
+      "selected_candidate_index": 1,
+      "candidate_profiles": [
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    7
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVApUawAANQJQkZIAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        2.0,
+                        2.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    6
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoI1AIAbLwWk5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        4.0,
+                        2.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            3.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 2,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgpmAAAFBl7CmSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        4.0,
+                        2.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        3.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.5,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            3.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 3,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    2
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgrmAAAGcPLiiSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        4.0,
+                        3.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        3.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            3.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            3.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            3.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 4,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    3
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoAdAwAWkhyI5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        0.0,
+                        3.0,
+                        0.0
+                      ],
+                      [
+                        0.0,
+                        0.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            3.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            1.5,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 5,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoA1AIACduqK5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            0.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            1.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOsQ0CMQxF6RiC5kvUkWwncXIzXMsEcGQOZoEdmIKCGRiA/qhwkkNISPgXfvqy/U3wAoKAFddxPT9u4+W0ed5f5+3OfIaHkDSyGetGko0Y4e+WwCsmOR6keHKahuRCZHLZl+xUpoFy9PtU4id59VMtj9DihELPq1Iwx+Ub26TUP6qyM52qn78+xYWrr/2kid7BsNSY+gAAAA==",
+          "area_cm2": 8.0,
+          "centroid_cm": [
+            1.5,
+            1.75,
+            0.0
+          ]
+        },
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgpmAAAFBl7CmSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        4.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    6
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoI1AIAbLwWk5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        4.0,
+                        2.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            3.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 2,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    7
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVApUawAANQJQkZIAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        2.0,
+                        2.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 3,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoA1AIACduqK5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            3.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOuw0CQQxEySiCZCTilcbe79VwKRXAsXVQC/RAFQTUQAHkEGF2dQIh4cRPI4+eCa8gFJJwHpeP22U8HVb36/O43lgu8FBqI7uxbaTFSBD+thQ+YdL9TqunS3nILkShK74Wl3QaWKLf5hpn8+Jnmo9oOmXovu4UiT1+N63K+Td+8+eGL26T7MbiAAAA",
+          "area_cm2": 4.0,
+          "centroid_cm": [
+            3.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "getter_errors": [],
+          "loops": [
+            {
+              "loop_index": 0,
+              "getter_errors": [],
+              "curves": [
+                {
+                  "curve_index": 0,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    0
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoA1AIACduqK5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            3.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 1,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    7
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVApUawAANQJQkZIAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        -1.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            -0.5,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            -1.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 2,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    4
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGporGAAAN7Am5eSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        2.0,
+                        -1.0,
+                        0.0
+                      ],
+                      [
+                        5.0,
+                        -1.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            2.0,
+                            -1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            3.5,
+                            -1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            5.0,
+                            -1.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 3,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    5
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpoomAAAFvW1JKSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        5.0,
+                        -1.0,
+                        0.0
+                      ],
+                      [
+                        5.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            5.0,
+                            -1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            5.0,
+                            0.5,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            5.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 4,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    6
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoI1AIAbLwWk5IAAAA=",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        5.0,
+                        2.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            5.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            4.5,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "curve_index": 5,
+                  "getter_errors": [],
+                  "source_indices_by_api_equality": [
+                    1
+                  ],
+                  "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgpmAAAFBl7CmSAAAA",
+                  "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                  "geometry_type": 0,
+                  "portion_geometry": {
+                    "getter_errors": [],
+                    "object_type": "adsk::core::Line3D",
+                    "data": [
+                      true,
+                      [
+                        4.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "parameter_extents": [
+                      true,
+                      0.0,
+                      1.0
+                    ],
+                    "evaluated_points": [
+                      {
+                        "role": "start",
+                        "parameter": 0.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            0.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "midpoint",
+                        "parameter": 0.5,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            1.0,
+                            0.0
+                          ]
+                        ]
+                      },
+                      {
+                        "role": "end",
+                        "parameter": 1.0,
+                        "result_cm": [
+                          true,
+                          [
+                            4.0,
+                            2.0,
+                            0.0
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "is_outer": true
+            }
+          ],
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOuw0CQQxEySiCZCTilfzZ39VwKRXAsXVQC/RAFQTUQAHkR4R3byFAwg78ZM14TFABQcAR13E9P27j5bR53l/n7c72DIWQNDKNTSPJRgz/1yXQiEmOBylKLqYhOR+YXNaSXZRpoBx0n0r4JK9+quURWpyQX/JqRzDr8kVtszZJvUKxbyuH/rExh66v7L9eegOhbE0F+gAAAA==",
+          "area_cm2": 5.0,
+          "centroid_cm": [
+            3.9,
+            0.1,
+            0.0
+          ]
+        }
+      ],
+      "selected_profile": {
+        "getter_errors": [],
+        "loops": [
+          {
+            "loop_index": 0,
+            "getter_errors": [],
+            "curves": [
+              {
+                "curve_index": 0,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  1
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgpmAAAFBl7CmSAAAA",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                "geometry_type": 0,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Line3D",
+                  "data": [
+                    true,
+                    [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      2.0,
+                      0.0
+                    ]
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    1.0
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          4.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 0.5,
+                      "result_cm": [
+                        true,
+                        [
+                          4.0,
+                          1.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 1.0,
+                      "result_cm": [
+                        true,
+                        [
+                          4.0,
+                          2.0,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "curve_index": 1,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  6
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoI1AIAbLwWk5IAAAA=",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                "geometry_type": 0,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Line3D",
+                  "data": [
+                    true,
+                    [
+                      4.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      2.0,
+                      0.0
+                    ]
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    1.0
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          4.0,
+                          2.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 0.5,
+                      "result_cm": [
+                        true,
+                        [
+                          3.0,
+                          2.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 1.0,
+                      "result_cm": [
+                        true,
+                        [
+                          2.0,
+                          2.0,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "curve_index": 2,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  7
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVApUawAANQJQkZIAAAA=",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                "geometry_type": 0,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Line3D",
+                  "data": [
+                    true,
+                    [
+                      2.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    1.0
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          2.0,
+                          2.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 0.5,
+                      "result_cm": [
+                        true,
+                        [
+                          2.0,
+                          1.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 1.0,
+                      "result_cm": [
+                        true,
+                        [
+                          2.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "curve_index": 3,
+                "getter_errors": [],
+                "source_indices_by_api_equality": [
+                  0
+                ],
+                "underlying_sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoA1AIACduqK5IAAAA=",
+                "underlying_sketch_entity_type": "adsk::fusion::SketchLine",
+                "geometry_type": 0,
+                "portion_geometry": {
+                  "getter_errors": [],
+                  "object_type": "adsk::core::Line3D",
+                  "data": [
+                    true,
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "parameter_extents": [
+                    true,
+                    0.0,
+                    1.0
+                  ],
+                  "evaluated_points": [
+                    {
+                      "role": "start",
+                      "parameter": 0.0,
+                      "result_cm": [
+                        true,
+                        [
+                          2.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "midpoint",
+                      "parameter": 0.5,
+                      "result_cm": [
+                        true,
+                        [
+                          3.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "parameter": 1.0,
+                      "result_cm": [
+                        true,
+                        [
+                          4.0,
+                          0.0,
+                          0.0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "is_outer": true
+          }
+        ],
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOuw0CQQxEySiCZCTilcbe79VwKRXAsXVQC/RAFQTUQAHkEGF2dQIh4cRPI4+eCa8gFJJwHpeP22U8HVb36/O43lgu8FBqI7uxbaTFSBD+thQ+YdL9TqunS3nILkShK74Wl3QaWKLf5hpn8+Jnmo9oOmXovu4UiT1+N63K+Td+8+eGL26T7MbiAAAA",
+        "area_cm2": 4.0,
+        "centroid_cm": [
+          3.0,
+          1.0,
+          0.0
+        ]
+      },
+      "feature_name": "SelectedTrimmedProfile",
+      "timeline_marker": 2,
+      "timeline_count": 2,
+      "post_feature_source_curves": [
+        {
+          "source_index": 0,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoA1AIACduqK5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                4.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 1,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgpmAAAFBl7CmSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                4.0,
+                0.0,
+                0.0
+              ],
+              [
+                4.0,
+                3.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    1.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 2,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpgrmAAAGcPLiiSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                4.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                3.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 3,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoAdAwAWkhyI5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    1.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 4,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGporGAAAN7Am5eSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                2.0,
+                -1.0,
+                0.0
+              ],
+              [
+                5.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    3.5,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 5,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGpoomAAAFvW1JKSAAAA",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                5.0,
+                -1.0,
+                0.0
+              ],
+              [
+                5.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    0.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 6,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVGoI1AIAbLwWk5IAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                5.0,
+                2.0,
+                0.0
+              ],
+              [
+                2.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    5.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    3.5,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        },
+        {
+          "source_index": 7,
+          "object_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwjZv9p+PzngvbpB+d+HXIuUQoAojBWMzhRSj1GSjNGMDXTNzS3NdE1NDA10L4zQLXTOjFEsDC1PjJPM0U7BaoBkMaABsn4EC2DpTQyMwbWQAVApUawAANQJQkZIAAAA=",
+          "is_reference": false,
+          "is_construction": false,
+          "full_sketch_geometry": {
+            "getter_errors": [],
+            "object_type": "adsk::core::Line3D",
+            "data": [
+              true,
+              [
+                2.0,
+                2.0,
+                0.0
+              ],
+              [
+                2.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            "parameter_extents": [
+              true,
+              0.0,
+              1.0
+            ],
+            "evaluated_points": [
+              {
+                "role": "start",
+                "parameter": 0.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    2.0,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "midpoint",
+                "parameter": 0.5,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    0.5,
+                    0.0
+                  ]
+                ]
+              },
+              {
+                "role": "end",
+                "parameter": 1.0,
+                "result_cm": [
+                  true,
+                  [
+                    2.0,
+                    -1.0,
+                    0.0
+                  ]
+                ]
+              }
+            ]
+          },
+          "getter_errors": []
+        }
+      ],
+      "result_bodies": [
+        {
+          "volume_cm3": 4.0,
+          "bounds_cm": [
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              2.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "size_bytes": 61301,
+        "sha256": "b2e5ae3866084cc48fcc12bf571c9b3beaf5de0d1cce5ecf0cf1f7947df5b8ac"
+      }
+    }
+  ],
+  "errors": [],
+  "planned_cases": [
+    "circle_lens",
+    "circle_right_complement",
+    "rectangle_overlap"
+  ],
+  "scope": "Three owned local documents, independent archive exports, close(False); no cloud saves.",
+  "identity_scope": "Direct API sketchEntity equality supplies source array indices. Tokens are opaque evidence; they are not parsed as native IDs. Native profile references await actual saved-file inspection.",
+  "geometry_scope": "ProfileCurve.geometry and its evaluator describe the actual profile portion; source SketchCircle/SketchLine geometry is recorded separately. Profile region choice uses area/centroid only in this generator.",
+  "capture_status": "complete"
+}

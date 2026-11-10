@@ -1,0 +1,74 @@
+{
+  "status": "pass",
+  "scope": "Observed numeric parameter collections and one unbound user-parameter variant; offline existing corpus only",
+  "structural_corpus_checks": {
+    "archives": 310,
+    "collections": 335,
+    "named_numeric_parameters": 1188,
+    "user_parameters": 1
+  },
+  "corpus_evidence": "Collection membership, reciprocal registry dependencies, names and numeric-record ownership agree. These are structural checks, not independent API checks of every field.",
+  "user_parameter_case": {
+    "file": "holdouts-f8c508a73323/expression_depth.f3d",
+    "decoded": {
+      "role": "User Parameter",
+      "parameter_name": "probeDepth",
+      "display_units": "mm",
+      "raw_float64": 0.9125000000000001,
+      "role_offset": 23966,
+      "value_offset": 24034,
+      "expression_candidates": [
+        "9.125 mm"
+      ],
+      "parameter_object_id": 202,
+      "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+      "declared_binding_object_id": null,
+      "expression_metadata_hex": "00000000000000000001",
+      "layout": "observed numeric user parameter with absent feature-binding reference",
+      "parameter_kind": "UserParameter",
+      "internal_units": "cm",
+      "hypothesized_value_mm": 9.125,
+      "collection_object_id": 16,
+      "collection_owner_object_id": 3,
+      "name_registry_object_id": 17,
+      "expression_status": "Stored expression and cached numeric value; not evaluated"
+    },
+    "reference": "GenerateHoldouts.py creates probeDepth through userParameters.add with requested 9.125 mm; saved API truth independently captures dependent extrusion value and expression. No separate user-parameter API getter capture exists.",
+    "dependent_extrusion_api_depth_cm": 1.9250000000000003,
+    "dependent_extrusion_expression": "probeDepth * 2 + 1 mm",
+    "main_reader_matches": true
+  },
+  "malformed_cases": [
+    {
+      "case": "collection_count",
+      "status": "rejected",
+      "reason": "Unsupported parameter collection count or extent"
+    },
+    {
+      "case": "collection_owner",
+      "status": "rejected",
+      "reason": "Parameter collection owner is unresolved or ambiguous"
+    },
+    {
+      "case": "registry_member",
+      "status": "rejected",
+      "reason": "Parameter name table membership or extent disagrees"
+    },
+    {
+      "case": "registry_name",
+      "status": "rejected",
+      "reason": "Parameter table name does not match its decoded numeric record"
+    },
+    {
+      "case": "unbound_model_role",
+      "status": "rejected",
+      "reason": "Unobserved unbound parameter variant"
+    }
+  ],
+  "limitations": [
+    "Expression evaluation and explicit expression dependency edges are unresolved",
+    "Other parameter types, comments and favorite flags are unverified",
+    "Only one user-parameter file is present; alternate units, names, comments and multiple user parameters need additional captures.",
+    "No expression dependency edges are inferred from text; expression evaluation remains unavailable."
+  ]
+}

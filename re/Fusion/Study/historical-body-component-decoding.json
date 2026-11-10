@@ -1,0 +1,341 @@
+{
+  "scope": "Historical component context corroborated by retained native collection/context and reciprocal creator/dependency references; stored membership, current visibility and final lifecycle are unchanged",
+  "integration": {
+    "function": "decode_historical_body_components(data, records, bindings, assembly)",
+    "order": "After native body/blob/ASM identifier association, before body placement; assembly components must already be decoded",
+    "apply": "For successful mapping/native-body IDs only, add component_object_id,component_name,historical_component_context to the matching binding",
+    "preserve": "Do not update native body_properties membership/ownership or collection member lists; do not infer a current/final body set",
+    "placement_scope": "Expose historical_component_context on derived placements; coordinates compose stored caches only, without historical assembly-state replay or current-visible-body inference",
+    "validation_command": "/usr/bin/python3 decode_historical_body_components.py --validate"
+  },
+  "native_proof": {
+    "collection_chain": "BODY trailer ->typed collection equals explicit native mapping owner. Collection->mapping is reciprocal; repeated memberlists omit BODY. Collection context and footer independently reference same typed component.",
+    "creator_chain": "Unique typed D263 anchor ->BODY and creator. Known Extrude@151/SurfacePatch@75 single-anchor table reciprocates that exact anchor; bounded following metadata UUID is checked.",
+    "dependency_chain": "Fresh dependency decode validates forward/reverse edge multisets; source creator->scope datum edge4096 resolves to typed component. Collection component and creator scope must agree."
+  },
+  "samples": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "native_body_object_id": 354,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "historical_component_context": {
+              "context_kind": "HistoricalBodyComponentContext",
+              "native_body_object_id": 354,
+              "collection_object_id": 7,
+              "collection_context_object_id": 18,
+              "collection_component_object_id": 3,
+              "is_listed_in_repeated_collection": false,
+              "body_anchor_object_id": 358,
+              "creator_feature_object_id": 322,
+              "creator_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+              "creator_feature_kind": "Extrude",
+              "creator_anchor_reference_relative_offset": 151,
+              "dependency_scope_proof": {
+                "graph_object_id": 29,
+                "graph_owner_object_id": 26,
+                "component_scope_datum_object_id": 33,
+                "stored_scope_edge_flags": 4096,
+                "paired_table_validation": "Forward/reverse edges and flags match as multisets"
+              },
+              "association": "Retained typed BODY/collection/context references agree with reciprocal creator/result-anchor and paired dependency component scope",
+              "membership_status": "Absent from both stored collection member lists; membership is not restored",
+              "visibility_status": "Historical stored context only; current visibility/final lifecycle unresolved"
+            }
+          },
+          {
+            "mapping_record_object_id": 8,
+            "native_body_object_id": 275,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "historical_component_context": {
+              "context_kind": "HistoricalBodyComponentContext",
+              "native_body_object_id": 275,
+              "collection_object_id": 7,
+              "collection_context_object_id": 18,
+              "collection_component_object_id": 3,
+              "is_listed_in_repeated_collection": false,
+              "body_anchor_object_id": 281,
+              "creator_feature_object_id": 243,
+              "creator_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+              "creator_feature_kind": "Extrude",
+              "creator_anchor_reference_relative_offset": 151,
+              "dependency_scope_proof": {
+                "graph_object_id": 29,
+                "graph_owner_object_id": 26,
+                "component_scope_datum_object_id": 33,
+                "stored_scope_edge_flags": 4096,
+                "paired_table_validation": "Forward/reverse edges and flags match as multisets"
+              },
+              "association": "Retained typed BODY/collection/context references agree with reciprocal creator/result-anchor and paired dependency component scope",
+              "membership_status": "Absent from both stored collection member lists; membership is not restored",
+              "visibility_status": "Historical stored context only; current visibility/final lifecycle unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "already_owned_body_bindings_unchanged": 1,
+        "scope": "Historical component context corroborated by retained native collection/context and reciprocal creator/dependency references; stored membership, current visibility and final lifecycle are unchanged"
+      },
+      "API_observation": {
+        "actual_is_remove_tools": true,
+        "actual_input_tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "actual_feature_result_names": [
+          "Body3"
+        ],
+        "typed_RemoveBody_actions_match_historical_body_ids": [
+          275,
+          354
+        ],
+        "scope": "API removal getter plus typed native actions corroborate historical context; no current-visibility inference"
+      },
+      "placement_check": {
+        "previous_body_entries_exact": true,
+        "new_historical_cache_contexts": 2,
+        "before_unresolved_ids": [
+          275,
+          354
+        ],
+        "after_unresolved": []
+      },
+      "membership_and_body_properties_unchanged": true
+    },
+    {
+      "file": "surfacetools-856ca50cf4c7/stitch_tight.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "native_body_object_id": 360,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "historical_component_context": {
+              "context_kind": "HistoricalBodyComponentContext",
+              "native_body_object_id": 360,
+              "collection_object_id": 7,
+              "collection_context_object_id": 18,
+              "collection_component_object_id": 3,
+              "is_listed_in_repeated_collection": false,
+              "body_anchor_object_id": 364,
+              "creator_feature_object_id": 325,
+              "creator_feature_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+              "creator_feature_kind": "SurfacePatch",
+              "creator_anchor_reference_relative_offset": 75,
+              "dependency_scope_proof": {
+                "graph_object_id": 29,
+                "graph_owner_object_id": 26,
+                "component_scope_datum_object_id": 33,
+                "stored_scope_edge_flags": 4096,
+                "paired_table_validation": "Forward/reverse edges and flags match as multisets"
+              },
+              "association": "Retained typed BODY/collection/context references agree with reciprocal creator/result-anchor and paired dependency component scope",
+              "membership_status": "Absent from both stored collection member lists; membership is not restored",
+              "visibility_status": "Historical stored context only; current visibility/final lifecycle unresolved"
+            }
+          },
+          {
+            "mapping_record_object_id": 8,
+            "native_body_object_id": 278,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "historical_component_context": {
+              "context_kind": "HistoricalBodyComponentContext",
+              "native_body_object_id": 278,
+              "collection_object_id": 7,
+              "collection_context_object_id": 18,
+              "collection_component_object_id": 3,
+              "is_listed_in_repeated_collection": false,
+              "body_anchor_object_id": 284,
+              "creator_feature_object_id": 243,
+              "creator_feature_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+              "creator_feature_kind": "SurfacePatch",
+              "creator_anchor_reference_relative_offset": 75,
+              "dependency_scope_proof": {
+                "graph_object_id": 29,
+                "graph_owner_object_id": 26,
+                "component_scope_datum_object_id": 33,
+                "stored_scope_edge_flags": 4096,
+                "paired_table_validation": "Forward/reverse edges and flags match as multisets"
+              },
+              "association": "Retained typed BODY/collection/context references agree with reciprocal creator/result-anchor and paired dependency component scope",
+              "membership_status": "Absent from both stored collection member lists; membership is not restored",
+              "visibility_status": "Historical stored context only; current visibility/final lifecycle unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "already_owned_body_bindings_unchanged": 1,
+        "scope": "Historical component context corroborated by retained native collection/context and reciprocal creator/dependency references; stored membership, current visibility and final lifecycle are unchanged"
+      },
+      "API_observation": {
+        "actual_selected_item_count": 2,
+        "actual_feature_result_body_count": 1,
+        "scope": "Stored source patch contexts remain separate from the stitched result; API counts alone do not establish arbitrary lifetime semantics"
+      },
+      "placement_check": {
+        "previous_body_entries_exact": true,
+        "new_historical_cache_contexts": 2,
+        "before_unresolved_ids": [
+          278,
+          360
+        ],
+        "after_unresolved": []
+      },
+      "membership_and_body_properties_unchanged": true
+    },
+    {
+      "file": "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "native_body_object_id": 360,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "historical_component_context": {
+              "context_kind": "HistoricalBodyComponentContext",
+              "native_body_object_id": 360,
+              "collection_object_id": 7,
+              "collection_context_object_id": 18,
+              "collection_component_object_id": 3,
+              "is_listed_in_repeated_collection": false,
+              "body_anchor_object_id": 364,
+              "creator_feature_object_id": 325,
+              "creator_feature_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+              "creator_feature_kind": "SurfacePatch",
+              "creator_anchor_reference_relative_offset": 75,
+              "dependency_scope_proof": {
+                "graph_object_id": 29,
+                "graph_owner_object_id": 26,
+                "component_scope_datum_object_id": 33,
+                "stored_scope_edge_flags": 4096,
+                "paired_table_validation": "Forward/reverse edges and flags match as multisets"
+              },
+              "association": "Retained typed BODY/collection/context references agree with reciprocal creator/result-anchor and paired dependency component scope",
+              "membership_status": "Absent from both stored collection member lists; membership is not restored",
+              "visibility_status": "Historical stored context only; current visibility/final lifecycle unresolved"
+            }
+          },
+          {
+            "mapping_record_object_id": 8,
+            "native_body_object_id": 278,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "historical_component_context": {
+              "context_kind": "HistoricalBodyComponentContext",
+              "native_body_object_id": 278,
+              "collection_object_id": 7,
+              "collection_context_object_id": 18,
+              "collection_component_object_id": 3,
+              "is_listed_in_repeated_collection": false,
+              "body_anchor_object_id": 284,
+              "creator_feature_object_id": 243,
+              "creator_feature_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+              "creator_feature_kind": "SurfacePatch",
+              "creator_anchor_reference_relative_offset": 75,
+              "dependency_scope_proof": {
+                "graph_object_id": 29,
+                "graph_owner_object_id": 26,
+                "component_scope_datum_object_id": 33,
+                "stored_scope_edge_flags": 4096,
+                "paired_table_validation": "Forward/reverse edges and flags match as multisets"
+              },
+              "association": "Retained typed BODY/collection/context references agree with reciprocal creator/result-anchor and paired dependency component scope",
+              "membership_status": "Absent from both stored collection member lists; membership is not restored",
+              "visibility_status": "Historical stored context only; current visibility/final lifecycle unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "already_owned_body_bindings_unchanged": 1,
+        "scope": "Historical component context corroborated by retained native collection/context and reciprocal creator/dependency references; stored membership, current visibility and final lifecycle are unchanged"
+      },
+      "API_observation": {
+        "actual_selected_item_count": 2,
+        "actual_feature_result_body_count": 1,
+        "scope": "Stored source patch contexts remain separate from the stitched result; API counts alone do not establish arbitrary lifetime semantics"
+      },
+      "placement_check": {
+        "previous_body_entries_exact": true,
+        "new_historical_cache_contexts": 2,
+        "before_unresolved_ids": [
+          278,
+          360
+        ],
+        "after_unresolved": []
+      },
+      "membership_and_body_properties_unchanged": true
+    }
+  ],
+  "unchanged_controls": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "existing_binding_and_property_outputs_unchanged": true,
+      "owned_body_binding_count": 3
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "existing_binding_and_property_outputs_unchanged": true,
+      "owned_body_binding_count": 4
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "existing_binding_and_property_outputs_unchanged": true,
+      "owned_body_binding_count": 2
+    },
+    {
+      "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+      "existing_binding_and_property_outputs_unchanged": true,
+      "owned_body_binding_count": 2
+    }
+  ],
+  "guards": [
+    {
+      "guard": "Retained BODY collection pointer must equal the explicit mapping owner even when both collections share a component",
+      "rejected": true,
+      "reason": "Historical BODY pointer and explicit mapping owner disagree"
+    },
+    {
+      "guard": "Creator feature must reciprocate the exact BODY anchor, not another same-component creator anchor",
+      "rejected": true,
+      "reason": "Historical creator/owned-result-anchor references are not reciprocal"
+    },
+    {
+      "guard": "Anchor owner cannot switch to another same-component feature without a reciprocal creator link",
+      "rejected": true,
+      "reason": "Historical creator/owned-result-anchor references are not reciprocal"
+    },
+    {
+      "guard": "Creator scope datum component must resolve to a typed component definition",
+      "rejected": true,
+      "reason": "Historical collection and creator dependency component scopes disagree or are unresolved"
+    },
+    {
+      "guard": "Forward-only scope-edge flag change must fail paired dependency-table corroboration",
+      "rejected": true,
+      "reason": "Historical collection and creator dependency component scopes disagree or are unresolved"
+    }
+  ],
+  "limitations": [
+    "Only observed Extrude and SurfacePatch single-result-anchor layouts are supported; other creators and ambiguous anchors remain unresolved.",
+    "Absent membership stays absent; this does not restore removed/consumed bodies to current collections.",
+    "No active/current/final body role, PM/DM source identity, suppression/rollback lifetime or general assembly-state solving is inferred.",
+    "Stored cache placement in the corroborated component does not replay that component occurrence history.",
+    "Independent API removal/result counts describe features, not a complete native-ID lifecycle oracle."
+  ],
+  "summary": {
+    "historical_fixture_files": 3,
+    "corroborated_historical_component_contexts": 6,
+    "missing_cache_contexts_recovered": 6,
+    "membership_restorations": 0,
+    "unchanged_control_files": 4,
+    "malformed_guards": 5
+  }
+}

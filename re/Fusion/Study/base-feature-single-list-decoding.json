@@ -1,0 +1,678 @@
+{
+  "interface": "decode_base_feature_single_lists(data,records,features,*,body_selections=None)->partial/unresolved/scope",
+  "capture": "meshconvertoperations-5af73924aa60",
+  "samples": [
+    {
+      "archive": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d",
+      "archive_sha256": "6a0447aa65c79e5d0661d770e5545ebab3e1149d853261c5665c17c9e7657e06",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 300,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonBodyAndResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "stored_body_table_object_ids": [
+              306
+            ],
+            "stored_body_record_offsets": [
+              27286
+            ],
+            "repeated_body_table_object_ids": [
+              306
+            ],
+            "result_anchor_object_ids": [
+              317
+            ],
+            "anchored_result_native_body_object_ids": [
+              312
+            ],
+            "result_anchor": {
+              "object_id": 317,
+              "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+              "native_body_object_id": 312,
+              "source_owner_object_id": 300,
+              "native_uuid_text": "1a074ace-bf4e-4de7-a57d-2001472d56b5",
+              "stored_flags": [
+                0,
+                1
+              ],
+              "native_body_reference_offset": 30399,
+              "body_properties": {},
+              "association": "Typed anchor contains an explicit reference to the native body record",
+              "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+            },
+            "stored_table_metadata": 5,
+            "table_metadata_semantics": "Literal5 only; enum/flag meaning unassigned",
+            "source_mesh_object_id": null,
+            "PM_DM_body_pair_semantics": null,
+            "entire_contained_object_state": null,
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 304,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 27108,
+              "bookkeeping_object_id": 305,
+              "bookkeeping_record_offset": 27228,
+              "payload_hex": "0000000000000000000000000000012c0100000000000000000000000000000000000000000000000000000000010000013101000000000000000000012c010000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001300100000000000000002ebf56a35a5e06000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3569,
+              "feature_owner_fragment_offset": 26896,
+              "controller_owner_fragment_offset": 27217,
+              "membership_fragment_offset": 3609,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                300,
+                304
+              ],
+              "native_history_container_object_id": 26,
+              "native_history_container_record_offset": 3325
+            },
+            "history": {
+              "object_id": 35,
+              "record_offset": 4581,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                300
+              ],
+              "native_entry_index": 2
+            },
+            "stored_payload": {
+              "offset": 26588,
+              "end_offset": 26877,
+              "hex": "010100000001320100000000000000000000000001000000000000000001000100000001320100000000000000000001300100000000000000000000000001000000013d010000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d00300030003000300030003000300030003000300030003000000000010000000130010000000000000000050000000c00000042006100730065002000460065006100740075007200650002000000000000000000000000000000000000012f0100000000000000000002000000010100001a47acc5a700383f01010000012e010000000000000000010000012d0100000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial singleton stored-body/result-anchor BaseFeature definition with reciprocal controller, bookkeeping, collection and history membership. Table body and independently anchored result body remain distinct; no source mesh identity, PM/DM semantics, arbitrary direct edits or lifecycle replay."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial singleton stored-body/result-anchor BaseFeature definition with reciprocal controller, bookkeeping, collection and history membership. Table body and independently anchored result body remain distinct; no source mesh identity, PM/DM semantics, arbitrary direct edits or lifecycle replay."
+      },
+      "checks": {
+        "export_hash_matches": true,
+        "actual_close_true": true,
+        "top_level_getters_and_active_input_getters_healthy": true,
+        "features_unchanged": true,
+        "no_unresolved": true,
+        "actual_documented_null_recorded": true,
+        "actual_Convert_collection_remains_zero": true,
+        "actual_exactly_one_added_BaseFeature": true,
+        "actual_BaseFeature_healthy": true,
+        "actual_single_BRep_source_and_result": true,
+        "stored_empty_name_not_API_display_name": true,
+        "explicit_singleton_and_anchor_counts": true,
+        "distinct_native_table_and_anchored_result": true,
+        "source_mesh_and_lifecycle_unqualified": true,
+        "exact_full_payload_replay": true,
+        "old_direct_reader_failure_retained": true
+      },
+      "actual_operation_input": {
+        "objectType": "adsk::fusion::MeshConvertFeatureInput",
+        "isValid": true,
+        "getter_errors": [],
+        "meshConvertMethodType": 0,
+        "meshConvertOperationType": 1,
+        "inputBodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "isValid": true,
+            "name": "OwnedTetraSource_base_feature_closed",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvfmW9k/Mjyub9SJlvtnWXsKqMJIwdhMwSLJIM0iLcVE1yDJ2FDXxMIgSdfC0tJSF8hINkhJNjA3NjECqwWawYAGwPYZKICtA1lvZGgMAKxxplWIAAAA",
+            "getter_errors": []
+          }
+        ],
+        "targetBaseFeature": null,
+        "inactive_controls_scope": "Faceted only: resolution/accuracy/numberOfFaces/preprocess getters and setters not called",
+        "input_getter_errors": []
+      },
+      "actual_BaseFeatures_before": [
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import base_feature_closed",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvfmW9k/Mjyub9SJlvtnWXsKqMJIwdhMwSLJIM0iLcVE1yDJ2FDXxMIgSdfC0tJSF8hINkhJNjA3NjECqwWawYAGwPYZKICtA1lvZGACAE7V2dKIAAAA",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 0,
+          "base_getter_errors": []
+        }
+      ],
+      "actual_BaseFeatures_after": [
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import base_feature_closed",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvfmW9k/Mjyub9SJlvtnWXsKqMJIwdhMwSLJIM0iLcVE1yDJ2FDXxMIgSdfC0tJSF8hINkhJNjA3NjECqwWawYAGwPYZKICtA1lvZGACAE7V2dKIAAAA",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 0,
+          "base_getter_errors": []
+        },
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Base Feature2",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvfmW9k/Mjyub9SJlvtnWXsKqMJIwdhMwSLJIM0iLcVE1yDJ2FDXxMIgSdfC0tJSF8hINkhJNjA3NjECqwWawYAGwPYZKICtA1lvbGAAAGB7dtSIAAAA",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [
+            {
+              "objectType": "adsk::fusion::BRepBody",
+              "isValid": true,
+              "name": "OwnedTetraSource_base_feature_closed (1)",
+              "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvfmW9k/Mjyub9SJlvtnWXsKqMJIwdhMwSLJIM0iLcVE1yDJ2FDXxMIgSdfC0tJSF8hINkhJNjA3NjECqwWawYAGwPYZKICtA1lvbGAGAFXeFT2IAAAA",
+              "getter_errors": []
+            }
+          ],
+          "brep_bodies": [
+            {
+              "objectType": "adsk::fusion::BRepBody",
+              "isValid": true,
+              "name": "Body1",
+              "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvfmW9k/Mjyub9SJlvtnWXsKqMJIwdhMwSLJIM0iLcVE1yDJ2FDXxMIgSdfC0tJSF8hINkhJNjA3NjECqwWawYAGwPYZKICtA1lvbGgEAA0rYyOIAAAA",
+              "getter_errors": []
+            }
+          ],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 2,
+          "base_getter_errors": []
+        }
+      ]
+    },
+    {
+      "archive": "meshconvertoperations-5af73924aa60/base_feature_open.f3d",
+      "archive_sha256": "ddb933bc2332281547ce878bf626376b992610b36e29188c68d4d896bbc8bdf0",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 300,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonBodyAndResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "stored_body_table_object_ids": [
+              306
+            ],
+            "stored_body_record_offsets": [
+              27270
+            ],
+            "repeated_body_table_object_ids": [
+              306
+            ],
+            "result_anchor_object_ids": [
+              317
+            ],
+            "anchored_result_native_body_object_ids": [
+              312
+            ],
+            "result_anchor": {
+              "object_id": 317,
+              "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+              "native_body_object_id": 312,
+              "source_owner_object_id": 300,
+              "native_uuid_text": "566f91d4-b0b2-444d-90b4-63e237fa4f10",
+              "stored_flags": [
+                0,
+                1
+              ],
+              "native_body_reference_offset": 30371,
+              "body_properties": {},
+              "association": "Typed anchor contains an explicit reference to the native body record",
+              "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+            },
+            "stored_table_metadata": 5,
+            "table_metadata_semantics": "Literal5 only; enum/flag meaning unassigned",
+            "source_mesh_object_id": null,
+            "PM_DM_body_pair_semantics": null,
+            "entire_contained_object_state": null,
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 304,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 27092,
+              "bookkeeping_object_id": 305,
+              "bookkeeping_record_offset": 27212,
+              "payload_hex": "0000000000000000000000000000012c0100000000000000000000000000000000000000000000000000000000010000013101000000000000000000012c010000000000000000",
+              "bookkeeping_payload_hex": "0000000000000000000000000130010000000000000000050c5da35a5e06000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3569,
+              "feature_owner_fragment_offset": 26880,
+              "controller_owner_fragment_offset": 27201,
+              "membership_fragment_offset": 3609,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                300,
+                304
+              ],
+              "native_history_container_object_id": 26,
+              "native_history_container_record_offset": 3325
+            },
+            "history": {
+              "object_id": 35,
+              "record_offset": 4581,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                300
+              ],
+              "native_entry_index": 2
+            },
+            "stored_payload": {
+              "offset": 26572,
+              "end_offset": 26861,
+              "hex": "010100000001320100000000000000000000000001000000000000000001000100000001320100000000000000000001300100000000000000000000000001000000013d010000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d00300030003000300030003000300030003000300030003000000000010000000130010000000000000000050000000c00000042006100730065002000460065006100740075007200650002000000000000000000000000000000000000012f010000000000000000000200000001010000c98cc4bf601b273f01010000012e010000000000000000010000012d0100000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial singleton stored-body/result-anchor BaseFeature definition with reciprocal controller, bookkeeping, collection and history membership. Table body and independently anchored result body remain distinct; no source mesh identity, PM/DM semantics, arbitrary direct edits or lifecycle replay."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial singleton stored-body/result-anchor BaseFeature definition with reciprocal controller, bookkeeping, collection and history membership. Table body and independently anchored result body remain distinct; no source mesh identity, PM/DM semantics, arbitrary direct edits or lifecycle replay."
+      },
+      "checks": {
+        "export_hash_matches": true,
+        "actual_close_true": true,
+        "top_level_getters_and_active_input_getters_healthy": true,
+        "features_unchanged": true,
+        "no_unresolved": true,
+        "actual_documented_null_recorded": true,
+        "actual_Convert_collection_remains_zero": true,
+        "actual_exactly_one_added_BaseFeature": true,
+        "actual_BaseFeature_healthy": true,
+        "actual_single_BRep_source_and_result": true,
+        "stored_empty_name_not_API_display_name": true,
+        "explicit_singleton_and_anchor_counts": true,
+        "distinct_native_table_and_anchored_result": true,
+        "source_mesh_and_lifecycle_unqualified": true,
+        "exact_full_payload_replay": true,
+        "old_direct_reader_failure_retained": true
+      },
+      "actual_operation_input": {
+        "objectType": "adsk::fusion::MeshConvertFeatureInput",
+        "isValid": true,
+        "getter_errors": [],
+        "meshConvertMethodType": 0,
+        "meshConvertOperationType": 1,
+        "inputBodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "isValid": true,
+            "name": "OwnedTetraSource_base_feature_open",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQmyAT5LdE/9pXSe67ASYQ38CVRgpGJspWBoYGieZJxrpJqdaWuqamJtZ6FoaGVjqWlimWJoapKWmGpsagdUCzWBAA2D7DBTA1oGsNzI0BgCh2+tBiAAAAA==",
+            "getter_errors": []
+          }
+        ],
+        "targetBaseFeature": null,
+        "inactive_controls_scope": "Faceted only: resolution/accuracy/numberOfFaces/preprocess getters and setters not called",
+        "input_getter_errors": []
+      },
+      "actual_BaseFeatures_before": [
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import base_feature_open",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQmyAT5LdE/9pXSe67ASYQ38CVRgpGJspWBoYGieZJxrpJqdaWuqamJtZ6FoaGVjqWlimWJoapKWmGpsagdUCzWBAA2D7DBTA1oGsNzIwAQBDf5TGiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 0,
+          "base_getter_errors": []
+        }
+      ],
+      "actual_BaseFeatures_after": [
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import base_feature_open",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQmyAT5LdE/9pXSe67ASYQ38CVRgpGJspWBoYGieZJxrpJqdaWuqamJtZ6FoaGVjqWlimWJoapKWmGpsagdUCzWBAA2D7DBTA1oGsNzIwAQBDf5TGiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 0,
+          "base_getter_errors": []
+        },
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Base Feature2",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQmyAT5LdE/9pXSe67ASYQ38CVRgpGJspWBoYGieZJxrpJqdaWuqamJtZ6FoaGVjqWlimWJoapKWmGpsagdUCzWBAA2D7DBTA1oGsNzYwAABt0TvAiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [
+            {
+              "objectType": "adsk::fusion::BRepBody",
+              "isValid": true,
+              "name": "OwnedTetraSource_base_feature_open (1)",
+              "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQmyAT5LdE/9pXSe67ASYQ38CVRgpGJspWBoYGieZJxrpJqdaWuqamJtZ6FoaGVjqWlimWJoapKWmGpsagdUCzWBAA2D7DBTA1oGsNzYwAwBYdFgpiAAAAA==",
+              "getter_errors": []
+            }
+          ],
+          "brep_bodies": [
+            {
+              "objectType": "adsk::fusion::BRepBody",
+              "isValid": true,
+              "name": "Body1",
+              "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQmyAT5LdE/9pXSe67ASYQ38CVRgpGJspWBoYGieZJxrpJqdaWuqamJtZ6FoaGVjqWlimWJoapKWmGpsagdUCzWBAA2D7DBTA1oGsNzY0AgAAgS43iAAAAA==",
+              "getter_errors": []
+            }
+          ],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 2,
+          "base_getter_errors": []
+        }
+      ]
+    },
+    {
+      "archive": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d",
+      "archive_sha256": "f59d79e81057a96b5a9a593cf463ae8db2a43f02674a85e1becd48602e2cde73",
+      "expected_decoded": {
+        "partial": [],
+        "unresolved": [],
+        "scope": "Partial singleton stored-body/result-anchor BaseFeature definition with reciprocal controller, bookkeeping, collection and history membership. Table body and independently anchored result body remain distinct; no source mesh identity, PM/DM semantics, arbitrary direct edits or lifecycle replay."
+      },
+      "checks": {
+        "export_hash_matches": true,
+        "actual_close_true": true,
+        "top_level_getters_and_active_input_getters_healthy": true,
+        "features_unchanged": true,
+        "no_unresolved": true,
+        "no_false_singleton_for_two_mesh_Parametric": true,
+        "Parametric_return_separately_recorded": true
+      },
+      "actual_operation_input": {
+        "objectType": "adsk::fusion::MeshConvertFeatureInput",
+        "isValid": true,
+        "getter_errors": [],
+        "meshConvertMethodType": 0,
+        "meshConvertOperationType": 0,
+        "inputBodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "isValid": true,
+            "name": "OwnedTetraSource_two_mesh_parametric",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtTyRay7HTx6p/7/uPFfVP9LoAojBWMzhaRkA5NUE5NEXXPDxBRdIDNVN9HYwEQ3NTEpKcnMMMnC2MIcrBZoBgMaANtnoAC2DmS9kaExAB3VESiIAAAA",
+            "getter_errors": []
+          },
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "isValid": true,
+            "name": "OwnedTetraSecond_two_mesh_parametric",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtTyRay7HTx6p/7/uPFfVP9LoAojBWMzhaRkA5NUE5NEXXPDxBRdIDNVN9HYwEQ3NTEpKcnMMMnC2MIcrBZoBgMaANtnoAC2DmS9kZEZAFFyVnOIAAAA",
+            "getter_errors": []
+          }
+        ],
+        "targetBaseFeature": null,
+        "inactive_controls_scope": "Faceted only: resolution/accuracy/numberOfFaces/preprocess getters and setters not called",
+        "input_getter_errors": []
+      },
+      "actual_BaseFeatures_before": [
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import two_mesh_parametric",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtTyRay7HTx6p/7/uPFfVP9LoAojBWMzhaRkA5NUE5NEXXPDxBRdIDNVN9HYwEQ3NTEpKcnMMMnC2MIcrBZoBgMaANtnoAC2DmS9kYEJAP9xbq+IAAAA",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 0,
+          "base_getter_errors": []
+        }
+      ],
+      "actual_BaseFeatures_after": [
+        {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import two_mesh_parametric",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtTyRay7HTx6p/7/uPFfVP9LoAojBWMzhaRkA5NUE5NEXXPDxBRdIDNVN9HYwEQ3NTEpKcnMMMnC2MIcrBZoBgMaANtnoAC2DmS9kYEJAP9xbq+IAAAA",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "isSuppressed": false,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "isValid": true,
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "getter_errors": []
+          },
+          "baseFeature": null,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "timeline_index": 0,
+          "base_getter_errors": []
+        }
+      ]
+    }
+  ],
+  "guards": [
+    {
+      "check": "Count2 is not singleton branch",
+      "passed": true,
+      "reason": "Unobserved singleton BaseFeature body/result table framing"
+    },
+    {
+      "check": "Repeated table body must agree",
+      "passed": true,
+      "reason": "Singleton BaseFeature repeated body table disagrees"
+    },
+    {
+      "check": "Controller owner must reciprocate",
+      "passed": true,
+      "reason": "Singleton BaseFeature controller framing/reciprocal owners disagree"
+    },
+    {
+      "check": "Owned result anchor owner must agree",
+      "passed": true,
+      "reason": "Singleton BaseFeature result anchor missing, ambiguous or wrong owner"
+    },
+    {
+      "check": "Uncontrasted metadata remains literal5",
+      "passed": true,
+      "reason": "Singleton BaseFeature native metadata/empty-name/footer extent disagrees"
+    },
+    {
+      "check": "Stored empty name cannot become captured display name",
+      "passed": true,
+      "reason": "Non-printable string"
+    }
+  ],
+  "old_controls": [
+    {
+      "archive": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "prior_paired_summary_exact": true,
+      "no_false_singleton": true
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+      "prior_empty_list_summary_exact": true,
+      "no_false_singleton": true
+    }
+  ],
+  "actual_terminal_journal": {
+    "time_utc": "2026-10-21T14:34:01.695713+00:00",
+    "phase": "batch_complete",
+    "case": null,
+    "sample_count": 3,
+    "error_count": 0,
+    "planned_sample_count": 3,
+    "exported_sample_count": 3
+  },
+  "actual_close_journal": [
+    {
+      "time_utc": "2026-10-21T14:34:00.896672+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "base_feature_closed",
+      "sample_count": 1,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:34:01.259455+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "base_feature_open",
+      "sample_count": 2,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:34:01.693099+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "two_mesh_parametric",
+      "sample_count": 3,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    }
+  ],
+  "executed_generator_sha256": "76e24f2b3dbff14b9824ac1b17ef6390e248c82cc42c0b7dcee1fe41785c4571",
+  "summary": {
+    "actual_saved_files": 3,
+    "partial_singleton_definitions": 2,
+    "old_default_summary_controls": 2,
+    "malformed_guards": 6,
+    "checks": 39,
+    "full_main_runs": 0,
+    "live_API_calls": 0
+  },
+  "source_sha256": {
+    "decode_base_feature_single_lists.py": "8bfc9cf8be772ae6da65592d6d1c9234d4fac179b16981439070bb6865fd6f72",
+    "validate_base_feature_single_lists.py": "354fdb40f2e43cc679f7db84b45187a92140f3b35d5bb0e2cfe62d5d464aa2d5",
+    "decode_base_feature_empty_lists.py": "1f4013a0ca41e4f5a1151b838f103b240e0eae497b551ff744f1b00cf95c7b1b",
+    "decode_direct_body_features.py": "aa3b69ce3c5f6d0ab44bb96b36e8539119bbe071a3eaba95fb0d2ea07706e769",
+    "decode_body_selections.py": "8b9b8047009257f7cdba791e3610b6995c481950cf5087224a0190874475544a",
+    "decode_timeline.py": "3a08f6294017f2ec8aeab360d4f4cc7925d1e341e1715af87f1c31755d4fc1fd"
+  },
+  "limitations": [
+    "The native stored name is empty; API Base Feature2 is retained only as an independent display getter.",
+    "Native body table and result anchor establish distinct serialized identities. No source mesh ID, reciprocal PM/DM pair or conversion operation is inferred from the capture cause.",
+    "Only the observed singleton definition is partial. Existing unsupported BaseFeature and current mesh diagnostics remain; general direct edits, history replay, final visibility and regeneration are unresolved.",
+    "Result BODY/ASM identity proof belongs to the separate result-context helper; this definition does not choose bodies by coordinates or list order."
+  ]
+}

@@ -1,0 +1,1282 @@
+{
+  "scope": "Observed stored G2-blend surface and planar/spline-supported intersection-curve caches; exact procedural geometry is unresolved",
+  "integration": {
+    "entrypoint": "decode_bspline.decode_bspline(record)",
+    "helper": "decode_fillet_spline_caches.decode_g2_blend_surface_cache / decode_intersection_curve_cache",
+    "dispatch": "Only spline-surface/g2_blend_spl_sur and intcurve-curve/int_int_cur use the new strict branches; prior branches remain exact",
+    "validation_command": "/usr/bin/python3 validate_fillet_spline_caches.py"
+  },
+  "native_framing": {
+    "surface": "Boolean True wrapper; g2_blend_spl_sur23100; two explicit planar blend_support_surface descriptions; straight spine; exact bounded prefix; non-rational degree4/3 tensor cache at token62; counted knots/control grid and six scalar lists; bounded trailer/intervals.",
+    "curve": "Boolean False wrapper; int_int_cur23100 enum0; clamped cubic XYZ NUBS; spline/ref support; explicit plane; separate clamped cubic UV NUBS; nullbs; four scalar lists and exact outer terminator.",
+    "reference_namespace": "Inline ref0 is stored literally. No entity-index, surface identity, persistent topology or body correspondence is inferred from it."
+  },
+  "api_evidence": {
+    "source": "edgemodes-52695761f185/ground_truth.json",
+    "fusion_version": "2705.1.30",
+    "actual_settings": {
+      "rolling_ball_corner": true,
+      "feature_type": 0,
+      "edge_sets": [
+        {
+          "kind": "ConstantRadiusFilletEdgeSet",
+          "tangent_chain": false,
+          "radius": {
+            "name": "d4",
+            "value": 0.2,
+            "role": "Radius"
+          },
+          "tangencyWeight": {
+            "name": "d3",
+            "value": 0.75,
+            "role": "TangencyWeight"
+          },
+          "continuity": 2
+        }
+      ]
+    },
+    "surface_evaluator_getters_captured": false,
+    "settings_corroboration": "Native blend prefix has two literal0.75 scalars and two literal-0.2 scalars, corroborating captured tangencyWeight0.75/radius0.2; no general field semantics assigned from one surface."
+  },
+  "samples": [
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.15e46248-e0bb-4458-b94a-6415a37d0e03.smbh",
+      "curves": [
+        {
+          "curve_index": 42,
+          "edge_index": 24,
+          "control_count": 12,
+          "uv_control_count": 16,
+          "compact_knots": [
+            [
+              0.0,
+              3
+            ],
+            [
+              0.054123771815659576,
+              2
+            ],
+            [
+              0.10702943014982032,
+              2
+            ],
+            [
+              0.19422238436421219,
+              2
+            ],
+            [
+              0.2490177547051895,
+              2
+            ],
+            [
+              0.31448248135166856,
+              3
+            ]
+          ],
+          "support_flag": true,
+          "inline_support_ref": 0,
+          "endpoints": [
+            {
+              "vertex_index": 40,
+              "point_index": 64,
+              "parameter": 0.0,
+              "stored_point": [
+                1.0,
+                1.0,
+                1.8
+              ],
+              "cache_evaluation": [
+                1.0,
+                1.0,
+                1.8
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "vertex_index": 41,
+              "point_index": 65,
+              "parameter": 0.31448248135166856,
+              "stored_point": [
+                1.2,
+                1.0,
+                2.0
+              ],
+              "cache_evaluation": [
+                1.2,
+                1.0,
+                2.0
+              ],
+              "error_raw": 0.0
+            }
+          ],
+          "typed_coedge_surface_chain": {
+            "coedge_index": 15,
+            "loop_index": 9,
+            "face_index": 6,
+            "surface_index": 10,
+            "pcurve_index": 25,
+            "five_sample_cache_cross_deviations_raw": [
+              4.965068306494546e-16,
+              0.00018284052732407956,
+              6.932959278842532e-05,
+              1.377967507997556e-05,
+              4.440892098500626e-16
+            ],
+            "scope": "Independent coedge/loop/face links establish the parent surface; inline ref0 is not used as an index. Interior cache differences are retained, with no error bound inferred."
+          }
+        },
+        {
+          "curve_index": 79,
+          "edge_index": 54,
+          "control_count": 12,
+          "uv_control_count": 16,
+          "compact_knots": [
+            [
+              0.0,
+              3
+            ],
+            [
+              0.05412377181566615,
+              2
+            ],
+            [
+              0.10702943014985963,
+              2
+            ],
+            [
+              0.19422238436443637,
+              2
+            ],
+            [
+              0.24901775470560605,
+              2
+            ],
+            [
+              0.31448248135245505,
+              3
+            ]
+          ],
+          "support_flag": true,
+          "inline_support_ref": 0,
+          "endpoints": [
+            {
+              "vertex_index": 52,
+              "point_index": 78,
+              "parameter": 0.0,
+              "stored_point": [
+                1.2000000000000002,
+                4.0,
+                2.0
+              ],
+              "cache_evaluation": [
+                1.2,
+                4.0,
+                2.0
+              ],
+              "error_raw": 2.220446049250313e-16
+            },
+            {
+              "vertex_index": 59,
+              "point_index": 82,
+              "parameter": 0.31448248135245505,
+              "stored_point": [
+                1.0,
+                4.0,
+                1.8
+              ],
+              "cache_evaluation": [
+                1.0,
+                4.0,
+                1.8
+              ],
+              "error_raw": 0.0
+            }
+          ],
+          "typed_coedge_surface_chain": {
+            "coedge_index": 33,
+            "loop_index": 9,
+            "face_index": 6,
+            "surface_index": 10,
+            "pcurve_index": 55,
+            "five_sample_cache_cross_deviations_raw": [
+              0.0,
+              0.00018284052732612315,
+              6.9329592788588e-05,
+              1.377967507937711e-05,
+              0.0
+            ],
+            "scope": "Independent coedge/loop/face links establish the parent surface; inline ref0 is not used as an index. Interior cache differences are retained, with no error bound inferred."
+          }
+        }
+      ],
+      "remaining_unresolved": [],
+      "surface": {
+        "record_index": 10,
+        "record_offset": 1117,
+        "degree_u": 4,
+        "degree_v": 3,
+        "control_grid": [
+          6,
+          11
+        ],
+        "compact_knots_u": [
+          [
+            0.0,
+            4
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            1.0,
+            4
+          ]
+        ],
+        "compact_knots_v": [
+          [
+            -1.3700010000000002,
+            3
+          ],
+          [
+            -0.3100005000000001,
+            2
+          ],
+          [
+            0.75,
+            3
+          ],
+          [
+            1.8100005000000001,
+            2
+          ],
+          [
+            2.8700010000000002,
+            3
+          ]
+        ],
+        "cache_domain_u": [
+          0.0,
+          1.0
+        ],
+        "cache_domain_v": [
+          -1.3700010000000002,
+          2.8700010000000002
+        ],
+        "stored_trim_u": [
+          0.0,
+          1.0
+        ],
+        "stored_trim_v": [
+          -0.75,
+          2.25
+        ],
+        "finite_grid_evaluations": 25,
+        "grid_samples": [
+          [
+            1.0,
+            4.0,
+            1.8
+          ],
+          [
+            1.0,
+            3.2499999999999996,
+            1.8000000000000003
+          ],
+          [
+            1.0,
+            2.5,
+            1.8
+          ],
+          [
+            1.0,
+            1.75,
+            1.8000000000000003
+          ],
+          [
+            1.0,
+            1.0,
+            1.8
+          ],
+          [
+            1.0100045807151317,
+            4.0,
+            1.8669934811516558
+          ],
+          [
+            1.0100045807151317,
+            3.2499999999999996,
+            1.8669934811516555
+          ],
+          [
+            1.0100045807151317,
+            2.5,
+            1.8669934811516555
+          ],
+          [
+            1.0100045807151317,
+            1.75,
+            1.8669934811516558
+          ],
+          [
+            1.0100045807151317,
+            1.0,
+            1.8669934811516558
+          ],
+          [
+            1.0591606766544468,
+            4.0,
+            1.9408393233455532
+          ],
+          [
+            1.0591606766544468,
+            3.2499999999999996,
+            1.940839323345553
+          ],
+          [
+            1.0591606766544468,
+            2.5,
+            1.9408393233455532
+          ],
+          [
+            1.0591606766544468,
+            1.75,
+            1.9408393233455532
+          ],
+          [
+            1.0591606766544468,
+            1.0,
+            1.9408393233455532
+          ],
+          [
+            1.1330065188483442,
+            4.0,
+            1.9899954192848683
+          ],
+          [
+            1.1330065188483442,
+            3.2499999999999996,
+            1.9899954192848686
+          ],
+          [
+            1.1330065188483442,
+            2.5,
+            1.9899954192848683
+          ],
+          [
+            1.1330065188483442,
+            1.75,
+            1.9899954192848686
+          ],
+          [
+            1.1330065188483442,
+            1.0,
+            1.9899954192848683
+          ],
+          [
+            1.2,
+            4.0,
+            2.0
+          ],
+          [
+            1.2,
+            3.2499999999999996,
+            2.0
+          ],
+          [
+            1.2,
+            2.5,
+            2.0
+          ],
+          [
+            1.2000000000000002,
+            1.75,
+            2.0
+          ],
+          [
+            1.2,
+            1.0,
+            2.0
+          ]
+        ],
+        "procedural_definition_preserved": [
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "g2_blend_spl_sur",
+            "offset": 1163
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 23100,
+            "offset": 1181
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.75,
+            "offset": 1190
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.75,
+            "offset": 1199
+          },
+          {
+            "tag": 7,
+            "kind": "string",
+            "value": "blend_support_surface",
+            "offset": 1208
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "plane",
+            "offset": 1231
+          },
+          {
+            "tag": 19,
+            "kind": "position_vector",
+            "value": [
+              1.0,
+              4.0,
+              0.0
+            ],
+            "offset": 1238
+          },
+          {
+            "tag": 20,
+            "kind": "direction_vector",
+            "value": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "offset": 1263
+          },
+          {
+            "tag": 20,
+            "kind": "direction_vector",
+            "value": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "offset": 1288
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1313
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1314
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1315
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1316
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1317
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "null_curve",
+            "offset": 1318
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 1330
+          },
+          {
+            "tag": 19,
+            "kind": "position_vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "offset": 1338
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 1363
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 1371
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 1380
+          },
+          {
+            "tag": 7,
+            "kind": "string",
+            "value": "blend_support_surface",
+            "offset": 1388
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "plane",
+            "offset": 1411
+          },
+          {
+            "tag": 19,
+            "kind": "position_vector",
+            "value": [
+              3.0,
+              2.5,
+              2.0
+            ],
+            "offset": 1418
+          },
+          {
+            "tag": 20,
+            "kind": "direction_vector",
+            "value": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "offset": 1443
+          },
+          {
+            "tag": 20,
+            "kind": "direction_vector",
+            "value": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "offset": 1468
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1493
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1494
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1495
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1496
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1497
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "null_curve",
+            "offset": 1498
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 1510
+          },
+          {
+            "tag": 19,
+            "kind": "position_vector",
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "offset": 1518
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 1543
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 1551
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 1560
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "straight",
+            "offset": 1568
+          },
+          {
+            "tag": 19,
+            "kind": "position_vector",
+            "value": [
+              1.2,
+              3.25,
+              1.8
+            ],
+            "offset": 1578
+          },
+          {
+            "tag": 20,
+            "kind": "direction_vector",
+            "value": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "offset": 1603
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 1628
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -1.3700010000000002,
+            "offset": 1629
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 1638
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 2.8700010000000002,
+            "offset": 1639
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.2,
+            "offset": 1648
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.2,
+            "offset": 1657
+          },
+          {
+            "tag": 21,
+            "kind": "enum",
+            "value": -1,
+            "offset": 1666
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 1675
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.0,
+            "offset": 1676
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 1685
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 1.0,
+            "offset": 1686
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1695
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 1696
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 1697
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.001,
+            "offset": 1706
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 9.999999999999999e-06,
+            "offset": 1715
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 1724
+          },
+          {
+            "tag": 21,
+            "kind": "enum",
+            "value": 0,
+            "offset": 1733
+          }
+        ],
+        "body_graph_exposes_cache": true
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "curves": [
+        {
+          "curve_index": 42,
+          "edge_index": 24,
+          "control_count": 10,
+          "uv_control_count": 13,
+          "compact_knots": [
+            [
+              0.0,
+              3
+            ],
+            [
+              0.056019607287793975,
+              2
+            ],
+            [
+              0.11272072741977923,
+              2
+            ],
+            [
+              0.16723215467339458,
+              2
+            ],
+            [
+              0.2228558118554978,
+              3
+            ]
+          ],
+          "support_flag": false,
+          "inline_support_ref": 0,
+          "endpoints": [
+            {
+              "vertex_index": 40,
+              "point_index": 64,
+              "parameter": 0.0,
+              "stored_point": [
+                1.0,
+                1.0,
+                1.8585786437626906
+              ],
+              "cache_evaluation": [
+                1.0,
+                1.0,
+                1.8585786437626906
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "vertex_index": 41,
+              "point_index": 65,
+              "parameter": 0.2228558118554978,
+              "stored_point": [
+                1.1414213562373094,
+                1.0,
+                2.0
+              ],
+              "cache_evaluation": [
+                1.1414213562373094,
+                1.0,
+                2.0
+              ],
+              "error_raw": 0.0
+            }
+          ]
+        },
+        {
+          "curve_index": 79,
+          "edge_index": 54,
+          "control_count": 10,
+          "uv_control_count": 13,
+          "compact_knots": [
+            [
+              0.0,
+              3
+            ],
+            [
+              0.05601960728779435,
+              2
+            ],
+            [
+              0.11272072741977979,
+              2
+            ],
+            [
+              0.1672321546733946,
+              2
+            ],
+            [
+              0.2228558118554978,
+              3
+            ]
+          ],
+          "support_flag": false,
+          "inline_support_ref": 0,
+          "endpoints": [
+            {
+              "vertex_index": 52,
+              "point_index": 78,
+              "parameter": 0.0,
+              "stored_point": [
+                1.1414213562373094,
+                4.000000000000002,
+                2.0
+              ],
+              "cache_evaluation": [
+                1.1414213562373094,
+                4.0,
+                2.0
+              ],
+              "error_raw": 1.7763568394002505e-15
+            },
+            {
+              "vertex_index": 59,
+              "point_index": 82,
+              "parameter": 0.2228558118554978,
+              "stored_point": [
+                1.0,
+                4.000000000000002,
+                1.8585786437626906
+              ],
+              "cache_evaluation": [
+                1.0,
+                4.0,
+                1.8585786437626906
+              ],
+              "error_raw": 1.7763568394002505e-15
+            }
+          ]
+        }
+      ],
+      "remaining_unresolved": [
+        {
+          "index": 10,
+          "kind": "spline-surface",
+          "reason": "Unsupported procedural spline subtype"
+        },
+        {
+          "index": 53,
+          "kind": "intcurve-curve",
+          "reason": "Unsupported spline wrapper"
+        },
+        {
+          "index": 60,
+          "kind": "intcurve-curve",
+          "reason": "Unsupported procedural spline subtype"
+        }
+      ]
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+      "curves": [
+        {
+          "curve_index": 42,
+          "edge_index": 24,
+          "control_count": 12,
+          "uv_control_count": 16,
+          "compact_knots": [
+            [
+              0.0,
+              3
+            ],
+            [
+              0.020806595231881202,
+              2
+            ],
+            [
+              0.046346915416707546,
+              2
+            ],
+            [
+              0.0871261652082907,
+              2
+            ],
+            [
+              0.15530441416501994,
+              2
+            ],
+            [
+              0.21693614417715154,
+              3
+            ]
+          ],
+          "support_flag": false,
+          "inline_support_ref": 0,
+          "endpoints": [
+            {
+              "vertex_index": 40,
+              "point_index": 64,
+              "parameter": 0.0,
+              "stored_point": [
+                1.0,
+                1.0,
+                1.9
+              ],
+              "cache_evaluation": [
+                1.0,
+                0.9999999999999996,
+                1.9
+              ],
+              "error_raw": 4.440892098500626e-16
+            },
+            {
+              "vertex_index": 41,
+              "point_index": 65,
+              "parameter": 0.21693614417715154,
+              "stored_point": [
+                1.2,
+                1.0,
+                2.0
+              ],
+              "cache_evaluation": [
+                1.2,
+                0.9999999999999996,
+                2.0
+              ],
+              "error_raw": 4.440892098500626e-16
+            }
+          ]
+        },
+        {
+          "curve_index": 79,
+          "edge_index": 54,
+          "control_count": 12,
+          "uv_control_count": 16,
+          "compact_knots": [
+            [
+              0.0,
+              3
+            ],
+            [
+              0.13414546479414294,
+              2
+            ],
+            [
+              0.21786053917489323,
+              2
+            ],
+            [
+              0.2640307192246388,
+              2
+            ],
+            [
+              0.28369544139733865,
+              2
+            ],
+            [
+              0.3018765506193496,
+              3
+            ]
+          ],
+          "support_flag": false,
+          "inline_support_ref": 0,
+          "endpoints": [
+            {
+              "vertex_index": 52,
+              "point_index": 78,
+              "parameter": 0.0,
+              "stored_point": [
+                1.2,
+                4.0,
+                2.0
+              ],
+              "cache_evaluation": [
+                1.2,
+                4.0,
+                2.0
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "vertex_index": 59,
+              "point_index": 82,
+              "parameter": 0.3018765506193496,
+              "stored_point": [
+                1.0,
+                4.0,
+                1.9
+              ],
+              "cache_evaluation": [
+                1.0,
+                4.0,
+                1.9
+              ],
+              "error_raw": 0.0
+            }
+          ]
+        }
+      ],
+      "remaining_unresolved": [
+        {
+          "index": 10,
+          "kind": "spline-surface",
+          "reason": "Unsupported procedural spline subtype"
+        },
+        {
+          "index": 53,
+          "kind": "intcurve-curve",
+          "reason": "Unsupported spline wrapper"
+        },
+        {
+          "index": 60,
+          "kind": "intcurve-curve",
+          "reason": "Unsupported procedural spline subtype"
+        }
+      ]
+    }
+  ],
+  "compatibility": [
+    {
+      "file": "moretools-380212ab6368/LoftThreeSections.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6c02db9b-cfd5-447b-b1a3-d82b5aa7b12d.smbh",
+      "index": 18,
+      "sha256": "7990268eedf02ff8e50431366dfbcb00038a19feb8cb553179572eb4cbf03f64",
+      "unchanged": true
+    },
+    {
+      "file": "moretools-380212ab6368/LoftThreeSections.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6c02db9b-cfd5-447b-b1a3-d82b5aa7b12d.smbh",
+      "index": 37,
+      "sha256": "6b5fba3a948316c29e7cfd30fb6b76be9d5831941b1812079364f941683118de",
+      "unchanged": true
+    },
+    {
+      "file": "moretools-380212ab6368/LoftThreeSections.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d02c452f-94a9-468c-b988-446c3ac61293.smb",
+      "index": 60,
+      "sha256": "ec33f4330f41b0a3e8e332d4a43255c16e1e31e96b7b12e045b98b6239b18999",
+      "unchanged": true
+    },
+    {
+      "file": "moretools-380212ab6368/LoftThreeSections.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d02c452f-94a9-468c-b988-446c3ac61293.smb",
+      "index": 115,
+      "sha256": "bbd20392853516200c9245d1abac07daaae1d4ad1eea413035b5b6d2e5f1357c",
+      "unchanged": true
+    },
+    {
+      "file": "splines-9a18bae21127/splines.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+      "index": 18,
+      "sha256": "af399015765251db012aed77367c4d9f844c8f1ad59204fd8bc3a9b3963e755f",
+      "unchanged": true
+    },
+    {
+      "file": "splines-9a18bae21127/splines.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+      "index": 23,
+      "sha256": "c9b7abd94e566afc1c52df79ee6687c4f610b8c1d94204e9bf82871d59e884f8",
+      "unchanged": true
+    },
+    {
+      "file": "splines-9a18bae21127/splines.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+      "index": 27,
+      "sha256": "8c4e742da18759e0afc8ac9ca624d9e17772341a2ccc7e11e2ad9916c7de1c58",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+      "index": 11,
+      "sha256": "77d79818f1a04079e17d7796f6005032d3b74d88b946b4690acf74144bf48682",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+      "index": 14,
+      "sha256": "ff001ebb966b1dbe67c80e62755d796490fbdc11373e099cfd26488ae3f7e99d",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+      "index": 47,
+      "sha256": "0ed32fe40733d193e47c2dee6e1f4fbc0240fd904c0d0af838f02c8aa46e3e0c",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+      "index": 50,
+      "sha256": "ae80c928f9dd9b025a3c2786c445d897d7f4195f5e5267c09174fabb5e26b3f8",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+      "index": 68,
+      "sha256": "60cb102f5a656eb215af62a3eddf963343c72c6dbc6491e5fd02a1dcaaa7076e",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.87a3aee2-5c8c-4441-b151-2d20d05d857f.smbh",
+      "index": 15,
+      "sha256": "573865516b139f022400ddac8df45d5e9e6f7a4688cda3da3f48342538a1a7aa",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.87a3aee2-5c8c-4441-b151-2d20d05d857f.smbh",
+      "index": 18,
+      "sha256": "2b271b3d1643cee111c1b2e50cdcf470df6d02e7a2bf1a14940f887e9d072211",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.87a3aee2-5c8c-4441-b151-2d20d05d857f.smbh",
+      "index": 51,
+      "sha256": "29a51b381d250fb8bf8efa6ab6ddd6a97058560e9850ab1074fabe50f60f340a",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.87a3aee2-5c8c-4441-b151-2d20d05d857f.smbh",
+      "index": 54,
+      "sha256": "89864751221ef48c586620c4a6046439ed7abb8238ad489f83caef3df4a8f8f8",
+      "unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.87a3aee2-5c8c-4441-b151-2d20d05d857f.smbh",
+      "index": 72,
+      "sha256": "c1fadfc5317239eece88c7343114ced63d5f71756872421573dea2f5dc47e49e",
+      "unchanged": true
+    }
+  ],
+  "guards": [
+    {
+      "case": "Surface true-wrapper changed",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 3"
+    },
+    {
+      "case": "Surface support marker changed",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 9"
+    },
+    {
+      "case": "Surface nonfinite control",
+      "rejected": true,
+      "reason": "Nonfinite procedural spline cache scalar"
+    },
+    {
+      "case": "Surface non-increasing knots",
+      "rejected": true,
+      "reason": "Compact knot values are not strictly increasing"
+    },
+    {
+      "case": "Surface trailing data",
+      "rejected": true,
+      "reason": "Unsupported G2 blend cache trailer length"
+    },
+    {
+      "case": "Curve negative inline support reference",
+      "rejected": true,
+      "reason": "Negative inline procedural support reference"
+    },
+    {
+      "case": "Curve invalid UV knot multiplicity",
+      "rejected": true,
+      "reason": "Unsupported compact knot multiplicity"
+    },
+    {
+      "case": "Curve truncated subtype terminator",
+      "rejected": true,
+      "reason": "Unexpected spline-cache token at field 135"
+    }
+  ],
+  "limitations": [
+    "API truth captured fillet controls only; no independent API surface grid/evaluator getters exist in these fixtures.",
+    "Cached surface/curves are approximations. Endpoint agreement and finite sample grids are internal stored-geometry corroboration, not a global error bound or proof of exact G2 continuity.",
+    "The surface wrapper flag and curve support flags remain uninterpreted. No coordinate reversal, sense, active/final lifecycle or current placement is inferred.",
+    "Surface cache V domain extends beyond its stored trim interval. Exact trimmed-face reconstruction and procedural support definitions remain unresolved.",
+    "Only the observed planar-support G2 blend surface and cubic XYZ/UV intersection layout are supported; spring_int_cur and srf_srf_v_bl_spl_sur remain unresolved.",
+    "Only raw ASM coordinates are evaluated; component placements, units/context and regeneration are not applied."
+  ],
+  "summary": {
+    "surface_caches": 1,
+    "intersection_curve_caches": 6,
+    "typed_curve_endpoint_checks": 12,
+    "surface_uv_endpoint_checks": 4,
+    "prior_cache_outputs_unchanged": 17,
+    "malformed_guards": 8,
+    "saved_files": 3,
+    "unknown_surface_wrappers_retained": 2
+  }
+}

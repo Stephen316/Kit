@@ -1,0 +1,367 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "new_body.f3d",
+      "features": [
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "expression": "17 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "join.f3d",
+      "features": [
+        {
+          "name": "BaseExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        },
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 0,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "expression": "30 mm",
+          "unit": "mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 5.0,
+          "expression": "50 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "cut.f3d",
+      "features": [
+        {
+          "name": "BaseExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        },
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 1,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "expression": "30 mm",
+          "unit": "mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "expression": "17 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "intersect.f3d",
+      "features": [
+        {
+          "name": "BaseExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        },
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 2,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "expression": "30 mm",
+          "unit": "mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "expression": "17 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "symmetric_full.f3d",
+      "features": [
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 2,
+          "extent_one": "SymmetricExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.4000000000000004,
+          "expression": "24 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "symmetric_half.f3d",
+      "features": [
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 2,
+          "extent_one": "SymmetricExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.4000000000000004,
+          "expression": "24 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "two_sided.f3d",
+      "features": [
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 1,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.1,
+          "expression": "11 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AgainstDistance",
+          "value": 2.3000000000000003,
+          "expression": "23 mm",
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "Side2TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "through_all.f3d",
+      "features": [
+        {
+          "name": "BaseExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 3,
+          "extent_type": 0,
+          "extent_one": "DistanceExtentDefinition",
+          "is_solid": true
+        },
+        {
+          "name": "ProbeExtrusion",
+          "kind": "ExtrudeFeature",
+          "operation": 1,
+          "extent_type": 0,
+          "extent_one": "ThroughAllExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "expression": "30 mm",
+          "unit": "mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "case": "revolve_partial",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateModelFeatures.py\", line 74, in run\n    \"operation\": feature.operation, \"extent_type\": feature.extentType,\n                                                   ^^^^^^^^^^^^^^^^^^\nAttributeError: 'RevolveFeature' object has no attribute 'extentType'\n"
+    },
+    {
+      "case": "revolve_full",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateModelFeatures.py\", line 74, in run\n    \"operation\": feature.operation, \"extent_type\": feature.extentType,\n                                                   ^^^^^^^^^^^^^^^^^^\nAttributeError: 'RevolveFeature' object has no attribute 'extentType'\n"
+    }
+  ]
+}

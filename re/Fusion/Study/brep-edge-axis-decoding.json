@@ -1,0 +1,201 @@
+{
+  "archive": "silhouettedirections-805c2eaa2411/faces_custom_axis_x.f3d",
+  "checks": {
+    "name_matches_actual_axis": true,
+    "native_origin_matches_actual_axis": true,
+    "normalized_native_vector_matches_actual_axis": true,
+    "definition_class_matches_actual_axis": true,
+    "actual_definition_edge_is_linear_BRep": true,
+    "owned_source_body_name_matches_actual_definition_edge": true,
+    "raw_vector_remains_separate_from_unit_direction": true,
+    "selected_edge_geometry_stays_unresolved": true
+  },
+  "expected_summary": {
+    "definitions": [
+      {
+        "feature_object_id": 283,
+        "kind": "ConstructionAxis",
+        "name": "SilhouetteCustomSupportAxisX",
+        "definition_kind": "Edge",
+        "api_definition_class": "ConstructionAxisEdgeDefinition",
+        "stored_feature_variant_code": 4,
+        "stored_backend_method_code": 8,
+        "backend_object_id": 284,
+        "support_inputs": [
+          {
+            "role": "edgeEntity",
+            "entity": {
+              "kind": "BRepEdge",
+              "descriptor_object_id": 287,
+              "recipe": {
+                "object_id": 290,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 36751,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "5",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 138,
+                "payload_length": 116,
+                "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 281,
+              "native_body_object_id": 275,
+              "source_owner_object_id": 243,
+              "body_name": null,
+              "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+              "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+              "context_evidence": {
+                "object_id": 428,
+                "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                "status": "Stored context retained without geometry interpretation"
+              },
+              "source_geometry": null,
+              "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+            },
+            "selection_object_id": 284,
+            "descriptor_object_id": 287,
+            "recipe_record_object_id": 290,
+            "stored_direction_method_code": 8,
+            "stored_control_cache": {
+              "origin_cm": [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              "vector": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+              "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+            },
+            "association": "Owned direction control -> owned typed topology descriptor -> recipe and explicit historical body"
+          }
+        ],
+        "cached_geometry": {
+          "name": "SilhouetteCustomSupportAxisX",
+          "axis_object_id": 282,
+          "geometry_record_offset": 35381,
+          "axis_collection_object_id": 10,
+          "component_object_id": 3,
+          "origin_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_raw_direction": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "direction_encoding": "Normalized finite native line vector; raw scale is not interpreted as a trimmed edge length"
+        },
+        "support_consistency": {
+          "matches": null,
+          "scope": "Owned edge recipe/body provenance; axis cache is not substituted for selected edge evaluator geometry"
+        },
+        "collection_opaque_middle_hex": "010000000000000000000000000000000101011400000000000000000000",
+        "native_geometry_suffix_hex": "00000000010000000000000000000000000000803f6666a63f0000000000010a000000000000000000",
+        "scope": "Observed variant4/method8 BRep-edge ConstructionAxis definition with explicit owned edge recipe and independently stored finite native line geometry; persistent edge mapping and construction regeneration unresolved"
+      }
+    ],
+    "unresolved": [],
+    "scope": "Observed variant4/method8 BRep-edge ConstructionAxis definition with explicit owned edge recipe and independently stored finite native line geometry; persistent edge mapping and construction regeneration unresolved"
+  },
+  "negative_checks": [
+    {
+      "check": "Native axis owner mismatch",
+      "rejected": true,
+      "reason": "BRep-axis native geometry/feature/collection ownership disagrees"
+    },
+    {
+      "check": "Repeated backend reference mismatch",
+      "rejected": true,
+      "reason": "Unobserved BRep-edge axis feature framing/parameters"
+    },
+    {
+      "check": "Degenerate cached axis vector",
+      "rejected": true,
+      "reason": "Degenerate or nonfinite native axis vector"
+    },
+    {
+      "check": "Unobserved defining edge count",
+      "rejected": true,
+      "reason": "Silhouette direction control descriptor/count/owner disagrees"
+    },
+    {
+      "check": "Repeated axis collection member mismatch",
+      "rejected": true,
+      "reason": "BRep-axis collection repeated native membership disagrees"
+    }
+  ],
+  "cache_separation_control": true,
+  "prior_no_op_controls": [
+    "constructionmodes-e355ad6031c0/axis_edge.f3d",
+    "constructionmodes-e355ad6031c0/axis_two_points.f3d"
+  ],
+  "api_evidence_scope": "One captured actual axis origin/direction/name/definition class and defining BRep edge/body; generic construction is not regenerated.",
+  "limitations": [
+    "Only variant4/method8 is added; earlier sketch-line Edge method10 stays with its existing reader.",
+    "Finite native line vectors are normalized while raw values remain; raw vector scale is not a general edge length.",
+    "Axis cache is independent of control previews and never establishes persistent source-edge geometry or identity."
+  ]
+}

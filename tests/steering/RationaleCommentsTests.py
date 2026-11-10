@@ -61,10 +61,11 @@ class TestDiffGate(UnitTest.TestCase):
             RootPath = FilePath(TmpPath)
             FixtureInfo = RepoFixture(RootPath)
             FixtureInfo.WriteFile("Alpha.py", KCleanSource)
-            FixtureInfo.WriteFile("Legacy.py", KBadSource)
+            InvalidSource = KBadSource.replace("doubling", "Doubling")
+            FixtureInfo.WriteFile("Legacy.py", InvalidSource)
             BaseRef = FixtureInfo.CommitAll("base")
-            FixtureInfo.WriteFile("Bravo.py", KBadSource)
-            FixtureInfo.WriteFile("re/Nested.py", KBadSource)
+            FixtureInfo.WriteFile("Bravo.py", InvalidSource)
+            FixtureInfo.WriteFile("re/Nested.py", InvalidSource)
             HeadRef = FixtureInfo.CommitAll("head")
             ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
         self.assertEqual(ResultInfo.returncode, 1, ResultInfo.stderr)
@@ -141,3 +142,23 @@ def CheckKeptReason() -> None:
         ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
     assert ResultInfo.returncode == 0, ResultInfo.stderr
     assert "passed" in ResultInfo.stdout
+
+
+# a required rationale must be accepted while unrelated explanations still fail
+def CheckNewReason() -> None:
+    with Tempfile.TemporaryDirectory() as TmpPath:
+        RootPath = FilePath(TmpPath)
+        FixtureInfo = RepoFixture(RootPath)
+        FixtureInfo.WriteFile("Alpha.py", KCleanSource)
+        BaseRef = FixtureInfo.CommitAll("base")
+        FixtureInfo.WriteFile("Bravo.py", "\n" + KBadSource)
+        HeadRef = FixtureInfo.CommitAll("add rationale")
+        PassedInfo = RunModule(RootPath, BaseRef, HeadRef)
+        FixtureInfo.WriteFile(
+            "Bravo.py", "\n" + KBadSource + "\n# this comment explains nothing\n"
+        )
+        HeadRef = FixtureInfo.CommitAll("add stray comment")
+        FailedInfo = RunModule(RootPath, BaseRef, HeadRef)
+    assert PassedInfo.returncode == 0, PassedInfo.stdout
+    assert FailedInfo.returncode == 1, FailedInfo.stderr
+    assert "Bravo.py:6:1: CMT002" in FailedInfo.stdout

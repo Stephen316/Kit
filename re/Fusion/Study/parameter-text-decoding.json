@@ -1,0 +1,278 @@
+{
+  "scope": "Observed multiline user/model parameter comments, multiline Text value/expression, and model favorite flag",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateParameterTextModes.py",
+  "samples": [
+    {
+      "file": "parametertexts-d16f951482fc/user_multiline_comment.f3d",
+      "api_parameter": {
+        "name": "probeWidth",
+        "object_type": "adsk::fusion::UserParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "is_favorite": false,
+        "value_type": 0,
+        "value": 0.73
+      },
+      "decoded_parameter": {
+        "role": "User Parameter",
+        "parameter_name": "probeWidth",
+        "display_units": "mm",
+        "raw_float64": 0.73,
+        "role_offset": 22367,
+        "value_offset": 22435,
+        "expression_candidates": [
+          "7.3 mm"
+        ],
+        "parameter_object_id": 202,
+        "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+        "declared_binding_object_id": null,
+        "expression_metadata_hex": "00000000000000000001",
+        "comment": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "is_favorite": false,
+        "favorite_status": "Observed native favorite flag",
+        "layout": "observed user parameter with absent feature-binding reference",
+        "parameter_kind": "UserParameter",
+        "value_type": "Numeric",
+        "stored_parameter_index": 1,
+        "internal_units": "cm",
+        "hypothesized_value_mm": 7.3
+      },
+      "checks": {
+        "name": true,
+        "unit": true,
+        "expression": true,
+        "comment": true,
+        "favorite": true,
+        "type": true,
+        "value": true,
+        "main_reader": true
+      }
+    },
+    {
+      "file": "parametertexts-d16f951482fc/text_multiline_value.f3d",
+      "api_parameter": {
+        "name": "probeLabel",
+        "object_type": "adsk::fusion::UserParameter",
+        "unit": "Text",
+        "expression": "'First \u00d8 line\nSecond\tcolumn\r\nThird line'",
+        "comment": "",
+        "is_favorite": false,
+        "value_type": 1,
+        "text_value": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+      },
+      "decoded_parameter": {
+        "role": "User Parameter",
+        "parameter_name": "probeLabel",
+        "display_units": "Text",
+        "role_offset": 22359,
+        "value_offset": 22507,
+        "expression_candidates": [
+          "'First \u00d8 line\nSecond\tcolumn\r\nThird line'"
+        ],
+        "parameter_object_id": 202,
+        "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+        "declared_binding_object_id": null,
+        "expression_metadata_hex": "01000000000000000001",
+        "comment": "",
+        "is_favorite": false,
+        "favorite_status": "Observed native favorite flag",
+        "layout": "observed Text user parameter with stored expression and text value",
+        "parameter_kind": "UserParameter",
+        "value_type": "Text",
+        "stored_parameter_index": 1,
+        "text_value": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "internal_units": "Text"
+      },
+      "checks": {
+        "name": true,
+        "unit": true,
+        "expression": true,
+        "comment": true,
+        "favorite": true,
+        "type": true,
+        "value": true,
+        "main_reader": true
+      }
+    },
+    {
+      "file": "parametertexts-d16f951482fc/model_favorite_false.f3d",
+      "api_parameter": {
+        "name": "d1",
+        "object_type": "adsk::fusion::ModelParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "",
+        "is_favorite": false,
+        "value_type": 0,
+        "role": "AlongDistance",
+        "created_by": "ProbeExtrude",
+        "value": 0.73
+      },
+      "decoded_parameter": {
+        "role": "AlongDistance",
+        "parameter_name": "d1",
+        "display_units": "mm",
+        "raw_float64": 0.73,
+        "role_offset": 29658,
+        "value_offset": 29708,
+        "expression_candidates": [
+          "7.3 mm"
+        ],
+        "parameter_object_id": 251,
+        "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+        "declared_binding_object_id": 252,
+        "expression_metadata_hex": "00000000000000000000",
+        "comment": "",
+        "is_favorite": false,
+        "favorite_status": "Observed native favorite flag",
+        "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+        "internal_units": "cm",
+        "hypothesized_value_mm": 7.3
+      },
+      "checks": {
+        "name": true,
+        "unit": true,
+        "expression": true,
+        "comment": true,
+        "favorite": true,
+        "type": true,
+        "value": true,
+        "main_reader": true
+      }
+    },
+    {
+      "file": "parametertexts-d16f951482fc/model_favorite_true.f3d",
+      "api_parameter": {
+        "name": "d1",
+        "object_type": "adsk::fusion::ModelParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "",
+        "is_favorite": true,
+        "value_type": 0,
+        "role": "AlongDistance",
+        "created_by": "ProbeExtrude",
+        "value": 0.73
+      },
+      "decoded_parameter": {
+        "role": "AlongDistance",
+        "parameter_name": "d1",
+        "display_units": "mm",
+        "raw_float64": 0.73,
+        "role_offset": 29658,
+        "value_offset": 29708,
+        "expression_candidates": [
+          "7.3 mm"
+        ],
+        "parameter_object_id": 251,
+        "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+        "declared_binding_object_id": 252,
+        "expression_metadata_hex": "00000000000000010000",
+        "comment": "",
+        "is_favorite": true,
+        "favorite_status": "Observed native favorite flag",
+        "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+        "internal_units": "cm",
+        "hypothesized_value_mm": 7.3
+      },
+      "checks": {
+        "name": true,
+        "unit": true,
+        "expression": true,
+        "comment": true,
+        "favorite": true,
+        "type": true,
+        "value": true,
+        "main_reader": true
+      }
+    },
+    {
+      "file": "parametertexts-d16f951482fc/model_multiline_comment.f3d",
+      "api_parameter": {
+        "name": "d1",
+        "object_type": "adsk::fusion::ModelParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "is_favorite": false,
+        "value_type": 0,
+        "role": "AlongDistance",
+        "created_by": "ProbeExtrude",
+        "value": 0.73
+      },
+      "decoded_parameter": {
+        "role": "AlongDistance",
+        "parameter_name": "d1",
+        "display_units": "mm",
+        "raw_float64": 0.73,
+        "role_offset": 29734,
+        "value_offset": 29784,
+        "expression_candidates": [
+          "7.3 mm"
+        ],
+        "parameter_object_id": 251,
+        "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+        "declared_binding_object_id": 252,
+        "expression_metadata_hex": "00000000000000000000",
+        "comment": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "is_favorite": false,
+        "favorite_status": "Observed native favorite flag",
+        "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+        "internal_units": "cm",
+        "hypothesized_value_mm": 7.3
+      },
+      "checks": {
+        "name": true,
+        "unit": true,
+        "expression": true,
+        "comment": true,
+        "favorite": true,
+        "type": true,
+        "value": true,
+        "main_reader": true
+      }
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Default reader rejects linebreak",
+      "passed": true
+    },
+    {
+      "check": "Text field permits observed controls",
+      "passed": true
+    },
+    {
+      "check": "Text field rejects NUL",
+      "passed": true
+    },
+    {
+      "check": "Unknown model favorite retains null flag and unchanged numeric parameter",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Only CR, LF and TAB are admitted in observed comment/Text fields; structural names and default string reads remain strict.",
+    "Numeric expressions containing these controls remain unsupported.",
+    "Unknown model favorite values retain null is_favorite and raw expression metadata.",
+    "Expression dependencies/evaluation and other string/control variants remain unresolved."
+  ],
+  "favorite_contrast": {
+    "false_file": "parametertexts-d16f951482fc/model_favorite_false.f3d",
+    "true_file": "parametertexts-d16f951482fc/model_favorite_true.f3d",
+    "numeric_parameter_payload_differing_offsets": [
+      54
+    ],
+    "metadata_byte_index": 7,
+    "false_value": 0,
+    "true_value": 1
+  },
+  "summary": {
+    "new_archives": 5,
+    "api_comparisons": 40,
+    "prior_user_parameters_checked": 10,
+    "guard_checks": 4
+  }
+}

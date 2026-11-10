@@ -1,0 +1,174 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "open_line_side1",
+      "file": "open_line_side1.f3d",
+      "requested": {
+        "profile": "open_line",
+        "one": "Side1",
+        "thickness_one": 0.12,
+        "length_one": 2.5,
+        "thin": true
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "open_profile_input": {
+        "chain_curves": false,
+        "selected_curve_type": "adsk::fusion::SketchLine",
+        "selected_curve_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpuo9Y/5P/t57dgu+3zi18lVQBVGCsZmCikmSSlJJonJuilphga6JslGlroWRkmmuomG5mapFmmGyUnmFmC1QDMY0ADYPgMFsHWmhkZg2sgAqNTAWMEAAKIklXiSAAAA",
+        "start_world_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "end_world_cm": [
+          4.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "parent_sketch_is_null": true,
+        "loop_capture_status": "Generic open profile has no parent Sketch; original selected curve is captured separately, closed-profile loops not assumed",
+        "entity_token_status": "Generic open-profile token failed in original capture; unsupported optional getter not retried"
+      },
+      "set_extent_returned": true,
+      "set_thin_returned": true,
+      "actual_input": {
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": false,
+        "wall_one": {
+          "location": 0,
+          "thickness_value_input_real": 0.12
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 1.2,
+          "bounds_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            4.0,
+            0.12,
+            2.5
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeThinExtrude",
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 0,
+        "has_two_extents": false,
+        "profile": {
+          "entity_type": "adsk::fusion::Path"
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d2",
+            "role": "AlongDistance",
+            "raw_value": 2.5,
+            "unit": "mm",
+            "expression": "25.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "wall_one": {
+          "location": 0,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "Side1WallThickness",
+            "raw_value": 0.12,
+            "unit": "mm",
+            "expression": "1.20 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "AlongDistance",
+          "raw_value": 2.5,
+          "unit": "mm",
+          "expression": "25.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        }
+      ],
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [],
+  "status": "complete",
+  "enum_values": {
+    "Side1": 0,
+    "Center": 1,
+    "Side2": 2
+  },
+  "scope": "Actual thin/ordinary Extrude getters and owned source profiles; no native writer or regeneration claim",
+  "SDK_notes": [
+    "setThinExtrude(sideOneLocation,sideOneThickness[,sideTwoLocation,sideTwoThickness]) uses extrusion extent sides, not independently asymmetric offsets around one profile.",
+    "Component.createOpenProfile accepts one SketchCurve; whether the thin-solid operation accepts that open profile is captured as success/error, not assumed.",
+    "Inactive side-two getters are not read in one-sided cases."
+  ]
+}

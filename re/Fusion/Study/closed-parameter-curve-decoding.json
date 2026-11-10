@@ -1,0 +1,5568 @@
+{
+  "scope": "Four strictly bounded closed polynomial par_int_cur XYZ/UV form2 caches in two saved Patch archives; four namespace-qualified dependent compact pcurves; no full main-reader scan or live API execution",
+  "interface": "decode_closed_parameter_curve_cache(record); shared decode_parameter_curve_cache defaults remain strict form0, optional allowed_grid_forms=(0,2) used only by the new wrapper",
+  "source_sha256": {
+    "decode_closed_parameter_curve_cache.py": "9c7098b53e4a59fd6e675b99bf6e14756033dbc58124f0c60bffae528fff9fb6",
+    "decode_parameter_curve_cache.py": "770162d0efb3c38f7f92f60bf3141619e0d3dcbd96e4e6c1829d2bb13cc9180c",
+    "validate_closed_parameter_curve_cache.py": "54942b735ac087f586ba7237b64ec4a2f37e1ce48ebfc5e9a7d2679951581415",
+    "decode_bspline.py": "73b524cd52b55545ac79374538bef402e02e70d5de4027e5e06a7429100d7e2c",
+    "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0",
+    "decode_asm_subtypes.py": "7724e91cd0e083be871784b38b81fa7dacf251f8219391352429100d2e488503",
+    "decode_pcurve_variants.py": "55c33e4819fc2302246bd325406a03e85aec151095ef31fde815c1898e3a3e93"
+  },
+  "frozen_default_parser": {
+    "path": "/private/tmp/fusion-parameter-curve-baseline-4587d9e.py",
+    "sha256": "cd66feec5e6e0b841e4ab8ef769cfd6145443f602c4cffc223203cfe7f99817d"
+  },
+  "native_framing": {
+    "token_count": 169,
+    "xyz": "Cubic NUBS form2, nine compact knots/25 XYZ controls",
+    "uv": "Separate cubic NUBS form2, eight compact knots/10 UV controls",
+    "support": "False spline wrapper, literal nonnegative inline ref, four false bounds, second null_surface",
+    "trailer": "nullbs, false/false, four empty counted lists, true/false, subtype end, false/false outer intervals",
+    "periodicity": "Both caches close at the clamped endpoints; form2 and interval flags remain literal, is_periodic=None"
+  },
+  "capture_provenance": {
+    "ground_truth_file": "patchcontinuity-b9b0be85a281/ground_truth.json",
+    "sha256": "7f3f4a9b4de15bb1fab2727e26d3d170700d059f82258c02b860c631c6980c0b",
+    "scope": "Actual source Circle evaluator and result body bounds only; no direct result XYZ/UV cache getter captured"
+  },
+  "samples": [
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.470ae810-5481-4a60-a494-86e548d1dee4.smb",
+      "asm_blob_sha256": "2f998919aea3be8fd9e22d399b0fa8c81dcc264d0c9f82176e6f818384f78e32",
+      "curve_record_index": 50,
+      "expected_cache": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.2890930348579634,
+          -2.2890930348579634,
+          -2.2890930348579634,
+          -1.4549965685286668,
+          -1.4549965685286668,
+          -1.4549965685286668,
+          -0.5965502410046098,
+          -0.5965502410046098,
+          -0.5965502410046098,
+          0.2762933219786725,
+          0.2762933219786725,
+          0.2762933219786725,
+          1.091613279949997,
+          1.091613279949997,
+          1.091613279949997,
+          1.794519867055281,
+          1.794519867055281,
+          1.794519867055281,
+          2.4722415539854046,
+          2.4722415539854046,
+          2.4722415539854046,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.2890930348579634,
+            3
+          ],
+          [
+            -1.4549965685286668,
+            3
+          ],
+          [
+            -0.5965502410046098,
+            3
+          ],
+          [
+            0.2762933219786725,
+            3
+          ],
+          [
+            1.091613279949997,
+            3
+          ],
+          [
+            1.794519867055281,
+            3
+          ],
+          [
+            2.4722415539854046,
+            3
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points": [
+          [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ],
+          [
+            -0.7006151930220736,
+            0.1983286824164899,
+            0.0
+          ],
+          [
+            -0.6100388566356119,
+            0.39676398897884907,
+            0.0
+          ],
+          [
+            -0.4611010989938735,
+            0.5277351338619592,
+            0.0
+          ],
+          [
+            -0.31537850320340943,
+            0.6558789672874953,
+            0.0
+          ],
+          [
+            -0.11194087837829383,
+            0.7171235735894509,
+            0.0
+          ],
+          [
+            0.08117409952885399,
+            0.6956767688725529,
+            0.0
+          ],
+          [
+            0.2799267022150184,
+            0.673603865450039,
+            0.0
+          ],
+          [
+            0.46620760315166854,
+            0.557879867809248,
+            0.0
+          ],
+          [
+            0.5796150294487832,
+            0.39315309153781497,
+            0.0
+          ],
+          [
+            0.6949244423545813,
+            0.22566363796393576,
+            0.0
+          ],
+          [
+            0.7277509915654694,
+            0.004905741879284969,
+            0.0
+          ],
+          [
+            0.6734688241212969,
+            -0.1912521957966022,
+            0.0
+          ],
+          [
+            0.6227640514035966,
+            -0.3744826030359223,
+            0.0
+          ],
+          [
+            0.4906737733500329,
+            -0.5324130667331094,
+            0.0
+          ],
+          [
+            0.32233017802354946,
+            -0.6212663835559915,
+            0.0
+          ],
+          [
+            0.17719718956292194,
+            -0.6978689259938808,
+            0.0
+          ],
+          [
+            0.005238263031011325,
+            -0.7185098357622158,
+            0.0
+          ],
+          [
+            -0.1550885237182789,
+            -0.6819674432257109,
+            0.0
+          ],
+          [
+            -0.3096708570881894,
+            -0.6467343519890891,
+            0.0
+          ],
+          [
+            -0.45125866943049087,
+            -0.5592196346491491,
+            0.0
+          ],
+          [
+            -0.548571730989494,
+            -0.43456547226987075,
+            0.0
+          ],
+          [
+            -0.6446828722094801,
+            -0.3114509220526858,
+            0.0
+          ],
+          [
+            -0.7005626791080011,
+            -0.1557628997103392,
+            0.0
+          ],
+          [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ]
+        ],
+        "weights": [],
+        "is_rational": false,
+        "stored_form_code": 2,
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "procedural_subtype": "par_int_cur",
+        "stored_wrapper_flag": false,
+        "uninterpreted_cache_scalar": 0.0009639344559628128,
+        "stored_support_definition": {
+          "kind": "spline",
+          "stored_wrapper_flag": false,
+          "procedural_subtype": "ref",
+          "stored_inline_surface_ref": 0,
+          "definition_status": "Inline reference namespace unresolved; not an ASM entity index",
+          "stored_definition": [
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "spline",
+              "offset": 20514
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20522
+            },
+            {
+              "tag": 15,
+              "kind": "subtype_start",
+              "value": null,
+              "offset": 20523
+            },
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "ref",
+              "offset": 20524
+            },
+            {
+              "tag": 4,
+              "kind": "integer",
+              "value": 0,
+              "offset": 20529
+            },
+            {
+              "tag": 16,
+              "kind": "subtype_end",
+              "value": null,
+              "offset": 20538
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20539
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20540
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20541
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20542
+            }
+          ]
+        },
+        "stored_embedded_uv_cache": {
+          "degree": 3,
+          "knots": [
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -2.243994752564138,
+            -1.3463968515384828,
+            -0.4487989505128276,
+            0.4487989505128276,
+            1.3463968515384828,
+            2.243994752564138,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793
+          ],
+          "stored_compact_knots": [
+            [
+              -3.141592653589793,
+              3
+            ],
+            [
+              -2.243994752564138,
+              1
+            ],
+            [
+              -1.3463968515384828,
+              1
+            ],
+            [
+              -0.4487989505128276,
+              1
+            ],
+            [
+              0.4487989505128276,
+              1
+            ],
+            [
+              1.3463968515384828,
+              1
+            ],
+            [
+              2.243994752564138,
+              1
+            ],
+            [
+              3.141592653589793,
+              3
+            ]
+          ],
+          "raw_control_points": [
+            [
+              -0.6935857761474847,
+              -2.3846594560308615e-05
+            ],
+            [
+              -0.693616749211056,
+              0.20882177607950128
+            ],
+            [
+              -0.49278743623122256,
+              0.6266965559815564
+            ],
+            [
+              0.18530763982603474,
+              0.7809954057598794
+            ],
+            [
+              0.729099886266414,
+              0.3477238096558662
+            ],
+            [
+              0.7287510316823058,
+              -0.34750469993948385
+            ],
+            [
+              0.1854203676875283,
+              -0.7815249745202488
+            ],
+            [
+              -0.49260159784979507,
+              -0.6263771800628132
+            ],
+            [
+              -0.6935548030839135,
+              -0.2088694692686219
+            ],
+            [
+              -0.6935857761474847,
+              -2.3846594560308615e-05
+            ]
+          ],
+          "weights": [],
+          "is_rational": false,
+          "stored_form_code": 2,
+          "parameter_domain": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "is_periodic": null,
+          "cached_endpoints_coincide": true,
+          "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved"
+        },
+        "stored_trailer_scalar_lists": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "stored_trailer_flags": [
+          true,
+          false
+        ],
+        "stored_parameter_interval": [
+          null,
+          null
+        ],
+        "stored_interval_flags": [
+          false,
+          false
+        ],
+        "stored_cache_trailer": [
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.0009639344559628128,
+            "offset": 20505
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "spline",
+            "offset": 20514
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20522
+          },
+          {
+            "tag": 15,
+            "kind": "subtype_start",
+            "value": null,
+            "offset": 20523
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "ref",
+            "offset": 20524
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20529
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 20538
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20539
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20540
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20541
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20542
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "null_surface",
+            "offset": 20543
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nubs",
+            "offset": 20557
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 20563
+          },
+          {
+            "tag": 21,
+            "kind": "enum",
+            "value": 2,
+            "offset": 20572
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 8,
+            "offset": 20581
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -3.141592653589793,
+            "offset": 20590
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 20599
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.243994752564138,
+            "offset": 20608
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20617
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -1.3463968515384828,
+            "offset": 20626
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20635
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4487989505128276,
+            "offset": 20644
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20653
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.4487989505128276,
+            "offset": 20662
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20671
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 1.3463968515384828,
+            "offset": 20680
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20689
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 2.243994752564138,
+            "offset": 20698
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20707
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 3.141592653589793,
+            "offset": 20716
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 20725
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474847,
+            "offset": 20734
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594560308615e-05,
+            "offset": 20743
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.693616749211056,
+            "offset": 20752
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.20882177607950128,
+            "offset": 20761
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.49278743623122256,
+            "offset": 20770
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.6266965559815564,
+            "offset": 20779
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.18530763982603474,
+            "offset": 20788
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7809954057598794,
+            "offset": 20797
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.729099886266414,
+            "offset": 20806
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.3477238096558662,
+            "offset": 20815
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7287510316823058,
+            "offset": 20824
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.34750469993948385,
+            "offset": 20833
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.1854203676875283,
+            "offset": 20842
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.7815249745202488,
+            "offset": 20851
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.49260159784979507,
+            "offset": 20860
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6263771800628132,
+            "offset": 20869
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935548030839135,
+            "offset": 20878
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.2088694692686219,
+            "offset": 20887
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474847,
+            "offset": 20896
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594560308615e-05,
+            "offset": 20905
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 20914
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20922
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20923
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20924
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20933
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20942
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20951
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 20960
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20961
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 20962
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20963
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20964
+          }
+        ],
+        "reference_scope": "Inline support references retained in their own unresolved namespace; parent topology is resolved independently",
+        "flag_scope": "Literal wrapper and interval flags preserved; no curve reversal or edge/cache parameter remapping inferred",
+        "representation": "Stored closed cubic polynomial XYZ and cubic UV form2 approximation caches; exact parameter-defined curve is not reconstructed",
+        "cache_status": "Closed cache structure independently evaluable; saved source-Circle API evaluations have nonzero deviations and do not establish exact cache equality",
+        "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+        "is_periodic": null,
+        "cached_endpoints_coincide": true,
+        "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved",
+        "closure_scope": "Coincident first/last controls of each clamped grid establish cached endpoint closure inside the stored domain only",
+        "scope": "Observed closed cubic polynomial par_int_cur XYZ/UV form2 caches with one literal spline-reference support; independent cache evaluation only, exact procedural geometry, periodicity and coedge parameterization unresolved"
+      },
+      "pcurve_record_index": 37,
+      "expected_pcurve": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.243994752564138,
+          -1.3463968515384828,
+          -0.4487989505128276,
+          0.4487989505128276,
+          1.3463968515384828,
+          2.243994752564138,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.243994752564138,
+            1
+          ],
+          [
+            -1.3463968515384828,
+            1
+          ],
+          [
+            -0.4487989505128276,
+            1
+          ],
+          [
+            0.4487989505128276,
+            1
+          ],
+          [
+            1.3463968515384828,
+            1
+          ],
+          [
+            2.243994752564138,
+            1
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          [
+            -0.693616749211056,
+            0.20882177607950128
+          ],
+          [
+            -0.49278743623122256,
+            0.6266965559815564
+          ],
+          [
+            0.18530763982603474,
+            0.7809954057598794
+          ],
+          [
+            0.729099886266414,
+            0.3477238096558662
+          ],
+          [
+            0.7287510316823058,
+            -0.34750469993948385
+          ],
+          [
+            0.1854203676875283,
+            -0.7815249745202488
+          ],
+          [
+            -0.49260159784979507,
+            -0.6263771800628132
+          ],
+          [
+            -0.6935548030839135,
+            -0.2088694692686219
+          ],
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          [
+            -0.693616749211056,
+            0.20882177607950128
+          ],
+          [
+            -0.49278743623122256,
+            0.6266965559815564
+          ],
+          [
+            0.18530763982603474,
+            0.7809954057598794
+          ],
+          [
+            0.729099886266414,
+            0.3477238096558662
+          ],
+          [
+            0.7287510316823058,
+            -0.34750469993948385
+          ],
+          [
+            0.1854203676875283,
+            -0.7815249745202488
+          ],
+          [
+            -0.49260159784979507,
+            -0.6263771800628132
+          ],
+          [
+            -0.6935548030839135,
+            -0.2088694692686219
+          ],
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_form_code": 2,
+        "stored_prefix_integer": -1,
+        "stored_selected_support_slot": 0,
+        "stored_intcurve_record_pointer": 50,
+        "owning_coedge_index": 28,
+        "parent_loop_index": 18,
+        "parent_face_index": 13,
+        "parent_surface_record_index": 19,
+        "parent_surface_namespace": {
+          "source_block": {
+            "record_index": 19,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 1629,
+            "byte_end": 16534,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "target_definition": {
+            "record_index": 19,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 1629,
+            "byte_end": 16534,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "source_blob_sha256": "2f998919aea3be8fd9e22d399b0fa8c81dcc264d0c9f82176e6f818384f78e32",
+          "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+        },
+        "parent_intcurve_support_namespaces": [
+          {
+            "slot": 0,
+            "namespace_proof": {
+              "source_block": {
+                "record_index": 50,
+                "record_kind": "intcurve-curve",
+                "section": "geometry",
+                "token_start": 108,
+                "token_end": 111,
+                "byte_start": 20523,
+                "byte_end": 20539,
+                "subtype_name": "ref",
+                "context_kind": "surface",
+                "context_evidence": "Literal inline spline wrapper",
+                "parent_definition_index": 1,
+                "definition_index": null,
+                "reference_id": 0
+              },
+              "target_definition": {
+                "record_index": 19,
+                "record_kind": "spline-surface",
+                "section": "geometry",
+                "token_start": 4,
+                "token_end": 1665,
+                "byte_start": 1629,
+                "byte_end": 16534,
+                "subtype_name": "exact_spl_sur",
+                "context_kind": "surface",
+                "context_evidence": "Typed top-level spline-surface wrapper",
+                "parent_definition_index": null,
+                "definition_index": 0,
+                "reference_id": null
+              },
+              "source_blob_sha256": "2f998919aea3be8fd9e22d399b0fa8c81dcc264d0c9f82176e6f818384f78e32",
+              "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+            }
+          }
+        ],
+        "selected_support_definition_index": 0,
+        "representation": "Stored embedded UV NUBS cache selected through typed parent curve and exact parent-surface inline identity",
+        "flag_scope": "Magnitude of observed selector agrees support slot1/2; sign retained literally, without reversal/orientation/parameter remapping semantics",
+        "coordinate_system": "Selected explicitly identified parent support UV cache; no implicit surface evaluation or world conversion",
+        "cache_status": "Stored UV cache recovered by typed topology and namespace identity; exact coedge/cache parameterization and API evaluator equivalence unresolved",
+        "scope": "Observed explicit NUBS UV caches with bounded support wrappers, or compact pcurve to stored UV slot through typed parent topology and exact inline support identity; sign, procedural evaluation and general coedge parameterization unresolved"
+      },
+      "curve_typed_byte_replay": {
+        "offset": 19558,
+        "end_offset": 20966,
+        "byte_count": 1408,
+        "original_sha256": "b1e20bc75c58973cd80295afaad4bf182ca221a0889d57e43a69afd4379f5d50",
+        "typed_replay_sha256": "b1e20bc75c58973cd80295afaad4bf182ca221a0889d57e43a69afd4379f5d50",
+        "whole_record_replay_exact": true
+      },
+      "pcurve_typed_byte_replay": {
+        "offset": 18119,
+        "end_offset": 18191,
+        "byte_count": 72,
+        "original_sha256": "a97b08c661752f1c80ccee3de608afd66c0d7304c820edf04a07c669226beca2",
+        "typed_replay_sha256": "a97b08c661752f1c80ccee3de608afd66c0d7304c820edf04a07c669226beca2",
+        "whole_record_replay_exact": true
+      },
+      "typed_parent_chain": {
+        "edge": {
+          "index": 36,
+          "kind": "edge",
+          "offset": 18021,
+          "attribute_index": 48,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "start_vertex_index": 49,
+          "end_vertex_index": 49,
+          "first_coedge_index": 28,
+          "curve_index": 50,
+          "start_parameter": -3.141592653589793,
+          "end_parameter": 3.141592653589793,
+          "is_reversed": false,
+          "stored_trailing_text": "unknown"
+        },
+        "endpoint_vertices": [
+          {
+            "role": "start",
+            "vertex_index": 49,
+            "point_index": 68,
+            "native_parameter": -3.141592653589793,
+            "stored_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          },
+          {
+            "role": "end",
+            "vertex_index": 49,
+            "point_index": 68,
+            "native_parameter": 3.141592653589793,
+            "stored_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          }
+        ],
+        "coedge": {
+          "index": 28,
+          "kind": "coedge",
+          "offset": 17377,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_coedge_index": 28,
+          "previous_coedge_index": 28,
+          "partner_index": null,
+          "edge_index": 36,
+          "loop_index": 18,
+          "pcurve_index": 37,
+          "is_reversed": true,
+          "uninterpreted_field_9": 0
+        },
+        "loop": {
+          "index": 18,
+          "kind": "loop",
+          "offset": 1523,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_loop_index": null,
+          "first_coedge_index": 28,
+          "face_index": 13
+        },
+        "face": {
+          "index": 13,
+          "kind": "face",
+          "offset": 994,
+          "attribute_index": 17,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_face_index": null,
+          "first_loop_index": 18,
+          "shell_index": 9,
+          "subshell_index": null,
+          "surface_index": 19,
+          "is_reversed": false,
+          "is_double_sided": true,
+          "stored_containment_flag": false
+        },
+        "selected_surface_record_index": 19,
+        "selected_support_definition_index": 0
+      },
+      "independent_UV_and_approximation_samples": [
+        {
+          "parameter": -3.141592653589793,
+          "fraction": 0.0,
+          "xyz_cache": [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474843,
+            -2.3846594560196532e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 2.7138935630027783e-18,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368061363,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": -1.5707963267948966,
+          "fraction": 0.25,
+          "xyz_cache": [
+            0.0003273246610508776,
+            0.6998700701668797,
+            0.0
+          ],
+          "uv_cache": [
+            0.007322086194355329,
+            0.6998766429015021
+          ],
+          "independent_UV_basis_error": 6.938893903907228e-18,
+          "selected_support_composition": [
+            0.0003220861943552458,
+            0.699876642901503,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 8.404901769128384e-06,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0003521692707586653,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 0.0,
+          "fraction": 0.5,
+          "xyz_cache": [
+            0.6989787216750745,
+            -4.9445424772663615e-05,
+            0.0
+          ],
+          "uv_cache": [
+            0.7062770650069607,
+            9.395738992550029e-05
+          ],
+          "independent_UV_basis_error": 1.1295700899707568e-16,
+          "selected_support_composition": [
+            0.6992770650069611,
+            9.39573899253851e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0003310182939725924,
+          "actual_source_circle_point_cm": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0010224745801209747,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 1.5707963267948966,
+          "fraction": 0.75,
+          "xyz_cache": [
+            0.00029470562603156614,
+            -0.6995205978487884,
+            0.0
+          ],
+          "uv_cache": [
+            0.007425102907461498,
+            -0.7000852872710845
+          ],
+          "independent_UV_basis_error": 3.9898639947466563e-17,
+          "selected_support_composition": [
+            0.00042510290746170795,
+            -0.700085287271085,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0005795494755911978,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            -0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005627413514225735,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 3.141592653589793,
+          "fraction": 1.0,
+          "xyz_cache": [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474843,
+            -2.3846594560196532e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 2.7138935630027783e-18,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368061293,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        }
+      ],
+      "independent_Bernstein_XYZ_errors_raw": [
+        2.2591401799415137e-16,
+        1.1102230246251565e-16,
+        1.1102230246251565e-16,
+        1.5700924586837752e-16,
+        1.1443916996305594e-16,
+        4.85722573273506e-17,
+        2.7755575615628914e-17,
+        5.551115123125783e-17,
+        5.551115123125783e-17,
+        1.2412670766236366e-16,
+        0.0,
+        2.220446049250313e-16,
+        0.0,
+        5.551115123125783e-17,
+        1.2412670766236366e-16,
+        2.7755575615628914e-17,
+        1.1857187100668868e-16,
+        0.0,
+        2.3714374201337736e-16,
+        0.0,
+        1.2412670766236366e-16,
+        2.9893669801409088e-16,
+        2.7755575615628914e-17,
+        1.249000902703301e-16
+      ],
+      "XYZ_cache_analytic_span_bounds_raw": {
+        "min": [
+          -0.7005857833106814,
+          -0.6995215263025764,
+          0.0
+        ],
+        "max": [
+          0.6989801353320177,
+          0.6998836892812574,
+          0.0
+        ]
+      },
+      "actual_API_result_bounds_cm": {
+        "min": [
+          -0.7005857761474843,
+          -0.700100789080967,
+          0.0
+        ],
+        "max": [
+          0.6992771032664715,
+          0.699889630114144,
+          0.0
+        ]
+      },
+      "cache_minus_API_result_bound_deltas_raw": {
+        "min": [
+          -7.163197146553557e-09,
+          0.000579262778390599,
+          0.0
+        ],
+        "max": [
+          -0.00029696793445377345,
+          -5.940832886519587e-06,
+          0.0
+        ]
+      },
+      "bound_comparison_scope": "Numeric cache/result-AABB corroboration; no source/BODY identity or exact cache equivalence inferred"
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh",
+      "asm_blob_sha256": "01117ba2cd914bf21cc1e139a843a297cc0214521a88faddfa9d49d89d4aaa83",
+      "curve_record_index": 66,
+      "expected_cache": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.2890930348579634,
+          -2.2890930348579634,
+          -2.2890930348579634,
+          -1.4549965685286668,
+          -1.4549965685286668,
+          -1.4549965685286668,
+          -0.5965502410046098,
+          -0.5965502410046098,
+          -0.5965502410046098,
+          0.2762933219786725,
+          0.2762933219786725,
+          0.2762933219786725,
+          1.091613279949997,
+          1.091613279949997,
+          1.091613279949997,
+          1.794519867055281,
+          1.794519867055281,
+          1.794519867055281,
+          2.4722415539854046,
+          2.4722415539854046,
+          2.4722415539854046,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.2890930348579634,
+            3
+          ],
+          [
+            -1.4549965685286668,
+            3
+          ],
+          [
+            -0.5965502410046098,
+            3
+          ],
+          [
+            0.2762933219786725,
+            3
+          ],
+          [
+            1.091613279949997,
+            3
+          ],
+          [
+            1.794519867055281,
+            3
+          ],
+          [
+            2.4722415539854046,
+            3
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points": [
+          [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ],
+          [
+            -0.7006151930220736,
+            0.1983286824164899,
+            0.0
+          ],
+          [
+            -0.6100388566356119,
+            0.39676398897884907,
+            0.0
+          ],
+          [
+            -0.4611010989938735,
+            0.5277351338619592,
+            0.0
+          ],
+          [
+            -0.31537850320340943,
+            0.6558789672874953,
+            0.0
+          ],
+          [
+            -0.11194087837829383,
+            0.7171235735894509,
+            0.0
+          ],
+          [
+            0.08117409952885399,
+            0.6956767688725529,
+            0.0
+          ],
+          [
+            0.2799267022150184,
+            0.673603865450039,
+            0.0
+          ],
+          [
+            0.46620760315166854,
+            0.557879867809248,
+            0.0
+          ],
+          [
+            0.5796150294487832,
+            0.39315309153781497,
+            0.0
+          ],
+          [
+            0.6949244423545813,
+            0.22566363796393576,
+            0.0
+          ],
+          [
+            0.7277509915654694,
+            0.004905741879284969,
+            0.0
+          ],
+          [
+            0.6734688241212969,
+            -0.1912521957966022,
+            0.0
+          ],
+          [
+            0.6227640514035966,
+            -0.3744826030359223,
+            0.0
+          ],
+          [
+            0.4906737733500329,
+            -0.5324130667331094,
+            0.0
+          ],
+          [
+            0.32233017802354946,
+            -0.6212663835559915,
+            0.0
+          ],
+          [
+            0.17719718956292194,
+            -0.6978689259938808,
+            0.0
+          ],
+          [
+            0.005238263031011325,
+            -0.7185098357622158,
+            0.0
+          ],
+          [
+            -0.1550885237182789,
+            -0.6819674432257109,
+            0.0
+          ],
+          [
+            -0.3096708570881894,
+            -0.6467343519890891,
+            0.0
+          ],
+          [
+            -0.45125866943049087,
+            -0.5592196346491491,
+            0.0
+          ],
+          [
+            -0.548571730989494,
+            -0.43456547226987075,
+            0.0
+          ],
+          [
+            -0.6446828722094801,
+            -0.3114509220526858,
+            0.0
+          ],
+          [
+            -0.7005626791080011,
+            -0.1557628997103392,
+            0.0
+          ],
+          [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ]
+        ],
+        "weights": [],
+        "is_rational": false,
+        "stored_form_code": 2,
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "procedural_subtype": "par_int_cur",
+        "stored_wrapper_flag": false,
+        "uninterpreted_cache_scalar": 0.0009639344559628128,
+        "stored_support_definition": {
+          "kind": "spline",
+          "stored_wrapper_flag": false,
+          "procedural_subtype": "ref",
+          "stored_inline_surface_ref": 0,
+          "definition_status": "Inline reference namespace unresolved; not an ASM entity index",
+          "stored_definition": [
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "spline",
+              "offset": 22633
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22641
+            },
+            {
+              "tag": 15,
+              "kind": "subtype_start",
+              "value": null,
+              "offset": 22642
+            },
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "ref",
+              "offset": 22643
+            },
+            {
+              "tag": 4,
+              "kind": "integer",
+              "value": 0,
+              "offset": 22648
+            },
+            {
+              "tag": 16,
+              "kind": "subtype_end",
+              "value": null,
+              "offset": 22657
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22658
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22659
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22660
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22661
+            }
+          ]
+        },
+        "stored_embedded_uv_cache": {
+          "degree": 3,
+          "knots": [
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -2.243994752564138,
+            -1.3463968515384828,
+            -0.4487989505128276,
+            0.4487989505128276,
+            1.3463968515384828,
+            2.243994752564138,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793
+          ],
+          "stored_compact_knots": [
+            [
+              -3.141592653589793,
+              3
+            ],
+            [
+              -2.243994752564138,
+              1
+            ],
+            [
+              -1.3463968515384828,
+              1
+            ],
+            [
+              -0.4487989505128276,
+              1
+            ],
+            [
+              0.4487989505128276,
+              1
+            ],
+            [
+              1.3463968515384828,
+              1
+            ],
+            [
+              2.243994752564138,
+              1
+            ],
+            [
+              3.141592653589793,
+              3
+            ]
+          ],
+          "raw_control_points": [
+            [
+              -0.6935857761474847,
+              -2.3846594560308615e-05
+            ],
+            [
+              -0.693616749211056,
+              0.20882177607950128
+            ],
+            [
+              -0.49278743623122256,
+              0.6266965559815564
+            ],
+            [
+              0.18530763982603474,
+              0.7809954057598794
+            ],
+            [
+              0.729099886266414,
+              0.3477238096558662
+            ],
+            [
+              0.7287510316823058,
+              -0.34750469993948385
+            ],
+            [
+              0.1854203676875283,
+              -0.7815249745202488
+            ],
+            [
+              -0.49260159784979507,
+              -0.6263771800628132
+            ],
+            [
+              -0.6935548030839135,
+              -0.2088694692686219
+            ],
+            [
+              -0.6935857761474847,
+              -2.3846594560308615e-05
+            ]
+          ],
+          "weights": [],
+          "is_rational": false,
+          "stored_form_code": 2,
+          "parameter_domain": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "is_periodic": null,
+          "cached_endpoints_coincide": true,
+          "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved"
+        },
+        "stored_trailer_scalar_lists": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "stored_trailer_flags": [
+          true,
+          false
+        ],
+        "stored_parameter_interval": [
+          null,
+          null
+        ],
+        "stored_interval_flags": [
+          false,
+          false
+        ],
+        "stored_cache_trailer": [
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.0009639344559628128,
+            "offset": 22624
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "spline",
+            "offset": 22633
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22641
+          },
+          {
+            "tag": 15,
+            "kind": "subtype_start",
+            "value": null,
+            "offset": 22642
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "ref",
+            "offset": 22643
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 22648
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 22657
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22658
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22659
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22660
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22661
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "null_surface",
+            "offset": 22662
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nubs",
+            "offset": 22676
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 22682
+          },
+          {
+            "tag": 21,
+            "kind": "enum",
+            "value": 2,
+            "offset": 22691
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 8,
+            "offset": 22700
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -3.141592653589793,
+            "offset": 22709
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 22718
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.243994752564138,
+            "offset": 22727
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22736
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -1.3463968515384828,
+            "offset": 22745
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22754
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4487989505128276,
+            "offset": 22763
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22772
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.4487989505128276,
+            "offset": 22781
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22790
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 1.3463968515384828,
+            "offset": 22799
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22808
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 2.243994752564138,
+            "offset": 22817
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22826
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 3.141592653589793,
+            "offset": 22835
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 22844
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474847,
+            "offset": 22853
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594560308615e-05,
+            "offset": 22862
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.693616749211056,
+            "offset": 22871
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.20882177607950128,
+            "offset": 22880
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.49278743623122256,
+            "offset": 22889
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.6266965559815564,
+            "offset": 22898
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.18530763982603474,
+            "offset": 22907
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7809954057598794,
+            "offset": 22916
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.729099886266414,
+            "offset": 22925
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.3477238096558662,
+            "offset": 22934
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7287510316823058,
+            "offset": 22943
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.34750469993948385,
+            "offset": 22952
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.1854203676875283,
+            "offset": 22961
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.7815249745202488,
+            "offset": 22970
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.49260159784979507,
+            "offset": 22979
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6263771800628132,
+            "offset": 22988
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935548030839135,
+            "offset": 22997
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.2088694692686219,
+            "offset": 23006
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474847,
+            "offset": 23015
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594560308615e-05,
+            "offset": 23024
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 23033
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23041
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23042
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23043
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23052
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23061
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23070
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 23079
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23080
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 23081
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23082
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23083
+          }
+        ],
+        "reference_scope": "Inline support references retained in their own unresolved namespace; parent topology is resolved independently",
+        "flag_scope": "Literal wrapper and interval flags preserved; no curve reversal or edge/cache parameter remapping inferred",
+        "representation": "Stored closed cubic polynomial XYZ and cubic UV form2 approximation caches; exact parameter-defined curve is not reconstructed",
+        "cache_status": "Closed cache structure independently evaluable; saved source-Circle API evaluations have nonzero deviations and do not establish exact cache equality",
+        "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+        "is_periodic": null,
+        "cached_endpoints_coincide": true,
+        "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved",
+        "closure_scope": "Coincident first/last controls of each clamped grid establish cached endpoint closure inside the stored domain only",
+        "scope": "Observed closed cubic polynomial par_int_cur XYZ/UV form2 caches with one literal spline-reference support; independent cache evaluation only, exact procedural geometry, periodicity and coedge parameterization unresolved"
+      },
+      "pcurve_record_index": 48,
+      "expected_pcurve": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.243994752564138,
+          -1.3463968515384828,
+          -0.4487989505128276,
+          0.4487989505128276,
+          1.3463968515384828,
+          2.243994752564138,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.243994752564138,
+            1
+          ],
+          [
+            -1.3463968515384828,
+            1
+          ],
+          [
+            -0.4487989505128276,
+            1
+          ],
+          [
+            0.4487989505128276,
+            1
+          ],
+          [
+            1.3463968515384828,
+            1
+          ],
+          [
+            2.243994752564138,
+            1
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          [
+            -0.693616749211056,
+            0.20882177607950128
+          ],
+          [
+            -0.49278743623122256,
+            0.6266965559815564
+          ],
+          [
+            0.18530763982603474,
+            0.7809954057598794
+          ],
+          [
+            0.729099886266414,
+            0.3477238096558662
+          ],
+          [
+            0.7287510316823058,
+            -0.34750469993948385
+          ],
+          [
+            0.1854203676875283,
+            -0.7815249745202488
+          ],
+          [
+            -0.49260159784979507,
+            -0.6263771800628132
+          ],
+          [
+            -0.6935548030839135,
+            -0.2088694692686219
+          ],
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          [
+            -0.693616749211056,
+            0.20882177607950128
+          ],
+          [
+            -0.49278743623122256,
+            0.6266965559815564
+          ],
+          [
+            0.18530763982603474,
+            0.7809954057598794
+          ],
+          [
+            0.729099886266414,
+            0.3477238096558662
+          ],
+          [
+            0.7287510316823058,
+            -0.34750469993948385
+          ],
+          [
+            0.1854203676875283,
+            -0.7815249745202488
+          ],
+          [
+            -0.49260159784979507,
+            -0.6263771800628132
+          ],
+          [
+            -0.6935548030839135,
+            -0.2088694692686219
+          ],
+          [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_form_code": 2,
+        "stored_prefix_integer": -1,
+        "stored_selected_support_slot": 0,
+        "stored_intcurve_record_pointer": 66,
+        "owning_coedge_index": 37,
+        "parent_loop_index": 29,
+        "parent_face_index": 20,
+        "parent_surface_record_index": 30,
+        "parent_surface_namespace": {
+          "source_block": {
+            "record_index": 30,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 2995,
+            "byte_end": 17900,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "target_definition": {
+            "record_index": 30,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 2995,
+            "byte_end": 17900,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "source_blob_sha256": "01117ba2cd914bf21cc1e139a843a297cc0214521a88faddfa9d49d89d4aaa83",
+          "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+        },
+        "parent_intcurve_support_namespaces": [
+          {
+            "slot": 0,
+            "namespace_proof": {
+              "source_block": {
+                "record_index": 66,
+                "record_kind": "intcurve-curve",
+                "section": "geometry",
+                "token_start": 108,
+                "token_end": 111,
+                "byte_start": 22642,
+                "byte_end": 22658,
+                "subtype_name": "ref",
+                "context_kind": "surface",
+                "context_evidence": "Literal inline spline wrapper",
+                "parent_definition_index": 1,
+                "definition_index": null,
+                "reference_id": 0
+              },
+              "target_definition": {
+                "record_index": 30,
+                "record_kind": "spline-surface",
+                "section": "geometry",
+                "token_start": 4,
+                "token_end": 1665,
+                "byte_start": 2995,
+                "byte_end": 17900,
+                "subtype_name": "exact_spl_sur",
+                "context_kind": "surface",
+                "context_evidence": "Typed top-level spline-surface wrapper",
+                "parent_definition_index": null,
+                "definition_index": 0,
+                "reference_id": null
+              },
+              "source_blob_sha256": "01117ba2cd914bf21cc1e139a843a297cc0214521a88faddfa9d49d89d4aaa83",
+              "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+            }
+          }
+        ],
+        "selected_support_definition_index": 0,
+        "representation": "Stored embedded UV NUBS cache selected through typed parent curve and exact parent-surface inline identity",
+        "flag_scope": "Magnitude of observed selector agrees support slot1/2; sign retained literally, without reversal/orientation/parameter remapping semantics",
+        "coordinate_system": "Selected explicitly identified parent support UV cache; no implicit surface evaluation or world conversion",
+        "cache_status": "Stored UV cache recovered by typed topology and namespace identity; exact coedge/cache parameterization and API evaluator equivalence unresolved",
+        "scope": "Observed explicit NUBS UV caches with bounded support wrappers, or compact pcurve to stored UV slot through typed parent topology and exact inline support identity; sign, procedural evaluation and general coedge parameterization unresolved"
+      },
+      "curve_typed_byte_replay": {
+        "offset": 21677,
+        "end_offset": 23085,
+        "byte_count": 1408,
+        "original_sha256": "b1e20bc75c58973cd80295afaad4bf182ca221a0889d57e43a69afd4379f5d50",
+        "typed_replay_sha256": "b1e20bc75c58973cd80295afaad4bf182ca221a0889d57e43a69afd4379f5d50",
+        "whole_record_replay_exact": true
+      },
+      "pcurve_typed_byte_replay": {
+        "offset": 19597,
+        "end_offset": 19669,
+        "byte_count": 72,
+        "original_sha256": "e402f63bb127e7f19fd1a9b86b120fd7a6f3411553060692a66807bb6e33b14d",
+        "typed_replay_sha256": "e402f63bb127e7f19fd1a9b86b120fd7a6f3411553060692a66807bb6e33b14d",
+        "whole_record_replay_exact": true
+      },
+      "typed_parent_chain": {
+        "edge": {
+          "index": 47,
+          "kind": "edge",
+          "offset": 19499,
+          "attribute_index": 64,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "start_vertex_index": 65,
+          "end_vertex_index": 65,
+          "first_coedge_index": 37,
+          "curve_index": 66,
+          "start_parameter": -3.141592653589793,
+          "end_parameter": 3.141592653589793,
+          "is_reversed": false,
+          "stored_trailing_text": "unknown"
+        },
+        "endpoint_vertices": [
+          {
+            "role": "start",
+            "vertex_index": 65,
+            "point_index": 80,
+            "native_parameter": -3.141592653589793,
+            "stored_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          },
+          {
+            "role": "end",
+            "vertex_index": 65,
+            "point_index": 80,
+            "native_parameter": 3.141592653589793,
+            "stored_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474843,
+              -2.384659456019382e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          }
+        ],
+        "coedge": {
+          "index": 37,
+          "kind": "coedge",
+          "offset": 18388,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_coedge_index": 37,
+          "previous_coedge_index": 37,
+          "partner_index": null,
+          "edge_index": 47,
+          "loop_index": 29,
+          "pcurve_index": 48,
+          "is_reversed": true,
+          "uninterpreted_field_9": 0
+        },
+        "loop": {
+          "index": 29,
+          "kind": "loop",
+          "offset": 2889,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_loop_index": null,
+          "first_coedge_index": 37,
+          "face_index": 20
+        },
+        "face": {
+          "index": 20,
+          "kind": "face",
+          "offset": 1848,
+          "attribute_index": 28,
+          "stored_entity_id": 5,
+          "pattern_index": null,
+          "next_face_index": null,
+          "first_loop_index": 29,
+          "shell_index": 16,
+          "subshell_index": null,
+          "surface_index": 30,
+          "is_reversed": false,
+          "is_double_sided": true,
+          "stored_containment_flag": false
+        },
+        "selected_surface_record_index": 30,
+        "selected_support_definition_index": 0
+      },
+      "independent_UV_and_approximation_samples": [
+        {
+          "parameter": -3.141592653589793,
+          "fraction": 0.0,
+          "xyz_cache": [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474843,
+            -2.3846594560196532e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 2.7138935630027783e-18,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368061363,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": -1.5707963267948966,
+          "fraction": 0.25,
+          "xyz_cache": [
+            0.0003273246610508776,
+            0.6998700701668797,
+            0.0
+          ],
+          "uv_cache": [
+            0.007322086194355329,
+            0.6998766429015021
+          ],
+          "independent_UV_basis_error": 6.938893903907228e-18,
+          "selected_support_composition": [
+            0.0003220861943552458,
+            0.699876642901503,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 8.404901769128384e-06,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0003521692707586653,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 0.0,
+          "fraction": 0.5,
+          "xyz_cache": [
+            0.6989787216750745,
+            -4.9445424772663615e-05,
+            0.0
+          ],
+          "uv_cache": [
+            0.7062770650069607,
+            9.395738992550029e-05
+          ],
+          "independent_UV_basis_error": 1.1295700899707568e-16,
+          "selected_support_composition": [
+            0.6992770650069611,
+            9.39573899253851e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0003310182939725924,
+          "actual_source_circle_point_cm": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0010224745801209747,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 1.5707963267948966,
+          "fraction": 0.75,
+          "xyz_cache": [
+            0.00029470562603156614,
+            -0.6995205978487884,
+            0.0
+          ],
+          "uv_cache": [
+            0.007425102907461498,
+            -0.7000852872710845
+          ],
+          "independent_UV_basis_error": 3.9898639947466563e-17,
+          "selected_support_composition": [
+            0.00042510290746170795,
+            -0.700085287271085,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0005795494755911978,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            -0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005627413514225735,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 3.141592653589793,
+          "fraction": 1.0,
+          "xyz_cache": [
+            -0.7005857761474843,
+            -2.384659456019382e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474847,
+            -2.3846594560308615e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474843,
+            -2.3846594560196532e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 2.7138935630027783e-18,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368061293,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        }
+      ],
+      "independent_Bernstein_XYZ_errors_raw": [
+        2.2591401799415137e-16,
+        1.1102230246251565e-16,
+        1.1102230246251565e-16,
+        1.5700924586837752e-16,
+        1.1443916996305594e-16,
+        4.85722573273506e-17,
+        2.7755575615628914e-17,
+        5.551115123125783e-17,
+        5.551115123125783e-17,
+        1.2412670766236366e-16,
+        0.0,
+        2.220446049250313e-16,
+        0.0,
+        5.551115123125783e-17,
+        1.2412670766236366e-16,
+        2.7755575615628914e-17,
+        1.1857187100668868e-16,
+        0.0,
+        2.3714374201337736e-16,
+        0.0,
+        1.2412670766236366e-16,
+        2.9893669801409088e-16,
+        2.7755575615628914e-17,
+        1.249000902703301e-16
+      ],
+      "XYZ_cache_analytic_span_bounds_raw": {
+        "min": [
+          -0.7005857833106814,
+          -0.6995215263025764,
+          0.0
+        ],
+        "max": [
+          0.6989801353320177,
+          0.6998836892812574,
+          0.0
+        ]
+      },
+      "actual_API_result_bounds_cm": {
+        "min": [
+          -0.7005857761474843,
+          -0.700100789080967,
+          0.0
+        ],
+        "max": [
+          0.6992771032664715,
+          0.699889630114144,
+          0.0
+        ]
+      },
+      "cache_minus_API_result_bound_deltas_raw": {
+        "min": [
+          -7.163197146553557e-09,
+          0.000579262778390599,
+          0.0
+        ],
+        "max": [
+          -0.00029696793445377345,
+          -5.940832886519587e-06,
+          0.0
+        ]
+      },
+      "bound_comparison_scope": "Numeric cache/result-AABB corroboration; no source/BODY identity or exact cache equivalence inferred"
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+      "archive_sha256": "4e6c85c63ff82fbcee77e02571287701e46f3f55a55d499fe65668768ef3fe0d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4530a523-0a85-4518-af28-62157a3e6e56.smbh",
+      "asm_blob_sha256": "05303896854a5924c735745c9439d9f72e15f88128422b49074e6b91582433c5",
+      "curve_record_index": 66,
+      "expected_cache": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.289093034857972,
+          -2.289093034857972,
+          -2.289093034857972,
+          -1.4549965685283677,
+          -1.4549965685283677,
+          -1.4549965685283677,
+          -0.596550241004537,
+          -0.596550241004537,
+          -0.596550241004537,
+          0.2762933219786907,
+          0.2762933219786907,
+          0.2762933219786907,
+          1.0916132799499862,
+          1.0916132799499862,
+          1.0916132799499862,
+          1.794519867055732,
+          1.794519867055732,
+          1.794519867055732,
+          2.4722415539855214,
+          2.4722415539855214,
+          2.4722415539855214,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.289093034857972,
+            3
+          ],
+          [
+            -1.4549965685283677,
+            3
+          ],
+          [
+            -0.596550241004537,
+            3
+          ],
+          [
+            0.2762933219786907,
+            3
+          ],
+          [
+            1.0916132799499862,
+            3
+          ],
+          [
+            1.794519867055732,
+            3
+          ],
+          [
+            2.4722415539855214,
+            3
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points": [
+          [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ],
+          [
+            -0.7006151930220751,
+            0.19832868241648896,
+            0.0
+          ],
+          [
+            -0.6100388566356149,
+            0.39676398897884757,
+            0.0
+          ],
+          [
+            -0.4611010989938733,
+            0.5277351338619549,
+            0.0
+          ],
+          [
+            -0.3153785032033509,
+            0.6558789672875367,
+            0.0
+          ],
+          [
+            -0.11194087837814873,
+            0.7171235735894944,
+            0.0
+          ],
+          [
+            0.08117409952906168,
+            0.6956767688725304,
+            0.0
+          ],
+          [
+            0.2799267022151649,
+            0.6736038654499624,
+            0.0
+          ],
+          [
+            0.4662076031517417,
+            0.5578798678091703,
+            0.0
+          ],
+          [
+            0.5796150294488117,
+            0.3931530915377702,
+            0.0
+          ],
+          [
+            0.6949244423545877,
+            0.2256636379638909,
+            0.0
+          ],
+          [
+            0.7277509915654679,
+            0.004905741879257242,
+            0.0
+          ],
+          [
+            0.673468824121294,
+            -0.19125219579661393,
+            0.0
+          ],
+          [
+            0.6227640514035911,
+            -0.37448260303592407,
+            0.0
+          ],
+          [
+            0.4906737733500334,
+            -0.5324130667331071,
+            0.0
+          ],
+          [
+            0.32233017802355646,
+            -0.6212663835559876,
+            0.0
+          ],
+          [
+            0.17719718956283406,
+            -0.6978689259939288,
+            0.0
+          ],
+          [
+            0.005238263030793194,
+            -0.7185098357622389,
+            0.0
+          ],
+          [
+            -0.1550885237185861,
+            -0.6819674432256408,
+            0.0
+          ],
+          [
+            -0.30967085708840486,
+            -0.6467343519889699,
+            0.0
+          ],
+          [
+            -0.4512586694306012,
+            -0.5592196346490343,
+            0.0
+          ],
+          [
+            -0.5485717309895443,
+            -0.43456547226980535,
+            0.0
+          ],
+          [
+            -0.6446828722095016,
+            -0.31145092205263003,
+            0.0
+          ],
+          [
+            -0.7005626791080033,
+            -0.15576289971031,
+            0.0
+          ],
+          [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ]
+        ],
+        "weights": [],
+        "is_rational": false,
+        "stored_form_code": 2,
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "procedural_subtype": "par_int_cur",
+        "stored_wrapper_flag": false,
+        "uninterpreted_cache_scalar": 0.0009639344559641515,
+        "stored_support_definition": {
+          "kind": "spline",
+          "stored_wrapper_flag": false,
+          "procedural_subtype": "ref",
+          "stored_inline_surface_ref": 0,
+          "definition_status": "Inline reference namespace unresolved; not an ASM entity index",
+          "stored_definition": [
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "spline",
+              "offset": 22633
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22641
+            },
+            {
+              "tag": 15,
+              "kind": "subtype_start",
+              "value": null,
+              "offset": 22642
+            },
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "ref",
+              "offset": 22643
+            },
+            {
+              "tag": 4,
+              "kind": "integer",
+              "value": 0,
+              "offset": 22648
+            },
+            {
+              "tag": 16,
+              "kind": "subtype_end",
+              "value": null,
+              "offset": 22657
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22658
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22659
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22660
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 22661
+            }
+          ]
+        },
+        "stored_embedded_uv_cache": {
+          "degree": 3,
+          "knots": [
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -2.243994752564138,
+            -1.3463968515384828,
+            -0.4487989505128276,
+            0.4487989505128276,
+            1.3463968515384828,
+            2.243994752564138,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793
+          ],
+          "stored_compact_knots": [
+            [
+              -3.141592653589793,
+              3
+            ],
+            [
+              -2.243994752564138,
+              1
+            ],
+            [
+              -1.3463968515384828,
+              1
+            ],
+            [
+              -0.4487989505128276,
+              1
+            ],
+            [
+              0.4487989505128276,
+              1
+            ],
+            [
+              1.3463968515384828,
+              1
+            ],
+            [
+              2.243994752564138,
+              1
+            ],
+            [
+              3.141592653589793,
+              3
+            ]
+          ],
+          "raw_control_points": [
+            [
+              -0.6935857761474861,
+              -2.3846594558657067e-05
+            ],
+            [
+              -0.6936167492110565,
+              0.2088217760795026
+            ],
+            [
+              -0.4927874362312126,
+              0.6266965559815545
+            ],
+            [
+              0.18530763982603166,
+              0.7809954057598834
+            ],
+            [
+              0.7290998862664184,
+              0.3477238096558598
+            ],
+            [
+              0.7287510316823063,
+              -0.3475046999394809
+            ],
+            [
+              0.1854203676875283,
+              -0.781524974520251
+            ],
+            [
+              -0.4926015978497896,
+              -0.6263771800628133
+            ],
+            [
+              -0.6935548030839156,
+              -0.20886946926861993
+            ],
+            [
+              -0.6935857761474861,
+              -2.3846594558657067e-05
+            ]
+          ],
+          "weights": [],
+          "is_rational": false,
+          "stored_form_code": 2,
+          "parameter_domain": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "is_periodic": null,
+          "cached_endpoints_coincide": true,
+          "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved"
+        },
+        "stored_trailer_scalar_lists": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "stored_trailer_flags": [
+          true,
+          false
+        ],
+        "stored_parameter_interval": [
+          null,
+          null
+        ],
+        "stored_interval_flags": [
+          false,
+          false
+        ],
+        "stored_cache_trailer": [
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.0009639344559641515,
+            "offset": 22624
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "spline",
+            "offset": 22633
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22641
+          },
+          {
+            "tag": 15,
+            "kind": "subtype_start",
+            "value": null,
+            "offset": 22642
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "ref",
+            "offset": 22643
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 22648
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 22657
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22658
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22659
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22660
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 22661
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "null_surface",
+            "offset": 22662
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nubs",
+            "offset": 22676
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 22682
+          },
+          {
+            "tag": 21,
+            "kind": "enum",
+            "value": 2,
+            "offset": 22691
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 8,
+            "offset": 22700
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -3.141592653589793,
+            "offset": 22709
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 22718
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.243994752564138,
+            "offset": 22727
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22736
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -1.3463968515384828,
+            "offset": 22745
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22754
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4487989505128276,
+            "offset": 22763
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22772
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.4487989505128276,
+            "offset": 22781
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22790
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 1.3463968515384828,
+            "offset": 22799
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22808
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 2.243994752564138,
+            "offset": 22817
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 22826
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 3.141592653589793,
+            "offset": 22835
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 22844
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474861,
+            "offset": 22853
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594558657067e-05,
+            "offset": 22862
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6936167492110565,
+            "offset": 22871
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.2088217760795026,
+            "offset": 22880
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4927874362312126,
+            "offset": 22889
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.6266965559815545,
+            "offset": 22898
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.18530763982603166,
+            "offset": 22907
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7809954057598834,
+            "offset": 22916
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7290998862664184,
+            "offset": 22925
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.3477238096558598,
+            "offset": 22934
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7287510316823063,
+            "offset": 22943
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.3475046999394809,
+            "offset": 22952
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.1854203676875283,
+            "offset": 22961
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.781524974520251,
+            "offset": 22970
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4926015978497896,
+            "offset": 22979
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6263771800628133,
+            "offset": 22988
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935548030839156,
+            "offset": 22997
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.20886946926861993,
+            "offset": 23006
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474861,
+            "offset": 23015
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594558657067e-05,
+            "offset": 23024
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 23033
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23041
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23042
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23043
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23052
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23061
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 23070
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 23079
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23080
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 23081
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23082
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 23083
+          }
+        ],
+        "reference_scope": "Inline support references retained in their own unresolved namespace; parent topology is resolved independently",
+        "flag_scope": "Literal wrapper and interval flags preserved; no curve reversal or edge/cache parameter remapping inferred",
+        "representation": "Stored closed cubic polynomial XYZ and cubic UV form2 approximation caches; exact parameter-defined curve is not reconstructed",
+        "cache_status": "Closed cache structure independently evaluable; saved source-Circle API evaluations have nonzero deviations and do not establish exact cache equality",
+        "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+        "is_periodic": null,
+        "cached_endpoints_coincide": true,
+        "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved",
+        "closure_scope": "Coincident first/last controls of each clamped grid establish cached endpoint closure inside the stored domain only",
+        "scope": "Observed closed cubic polynomial par_int_cur XYZ/UV form2 caches with one literal spline-reference support; independent cache evaluation only, exact procedural geometry, periodicity and coedge parameterization unresolved"
+      },
+      "pcurve_record_index": 48,
+      "expected_pcurve": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.243994752564138,
+          -1.3463968515384828,
+          -0.4487989505128276,
+          0.4487989505128276,
+          1.3463968515384828,
+          2.243994752564138,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.243994752564138,
+            1
+          ],
+          [
+            -1.3463968515384828,
+            1
+          ],
+          [
+            -0.4487989505128276,
+            1
+          ],
+          [
+            0.4487989505128276,
+            1
+          ],
+          [
+            1.3463968515384828,
+            1
+          ],
+          [
+            2.243994752564138,
+            1
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          [
+            -0.6936167492110565,
+            0.2088217760795026
+          ],
+          [
+            -0.4927874362312126,
+            0.6266965559815545
+          ],
+          [
+            0.18530763982603166,
+            0.7809954057598834
+          ],
+          [
+            0.7290998862664184,
+            0.3477238096558598
+          ],
+          [
+            0.7287510316823063,
+            -0.3475046999394809
+          ],
+          [
+            0.1854203676875283,
+            -0.781524974520251
+          ],
+          [
+            -0.4926015978497896,
+            -0.6263771800628133
+          ],
+          [
+            -0.6935548030839156,
+            -0.20886946926861993
+          ],
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          [
+            -0.6936167492110565,
+            0.2088217760795026
+          ],
+          [
+            -0.4927874362312126,
+            0.6266965559815545
+          ],
+          [
+            0.18530763982603166,
+            0.7809954057598834
+          ],
+          [
+            0.7290998862664184,
+            0.3477238096558598
+          ],
+          [
+            0.7287510316823063,
+            -0.3475046999394809
+          ],
+          [
+            0.1854203676875283,
+            -0.781524974520251
+          ],
+          [
+            -0.4926015978497896,
+            -0.6263771800628133
+          ],
+          [
+            -0.6935548030839156,
+            -0.20886946926861993
+          ],
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_form_code": 2,
+        "stored_prefix_integer": -1,
+        "stored_selected_support_slot": 0,
+        "stored_intcurve_record_pointer": 66,
+        "owning_coedge_index": 37,
+        "parent_loop_index": 29,
+        "parent_face_index": 20,
+        "parent_surface_record_index": 30,
+        "parent_surface_namespace": {
+          "source_block": {
+            "record_index": 30,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 2995,
+            "byte_end": 17900,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "target_definition": {
+            "record_index": 30,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 2995,
+            "byte_end": 17900,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "source_blob_sha256": "05303896854a5924c735745c9439d9f72e15f88128422b49074e6b91582433c5",
+          "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+        },
+        "parent_intcurve_support_namespaces": [
+          {
+            "slot": 0,
+            "namespace_proof": {
+              "source_block": {
+                "record_index": 66,
+                "record_kind": "intcurve-curve",
+                "section": "geometry",
+                "token_start": 108,
+                "token_end": 111,
+                "byte_start": 22642,
+                "byte_end": 22658,
+                "subtype_name": "ref",
+                "context_kind": "surface",
+                "context_evidence": "Literal inline spline wrapper",
+                "parent_definition_index": 1,
+                "definition_index": null,
+                "reference_id": 0
+              },
+              "target_definition": {
+                "record_index": 30,
+                "record_kind": "spline-surface",
+                "section": "geometry",
+                "token_start": 4,
+                "token_end": 1665,
+                "byte_start": 2995,
+                "byte_end": 17900,
+                "subtype_name": "exact_spl_sur",
+                "context_kind": "surface",
+                "context_evidence": "Typed top-level spline-surface wrapper",
+                "parent_definition_index": null,
+                "definition_index": 0,
+                "reference_id": null
+              },
+              "source_blob_sha256": "05303896854a5924c735745c9439d9f72e15f88128422b49074e6b91582433c5",
+              "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+            }
+          }
+        ],
+        "selected_support_definition_index": 0,
+        "representation": "Stored embedded UV NUBS cache selected through typed parent curve and exact parent-surface inline identity",
+        "flag_scope": "Magnitude of observed selector agrees support slot1/2; sign retained literally, without reversal/orientation/parameter remapping semantics",
+        "coordinate_system": "Selected explicitly identified parent support UV cache; no implicit surface evaluation or world conversion",
+        "cache_status": "Stored UV cache recovered by typed topology and namespace identity; exact coedge/cache parameterization and API evaluator equivalence unresolved",
+        "scope": "Observed explicit NUBS UV caches with bounded support wrappers, or compact pcurve to stored UV slot through typed parent topology and exact inline support identity; sign, procedural evaluation and general coedge parameterization unresolved"
+      },
+      "curve_typed_byte_replay": {
+        "offset": 21677,
+        "end_offset": 23085,
+        "byte_count": 1408,
+        "original_sha256": "d886f298cfd6c475c213f4dc7a39872ef4acf61878cc07ee0156f20663aa1eb2",
+        "typed_replay_sha256": "d886f298cfd6c475c213f4dc7a39872ef4acf61878cc07ee0156f20663aa1eb2",
+        "whole_record_replay_exact": true
+      },
+      "pcurve_typed_byte_replay": {
+        "offset": 19597,
+        "end_offset": 19669,
+        "byte_count": 72,
+        "original_sha256": "e402f63bb127e7f19fd1a9b86b120fd7a6f3411553060692a66807bb6e33b14d",
+        "typed_replay_sha256": "e402f63bb127e7f19fd1a9b86b120fd7a6f3411553060692a66807bb6e33b14d",
+        "whole_record_replay_exact": true
+      },
+      "typed_parent_chain": {
+        "edge": {
+          "index": 47,
+          "kind": "edge",
+          "offset": 19499,
+          "attribute_index": 64,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "start_vertex_index": 65,
+          "end_vertex_index": 65,
+          "first_coedge_index": 37,
+          "curve_index": 66,
+          "start_parameter": -3.141592653589793,
+          "end_parameter": 3.141592653589793,
+          "is_reversed": false,
+          "stored_trailing_text": "unknown"
+        },
+        "endpoint_vertices": [
+          {
+            "role": "start",
+            "vertex_index": 65,
+            "point_index": 80,
+            "native_parameter": -3.141592653589793,
+            "stored_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          },
+          {
+            "role": "end",
+            "vertex_index": 65,
+            "point_index": 80,
+            "native_parameter": 3.141592653589793,
+            "stored_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          }
+        ],
+        "coedge": {
+          "index": 37,
+          "kind": "coedge",
+          "offset": 18388,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_coedge_index": 37,
+          "previous_coedge_index": 37,
+          "partner_index": null,
+          "edge_index": 47,
+          "loop_index": 29,
+          "pcurve_index": 48,
+          "is_reversed": true,
+          "uninterpreted_field_9": 0
+        },
+        "loop": {
+          "index": 29,
+          "kind": "loop",
+          "offset": 2889,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_loop_index": null,
+          "first_coedge_index": 37,
+          "face_index": 20
+        },
+        "face": {
+          "index": 20,
+          "kind": "face",
+          "offset": 1848,
+          "attribute_index": 28,
+          "stored_entity_id": 5,
+          "pattern_index": null,
+          "next_face_index": null,
+          "first_loop_index": 29,
+          "shell_index": 16,
+          "subshell_index": null,
+          "surface_index": 30,
+          "is_reversed": false,
+          "is_double_sided": true,
+          "stored_containment_flag": false
+        },
+        "selected_surface_record_index": 30,
+        "selected_support_definition_index": 0
+      },
+      "independent_UV_and_approximation_samples": [
+        {
+          "parameter": -3.141592653589793,
+          "fraction": 0.0,
+          "xyz_cache": [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474861,
+            -2.3846594558587275e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 1.1106993784654653e-16,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368079567,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": -1.5707963267948966,
+          "fraction": 0.25,
+          "xyz_cache": [
+            0.00032732466105172067,
+            0.6998700701668797,
+            0.0
+          ],
+          "uv_cache": [
+            0.007322086194356862,
+            0.6998766429015036
+          ],
+          "independent_UV_basis_error": 1.1631705747361534e-16,
+          "selected_support_composition": [
+            0.00032208619435588183,
+            0.6998766429015038,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 8.404901769865162e-06,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.00035216927075944893,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 0.0,
+          "fraction": 0.5,
+          "xyz_cache": [
+            0.698978721675075,
+            -4.944542477449548e-05,
+            0.0
+          ],
+          "uv_cache": [
+            0.706277065006963,
+            9.395738992390434e-05
+          ],
+          "independent_UV_basis_error": 2.2591401799415137e-16,
+          "selected_support_composition": [
+            0.6992770650069616,
+            9.395738992393167e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0003310182939727564,
+          "actual_source_circle_point_cm": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0010224745801205087,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 1.5707963267948966,
+          "fraction": 0.75,
+          "xyz_cache": [
+            0.0002947056260320449,
+            -0.6995205978487866,
+            0.0
+          ],
+          "uv_cache": [
+            0.007425102907463267,
+            -0.7000852872710855
+          ],
+          "independent_UV_basis_error": 1.1150912609939193e-16,
+          "selected_support_composition": [
+            0.00042510290746235153,
+            -0.7000852872710849,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0005795494755928575,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            -0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005627413514243375,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 3.141592653589793,
+          "fraction": 1.0,
+          "xyz_cache": [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474861,
+            -2.3846594558587275e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 1.1106993784654653e-16,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368079496,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        }
+      ],
+      "independent_Bernstein_XYZ_errors_raw": [
+        1.1188630228279524e-16,
+        5.551115123125783e-17,
+        1.2412670766236366e-16,
+        2.220446049250313e-16,
+        1.2412670766236366e-16,
+        1.2118257228641695e-16,
+        2.237726045655905e-16,
+        2.482534153247273e-16,
+        1.1102230246251565e-16,
+        3.510833468576701e-16,
+        1.1188630228279524e-16,
+        1.3877787807814457e-17,
+        1.2412670766236366e-16,
+        0.0,
+        0.0,
+        1.3877787807814457e-16,
+        0.0,
+        1.2738115944464653e-16,
+        2.3714374201337736e-16,
+        1.5700924586837752e-16,
+        1.2412670766236366e-16,
+        2.2887833992611187e-16,
+        1.3877787807814457e-16,
+        1.3877787807814457e-17
+      ],
+      "XYZ_cache_analytic_span_bounds_raw": {
+        "min": [
+          -0.7005857833106836,
+          -0.6995215263025745,
+          0.0
+        ],
+        "max": [
+          0.6989801353320184,
+          0.6998836892812574,
+          0.0
+        ]
+      },
+      "actual_API_result_bounds_cm": {
+        "min": [
+          -0.7005857761474862,
+          -0.7001007890809671,
+          0.0
+        ],
+        "max": [
+          0.6992771032664719,
+          0.6998896301141445,
+          0.0
+        ]
+      },
+      "cache_minus_API_result_bound_deltas_raw": {
+        "min": [
+          -7.163197368598162e-09,
+          0.0005792627783925974,
+          0.0
+        ],
+        "max": [
+          -0.0002969679344534404,
+          -5.9408328870746985e-06,
+          0.0
+        ]
+      },
+      "bound_comparison_scope": "Numeric cache/result-AABB corroboration; no source/BODY identity or exact cache equivalence inferred"
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+      "archive_sha256": "4e6c85c63ff82fbcee77e02571287701e46f3f55a55d499fe65668768ef3fe0d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0fe6384e-1436-4bb3-a550-ff30240d0188.smb",
+      "asm_blob_sha256": "4a3012e2629eb0ac68d8be61634279e07caed4daaef927ab1ff973fec745d8f8",
+      "curve_record_index": 50,
+      "expected_cache": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.289093034857972,
+          -2.289093034857972,
+          -2.289093034857972,
+          -1.4549965685283677,
+          -1.4549965685283677,
+          -1.4549965685283677,
+          -0.596550241004537,
+          -0.596550241004537,
+          -0.596550241004537,
+          0.2762933219786907,
+          0.2762933219786907,
+          0.2762933219786907,
+          1.0916132799499862,
+          1.0916132799499862,
+          1.0916132799499862,
+          1.794519867055732,
+          1.794519867055732,
+          1.794519867055732,
+          2.4722415539855214,
+          2.4722415539855214,
+          2.4722415539855214,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.289093034857972,
+            3
+          ],
+          [
+            -1.4549965685283677,
+            3
+          ],
+          [
+            -0.596550241004537,
+            3
+          ],
+          [
+            0.2762933219786907,
+            3
+          ],
+          [
+            1.0916132799499862,
+            3
+          ],
+          [
+            1.794519867055732,
+            3
+          ],
+          [
+            2.4722415539855214,
+            3
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points": [
+          [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ],
+          [
+            -0.7006151930220751,
+            0.19832868241648896,
+            0.0
+          ],
+          [
+            -0.6100388566356149,
+            0.39676398897884757,
+            0.0
+          ],
+          [
+            -0.4611010989938733,
+            0.5277351338619549,
+            0.0
+          ],
+          [
+            -0.3153785032033509,
+            0.6558789672875367,
+            0.0
+          ],
+          [
+            -0.11194087837814873,
+            0.7171235735894944,
+            0.0
+          ],
+          [
+            0.08117409952906168,
+            0.6956767688725304,
+            0.0
+          ],
+          [
+            0.2799267022151649,
+            0.6736038654499624,
+            0.0
+          ],
+          [
+            0.4662076031517417,
+            0.5578798678091703,
+            0.0
+          ],
+          [
+            0.5796150294488117,
+            0.3931530915377702,
+            0.0
+          ],
+          [
+            0.6949244423545877,
+            0.2256636379638909,
+            0.0
+          ],
+          [
+            0.7277509915654679,
+            0.004905741879257242,
+            0.0
+          ],
+          [
+            0.673468824121294,
+            -0.19125219579661393,
+            0.0
+          ],
+          [
+            0.6227640514035911,
+            -0.37448260303592407,
+            0.0
+          ],
+          [
+            0.4906737733500334,
+            -0.5324130667331071,
+            0.0
+          ],
+          [
+            0.32233017802355646,
+            -0.6212663835559876,
+            0.0
+          ],
+          [
+            0.17719718956283406,
+            -0.6978689259939288,
+            0.0
+          ],
+          [
+            0.005238263030793194,
+            -0.7185098357622389,
+            0.0
+          ],
+          [
+            -0.1550885237185861,
+            -0.6819674432256408,
+            0.0
+          ],
+          [
+            -0.30967085708840486,
+            -0.6467343519889699,
+            0.0
+          ],
+          [
+            -0.4512586694306012,
+            -0.5592196346490343,
+            0.0
+          ],
+          [
+            -0.5485717309895443,
+            -0.43456547226980535,
+            0.0
+          ],
+          [
+            -0.6446828722095016,
+            -0.31145092205263003,
+            0.0
+          ],
+          [
+            -0.7005626791080033,
+            -0.15576289971031,
+            0.0
+          ],
+          [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ]
+        ],
+        "weights": [],
+        "is_rational": false,
+        "stored_form_code": 2,
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "procedural_subtype": "par_int_cur",
+        "stored_wrapper_flag": false,
+        "uninterpreted_cache_scalar": 0.0009639344559641515,
+        "stored_support_definition": {
+          "kind": "spline",
+          "stored_wrapper_flag": false,
+          "procedural_subtype": "ref",
+          "stored_inline_surface_ref": 0,
+          "definition_status": "Inline reference namespace unresolved; not an ASM entity index",
+          "stored_definition": [
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "spline",
+              "offset": 20514
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20522
+            },
+            {
+              "tag": 15,
+              "kind": "subtype_start",
+              "value": null,
+              "offset": 20523
+            },
+            {
+              "tag": 13,
+              "kind": "entity_name",
+              "value": "ref",
+              "offset": 20524
+            },
+            {
+              "tag": 4,
+              "kind": "integer",
+              "value": 0,
+              "offset": 20529
+            },
+            {
+              "tag": 16,
+              "kind": "subtype_end",
+              "value": null,
+              "offset": 20538
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20539
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20540
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20541
+            },
+            {
+              "tag": 11,
+              "kind": "boolean_token",
+              "value": false,
+              "offset": 20542
+            }
+          ]
+        },
+        "stored_embedded_uv_cache": {
+          "degree": 3,
+          "knots": [
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -3.141592653589793,
+            -2.243994752564138,
+            -1.3463968515384828,
+            -0.4487989505128276,
+            0.4487989505128276,
+            1.3463968515384828,
+            2.243994752564138,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793,
+            3.141592653589793
+          ],
+          "stored_compact_knots": [
+            [
+              -3.141592653589793,
+              3
+            ],
+            [
+              -2.243994752564138,
+              1
+            ],
+            [
+              -1.3463968515384828,
+              1
+            ],
+            [
+              -0.4487989505128276,
+              1
+            ],
+            [
+              0.4487989505128276,
+              1
+            ],
+            [
+              1.3463968515384828,
+              1
+            ],
+            [
+              2.243994752564138,
+              1
+            ],
+            [
+              3.141592653589793,
+              3
+            ]
+          ],
+          "raw_control_points": [
+            [
+              -0.6935857761474861,
+              -2.3846594558657067e-05
+            ],
+            [
+              -0.6936167492110565,
+              0.2088217760795026
+            ],
+            [
+              -0.4927874362312126,
+              0.6266965559815545
+            ],
+            [
+              0.18530763982603166,
+              0.7809954057598834
+            ],
+            [
+              0.7290998862664184,
+              0.3477238096558598
+            ],
+            [
+              0.7287510316823063,
+              -0.3475046999394809
+            ],
+            [
+              0.1854203676875283,
+              -0.781524974520251
+            ],
+            [
+              -0.4926015978497896,
+              -0.6263771800628133
+            ],
+            [
+              -0.6935548030839156,
+              -0.20886946926861993
+            ],
+            [
+              -0.6935857761474861,
+              -2.3846594558657067e-05
+            ]
+          ],
+          "weights": [],
+          "is_rational": false,
+          "stored_form_code": 2,
+          "parameter_domain": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "is_periodic": null,
+          "cached_endpoints_coincide": true,
+          "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved"
+        },
+        "stored_trailer_scalar_lists": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "stored_trailer_flags": [
+          true,
+          false
+        ],
+        "stored_parameter_interval": [
+          null,
+          null
+        ],
+        "stored_interval_flags": [
+          false,
+          false
+        ],
+        "stored_cache_trailer": [
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.0009639344559641515,
+            "offset": 20505
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "spline",
+            "offset": 20514
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20522
+          },
+          {
+            "tag": 15,
+            "kind": "subtype_start",
+            "value": null,
+            "offset": 20523
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "ref",
+            "offset": 20524
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20529
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 20538
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20539
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20540
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20541
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20542
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "null_surface",
+            "offset": 20543
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nubs",
+            "offset": 20557
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 20563
+          },
+          {
+            "tag": 21,
+            "kind": "enum",
+            "value": 2,
+            "offset": 20572
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 8,
+            "offset": 20581
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -3.141592653589793,
+            "offset": 20590
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 20599
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.243994752564138,
+            "offset": 20608
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20617
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -1.3463968515384828,
+            "offset": 20626
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20635
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4487989505128276,
+            "offset": 20644
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20653
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.4487989505128276,
+            "offset": 20662
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20671
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 1.3463968515384828,
+            "offset": 20680
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20689
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 2.243994752564138,
+            "offset": 20698
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 1,
+            "offset": 20707
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 3.141592653589793,
+            "offset": 20716
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 3,
+            "offset": 20725
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474861,
+            "offset": 20734
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594558657067e-05,
+            "offset": 20743
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6936167492110565,
+            "offset": 20752
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.2088217760795026,
+            "offset": 20761
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4927874362312126,
+            "offset": 20770
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.6266965559815545,
+            "offset": 20779
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.18530763982603166,
+            "offset": 20788
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7809954057598834,
+            "offset": 20797
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7290998862664184,
+            "offset": 20806
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.3477238096558598,
+            "offset": 20815
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.7287510316823063,
+            "offset": 20824
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.3475046999394809,
+            "offset": 20833
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": 0.1854203676875283,
+            "offset": 20842
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.781524974520251,
+            "offset": 20851
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.4926015978497896,
+            "offset": 20860
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6263771800628133,
+            "offset": 20869
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935548030839156,
+            "offset": 20878
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.20886946926861993,
+            "offset": 20887
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -0.6935857761474861,
+            "offset": 20896
+          },
+          {
+            "tag": 6,
+            "kind": "double",
+            "value": -2.3846594558657067e-05,
+            "offset": 20905
+          },
+          {
+            "tag": 13,
+            "kind": "entity_name",
+            "value": "nullbs",
+            "offset": 20914
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20922
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20923
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20924
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20933
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20942
+          },
+          {
+            "tag": 4,
+            "kind": "integer",
+            "value": 0,
+            "offset": 20951
+          },
+          {
+            "tag": 10,
+            "kind": "boolean_token",
+            "value": true,
+            "offset": 20960
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20961
+          },
+          {
+            "tag": 16,
+            "kind": "subtype_end",
+            "value": null,
+            "offset": 20962
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20963
+          },
+          {
+            "tag": 11,
+            "kind": "boolean_token",
+            "value": false,
+            "offset": 20964
+          }
+        ],
+        "reference_scope": "Inline support references retained in their own unresolved namespace; parent topology is resolved independently",
+        "flag_scope": "Literal wrapper and interval flags preserved; no curve reversal or edge/cache parameter remapping inferred",
+        "representation": "Stored closed cubic polynomial XYZ and cubic UV form2 approximation caches; exact parameter-defined curve is not reconstructed",
+        "cache_status": "Closed cache structure independently evaluable; saved source-Circle API evaluations have nonzero deviations and do not establish exact cache equality",
+        "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+        "is_periodic": null,
+        "cached_endpoints_coincide": true,
+        "periodicity_status": "Form code2 retained; clamped cached endpoints coincide, but universal periodicity or extension semantics remain unresolved",
+        "closure_scope": "Coincident first/last controls of each clamped grid establish cached endpoint closure inside the stored domain only",
+        "scope": "Observed closed cubic polynomial par_int_cur XYZ/UV form2 caches with one literal spline-reference support; independent cache evaluation only, exact procedural geometry, periodicity and coedge parameterization unresolved"
+      },
+      "pcurve_record_index": 37,
+      "expected_pcurve": {
+        "degree": 3,
+        "knots": [
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -3.141592653589793,
+          -2.243994752564138,
+          -1.3463968515384828,
+          -0.4487989505128276,
+          0.4487989505128276,
+          1.3463968515384828,
+          2.243994752564138,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_compact_knots": [
+          [
+            -3.141592653589793,
+            3
+          ],
+          [
+            -2.243994752564138,
+            1
+          ],
+          [
+            -1.3463968515384828,
+            1
+          ],
+          [
+            -0.4487989505128276,
+            1
+          ],
+          [
+            0.4487989505128276,
+            1
+          ],
+          [
+            1.3463968515384828,
+            1
+          ],
+          [
+            2.243994752564138,
+            1
+          ],
+          [
+            3.141592653589793,
+            3
+          ]
+        ],
+        "raw_control_points_uv": [
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          [
+            -0.6936167492110565,
+            0.2088217760795026
+          ],
+          [
+            -0.4927874362312126,
+            0.6266965559815545
+          ],
+          [
+            0.18530763982603166,
+            0.7809954057598834
+          ],
+          [
+            0.7290998862664184,
+            0.3477238096558598
+          ],
+          [
+            0.7287510316823063,
+            -0.3475046999394809
+          ],
+          [
+            0.1854203676875283,
+            -0.781524974520251
+          ],
+          [
+            -0.4926015978497896,
+            -0.6263771800628133
+          ],
+          [
+            -0.6935548030839156,
+            -0.20886946926861993
+          ],
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ]
+        ],
+        "parameter_offset_uv": [
+          0.0,
+          0.0
+        ],
+        "control_points_uv": [
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          [
+            -0.6936167492110565,
+            0.2088217760795026
+          ],
+          [
+            -0.4927874362312126,
+            0.6266965559815545
+          ],
+          [
+            0.18530763982603166,
+            0.7809954057598834
+          ],
+          [
+            0.7290998862664184,
+            0.3477238096558598
+          ],
+          [
+            0.7287510316823063,
+            -0.3475046999394809
+          ],
+          [
+            0.1854203676875283,
+            -0.781524974520251
+          ],
+          [
+            -0.4926015978497896,
+            -0.6263771800628133
+          ],
+          [
+            -0.6935548030839156,
+            -0.20886946926861993
+          ],
+          [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ]
+        ],
+        "weights": [],
+        "parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "stored_form_code": 2,
+        "stored_prefix_integer": -1,
+        "stored_selected_support_slot": 0,
+        "stored_intcurve_record_pointer": 50,
+        "owning_coedge_index": 28,
+        "parent_loop_index": 18,
+        "parent_face_index": 13,
+        "parent_surface_record_index": 19,
+        "parent_surface_namespace": {
+          "source_block": {
+            "record_index": 19,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 1629,
+            "byte_end": 16534,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "target_definition": {
+            "record_index": 19,
+            "record_kind": "spline-surface",
+            "section": "geometry",
+            "token_start": 4,
+            "token_end": 1665,
+            "byte_start": 1629,
+            "byte_end": 16534,
+            "subtype_name": "exact_spl_sur",
+            "context_kind": "surface",
+            "context_evidence": "Typed top-level spline-surface wrapper",
+            "parent_definition_index": null,
+            "definition_index": 0,
+            "reference_id": null
+          },
+          "source_blob_sha256": "4a3012e2629eb0ac68d8be61634279e07caed4daaef927ab1ff973fec745d8f8",
+          "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+        },
+        "parent_intcurve_support_namespaces": [
+          {
+            "slot": 0,
+            "namespace_proof": {
+              "source_block": {
+                "record_index": 50,
+                "record_kind": "intcurve-curve",
+                "section": "geometry",
+                "token_start": 108,
+                "token_end": 111,
+                "byte_start": 20523,
+                "byte_end": 20539,
+                "subtype_name": "ref",
+                "context_kind": "surface",
+                "context_evidence": "Literal inline spline wrapper",
+                "parent_definition_index": 1,
+                "definition_index": null,
+                "reference_id": 0
+              },
+              "target_definition": {
+                "record_index": 19,
+                "record_kind": "spline-surface",
+                "section": "geometry",
+                "token_start": 4,
+                "token_end": 1665,
+                "byte_start": 1629,
+                "byte_end": 16534,
+                "subtype_name": "exact_spl_sur",
+                "context_kind": "surface",
+                "context_evidence": "Typed top-level spline-surface wrapper",
+                "parent_definition_index": null,
+                "definition_index": 0,
+                "reference_id": null
+              },
+              "source_blob_sha256": "4a3012e2629eb0ac68d8be61634279e07caed4daaef927ab1ff973fec745d8f8",
+              "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+            }
+          }
+        ],
+        "selected_support_definition_index": 0,
+        "representation": "Stored embedded UV NUBS cache selected through typed parent curve and exact parent-surface inline identity",
+        "flag_scope": "Magnitude of observed selector agrees support slot1/2; sign retained literally, without reversal/orientation/parameter remapping semantics",
+        "coordinate_system": "Selected explicitly identified parent support UV cache; no implicit surface evaluation or world conversion",
+        "cache_status": "Stored UV cache recovered by typed topology and namespace identity; exact coedge/cache parameterization and API evaluator equivalence unresolved",
+        "scope": "Observed explicit NUBS UV caches with bounded support wrappers, or compact pcurve to stored UV slot through typed parent topology and exact inline support identity; sign, procedural evaluation and general coedge parameterization unresolved"
+      },
+      "curve_typed_byte_replay": {
+        "offset": 19558,
+        "end_offset": 20966,
+        "byte_count": 1408,
+        "original_sha256": "d886f298cfd6c475c213f4dc7a39872ef4acf61878cc07ee0156f20663aa1eb2",
+        "typed_replay_sha256": "d886f298cfd6c475c213f4dc7a39872ef4acf61878cc07ee0156f20663aa1eb2",
+        "whole_record_replay_exact": true
+      },
+      "pcurve_typed_byte_replay": {
+        "offset": 18119,
+        "end_offset": 18191,
+        "byte_count": 72,
+        "original_sha256": "a97b08c661752f1c80ccee3de608afd66c0d7304c820edf04a07c669226beca2",
+        "typed_replay_sha256": "a97b08c661752f1c80ccee3de608afd66c0d7304c820edf04a07c669226beca2",
+        "whole_record_replay_exact": true
+      },
+      "typed_parent_chain": {
+        "edge": {
+          "index": 36,
+          "kind": "edge",
+          "offset": 18021,
+          "attribute_index": 48,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "start_vertex_index": 49,
+          "end_vertex_index": 49,
+          "first_coedge_index": 28,
+          "curve_index": 50,
+          "start_parameter": -3.141592653589793,
+          "end_parameter": 3.141592653589793,
+          "is_reversed": false,
+          "stored_trailing_text": "unknown"
+        },
+        "endpoint_vertices": [
+          {
+            "role": "start",
+            "vertex_index": 49,
+            "point_index": 68,
+            "native_parameter": -3.141592653589793,
+            "stored_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          },
+          {
+            "role": "end",
+            "vertex_index": 49,
+            "point_index": 68,
+            "native_parameter": 3.141592653589793,
+            "stored_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "evaluated_cache_point": [
+              -0.7005857761474862,
+              -2.3846594558584022e-05,
+              0.0
+            ],
+            "error_raw": 0.0
+          }
+        ],
+        "coedge": {
+          "index": 28,
+          "kind": "coedge",
+          "offset": 17377,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_coedge_index": 28,
+          "previous_coedge_index": 28,
+          "partner_index": null,
+          "edge_index": 36,
+          "loop_index": 18,
+          "pcurve_index": 37,
+          "is_reversed": true,
+          "uninterpreted_field_9": 0
+        },
+        "loop": {
+          "index": 18,
+          "kind": "loop",
+          "offset": 1523,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_loop_index": null,
+          "first_coedge_index": 28,
+          "face_index": 13
+        },
+        "face": {
+          "index": 13,
+          "kind": "face",
+          "offset": 994,
+          "attribute_index": 17,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_face_index": null,
+          "first_loop_index": 18,
+          "shell_index": 9,
+          "subshell_index": null,
+          "surface_index": 19,
+          "is_reversed": false,
+          "is_double_sided": true,
+          "stored_containment_flag": false
+        },
+        "selected_surface_record_index": 19,
+        "selected_support_definition_index": 0
+      },
+      "independent_UV_and_approximation_samples": [
+        {
+          "parameter": -3.141592653589793,
+          "fraction": 0.0,
+          "xyz_cache": [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474861,
+            -2.3846594558587275e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 1.1106993784654653e-16,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368079567,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": -1.5707963267948966,
+          "fraction": 0.25,
+          "xyz_cache": [
+            0.00032732466105172067,
+            0.6998700701668797,
+            0.0
+          ],
+          "uv_cache": [
+            0.007322086194356862,
+            0.6998766429015036
+          ],
+          "independent_UV_basis_error": 1.1631705747361534e-16,
+          "selected_support_composition": [
+            0.00032208619435588183,
+            0.6998766429015038,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 8.404901769865162e-06,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.00035216927075944893,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 0.0,
+          "fraction": 0.5,
+          "xyz_cache": [
+            0.698978721675075,
+            -4.944542477449548e-05,
+            0.0
+          ],
+          "uv_cache": [
+            0.706277065006963,
+            9.395738992390434e-05
+          ],
+          "independent_UV_basis_error": 2.2591401799415137e-16,
+          "selected_support_composition": [
+            0.6992770650069616,
+            9.395738992393167e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0003310182939727564,
+          "actual_source_circle_point_cm": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0010224745801205087,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 1.5707963267948966,
+          "fraction": 0.75,
+          "xyz_cache": [
+            0.0002947056260320449,
+            -0.6995205978487866,
+            0.0
+          ],
+          "uv_cache": [
+            0.007425102907463267,
+            -0.7000852872710855
+          ],
+          "independent_UV_basis_error": 1.1150912609939193e-16,
+          "selected_support_composition": [
+            0.00042510290746235153,
+            -0.7000852872710849,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 0.0005795494755928575,
+          "actual_source_circle_point_cm": [
+            4.286263797015736e-17,
+            -0.7,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005627413514243375,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        },
+        {
+          "parameter": 3.141592653589793,
+          "fraction": 1.0,
+          "xyz_cache": [
+            -0.7005857761474862,
+            -2.3846594558584022e-05,
+            0.0
+          ],
+          "uv_cache": [
+            -0.6935857761474861,
+            -2.3846594558657067e-05
+          ],
+          "independent_UV_basis_error": 0.0,
+          "selected_support_composition": [
+            -0.7005857761474861,
+            -2.3846594558587275e-05,
+            0.0
+          ],
+          "XYZ_support_composition_deviation_raw": 1.1106993784654653e-16,
+          "actual_source_circle_point_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "cache_source_circle_deviation_raw": 0.0005862613368079496,
+          "comparison_scope": "Same numeric stored parameter probe only; not an exact procedural/UV parameterization or source identity claim"
+        }
+      ],
+      "independent_Bernstein_XYZ_errors_raw": [
+        1.1188630228279524e-16,
+        5.551115123125783e-17,
+        1.2412670766236366e-16,
+        2.220446049250313e-16,
+        1.2412670766236366e-16,
+        1.2118257228641695e-16,
+        2.237726045655905e-16,
+        2.482534153247273e-16,
+        1.1102230246251565e-16,
+        3.510833468576701e-16,
+        1.1188630228279524e-16,
+        1.3877787807814457e-17,
+        1.2412670766236366e-16,
+        0.0,
+        0.0,
+        1.3877787807814457e-16,
+        0.0,
+        1.2738115944464653e-16,
+        2.3714374201337736e-16,
+        1.5700924586837752e-16,
+        1.2412670766236366e-16,
+        2.2887833992611187e-16,
+        1.3877787807814457e-16,
+        1.3877787807814457e-17
+      ],
+      "XYZ_cache_analytic_span_bounds_raw": {
+        "min": [
+          -0.7005857833106836,
+          -0.6995215263025745,
+          0.0
+        ],
+        "max": [
+          0.6989801353320184,
+          0.6998836892812574,
+          0.0
+        ]
+      },
+      "actual_API_result_bounds_cm": {
+        "min": [
+          -0.7005857761474862,
+          -0.7001007890809671,
+          0.0
+        ],
+        "max": [
+          0.6992771032664719,
+          0.6998896301141445,
+          0.0
+        ]
+      },
+      "cache_minus_API_result_bound_deltas_raw": {
+        "min": [
+          -7.163197368598162e-09,
+          0.0005792627783925974,
+          0.0
+        ],
+        "max": [
+          -0.0002969679344534404,
+          -5.9408328870746985e-06,
+          0.0
+        ]
+      },
+      "bound_comparison_scope": "Numeric cache/result-AABB corroboration; no source/BODY identity or exact cache equivalence inferred"
+    }
+  ],
+  "old_default_controls": [
+    {
+      "archive": "lofts-03b4a6f1ce2f/centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2ec8122-563c-47cf-968b-14496c44119c.smbh",
+      "record_index": 37,
+      "layout": [
+        false,
+        false,
+        1,
+        "spline",
+        "ref"
+      ],
+      "full_dictionary_exact": true,
+      "expected_cache_sha256": "a7b827a57e5d88d5f09df60268f96cb8fe33d4a2b68a091e6a1e9d0926ab34b2",
+      "current_cache_sha256": "a7b827a57e5d88d5f09df60268f96cb8fe33d4a2b68a091e6a1e9d0926ab34b2"
+    },
+    {
+      "archive": "solidsweeps-5b5ecd5e01b9/solid_twist_sixty.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.5dd0da61-0958-49a8-9769-bd15d7ef8e67.smbh",
+      "record_index": 282,
+      "layout": [
+        false,
+        false,
+        1,
+        "spline",
+        "sweep_sur"
+      ],
+      "full_dictionary_exact": true,
+      "expected_cache_sha256": "b13a78e85f75fc4b87a30bf76c61f3de2c0f3a6dc8b24381eca28ef4aae8e425",
+      "current_cache_sha256": "b13a78e85f75fc4b87a30bf76c61f3de2c0f3a6dc8b24381eca28ef4aae8e425"
+    },
+    {
+      "archive": "solidsweeps-5b5ecd5e01b9/solid_twist_sixty.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.5dd0da61-0958-49a8-9769-bd15d7ef8e67.smbh",
+      "record_index": 528,
+      "layout": [
+        true,
+        false,
+        1,
+        "spline",
+        "sweep_sur"
+      ],
+      "full_dictionary_exact": true,
+      "expected_cache_sha256": "ebe9f8478827cd849fe13d2974e3503e0c042bbcbb79d6dd22e42d72db6568bc",
+      "current_cache_sha256": "ebe9f8478827cd849fe13d2974e3503e0c042bbcbb79d6dd22e42d72db6568bc"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "XYZ form1 unobserved",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 10"
+    },
+    {
+      "case": "Mismatched UV form",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 119"
+    },
+    {
+      "case": "Rational XYZ unobserved",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 8"
+    },
+    {
+      "case": "Unobserved XYZ compact shape",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 11"
+    },
+    {
+      "case": "Open XYZ controls",
+      "rejected": true,
+      "reason": "Stored closed parameter-curve endpoints differ"
+    },
+    {
+      "case": "Open UV controls",
+      "rejected": true,
+      "reason": "Stored closed parameter-curve endpoints differ"
+    },
+    {
+      "case": "Nonfinite XYZ control",
+      "rejected": true,
+      "reason": "Nonfinite procedural spline cache scalar"
+    },
+    {
+      "case": "Negative inline support reference",
+      "rejected": true,
+      "reason": "Negative inline parameter-curve support reference"
+    },
+    {
+      "case": "Wrong trailer flag",
+      "rejected": true,
+      "reason": "Unsupported procedural cache field 164"
+    },
+    {
+      "case": "Shifted unobserved domain",
+      "rejected": true,
+      "reason": "Unobserved closed parameter-curve stored domain"
+    }
+  ],
+  "limitations": [
+    "These are stored approximations. The original selected source Circle is not the exact resulting cache, and the five source-circle deviations are deliberately retained.",
+    "Even the same stored XYZ/UV domains do not imply exact pointwise equality after support composition; nonzero interior deviations remain explicit.",
+    "Inline support references are blob-local subtype allocation identities; typed coedge/loop/face linkage and the canonical namespace select the support, not coordinates or IDs guessed from numbers.",
+    "Calculated XYZ-cache bounds and API result bounds are numerical corroboration only, with no BODY/source identity assignment by geometry.",
+    "No universal periodicity, reversal, coedge parameterization, exact procedural reconstruction, geometry writer or regeneration is provided."
+  ],
+  "summary": {
+    "saved_archives": 2,
+    "closed_XYZ_UV_cache_records": 4,
+    "dependent_compact_pcurves": 4,
+    "whole_record_typed_replays": 8,
+    "typed_native_endpoint_checks": 8,
+    "max_native_endpoint_error_raw": 0.0,
+    "independent_cache_evaluations": 116,
+    "max_independent_evaluation_error_raw": 3.510833468576701e-16,
+    "max_source_circle_deviation_raw": 0.0010224745801209747,
+    "max_XYZ_support_composition_deviation_raw": 0.0005795494755928575,
+    "previous_layout_controls": 3,
+    "default_new_form_errors_exact": 8,
+    "malformed_guards": 10,
+    "native_periodicity_claims": 0,
+    "full_main_runs": 0,
+    "live_API_calls": 0
+  }
+}

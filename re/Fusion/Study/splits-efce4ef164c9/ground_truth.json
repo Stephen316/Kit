@@ -1,0 +1,106 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "yz_extend.f3d",
+      "settings": {
+        "input_body_count": 1,
+        "tool_name": "YZ",
+        "tool_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tool_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "tool_evidence": "Actual API input construction plane",
+        "is_tool_extended": true,
+        "result_body_count": 2
+      }
+    },
+    {
+      "file": "yz_no_extend.f3d",
+      "settings": {
+        "input_body_count": 1,
+        "tool_name": "YZ",
+        "tool_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tool_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "tool_evidence": "Actual API input construction plane",
+        "is_tool_extended": false,
+        "result_body_count": 2
+      }
+    },
+    {
+      "file": "xz_extend.f3d",
+      "settings": {
+        "input_body_count": 1,
+        "tool_name": "XZ",
+        "tool_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tool_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "tool_evidence": "Actual API input construction plane",
+        "is_tool_extended": true,
+        "result_body_count": 2
+      }
+    },
+    {
+      "file": "offset_plane.f3d",
+      "settings": {
+        "input_body_count": 1,
+        "tool_name": "SplitPlane",
+        "tool_origin_cm": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "tool_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "tool_evidence": "Actual API input construction plane",
+        "is_tool_extended": true,
+        "result_body_count": 2
+      }
+    },
+    {
+      "file": "multiple_bodies.f3d",
+      "settings": {
+        "input_body_count": 2,
+        "tool_name": "XZ",
+        "tool_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tool_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "tool_evidence": "Actual API input construction plane",
+        "is_tool_extended": true,
+        "result_body_count": 4
+      }
+    }
+  ],
+  "errors": []
+}

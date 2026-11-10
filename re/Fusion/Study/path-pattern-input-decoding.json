@@ -1,0 +1,1359 @@
+{
+  "interface": "decode_path_pattern_inputs(data,records,features,assembly,*,body_selections=None) -> decoded/unresolved/scope; decoded rows feature_object_id/kind/name/settings",
+  "common_parser": "parse_path_pattern_controls extracted from strict legacy Body wrapper; explicit compute/entity allowlist, empty-pair opt-in and typed element/auxiliary callbacks only",
+  "captures": "pathpatterninputs-7edfa558db34",
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "pathpatterninputs-7edfa558db34/feature_optimized.f3d",
+      "checks": {
+        "feature_name_matches_actual": true,
+        "actual_common_controls_match": true,
+        "actual_distance_type_matches": true,
+        "actual_entity_type_matches": true,
+        "stored_compute_word_matches_actual_getter": true,
+        "source_sketch_name_matches": true,
+        "source_line_points_match": true,
+        "source_curve_is_typed_sketch_line": true,
+        "actual_export_healthy_and_closed": true,
+        "only_actual_nurbs_endpoint_getter_errors_retained": true,
+        "actual_export_hash_matches": true,
+        "native_elements_cover_actual_count": true,
+        "actual_input_singleton_matches": true,
+        "path_opposition_stays_unresolved": true,
+        "actual_input_feature_name_matches": true,
+        "actual_input_class_matches": true,
+        "active_compute_option_matches": true,
+        "native_result_anchors_plus_seed_match_api_body_count": true,
+        "actual_result_features_null_retained": true
+      },
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 363,
+            "kind": "PathPattern",
+            "name": "ProbePathPatternFeatureOptimized",
+            "settings": {
+              "quantity": 3,
+              "distance_cm": 1.5,
+              "distance_type": "Spacing",
+              "is_flipped": false,
+              "orientation_along_path": false,
+              "is_symmetric": false,
+              "stored_start_fraction": 0.0,
+              "start_fraction": 0.0,
+              "start_fraction_scope": "Captured zero start, unflipped and nonsymmetric straight sketch-line cases only",
+              "path": {
+                "selection_record_object_id": 381,
+                "descriptor_object_id": 384,
+                "terminal_object_id": 387,
+                "sketch_object_id": 282,
+                "curve_object_id": 311,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "element_record_object_ids": [
+                398,
+                399,
+                400
+              ],
+              "suppressed_element_ids": [],
+              "stored_instance_ordinal_pairs": [
+                [
+                  1,
+                  305
+                ],
+                [
+                  2,
+                  306
+                ]
+              ],
+              "ordinal_pair_scope": "Ordinal plus opaque integer; not interpreted as an ASM index",
+              "control_record_object_id": 370,
+              "quantity_binding_object_id": 379,
+              "distance_binding_object_id": 389,
+              "stored_reference_xyz": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "uninterpreted_cached_scalar": 1.5,
+              "auxiliary_selection_record_object_id": 371,
+              "auxiliary_descriptor_object_ids": [
+                374
+              ],
+              "path_traversal_status": "Source sketch line identity/natural endpoints decoded; Path opposed flag remains unresolved",
+              "geometry_status": "No persistent result topology, solid/feature replay or joint-solved placement reconstructed",
+              "pattern_entity_type": "Features",
+              "pattern_entity_type_api_value": 1,
+              "stored_entity_type_code": 1,
+              "stored_compute_option_code": 0,
+              "pattern_compute_option": "Optimized",
+              "compute_option_status": "Active Feature compute option contrasted by actual Optimized/Identical getters",
+              "input_entity_count": 1,
+              "input_entity_collection_object_id": 367,
+              "input_descriptors": [
+                {
+                  "descriptor_object_id": 374,
+                  "terminal_object_id": 377,
+                  "association_record_object_id": 498,
+                  "association_bridge_object_id": 499,
+                  "association_terminal_object_id": 500,
+                  "source_feature_object_id": 243,
+                  "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+                  "source_feature_name": "PathPatternSeedExtrude",
+                  "source_body_anchor_object_id": 281,
+                  "source_native_body_object_id": 275,
+                  "namespace_text": "2b7f91ef-a74c-46b4-b9fb-177c04982d11",
+                  "entity_guid_text": "6b4dbcb2-9d07-4522-9f5a-3abd98bf97cb"
+                }
+              ],
+              "result_record_object_ids": [
+                427,
+                432
+              ],
+              "generated_result_reference_count": 2,
+              "input_selection_status": "Typed descriptor leaf selects Extrude; matching association UUIDs and second typed leaf corroborate its owned body anchor",
+              "compute_status": "Observed Feature Optimized/Identical controls only; no feature regeneration"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed single Extrude Feature Optimized/Identical or same-root Occurrence PathPattern, straight sketch line, spacing, zero start and no flip/symmetry/suppression; typed input/result associations and stored matrices only, no regeneration or solved assembly placement"
+      },
+      "actual_api_settings": {
+        "quantity": 3.0,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false,
+        "pattern_entity_type": 1,
+        "pattern_compute_option": 0,
+        "suppressed_element_ids": []
+      },
+      "actual_inputs": [
+        {
+          "kind": "ExtrudeFeature",
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "PathPatternSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZGIMAN9ojEeIAAAA",
+          "parent_component_name": "(Unsaved)",
+          "timeline_index": 1,
+          "bodies": [
+            {
+              "name": "PathPatternSeedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZG4KACmewoWIAAAA",
+              "bounding_box_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtMzU0AtNGFkClIDYAKsVCSpIAAAA=",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "actual_pattern_elements": [
+        {
+          "id": 0,
+          "name": "Occurrence1",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 1,
+          "name": "Occurrence2",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 2,
+          "name": "Occurrence3",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        }
+      ],
+      "actual_result_features": {
+        "status": "returned_null",
+        "entities": []
+      },
+      "retained_getter_errors": [
+        {
+          "field": "requested_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "requested_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        }
+      ]
+    },
+    {
+      "archive": "pathpatterninputs-7edfa558db34/feature_identical.f3d",
+      "checks": {
+        "feature_name_matches_actual": true,
+        "actual_common_controls_match": true,
+        "actual_distance_type_matches": true,
+        "actual_entity_type_matches": true,
+        "stored_compute_word_matches_actual_getter": true,
+        "source_sketch_name_matches": true,
+        "source_line_points_match": true,
+        "source_curve_is_typed_sketch_line": true,
+        "actual_export_healthy_and_closed": true,
+        "only_actual_nurbs_endpoint_getter_errors_retained": true,
+        "actual_export_hash_matches": true,
+        "native_elements_cover_actual_count": true,
+        "actual_input_singleton_matches": true,
+        "path_opposition_stays_unresolved": true,
+        "actual_input_feature_name_matches": true,
+        "actual_input_class_matches": true,
+        "active_compute_option_matches": true,
+        "native_result_anchors_plus_seed_match_api_body_count": true,
+        "actual_result_features_null_retained": true
+      },
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 363,
+            "kind": "PathPattern",
+            "name": "ProbePathPatternFeatureIdentical",
+            "settings": {
+              "quantity": 3,
+              "distance_cm": 1.5,
+              "distance_type": "Spacing",
+              "is_flipped": false,
+              "orientation_along_path": false,
+              "is_symmetric": false,
+              "stored_start_fraction": 0.0,
+              "start_fraction": 0.0,
+              "start_fraction_scope": "Captured zero start, unflipped and nonsymmetric straight sketch-line cases only",
+              "path": {
+                "selection_record_object_id": 381,
+                "descriptor_object_id": 384,
+                "terminal_object_id": 387,
+                "sketch_object_id": 282,
+                "curve_object_id": 311,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "element_record_object_ids": [
+                398,
+                399,
+                400
+              ],
+              "suppressed_element_ids": [],
+              "stored_instance_ordinal_pairs": [
+                [
+                  1,
+                  305
+                ],
+                [
+                  2,
+                  306
+                ]
+              ],
+              "ordinal_pair_scope": "Ordinal plus opaque integer; not interpreted as an ASM index",
+              "control_record_object_id": 370,
+              "quantity_binding_object_id": 379,
+              "distance_binding_object_id": 389,
+              "stored_reference_xyz": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "uninterpreted_cached_scalar": 1.5,
+              "auxiliary_selection_record_object_id": 371,
+              "auxiliary_descriptor_object_ids": [
+                374
+              ],
+              "path_traversal_status": "Source sketch line identity/natural endpoints decoded; Path opposed flag remains unresolved",
+              "geometry_status": "No persistent result topology, solid/feature replay or joint-solved placement reconstructed",
+              "pattern_entity_type": "Features",
+              "pattern_entity_type_api_value": 1,
+              "stored_entity_type_code": 1,
+              "stored_compute_option_code": 1,
+              "pattern_compute_option": "Identical",
+              "compute_option_status": "Active Feature compute option contrasted by actual Optimized/Identical getters",
+              "input_entity_count": 1,
+              "input_entity_collection_object_id": 367,
+              "input_descriptors": [
+                {
+                  "descriptor_object_id": 374,
+                  "terminal_object_id": 377,
+                  "association_record_object_id": 498,
+                  "association_bridge_object_id": 499,
+                  "association_terminal_object_id": 500,
+                  "source_feature_object_id": 243,
+                  "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+                  "source_feature_name": "PathPatternSeedExtrude",
+                  "source_body_anchor_object_id": 281,
+                  "source_native_body_object_id": 275,
+                  "namespace_text": "e49d92ad-3222-4273-b0ef-0bd1584f1b7c",
+                  "entity_guid_text": "60774d79-6889-4698-bc2c-24d613b5d6e0"
+                }
+              ],
+              "result_record_object_ids": [
+                427,
+                432
+              ],
+              "generated_result_reference_count": 2,
+              "input_selection_status": "Typed descriptor leaf selects Extrude; matching association UUIDs and second typed leaf corroborate its owned body anchor",
+              "compute_status": "Observed Feature Optimized/Identical controls only; no feature regeneration"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed single Extrude Feature Optimized/Identical or same-root Occurrence PathPattern, straight sketch line, spacing, zero start and no flip/symmetry/suppression; typed input/result associations and stored matrices only, no regeneration or solved assembly placement"
+      },
+      "actual_api_settings": {
+        "quantity": 3.0,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false,
+        "pattern_entity_type": 1,
+        "pattern_compute_option": 1,
+        "suppressed_element_ids": []
+      },
+      "actual_inputs": [
+        {
+          "kind": "ExtrudeFeature",
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "PathPatternSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZGJMQBzb9VNiAAAAA==",
+          "parent_component_name": "(Unsaved)",
+          "timeline_index": 1,
+          "bodies": [
+            {
+              "name": "PathPatternSeedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZG5KQCFmZuPiAAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAts7U0AhMG1kAlYLYAB/1XnOSAAAA",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "actual_pattern_elements": [
+        {
+          "id": 0,
+          "name": "Occurrence1",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 1,
+          "name": "Occurrence2",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 2,
+          "name": "Occurrence3",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        }
+      ],
+      "actual_result_features": {
+        "status": "returned_null",
+        "entities": []
+      },
+      "retained_getter_errors": [
+        {
+          "field": "requested_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "requested_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        }
+      ]
+    },
+    {
+      "archive": "pathpatterninputs-7edfa558db34/root_occurrence.f3d",
+      "checks": {
+        "feature_name_matches_actual": true,
+        "actual_common_controls_match": true,
+        "actual_distance_type_matches": true,
+        "actual_entity_type_matches": true,
+        "stored_compute_word_matches_actual_getter": true,
+        "source_sketch_name_matches": true,
+        "source_line_points_match": true,
+        "source_curve_is_typed_sketch_line": true,
+        "actual_export_healthy_and_closed": true,
+        "only_actual_nurbs_endpoint_getter_errors_retained": true,
+        "actual_export_hash_matches": true,
+        "native_elements_cover_actual_count": true,
+        "actual_input_singleton_matches": true,
+        "path_opposition_stays_unresolved": true,
+        "actual_input_component_matches": true,
+        "source_stored_matrix_matches_actual": true,
+        "created_stored_matrices_match_actual": true,
+        "algebraic_relative_matrices_match_api_elements": true,
+        "actual_instance_counts_match": true,
+        "native_instance_numbers_match_api_names": true,
+        "inactive_compute_semantics_unclaimed": true,
+        "actual_result_features_null_retained": true,
+        "actual_source_before_after_matrix_copy_matches": true
+      },
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 428,
+            "kind": "PathPattern",
+            "name": "ProbePathPatternRootOccurrence",
+            "settings": {
+              "quantity": 3,
+              "distance_cm": 1.5,
+              "distance_type": "Spacing",
+              "is_flipped": false,
+              "orientation_along_path": false,
+              "is_symmetric": false,
+              "stored_start_fraction": 0.0,
+              "start_fraction": 0.0,
+              "start_fraction_scope": "Captured zero start, unflipped and nonsymmetric straight sketch-line cases only",
+              "path": {
+                "selection_record_object_id": 445,
+                "descriptor_object_id": 448,
+                "terminal_object_id": 451,
+                "sketch_object_id": 345,
+                "curve_object_id": 374,
+                "curve_entity_tag": 103,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "element_record_object_ids": [
+                462,
+                483,
+                487
+              ],
+              "suppressed_element_ids": [],
+              "stored_instance_ordinal_pairs": [],
+              "ordinal_pair_scope": "Ordinal plus opaque integer; not interpreted as an ASM index",
+              "control_record_object_id": 432,
+              "quantity_binding_object_id": 443,
+              "distance_binding_object_id": 453,
+              "stored_reference_xyz": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "uninterpreted_cached_scalar": 1.5,
+              "auxiliary_selection_record_object_id": 433,
+              "auxiliary_descriptor_object_ids": [],
+              "element_details": [
+                {
+                  "element_record_object_id": 462,
+                  "stored_ordinal": 0,
+                  "occurrence_datum_object_id": 258,
+                  "native_occurrence_object_id": 253
+                },
+                {
+                  "element_record_object_id": 483,
+                  "stored_ordinal": 1,
+                  "occurrence_datum_object_id": 481,
+                  "native_occurrence_object_id": 480
+                },
+                {
+                  "element_record_object_id": 487,
+                  "stored_ordinal": 2,
+                  "occurrence_datum_object_id": 485,
+                  "native_occurrence_object_id": 484
+                }
+              ],
+              "auxiliary_selection_details": {
+                "selection_record_object_id": 433,
+                "descriptor_object_ids": [],
+                "root_context": {
+                  "object_id": 436,
+                  "frame_link_object_id": 55,
+                  "route_wrapper_object_id": 438,
+                  "route_object_id": 437,
+                  "stored_route_mode": 0,
+                  "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+                  "context_namespace_text": null,
+                  "context_entity_guid_text": null,
+                  "terminal_namespace_text": "298aa8ee-24d2-4308-b780-1d8c39052014",
+                  "terminal_entity_guid_text": "cd482883-dd99-4e05-89c7-ae85daac5d05",
+                  "native_occurrence_object_id": 57,
+                  "component_object_id": 3,
+                  "stored_context_matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "stored_footer_mode": 0,
+                  "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+                },
+                "source_context": {
+                  "object_id": 439,
+                  "frame_link_object_id": 264,
+                  "route_wrapper_object_id": 441,
+                  "route_object_id": 440,
+                  "stored_route_mode": 1,
+                  "stored_occurrence_uuid_text": "90094309-14c0-4372-a75f-02264cf5caed",
+                  "context_namespace_text": "298aa8ee-24d2-4308-b780-1d8c39052014",
+                  "context_entity_guid_text": "ab2b6c6f-a6d3-405b-9715-3d9f1f50fb01",
+                  "terminal_namespace_text": "298aa8ee-24d2-4308-b780-1d8c39052014",
+                  "terminal_entity_guid_text": "cd482883-dd99-4e05-89c7-ae85daac5d05",
+                  "native_occurrence_object_id": 253,
+                  "component_object_id": 202,
+                  "stored_context_matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    2.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "stored_footer_mode": 0,
+                  "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+                },
+                "copied_context_record_object_id": 463,
+                "stored_copied_source_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "source_native_occurrence_object_id": 253,
+                "scope": "Explicit root/source UUID routes select native occurrence; copied historical local matrices are not solved placements"
+              },
+              "path_traversal_status": "Source sketch line identity/natural endpoints decoded; Path opposed flag remains unresolved",
+              "geometry_status": "No persistent result topology, solid/feature replay or joint-solved placement reconstructed",
+              "pattern_entity_type": "Occurrences",
+              "pattern_entity_type_api_value": 3,
+              "stored_entity_type_code": 0,
+              "stored_compute_option_code": 2,
+              "pattern_compute_option": null,
+              "compute_option_status": "Stored code2 matches inactive API getter; feature-only compute option has no occurrence replay semantics assigned",
+              "compute_status": "Occurrence source/results and local matrix caches decoded; assembly solving and pattern regeneration unresolved",
+              "input_entity_count": 1,
+              "source_native_occurrence_object_id": 253,
+              "source_component_object_id": 202,
+              "source_component_name": "PathPatternSourceComponent",
+              "owner_component_object_id": 3,
+              "occurrence_collection_object_id": 6,
+              "source_occurrence_datum_object_id": 258,
+              "created_occurrence_datum_object_ids": [
+                481,
+                485
+              ],
+              "created_native_occurrence_object_ids": [
+                480,
+                484
+              ],
+              "stored_source_local_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_created_local_matrices": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  2.5,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "stored_instance_uuid_table": [
+                {
+                  "ordinal": 0,
+                  "instance_guid_text": "90094309-14c0-4372-a75f-02264cf5caed",
+                  "source_instance_guid_text": "90094309-14c0-4372-a75f-02264cf5caed"
+                },
+                {
+                  "ordinal": 1,
+                  "instance_guid_text": "ded47fe3-3ccd-4e0b-8b21-e0b24932f457",
+                  "source_instance_guid_text": "90094309-14c0-4372-a75f-02264cf5caed"
+                },
+                {
+                  "ordinal": 2,
+                  "instance_guid_text": "4bf7a96f-5449-4a2f-8262-5b58f399f9dd",
+                  "source_instance_guid_text": "90094309-14c0-4372-a75f-02264cf5caed"
+                }
+              ],
+              "relative_instance_matrix_caches": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.5,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "relative_matrix_scope": "Algebraic created local matrix times inverse source local matrix; actual API element matrices agree only in these captured translated cases, no general solver mapping",
+              "input_selection_status": "Owned source/root context routes, typed occurrence datums, UUID table and element backlinks independently agree",
+              "matrix_scope": "Historical native local/copy matrices in cm; no current visibility, joint-solved world placement or general PathPattern transform evaluation"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed single Extrude Feature Optimized/Identical or same-root Occurrence PathPattern, straight sketch line, spacing, zero start and no flip/symmetry/suppression; typed input/result associations and stored matrices only, no regeneration or solved assembly placement"
+      },
+      "actual_api_settings": {
+        "quantity": 3.0,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false,
+        "pattern_entity_type": 3,
+        "pattern_compute_option": 2,
+        "suppressed_element_ids": []
+      },
+      "actual_inputs": [
+        {
+          "kind": "Occurrence",
+          "name": "PathPatternSourceComponent:1",
+          "full_path_name": "PathPatternSourceComponent:1",
+          "component_name": "PathPatternSourceComponent",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "bodies": [
+            {
+              "name": "PathPatternSeedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmbXincql5w5tjfI9liyKogAVRgpGJspJKeYWBhZWBjrpqRYWuqapBqY6lpYJpvrJqZamKYkJiabphiYgtUCzWBAA2D7DBTA1pkaGoFpYxNTBUMDYwUDAComTH6SAAAA",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "actual_pattern_elements": [
+        {
+          "id": 0,
+          "name": "Occurrence1",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occurrences": [
+            {
+              "name": "PathPatternSourceComponent:1",
+              "full_path_name": "PathPatternSourceComponent:1",
+              "component_name": "PathPatternSourceComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "bodies": [
+                {
+                  "name": "PathPatternSeedBody",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+                  "bounding_box_cm": {
+                    "min": [
+                      1.0,
+                      2.0,
+                      0.0
+                    ],
+                    "max": [
+                      2.0,
+                      3.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "Occurrence2",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occurrences": [
+            {
+              "name": "PathPatternSourceComponent:2",
+              "full_path_name": "PathPatternSourceComponent:2",
+              "component_name": "PathPatternSourceComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhKXHsxK6ZJImTOagRg7ABezAIM/wAPbrmdHq6uwAMBBHCUiRdLv6SDOfb4316XfbP6/FuOzgsgiBl6M5KqgndzZBHEFTrBetQ8Vq7eJDVskgfzmWOhKl3/5ANtVHEZYgt0WQp/7dqo5Z7nlizJ+QgDa1EweQ245QwW/h+3wDjzYE/xwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.5,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "bodies": [
+                {
+                  "name": "PathPatternSeedBody",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PPQqCMQyGJ8EDuAoZXBwCadK06exJ2qY9h7N4EG/gPTyIZ7Cf7hICDy8P+SEwoFUBePWX2BYFiFuS4Hx7vE+vy/55Pd7LDg7LYJAE3aOxmaB7KRgHKVrpGesw9Vq7OumaskwfHvMcgtK7b2ZDaxxwAcciPKPm/7tq45Z6mliTC0bShiUHRfEyw1SajX63b7+I2Afc/sLv1QAAAA==",
+                  "bounding_box_cm": {
+                    "min": [
+                      2.5,
+                      2.0,
+                      0.0
+                    ],
+                    "max": [
+                      3.5,
+                      3.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Occurrence3",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occurrences": [
+            {
+              "name": "PathPatternSourceComponent:3",
+              "full_path_name": "PathPatternSourceComponent:3",
+              "component_name": "PathPatternSourceComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhKXHixK6ZJIm/56BGDMIG7MEgzIAFPbrmdHq6uwQVCDKkUCYJl39Jg/Pt8T69Lvvn9XjXHRyCICgNllUhkYJmqli3xCi6Oo5N2MZYbImjJcg6vQ9tjlxrkIMchRohTxYvqq5m/7fGpNlWNIxmBWviidozYzH17Jx8pu/3D6GVkm3HAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "bodies": [
+                {
+                  "name": "PathPatternSeedBody",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxEKyQGoEVyQUNhKXHifLtmkiT+noMaMQgbsAeDMAP+0CPL0sl6ujsnEEgxGSj2q0hCZajbpcH59nifXpf983q86w4OQRCUBtOqkEhBM1Wsa2IUnQv2Vdh6n2yJwyXIOnzp2hy51iA7OQo1Qh4sXlRdzf5n9UGjzXDozQrWxAN1yYzF1LNz8pF+3bdfSpEPAnDRU9UAAAA=",
+                  "bounding_box_cm": {
+                    "min": [
+                      4.0,
+                      2.0,
+                      0.0
+                    ],
+                    "max": [
+                      5.0,
+                      3.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "actual_result_features": {
+        "status": "returned_null",
+        "entities": []
+      },
+      "retained_getter_errors": [
+        {
+          "field": "requested_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "requested_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        }
+      ]
+    }
+  ],
+  "old_body_controls": [
+    {
+      "archive": "pathpatterns-de9857f6a1bc/spacing.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/extent.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/start_offset.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/flipped.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/symmetric.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/arc_identical.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/arc_along.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/multiple_bodies.f3d",
+      "prior_tool_settings_exact": true
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/suppressed_instance.f3d",
+      "prior_tool_settings_exact": true
+    }
+  ],
+  "old_composite_controls": [
+    {
+      "archive": "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
+      "prior_decoded_exact": true,
+      "new_helper_leaves_body_branch_untouched": true
+    },
+    {
+      "archive": "pathpatterncomposites-b6b4cf615504/composite_along.f3d",
+      "prior_decoded_exact": true,
+      "new_helper_leaves_body_branch_untouched": true
+    },
+    {
+      "archive": "pathpatterncomposites-b6b4cf615504/spline_along.f3d",
+      "prior_decoded_exact": true,
+      "new_helper_leaves_body_branch_untouched": true
+    },
+    {
+      "archive": "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d",
+      "prior_decoded_exact": true,
+      "new_helper_leaves_body_branch_untouched": true
+    }
+  ],
+  "guards": [
+    {
+      "check": "Unobserved feature compute mode",
+      "passed": true,
+      "reason": "Unobserved Feature PathPattern compute/entity modes"
+    },
+    {
+      "check": "Feature descriptor reciprocal owner mismatch",
+      "passed": true,
+      "reason": "Feature PathPattern source descriptor framing/owner mismatch"
+    },
+    {
+      "check": "Source feature leaf cannot select pattern itself",
+      "passed": true,
+      "reason": "As-built typed reference missing/ambiguous/wrong class: 363"
+    },
+    {
+      "check": "Association leaf must repeat source body anchor",
+      "passed": true,
+      "reason": "Feature PathPattern association/source-anchor leaf copies disagree"
+    },
+    {
+      "check": "Result anchor must belong to pattern",
+      "passed": true,
+      "reason": "PathPattern typed result/source anchor owner mismatch"
+    },
+    {
+      "check": "Created datum must point back to pattern",
+      "passed": true,
+      "reason": "Occurrence PathPattern created datum owner mismatch"
+    },
+    {
+      "check": "Typed occurrence element must repeat matching datum",
+      "passed": true,
+      "reason": "Occurrence PathPattern element ordinal/datum/controller mismatch"
+    },
+    {
+      "check": "Occurrence UUID table source must agree",
+      "passed": true,
+      "reason": "Occurrence PathPattern UUID table differs from typed datum occurrences"
+    },
+    {
+      "check": "Uncaptured nonzero start is rejected",
+      "passed": true,
+      "reason": "Unobserved Feature/Occurrence PathPattern control combination"
+    }
+  ],
+  "validation_command": "python3 validate_path_pattern_inputs.py --zstd-library <libzstd path>",
+  "source_sha256": {
+    "GeneratePathPatternInputContrasts.py": "82547904202acc73ce6ae845583e14e8294098e2bfbdc4856cb1513e1061138c",
+    "decode_path_patterns.py": "eb8f5e9ca6688fc8aab0875d6d96b96c64ce9e70f030f664aefc3cf6a14223bf",
+    "decode_path_pattern_inputs.py": "989ec7d915416543cbb7741bd1d2b875cac296951251f834fba11e4f4b06f744",
+    "validate_path_pattern_inputs.py": "e2a9a25a9434642169aed086e580f2006a4af359a3c4b7bbdc29dc21aad1f6e2",
+    "pathpatterninputs-7edfa558db34/executed-generator-source.txt": "82547904202acc73ce6ae845583e14e8294098e2bfbdc4856cb1513e1061138c"
+  },
+  "limitations": [
+    "Only one Extrude Feature or one root Occurrence input, quantity3, positive spacing, zero start, identical orientation and no flip/symmetry/suppression is admitted in this new branch. Existing Body reader scope is unchanged.",
+    "Feature compute words0/1 are active Optimized/Identical contrasts. Occurrence word2 is an observed inactive getter, retained raw; its native entity code0 is qualified only by explicit occurrence routes and datums, not equated universally with API enum3.",
+    "The actual PathEntity.curve was NurbsCurve3D and lacks startPoint/endPoint getters. All twelve AttributeErrors are retained; finite endpoints come from independently captured underlying SketchLine points.",
+    "Occurrence source/result datums, UUID table, reciprocal context routes, local matrices and element membership are explicit. Relative matrices are separately labeled algebraic cache relationships corroborated only by actual translated-case API element matrices.",
+    "No feature/solid regeneration, persistent result topology, general opposed path traversal, current visibility/lifecycle replay or joint-solved world placement is implemented. resultFeatures returned null in all actual captures; body/occurrence result records are reported distinctly."
+  ],
+  "counts": {
+    "actual_samples": 3,
+    "actual_endpoint_getter_errors": 12,
+    "old_body_goldens": 9,
+    "old_composite_goldens": 4,
+    "malformed_guards": 9
+  }
+}

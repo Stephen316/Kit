@@ -1,23 +1,30 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
+import ast as AstLib
 from collections import Counter
 from io import StringIO
 from pathlib import Path as FilePath
 from tokenize import COMMENT, generate_tokens as GenerateTokens
+
 from tools.steering.SteeringCompliance import (
+    BuildParents,
     Finding,
+    GetReasonLines,
     IsHeaderComment,
     IsPragmaComment,
 )
 
 
+# diff checks need to separate required rationale from newly added explanatory comments
 def AddedComments(SourcePath: FilePath, BaseText: str, HeadText: str) -> list[Finding]:
     Prior = Counter(
         TokenInfo.string
         for TokenInfo in GenerateTokens(StringIO(BaseText).readline)
         if TokenInfo.type == COMMENT
     )
+    SyntaxTree = AstLib.parse(HeadText, filename=SourcePath.as_posix())
+    ReasonLines = GetReasonLines(SyntaxTree, BuildParents(SyntaxTree))
     Findings: list[Finding] = []
     StartLine = 2 if HeadText.startswith("#!") else 1
     for TokenInfo in GenerateTokens(StringIO(HeadText).readline):
@@ -27,6 +34,8 @@ def AddedComments(SourcePath: FilePath, BaseText: str, HeadText: str) -> list[Fi
             continue
         if Prior[TokenInfo.string] > 0:
             Prior[TokenInfo.string] -= 1
+            continue
+        if TokenInfo.start in ReasonLines:
             continue
         Findings.append(
             Finding(

@@ -1,0 +1,618 @@
+{
+  "scope": "Two copies of one observed elliptic cone in Loft.f3d; explicit noncircular geometry with boundary-qualified implicit locus, no native UV evaluator",
+  "integration": {
+    "helper": "decode_elliptic_cone.decode_elliptic_cone(record)",
+    "hook": "Root may dispatch cone-surface with nonunit axis ratio after the old circular branch rejects, preserving all circular defaults.",
+    "geometry_kind": "EllipticCone",
+    "expected_dictionary_field": "records[].geometry",
+    "validation_command": "/usr/bin/python3 validate_elliptic_cone.py",
+    "shared_edits_by_this_task": false
+  },
+  "actual_api_context": {
+    "fusion_version": "2705.1.30",
+    "file": "moretools-88a2cd6cad0b/Loft.f3d",
+    "feature_kind": "LoftFeature",
+    "settings": {
+      "section_count": 2
+    },
+    "body_count": 1,
+    "surface_evaluator_getters_captured": false
+  },
+  "file": "moretools-88a2cd6cad0b/Loft.f3d",
+  "records": [
+    {
+      "file": "moretools-88a2cd6cad0b/Loft.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d3d0a3fc-bb25-4ba5-9040-fe1f2d96310e.smbh",
+      "record_index": 18,
+      "geometry": {
+        "kind": "EllipticCone",
+        "raw_origin": [
+          0.020707782149754547,
+          0.0,
+          -0.003392587439479594
+        ],
+        "axis": [
+          0.1616761322680435,
+          0.0,
+          0.986843872279119
+        ],
+        "stored_reference_axis": [
+          -2.503765055984038e-14,
+          1.0002261469247495,
+          4.1019563654430566e-15
+        ],
+        "stored_axis_ratio": 0.9866207510303792,
+        "raw_major_radius": 1.0002261469247495,
+        "raw_minor_radius": 0.9868438722791187,
+        "derived_minor_reference_axis": [
+          -0.9738608282548459,
+          -2.5031989652360125e-14,
+          0.15954910042250703
+        ],
+        "stored_cone_angular_pair": [
+          -0.13042574871243814,
+          0.991458079836359
+        ],
+        "stored_u_parameter_scale": 1.0002261469247495,
+        "stored_parameter_flag_12": false,
+        "stored_interval_flags": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "u_interval": [
+          null,
+          null
+        ],
+        "v_interval": [
+          null,
+          null
+        ],
+        "geometric_locus": {
+          "major_basis_unit": [
+            -2.5031989652360135e-14,
+            1.0,
+            4.101028930362146e-15
+          ],
+          "minor_basis_unit": [
+            -0.986843872279119,
+            -2.5365704095166214e-14,
+            0.1616761322680435
+          ],
+          "axial_relative_radius_rate": -0.13151969069712205,
+          "raw_apex": [
+            1.2500000000000004,
+            0.0,
+            7.500000000000002
+          ],
+          "equation": "(dot(P-origin,E)/a)^2+(dot(P-origin,F)/b)^2=(1+k*dot(P-origin,axis))^2",
+          "symbols": "E/F are stored major/derived minor unit bases; a/b are physical reference-ellipse radii; k is the boundary-qualified geometric axial scale rate.",
+          "qualification": "Observed positive-cosine, nonzero-slope elliptic layout with parameter scale equal to physical major radius; two typed boundary circles independently qualify this geometric locus."
+        },
+        "parameterization_scope": "Raw signed pair/parameter scale/flag preserved; no native UV sign, parameter-to-angle formula, half-angle or periodic extension assigned",
+        "coordinate_scope": "Raw ASM coordinates and lengths; body transform and unit context not applied"
+      },
+      "parent_face_index": 12,
+      "boundary_curves": [
+        {
+          "coedge_index": 20,
+          "loop_index": 22,
+          "edge_index": 21,
+          "curve_index": 26,
+          "explicit_curve_geometry": {
+            "index": 26,
+            "kind": "ellipse-curve",
+            "offset": 2853,
+            "attribute_index": null,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "raw_origin": [
+              0.5,
+              0.0,
+              3.0
+            ],
+            "normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "stored_reference_axis": [
+              0.6000000000000001,
+              0.0,
+              0.0
+            ],
+            "raw_major_radius": 0.6000000000000001,
+            "raw_minor_radius": 0.6000000000000001,
+            "stored_axis_ratio": 1.0,
+            "parameter_interval": [
+              null,
+              null
+            ]
+          },
+          "entire_curve_harmonic_residual_coefficients": {
+            "constant": 1.1102230246251565e-16,
+            "cos_t": -1.0234868508263162e-16,
+            "sin_t": 1.0459582806335843e-17,
+            "cos_2t": 8.326672684688674e-17,
+            "sin_2t": -2.459504813532269e-16
+          },
+          "eight_sample_residuals": [
+            1.1102230246251565e-16,
+            -3.885780586188048e-16,
+            0.0,
+            3.885780586188048e-16,
+            2.7755575615628914e-16,
+            -5.551115123125783e-17,
+            5.551115123125783e-17,
+            1.6653345369377348e-16
+          ],
+          "native_endpoint_checks": [
+            {
+              "vertex_index": 25,
+              "point_index": 29,
+              "raw_point": [
+                1.1,
+                0.0,
+                3.0
+              ],
+              "dimensionless_locus_residual": 1.1102230246251565e-16
+            },
+            {
+              "vertex_index": 25,
+              "point_index": 29,
+              "raw_point": [
+                1.1,
+                0.0,
+                3.0
+              ],
+              "dimensionless_locus_residual": 1.1102230246251565e-16
+            }
+          ],
+          "reversed_rate_counterexample_max_residual": 1.6510326277815999,
+          "falsely_circular_counterexample_max_residual": 0.009979870489952025
+        },
+        {
+          "coedge_index": 23,
+          "loop_index": 17,
+          "edge_index": 24,
+          "curve_index": 28,
+          "explicit_curve_geometry": {
+            "index": 28,
+            "kind": "ellipse-curve",
+            "offset": 3046,
+            "attribute_index": null,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "raw_origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_reference_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "raw_major_radius": 1.0,
+            "raw_minor_radius": 1.0,
+            "stored_axis_ratio": 1.0,
+            "parameter_interval": [
+              null,
+              null
+            ]
+          },
+          "entire_curve_harmonic_residual_coefficients": {
+            "constant": 2.220446049250313e-16,
+            "cos_t": -4.371503159461554e-16,
+            "sin_t": -2.9054396684270833e-17,
+            "cos_2t": 1.6653345369377348e-16,
+            "sin_2t": 6.831957815367505e-16
+          },
+          "eight_sample_residuals": [
+            2.220446049250313e-16,
+            5.551115123125783e-16,
+            -1.1102230246251565e-16,
+            -4.440892098500626e-16,
+            1.3322676295501878e-15,
+            1.3322676295501878e-15,
+            0.0,
+            -7.771561172376096e-16
+          ],
+          "native_endpoint_checks": [
+            {
+              "vertex_index": 27,
+              "point_index": 30,
+              "raw_point": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "dimensionless_locus_residual": 2.220446049250313e-16
+            },
+            {
+              "vertex_index": 27,
+              "point_index": 30,
+              "raw_point": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "dimensionless_locus_residual": 2.220446049250313e-16
+            }
+          ],
+          "reversed_rate_counterexample_max_residual": 0.08505437963600171,
+          "falsely_circular_counterexample_max_residual": 0.02772186247208852
+        }
+      ]
+    },
+    {
+      "file": "moretools-88a2cd6cad0b/Loft.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.5bea9a21-6c28-4ec8-95d3-ba8578655531.smb",
+      "record_index": 45,
+      "geometry": {
+        "kind": "EllipticCone",
+        "raw_origin": [
+          0.020707782149754547,
+          0.0,
+          -0.003392587439479594
+        ],
+        "axis": [
+          0.1616761322680435,
+          0.0,
+          0.986843872279119
+        ],
+        "stored_reference_axis": [
+          -2.503765055984038e-14,
+          1.0002261469247495,
+          4.1019563654430566e-15
+        ],
+        "stored_axis_ratio": 0.9866207510303792,
+        "raw_major_radius": 1.0002261469247495,
+        "raw_minor_radius": 0.9868438722791187,
+        "derived_minor_reference_axis": [
+          -0.9738608282548459,
+          -2.5031989652360125e-14,
+          0.15954910042250703
+        ],
+        "stored_cone_angular_pair": [
+          -0.13042574871243814,
+          0.991458079836359
+        ],
+        "stored_u_parameter_scale": 1.0002261469247495,
+        "stored_parameter_flag_12": false,
+        "stored_interval_flags": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "u_interval": [
+          null,
+          null
+        ],
+        "v_interval": [
+          null,
+          null
+        ],
+        "geometric_locus": {
+          "major_basis_unit": [
+            -2.5031989652360135e-14,
+            1.0,
+            4.101028930362146e-15
+          ],
+          "minor_basis_unit": [
+            -0.986843872279119,
+            -2.5365704095166214e-14,
+            0.1616761322680435
+          ],
+          "axial_relative_radius_rate": -0.13151969069712205,
+          "raw_apex": [
+            1.2500000000000004,
+            0.0,
+            7.500000000000002
+          ],
+          "equation": "(dot(P-origin,E)/a)^2+(dot(P-origin,F)/b)^2=(1+k*dot(P-origin,axis))^2",
+          "symbols": "E/F are stored major/derived minor unit bases; a/b are physical reference-ellipse radii; k is the boundary-qualified geometric axial scale rate.",
+          "qualification": "Observed positive-cosine, nonzero-slope elliptic layout with parameter scale equal to physical major radius; two typed boundary circles independently qualify this geometric locus."
+        },
+        "parameterization_scope": "Raw signed pair/parameter scale/flag preserved; no native UV sign, parameter-to-angle formula, half-angle or periodic extension assigned",
+        "coordinate_scope": "Raw ASM coordinates and lengths; body transform and unit context not applied"
+      },
+      "parent_face_index": 35,
+      "boundary_curves": [
+        {
+          "coedge_index": 47,
+          "loop_index": 57,
+          "edge_index": 48,
+          "curve_index": 61,
+          "explicit_curve_geometry": {
+            "index": 61,
+            "kind": "ellipse-curve",
+            "offset": 5877,
+            "attribute_index": null,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "raw_origin": [
+              0.5,
+              0.0,
+              3.0
+            ],
+            "normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "stored_reference_axis": [
+              0.6000000000000001,
+              0.0,
+              0.0
+            ],
+            "raw_major_radius": 0.6000000000000001,
+            "raw_minor_radius": 0.6000000000000001,
+            "stored_axis_ratio": 1.0,
+            "parameter_interval": [
+              null,
+              null
+            ]
+          },
+          "entire_curve_harmonic_residual_coefficients": {
+            "constant": 1.1102230246251565e-16,
+            "cos_t": -1.0234868508263162e-16,
+            "sin_t": 1.0459582806335843e-17,
+            "cos_2t": 8.326672684688674e-17,
+            "sin_2t": -2.459504813532269e-16
+          },
+          "eight_sample_residuals": [
+            1.1102230246251565e-16,
+            -3.885780586188048e-16,
+            0.0,
+            3.885780586188048e-16,
+            2.7755575615628914e-16,
+            -5.551115123125783e-17,
+            5.551115123125783e-17,
+            1.6653345369377348e-16
+          ],
+          "native_endpoint_checks": [
+            {
+              "vertex_index": 60,
+              "point_index": 76,
+              "raw_point": [
+                1.1,
+                0.0,
+                3.0
+              ],
+              "dimensionless_locus_residual": 1.1102230246251565e-16
+            },
+            {
+              "vertex_index": 60,
+              "point_index": 76,
+              "raw_point": [
+                1.1,
+                0.0,
+                3.0
+              ],
+              "dimensionless_locus_residual": 1.1102230246251565e-16
+            }
+          ],
+          "reversed_rate_counterexample_max_residual": 1.6510326277815999,
+          "falsely_circular_counterexample_max_residual": 0.009979870489952025
+        },
+        {
+          "coedge_index": 58,
+          "loop_index": 44,
+          "edge_index": 59,
+          "curve_index": 75,
+          "explicit_curve_geometry": {
+            "index": 75,
+            "kind": "ellipse-curve",
+            "offset": 7362,
+            "attribute_index": null,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "raw_origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_reference_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "raw_major_radius": 1.0,
+            "raw_minor_radius": 1.0,
+            "stored_axis_ratio": 1.0,
+            "parameter_interval": [
+              null,
+              null
+            ]
+          },
+          "entire_curve_harmonic_residual_coefficients": {
+            "constant": 2.220446049250313e-16,
+            "cos_t": -4.371503159461554e-16,
+            "sin_t": -2.9054396684270833e-17,
+            "cos_2t": 1.6653345369377348e-16,
+            "sin_2t": 6.831957815367505e-16
+          },
+          "eight_sample_residuals": [
+            2.220446049250313e-16,
+            5.551115123125783e-16,
+            -1.1102230246251565e-16,
+            -4.440892098500626e-16,
+            1.3322676295501878e-15,
+            1.3322676295501878e-15,
+            0.0,
+            -7.771561172376096e-16
+          ],
+          "native_endpoint_checks": [
+            {
+              "vertex_index": 74,
+              "point_index": 81,
+              "raw_point": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "dimensionless_locus_residual": 2.220446049250313e-16
+            },
+            {
+              "vertex_index": 74,
+              "point_index": 81,
+              "raw_point": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "dimensionless_locus_residual": 2.220446049250313e-16
+            }
+          ],
+          "reversed_rate_counterexample_max_residual": 0.08505437963600171,
+          "falsely_circular_counterexample_max_residual": 0.02772186247208852
+        }
+      ]
+    }
+  ],
+  "circular_controls": [
+    {
+      "file": "analytic-86a12b291d0a/analytic.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.66dea2e4-f2cf-4d43-8c2d-62117e12e1a6.smbh",
+      "record_index": 26,
+      "kind": "Cone",
+      "expected_geometry": {
+        "raw_origin": [
+          0.0,
+          1.5,
+          0.0
+        ],
+        "coordinate_scope": "Raw ASM coordinates and lengths; body transform and unit context not applied",
+        "kind": "Cone",
+        "axis": [
+          -0.0,
+          -1.0,
+          -0.0
+        ],
+        "raw_radius": 1.0,
+        "stored_reference_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "stored_axis_ratio": 1.0,
+        "stored_u_parameter_scale": 1.0,
+        "is_u_reversed": false,
+        "half_angle_radians": 0.5880026035475675,
+        "stored_signed_half_angle_radians": 0.5880026035475675,
+        "stored_sine_half_angle": 0.5547001962252291,
+        "stored_cosine_half_angle": 0.8320502943378437,
+        "angular_scope": "Unsigned angle matches observed API values; signed native pair retained for parameterization",
+        "u_interval": [
+          null,
+          null
+        ],
+        "v_interval": [
+          null,
+          null
+        ]
+      },
+      "dictionary_sha256": "77f9c9a046dd0d2636caca7137e56c6cc2be41e817de10cc9385d08cf05f9786",
+      "new_helper_rejects_circular": true
+    },
+    {
+      "file": "holes-926347c1eaa8/simple.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.cd4f2d22-8cdc-44ae-8442-fae7c15cc87b.smb",
+      "record_index": 67,
+      "kind": "Cylinder",
+      "expected_geometry": {
+        "raw_origin": [
+          3.0,
+          2.0,
+          1.4
+        ],
+        "coordinate_scope": "Raw ASM coordinates and lengths; body transform and unit context not applied",
+        "kind": "Cylinder",
+        "axis": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "raw_radius": 0.30000000000000004,
+        "stored_reference_axis": [
+          0.30000000000000004,
+          0.0,
+          0.0
+        ],
+        "stored_axis_ratio": 1.0,
+        "stored_u_parameter_scale": 0.30000000000000004,
+        "is_u_reversed": false,
+        "u_interval": [
+          null,
+          null
+        ],
+        "v_interval": [
+          null,
+          null
+        ]
+      },
+      "dictionary_sha256": "0efc77f8c58c4ea71092615713458800d2b54c3bc55bc5db3a87b62815015abc",
+      "new_helper_rejects_circular": true
+    }
+  ],
+  "guards": [
+    {
+      "case": "Non-unit axis",
+      "rejected": true,
+      "reason": "Non-unit elliptic cone axis"
+    },
+    {
+      "case": "Reference parallel to cone axis",
+      "rejected": true,
+      "reason": "Elliptic cone reference is not perpendicular to axis"
+    },
+    {
+      "case": "Invalid ellipse ratio",
+      "rejected": true,
+      "reason": "Unsupported noncircular elliptic cone base ellipse"
+    },
+    {
+      "case": "Invalid signed angular pair",
+      "rejected": true,
+      "reason": "Unsupported elliptic cone angular pair"
+    },
+    {
+      "case": "Unqualified differing parameter scale",
+      "rejected": true,
+      "reason": "Unqualified elliptic cone parameter-scale/base-radius contrast"
+    }
+  ],
+  "limitations": [
+    "Only the observed noncircular, positive-cosine, nonzero-slope layout with physical major radius matching stored parameter scale is qualified.",
+    "The separate parameter scale and major radius are indistinguishable numerically here; differing-scale elliptic cones remain unsupported.",
+    "The signed pair defines the tested geometric axial-scale rate in this bounded case; no native UV sign, half-angle, circular-cone label or parameter-to-angle formula is assigned.",
+    "Harmonic coefficients establish the stored boundary curves lie on the candidate quadric within floating precision. This does not reconstruct trimmed-face topology, establish final visible lifecycle or compare an API surface evaluator.",
+    "Raw ellipse axes/radii and the native signed pair remain literal. Assembly placement, exact regeneration and native file writing are outside scope."
+  ],
+  "summary": {
+    "saved_files": 1,
+    "elliptic_cone_records": 2,
+    "typed_parent_boundary_curves": 4,
+    "entire_boundary_harmonic_coefficients_checked": 20,
+    "maximum_absolute_harmonic_coefficient": 6.831957815367505e-16,
+    "boundary_curve_sample_points": 32,
+    "maximum_absolute_dimensionless_locus_residual": 1.3322676295501878e-15,
+    "native_endpoint_occurrences": 8,
+    "wrong_sign_and_circular_counterexamples": 8,
+    "circular_controls_preserved": 2,
+    "malformed_guards": 5
+  }
+}

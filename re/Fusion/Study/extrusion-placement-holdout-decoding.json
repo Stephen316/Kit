@@ -1,0 +1,3022 @@
+{
+  "scope": "Separate translated-Circle saved holdout outside fixed23 integration manifest; native body proof and collectively corroborated saved API numerical geometry, without chronological or per-entity API identity",
+  "archive": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+  "inputs_sha256": {
+    "loftbrepends-e07e3859ed20/edge_both_tangent.f3d": "a9f66e7d819be33ad9ae3351642ad7bc29b958150510affe250e679f2bf62285",
+    "loftbrepends-e07e3859ed20/ground_truth.json": "09ac7751f2b8a24f27d05720a8d9021c55a087c46296bdba17ac7fb9aead9c55",
+    "decode_extrusion_reconstruction.py": "95647f20dd3e5d599c9567922facee5f021568e21c7d5474a222500929c5496f",
+    "decode_extrusion_source_operands.py": "9f45976340deef3a4d71f6c999e360841c88d82e129c9754e00e38e535b74b40",
+    "decode_circular_extrusion_geometry.py": "77fe57a5a7b50cb7b2d3add0dd738b84b13b3501cf87893cd60205fc00ffe6d1",
+    "validate_extrusion_placement_holdout.py": "53b4f291467b4194408acc58ff80ef55cf4a7a40a49d76a9ead04929c7a0e1a8"
+  },
+  "independently_read_native_cylinders": [
+    {
+      "feature_object_id": 234,
+      "center_component_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius_cm": 1.0,
+      "volume_cm3": 3.141592653589793,
+      "bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "feature_object_id": 320,
+      "center_component_cm": [
+        0.0,
+        0.0,
+        4.0
+      ],
+      "radius_cm": 0.6,
+      "volume_cm3": 1.1309733552923256,
+      "bounds_cm": [
+        [
+          -0.6,
+          -0.6,
+          4.0
+        ],
+        [
+          0.6,
+          0.6,
+          5.0
+        ]
+      ]
+    }
+  ],
+  "expected_summary": {
+    "decoded": [
+      {
+        "feature_object_id": 234,
+        "native_source_provenance": {
+          "feature_object_id": 234,
+          "settings": {
+            "operation": {
+              "stored_code": 4,
+              "kind": "NewBody"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 1.0
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                1.0
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 243,
+              "opaque": 248,
+              "second_descriptor": null,
+              "taper": 246,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0,
+            "is_solid": true
+          },
+          "source_groups": [
+            {
+              "source_feature_object_id": 234,
+              "native_body_object_id": 260,
+              "body_anchor_object_id": 266,
+              "source_anchor": {
+                "object_id": 266,
+                "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                "native_body_object_id": 260,
+                "source_owner_object_id": 234,
+                "native_uuid_text": "23918c43-aa77-4f55-8378-374768647a89",
+                "stored_flags": [
+                  0,
+                  1
+                ],
+                "native_body_reference_offset": 33806,
+                "body_properties": {},
+                "association": "Typed anchor contains an explicit reference to the native body record",
+                "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+              },
+              "binding": {
+                "native_body_object_id": 260,
+                "stored_handle": 6,
+                "asm_body_index": 1,
+                "asm_stored_entity_id": 6,
+                "asm_body_record_offset": 186,
+                "asm_identifier_token_offset": 201,
+                "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                "previous_ordinal_candidate": null,
+                "ordinal_candidate_conflict": false
+              },
+              "mapping_record_object_id": 8,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+              "asm_body_index": 1,
+              "native_profile_kind": "Circle",
+              "native_profile_selection": {
+                "profile_descriptor_object_id": 238,
+                "profile_loop_definition_object_id": 241,
+                "native_sketch_object_id": 202,
+                "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+                "profile_loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 230,
+                        "entity_kind": "Circle",
+                        "entity_tag": 102,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "descriptor_native_record": {
+                  "object_id": 238,
+                  "class_guid": "4BD53E5A-0B3E-45E5-AE8B-02044306485A",
+                  "record_offset": 29796,
+                  "body_offset": 29815,
+                  "end_offset": 30012,
+                  "payload_hex": "000001f10000000000000000000100000024000000630034003500330063003400380064002d0034003900640032002d0034003900630036002d0039003100320031002d003300340038006300300063003800300031006300610064000300000032003000320001000000000000000100000001fe00000000000000000000000000410000000000000000000000000001010000bc0853944be3373f0101000001f000000000000000000001000001ef0000000000000000000001ea000000000000000000"
+                },
+                "loop_native_record": {
+                  "object_id": 241,
+                  "class_guid": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+                  "record_offset": 30152,
+                  "body_offset": 30171,
+                  "end_offset": 30241,
+                  "payload_hex": "000001ee000000000000000000010000000100000001000000030000006600000000000000000000000000000000000000010000000100000000000000000000000100000000"
+                }
+              },
+              "native_profile_lines": [],
+              "native_profile_circles": [
+                {
+                  "circle_object_id": 230,
+                  "center_point_id": 228,
+                  "entity_tag": 102,
+                  "radius_cm": 1.0,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "geometry": {
+                    "object_id": 230,
+                    "sketch_object_id": 202,
+                    "record_offset": 28504,
+                    "entity_genesis": 2,
+                    "kind": "Circle",
+                    "center_point_id": 228,
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "radius_mm": 10.0,
+                    "normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "reference_axis": [
+                      1.0,
+                      0.0,
+                      -0.0
+                    ],
+                    "entity_tag": 102,
+                    "is_fixed": false,
+                    "is_construction": false,
+                    "component_center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "component_normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "component_reference_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  "native_record": {
+                    "object_id": 230,
+                    "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+                    "record_offset": 28504,
+                    "body_offset": 28523,
+                    "end_offset": 28851,
+                    "payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436346600000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f03f000000000000f03f00000000000000000000000000000080000000000000f03f0000000000000000182d4454fb21194001e4000000000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f000000000001ca000000000000000000"
+                  }
+                }
+              ],
+              "native_profile_points": [
+                {
+                  "point_object_id": 228,
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "native_record": {
+                    "object_id": 228,
+                    "class_guid": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+                    "record_offset": 28235,
+                    "body_offset": 28254,
+                    "end_offset": 28456,
+                    "payload_hex": "0001020000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000600000070745f74616717000000496e7472696e7369634d6574615479706575696e743634650000000000000001e500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000803f0000803f000100000001e500000000000000000001ca000000000000000000"
+                  }
+                }
+              ],
+              "source_sketch": {
+                "kind": "Sketch",
+                "object_id": 207,
+                "native_kind_label": "Sketch",
+                "stored_index": 1,
+                "record_offset": 26908,
+                "type_code": "359",
+                "parameters": [],
+                "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                "class_namespace": "Fusion",
+                "name": "LoftBrepStartCylinderSection",
+                "sketch_object_id": 202,
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "geometry": [
+                  {
+                    "object_id": 205,
+                    "sketch_object_id": 202,
+                    "record_offset": 26650,
+                    "entity_genesis": 2,
+                    "kind": "Point",
+                    "entity_tag": 100,
+                    "position_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "component_position_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "object_id": 228,
+                    "sketch_object_id": 202,
+                    "record_offset": 28235,
+                    "entity_genesis": 2,
+                    "kind": "Point",
+                    "entity_tag": 101,
+                    "position_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "component_position_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "object_id": 230,
+                    "sketch_object_id": 202,
+                    "record_offset": 28504,
+                    "entity_genesis": 2,
+                    "kind": "Circle",
+                    "center_point_id": 228,
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "radius_mm": 10.0,
+                    "normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "reference_axis": [
+                      1.0,
+                      0.0,
+                      -0.0
+                    ],
+                    "entity_tag": 102,
+                    "is_fixed": false,
+                    "is_construction": false,
+                    "component_center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "component_normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "component_reference_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "constraints": [],
+                "dimensions": [],
+                "internal_associations": [],
+                "placement": {
+                  "sketch_to_component_matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "matrix_order": "row-major; column-vector multiplication",
+                  "translation_units": "cm",
+                  "encoding": "ImplicitIdentity",
+                  "transform_object_id": 204,
+                  "record_offset": 26616,
+                  "scope": "Native parent component; see assembly occurrence paths for world coordinates"
+                },
+                "placement_status": "Observed rigid transform decoded",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "component_association": "Explicit sketch collection and reciprocal owner reference"
+              },
+              "source_sketch_frame_provenance": {
+                "component_object_id": 3,
+                "sketch_base_record_offset": 26384,
+                "sketch_base_payload_hex": "01cc00000000000000000001000000000001090000000000000000001c0000004c006f0066007400420072006500700053007400610072007400430079006c0069006e00640065007200530065006300740069006f006e00000300000001cd00000000000000000001e400000000000000000001e60000000000000000000109000000000000000000",
+                "transform": {
+                  "object_id": 204,
+                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                  "record_offset": 26616,
+                  "body_offset": 26635,
+                  "end_offset": 26650,
+                  "payload_hex": "000001000103000000000000000000"
+                },
+                "canonical_placement": {
+                  "sketch_to_component_matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "matrix_order": "row-major; column-vector multiplication",
+                  "translation_units": "cm",
+                  "encoding": "ImplicitIdentity",
+                  "transform_object_id": 204,
+                  "record_offset": 26616,
+                  "scope": "Native parent component; see assembly occurrence paths for world coordinates"
+                },
+                "collection_component_association": "Explicit sketch collection and reciprocal owner reference"
+              },
+              "extrude_controls": {
+                "operation": {
+                  "stored_code": 4,
+                  "kind": "NewBody"
+                },
+                "extent": {
+                  "stored_code": 1,
+                  "mode": "OneSided",
+                  "side_one": {
+                    "stored_code": 1,
+                    "condition": "Distance",
+                    "uninterpreted_flags": 0,
+                    "taper_angle_radians": 0.0,
+                    "taper_angle_degrees": 0.0,
+                    "distance_cm": 1.0
+                  },
+                  "side_one_condition": "Distance",
+                  "stored_direction_vector": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                  "side_one_distance_cm": [
+                    1.0
+                  ]
+                },
+                "start": {
+                  "stored_code": 0,
+                  "kind": "ProfilePlane"
+                },
+                "extrusion_reference_fields": {
+                  "start": null,
+                  "against": null,
+                  "along": 243,
+                  "opaque": 248,
+                  "second_descriptor": null,
+                  "taper": 246,
+                  "target": null,
+                  "offset": null,
+                  "target_two": null,
+                  "taper_two": null,
+                  "offset_two": null
+                },
+                "stored_second_extent_enabled": 0,
+                "is_solid": true
+              },
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "sketch_normal_component": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored Extrude vector and independent native Sketch-to-component frame; consumer must qualify their relation",
+              "profile_cache_correspondence": {
+                "source_feature_object_id": 234,
+                "feature_object_id": 234,
+                "source_feature_kind": "Extrude",
+                "profile_descriptor_object_id": 238,
+                "profile_loop_definition_object_id": 241,
+                "native_sketch_object_id": 202,
+                "source_sketch_feature_object_id": 207,
+                "native_sketch_name": "LoftBrepStartCylinderSection",
+                "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+                "profile_loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 230,
+                        "entity_kind": "Circle",
+                        "entity_tag": 102,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "body_anchor_object_id": 266,
+                "native_body_object_id": 260,
+                "mapping_record_object_id": 8,
+                "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+                "asm_body_index": 1,
+                "asm_stored_body_entity_id": 6,
+                "source_curves": [
+                  {
+                    "native_entity_object_id": 230,
+                    "native_entity_kind": "Circle",
+                    "native_entity_tag": 102,
+                    "tag_property": "crv_primary_id",
+                    "cached_coedge_candidates": [
+                      {
+                        "attribute_record_index": 68,
+                        "uninterpreted_text": "102 0 0 0 1 1",
+                        "stored_decimal_text_fields": [
+                          "102",
+                          "0",
+                          "0",
+                          "0",
+                          "1",
+                          "1"
+                        ],
+                        "coedge_record_index": 53,
+                        "edge_record_index": 69,
+                        "loop_record_index": 36,
+                        "face_record_index": 17,
+                        "curve_record_index": 89,
+                        "curve_kind": "ellipse-curve",
+                        "endpoint_vertex_record_indices": [
+                          88,
+                          88
+                        ]
+                      },
+                      {
+                        "attribute_record_index": 86,
+                        "uninterpreted_text": "102 0 0 0 1 1",
+                        "stored_decimal_text_fields": [
+                          "102",
+                          "0",
+                          "0",
+                          "0",
+                          "1",
+                          "1"
+                        ],
+                        "coedge_record_index": 67,
+                        "edge_record_index": 69,
+                        "loop_record_index": 50,
+                        "face_record_index": 33,
+                        "curve_record_index": 89,
+                        "curve_kind": "ellipse-curve",
+                        "endpoint_vertex_record_indices": [
+                          88,
+                          88
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "comparison_basis": "Canonical decimal first text field equals crv_primary_id only after explicit owned native profile/Sketch/entity and source-owner BODY/blob routes; all matching COEDGE candidates retained",
+                "identity_status": "Qualified multiple profile-cache naming correspondence, not universal ID conversion or uniquely selected geometry",
+                "geometry_status": "Geometry not used to select candidates; transformed/modified cache may differ from original sketch",
+                "remaining_uncertainty": [
+                  "Other five text fields remain literal strings",
+                  "Unbound .smb EDGE/VERTEX attributes not converted to native entity tags",
+                  "Historical/current/final lifecycle and persistent topology identity",
+                  "General feature regeneration and parameterization"
+                ]
+              },
+              "profile_cache_diagnostics": [],
+              "source_native_records": [
+                {
+                  "object_id": 234,
+                  "class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+                  "record_offset": 29019,
+                  "body_offset": 29038,
+                  "end_offset": 29502,
+                  "payload_hex": "00010000000000000004000000010000000200000000010000000000000000000000000000000000000000000000000000f03f000001f300000000000000000001f80000000000000000000001f600000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000100000001eb0000000000000000000000000001000000010a010000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000500000001eb00000000000000000001ee00000000000000000001f300000000000000000001f600000000000000000001f80000000000000000000300000007000000450078007400720075006400650001000000000000001c0000004c006f0066007400420072006500700053007400610072007400430079006c0069006e0064006500720045007800740072007500640065000000000000000001fd000000000000000000000200000001010000249f8c2ec50e403f0101000001fc00000000000000000001000001fb0000000000000000000000"
+                },
+                {
+                  "object_id": 266,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "record_offset": 33707,
+                  "body_offset": 33726,
+                  "end_offset": 33828,
+                  "payload_hex": "000024000000320033003900310038006300340033002d0061006100370037002d0034006600350035002d0038003300370038002d003300370034003700360038003600340037006100380039000001010401000000000000000001ea000000000000000000"
+                },
+                {
+                  "object_id": 260,
+                  "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                  "record_offset": 32131,
+                  "body_offset": 32150,
+                  "end_offset": 33075,
+                  "payload_hex": "00000500000030005f0032003600300002000000182d4454fb212940cabf9c400682763b098543594fbedc3d0000000000000000000000000000e03f1976d34cc737323f47ff77b94f52fd3f03baecef4f52fd3fecd00939fb21f93f0000000000000080000000003493e6bd000000000000008024000000310030006400640031003500300030002d0034003700320035002d0034006500650030002d0039006300610030002d00390064003800360030003800660034003700610037006300492e4454fb2109401976d34cc737323f010000000100000000746823000101000000000000f0bf000000000000f0bf000000000000f0bf000000000000f0bf0000803f0000000000000000000024000000320033003900310038006300340033002d0061006100370037002d0034006600350035002d0038003300370038002d00330037003400370036003800360034003700610038003900010100000000000000000024000000360038004400320045003000430042002d0037003800390038002d0037003100370031002d0041003200460044002d0039003700420033003200390037003300440035003100310024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d003000310038000107000000000000000000000105010000000000000000190000004c006f0066007400420072006500700053007400610072007400430079006c0069006e0064006500720042006f00640079000000000000000000000000000000803f01010000000000000000000024000000350030003000300046004600460030002d0036003100330033002d0034003100460042002d0042003500370044002d0031003800410035003200310034003400300041004300430024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f01000000000107000000000000000000"
+                }
+              ]
+            }
+          ],
+          "source_group_count": 1,
+          "component_provenance": {
+            "component_object_id": 3,
+            "body_ownership": [
+              {
+                "native_body_object_id": 260,
+                "body_properties": {
+                  "object_id": 260,
+                  "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                  "record_offset": 32131,
+                  "name": "LoftBrepStartCylinderBody",
+                  "name_status": "Stored custom name recovered",
+                  "collection_object_id": 7,
+                  "component_object_id": 3,
+                  "component_name": "(Unsaved)",
+                  "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                  "stored_body_tag": "0_260",
+                  "name_helper_object_id": 261,
+                  "name_field_offset": 32723,
+                  "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                },
+                "collection": {
+                  "object_id": 7,
+                  "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                  "component_object_id": 3,
+                  "component_name": "(Unsaved)",
+                  "body_object_ids": [
+                    260,
+                    346,
+                    463
+                  ],
+                  "stored_field_at_3": 3,
+                  "uninterpreted_middle_hex": "010109010000000000000000010800000000000000000001011200000000000000000000"
+                }
+              }
+            ],
+            "dependency_scopes": [
+              {
+                "object_id": 234,
+                "native_dependency_tables": [
+                  {
+                    "graph_object_id": 29,
+                    "edges": [
+                      {
+                        "object_id": 33,
+                        "stored_flags": 4096
+                      },
+                      {
+                        "object_id": 248,
+                        "stored_flags": 1
+                      }
+                    ]
+                  }
+                ],
+                "component_ownership_evidence": [
+                  "Explicit dependency scope edge and typed component datum"
+                ],
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "component_scope_object_id": 33,
+                "component_association": "Explicit dependency scope edge and typed component datum",
+                "component_ownership_status": "Observed native component-scope reference decoded"
+              },
+              {
+                "object_id": 207,
+                "native_dependency_tables": [
+                  {
+                    "graph_object_id": 29,
+                    "edges": [
+                      {
+                        "object_id": 33,
+                        "stored_flags": 4096
+                      },
+                      {
+                        "object_id": 215,
+                        "stored_flags": 1
+                      }
+                    ]
+                  }
+                ],
+                "component_ownership_evidence": [
+                  "Explicit dependency scope edge and typed component datum"
+                ],
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "component_scope_object_id": 33,
+                "component_association": "Explicit dependency scope edge and typed component datum",
+                "component_ownership_status": "Observed native component-scope reference decoded"
+              }
+            ],
+            "assembly_scope": "Observed local definitions, repeated/nested instances and owned sketch coordinates"
+          },
+          "feature_native_record": {
+            "object_id": 234,
+            "class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "record_offset": 29019,
+            "body_offset": 29038,
+            "end_offset": 29502,
+            "payload_hex": "00010000000000000004000000010000000200000000010000000000000000000000000000000000000000000000000000f03f000001f300000000000000000001f80000000000000000000001f600000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000100000001eb0000000000000000000000000001000000010a010000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000500000001eb00000000000000000001ee00000000000000000001f300000000000000000001f600000000000000000001f80000000000000000000300000007000000450078007400720075006400650001000000000000001c0000004c006f0066007400420072006500700053007400610072007400430079006c0069006e0064006500720045007800740072007500640065000000000000000001fd000000000000000000000200000001010000249f8c2ec50e403f0101000001fc00000000000000000001000001fb0000000000000000000000"
+          },
+          "API_handle_identity": null,
+          "persistent_identity": null,
+          "qualified_historical_state": null,
+          "cache_lifecycle_scope": "Creator-owned native BODY and initial stored-ID association only; later mutations or literal-view slots are not assigned chronological state",
+          "scope": "Observed solid NewBody Extrude, complete Circle or four-Line profile, native POINT/curve incidence and rigid Sketch/component frame; one/two-sided/symmetric Distance, ProfilePlane/Offset start and signed taper operands retained. Creator-owned BODY and same-asset stored-ID mapping qualify the reconstruction input only; cache lifecycle, cap identity, persistent/API identity and general feature regeneration remain unresolved."
+        },
+        "source_native_body_object_id": 260,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+        "asm_body_index": 1,
+        "binding": {
+          "native_body_object_id": 260,
+          "stored_handle": 6,
+          "asm_body_index": 1,
+          "asm_stored_entity_id": 6,
+          "asm_body_record_offset": 186,
+          "asm_identifier_token_offset": 201,
+          "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+          "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+          "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+          "previous_ordinal_candidate": null,
+          "ordinal_candidate_conflict": false
+        },
+        "derived_geometry": {
+          "source_circle": {
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "radius_cm": 1.0,
+            "unit_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          "axial_stations": [
+            {
+              "axial_distance_cm": 0.0,
+              "taper_angle_radians": 0.0,
+              "native_control_role": "Start",
+              "radius_cm": 1.0,
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "axial_distance_cm": 1.0,
+              "taper_angle_radians": 0.0,
+              "native_control_role": "SideOneEnd",
+              "radius_cm": 1.0,
+              "center_cm": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ],
+          "mathematical_disk_caps": [
+            {
+              "semantic_role": "LowerAxialCap",
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "axis_unit": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "mathematical_outward_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0,
+              "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+              "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+              "native_FACE_identity": null,
+              "native_EDGE_identity": null,
+              "native_UV": null
+            },
+            {
+              "semantic_role": "UpperAxialCap",
+              "center_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "axis_unit": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "mathematical_outward_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 1.0,
+              "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+              "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+              "native_FACE_identity": null,
+              "native_EDGE_identity": null,
+              "native_UV": null
+            }
+          ],
+          "lateral_carrier": {
+            "kind": "Cylinder",
+            "axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "unit_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radial_slope": 0.0,
+            "radial_intercept_cm": 1.0,
+            "axial_domain_cm": [
+              0.0,
+              1.0
+            ],
+            "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+            "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+            "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+            "chosen_half_angle_radians": 0.0,
+            "native_UV": null,
+            "native_FACE_identity": null
+          },
+          "axial_length_cm": 1.0,
+          "volume_cm3": 3.141592653589793,
+          "lateral_area_cm2": 6.283185307179586,
+          "total_area_cm2": 12.566370614359172,
+          "component_axis_aligned_bounds_cm": {
+            "minimum": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "maximum": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "source_to_cache_entity_mapping": null,
+          "scope": "Derived capped circular straight extrusion from a qualified native Circle, component frame and observed signed Distance/Offset, symmetric Full/Half or two-sided zero-taper controls; positive one-sided profile-plane taper uses the observed expanding radius. Mathematical carriers/caps only, no native UV, cap ENTITY assignment, arbitrary end condition or general regeneration."
+        },
+        "native_cache_geometry_corroboration": {
+          "kind": "CompleteCappedCircularCache",
+          "counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "native_boundary_circles": [
+            {
+              "native_EDGE": {
+                "index": 54,
+                "kind": "edge",
+                "offset": 5980,
+                "attribute_index": 70,
+                "stored_entity_id": 2,
+                "pattern_index": null,
+                "start_vertex_index": 71,
+                "end_vertex_index": 71,
+                "first_coedge_index": 37,
+                "curve_index": 72,
+                "start_parameter": -3.141592653589793,
+                "end_parameter": 3.141592653589793,
+                "is_reversed": false,
+                "stored_trailing_text": "unknown"
+              },
+              "native_Circle": {
+                "index": 72,
+                "kind": "ellipse-curve",
+                "offset": 14028,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "raw_major_radius": 1.0,
+                "raw_minor_radius": 1.0,
+                "stored_axis_ratio": 1.0,
+                "parameter_interval": [
+                  null,
+                  null
+                ]
+              },
+              "native_cap_FACE": {
+                "index": 21,
+                "kind": "face",
+                "offset": 2291,
+                "attribute_index": 32,
+                "stored_entity_id": 0,
+                "pattern_index": null,
+                "next_face_index": 33,
+                "first_loop_index": 34,
+                "shell_index": 12,
+                "subshell_index": null,
+                "surface_index": 35,
+                "is_reversed": false,
+                "is_double_sided": false
+              },
+              "native_cap_Plane": {
+                "index": 35,
+                "kind": "plane-surface",
+                "offset": 3911,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "is_v_reversed": false,
+                "u_interval": [
+                  null,
+                  null
+                ],
+                "v_interval": [
+                  null,
+                  null
+                ],
+                "analytic_surface": {
+                  "kind": "Plane",
+                  "raw_origin": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "stored_reference_axis": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "is_v_reversed": false,
+                  "u_interval": [
+                    null,
+                    null
+                  ],
+                  "v_interval": [
+                    null,
+                    null
+                  ],
+                  "coordinate_scope": "Raw ASM coordinates; body transform/context not applied"
+                }
+              },
+              "endpoint_evaluations": [
+                {
+                  "parameter": -3.141592653589793,
+                  "evaluated_position_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "native_POINT": {
+                    "index": 90,
+                    "kind": "point",
+                    "offset": 16223,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -1.0,
+                      -1.2246467991473532e-16,
+                      1.0
+                    ]
+                  },
+                  "residual_raw": 0.0
+                },
+                {
+                  "parameter": 3.141592653589793,
+                  "evaluated_position_cm": [
+                    -1.0,
+                    1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "native_POINT": {
+                    "index": 90,
+                    "kind": "point",
+                    "offset": 16223,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -1.0,
+                      -1.2246467991473532e-16,
+                      1.0
+                    ]
+                  },
+                  "residual_raw": 2.4492935982947064e-16
+                }
+              ],
+              "cap_plane_constant_residual_raw": 0.0,
+              "native_COEDGEs": [
+                {
+                  "index": 37,
+                  "kind": "coedge",
+                  "offset": 4096,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 37,
+                  "previous_coedge_index": 37,
+                  "partner_index": 52,
+                  "edge_index": 54,
+                  "loop_index": 22,
+                  "pcurve_index": null,
+                  "is_reversed": true,
+                  "uninterpreted_field_9": 0
+                },
+                {
+                  "index": 52,
+                  "kind": "coedge",
+                  "offset": 5780,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 52,
+                  "previous_coedge_index": 52,
+                  "partner_index": 37,
+                  "edge_index": 54,
+                  "loop_index": 34,
+                  "pcurve_index": null,
+                  "is_reversed": false,
+                  "uninterpreted_field_9": 0
+                }
+              ],
+              "cap_loop": {
+                "loop_index": 34,
+                "face_index": 21,
+                "coedge_cycle": [
+                  52
+                ],
+                "edge_indices": [
+                  54
+                ],
+                "vertex_cycle": [
+                  71
+                ],
+                "native_LOOP": {
+                  "index": 34,
+                  "kind": "loop",
+                  "offset": 3850,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_loop_index": null,
+                  "first_coedge_index": 52,
+                  "face_index": 21
+                }
+              },
+              "native_traversal_semantics": null
+            },
+            {
+              "native_EDGE": {
+                "index": 69,
+                "kind": "edge",
+                "offset": 13664,
+                "attribute_index": 87,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "start_vertex_index": 88,
+                "end_vertex_index": 88,
+                "first_coedge_index": 53,
+                "curve_index": 89,
+                "start_parameter": -3.141592653589793,
+                "end_parameter": 3.141592653589793,
+                "is_reversed": false,
+                "stored_trailing_text": "unknown"
+              },
+              "native_Circle": {
+                "index": 89,
+                "kind": "ellipse-curve",
+                "offset": 16093,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "raw_major_radius": 1.0,
+                "raw_minor_radius": 1.0,
+                "stored_axis_ratio": 1.0,
+                "parameter_interval": [
+                  null,
+                  null
+                ]
+              },
+              "native_cap_FACE": {
+                "index": 33,
+                "kind": "face",
+                "offset": 3769,
+                "attribute_index": 49,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "next_face_index": null,
+                "first_loop_index": 50,
+                "shell_index": 12,
+                "subshell_index": null,
+                "surface_index": 51,
+                "is_reversed": true,
+                "is_double_sided": false
+              },
+              "native_cap_Plane": {
+                "index": 51,
+                "kind": "plane-surface",
+                "offset": 5656,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "is_v_reversed": false,
+                "u_interval": [
+                  null,
+                  null
+                ],
+                "v_interval": [
+                  null,
+                  null
+                ],
+                "analytic_surface": {
+                  "kind": "Plane",
+                  "raw_origin": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "stored_reference_axis": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "is_v_reversed": false,
+                  "u_interval": [
+                    null,
+                    null
+                  ],
+                  "v_interval": [
+                    null,
+                    null
+                  ],
+                  "coordinate_scope": "Raw ASM coordinates; body transform/context not applied"
+                }
+              },
+              "endpoint_evaluations": [
+                {
+                  "parameter": -3.141592653589793,
+                  "evaluated_position_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    0.0
+                  ],
+                  "native_POINT": {
+                    "index": 103,
+                    "kind": "point",
+                    "offset": 17888,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -1.0,
+                      -1.2246467991473532e-16,
+                      0.0
+                    ]
+                  },
+                  "residual_raw": 0.0
+                },
+                {
+                  "parameter": 3.141592653589793,
+                  "evaluated_position_cm": [
+                    -1.0,
+                    1.2246467991473532e-16,
+                    0.0
+                  ],
+                  "native_POINT": {
+                    "index": 103,
+                    "kind": "point",
+                    "offset": 17888,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -1.0,
+                      -1.2246467991473532e-16,
+                      0.0
+                    ]
+                  },
+                  "residual_raw": 2.4492935982947064e-16
+                }
+              ],
+              "cap_plane_constant_residual_raw": 0.0,
+              "native_COEDGEs": [
+                {
+                  "index": 53,
+                  "kind": "coedge",
+                  "offset": 5880,
+                  "attribute_index": 68,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 53,
+                  "previous_coedge_index": 53,
+                  "partner_index": 67,
+                  "edge_index": 69,
+                  "loop_index": 36,
+                  "pcurve_index": null,
+                  "is_reversed": false,
+                  "uninterpreted_field_9": 0
+                },
+                {
+                  "index": 67,
+                  "kind": "coedge",
+                  "offset": 13434,
+                  "attribute_index": 86,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 67,
+                  "previous_coedge_index": 67,
+                  "partner_index": 53,
+                  "edge_index": 69,
+                  "loop_index": 50,
+                  "pcurve_index": null,
+                  "is_reversed": true,
+                  "uninterpreted_field_9": 0
+                }
+              ],
+              "cap_loop": {
+                "loop_index": 50,
+                "face_index": 33,
+                "coedge_cycle": [
+                  67
+                ],
+                "edge_indices": [
+                  69
+                ],
+                "vertex_cycle": [
+                  88
+                ],
+                "native_LOOP": {
+                  "index": 50,
+                  "kind": "loop",
+                  "offset": 5595,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_loop_index": null,
+                  "first_coedge_index": 67,
+                  "face_index": 33
+                }
+              },
+              "native_traversal_semantics": null
+            }
+          ],
+          "native_lateral_FACE": {
+            "index": 17,
+            "kind": "face",
+            "offset": 1846,
+            "attribute_index": 20,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "next_face_index": 21,
+            "first_loop_index": 22,
+            "shell_index": 12,
+            "subshell_index": null,
+            "surface_index": 23,
+            "is_reversed": false,
+            "is_double_sided": false
+          },
+          "native_lateral_carrier": {
+            "index": 23,
+            "kind": "cone-surface",
+            "offset": 2433,
+            "attribute_index": null,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "analytic_surface": {
+              "raw_origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "coordinate_scope": "Raw ASM coordinates and lengths; body transform and unit context not applied",
+              "kind": "Cylinder",
+              "axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "raw_radius": 1.0,
+              "stored_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "stored_axis_ratio": 1.0,
+              "stored_u_parameter_scale": 1.0,
+              "is_u_reversed": false,
+              "u_interval": [
+                null,
+                null
+              ],
+              "v_interval": [
+                null,
+                null
+              ]
+            }
+          },
+          "lateral_boundary_loops": [
+            {
+              "loop_index": 36,
+              "face_index": 17,
+              "coedge_cycle": [
+                53
+              ],
+              "edge_indices": [
+                69
+              ],
+              "vertex_cycle": [
+                88
+              ],
+              "native_LOOP": {
+                "index": 36,
+                "kind": "loop",
+                "offset": 4035,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "next_loop_index": null,
+                "first_coedge_index": 53,
+                "face_index": 17
+              }
+            },
+            {
+              "loop_index": 22,
+              "face_index": 17,
+              "coedge_cycle": [
+                37
+              ],
+              "edge_indices": [
+                54
+              ],
+              "vertex_cycle": [
+                71
+              ],
+              "native_LOOP": {
+                "index": 22,
+                "kind": "loop",
+                "offset": 2372,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "next_loop_index": 36,
+                "first_coedge_index": 37,
+                "face_index": 17
+              }
+            }
+          ],
+          "complete_coefficient_residuals_raw": {
+            "cap_circle_bundle": 0.0,
+            "lateral_axis_line": 0.0,
+            "lateral_radial_slope": 0.0,
+            "lateral_radial_intercept": 0.0
+          },
+          "bounded_axial_domain_from_derived_caps_cm": [
+            0.0,
+            1.0
+          ],
+          "semantic_cap_to_native_ENTITY_mapping": null,
+          "API_handle_identity": null,
+          "qualified_historical_state": null,
+          "scope": "Complete analytic carrier equations and full two-circle/Plane cap boundary after native BODY identity; unordered model corroboration, no coordinate-selected cap identity or native UV"
+        },
+        "source_to_cache_entity_mapping": null,
+        "exact_API_handle_identity": null,
+        "qualified_historical_state": null,
+        "current_or_final_geometry_identity": null,
+        "scope": "Derived native complete Circle cylinder/frustum or four-Line rectangular prism from owned Sketch/frame and ordinary NewBody Distance/start controls. Complete identity-qualified stored BODY analytic carriers and bounded topology corroborate the model collectively; no coordinate ENTITY mapping, fit, native UV, API/current/final/persistent identity or chronological regeneration is established. Unsupported controls and frames stay explicit."
+      },
+      {
+        "feature_object_id": 320,
+        "native_source_provenance": {
+          "feature_object_id": 320,
+          "settings": {
+            "operation": {
+              "stored_code": 4,
+              "kind": "NewBody"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 1.0
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                1.0
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 329,
+              "opaque": 334,
+              "second_descriptor": null,
+              "taper": 332,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0,
+            "is_solid": true
+          },
+          "source_groups": [
+            {
+              "source_feature_object_id": 320,
+              "native_body_object_id": 346,
+              "body_anchor_object_id": 350,
+              "source_anchor": {
+                "object_id": 350,
+                "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                "native_body_object_id": 346,
+                "source_owner_object_id": 320,
+                "native_uuid_text": "1b4cb515-9468-4fb9-a042-6fbe2d423d20",
+                "stored_flags": [
+                  0,
+                  1
+                ],
+                "native_body_reference_offset": 44010,
+                "body_properties": {},
+                "association": "Typed anchor contains an explicit reference to the native body record",
+                "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+              },
+              "binding": {
+                "native_body_object_id": 346,
+                "stored_handle": 7,
+                "asm_body_index": 2,
+                "asm_stored_entity_id": 7,
+                "asm_body_record_offset": 247,
+                "asm_identifier_token_offset": 262,
+                "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                "previous_ordinal_candidate": null,
+                "ordinal_candidate_conflict": false
+              },
+              "mapping_record_object_id": 8,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+              "asm_body_index": 2,
+              "native_profile_kind": "Circle",
+              "native_profile_selection": {
+                "profile_descriptor_object_id": 324,
+                "profile_loop_definition_object_id": 327,
+                "native_sketch_object_id": 289,
+                "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+                "profile_loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 316,
+                        "entity_kind": "Circle",
+                        "entity_tag": 105,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "descriptor_native_record": {
+                  "object_id": 324,
+                  "class_guid": "4BD53E5A-0B3E-45E5-AE8B-02044306485A",
+                  "record_offset": 40264,
+                  "body_offset": 40283,
+                  "end_offset": 40480,
+                  "payload_hex": "000001470100000000000000000100000024000000630034003500330063003400380064002d0034003900640032002d0034003900630036002d0039003100320031002d00330034003800630030006300380030003100630061006400030000003200380039000100000000000000010000000154010000000000000000000000004100000000000000000000000000010100005f19beff3b14383f0101000001460100000000000000000100000145010000000000000000000140010000000000000000"
+                },
+                "loop_native_record": {
+                  "object_id": 327,
+                  "class_guid": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+                  "record_offset": 40620,
+                  "body_offset": 40639,
+                  "end_offset": 40709,
+                  "payload_hex": "00000144010000000000000000010000000100000001000000030000006900000000000000000000000000000000000000010000000100000000000000000000000100000000"
+                }
+              },
+              "native_profile_lines": [],
+              "native_profile_circles": [
+                {
+                  "circle_object_id": 316,
+                  "center_point_id": 314,
+                  "entity_tag": 105,
+                  "radius_cm": 0.6,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "geometry": {
+                    "object_id": 316,
+                    "sketch_object_id": 289,
+                    "record_offset": 38976,
+                    "entity_genesis": 2,
+                    "kind": "Circle",
+                    "center_point_id": 314,
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.6,
+                    "radius_mm": 6.0,
+                    "normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "reference_axis": [
+                      1.0,
+                      0.0,
+                      -0.0
+                    ],
+                    "entity_tag": 105,
+                    "is_fixed": false,
+                    "is_construction": false,
+                    "component_center_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "component_normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "component_reference_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  "native_record": {
+                    "object_id": 316,
+                    "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+                    "record_offset": 38976,
+                    "body_offset": 38995,
+                    "end_offset": 39323,
+                    "payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436346900000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f03f000000000000f03f00000000000000000000000000000080333333333333e33f0000000000000000182d4454fb211940013a010000000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000121010000000000000000"
+                  }
+                }
+              ],
+              "native_profile_points": [
+                {
+                  "point_object_id": 314,
+                  "entity_tag": 104,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "native_record": {
+                    "object_id": 314,
+                    "class_guid": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+                    "record_offset": 38707,
+                    "body_offset": 38726,
+                    "end_offset": 38928,
+                    "payload_hex": "0001020000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000600000070745f74616717000000496e7472696e7369634d6574615479706575696e7436346800000000000000013b01000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000803f0000803f0001000000013b0100000000000000000121010000000000000000"
+                  }
+                }
+              ],
+              "source_sketch": {
+                "kind": "Sketch",
+                "object_id": 293,
+                "native_kind_label": "Sketch",
+                "stored_index": 2,
+                "record_offset": 37233,
+                "type_code": "359",
+                "parameters": [],
+                "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                "class_namespace": "Fusion",
+                "name": "LoftBrepEndCylinderSection",
+                "sketch_object_id": 289,
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "geometry": [
+                  {
+                    "object_id": 291,
+                    "sketch_object_id": 289,
+                    "record_offset": 36975,
+                    "entity_genesis": 2,
+                    "kind": "Point",
+                    "entity_tag": 103,
+                    "position_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "component_position_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ]
+                  },
+                  {
+                    "object_id": 314,
+                    "sketch_object_id": 289,
+                    "record_offset": 38707,
+                    "entity_genesis": 2,
+                    "kind": "Point",
+                    "entity_tag": 104,
+                    "position_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "component_position_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ]
+                  },
+                  {
+                    "object_id": 316,
+                    "sketch_object_id": 289,
+                    "record_offset": 38976,
+                    "entity_genesis": 2,
+                    "kind": "Circle",
+                    "center_point_id": 314,
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.6,
+                    "radius_mm": 6.0,
+                    "normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "reference_axis": [
+                      1.0,
+                      0.0,
+                      -0.0
+                    ],
+                    "entity_tag": 105,
+                    "is_fixed": false,
+                    "is_construction": false,
+                    "component_center_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "component_normal": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "component_reference_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "constraints": [],
+                "dimensions": [],
+                "internal_associations": [],
+                "placement": {
+                  "sketch_to_component_matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    4.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "matrix_order": "row-major; column-vector multiplication",
+                  "translation_units": "cm",
+                  "encoding": "ExplicitFloat64Matrix",
+                  "transform_object_id": 290,
+                  "record_offset": 36813,
+                  "scope": "Native parent component; see assembly occurrence paths for world coordinates"
+                },
+                "placement_status": "Observed rigid transform decoded",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "component_association": "Explicit sketch collection and reciprocal owner reference"
+              },
+              "source_sketch_frame_provenance": {
+                "component_object_id": 3,
+                "sketch_base_record_offset": 36661,
+                "sketch_base_payload_hex": "012201000000000000000002000000000001090000000000000000001a0000004c006f0066007400420072006500700045006e006400430079006c0069006e00640065007200530065006300740069006f006e0000030000000123010000000000000000013a010000000000000000013c0100000000000000000109000000000000000000",
+                "transform": {
+                  "object_id": 290,
+                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                  "record_offset": 36813,
+                  "body_offset": 36832,
+                  "end_offset": 36975,
+                  "payload_hex": "000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000001040000000000000000000000000000000000000000000000000000000000000f03f000103000000000000000000"
+                },
+                "canonical_placement": {
+                  "sketch_to_component_matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    4.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "matrix_order": "row-major; column-vector multiplication",
+                  "translation_units": "cm",
+                  "encoding": "ExplicitFloat64Matrix",
+                  "transform_object_id": 290,
+                  "record_offset": 36813,
+                  "scope": "Native parent component; see assembly occurrence paths for world coordinates"
+                },
+                "collection_component_association": "Explicit sketch collection and reciprocal owner reference"
+              },
+              "extrude_controls": {
+                "operation": {
+                  "stored_code": 4,
+                  "kind": "NewBody"
+                },
+                "extent": {
+                  "stored_code": 1,
+                  "mode": "OneSided",
+                  "side_one": {
+                    "stored_code": 1,
+                    "condition": "Distance",
+                    "uninterpreted_flags": 0,
+                    "taper_angle_radians": 0.0,
+                    "taper_angle_degrees": 0.0,
+                    "distance_cm": 1.0
+                  },
+                  "side_one_condition": "Distance",
+                  "stored_direction_vector": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                  "side_one_distance_cm": [
+                    1.0
+                  ]
+                },
+                "start": {
+                  "stored_code": 0,
+                  "kind": "ProfilePlane"
+                },
+                "extrusion_reference_fields": {
+                  "start": null,
+                  "against": null,
+                  "along": 329,
+                  "opaque": 334,
+                  "second_descriptor": null,
+                  "taper": 332,
+                  "target": null,
+                  "offset": null,
+                  "target_two": null,
+                  "taper_two": null,
+                  "offset_two": null
+                },
+                "stored_second_extent_enabled": 0,
+                "is_solid": true
+              },
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "sketch_normal_component": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored Extrude vector and independent native Sketch-to-component frame; consumer must qualify their relation",
+              "profile_cache_correspondence": {
+                "source_feature_object_id": 320,
+                "feature_object_id": 320,
+                "source_feature_kind": "Extrude",
+                "profile_descriptor_object_id": 324,
+                "profile_loop_definition_object_id": 327,
+                "native_sketch_object_id": 289,
+                "source_sketch_feature_object_id": 293,
+                "native_sketch_name": "LoftBrepEndCylinderSection",
+                "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+                "profile_loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 316,
+                        "entity_kind": "Circle",
+                        "entity_tag": 105,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "body_anchor_object_id": 350,
+                "native_body_object_id": 346,
+                "mapping_record_object_id": 8,
+                "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+                "asm_body_index": 2,
+                "asm_stored_body_entity_id": 7,
+                "source_curves": [
+                  {
+                    "native_entity_object_id": 316,
+                    "native_entity_kind": "Circle",
+                    "native_entity_tag": 105,
+                    "tag_property": "crv_primary_id",
+                    "cached_coedge_candidates": [
+                      {
+                        "attribute_record_index": 74,
+                        "uninterpreted_text": "105 0 0 0 1 1",
+                        "stored_decimal_text_fields": [
+                          "105",
+                          "0",
+                          "0",
+                          "0",
+                          "1",
+                          "1"
+                        ],
+                        "coedge_record_index": 59,
+                        "edge_record_index": 75,
+                        "loop_record_index": 42,
+                        "face_record_index": 18,
+                        "curve_record_index": 94,
+                        "curve_kind": "ellipse-curve",
+                        "endpoint_vertex_record_indices": [
+                          93,
+                          93
+                        ]
+                      },
+                      {
+                        "attribute_record_index": 91,
+                        "uninterpreted_text": "105 0 0 0 1 1",
+                        "stored_decimal_text_fields": [
+                          "105",
+                          "0",
+                          "0",
+                          "0",
+                          "1",
+                          "1"
+                        ],
+                        "coedge_record_index": 73,
+                        "edge_record_index": 75,
+                        "loop_record_index": 56,
+                        "face_record_index": 39,
+                        "curve_record_index": 94,
+                        "curve_kind": "ellipse-curve",
+                        "endpoint_vertex_record_indices": [
+                          93,
+                          93
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "comparison_basis": "Canonical decimal first text field equals crv_primary_id only after explicit owned native profile/Sketch/entity and source-owner BODY/blob routes; all matching COEDGE candidates retained",
+                "identity_status": "Qualified multiple profile-cache naming correspondence, not universal ID conversion or uniquely selected geometry",
+                "geometry_status": "Geometry not used to select candidates; transformed/modified cache may differ from original sketch",
+                "remaining_uncertainty": [
+                  "Other five text fields remain literal strings",
+                  "Unbound .smb EDGE/VERTEX attributes not converted to native entity tags",
+                  "Historical/current/final lifecycle and persistent topology identity",
+                  "General feature regeneration and parameterization"
+                ]
+              },
+              "profile_cache_diagnostics": [],
+              "source_native_records": [
+                {
+                  "object_id": 320,
+                  "class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+                  "record_offset": 39491,
+                  "body_offset": 39510,
+                  "end_offset": 39970,
+                  "payload_hex": "00010000000000000004000000010000000200000000010000000000000000000000000000000000000000000000000000f03f00000149010000000000000000014e01000000000000000000014c01000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000100000001410100000000000000000000000001000000015e010000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d0030003000300030003000300030003000300030003000300000000005000000014101000000000000000001440100000000000000000149010000000000000000014c010000000000000000014e0100000000000000000400000007000000450078007400720075006400650002000000000000001a0000004c006f0066007400420072006500700045006e006400430079006c0069006e006400650072004500780074007200750064006500000000000000000153010000000000000000000300000001010000acba0ed594643d3f01010000015201000000000000000001000001510100000000000000000000"
+                },
+                {
+                  "object_id": 350,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "record_offset": 43911,
+                  "body_offset": 43930,
+                  "end_offset": 44032,
+                  "payload_hex": "000024000000310062003400630062003500310035002d0039003400360038002d0034006600620039002d0061003000340032002d003600660062006500320064003400320033006400320030000001015a0100000000000000000140010000000000000000"
+                },
+                {
+                  "object_id": 346,
+                  "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                  "record_offset": 42599,
+                  "body_offset": 42618,
+                  "end_offset": 43539,
+                  "payload_hex": "00000500000030005f0033003400360002000000a6ba225b9f201840c947a3d81b72873b1dc55a0ffd3ed13d00000000000000000000000000001240a61b98c288dc253fc10a1ea32619374040f68ea326193740a8846579c00eca3f00000000000090bc0000000064f1f5bd000000000000a0bc24000000340039003600640061006400390064002d0036003200380064002d0034003000640039002d0038006300360035002d00630034003000390031003300640033003900650063006200d70c5a847718f23fa61b98c288dc253f020000000100000000746823000101000000000000f0bf000000000000f0bf000000000000f0bf000000000000f0bf0000803f0000000000000000000024000000310062003400630062003500310035002d0039003400360038002d0034006600620039002d0061003000340032002d00360066006200650032006400340032003300640032003000010100000000000000000024000000360038004400320045003000430042002d0037003800390038002d0037003100370031002d0041003200460044002d0039003700420033003200390037003300440035003100310024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d00300031003800010700000000000000000000015b010000000000000000170000004c006f0066007400420072006500700045006e006400430079006c0069006e0064006500720042006f00640079000000000000000000000000000000803f01010000000000000000000024000000350030003000300046004600460030002d0036003100330033002d0034003100460042002d0042003500370044002d0031003800410035003200310034003400300041004300430024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f01000000000107000000000000000000"
+                }
+              ]
+            }
+          ],
+          "source_group_count": 1,
+          "component_provenance": {
+            "component_object_id": 3,
+            "body_ownership": [
+              {
+                "native_body_object_id": 346,
+                "body_properties": {
+                  "object_id": 346,
+                  "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                  "record_offset": 42599,
+                  "name": "LoftBrepEndCylinderBody",
+                  "name_status": "Stored custom name recovered",
+                  "collection_object_id": 7,
+                  "component_object_id": 3,
+                  "component_name": "(Unsaved)",
+                  "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                  "stored_body_tag": "0_346",
+                  "name_helper_object_id": 347,
+                  "name_field_offset": 43191,
+                  "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                },
+                "collection": {
+                  "object_id": 7,
+                  "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                  "component_object_id": 3,
+                  "component_name": "(Unsaved)",
+                  "body_object_ids": [
+                    260,
+                    346,
+                    463
+                  ],
+                  "stored_field_at_3": 3,
+                  "uninterpreted_middle_hex": "010109010000000000000000010800000000000000000001011200000000000000000000"
+                }
+              }
+            ],
+            "dependency_scopes": [
+              {
+                "object_id": 320,
+                "native_dependency_tables": [
+                  {
+                    "graph_object_id": 29,
+                    "edges": [
+                      {
+                        "object_id": 33,
+                        "stored_flags": 4096
+                      },
+                      {
+                        "object_id": 234,
+                        "stored_flags": 1024
+                      },
+                      {
+                        "object_id": 334,
+                        "stored_flags": 1
+                      }
+                    ]
+                  }
+                ],
+                "component_ownership_evidence": [
+                  "Explicit dependency scope edge and typed component datum"
+                ],
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "component_scope_object_id": 33,
+                "component_association": "Explicit dependency scope edge and typed component datum",
+                "component_ownership_status": "Observed native component-scope reference decoded"
+              },
+              {
+                "object_id": 293,
+                "native_dependency_tables": [
+                  {
+                    "graph_object_id": 29,
+                    "edges": [
+                      {
+                        "object_id": 33,
+                        "stored_flags": 4096
+                      },
+                      {
+                        "object_id": 301,
+                        "stored_flags": 1
+                      }
+                    ]
+                  }
+                ],
+                "component_ownership_evidence": [
+                  "Explicit dependency scope edge and typed component datum"
+                ],
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "component_scope_object_id": 33,
+                "component_association": "Explicit dependency scope edge and typed component datum",
+                "component_ownership_status": "Observed native component-scope reference decoded"
+              }
+            ],
+            "assembly_scope": "Observed local definitions, repeated/nested instances and owned sketch coordinates"
+          },
+          "feature_native_record": {
+            "object_id": 320,
+            "class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "record_offset": 39491,
+            "body_offset": 39510,
+            "end_offset": 39970,
+            "payload_hex": "00010000000000000004000000010000000200000000010000000000000000000000000000000000000000000000000000f03f00000149010000000000000000014e01000000000000000000014c01000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000100000001410100000000000000000000000001000000015e010000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d0030003000300030003000300030003000300030003000300000000005000000014101000000000000000001440100000000000000000149010000000000000000014c010000000000000000014e0100000000000000000400000007000000450078007400720075006400650002000000000000001a0000004c006f0066007400420072006500700045006e006400430079006c0069006e006400650072004500780074007200750064006500000000000000000153010000000000000000000300000001010000acba0ed594643d3f01010000015201000000000000000001000001510100000000000000000000"
+          },
+          "API_handle_identity": null,
+          "persistent_identity": null,
+          "qualified_historical_state": null,
+          "cache_lifecycle_scope": "Creator-owned native BODY and initial stored-ID association only; later mutations or literal-view slots are not assigned chronological state",
+          "scope": "Observed solid NewBody Extrude, complete Circle or four-Line profile, native POINT/curve incidence and rigid Sketch/component frame; one/two-sided/symmetric Distance, ProfilePlane/Offset start and signed taper operands retained. Creator-owned BODY and same-asset stored-ID mapping qualify the reconstruction input only; cache lifecycle, cap identity, persistent/API identity and general feature regeneration remain unresolved."
+        },
+        "source_native_body_object_id": 346,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+        "asm_body_index": 2,
+        "binding": {
+          "native_body_object_id": 346,
+          "stored_handle": 7,
+          "asm_body_index": 2,
+          "asm_stored_entity_id": 7,
+          "asm_body_record_offset": 247,
+          "asm_identifier_token_offset": 262,
+          "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+          "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+          "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+          "previous_ordinal_candidate": null,
+          "ordinal_candidate_conflict": false
+        },
+        "derived_geometry": {
+          "source_circle": {
+            "center_cm": [
+              0.0,
+              0.0,
+              4.0
+            ],
+            "radius_cm": 0.6,
+            "unit_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          },
+          "axial_stations": [
+            {
+              "axial_distance_cm": 0.0,
+              "taper_angle_radians": 0.0,
+              "native_control_role": "Start",
+              "radius_cm": 0.6,
+              "center_cm": [
+                0.0,
+                0.0,
+                4.0
+              ]
+            },
+            {
+              "axial_distance_cm": 1.0,
+              "taper_angle_radians": 0.0,
+              "native_control_role": "SideOneEnd",
+              "radius_cm": 0.6,
+              "center_cm": [
+                0.0,
+                0.0,
+                5.0
+              ]
+            }
+          ],
+          "mathematical_disk_caps": [
+            {
+              "semantic_role": "LowerAxialCap",
+              "center_cm": [
+                0.0,
+                0.0,
+                4.0
+              ],
+              "radius_cm": 0.6,
+              "axis_unit": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "mathematical_outward_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": -4.0,
+              "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+              "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+              "native_FACE_identity": null,
+              "native_EDGE_identity": null,
+              "native_UV": null
+            },
+            {
+              "semantic_role": "UpperAxialCap",
+              "center_cm": [
+                0.0,
+                0.0,
+                5.0
+              ],
+              "radius_cm": 0.6,
+              "axis_unit": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "mathematical_outward_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 5.0,
+              "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+              "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+              "native_FACE_identity": null,
+              "native_EDGE_identity": null,
+              "native_UV": null
+            }
+          ],
+          "lateral_carrier": {
+            "kind": "Cylinder",
+            "axis_origin_cm": [
+              0.0,
+              0.0,
+              4.0
+            ],
+            "unit_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radial_slope": 0.0,
+            "radial_intercept_cm": 0.6,
+            "axial_domain_cm": [
+              0.0,
+              1.0
+            ],
+            "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+            "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+            "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+            "chosen_half_angle_radians": 0.0,
+            "native_UV": null,
+            "native_FACE_identity": null
+          },
+          "axial_length_cm": 1.0,
+          "volume_cm3": 1.1309733552923256,
+          "lateral_area_cm2": 3.7699111843077517,
+          "total_area_cm2": 6.031857894892402,
+          "component_axis_aligned_bounds_cm": {
+            "minimum": [
+              -0.6,
+              -0.6,
+              4.0
+            ],
+            "maximum": [
+              0.6,
+              0.6,
+              5.0
+            ]
+          },
+          "source_to_cache_entity_mapping": null,
+          "scope": "Derived capped circular straight extrusion from a qualified native Circle, component frame and observed signed Distance/Offset, symmetric Full/Half or two-sided zero-taper controls; positive one-sided profile-plane taper uses the observed expanding radius. Mathematical carriers/caps only, no native UV, cap ENTITY assignment, arbitrary end condition or general regeneration."
+        },
+        "native_cache_geometry_corroboration": {
+          "kind": "CompleteCappedCircularCache",
+          "counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "native_boundary_circles": [
+            {
+              "native_EDGE": {
+                "index": 60,
+                "kind": "edge",
+                "offset": 6665,
+                "attribute_index": 76,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "start_vertex_index": 77,
+                "end_vertex_index": 77,
+                "first_coedge_index": 43,
+                "curve_index": 78,
+                "start_parameter": -3.141592653589793,
+                "end_parameter": 3.141592653589793,
+                "is_reversed": false,
+                "stored_trailing_text": "unknown"
+              },
+              "native_Circle": {
+                "index": 78,
+                "kind": "ellipse-curve",
+                "offset": 14752,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  5.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  0.6,
+                  0.0,
+                  0.0
+                ],
+                "raw_major_radius": 0.6,
+                "raw_minor_radius": 0.6,
+                "stored_axis_ratio": 1.0,
+                "parameter_interval": [
+                  null,
+                  null
+                ]
+              },
+              "native_cap_FACE": {
+                "index": 25,
+                "kind": "face",
+                "offset": 2796,
+                "attribute_index": 38,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "next_face_index": 39,
+                "first_loop_index": 40,
+                "shell_index": 14,
+                "subshell_index": null,
+                "surface_index": 41,
+                "is_reversed": false,
+                "is_double_sided": false
+              },
+              "native_cap_Plane": {
+                "index": 41,
+                "kind": "plane-surface",
+                "offset": 4540,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  5.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "is_v_reversed": false,
+                "u_interval": [
+                  null,
+                  null
+                ],
+                "v_interval": [
+                  null,
+                  null
+                ],
+                "analytic_surface": {
+                  "kind": "Plane",
+                  "raw_origin": [
+                    0.0,
+                    0.0,
+                    5.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "stored_reference_axis": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "is_v_reversed": false,
+                  "u_interval": [
+                    null,
+                    null
+                  ],
+                  "v_interval": [
+                    null,
+                    null
+                  ],
+                  "coordinate_scope": "Raw ASM coordinates; body transform/context not applied"
+                }
+              },
+              "endpoint_evaluations": [
+                {
+                  "parameter": -3.141592653589793,
+                  "evaluated_position_cm": [
+                    -0.6,
+                    -7.347880794884119e-17,
+                    5.0
+                  ],
+                  "native_POINT": {
+                    "index": 95,
+                    "kind": "point",
+                    "offset": 16811,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -0.6,
+                      -7.347880794884119e-17,
+                      5.0
+                    ]
+                  },
+                  "residual_raw": 0.0
+                },
+                {
+                  "parameter": 3.141592653589793,
+                  "evaluated_position_cm": [
+                    -0.6,
+                    7.347880794884119e-17,
+                    5.0
+                  ],
+                  "native_POINT": {
+                    "index": 95,
+                    "kind": "point",
+                    "offset": 16811,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -0.6,
+                      -7.347880794884119e-17,
+                      5.0
+                    ]
+                  },
+                  "residual_raw": 1.4695761589768238e-16
+                }
+              ],
+              "cap_plane_constant_residual_raw": 0.0,
+              "native_COEDGEs": [
+                {
+                  "index": 43,
+                  "kind": "coedge",
+                  "offset": 4725,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 43,
+                  "previous_coedge_index": 43,
+                  "partner_index": 58,
+                  "edge_index": 60,
+                  "loop_index": 26,
+                  "pcurve_index": null,
+                  "is_reversed": true,
+                  "uninterpreted_field_9": 0
+                },
+                {
+                  "index": 58,
+                  "kind": "coedge",
+                  "offset": 6465,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 58,
+                  "previous_coedge_index": 58,
+                  "partner_index": 43,
+                  "edge_index": 60,
+                  "loop_index": 40,
+                  "pcurve_index": null,
+                  "is_reversed": false,
+                  "uninterpreted_field_9": 0
+                }
+              ],
+              "cap_loop": {
+                "loop_index": 40,
+                "face_index": 25,
+                "coedge_cycle": [
+                  58
+                ],
+                "edge_indices": [
+                  60
+                ],
+                "vertex_cycle": [
+                  77
+                ],
+                "native_LOOP": {
+                  "index": 40,
+                  "kind": "loop",
+                  "offset": 4479,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_loop_index": null,
+                  "first_coedge_index": 58,
+                  "face_index": 25
+                }
+              },
+              "native_traversal_semantics": null
+            },
+            {
+              "native_EDGE": {
+                "index": 75,
+                "kind": "edge",
+                "offset": 14388,
+                "attribute_index": 92,
+                "stored_entity_id": 3,
+                "pattern_index": null,
+                "start_vertex_index": 93,
+                "end_vertex_index": 93,
+                "first_coedge_index": 59,
+                "curve_index": 94,
+                "start_parameter": -3.141592653589793,
+                "end_parameter": 3.141592653589793,
+                "is_reversed": false,
+                "stored_trailing_text": "unknown"
+              },
+              "native_Circle": {
+                "index": 94,
+                "kind": "ellipse-curve",
+                "offset": 16681,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  0.6,
+                  0.0,
+                  0.0
+                ],
+                "raw_major_radius": 0.6,
+                "raw_minor_radius": 0.6,
+                "stored_axis_ratio": 1.0,
+                "parameter_interval": [
+                  null,
+                  null
+                ]
+              },
+              "native_cap_FACE": {
+                "index": 39,
+                "kind": "face",
+                "offset": 4398,
+                "attribute_index": 55,
+                "stored_entity_id": 1,
+                "pattern_index": null,
+                "next_face_index": null,
+                "first_loop_index": 56,
+                "shell_index": 14,
+                "subshell_index": null,
+                "surface_index": 57,
+                "is_reversed": true,
+                "is_double_sided": false
+              },
+              "native_cap_Plane": {
+                "index": 57,
+                "kind": "plane-surface",
+                "offset": 6341,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "raw_origin": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_reference_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "is_v_reversed": false,
+                "u_interval": [
+                  null,
+                  null
+                ],
+                "v_interval": [
+                  null,
+                  null
+                ],
+                "analytic_surface": {
+                  "kind": "Plane",
+                  "raw_origin": [
+                    0.0,
+                    0.0,
+                    4.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "stored_reference_axis": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "is_v_reversed": false,
+                  "u_interval": [
+                    null,
+                    null
+                  ],
+                  "v_interval": [
+                    null,
+                    null
+                  ],
+                  "coordinate_scope": "Raw ASM coordinates; body transform/context not applied"
+                }
+              },
+              "endpoint_evaluations": [
+                {
+                  "parameter": -3.141592653589793,
+                  "evaluated_position_cm": [
+                    -0.6,
+                    -7.347880794884119e-17,
+                    4.0
+                  ],
+                  "native_POINT": {
+                    "index": 104,
+                    "kind": "point",
+                    "offset": 17948,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -0.6,
+                      -7.347880794884119e-17,
+                      4.0
+                    ]
+                  },
+                  "residual_raw": 0.0
+                },
+                {
+                  "parameter": 3.141592653589793,
+                  "evaluated_position_cm": [
+                    -0.6,
+                    7.347880794884119e-17,
+                    4.0
+                  ],
+                  "native_POINT": {
+                    "index": 104,
+                    "kind": "point",
+                    "offset": 17948,
+                    "attribute_index": null,
+                    "stored_entity_id": -1,
+                    "pattern_index": null,
+                    "raw_origin": [
+                      -0.6,
+                      -7.347880794884119e-17,
+                      4.0
+                    ]
+                  },
+                  "residual_raw": 1.4695761589768238e-16
+                }
+              ],
+              "cap_plane_constant_residual_raw": 0.0,
+              "native_COEDGEs": [
+                {
+                  "index": 59,
+                  "kind": "coedge",
+                  "offset": 6565,
+                  "attribute_index": 74,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 59,
+                  "previous_coedge_index": 59,
+                  "partner_index": 73,
+                  "edge_index": 75,
+                  "loop_index": 42,
+                  "pcurve_index": null,
+                  "is_reversed": false,
+                  "uninterpreted_field_9": 0
+                },
+                {
+                  "index": 73,
+                  "kind": "coedge",
+                  "offset": 14158,
+                  "attribute_index": 91,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_coedge_index": 73,
+                  "previous_coedge_index": 73,
+                  "partner_index": 59,
+                  "edge_index": 75,
+                  "loop_index": 56,
+                  "pcurve_index": null,
+                  "is_reversed": true,
+                  "uninterpreted_field_9": 0
+                }
+              ],
+              "cap_loop": {
+                "loop_index": 56,
+                "face_index": 39,
+                "coedge_cycle": [
+                  73
+                ],
+                "edge_indices": [
+                  75
+                ],
+                "vertex_cycle": [
+                  93
+                ],
+                "native_LOOP": {
+                  "index": 56,
+                  "kind": "loop",
+                  "offset": 6280,
+                  "attribute_index": null,
+                  "stored_entity_id": -1,
+                  "pattern_index": null,
+                  "next_loop_index": null,
+                  "first_coedge_index": 73,
+                  "face_index": 39
+                }
+              },
+              "native_traversal_semantics": null
+            }
+          ],
+          "native_lateral_FACE": {
+            "index": 18,
+            "kind": "face",
+            "offset": 1927,
+            "attribute_index": 24,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "next_face_index": 25,
+            "first_loop_index": 26,
+            "shell_index": 14,
+            "subshell_index": null,
+            "surface_index": 27,
+            "is_reversed": false,
+            "is_double_sided": false
+          },
+          "native_lateral_carrier": {
+            "index": 27,
+            "kind": "cone-surface",
+            "offset": 2938,
+            "attribute_index": null,
+            "stored_entity_id": -1,
+            "pattern_index": null,
+            "analytic_surface": {
+              "raw_origin": [
+                0.0,
+                0.0,
+                4.0
+              ],
+              "coordinate_scope": "Raw ASM coordinates and lengths; body transform and unit context not applied",
+              "kind": "Cylinder",
+              "axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "raw_radius": 0.6,
+              "stored_reference_axis": [
+                0.6,
+                0.0,
+                0.0
+              ],
+              "stored_axis_ratio": 1.0,
+              "stored_u_parameter_scale": 0.6,
+              "is_u_reversed": false,
+              "u_interval": [
+                null,
+                null
+              ],
+              "v_interval": [
+                null,
+                null
+              ]
+            }
+          },
+          "lateral_boundary_loops": [
+            {
+              "loop_index": 26,
+              "face_index": 18,
+              "coedge_cycle": [
+                43
+              ],
+              "edge_indices": [
+                60
+              ],
+              "vertex_cycle": [
+                77
+              ],
+              "native_LOOP": {
+                "index": 26,
+                "kind": "loop",
+                "offset": 2877,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "next_loop_index": 42,
+                "first_coedge_index": 43,
+                "face_index": 18
+              }
+            },
+            {
+              "loop_index": 42,
+              "face_index": 18,
+              "coedge_cycle": [
+                59
+              ],
+              "edge_indices": [
+                75
+              ],
+              "vertex_cycle": [
+                93
+              ],
+              "native_LOOP": {
+                "index": 42,
+                "kind": "loop",
+                "offset": 4664,
+                "attribute_index": null,
+                "stored_entity_id": -1,
+                "pattern_index": null,
+                "next_loop_index": null,
+                "first_coedge_index": 59,
+                "face_index": 18
+              }
+            }
+          ],
+          "complete_coefficient_residuals_raw": {
+            "cap_circle_bundle": 0.0,
+            "lateral_axis_line": 0.0,
+            "lateral_radial_slope": 0.0,
+            "lateral_radial_intercept": 0.0
+          },
+          "bounded_axial_domain_from_derived_caps_cm": [
+            0.0,
+            1.0
+          ],
+          "semantic_cap_to_native_ENTITY_mapping": null,
+          "API_handle_identity": null,
+          "qualified_historical_state": null,
+          "scope": "Complete analytic carrier equations and full two-circle/Plane cap boundary after native BODY identity; unordered model corroboration, no coordinate-selected cap identity or native UV"
+        },
+        "source_to_cache_entity_mapping": null,
+        "exact_API_handle_identity": null,
+        "qualified_historical_state": null,
+        "current_or_final_geometry_identity": null,
+        "scope": "Derived native complete Circle cylinder/frustum or four-Line rectangular prism from owned Sketch/frame and ordinary NewBody Distance/start controls. Complete identity-qualified stored BODY analytic carriers and bounded topology corroborate the model collectively; no coordinate ENTITY mapping, fit, native UV, API/current/final/persistent identity or chronological regeneration is established. Unsupported controls and frames stay explicit."
+      }
+    ],
+    "unresolved": [],
+    "scope": "Derived native complete Circle cylinder/frustum or four-Line rectangular prism from owned Sketch/frame and ordinary NewBody Distance/start controls. Complete identity-qualified stored BODY analytic carriers and bounded topology corroborate the model collectively; no coordinate ENTITY mapping, fit, native UV, API/current/final/persistent identity or chronological regeneration is established. Unsupported controls and frames stay explicit."
+  },
+  "actual_saved_API_body_geometry": [
+    {
+      "name": "LoftBrepStartCylinderBody",
+      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpHgI72elzyPTVQ06eFpkFkLVGGkYGymYGiebGJqaWSmm2JqZqxrYmycqJuYamium2phYWyRamlsnpRsClYLNIMBDYDtM1AAWwey3sjMAAAuxNw7iAAAAA==",
+      "component_name": "(Unsaved)",
+      "is_solid": true,
+      "volume_cm3": 3.1415926535899286,
+      "face_count": 3,
+      "edge_count": 2,
+      "bounding_box_min_cm": [
+        -1.0,
+        -1.0,
+        0.0
+      ],
+      "bounding_box_max_cm": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "LoftBrepEndCylinderBody",
+      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpHgI72elzyPTVQ06eFpkFkLVGGkYGymYGiebGJqaWSmm2JqZqxrYmycqJuYamium2phYWyRamlsnpRsClYLNIMBDYDtM1AAWwey3tjEDACuaUvhiAAAAA==",
+      "component_name": "(Unsaved)",
+      "is_solid": true,
+      "volume_cm3": 1.130973355292374,
+      "face_count": 3,
+      "edge_count": 2,
+      "bounding_box_min_cm": [
+        -0.6,
+        -0.6,
+        4.0
+      ],
+      "bounding_box_max_cm": [
+        0.6,
+        0.6,
+        5.0
+      ]
+    }
+  ],
+  "collective_API_residual_cm_or_cm3": 1.354472090042691e-13,
+  "validation": {
+    "qualified_extrudes": 2,
+    "translated_sketches": 1,
+    "complete_cylinders": 2,
+    "collective_saved_API_body_checks": 2,
+    "main_reader_calls": 0,
+    "live_API_calls": 0,
+    "caller_inputs_unchanged": true
+  }
+}

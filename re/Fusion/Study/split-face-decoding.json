@@ -1,0 +1,2386 @@
+{
+  "status": "pass",
+  "fusion_version": "2705.1.30",
+  "scope": "Observed SplitFace modes, active extension, plane/sketch-line tools, native-axis projection and target body/face recipes",
+  "api_files": 7,
+  "api_comparisons": 80,
+  "samples": [
+    {
+      "file": "splitfacemodes-4fc4adf2a868/plane.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_name": true,
+        "tool_origin": true,
+        "tool_normal": true,
+        "no_active_direction": true
+      },
+      "settings": {
+        "split_type": "SurfaceIntersection",
+        "is_tool_extended": false,
+        "stored_extension_flag": 0,
+        "stored_mode_fields": [
+          1,
+          0
+        ],
+        "tool_selection_record_object_id": 308,
+        "tool": {
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "SplitToolPlane",
+            "object_id": 282,
+            "feature_object_id": 283,
+            "origin_cm": [
+              1.2000000000000002,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          },
+          "selection_object_id": 308,
+          "descriptor_object_id": 311,
+          "terminal_object_id": 314,
+          "namespace_text": "d3a15f63-9766-459e-99ee-f1d32bb6a27f",
+          "entity_guid_text": "5a8d0e23-a3a8-436c-b369-38682a10050e",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "target_selection_record_object_id": 316,
+        "target_faces": [
+          {
+            "descriptor_object_id": 319,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "d3a15f63-9766-459e-99ee-f1d32bb6a27f",
+            "entity_guid_text": "5a8d0e23-a3a8-436c-b369-38682a10050e",
+            "context_record_object_ids": [
+              323
+            ],
+            "recipe": {
+              "object_id": 322,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39760,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 1,
+        "projection_direction": null,
+        "frame_record_object_id": 315,
+        "stored_operation_flag": 304,
+        "ordered_selection_reference_ids": [
+          308,
+          311,
+          316,
+          319
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/plane_extended.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_name": true,
+        "tool_origin": true,
+        "tool_normal": true,
+        "no_active_direction": true
+      },
+      "settings": {
+        "split_type": "SurfaceIntersection",
+        "is_tool_extended": true,
+        "stored_extension_flag": 1,
+        "stored_mode_fields": [
+          1,
+          0
+        ],
+        "tool_selection_record_object_id": 308,
+        "tool": {
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "SplitToolPlane",
+            "object_id": 282,
+            "feature_object_id": 283,
+            "origin_cm": [
+              1.2000000000000002,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          },
+          "selection_object_id": 308,
+          "descriptor_object_id": 311,
+          "terminal_object_id": 314,
+          "namespace_text": "2819599d-30d9-4851-bcd5-c70f751b5106",
+          "entity_guid_text": "a48e6607-9e8a-4fb3-830e-a6c8001e5eaf",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "target_selection_record_object_id": 316,
+        "target_faces": [
+          {
+            "descriptor_object_id": 319,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "2819599d-30d9-4851-bcd5-c70f751b5106",
+            "entity_guid_text": "a48e6607-9e8a-4fb3-830e-a6c8001e5eaf",
+            "context_record_object_ids": [
+              323
+            ],
+            "recipe": {
+              "object_id": 322,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39760,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37438,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 1,
+        "projection_direction": null,
+        "frame_record_object_id": 315,
+        "stored_operation_flag": 304,
+        "ordered_selection_reference_ids": [
+          308,
+          311,
+          316,
+          319
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/line.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_sketch": true,
+        "tool_start": true,
+        "tool_end": true,
+        "no_active_direction": true
+      },
+      "settings": {
+        "split_type": "SurfaceIntersection",
+        "is_tool_extended": false,
+        "stored_extension_flag": 0,
+        "stored_mode_fields": [
+          1,
+          0
+        ],
+        "tool_selection_record_object_id": 319,
+        "tool": {
+          "selection_object_id": 319,
+          "descriptor_object_id": 322,
+          "terminal_object_id": 325,
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_object_id": 282,
+            "sketch_name": "SplitToolSketch",
+            "object_id": 311,
+            "entity_tag": 112,
+            "component_start_cm": [
+              1.2,
+              -1.0,
+              0.0
+            ],
+            "component_end_cm": [
+              1.2,
+              3.0,
+              0.0
+            ]
+          },
+          "association": "Owned tool proxy/descriptor -> explicit sketch ID and curve tag"
+        },
+        "target_selection_record_object_id": 327,
+        "target_faces": [
+          {
+            "descriptor_object_id": 330,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "d2ee2aa0-f2c8-4271-9052-7562667350d0",
+            "entity_guid_text": "ab99e145-2732-433c-a8f1-093a60f667fb",
+            "context_record_object_ids": [
+              334
+            ],
+            "recipe": {
+              "object_id": 333,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39830,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 1,
+        "projection_direction": null,
+        "frame_record_object_id": 326,
+        "stored_operation_flag": 304,
+        "ordered_selection_reference_ids": [
+          319,
+          322,
+          327,
+          330
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/line_extended.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_sketch": true,
+        "tool_start": true,
+        "tool_end": true,
+        "no_active_direction": true
+      },
+      "settings": {
+        "split_type": "SurfaceIntersection",
+        "is_tool_extended": true,
+        "stored_extension_flag": 1,
+        "stored_mode_fields": [
+          1,
+          0
+        ],
+        "tool_selection_record_object_id": 319,
+        "tool": {
+          "selection_object_id": 319,
+          "descriptor_object_id": 322,
+          "terminal_object_id": 325,
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_object_id": 282,
+            "sketch_name": "SplitToolSketch",
+            "object_id": 311,
+            "entity_tag": 112,
+            "component_start_cm": [
+              1.2,
+              -1.0,
+              0.0
+            ],
+            "component_end_cm": [
+              1.2,
+              3.0,
+              0.0
+            ]
+          },
+          "association": "Owned tool proxy/descriptor -> explicit sketch ID and curve tag"
+        },
+        "target_selection_record_object_id": 327,
+        "target_faces": [
+          {
+            "descriptor_object_id": 330,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "d22efa55-1e84-497c-8eb1-5f236bf70d7f",
+            "entity_guid_text": "56f36ca2-ec07-42fd-a70d-8255775d0730",
+            "context_record_object_ids": [
+              334
+            ],
+            "recipe": {
+              "object_id": 333,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39830,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 1,
+        "projection_direction": null,
+        "frame_record_object_id": 326,
+        "stored_operation_flag": 304,
+        "ordered_selection_reference_ids": [
+          319,
+          322,
+          327,
+          330
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_sketch": true,
+        "tool_start": true,
+        "tool_end": true,
+        "direction_kind": true,
+        "direction_name": true,
+        "direction_origin": true,
+        "direction_vector": true
+      },
+      "settings": {
+        "split_type": "AlongVector",
+        "is_tool_extended": null,
+        "stored_extension_flag": 0,
+        "stored_mode_fields": [
+          0,
+          1
+        ],
+        "tool_selection_record_object_id": 341,
+        "tool": {
+          "selection_object_id": 341,
+          "descriptor_object_id": 344,
+          "terminal_object_id": 347,
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_object_id": 304,
+            "sketch_name": "SplitToolSketch",
+            "object_id": 333,
+            "entity_tag": 112,
+            "component_start_cm": [
+              1.2,
+              -1.0,
+              2.0
+            ],
+            "component_end_cm": [
+              1.2,
+              3.0,
+              2.0
+            ]
+          },
+          "association": "Owned tool proxy/descriptor -> explicit sketch ID and curve tag"
+        },
+        "target_selection_record_object_id": 349,
+        "target_faces": [
+          {
+            "descriptor_object_id": 352,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "ff5fe843-fdd9-4e61-9f36-ee50917f52df",
+            "entity_guid_text": "24ffd24b-977b-4a5a-abac-1051721d4604",
+            "context_record_object_ids": [
+              363
+            ],
+            "recipe": {
+              "object_id": 355,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 43595,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37949,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37949,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37949,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37949,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37949,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 1,
+        "projection_direction": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Z",
+            "object_id": 41,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 356,
+          "descriptor_object_id": 359,
+          "terminal_object_id": 362,
+          "namespace_text": "ff5fe843-fdd9-4e61-9f36-ee50917f52df",
+          "entity_guid_text": "24ffd24b-977b-4a5a-abac-1051721d4604",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "frame_record_object_id": 348,
+        "stored_operation_flag": 305,
+        "ordered_selection_reference_ids": [
+          341,
+          344,
+          349,
+          352,
+          356,
+          359
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_sketch": true,
+        "tool_start": true,
+        "tool_end": true,
+        "no_active_direction": true
+      },
+      "settings": {
+        "split_type": "ClosestPoint",
+        "is_tool_extended": null,
+        "stored_extension_flag": 0,
+        "stored_mode_fields": [
+          1,
+          1
+        ],
+        "tool_selection_record_object_id": 341,
+        "tool": {
+          "selection_object_id": 341,
+          "descriptor_object_id": 344,
+          "terminal_object_id": 347,
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_object_id": 304,
+            "sketch_name": "SplitToolSketch",
+            "object_id": 333,
+            "entity_tag": 112,
+            "component_start_cm": [
+              1.2,
+              -1.0,
+              2.0
+            ],
+            "component_end_cm": [
+              1.2,
+              3.0,
+              2.0
+            ]
+          },
+          "association": "Owned tool proxy/descriptor -> explicit sketch ID and curve tag"
+        },
+        "target_selection_record_object_id": 349,
+        "target_faces": [
+          {
+            "descriptor_object_id": 352,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "6ba71f8d-3bc3-428e-95ed-42cbe623651f",
+            "entity_guid_text": "2f8fbad5-d0d1-4379-a16e-b153ab59a772",
+            "context_record_object_ids": [
+              356
+            ],
+            "recipe": {
+              "object_id": 355,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 43395,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37800,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37800,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37800,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37800,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37800,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 1,
+        "projection_direction": null,
+        "frame_record_object_id": 348,
+        "stored_operation_flag": 305,
+        "ordered_selection_reference_ids": [
+          341,
+          344,
+          349,
+          352
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/multiple_faces.f3d",
+      "checks": {
+        "split_type": true,
+        "extension": true,
+        "target_face_count": true,
+        "tool_kind": true,
+        "one_tool": true,
+        "classified_feature": true,
+        "target_native_body_names": true,
+        "tool_name": true,
+        "tool_origin": true,
+        "tool_normal": true,
+        "no_active_direction": true
+      },
+      "settings": {
+        "split_type": "SurfaceIntersection",
+        "is_tool_extended": false,
+        "stored_extension_flag": 0,
+        "stored_mode_fields": [
+          1,
+          0
+        ],
+        "tool_selection_record_object_id": 308,
+        "tool": {
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "SplitToolPlane",
+            "object_id": 282,
+            "feature_object_id": 283,
+            "origin_cm": [
+              1.2000000000000002,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          },
+          "selection_object_id": 308,
+          "descriptor_object_id": 311,
+          "terminal_object_id": 314,
+          "namespace_text": "8b8e1455-e44e-4385-8542-5d0eb6be8685",
+          "entity_guid_text": "a865356c-a5a7-47e1-90a1-7e85e63792bc",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "target_selection_record_object_id": 316,
+        "target_faces": [
+          {
+            "descriptor_object_id": 319,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "8b8e1455-e44e-4385-8542-5d0eb6be8685",
+            "entity_guid_text": "a865356c-a5a7-47e1-90a1-7e85e63792bc",
+            "context_record_object_ids": [
+              327
+            ],
+            "recipe": {
+              "object_id": 322,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39999,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          },
+          {
+            "descriptor_object_id": 323,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "8b8e1455-e44e-4385-8542-5d0eb6be8685",
+            "entity_guid_text": "a865356c-a5a7-47e1-90a1-7e85e63792bc",
+            "context_record_object_ids": [
+              328
+            ],
+            "recipe": {
+              "object_id": 326,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 41100,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 37598,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff03000000ffffffff00000000ffffffff0000000000000000ffffffff0300000002000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000004000000ffffffff03000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                4,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                3,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                4,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                3,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          }
+        ],
+        "target_face_count": 2,
+        "projection_direction": null,
+        "frame_record_object_id": 315,
+        "stored_operation_flag": 304,
+        "ordered_selection_reference_ids": [
+          308,
+          311,
+          316,
+          319,
+          323
+        ],
+        "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+        "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+      },
+      "api_result_reference_only": {
+        "body_count": 1,
+        "face_count": 8,
+        "volume_cm3": 6.0
+      }
+    }
+  ],
+  "malformed_cases": [
+    {
+      "case": "unknown_mode",
+      "rejected": true,
+      "reason": "Unobserved SplitFace mode/direction/extension combination"
+    },
+    {
+      "case": "invalid_extension",
+      "rejected": true,
+      "reason": "Unobserved SplitFace mode/direction/extension combination"
+    },
+    {
+      "case": "tool_proxy_owner",
+      "rejected": true,
+      "reason": "SplitFace selection proxy owner disagrees"
+    },
+    {
+      "case": "operation_copy",
+      "rejected": true,
+      "reason": "SplitFace tool count or copied operation flag disagrees"
+    },
+    {
+      "case": "missing_curve_tag",
+      "rejected": true,
+      "reason": "SplitFace tool sketch/tag identity unresolved or ambiguous"
+    }
+  ],
+  "legacy_split_body_control": {
+    "file": "splits-efce4ef164c9/xz_extend.f3d",
+    "tool_unresolved": []
+  },
+  "native_layout": {
+    "feature_class": "7C5886AE-A774-4848-A89C-C3A578A9763A",
+    "header": "Two zero bytes, optional direction wrapper, uint32family, projection byte, extension byte, one typed frame, opaque operation flag, counted tool proxy, reserved block, counted target proxy",
+    "modes": "(family,projection,direction_present): (1,0,false)SurfaceIntersection; (1,1,false)ClosestPoint; (0,1,true)AlongVector",
+    "references": "Ordered counted table repeats tool proxy/descriptors, target proxy/descriptors and optional direction wrapper/descriptor; feature and selection owners validated"
+  },
+  "limitations": [
+    "Exact selected/result ASM faces, persistent face-recipe evaluation and split geometry regeneration are unresolved. API result face counts/volume are reference data only.",
+    "Only one tool, plane/line tools, native-axis projection and root-component samples captured; other selections and occurrence contexts remain unsupported."
+  ]
+}

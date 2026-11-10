@@ -1,0 +1,1425 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "solid_perpendicular.f3d",
+      "requested": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbJ2poRGYNjYHWmoEZAMAXCCkA5IAAAA=",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                3.4641016151377544,
+                1.9999999999999996,
+                0.0
+              ],
+              "center_world_cm": [
+                0.0,
+                4.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IeiNzUwDcXu1YiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ],
+        "solid_orientation": 0
+      },
+      "getter_errors": [
+        {
+          "getter": "solidTwistAxis",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 151, in <lambda>\n    \"solid_twist_axis\": getter(\"solidTwistAxis\", lambda: axis_truth(feature.solidTwistAxis)),\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134967, in _get_solidTwistAxis\n    return _fusion.SweepFeature__get_solidTwistAxis(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : axisData.m_axis.size() == 1\n"
+        },
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 157, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "tool_before_sweep": {
+        "kind": "BRepBody",
+        "name": "AsymmetricSolidSweepTool",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 0.08000000000000002,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -0.2,
+          -0.15000000000000002,
+          -0.15000000000000002
+        ],
+        "bounding_box_max_cm": [
+          0.2,
+          0.25,
+          0.35
+        ]
+      },
+      "target_before_sweep": {
+        "kind": "BRepBody",
+        "name": "SolidSweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IeiNzUwDcXu1YiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 144.0,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          7.0,
+          6.0,
+          1.0
+        ]
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IeiNzUwDcXu1YiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 143.08159968694432,
+          "face_count": 14,
+          "edge_count": 30,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "root_bodies_after_sweep": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IeiNzUwDcXu1YiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 143.08159968694432,
+          "face_count": 14,
+          "edge_count": 30,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "solid_orientation": 0,
+        "solid_aligned_axis": null,
+        "solid_twist_axis": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbJ2poRGYNjYHWmoEZAMAXCCkA5IAAAA=",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                3.4641016151377544,
+                1.9999999999999996,
+                0.0
+              ],
+              "center_world_cm": [
+                0.0,
+                4.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "profile_type": "adsk::fusion::BRepBody",
+        "guide_rail_type": null,
+        "guide_surface_count": 0,
+        "is_solid": true,
+        "orientation": null,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IeiNzUwDcXu1YiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSolidSweep"
+        }
+      ]
+    },
+    {
+      "file": "solid_rigid.f3d",
+      "requested": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DpTQyMwbWwOtNQIyAYA6otui5IAAAA=",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                3.4641016151377544,
+                1.9999999999999996,
+                0.0
+              ],
+              "center_world_cm": [
+                0.0,
+                4.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9UbmpgAZFqIUiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ],
+        "solid_orientation": 1
+      },
+      "getter_errors": [
+        {
+          "getter": "solidTwistAxis",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 151, in <lambda>\n    \"solid_twist_axis\": getter(\"solidTwistAxis\", lambda: axis_truth(feature.solidTwistAxis)),\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134967, in _get_solidTwistAxis\n    return _fusion.SweepFeature__get_solidTwistAxis(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : axisData.m_axis.size() == 1\n"
+        },
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 157, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "tool_before_sweep": {
+        "kind": "BRepBody",
+        "name": "AsymmetricSolidSweepTool",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 0.08000000000000002,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -0.2,
+          -0.15000000000000002,
+          -0.15000000000000002
+        ],
+        "bounding_box_max_cm": [
+          0.2,
+          0.25,
+          0.35
+        ]
+      },
+      "target_before_sweep": {
+        "kind": "BRepBody",
+        "name": "SolidSweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9UbmpgAZFqIUiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 144.0,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          7.0,
+          6.0,
+          1.0
+        ]
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9UbmpgAZFqIUiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 142.82717967697243,
+          "face_count": 14,
+          "edge_count": 30,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "root_bodies_after_sweep": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9UbmpgAZFqIUiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 142.82717967697243,
+          "face_count": 14,
+          "edge_count": 30,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "solid_orientation": 1,
+        "solid_aligned_axis": null,
+        "solid_twist_axis": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DpTQyMwbWwOtNQIyAYA6otui5IAAAA=",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                3.4641016151377544,
+                1.9999999999999996,
+                0.0
+              ],
+              "center_world_cm": [
+                0.0,
+                4.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "profile_type": "adsk::fusion::BRepBody",
+        "guide_rail_type": null,
+        "guide_surface_count": 0,
+        "is_solid": true,
+        "orientation": null,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9UbmpgAZFqIUiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSolidSweep"
+        }
+      ]
+    },
+    {
+      "file": "solid_aligned.f3d",
+      "requested": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IemMzAwD5O2uwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbJ2poRGYNjYHWmoEZAMApnFbLpIAAAA=",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                3.4641016151377544,
+                1.9999999999999996,
+                0.0
+              ],
+              "center_world_cm": [
+                0.0,
+                4.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IeiNzUwAAlNjYiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ],
+        "solid_orientation": 2,
+        "solid_aligned_axis": {
+          "kind": "ConstructionAxis",
+          "name": "Z",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IehNDAAio7GWHAAAA",
+          "geometry_kind": "InfiniteLine3D",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      },
+      "getter_errors": [
+        {
+          "getter": "solidTwistAxis",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 151, in <lambda>\n    \"solid_twist_axis\": getter(\"solidTwistAxis\", lambda: axis_truth(feature.solidTwistAxis)),\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134967, in _get_solidTwistAxis\n    return _fusion.SweepFeature__get_solidTwistAxis(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : axisData.m_axis.size() == 1\n"
+        },
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 157, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "tool_before_sweep": {
+        "kind": "BRepBody",
+        "name": "AsymmetricSolidSweepTool",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IemMzAwD5O2uwiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 0.08000000000000002,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -0.2,
+          -0.15000000000000002,
+          -0.15000000000000002
+        ],
+        "bounding_box_max_cm": [
+          0.2,
+          0.25,
+          0.35
+        ]
+      },
+      "target_before_sweep": {
+        "kind": "BRepBody",
+        "name": "SolidSweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IeiNzUwAAlNjYiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 144.0,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          7.0,
+          6.0,
+          1.0
+        ]
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IeiNzUwAAlNjYiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 143.08127683038546,
+          "face_count": 15,
+          "edge_count": 33,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IemMzAwD5O2uwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "root_bodies_after_sweep": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IeiNzUwAAlNjYiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 143.08127683038546,
+          "face_count": 15,
+          "edge_count": 33,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IemMzAwD5O2uwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IemMzAwD5O2uwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "solid_orientation": 2,
+        "solid_aligned_axis": {
+          "kind": "ConstructionAxis",
+          "name": "Z",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IehNDAAio7GWHAAAA",
+          "geometry_kind": "InfiniteLine3D",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "solid_twist_axis": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbJ2poRGYNjYHWmoEZAMApnFbLpIAAAA=",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                3.4641016151377544,
+                1.9999999999999996,
+                0.0
+              ],
+              "center_world_cm": [
+                0.0,
+                4.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                -0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "profile_type": "adsk::fusion::BRepBody",
+        "guide_rail_type": null,
+        "guide_surface_count": 0,
+        "is_solid": true,
+        "orientation": null,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwsKcK7fNbzo0bH//JDPmpjwPUIWRgrGZgoWBqYmpQaKRroGpmamuSZKxia6FeVqqrkmipblJkoG5uYlZElgt0AwGNAC2z0ABbB3IeiNzUwAAlNjYiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSolidSweep"
+        }
+      ]
+    },
+    {
+      "file": "solid_twist.f3d",
+      "requested": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tjMAADMDOwwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAW2dqaASmjc2BlhoBhQGpTX85kgAAAA==",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3sjcFAA1o19YiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ],
+        "solid_orientation": 0,
+        "solid_twist_axis": {
+          "kind": "ConstructionAxis",
+          "name": "X",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tgSAGhIJsaHAAAA",
+          "geometry_kind": "InfiniteLine3D",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "twist_angle_radians": 0.5235987755982988
+      },
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 132, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepModes.py\", line 157, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "tool_before_sweep": {
+        "kind": "BRepBody",
+        "name": "AsymmetricSolidSweepTool",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tjMAADMDOwwiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 0.08000000000000002,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -0.2,
+          -0.15000000000000002,
+          -0.15000000000000002
+        ],
+        "bounding_box_max_cm": [
+          0.2,
+          0.25,
+          0.35
+        ]
+      },
+      "target_before_sweep": {
+        "kind": "BRepBody",
+        "name": "SolidSweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3sjcFAA1o19YiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 144.0,
+        "face_count": 6,
+        "edge_count": 12,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          7.0,
+          6.0,
+          1.0
+        ]
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3sjcFAA1o19YiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 142.8959180640803,
+          "face_count": 28,
+          "edge_count": 64,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tjMAADMDOwwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "root_bodies_after_sweep": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3sjcFAA1o19YiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 142.8959180640803,
+          "face_count": 28,
+          "edge_count": 64,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tjMAADMDOwwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tjMAADMDOwwiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.08000000000000002,
+          "face_count": 6,
+          "edge_count": 12,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "solid_orientation": 0,
+        "solid_aligned_axis": null,
+        "solid_twist_axis": {
+          "kind": "ConstructionAxis",
+          "name": "X",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3tgSAGhIJsaHAAAA",
+          "geometry_kind": "InfiniteLine3D",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "kind": "SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAW2dqaASmjc2BlhoBhQGpTX85kgAAAA==",
+              "sketch_name": "SolidSweepPath",
+              "is_opposed_to_entity": false,
+              "start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_type": "adsk::fusion::BRepBody",
+        "guide_rail_type": null,
+        "guide_surface_count": 0,
+        "is_solid": true,
+        "orientation": null,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "participant_bodies": [
+          {
+            "kind": "BRepBody",
+            "name": "SolidSweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAkdXbt3SB85la89lZhRaXD0FVGGkYGymkJpkYWZimGipa5SYYqFrkmpqomuRZmqsa2lhamyWYmxgkJpqCVYLNIMBDYDtM1AAWwey3sjcFAA1o19YiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 144.0,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              7.0,
+              6.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SolidSweepToolExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSolidSweep"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "scope": "Four owned Cut sweeps using a convex asymmetric solid box tool and explicit target",
+  "token_scope": "Opaque API entity tokens retained without native object ID interpretation"
+}

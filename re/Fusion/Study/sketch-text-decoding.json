@@ -1,0 +1,2305 @@
+{
+  "scope": "Editable rectangle SketchText source and explicit ownership, not glyph recognition, font rendering or regeneration",
+  "fusion_version": "2705.1.30",
+  "source_folder": "sketchtexts-a16af12c28bf",
+  "capture_errors": [],
+  "validation": {
+    "captured_archives": 5,
+    "api_canonical_and_main_equalities": 155,
+    "all_passed": true,
+    "malformed_guards": [
+      {
+        "case": "unobserved italic/style flag",
+        "rejected": true,
+        "reason": "Unsupported SketchText style flags"
+      },
+      {
+        "case": "cross-sketch text owner",
+        "rejected": true,
+        "reason": "SketchText owning sketch reference unresolved"
+      },
+      {
+        "case": "rectangle repeated line list mismatch",
+        "rejected": true,
+        "reason": "Rectangle controller line lists disagree"
+      },
+      {
+        "case": "text binding cache disagrees with entity",
+        "rejected": true,
+        "reason": "SketchText binding value or suffix mismatch"
+      }
+    ],
+    "canonical_parameter_guards": [
+      {
+        "check": "Cached text mismatch",
+        "passed": true,
+        "reason": "Bound Text value/parameter/index/owner copies disagree"
+      },
+      {
+        "check": "Reciprocal parameter mismatch",
+        "passed": true,
+        "reason": "Bound Text value/parameter/index/owner copies disagree"
+      },
+      {
+        "check": "Stored index mismatch",
+        "passed": true,
+        "reason": "Bound Text value/parameter/index/owner copies disagree"
+      },
+      {
+        "check": "Repeated sketch owner mismatch",
+        "passed": true,
+        "reason": "Bound Text value/parameter/index/owner copies disagree"
+      }
+    ],
+    "early_no_text_return_avoids_parameter_decode": true,
+    "syntax_passed": true,
+    "main_entrypoint_exact_matches": 5,
+    "coverage_no_unhandled": true
+  },
+  "integration": {
+    "signature": "decode_sketch_texts(data, records, features)",
+    "result_keys": [
+      "texts",
+      "unresolved",
+      "scope"
+    ],
+    "feature_mutation": false,
+    "hook": "After decode_sketches, attach texts by Sketch.sketch_object_id to sketch texts; expose stream sketch_texts. Coverage accounts only validated text/controller support IDs.",
+    "canonical_parameters": "All five files agree on canonical text/height values, binding IDs and sketch feature ownership; no rejected parameters."
+  },
+  "native_schema": {
+    "text_entity_class": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+    "rectangle_controller_class": "8B369926-123F-4F9D-878E-6D4C076128D3",
+    "text_entity": "EntityGenesis0 and textex_tag attrs; invariant25byte prefix; font UTF16; zero marker; f64 height; ref heightbinding; seven style bytes; text UTF16 incl LF; ref textbinding;183byte suffix with u32 weight@5 and ref sketchowner@172. Unknown invariant controls retained and changed controls rejected.",
+    "bold_italic": "Controlled plain/bold differs only weight400->700; plain/italic differs only italicbyte@styleoffset5 0->1. API styles0/1/2 observed. Combined/underline unverified.",
+    "rectangle": "Constraint-like prefix has five inputs [text,line,line,line,line]; EntityGenesis2; tail80bytes repeats text and sketch owners, then ordered four-line list. Primary source lines link endpoint IDs; inherited line/point caches supply validated geometry and owner. Closed cycle and rectangle shape checked.",
+    "model_parameters": "Text/height parameter IDs245/242 explicitly link binding IDs246/243, and text entity links same bindings. Binding owner is sketch feature207, not textentity228; feature lists both bindings. Parameter reciprocal refs, values, indices and bookkeeping links validated.",
+    "text_binding_class": "e5460b7b-000b-4a70-ab52-4c2fcc470eb2",
+    "text_binding": "byte1,u32count1,ownerref@5,u32kind1@16,zero@20,UTF16value@21; then parameterref,indexu32,zerou32,ownerref,010000,bookkeepingref,zero,ownerref. Variable text length, including LF, validated across all5.",
+    "geometry_scope": "API asCurves returns nonmutating transient glyph outlines; no explosion was performed. Decoder uses source text/controller/rectangle records, not glyph caches."
+  },
+  "unresolved_controls": [
+    "underline/combined formatting",
+    "horizontal/vertical flip bits",
+    "fixed/reference state",
+    "alignment/spacing/rotation controls; all unvaried in captures",
+    "path text families",
+    "font outline rendering",
+    "text expression evaluation",
+    "assembly text contexts and changed opaque fields"
+  ],
+  "samples": [
+    {
+      "file": "sketchtexts-a16af12c28bf/plain.f3d",
+      "sha256": "7e3e01883bb4765a7ba3ca38b5f8c5cb0628daae3741a2de91aea694255cab49",
+      "decoded": {
+        "kind": "Text",
+        "object_id": 228,
+        "record_offset": 24821,
+        "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "entity_tag": 101,
+        "text": "KIT",
+        "font_name": "Arial",
+        "height_cm": 0.5,
+        "text_style": 0,
+        "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": null,
+        "is_vertical_flip": null,
+        "is_fixed": null,
+        "is_reference": null,
+        "text_parameter": {
+          "parameter_object_id": 245,
+          "binding_object_id": 246,
+          "parameter_name": "d2",
+          "role": "Text1-Text",
+          "text_value": "KIT",
+          "expression": "'KIT'",
+          "display_units": "Text",
+          "comment": "",
+          "stored_parameter_index": 2,
+          "expression_metadata_hex": "01000000000000000000",
+          "uninterpreted_suffix_hex": "000110000000000000000000"
+        },
+        "height_parameter": {
+          "parameter_object_id": 242,
+          "binding_object_id": 243,
+          "parameter_name": "d1",
+          "role": "Text1-Height",
+          "value_cm": 0.5,
+          "expression_candidates": [
+            "5 mm"
+          ],
+          "stored_parameter_index": 1
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "rectangle_lines": [
+            {
+              "object_id": 237,
+              "entity_tag": 106,
+              "start_point_id": 229,
+              "end_point_id": 231,
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 238,
+              "entity_tag": 107,
+              "start_point_id": 231,
+              "end_point_id": 233,
+              "start_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 239,
+              "entity_tag": 108,
+              "start_point_id": 233,
+              "end_point_id": 235,
+              "start_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 240,
+              "entity_tag": 109,
+              "start_point_id": 235,
+              "end_point_id": 229,
+              "start_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            }
+          ],
+          "horizontal_alignment": null,
+          "vertical_alignment": null,
+          "character_spacing_percent": null,
+          "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+        },
+        "uninterpreted": {
+          "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+          "style_flags_hex": "01000000000000",
+          "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+      },
+      "checks": {
+        "text": true,
+        "font_name": true,
+        "height_cm": true,
+        "text_style": true,
+        "bold": true,
+        "italic": true,
+        "text_role": true,
+        "text_parameter_name": true,
+        "height_role": true,
+        "height_parameter_name": true,
+        "text_expression": true,
+        "height_expression": true,
+        "layout_kind": true,
+        "rectangle_count": true,
+        "rectangle0_start": true,
+        "rectangle0_end": true,
+        "rectangle1_start": true,
+        "rectangle1_end": true,
+        "rectangle2_start": true,
+        "rectangle2_end": true,
+        "rectangle3_start": true,
+        "rectangle3_end": true,
+        "canonical_text_value": true,
+        "canonical_text_binding": true,
+        "canonical_text_owner": true,
+        "canonical_text_expression": true,
+        "canonical_height_value": true,
+        "canonical_height_binding": true,
+        "canonical_no_rejected": true,
+        "both_parameters_attached": true,
+        "main_text_agreement": true
+      },
+      "actual_api_settings": {
+        "identity": {
+          "kind": "SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrQNYbGVkAAKDbpqiIAAAA",
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "sketch_name": "SketchTextProbe",
+        "sketch_identity": {
+          "kind": "Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrQNYbGRgBADxQRXqIAAAA",
+          "getter_errors": []
+        },
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_reference": false,
+        "is_fixed": false,
+        "is_2d": true,
+        "text_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrQNYbmZgBACFRRBmIAAAA",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrQNYbmRgDAK6lLmmIAAAA",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "getter_errors": [],
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "rectangle_lines": [
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrTA2NwLSRAVCpgZmCAQCvufsBkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBEQCyaEhWjgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBMQAkWE8hjgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrTA2NwLSRAVCpgbmCAQCY0zkAkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBMQAkWE8hjgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBCQCHzSu/jgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrTA2NwLSRAVCpAdAxAKWUZQuSAAAA",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBCQCHzSu/jgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBKQAR/SzIjgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrTA2NwLSRAVCpgaWCAQCS/qcKkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBKQAR/SzIjgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuSm4sWHS7z/NXg7PeKri5wNVGGkYGymYGxsbJZskJKoa2RulKhrYgkkLCzNzXUN05KMjcwsTEyNEg3BaoFmMKABsH0GCmDrjEzNQKQBUKGBEQCyaEhWjgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bounding_box_cm": [
+          [
+            0.9999999962747097,
+            3.4999999403953552,
+            0.0
+          ],
+          [
+            2.02148699760437,
+            3.9999999403953552,
+            0.0
+          ]
+        ],
+        "outline_curve_count": 24,
+        "outline_curve_types": [
+          "Line3D"
+        ],
+        "sketch_text_count": 1
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/content_height.f3d",
+      "sha256": "8d0de552c0c6223e51d16114f72ecff050d6c5b5503cb7157b0af5d217ebe714",
+      "decoded": {
+        "kind": "Text",
+        "object_id": 228,
+        "record_offset": 24821,
+        "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "entity_tag": 101,
+        "text": "UCAD",
+        "font_name": "Arial",
+        "height_cm": 0.8,
+        "text_style": 0,
+        "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": null,
+        "is_vertical_flip": null,
+        "is_fixed": null,
+        "is_reference": null,
+        "text_parameter": {
+          "parameter_object_id": 245,
+          "binding_object_id": 246,
+          "parameter_name": "d2",
+          "role": "Text1-Text",
+          "text_value": "UCAD",
+          "expression": "'UCAD'",
+          "display_units": "Text",
+          "comment": "",
+          "stored_parameter_index": 2,
+          "expression_metadata_hex": "01000000000000000000",
+          "uninterpreted_suffix_hex": "000110000000000000000000"
+        },
+        "height_parameter": {
+          "parameter_object_id": 242,
+          "binding_object_id": 243,
+          "parameter_name": "d1",
+          "role": "Text1-Height",
+          "value_cm": 0.8,
+          "expression_candidates": [
+            "8 mm"
+          ],
+          "stored_parameter_index": 1
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "rectangle_lines": [
+            {
+              "object_id": 237,
+              "entity_tag": 106,
+              "start_point_id": 229,
+              "end_point_id": 231,
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 238,
+              "entity_tag": 107,
+              "start_point_id": 231,
+              "end_point_id": 233,
+              "start_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 239,
+              "entity_tag": 108,
+              "start_point_id": 233,
+              "end_point_id": 235,
+              "start_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 240,
+              "entity_tag": 109,
+              "start_point_id": 235,
+              "end_point_id": 229,
+              "start_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            }
+          ],
+          "horizontal_alignment": null,
+          "vertical_alignment": null,
+          "character_spacing_percent": null,
+          "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+        },
+        "uninterpreted": {
+          "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+          "style_flags_hex": "01000000000000",
+          "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+      },
+      "checks": {
+        "text": true,
+        "font_name": true,
+        "height_cm": true,
+        "text_style": true,
+        "bold": true,
+        "italic": true,
+        "text_role": true,
+        "text_parameter_name": true,
+        "height_role": true,
+        "height_parameter_name": true,
+        "text_expression": true,
+        "height_expression": true,
+        "layout_kind": true,
+        "rectangle_count": true,
+        "rectangle0_start": true,
+        "rectangle0_end": true,
+        "rectangle1_start": true,
+        "rectangle1_end": true,
+        "rectangle2_start": true,
+        "rectangle2_end": true,
+        "rectangle3_start": true,
+        "rectangle3_end": true,
+        "canonical_text_value": true,
+        "canonical_text_binding": true,
+        "canonical_text_owner": true,
+        "canonical_text_expression": true,
+        "canonical_height_value": true,
+        "canonical_height_binding": true,
+        "canonical_no_rejected": true,
+        "both_parameters_attached": true,
+        "main_text_agreement": true
+      },
+      "actual_api_settings": {
+        "identity": {
+          "kind": "SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArQNZb2RkAQCjX1Y+iAAAAA==",
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "sketch_name": "SketchTextProbe",
+        "sketch_identity": {
+          "kind": "Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArQNZb2RgBAA/1LXsiAAAAA==",
+          "getter_errors": []
+        },
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_reference": false,
+        "is_fixed": false,
+        "is_2d": true,
+        "text_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArQNZb2RiBgAi1bSPiAAAAA==",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'UCAD'",
+          "unit": "Text",
+          "text_value": "UCAD"
+        },
+        "height_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArQNZb2RiDACtId7/iAAAAA==",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "8 mm",
+          "unit": "mm",
+          "value_cm": 0.8
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "getter_errors": [],
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "rectangle_lines": [
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTM1NALTRgZApQZmCgYAowQGopIAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBkYAq95C644AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBsYAPe5FnI4AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTM1NALTRgZApQbmCgYAlG7Eo5IAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBsYAPe5FnI4AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBiYAnnshAo4AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTM1NALTRgZApQZAxwAAqSmYqJIAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBiYAnnshAo4AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBqYACEsmdY4AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTM1NALTRgZApQZALQCeQ1qpkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBqYACEsmdY4AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQp2oTb7JIY+Q2Uyhs668EmEGqjBSMDZTSDEwNUhNMjXTTbQ0SdY1MUg00LWwNEjWTTMxTEsyMEgyN0u1BKsFmsGABsD2GSiArTMyNQORBkCFBkYAq95C644AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bounding_box_cm": [
+          [
+            0.9999999776482582,
+            3.1863577365875244,
+            0.0
+          ],
+          [
+            4.019372284412384,
+            4.013642847537994,
+            0.0
+          ]
+        ],
+        "outline_curve_count": 74,
+        "outline_curve_types": [
+          "Line3D",
+          "NurbsCurve3D"
+        ],
+        "sketch_text_count": 1
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/bold.f3d",
+      "sha256": "aec470dabcc4dacecf3a211c86716c87e486a4c7b5754ce1b9eb993be3374597",
+      "decoded": {
+        "kind": "Text",
+        "object_id": 228,
+        "record_offset": 24821,
+        "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "entity_tag": 101,
+        "text": "KIT",
+        "font_name": "Arial",
+        "height_cm": 0.5,
+        "text_style": 1,
+        "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
+        "bold": true,
+        "italic": false,
+        "native_font_weight": 700,
+        "underline": null,
+        "is_horizontal_flip": null,
+        "is_vertical_flip": null,
+        "is_fixed": null,
+        "is_reference": null,
+        "text_parameter": {
+          "parameter_object_id": 245,
+          "binding_object_id": 246,
+          "parameter_name": "d2",
+          "role": "Text1-Text",
+          "text_value": "KIT",
+          "expression": "'KIT'",
+          "display_units": "Text",
+          "comment": "",
+          "stored_parameter_index": 2,
+          "expression_metadata_hex": "01000000000000000000",
+          "uninterpreted_suffix_hex": "000110000000000000000000"
+        },
+        "height_parameter": {
+          "parameter_object_id": 242,
+          "binding_object_id": 243,
+          "parameter_name": "d1",
+          "role": "Text1-Height",
+          "value_cm": 0.5,
+          "expression_candidates": [
+            "5 mm"
+          ],
+          "stored_parameter_index": 1
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "rectangle_lines": [
+            {
+              "object_id": 237,
+              "entity_tag": 106,
+              "start_point_id": 229,
+              "end_point_id": 231,
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 238,
+              "entity_tag": 107,
+              "start_point_id": 231,
+              "end_point_id": 233,
+              "start_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 239,
+              "entity_tag": 108,
+              "start_point_id": 233,
+              "end_point_id": 235,
+              "start_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 240,
+              "entity_tag": 109,
+              "start_point_id": 235,
+              "end_point_id": 229,
+              "start_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            }
+          ],
+          "horizontal_alignment": null,
+          "vertical_alignment": null,
+          "character_spacing_percent": null,
+          "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+        },
+        "uninterpreted": {
+          "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+          "style_flags_hex": "01000000000000",
+          "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+      },
+      "checks": {
+        "text": true,
+        "font_name": true,
+        "height_cm": true,
+        "text_style": true,
+        "bold": true,
+        "italic": true,
+        "text_role": true,
+        "text_parameter_name": true,
+        "height_role": true,
+        "height_parameter_name": true,
+        "text_expression": true,
+        "height_expression": true,
+        "layout_kind": true,
+        "rectangle_count": true,
+        "rectangle0_start": true,
+        "rectangle0_end": true,
+        "rectangle1_start": true,
+        "rectangle1_end": true,
+        "rectangle2_start": true,
+        "rectangle2_end": true,
+        "rectangle3_start": true,
+        "rectangle3_end": true,
+        "canonical_text_value": true,
+        "canonical_text_binding": true,
+        "canonical_text_owner": true,
+        "canonical_text_expression": true,
+        "canonical_height_value": true,
+        "canonical_height_binding": true,
+        "canonical_no_rejected": true,
+        "both_parameters_attached": true,
+        "main_text_agreement": true
+      },
+      "actual_api_settings": {
+        "identity": {
+          "kind": "SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbB7LeyMgCAIt6h0OIAAAA",
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "sketch_name": "SketchTextProbe",
+        "sketch_identity": {
+          "kind": "Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbB7LeyMAIABfxZJGIAAAA",
+          "getter_errors": []
+        },
+        "font_name": "Arial",
+        "text_style": 1,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_reference": false,
+        "is_fixed": false,
+        "is_2d": true,
+        "text_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbB7LeyMQMAArwZfKIAAAA",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbB7LeyMQYAIUED4KIAAAA",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "getter_errors": [],
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "rectangle_lines": [
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2poBKaNDIBKDcwUDAACR+JxkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNjAB73F3LjgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNjAHt7Fq8jgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2poBKaNDIBKDcwVDAA1LSBwkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNjAHt7Fq8jgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNTABOeT4ijgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2poBKaNDIBKDYCOAQAIanx7kgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNTABOeT4ijgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNTAHYSTlVjgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2poBKaNDIBKDSwVDAA/AL56kgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNTAHYSTlVjgAAAA==",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwlvzjkI+W6/5HYdVJr2e33EOqMJIwdhMwdLQPMXQJM1YN9k02UjXJMUwWTfJ2CRR19jUyMDCyMDUDCgPVgs0gwENgO0zUABbZ2RqBiINgAoNjAB73F3LjgAAAA==",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bounding_box_cm": [
+          [
+            1.0000000186264515,
+            3.4999999403953552,
+            0.0
+          ],
+          [
+            2.058663010597229,
+            3.9999999403953552,
+            0.0
+          ]
+        ],
+        "outline_curve_count": 24,
+        "outline_curve_types": [
+          "Line3D"
+        ],
+        "sketch_text_count": 1
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/italic.f3d",
+      "sha256": "1aec2f2e91e93b2e453e71ddef5ec843894d3f43806e5cd8fa686129c03fcf23",
+      "decoded": {
+        "kind": "Text",
+        "object_id": 228,
+        "record_offset": 24821,
+        "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "entity_tag": 101,
+        "text": "KIT",
+        "font_name": "Arial",
+        "height_cm": 0.5,
+        "text_style": 2,
+        "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
+        "bold": false,
+        "italic": true,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": null,
+        "is_vertical_flip": null,
+        "is_fixed": null,
+        "is_reference": null,
+        "text_parameter": {
+          "parameter_object_id": 245,
+          "binding_object_id": 246,
+          "parameter_name": "d2",
+          "role": "Text1-Text",
+          "text_value": "KIT",
+          "expression": "'KIT'",
+          "display_units": "Text",
+          "comment": "",
+          "stored_parameter_index": 2,
+          "expression_metadata_hex": "01000000000000000000",
+          "uninterpreted_suffix_hex": "000110000000000000000000"
+        },
+        "height_parameter": {
+          "parameter_object_id": 242,
+          "binding_object_id": 243,
+          "parameter_name": "d1",
+          "role": "Text1-Height",
+          "value_cm": 0.5,
+          "expression_candidates": [
+            "5 mm"
+          ],
+          "stored_parameter_index": 1
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "rectangle_lines": [
+            {
+              "object_id": 237,
+              "entity_tag": 106,
+              "start_point_id": 229,
+              "end_point_id": 231,
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 238,
+              "entity_tag": 107,
+              "start_point_id": 231,
+              "end_point_id": 233,
+              "start_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 239,
+              "entity_tag": 108,
+              "start_point_id": 233,
+              "end_point_id": 235,
+              "start_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 240,
+              "entity_tag": 109,
+              "start_point_id": 235,
+              "end_point_id": 229,
+              "start_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            }
+          ],
+          "horizontal_alignment": null,
+          "vertical_alignment": null,
+          "character_spacing_percent": null,
+          "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+        },
+        "uninterpreted": {
+          "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+          "style_flags_hex": "01000000000100",
+          "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+      },
+      "checks": {
+        "text": true,
+        "font_name": true,
+        "height_cm": true,
+        "text_style": true,
+        "bold": true,
+        "italic": true,
+        "text_role": true,
+        "text_parameter_name": true,
+        "height_role": true,
+        "height_parameter_name": true,
+        "text_expression": true,
+        "height_expression": true,
+        "layout_kind": true,
+        "rectangle_count": true,
+        "rectangle0_start": true,
+        "rectangle0_end": true,
+        "rectangle1_start": true,
+        "rectangle1_end": true,
+        "rectangle2_start": true,
+        "rectangle2_end": true,
+        "rectangle3_start": true,
+        "rectangle3_end": true,
+        "canonical_text_value": true,
+        "canonical_text_binding": true,
+        "canonical_text_owner": true,
+        "canonical_text_expression": true,
+        "canonical_height_value": true,
+        "canonical_height_binding": true,
+        "canonical_no_rejected": true,
+        "both_parameters_attached": true,
+        "main_text_agreement": true
+      },
+      "actual_api_settings": {
+        "identity": {
+          "kind": "SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1oGsNzKyAABYJ8Z0iAAAAA==",
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "sketch_name": "SketchTextProbe",
+        "sketch_identity": {
+          "kind": "Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1oGsNzIwAgDErCWmiAAAAA==",
+          "getter_errors": []
+        },
+        "font_name": "Arial",
+        "text_style": 2,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_reference": false,
+        "is_fixed": false,
+        "is_2d": true,
+        "text_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1oGsNzIxAwDZrSTFiAAAAA==",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1oGsNzIxBgBWWU61iAAAAA==",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "getter_errors": [],
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "rectangle_lines": [
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1pkaGoFpIwOgUgMzBQMAxowqzpIAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCAyMAzXX4nY4AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCA2MAW0X/6o4AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1pkaGoFpIwOgUgNzBQMA8eboz5IAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCA2MAW0X/6o4AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCAxMA+NCbdI4AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1pkaGoFpIwOgUgOgYwDMobTEkgAAAA==",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCAxMA+NCbdI4AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCA1MAbuCcA44AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1pkaGoFpIwOgUgNLBQMA+8t2xZIAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCA1MAbuCcA44AAAA=",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnBTnN6WQDebXW2dzMXTk2YDVRgpGJsppJmZG5mZpybrplgmp+mamKeY6CalJVrompkYGZsYGhgnJqaYgtUCzWBAA2D7DBTA1hmZmoFIA6BCAyMAzXX4nY4AAAA=",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bounding_box_cm": [
+          [
+            0.9999999813735485,
+            3.4999999403953552,
+            0.0
+          ],
+          [
+            2.121418833732605,
+            3.9999999403953552,
+            0.0
+          ]
+        ],
+        "outline_curve_count": 24,
+        "outline_curve_types": [
+          "Line3D"
+        ],
+        "sketch_text_count": 1
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/multiline.f3d",
+      "sha256": "845603f760986c0e8da45ce5e23b06cc5039e43a8f65a64533e3a2fc4f9e7606",
+      "decoded": {
+        "kind": "Text",
+        "object_id": 228,
+        "record_offset": 24821,
+        "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "entity_tag": 101,
+        "text": "KIT\nUCAD",
+        "font_name": "Arial",
+        "height_cm": 0.5,
+        "text_style": 0,
+        "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": null,
+        "is_vertical_flip": null,
+        "is_fixed": null,
+        "is_reference": null,
+        "text_parameter": {
+          "parameter_object_id": 245,
+          "binding_object_id": 246,
+          "parameter_name": "d2",
+          "role": "Text1-Text",
+          "text_value": "KIT\nUCAD",
+          "expression": "'KIT\nUCAD'",
+          "display_units": "Text",
+          "comment": "",
+          "stored_parameter_index": 2,
+          "expression_metadata_hex": "01000000000000000000",
+          "uninterpreted_suffix_hex": "000110000000000000000000"
+        },
+        "height_parameter": {
+          "parameter_object_id": 242,
+          "binding_object_id": 243,
+          "parameter_name": "d1",
+          "role": "Text1-Height",
+          "value_cm": 0.5,
+          "expression_candidates": [
+            "5 mm"
+          ],
+          "stored_parameter_index": 1
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "rectangle_lines": [
+            {
+              "object_id": 237,
+              "entity_tag": 106,
+              "start_point_id": 229,
+              "end_point_id": 231,
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 238,
+              "entity_tag": 107,
+              "start_point_id": 231,
+              "end_point_id": 233,
+              "start_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 239,
+              "entity_tag": 108,
+              "start_point_id": 233,
+              "end_point_id": 235,
+              "start_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            },
+            {
+              "object_id": 240,
+              "entity_tag": 109,
+              "start_point_id": 235,
+              "end_point_id": 229,
+              "start_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_construction": null,
+              "is_fixed": null,
+              "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+            }
+          ],
+          "horizontal_alignment": null,
+          "vertical_alignment": null,
+          "character_spacing_percent": null,
+          "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+        },
+        "uninterpreted": {
+          "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+          "style_flags_hex": "01000000000000",
+          "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+      },
+      "checks": {
+        "text": true,
+        "font_name": true,
+        "height_cm": true,
+        "text_style": true,
+        "bold": true,
+        "italic": true,
+        "text_role": true,
+        "text_parameter_name": true,
+        "height_role": true,
+        "height_parameter_name": true,
+        "text_expression": true,
+        "height_expression": true,
+        "layout_kind": true,
+        "rectangle_count": true,
+        "rectangle0_start": true,
+        "rectangle0_end": true,
+        "rectangle1_start": true,
+        "rectangle1_end": true,
+        "rectangle2_start": true,
+        "rectangle2_end": true,
+        "rectangle3_start": true,
+        "rectangle3_end": true,
+        "canonical_text_value": true,
+        "canonical_text_binding": true,
+        "canonical_text_owner": true,
+        "canonical_text_expression": true,
+        "canonical_height_value": true,
+        "canonical_height_binding": true,
+        "canonical_no_rejected": true,
+        "both_parameters_attached": true,
+        "main_text_agreement": true
+      },
+      "actual_api_settings": {
+        "identity": {
+          "kind": "SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHUg642MLACX+YxZiAAAAA==",
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "sketch_name": "SketchTextProbe",
+        "sketch_identity": {
+          "kind": "Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHUg640MjAALcm+LiAAAAA==",
+          "getter_errors": []
+        },
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_reference": false,
+        "is_fixed": false,
+        "is_2d": true,
+        "text_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHUg641MzAAWc27oiAAAAA==",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT\nUCAD'",
+          "unit": "Text",
+          "text_value": "KIT\nUCAD"
+        },
+        "height_parameter": {
+          "identity": {
+            "kind": "ModelParameter",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHUg641MjAGZhwSYiAAAAA==",
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "getter_errors": [],
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "rectangle_lines": [
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHWmhkZg2sgAqNTATMEAADjFbI2SAAAA",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAIAH51v4+OAAAA",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAYAOhFuPiOAAAA",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHWmhkZg2sgAqNTAXMEAAA+vroySAAAA",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAYAOhFuPiOAAAA",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                1.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAEAEvQ3GaOAAAA",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHWmhkZg2sgAqNQA6BgAMujyh5IAAAA=",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAEAEvQ3GaOAAAA",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                9.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAUAN3g2xGOAAAA",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "identity": {
+                "kind": "SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHWmhkZg2sgAqNTAUsEAAAWCMIaSAAAA",
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_construction": true,
+              "is_2d": true,
+              "start_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAUAN3g2xGOAAAA",
+                "getter_errors": []
+              },
+              "start_sketch_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "start_world_cm": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "end_point": {
+                "kind": "SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQteCNU/f+XifWrPjiGZjz8crQBVGCsZmCobG5mmWlkkmuqnmycm6JinJZrpJ5qnJupZmSRapKSbJiWappmC1QDMY0ADYPgMFsHVGpmYg0gCo0MAIAH51v4+OAAAA",
+                "getter_errors": []
+              },
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_world_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bounding_box_cm": [
+          [
+            0.9999999962747097,
+            2.711118698120117,
+            0.0
+          ],
+          [
+            2.890859365463257,
+            3.9999999403953552,
+            0.0
+          ]
+        ],
+        "outline_curve_count": 98,
+        "outline_curve_types": [
+          "Line3D",
+          "NurbsCurve3D"
+        ],
+        "sketch_text_count": 1
+      }
+    }
+  ]
+}

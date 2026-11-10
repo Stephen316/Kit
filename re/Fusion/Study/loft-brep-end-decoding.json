@@ -1,0 +1,2968 @@
+{
+  "scope": "Observed additional Loft BRep endpoint orders: Free edge start, Free face end, Tangent/Smooth edge end, and two distinct tangent edges. No exact topology/geometry reconstruction.",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateLoftBrepEndModes.py",
+  "capture_folder": "loftbrepends-e07e3859ed20",
+  "summary": {
+    "archives": 5,
+    "case_errors": 0,
+    "getter_errors": 0,
+    "api_comparisons": 93,
+    "all_passed": true,
+    "prior_face_controls": 4,
+    "malformed_checks": 8,
+    "main_reader_exact_matches": 5
+  },
+  "integration": {
+    "function": "decode_loft_brep_ends(data, records, body, feature, features)",
+    "dispatcher": "Append standalone helper to public Loft readers; helper imports existing strict sources and modes only, never public decode_loft.",
+    "expected_settings": "Each samples[].expected_settings is the complete helper-returned dictionary for exact main-entrypoint equality.",
+    "shared_changes": "None. Existing section_resolver and allow_edge_end_conditions modes hooks are reused unchanged.",
+    "source_reuse": "Profile/face/flag1 edge sections delegate to resolve_loft_face_section. New flag0 edge section reader independently enforces same typed276-byte topology/recipe/context/anchor/owner framing; it does not alter generic source acceptance."
+  },
+  "native_evidence": {
+    "endpoint_conditions": "Stored Free0, Tangent1, Smooth2 controls frame as before. Active weights bind exact Start Weight/End Weight roles; explicit Start1.3/End1.7 distinguish two-edge field ownership.",
+    "edge_descriptor_flag": "Captured first edges from cylinder endFaces use raw byte3=1; captured last edges from cylinder startFaces use0. Reader guards these observed combinations; position and source topology both change, so flag semantics are not identified.",
+    "body_ownership": "Source edge/face descriptors point to typed historical body anchors. In both-edge case native bodies and source-owner features are distinct; API custom names independently identify StartCylinderBody and EndCylinderBody.",
+    "alignment": "Actual API start/end alignment enums0 in these samples. No native alignment contrast: production values remain null with explicit status."
+  },
+  "findings": [
+    "Five captures exported with zero case/getter errors. Documented single-edge Path inputs normalize to actual API BRepEdge sections; direct BRepEdge section input was not used.",
+    "Free edge start and Free face end succeed independently of weighted edge cases.",
+    "End Tangent1.5 and End Smooth1.25 match their native codes and End Weight binding. Both Tangent weights1.3/1.7 independently match Start/End controls.",
+    "Exact circular edge/planar face identity and geometry remain opaque topology recipes; native design body IDs are not ASM indices.",
+    "Previously supported first-face/first-weighted-edge variants stay in the earlier strict reader; this helper admits only its five observed configurations."
+  ],
+  "limitations": [
+    "Only open solid NewBody/two sections/no guides. Captured combinations are enforced; both Smooth, mixed face/edge sources and other operations remain unverified.",
+    "Raw descriptor flag meaning, exact face/edge recipe-to-ASM topology, contextual transforms, trim reconstruction and alignment encoding unresolved.",
+    "Kernel regeneration, persistent result lifecycle mapping, native writer and general BRep loft reconstruction remain unavailable.",
+    "API tokens/tempIds retained only in original capture evidence, never matched as native IDs; API default body names are not inferred from empty native labels."
+  ],
+  "samples": [
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "expected_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          369,
+          377
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 369,
+            "edge": {
+              "selection_record_object_id": 370,
+              "descriptor_object_id": 373,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 1,
+              "recipe": {
+                "object_id": 376,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 39592,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37109,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37109,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37109,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                397
+              ],
+              "namespace_text": "421aacfe-23f4-4075-8ba5-fe811df645f6",
+              "entity_guid_text": "cb132eb8-edcc-4fcb-9e17-77a2f8127d8d",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 377,
+            "profile": {
+              "selection_record_object_id": 378,
+              "descriptor_object_id": 381,
+              "loop_definition_object_id": 384,
+              "sketch_object_id": 289,
+              "sketch_name": "LoftBrepEndProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 316,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 385,
+        "result_body_anchor_object_ids": [
+          412
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Ordered owned BRep recipes/historical source bodies or sketch-profile memberships; exact BRep topology unresolved",
+        "brep_endpoint_configuration": "FreeEdgeStart",
+        "section_kinds": [
+          "BRepEdge",
+          "Profile"
+        ],
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Captured API alignments are0; native alignment encoding not independently identified",
+        "scope": "Captured Free edge start/face end, weighted edge end, or two tangent edges; open solid NewBody/two sections/no guides"
+      },
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.source_body_name",
+          "decoded": "LoftBrepStartCylinderBody",
+          "api": "LoftBrepStartCylinderBody",
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.sketch_name",
+          "decoded": "LoftBrepEndProfile",
+          "api": "LoftBrepEndProfile",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        }
+      ],
+      "api_input_observations": {
+        "source_sections": [
+          {
+            "entity_type": "adsk::fusion::Path",
+            "count": 1,
+            "segments": [
+              {
+                "is_opposed_to_entity": false,
+                "entity": {
+                  "entity_type": "adsk::fusion::BRepEdge",
+                  "temp_id": 1,
+                  "body": {
+                    "name": "LoftBrepStartCylinderBody",
+                    "component_name": "(Unsaved)",
+                    "is_solid": true,
+                    "volume_cm3": 3.1415926535899286,
+                    "face_count": 3,
+                    "edge_count": 2,
+                    "bounding_box_min_cm": [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "bounding_box_max_cm": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "geometry_type": "adsk::core::Circle3D",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftBrepEndProfile",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "radius_cm": 0.6
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "requested_conditions": [
+          {
+            "type": "Free"
+          },
+          {
+            "type": "Free"
+          }
+        ],
+        "setter_results": [
+          {
+            "index": 0,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.1575216010357305,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftBrepStartCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftBrepEndProfile",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "expected_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          375,
+          383
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 375,
+            "profile": {
+              "selection_record_object_id": 376,
+              "descriptor_object_id": 379,
+              "loop_definition_object_id": 382,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftBrepStartProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 383,
+            "face": {
+              "selection_record_object_id": 384,
+              "descriptor_object_id": 387,
+              "body_anchor_object_id": 319,
+              "native_body_object_id": 313,
+              "source_owner_object_id": 287,
+              "namespace_text": "d99847a9-347c-4311-8e7e-095373bb3d6a",
+              "entity_guid_text": "3f3599bd-dade-473f-8376-f6554845c540",
+              "context_record_object_ids": [
+                401
+              ],
+              "recipe": {
+                "object_id": 390,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 40367,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35778,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35778,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35778,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "bounded_face_recipe_data",
+                "payload_relative_offset": 124,
+                "payload_length": 132,
+                "payload_hex": "00000000ffffffff0100000001000000ffffffff0200000002000000ffffffff00000000ffffffff01000000ffffffff0200000002000000ffffffff00000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1,
+                  1,
+                  1,
+                  -1,
+                  2,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  -1,
+                  2,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  1,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  1,
+                  0,
+                  2,
+                  1,
+                  1,
+                  1,
+                  2,
+                  1,
+                  2,
+                  -1
+                ]
+              },
+              "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+              "context_scope": "Context identities retained; no occurrence transform inferred",
+              "stored_section_code": 3,
+              "geometry_status": "API source is a planar cylinder end face; exact native recipe-to-ASM face mapping unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 391,
+        "result_body_anchor_object_ids": [
+          416
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Ordered owned BRep recipes/historical source bodies or sketch-profile memberships; exact BRep topology unresolved",
+        "brep_endpoint_configuration": "FreeFaceEnd",
+        "section_kinds": [
+          "Profile",
+          "BRepFace"
+        ],
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Captured API alignments are0; native alignment encoding not independently identified",
+        "scope": "Captured Free edge start/face end, weighted edge end, or two tangent edges; open solid NewBody/two sections/no guides"
+      },
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.sketch_name",
+          "decoded": "LoftBrepStartProfile",
+          "api": "LoftBrepStartProfile",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::BRepFace",
+          "api": "adsk::fusion::BRepFace",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.source_body_name",
+          "decoded": "LoftBrepEndCylinderBody",
+          "api": "LoftBrepEndCylinderBody",
+          "passed": true
+        }
+      ],
+      "api_input_observations": {
+        "source_sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftBrepStartProfile",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.6
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "temp_id": 0,
+            "body": {
+              "name": "LoftBrepEndCylinderBody",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 3.1415926535899286,
+              "face_count": 3,
+              "edge_count": 2,
+              "bounding_box_min_cm": [
+                -1.0,
+                -1.0,
+                3.0
+              ],
+              "bounding_box_max_cm": [
+                1.0,
+                1.0,
+                4.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 3.141592653589793,
+            "centroid_world_cm": [
+              3.8981718325193755e-17,
+              0.0,
+              3.0
+            ],
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "plane_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "is_param_reversed": true,
+            "loop_count": 1,
+            "edges": [
+              {
+                "temp_id": 1,
+                "geometry_type": "adsk::core::Circle3D",
+                "body_name": "LoftBrepEndCylinderBody",
+                "start_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  3.0
+                ],
+                "end_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  3.0
+                ],
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ]
+          }
+        ],
+        "requested_conditions": [
+          {
+            "type": "Free"
+          },
+          {
+            "type": "Free"
+          }
+        ],
+        "setter_results": [
+          {
+            "index": 0,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.157521601035732,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftBrepStartProfile",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepFace",
+              "temp_id": 0,
+              "body": {
+                "name": "LoftBrepEndCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  3.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  4.0
+                ]
+              },
+              "geometry_type": "adsk::core::Plane",
+              "area_cm2": 3.141592653589793,
+              "centroid_world_cm": [
+                3.8981718325193755e-17,
+                0.0,
+                3.0
+              ],
+              "plane_origin_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "plane_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "is_param_reversed": true,
+              "loop_count": 1,
+              "edges": [
+                {
+                  "temp_id": 1,
+                  "geometry_type": "adsk::core::Circle3D",
+                  "body_name": "LoftBrepEndCylinderBody",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    3.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    3.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "expected_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          372,
+          380
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 372,
+            "profile": {
+              "selection_record_object_id": 373,
+              "descriptor_object_id": 376,
+              "loop_definition_object_id": 379,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftBrepStartProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 380,
+            "edge": {
+              "selection_record_object_id": 381,
+              "descriptor_object_id": 384,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 0,
+              "recipe": {
+                "object_id": 387,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 40830,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 116,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000001000000010000000100000002000000010000000200000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 319,
+              "native_body_object_id": 313,
+              "source_owner_object_id": 287,
+              "context_record_object_ids": [
+                400
+              ],
+              "namespace_text": "9b7035d9-9a41-48cf-8c7e-1974ba24723a",
+              "entity_guid_text": "cb870630-1802-49cc-81bb-25231d74c250",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; descriptor flag meaning and coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Tangent",
+              "stored_condition_code": 1,
+              "stored_endpoint_integer": -1,
+              "byte_length": 28,
+              "weight": 1.5,
+              "weight_binding_object_id": 370
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.5,
+          "weight_binding_object_id": 370
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.5,
+          "weight_binding_object_id": 370
+        },
+        "result_control_record_object_id": 388,
+        "result_body_anchor_object_ids": [
+          415
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Ordered owned BRep recipes/historical source bodies or sketch-profile memberships; exact BRep topology unresolved",
+        "brep_endpoint_configuration": "TangentEdgeEnd",
+        "section_kinds": [
+          "Profile",
+          "BRepEdge"
+        ],
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Captured API alignments are0; native alignment encoding not independently identified",
+        "scope": "Captured Free edge start/face end, weighted edge end, or two tangent edges; open solid NewBody/two sections/no guides"
+      },
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.sketch_name",
+          "decoded": "LoftBrepStartProfile",
+          "api": "LoftBrepStartProfile",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftTangentEndCondition",
+          "api": "adsk::fusion::LoftTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.weight",
+          "decoded": 1.5,
+          "api": 1.5,
+          "passed": true
+        },
+        {
+          "field": "section1.source_body_name",
+          "decoded": "LoftBrepEndCylinderBody",
+          "api": "LoftBrepEndCylinderBody",
+          "passed": true
+        }
+      ],
+      "api_input_observations": {
+        "source_sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftBrepStartProfile",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.6
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::Path",
+            "count": 1,
+            "segments": [
+              {
+                "is_opposed_to_entity": false,
+                "entity": {
+                  "entity_type": "adsk::fusion::BRepEdge",
+                  "temp_id": 1,
+                  "body": {
+                    "name": "LoftBrepEndCylinderBody",
+                    "component_name": "(Unsaved)",
+                    "is_solid": true,
+                    "volume_cm3": 3.1415926535899286,
+                    "face_count": 3,
+                    "edge_count": 2,
+                    "bounding_box_min_cm": [
+                      -1.0,
+                      -1.0,
+                      3.0
+                    ],
+                    "bounding_box_max_cm": [
+                      1.0,
+                      1.0,
+                      4.0
+                    ]
+                  },
+                  "geometry_type": "adsk::core::Circle3D",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    3.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    3.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              }
+            ]
+          }
+        ],
+        "requested_conditions": [
+          {
+            "type": "Free"
+          },
+          {
+            "type": "Tangent",
+            "weight": 1.5
+          }
+        ],
+        "setter_results": [
+          {
+            "index": 0,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.5
+            }
+          }
+        ]
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.512924654764493,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftBrepStartProfile",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftBrepEndCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  3.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  4.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                3.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                3.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.5
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "expected_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          372,
+          380
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 372,
+            "profile": {
+              "selection_record_object_id": 373,
+              "descriptor_object_id": 376,
+              "loop_definition_object_id": 379,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftBrepStartProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 380,
+            "edge": {
+              "selection_record_object_id": 381,
+              "descriptor_object_id": 384,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 0,
+              "recipe": {
+                "object_id": 387,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 40832,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 116,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000001000000010000000100000002000000010000000200000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 319,
+              "native_body_object_id": 313,
+              "source_owner_object_id": 287,
+              "context_record_object_ids": [
+                400
+              ],
+              "namespace_text": "04948656-395f-4136-986b-430ffddd9fd1",
+              "entity_guid_text": "53f58088-c1a9-4621-b1ff-5db9cd4786f8",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; descriptor flag meaning and coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Smooth",
+              "stored_condition_code": 2,
+              "stored_endpoint_integer": -1,
+              "byte_length": 28,
+              "weight": 1.25,
+              "weight_binding_object_id": 370
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Smooth",
+          "stored_condition_code": 2,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.25,
+          "weight_binding_object_id": 370
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Smooth",
+          "stored_condition_code": 2,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.25,
+          "weight_binding_object_id": 370
+        },
+        "result_control_record_object_id": 388,
+        "result_body_anchor_object_ids": [
+          415
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Ordered owned BRep recipes/historical source bodies or sketch-profile memberships; exact BRep topology unresolved",
+        "brep_endpoint_configuration": "SmoothEdgeEnd",
+        "section_kinds": [
+          "Profile",
+          "BRepEdge"
+        ],
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Captured API alignments are0; native alignment encoding not independently identified",
+        "scope": "Captured Free edge start/face end, weighted edge end, or two tangent edges; open solid NewBody/two sections/no guides"
+      },
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.sketch_name",
+          "decoded": "LoftBrepStartProfile",
+          "api": "LoftBrepStartProfile",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section0.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftSmoothEndCondition",
+          "api": "adsk::fusion::LoftSmoothEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.weight",
+          "decoded": 1.25,
+          "api": 1.25,
+          "passed": true
+        },
+        {
+          "field": "section1.source_body_name",
+          "decoded": "LoftBrepEndCylinderBody",
+          "api": "LoftBrepEndCylinderBody",
+          "passed": true
+        }
+      ],
+      "api_input_observations": {
+        "source_sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftBrepStartProfile",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.6
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::Path",
+            "count": 1,
+            "segments": [
+              {
+                "is_opposed_to_entity": false,
+                "entity": {
+                  "entity_type": "adsk::fusion::BRepEdge",
+                  "temp_id": 1,
+                  "body": {
+                    "name": "LoftBrepEndCylinderBody",
+                    "component_name": "(Unsaved)",
+                    "is_solid": true,
+                    "volume_cm3": 3.1415926535899286,
+                    "face_count": 3,
+                    "edge_count": 2,
+                    "bounding_box_min_cm": [
+                      -1.0,
+                      -1.0,
+                      3.0
+                    ],
+                    "bounding_box_max_cm": [
+                      1.0,
+                      1.0,
+                      4.0
+                    ]
+                  },
+                  "geometry_type": "adsk::core::Circle3D",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    3.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    3.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              }
+            ]
+          }
+        ],
+        "requested_conditions": [
+          {
+            "type": "Free"
+          },
+          {
+            "type": "Smooth",
+            "weight": 1.25
+          }
+        ],
+        "setter_results": [
+          {
+            "index": 0,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftSmoothEndCondition",
+              "weight": 1.25
+            }
+          }
+        ]
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.454453568017755,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftBrepStartProfile",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftBrepEndCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  3.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  4.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                3.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                3.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftSmoothEndCondition",
+              "weight": 1.25
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "expected_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          418,
+          426
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 418,
+            "edge": {
+              "selection_record_object_id": 419,
+              "descriptor_object_id": 422,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 1,
+              "recipe": {
+                "object_id": 425,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 45965,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 38202,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 38202,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 38202,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                446
+              ],
+              "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+              "entity_guid_text": "17c45926-d563-433a-ae17-e8838e937bc5",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Tangent",
+              "stored_condition_code": 1,
+              "stored_endpoint_integer": -1,
+              "byte_length": 32,
+              "stored_post_weight_field": 0,
+              "weight": 1.3,
+              "weight_binding_object_id": 413
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 426,
+            "edge": {
+              "selection_record_object_id": 427,
+              "descriptor_object_id": 430,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 0,
+              "recipe": {
+                "object_id": 433,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 46972,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 305
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 305
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 305
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 116,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000001000000010000000100000002000000010000000200000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 350,
+              "native_body_object_id": 346,
+              "source_owner_object_id": 320,
+              "context_record_object_ids": [
+                453
+              ],
+              "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+              "entity_guid_text": "17c45926-d563-433a-ae17-e8838e937bc5",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; descriptor flag meaning and coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Tangent",
+              "stored_condition_code": 1,
+              "stored_endpoint_integer": -1,
+              "byte_length": 28,
+              "weight": 1.7,
+              "weight_binding_object_id": 416
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.3,
+          "weight_binding_object_id": 413
+        },
+        "end_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.7,
+          "weight_binding_object_id": 416
+        },
+        "stored_start_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.3,
+          "weight_binding_object_id": 413
+        },
+        "stored_end_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.7,
+          "weight_binding_object_id": 416
+        },
+        "result_control_record_object_id": 434,
+        "result_body_anchor_object_ids": [
+          467
+        ],
+        "result_anchor_list_end_relative_offset": 137,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Ordered owned BRep recipes/historical source bodies or sketch-profile memberships; exact BRep topology unresolved",
+        "brep_endpoint_configuration": "TangentBothEdges",
+        "section_kinds": [
+          "BRepEdge",
+          "BRepEdge"
+        ],
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Captured API alignments are0; native alignment encoding not independently identified",
+        "scope": "Captured Free edge start/face end, weighted edge end, or two tangent edges; open solid NewBody/two sections/no guides"
+      },
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftTangentEndCondition",
+          "api": "adsk::fusion::LoftTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.weight",
+          "decoded": 1.3,
+          "api": 1.3,
+          "passed": true
+        },
+        {
+          "field": "section0.source_body_name",
+          "decoded": "LoftBrepStartCylinderBody",
+          "api": "LoftBrepStartCylinderBody",
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftTangentEndCondition",
+          "api": "adsk::fusion::LoftTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.weight",
+          "decoded": 1.7,
+          "api": 1.7,
+          "passed": true
+        },
+        {
+          "field": "section1.source_body_name",
+          "decoded": "LoftBrepEndCylinderBody",
+          "api": "LoftBrepEndCylinderBody",
+          "passed": true
+        }
+      ],
+      "api_input_observations": {
+        "source_sections": [
+          {
+            "entity_type": "adsk::fusion::Path",
+            "count": 1,
+            "segments": [
+              {
+                "is_opposed_to_entity": false,
+                "entity": {
+                  "entity_type": "adsk::fusion::BRepEdge",
+                  "temp_id": 2,
+                  "body": {
+                    "name": "LoftBrepStartCylinderBody",
+                    "component_name": "(Unsaved)",
+                    "is_solid": true,
+                    "volume_cm3": 3.1415926535899286,
+                    "face_count": 3,
+                    "edge_count": 2,
+                    "bounding_box_min_cm": [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "bounding_box_max_cm": [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "geometry_type": "adsk::core::Circle3D",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::Path",
+            "count": 1,
+            "segments": [
+              {
+                "is_opposed_to_entity": false,
+                "entity": {
+                  "entity_type": "adsk::fusion::BRepEdge",
+                  "temp_id": 3,
+                  "body": {
+                    "name": "LoftBrepEndCylinderBody",
+                    "component_name": "(Unsaved)",
+                    "is_solid": true,
+                    "volume_cm3": 1.130973355292374,
+                    "face_count": 3,
+                    "edge_count": 2,
+                    "bounding_box_min_cm": [
+                      -0.6,
+                      -0.6,
+                      4.0
+                    ],
+                    "bounding_box_max_cm": [
+                      0.6,
+                      0.6,
+                      5.0
+                    ]
+                  },
+                  "geometry_type": "adsk::core::Circle3D",
+                  "start_world_cm": [
+                    -0.6,
+                    -7.347880794884119e-17,
+                    4.0
+                  ],
+                  "end_world_cm": [
+                    -0.6,
+                    -7.347880794884119e-17,
+                    4.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    4.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 0.6
+                }
+              }
+            ]
+          }
+        ],
+        "requested_conditions": [
+          {
+            "type": "Tangent",
+            "weight": 1.3
+          },
+          {
+            "type": "Tangent",
+            "weight": 1.7
+          }
+        ],
+        "setter_results": [
+          {
+            "index": 0,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.3
+            }
+          },
+          {
+            "index": 1,
+            "returned": true,
+            "actual_input_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.7
+            }
+          }
+        ]
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body3",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.00104404709465,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 2,
+              "body": {
+                "name": "LoftBrepStartCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.3
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 3,
+              "body": {
+                "name": "LoftBrepEndCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 1.130973355292374,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -0.6,
+                  -0.6,
+                  4.0
+                ],
+                "bounding_box_max_cm": [
+                  0.6,
+                  0.6,
+                  5.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -0.6,
+                -7.347880794884119e-17,
+                4.0
+              ],
+              "end_world_cm": [
+                -0.6,
+                -7.347880794884119e-17,
+                4.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                4.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 0.6
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.7
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    }
+  ],
+  "prior_controls": [
+    {
+      "file": "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+      "prior_face_reader_supported": true,
+      "new_endpoint_reader_rejected_outside_own_scope": true
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+      "prior_face_reader_supported": true,
+      "new_endpoint_reader_rejected_outside_own_scope": true
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+      "prior_face_reader_supported": true,
+      "new_endpoint_reader_rejected_outside_own_scope": true
+    },
+    {
+      "file": "loftfaces-055501f619c5/face_free.f3d",
+      "prior_face_reader_supported": true,
+      "new_endpoint_reader_rejected_outside_own_scope": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "section owner mismatch",
+      "rejected": true,
+      "reason": "Unsupported Loft BRep endpoint section layout/owner"
+    },
+    {
+      "case": "unobserved last-edge descriptor flag",
+      "rejected": true,
+      "reason": "Unobserved Loft endpoint/descriptor flag combination; flag semantics unresolved"
+    },
+    {
+      "case": "edge recipe falsely claims face kind",
+      "rejected": true,
+      "reason": "Loft endpoint edge recipe kind disagrees"
+    },
+    {
+      "case": "nonpositive End Weight",
+      "rejected": true,
+      "reason": "Loft edge end-condition weight must be positive"
+    },
+    {
+      "case": "unverified surface endpoint configuration",
+      "rejected": true,
+      "reason": "Only observed two-section open solid NewBody BRep endpoints without guides supported"
+    },
+    {
+      "case": "End control points to Start Weight binding",
+      "rejected": true,
+      "reason": "Loft binding role disagrees with end control: End Weight"
+    },
+    {
+      "case": "both edges alias one historical source body",
+      "rejected": true,
+      "reason": "Only captured distinct historical source bodies for both-edge Loft supported"
+    },
+    {
+      "case": "unverified Smooth end in both-edge configuration",
+      "rejected": true,
+      "reason": "Unobserved Loft BRep endpoint section/condition combination"
+    }
+  ],
+  "capture_errors": []
+}

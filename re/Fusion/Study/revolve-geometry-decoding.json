@@ -1,0 +1,5463 @@
+{
+  "scope": "Ten analytic rotational solids, explicit axis reversal and full-turn sign invariance; no native/result cache/main/live API inputs",
+  "source_sha256": {
+    "decode_revolve_geometry.py": "c611ae23feacfa587d19a87a6f4011f2e87395a08c540b281d7b1b03c544cc44",
+    "validate_revolve_geometry.py": "c0f6fc2e2f76a512efb3cfe0a46805c10699b403814a2b6d1988bf7b8055871c"
+  },
+  "check_count": 71,
+  "checks": [
+    "positive quarter independent volume",
+    "positive quarter independent surface area",
+    "positive quarter independently known bounds",
+    "positive quarter complete mathematical face/loop inventory",
+    "positive quarter native operands untouched",
+    "positive quarter no native topology or UV claims",
+    "positive quarter independent radial first moment",
+    "negative quarter independent volume",
+    "negative quarter independent surface area",
+    "negative quarter independently known bounds",
+    "negative quarter complete mathematical face/loop inventory",
+    "negative quarter native operands untouched",
+    "negative quarter no native topology or UV claims",
+    "negative quarter independent radial first moment",
+    "symmetric sixty per side independent volume",
+    "symmetric sixty per side independent surface area",
+    "symmetric sixty per side independently known bounds",
+    "symmetric sixty per side complete mathematical face/loop inventory",
+    "symmetric sixty per side native operands untouched",
+    "symmetric sixty per side no native topology or UV claims",
+    "symmetric sixty per side independent radial first moment",
+    "independent two sides independent volume",
+    "independent two sides independent surface area",
+    "independent two sides independently known bounds",
+    "independent two sides complete mathematical face/loop inventory",
+    "independent two sides native operands untouched",
+    "independent two sides no native topology or UV claims",
+    "independent two sides independent radial first moment",
+    "full annular cylinder independent volume",
+    "full annular cylinder independent surface area",
+    "full annular cylinder independently known bounds",
+    "full annular cylinder complete mathematical face/loop inventory",
+    "full annular cylinder native operands untouched",
+    "full annular cylinder no native topology or UV claims",
+    "full annular cylinder independent radial first moment",
+    "positive X axis independent volume",
+    "positive X axis independent surface area",
+    "positive X axis independently known bounds",
+    "positive X axis complete mathematical face/loop inventory",
+    "positive X axis native operands untouched",
+    "positive X axis no native topology or UV claims",
+    "positive X axis independent radial first moment",
+    "rigid placed quarter independent volume",
+    "rigid placed quarter independent surface area",
+    "rigid placed quarter independently known bounds",
+    "rigid placed quarter complete mathematical face/loop inventory",
+    "rigid placed quarter native operands untouched",
+    "rigid placed quarter no native topology or UV claims",
+    "rigid placed quarter independent radial first moment",
+    "full sphere independent volume",
+    "full sphere independent surface area",
+    "full sphere independently known bounds",
+    "full sphere complete mathematical face/loop inventory",
+    "full sphere native operands untouched",
+    "full sphere no native topology or UV claims",
+    "full ring torus independent volume",
+    "full ring torus independent surface area",
+    "full ring torus independently known bounds",
+    "full ring torus complete mathematical face/loop inventory",
+    "full ring torus native operands untouched",
+    "full ring torus no native topology or UV claims",
+    "full cone with singular apex independent volume",
+    "full cone with singular apex independent surface area",
+    "full cone with singular apex independently known bounds",
+    "full cone with singular apex complete mathematical face/loop inventory",
+    "full cone with singular apex native operands untouched",
+    "full cone with singular apex no native topology or UV claims",
+    "full cone with singular apex independent radial first moment",
+    "Selected-axis reversal preserves physical construction",
+    "Stored selected-axis direction remains distinct",
+    "Negative full turn preserves bounded solid"
+  ],
+  "guard_count": 16,
+  "guards": [
+    {
+      "name": "Zero angular span",
+      "rejected": true,
+      "reason": "Revolve angular span is degenerate or exceeds one turn"
+    },
+    {
+      "name": "More than one angular turn",
+      "rejected": true,
+      "reason": "Revolve angular span is degenerate or exceeds one turn"
+    },
+    {
+      "name": "Unverified negative symmetric angles",
+      "rejected": true,
+      "reason": "Revolve negative symmetric/two-sided angle convention is unverified"
+    },
+    {
+      "name": "Projected axis",
+      "rejected": true,
+      "reason": "Revolve construction requires unprojected solid NewBody controls"
+    },
+    {
+      "name": "Surface Revolve",
+      "rejected": true,
+      "reason": "Revolve construction requires unprojected solid NewBody controls"
+    },
+    {
+      "name": "Boolean Revolve",
+      "rejected": true,
+      "reason": "Revolve construction requires unprojected solid NewBody controls"
+    },
+    {
+      "name": "Unresolved entity angular limit",
+      "rejected": true,
+      "reason": "Revolve selected entity angular limits are unsupported"
+    },
+    {
+      "name": "Selected axis outside Sketch plane",
+      "rejected": true,
+      "reason": "Revolve selected axis is not a qualified unit line in the source Sketch plane"
+    },
+    {
+      "name": "Selected axis not parallel Sketch plane",
+      "rejected": true,
+      "reason": "Revolve selected axis is not a qualified unit line in the source Sketch plane"
+    },
+    {
+      "name": "Profile crosses both radial sides",
+      "rejected": true,
+      "reason": "Revolve source crosses the axis or leaves its meridian half-plane"
+    },
+    {
+      "name": "Self-crossing source polygon",
+      "rejected": true,
+      "reason": "Revolve source polygon is not the observed simple convex section"
+    },
+    {
+      "name": "Horn/spindle torus outside captured family",
+      "rejected": true,
+      "reason": "Revolve Circle must remain in the captured ring-torus radial half-plane"
+    },
+    {
+      "name": "Unqualified partial circular profile",
+      "rejected": true,
+      "reason": "Only captured full-turn circular/semicircular Revolves are qualified"
+    },
+    {
+      "name": "Non-semicircle sphere source",
+      "rejected": true,
+      "reason": "Revolve sphere source must be one semicircle"
+    },
+    {
+      "name": "Nonrigid Sketch frame",
+      "rejected": true,
+      "reason": "Non-unit transform axes"
+    },
+    {
+      "name": "Nonfinite angle",
+      "rejected": true,
+      "reason": "Revolve construction requires finite numeric operands"
+    }
+  ],
+  "samples": [
+    {
+      "name": "positive quarter",
+      "independent_volume_cm3": 7.0685834705770345,
+      "independent_surface_area_cm2": 24.84955592153876,
+      "independent_bounds_cm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          2.0,
+          3.0,
+          2.0
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          1.5707963267948966
+        ],
+        "angular_span_radians": 1.5707963267948966,
+        "is_full_turn": false,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": -3.0
+            },
+            {
+              "position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      2.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      2.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": -3.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      1.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      1.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -1.0,
+                0.0,
+                6.123233995736766e-17
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      1.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      2.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      2.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      1.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 7.0685834705770345,
+        "surface_area_cm2": 24.84955592153876,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            6.123233995736766e-17,
+            0.0,
+            0.0
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            2.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "negative quarter",
+      "independent_volume_cm3": 7.0685834705770345,
+      "independent_surface_area_cm2": 24.84955592153876,
+      "independent_bounds_cm": [
+        [
+          0.0,
+          0.0,
+          -2.0
+        ],
+        [
+          2.0,
+          3.0,
+          0.0
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          -1.5707963267948966,
+          0.0
+        ],
+        "angular_span_radians": 1.5707963267948966,
+        "is_full_turn": false,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": -3.0
+            },
+            {
+              "position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      -1.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      -2.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      -2.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      -2.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": -3.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      -2.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      -1.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.5707963267948966,
+                      0.0
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -1.0,
+                -0.0,
+                -6.123233995736766e-17
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      -1.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      -2.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      0.0,
+                      -2.0
+                    ],
+                    "end_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      -2.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.2246467991473532e-16,
+                      3.0,
+                      -2.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.123233995736766e-17,
+                      3.0,
+                      -1.0
+                    ],
+                    "end_cm": [
+                      6.123233995736766e-17,
+                      0.0,
+                      -1.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      2.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0,
+                      3.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 7.0685834705770345,
+        "surface_area_cm2": 24.84955592153876,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -3.6739403974420594e-16,
+            0.0,
+            -2.0
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "symmetric sixty per side",
+      "independent_volume_cm3": 9.42477796076938,
+      "independent_surface_area_cm2": 31.132741228718345,
+      "independent_bounds_cm": [
+        [
+          0.5,
+          0.0,
+          -1.7320508075688772
+        ],
+        [
+          2.0,
+          3.0,
+          1.7320508075688772
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          -1.0471975511965976,
+          1.0471975511965976
+        ],
+        "angular_span_radians": 2.0943951023931953,
+        "is_full_turn": false,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": -3.0
+            },
+            {
+              "position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      -0.8660254037844386
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      -1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      -1.7320508075688772
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      -1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": -3.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      -1.7320508075688772
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      -0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      -0.8660254037844386
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      -0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -1.0471975511965976,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.8660254037844386,
+                -0.0,
+                -0.5000000000000001
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      -0.8660254037844386
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      -1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      -1.7320508075688772
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      -1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      -1.7320508075688772
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      -0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      -0.8660254037844386
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      -0.8660254037844386
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.8660254037844386,
+                0.0,
+                0.5000000000000001
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 9.42477796076938,
+        "surface_area_cm2": 31.132741228718345,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            0.5000000000000001,
+            0.0,
+            -1.7320508075688772
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            1.7320508075688772
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "independent two sides",
+      "independent_volume_cm3": 7.0685834705770345,
+      "independent_surface_area_cm2": 24.84955592153876,
+      "independent_bounds_cm": [
+        [
+          0.5,
+          0.0,
+          -1.0
+        ],
+        [
+          2.0,
+          3.0,
+          1.7320508075688772
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          -0.5235987755982988,
+          1.0471975511965976
+        ],
+        "angular_span_radians": 1.5707963267948966,
+        "is_full_turn": false,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": -3.0
+            },
+            {
+              "position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.8660254037844387,
+                      0.0,
+                      -0.49999999999999994
+                    ],
+                    "end_cm": [
+                      1.7320508075688774,
+                      0.0,
+                      -0.9999999999999999
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.7320508075688774,
+                      0.0,
+                      -0.9999999999999999
+                    ],
+                    "end_cm": [
+                      1.7320508075688774,
+                      3.0,
+                      -0.9999999999999999
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": -3.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.7320508075688774,
+                      3.0,
+                      -0.9999999999999999
+                    ],
+                    "end_cm": [
+                      0.8660254037844387,
+                      3.0,
+                      -0.49999999999999994
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.8660254037844387,
+                      3.0,
+                      -0.49999999999999994
+                    ],
+                    "end_cm": [
+                      0.8660254037844387,
+                      0.0,
+                      -0.49999999999999994
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      -0.5235987755982988,
+                      1.0471975511965976
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.49999999999999994,
+                -0.0,
+                -0.8660254037844387
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.8660254037844387,
+                      0.0,
+                      -0.49999999999999994
+                    ],
+                    "end_cm": [
+                      1.7320508075688774,
+                      0.0,
+                      -0.9999999999999999
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.7320508075688774,
+                      0.0,
+                      -0.9999999999999999
+                    ],
+                    "end_cm": [
+                      1.7320508075688774,
+                      3.0,
+                      -0.9999999999999999
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.7320508075688774,
+                      3.0,
+                      -0.9999999999999999
+                    ],
+                    "end_cm": [
+                      0.8660254037844387,
+                      3.0,
+                      -0.49999999999999994
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.8660254037844387,
+                      3.0,
+                      -0.49999999999999994
+                    ],
+                    "end_cm": [
+                      0.8660254037844387,
+                      0.0,
+                      -0.49999999999999994
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.8660254037844386,
+                0.0,
+                0.5000000000000001
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      0.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      1.0000000000000002,
+                      3.0,
+                      1.7320508075688772
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.5000000000000001,
+                      3.0,
+                      0.8660254037844386
+                    ],
+                    "end_cm": [
+                      0.5000000000000001,
+                      0.0,
+                      0.8660254037844386
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 7.0685834705770345,
+        "surface_area_cm2": 24.84955592153876,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            0.5000000000000001,
+            0.0,
+            -0.9999999999999999
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            1.7320508075688772
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "full annular cylinder",
+      "independent_volume_cm3": 28.274333882308138,
+      "independent_surface_area_cm2": 75.39822368615503,
+      "independent_bounds_cm": [
+        [
+          -2.0,
+          0.0,
+          -2.0
+        ],
+        [
+          2.0,
+          3.0,
+          2.0
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          6.283185307179586
+        ],
+        "angular_span_radians": 6.283185307179586,
+        "is_full_turn": true,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": -3.0
+            },
+            {
+              "position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              },
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              },
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": -3.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              },
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              },
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 28.274333882308138,
+        "surface_area_cm2": 75.39822368615503,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -2.0,
+            0.0,
+            -2.0
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            2.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "positive X axis",
+      "independent_volume_cm3": 7.0685834705770345,
+      "independent_surface_area_cm2": 24.84955592153876,
+      "independent_bounds_cm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          3.0,
+          2.0,
+          2.0
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_direction_multiplier": 1,
+          "radial_reference_u": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          1.5707963267948966
+        ],
+        "angular_span_radians": 1.5707963267948966,
+        "is_full_turn": false,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 3.0
+            },
+            {
+              "position_cm": [
+                3.0,
+                2.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 3.0
+            },
+            {
+              "position_cm": [
+                0.0,
+                2.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      1.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 3.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      1.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      2.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      2.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      2.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_u": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      1.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      1.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      2.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      2.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      2.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      1.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                0.0,
+                -1.0,
+                6.123233995736766e-17
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ],
+                    "end_cm": [
+                      3.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      3.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      0.0,
+                      1.2246467991473532e-16,
+                      2.0
+                    ],
+                    "end_cm": [
+                      0.0,
+                      6.123233995736766e-17,
+                      1.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 7.0685834705770345,
+        "surface_area_cm2": 24.84955592153876,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            0.0,
+            6.123233995736766e-17,
+            0.0
+          ],
+          "maximum": [
+            3.0,
+            2.0,
+            2.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "rigid placed quarter",
+      "independent_volume_cm3": 7.0685834705770345,
+      "independent_surface_area_cm2": 24.84955592153876,
+      "independent_bounds_cm": [
+        [
+          4.0,
+          -4.0,
+          7.0
+        ],
+        [
+          6.0,
+          -2.0,
+          10.0
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          1.5707963267948966
+        ],
+        "angular_span_radians": 1.5707963267948966,
+        "is_full_turn": false,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                5.0,
+                -2.0,
+                7.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                6.0,
+                -2.0,
+                7.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                6.0,
+                -2.0,
+                10.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": -3.0
+            },
+            {
+              "position_cm": [
+                5.0,
+                -2.0,
+                10.0
+              ],
+              "radial_distance_cm": 1.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 1.5,
+          "radial_first_moment_cm3": 4.5
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": -7.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      5.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      6.0,
+                      -2.0,
+                      7.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -4.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -3.0,
+                      7.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      6.0,
+                      -2.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -4.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -4.0,
+                      7.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:2",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                4.0,
+                -2.0,
+                10.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": -10.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      5.0,
+                      -2.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -3.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -4.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:3",
+            "carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      5.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      5.0,
+                      -2.0,
+                      7.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -3.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -3.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      4.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "radius_cm": 1.0,
+                    "unit_axis": [
+                      -0.0,
+                      -0.0,
+                      -1.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      1.5707963267948966
+                    ],
+                    "is_full_circle": false,
+                    "mathematical_direction": -1
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "unit_normal": [
+                -0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": -2.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      5.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      6.0,
+                      -2.0,
+                      7.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.0,
+                      -2.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      6.0,
+                      -2.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      6.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      5.0,
+                      -2.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      5.0,
+                      -2.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      5.0,
+                      -2.0,
+                      7.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "angular:1",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "unit_normal": [
+                -1.0,
+                -6.123233995736766e-17,
+                0.0
+              ],
+              "plane_constant_cm": -4.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -3.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -4.0,
+                      7.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -4.0,
+                      7.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -4.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -4.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -3.0,
+                      10.0
+                    ]
+                  },
+                  {
+                    "kind": "LineSegment",
+                    "start_cm": [
+                      4.0,
+                      -3.0,
+                      10.0
+                    ],
+                    "end_cm": [
+                      4.0,
+                      -3.0,
+                      7.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 7.0685834705770345,
+        "surface_area_cm2": 24.84955592153876,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            4.0,
+            -4.0,
+            7.0
+          ],
+          "maximum": [
+            6.0,
+            -2.0,
+            10.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "full sphere",
+      "independent_volume_cm3": 33.510321638291124,
+      "independent_surface_area_cm2": 50.26548245743669,
+      "independent_bounds_cm": [
+        [
+          -2.0,
+          -2.0,
+          -2.0
+        ],
+        [
+          2.0,
+          2.0,
+          2.0
+        ]
+      ],
+      "result": {
+        "kind": "Sphere",
+        "profile_kind": "Semicircle",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "stored_direction_multiplier": 1,
+          "radial_reference_u": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          6.283185307179586
+        ],
+        "angular_span_radians": 6.283185307179586,
+        "is_full_turn": true,
+        "meridian_profile": {
+          "area_cm2": 6.283185307179586,
+          "centroid_radius_cm": 0.8488263631567752,
+          "source_arc_angle_interval_radians": [
+            0.0,
+            3.141592653589793
+          ]
+        },
+        "faces": [
+          {
+            "role_key": "sphere",
+            "carrier": {
+              "kind": "Sphere",
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "boundary_loops": [],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 33.510321638291124,
+        "surface_area_cm2": 50.26548245743669,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -2.0,
+            -2.0,
+            -2.0
+          ],
+          "maximum": [
+            2.0,
+            2.0,
+            2.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "full ring torus",
+      "independent_volume_cm3": 44.41321980490211,
+      "independent_surface_area_cm2": 118.4352528130723,
+      "independent_bounds_cm": [
+        [
+          -4.75,
+          -0.75,
+          -4.75
+        ],
+        [
+          4.75,
+          0.75,
+          4.75
+        ]
+      ],
+      "result": {
+        "kind": "Torus",
+        "profile_kind": "Circle",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          6.283185307179586
+        ],
+        "angular_span_radians": 6.283185307179586,
+        "is_full_turn": true,
+        "meridian_profile": {
+          "area_cm2": 1.7671458676442586,
+          "centroid_radius_cm": 4.0,
+          "source_circle_radius_cm": 0.75
+        },
+        "faces": [
+          {
+            "role_key": "torus",
+            "carrier": {
+              "kind": "Torus",
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "major_radius_cm": 4.0,
+              "minor_radius_cm": 0.75
+            },
+            "boundary_loops": [],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 44.41321980490211,
+        "surface_area_cm2": 118.4352528130723,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -4.75,
+            -0.75,
+            -4.75
+          ],
+          "maximum": [
+            4.75,
+            0.75,
+            4.75
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    },
+    {
+      "name": "full cone with singular apex",
+      "independent_volume_cm3": 12.566370614359172,
+      "independent_surface_area_cm2": 35.22071741263713,
+      "independent_bounds_cm": [
+        [
+          -2.0,
+          0.0,
+          -2.0
+        ],
+        [
+          2.0,
+          3.0,
+          2.0
+        ]
+      ],
+      "result": {
+        "kind": "PolygonRevolve",
+        "profile_kind": "Polygon",
+        "source_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "effective_axis": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "stored_direction_multiplier": -1,
+          "radial_reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal_reference_v": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_rule": "Observed positive angular sweep is source-normal directed: effective_axis cross occupied_radial = Sketch_normal; no target geometry input"
+        },
+        "angular_interval_radians": [
+          0.0,
+          6.283185307179586
+        ],
+        "angular_span_radians": 6.283185307179586,
+        "is_full_turn": true,
+        "meridian_profile": {
+          "vertices": [
+            {
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 0.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "radial_distance_cm": 2.0,
+              "axial_coordinate_cm": 0.0
+            },
+            {
+              "position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "radial_distance_cm": 0.0,
+              "axial_coordinate_cm": -3.0
+            }
+          ],
+          "area_cm2": 3.0,
+          "centroid_radius_cm": 0.6666666666666666,
+          "radial_first_moment_cm3": 2.0
+        },
+        "faces": [
+          {
+            "role_key": "meridian:0",
+            "carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_normal": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 0.0
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          },
+          {
+            "role_key": "meridian:1",
+            "carrier": {
+              "kind": "Cone",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "radial_slope": 0.6666666666666666,
+              "radial_intercept_cm": 2.0,
+              "axial_domain_cm": [
+                -3.0,
+                0.0
+              ],
+              "apex_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "half_angle_radians": 0.5880026035475675
+            },
+            "boundary_loops": [
+              {
+                "curves": [
+                  {
+                    "kind": "CircleArc",
+                    "center_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 2.0,
+                    "unit_axis": [
+                      -0.0,
+                      -1.0,
+                      -0.0
+                    ],
+                    "reference_u": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "reference_v": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "angle_interval_radians": [
+                      0.0,
+                      6.283185307179586
+                    ],
+                    "is_full_circle": true
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              },
+              {
+                "curves": [
+                  {
+                    "kind": "PointSingularity",
+                    "point_cm": [
+                      0.0,
+                      3.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "native_LOOP_identity": null,
+                "native_traversal_semantics": null
+              }
+            ],
+            "native_FACE_identity": null
+          }
+        ],
+        "volume_cm3": 12.566370614359172,
+        "surface_area_cm2": 35.22071741263713,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -2.0,
+            0.0,
+            -2.0
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            2.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "native_UV": null,
+        "scope": "Constructed coplanar one-sided meridian revolution with observed source-relative positive angular orientation. Polygon sections use explicit one/two-sided/symmetric signed angle intervals; full Circle and semicircle profiles produce ring torus and sphere. Complete mathematical carrier/loop geometry, moments, area and bounds use no result cache or ENTITY assignment. Native UV, API traversal, arbitrary projected/straddling/entity-limit/Boolean semantics, chronological regeneration and writing remain unresolved."
+      }
+    }
+  ]
+}

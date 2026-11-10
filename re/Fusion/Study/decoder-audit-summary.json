@@ -1,0 +1,2052 @@
+{
+  "audit_date": "2026-10-24",
+  "audit_parent_commit": "556c3ef",
+  "scope": "Standalone FusionFileStudy decoder and saved captures; current TryUniCAD repository used as the comment-style reference. This is not an audit of all TryUniCAD adapters or a native-writer certification.",
+  "functional_status": "pass",
+  "full_comment_style_status": "migration_required",
+  "health_report": "decoder-health-audit.json",
+  "health_report_sha256": "96e5a4fff7999cce75aa16e08d3ea8ce6190f78a21ff2fa9eb6641ec3d63a337",
+  "summary": {
+    "python_modules_compiled": 729,
+    "syntax_errors": 0,
+    "saved_archives": 712,
+    "byte_identical_complete_outputs": 712,
+    "broader_standalone_validators_passed": 132,
+    "additional_existing_geometry_suites_passed": 22,
+    "new_numeric_suites_passed": 2,
+    "distinct_focused_suites_passed": 156,
+    "changed_python_files": 15,
+    "changed_file_rationale_sites": 176,
+    "changed_file_comment_findings": 0,
+    "runtime_comment_files_reviewed": 299,
+    "runtime_required_rationale_sites": 2128,
+    "remaining_rationale_findings": 2069,
+    "remaining_other_comment_findings": 262,
+    "live_Fusion_calls": 0,
+    "native_archive_changes": 0,
+    "remote_writes": 0
+  },
+  "repairs": [
+    {
+      "area": "Parameter and Circle unit conversion",
+      "problem": "Finite native values could overflow their millimetre or degree display conversion and publish infinity.",
+      "result": "Overflow is explicitly rejected through existing parameter or unsupported-curve diagnostics; 33 native-byte cases verify accepted and rejected numeric boundaries."
+    },
+    {
+      "area": "Rational curves derivatives and tensor surfaces",
+      "problem": "Equivalent common weight scales could underflow or overflow homogeneous intermediates, crash derivative evaluation or return incorrect finite geometry. Finite extreme knots could silently produce a wrong interpolation coefficient.",
+      "result": "Ordinary floating arithmetic stays the fast path. Unsafe intermediates trigger projective Decimal evaluation from exact binary64 inputs, with extended exponent range and degree-dependent precision. Mixed extreme-weight endpoints and previously accepted higher degrees remain supported."
+    },
+    {
+      "area": "Parameter-only public entrypoint",
+      "problem": "Quoted Text-literal dependencies differed between the parameter-only and full readers.",
+      "result": "Both entrypoints now apply the existing Text-literal dependency merge and agree on value source and empty reference lists."
+    },
+    {
+      "area": "Regression tests",
+      "problem": "Seven older validators asserted historical unsupported layouts, unextended summaries or mutable inventory counts. One sampled a native endpoint just outside the separate UV domain.",
+      "result": "Coverage expectations follow independently corroborated newer decoders; Mirror-owned routes and Text literals receive explicit checks; Stitch targets use a committed inventory; UV comparisons stay inside the actual common domain and strict out-of-domain rejection remains tested."
+    }
+  ],
+  "style_reference": {
+    "repository": "https://github.com/TryUniCAD/Kit",
+    "commit": "e64a368a2b644cc223d69556c5fda58f60175b62",
+    "rules": ".kiro/steering/RationaleComments.md",
+    "checker": "tools/steering/SteeringCompliance.py",
+    "limitation": "Counts syntax and placement; explanatory purpose still needs human review"
+  },
+  "canonical_runtime_style_summary": {
+    "files": 299,
+    "required_sites": 2128,
+    "findings": {
+      "RAT001": 2063,
+      "CMT001": 262,
+      "RAT002": 5,
+      "RAT003": 1
+    }
+  },
+  "canonical_changed_style_summary": {
+    "files": 15,
+    "required_sites": 176,
+    "findings": {}
+  },
+  "canonical_changed_style_files": [
+    {
+      "file": "audit_decoder_health.py",
+      "sha256": "2a2d4b4230d376b8a947aec7ca93acea1fe43cb170379c847b60dde36745e4e3",
+      "declaration_sites": 9,
+      "required_sites": 8,
+      "findings": []
+    },
+    {
+      "file": "decode_bspline.py",
+      "sha256": "fbcbd547674841e39744a5b65a3091c6a535a0684d16060365294a78043d65b4",
+      "declaration_sites": 9,
+      "required_sites": 9,
+      "findings": []
+    },
+    {
+      "file": "decode_loft_composite_guides.py",
+      "sha256": "ff7a2c061543428b6920465d3c90d89b84ba46dffaa3c6222178a448b546f38f",
+      "declaration_sites": 12,
+      "required_sites": 12,
+      "findings": []
+    },
+    {
+      "file": "decode_nurbs.py",
+      "sha256": "e572ef05eef29b75743d2a1ff9706294c3521621acbee00214337bc8658ddc3a",
+      "declaration_sites": 22,
+      "required_sites": 22,
+      "findings": []
+    },
+    {
+      "file": "decode_parameters.py",
+      "sha256": "9824f16dec2f4ab328d09d0f1334f5f335226081edbd77f8071c137bc3ef5b0c",
+      "declaration_sites": 9,
+      "required_sites": 9,
+      "findings": []
+    },
+    {
+      "file": "decode_sketch.py",
+      "sha256": "24fed7dcedf8d8e84a00b752cfe5faafa83535903147d36899ad3877f2272553",
+      "declaration_sites": 7,
+      "required_sites": 7,
+      "findings": []
+    },
+    {
+      "file": "validate_asm_subtypes.py",
+      "sha256": "7a36673da09ab2bfc2602b520ffe969951bcf6281d060ea3a1bfa1439eb619b7",
+      "declaration_sites": 15,
+      "required_sites": 15,
+      "findings": []
+    },
+    {
+      "file": "validate_component_creation.py",
+      "sha256": "1ac39a5ecb5d0894fc5a6679a9c658e047ef21842ed33d3e1ffa2d92c47fb073",
+      "declaration_sites": 5,
+      "required_sites": 4,
+      "findings": []
+    },
+    {
+      "file": "validate_fillet_spline_caches.py",
+      "sha256": "a7ffe3f70834ca1ed5c9ba24d1b350fcd7835acfc0002d92be58876d0fd15ca0",
+      "declaration_sites": 21,
+      "required_sites": 20,
+      "findings": []
+    },
+    {
+      "file": "validate_mesh_combine.py",
+      "sha256": "8d8494477e57c3fa54f61636ad7291b88087bafe3440fe7535efb011fa5fe02a",
+      "declaration_sites": 18,
+      "required_sites": 17,
+      "findings": []
+    },
+    {
+      "file": "validate_numeric_conversions.py",
+      "sha256": "e7a9f8f7976309e6acf9af087af6e06207a87f595e9c11859091e48499a86ce2",
+      "declaration_sites": 7,
+      "required_sites": 6,
+      "findings": []
+    },
+    {
+      "file": "validate_parameter_function_modes.py",
+      "sha256": "5131765767200a181e1923b90a933b69ef47f0191b38632af86c296a2b44b0ec",
+      "declaration_sites": 5,
+      "required_sites": 4,
+      "findings": []
+    },
+    {
+      "file": "validate_rational_numerics.py",
+      "sha256": "c8d13681dd0782c1bc57742b8cd99b44e9417b761bd043a68f56448c78cfe19d",
+      "declaration_sites": 13,
+      "required_sites": 12,
+      "findings": []
+    },
+    {
+      "file": "validate_stitch_hint_attributes.py",
+      "sha256": "6cf5174014767e9074e0cdc2173a7a1eae0fb75dca85af3d87976ca0e5c86a93",
+      "declaration_sites": 17,
+      "required_sites": 16,
+      "findings": []
+    },
+    {
+      "file": "validate_variable_blend_cache.py",
+      "sha256": "f431130e6494695ff3c2c57f5ea6bea17df1d88f34320adddcab15a76af484ec",
+      "declaration_sites": 16,
+      "required_sites": 15,
+      "findings": []
+    }
+  ],
+  "broader_validators": [
+    {
+      "file": "validate_asbuilt_joints.py",
+      "status": "pass",
+      "source_sha256": "c5ea28be0b8d070a5651a3766beb6572c41e94f930ce3a137b2972843100a203",
+      "report_sha256": "33ac0bd5b23c5ff27615b71ab5122a701d4b1c5a1963d1eecb294240882eb939",
+      "summary": null
+    },
+    {
+      "file": "validate_asm_history.py",
+      "status": "pass",
+      "source_sha256": "4da7d6f510c87fb1d68354baadad5eabaa926ad121a6a141c140d3c6103ed54b",
+      "report_sha256": "2cd511ab649b365be3ab9541e9057d6ca207980f5ed994f18757e7a3fc801743",
+      "summary": null
+    },
+    {
+      "file": "validate_asm_int64.py",
+      "status": "pass",
+      "source_sha256": "378a3f6987acfb13c9755b5a4209c4751dcbd23991fa18638d62d0b0be708e71",
+      "report_sha256": "6c12cf942f52cd301b2053a55cff15491988661d6f0bf4bdc33853e7d2f67b49",
+      "summary": {
+        "target_archives": 9,
+        "contextual_integer_values_replayed": 297,
+        "prior_complete_records_preserved_except_int64_semantics": 8034,
+        "recovered_whole_streams": 1,
+        "malformed_or_unsupported_guards": 8,
+        "signed_boundary_controls": 2
+      }
+    },
+    {
+      "file": "validate_asm_name_versions.py",
+      "status": "pass",
+      "source_sha256": "e9e94a662c60246ab9d6901c9f22586c209b8366a35c246d6cc7c6fa0617fc6b",
+      "report_sha256": "bca1d5faeef8ee97dfad2f7635a953898f5af04d9498785c23f37f8c3c08fcb5",
+      "summary": null
+    },
+    {
+      "file": "validate_asm_subtypes.py",
+      "status": "pass",
+      "source_sha256": "7a36673da09ab2bfc2602b520ffe969951bcf6281d060ea3a1bfa1439eb619b7",
+      "report_sha256": "4475613a30319abc8bab5c143657ce9c3858af04ba0671491b0b999388b296da",
+      "summary": null
+    },
+    {
+      "file": "validate_asymmetric_fillet_flips.py",
+      "status": "pass",
+      "source_sha256": "70fc0d8d3e00f195980b17930eeb2c86fb9b817719d00be7f06ebe4cc299b240",
+      "report_sha256": "101f8691568c98e7fe832a4984d163f460cd1b9f10592607071e2671a1ce0708",
+      "summary": {
+        "actual_exports": 3,
+        "decoded_flip_false": 2,
+        "decoded_flip_true": 1,
+        "actual_parameter_role_name_value_matches": 9,
+        "exact_definition_replays": 3,
+        "source_getter_controls": 3,
+        "actual_normalization_controls": 3,
+        "malformed_guards": 6,
+        "legacy_default_controls": 3,
+        "all_owned_documents_closed_true": true
+      }
+    },
+    {
+      "file": "validate_attribute_owner_variants.py",
+      "status": "pass",
+      "source_sha256": "c725e0e940570bb4ac2221c85250ecd0186a70e2602982f2cb4aee6e463caed5",
+      "report_sha256": "7b96286b69603637dca22d42417c507912233745c39d4c18aabfae31284621ca",
+      "summary": null
+    },
+    {
+      "file": "validate_base_feature_empty_lists.py",
+      "status": "pass",
+      "source_sha256": "735d2e0aea563961101deb0a6e507d207e4720209ef78b2f22929f7788e8ae43",
+      "report_sha256": "1f986174538d8ad695ff8a6bda6519d7fa0f7b38c2a8c026feeddc0d17f4413e",
+      "summary": {
+        "saved_positive_archives": 10,
+        "partial_native_definitions": 10,
+        "full_feature_controller_history_byte_replay_groups": 10,
+        "reliable_API_empty_collection_controls": 7,
+        "retained_original_vector_getter_errors": 6,
+        "paired_body_control_archives": 2,
+        "paired_body_records_preserved_exact": 6,
+        "malformed_guards": 8,
+        "feature_mutations": 0,
+        "new_mesh_owner_claims": 0,
+        "entire_feature_empty_claims": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_base_feature_single_lists.py",
+      "status": "pass",
+      "source_sha256": "354fdb40f2e43cc679f7db84b45187a92140f3b35d5bb0e2cfe62d5d464aa2d5",
+      "report_sha256": "12cd5d7026686cd1c45f4deb65da64352136b28b37feb85789a52d0ef4692a8f",
+      "summary": {
+        "actual_saved_files": 3,
+        "partial_singleton_definitions": 2,
+        "old_default_summary_controls": 2,
+        "malformed_guards": 6,
+        "checks": 39,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_base_mesh_feature_definitions.py",
+      "status": "pass",
+      "source_sha256": "a002149dedc06dec6adf462f7b5839c6c1fe2a77952bed0e06d52ee4698d3093",
+      "report_sha256": "70b3c56a27320ae54df9a986ee75728233022b2c4bde3a87b70e79e1b18b87a0",
+      "summary": null
+    },
+    {
+      "file": "validate_body_asm_identifiers.py",
+      "status": "pass",
+      "source_sha256": "3094263f8a2ef986d317f9e743382d2fbac193f302229610ab3d6c5c4266a170",
+      "report_sha256": "9ec39255fce36bb18ff0dcf11f66ca2c7e5a9ca24451fbcc8b42b26fc3580f7f",
+      "summary": {
+        "files": 7,
+        "populated_mappings": 11,
+        "body_associations": 18,
+        "empty_tables_left_empty": 4,
+        "ordinal_counterexamples": 2,
+        "actual_api_corroborations": 5,
+        "malformed_guards": 5,
+        "diverse_prior_success_files": 4,
+        "diverse_prior_candidates_preserved": 17,
+        "diverse_prior_candidates_withdrawn": 0,
+        "existing_unsupported_files_with_no_prior_candidate": 1
+      }
+    },
+    {
+      "file": "validate_boundary_face_correspondences.py",
+      "status": "pass",
+      "source_sha256": "fdef8b09c22b3281ce296410ae1c36705a1a2d4748c4258e7df0a95fa396ec53",
+      "report_sha256": "52cefc4794642d4c56c202895a5ad3cd0c145cb128c7b89cea99fa2f888606d2",
+      "summary": null
+    },
+    {
+      "file": "validate_boundary_modifying_faces.py",
+      "status": "pass",
+      "source_sha256": "81dcb114feb37f2588e92557d1a7582c4bdcb4522991136916288cb575efc712",
+      "report_sha256": "d4c9582ac834890c86040d1a632769c3e0f3216192cadbcb7463805887ae2956",
+      "summary": null
+    },
+    {
+      "file": "validate_boundary_sculpt_provenance.py",
+      "status": "pass",
+      "source_sha256": "565ed5c0d9068dba143ff65ee6adfdfc3e92bb3a0bfc9a729763d7c74ae0780a",
+      "report_sha256": "6cbc98ae02316d0e145d2dfb6c44c87cbe023441e9743acca2ddefc0044e539b",
+      "summary": null
+    },
+    {
+      "file": "validate_circular_getter_handles.py",
+      "status": "pass",
+      "source_sha256": "a63fc637e9a75d09595c8ff7af98572680c9da1af4d53e22d023b172616eefe7",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_circular_placement_evidence.py",
+      "status": "pass",
+      "source_sha256": "6b02cf5bd8d6dd63b4f259c1d60aaf10b231da786f1c7e5e8d847c23543124be",
+      "report_sha256": "688131a3911464fa6920f24d2cd93f797ff40ca95fce4c95cb2fee28b376003a",
+      "summary": {
+        "element_groups": 15,
+        "cache_body_correspondences": 18,
+        "typed_vertex_pairs": 144,
+        "suppressed_without_groups": 1,
+        "saved_body_pattern_fixtures": 5,
+        "explicit_feature_input_rejections": 2,
+        "maximum_typed_vertex_fit_residual_raw": 9.930136612989092e-16,
+        "getter_disagreement_warnings_preserved": 5,
+        "malformed_guards": 6,
+        "new_API_calls": 0,
+        "native_serialized_transform_fields_claimed": 0
+      }
+    },
+    {
+      "file": "validate_circular_symmetric_suppression.py",
+      "status": "pass",
+      "source_sha256": "31a1adaef9585a3fe61b24a0a00190b863e9a546a5e98ace35caacd8f938a7fe",
+      "report_sha256": "b540acfdb63d2b31274ff5491ed347865f8a65af5441a9a2779ae80195b41aca",
+      "summary": {
+        "actual_exports": 6,
+        "verified_nonseed_suppression_settings": 5,
+        "seed_negative_partial_only": 1,
+        "actual_element_flag_checks": 28,
+        "typed_element_record_replays": 28,
+        "suppression_tail_replays": 6,
+        "retained_actual_getter_errors": 5,
+        "malformed_guards": 6,
+        "legacy_controls": 3,
+        "all_owned_documents_closed_true": true
+      }
+    },
+    {
+      "file": "validate_component_creation.py",
+      "status": "pass",
+      "source_sha256": "1ac39a5ecb5d0894fc5a6679a9c658e047ef21842ed33d3e1ffa2d92c47fb073",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_component_display_colors.py",
+      "status": "pass",
+      "source_sha256": "0b3cc8939ddba381ba8922744823c063e2191e0fb205f1877521a92c8695ea45",
+      "report_sha256": "7437daef3bdab42c1b55c682aad1039ceb4b5ddc53a873dea6039d19e52a125b",
+      "summary": {
+        "saved_archives": 6,
+        "qualified_component_prefixes": 9,
+        "typed_reciprocal_references": 117,
+        "same_document_exports_with_identical_RGB": 4,
+        "actual_controlled_setter_exports": 1,
+        "changed_channels_corroborated": 3,
+        "child_component_structural_controls": 3,
+        "RGB8_rounding_counterexamples": 1,
+        "malformed_guards": 8,
+        "derived_RGB8_or_alpha_values_exposed": false,
+        "new_live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_counted_asm_names.py",
+      "status": "pass",
+      "source_sha256": "971ff49815ec5d21fa76258fe4dc36d08155f0d2beb41eb276bf8ec1573c3799",
+      "report_sha256": "003812532ce62076dc53b6b11993d1bdb9dfc725006da295dbf418f16424d0c4",
+      "summary": {
+        "saved_archives": 26,
+        "related_survey_archives": 20,
+        "additional_count_representatives_replayed": 7,
+        "generic_payloads_replayed": 1040,
+        "component_count0_terms": 96,
+        "component_count1_terms": 480,
+        "component_count2_terms": 255,
+        "component_count3_terms": 236,
+        "negative_signed_components_bit_preserved": 217,
+        "actual_eight_term_payloads": 1,
+        "old_dictionary_payloads_preserved": 74,
+        "boundaryfill_count2_face_payloads": 6,
+        "malformed_guards": 7
+      }
+    },
+    {
+      "file": "validate_cylinder_parameter_scales.py",
+      "status": "pass",
+      "source_sha256": "b774649f8c3ebf0ebffac6106d76cc7483ecfe1e3b85bdfb426929cf488613a3",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_datum_mirror_supports.py",
+      "status": "pass",
+      "source_sha256": "b7fe8aac215e765581c6b92e70f0882efe99fc535854b787cb36245687c780be",
+      "report_sha256": "52640cda73304fe2caed6596f3c19cbc11a845bbdb9ea621dfd8f917b954fc50",
+      "summary": null
+    },
+    {
+      "file": "validate_draft_no_merge_attributes.py",
+      "status": "pass",
+      "source_sha256": "c5b05ddfbd10e45a4c76c9f3867d72949d4063d5fea63e91b57d3d9a46047233",
+      "report_sha256": "4e36e109352143bebb1176d7bca68f664f090aa2fb6031ac33c1a234de6faf38",
+      "summary": {
+        "new_head_chains": 6,
+        "blobs": 20,
+        "previous_generic_tags_exact": 168,
+        "recovered_diagnostics": 6,
+        "draft_existing_tail_controls": 2,
+        "old_tail_chains": 10,
+        "prior_tail_fixture_controls": 8,
+        "guards": 8,
+        "archives": 10
+      }
+    },
+    {
+      "file": "validate_extend_cache.py",
+      "status": "pass",
+      "source_sha256": "11f939cbfcf0f0605a97f24ee147ffc4eab96664fdfc15d7c9c1b88f425e6c29",
+      "report_sha256": "0dafe0e576b82fad96ffe39a2ef6cd4042c7ffc27c1dc9b02dc8540c920a3cde",
+      "summary": null
+    },
+    {
+      "file": "validate_extrusion_placement_holdout.py",
+      "status": "pass",
+      "source_sha256": "53b4f291467b4194408acc58ff80ef55cf4a7a40a49d76a9ead04929c7a0e1a8",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_fdm_face_attributes.py",
+      "status": "pass",
+      "source_sha256": "443c137375ad3b6a44683aceee7a550181bbfe307c377806d558cd5d8013b221",
+      "report_sha256": "932c1a7b7b10afecb8b5d42182132e5bbecdb96a74e6a800af977f7d9d2f1f94",
+      "summary": {
+        "saved_files": 12,
+        "fdm_payloads_replayed": 19,
+        "thread_face_data_payloads": 12,
+        "feature_data_payloads": 7,
+        "reciprocal_FACE_owner_chains": 19,
+        "typed_BODY_native_body_joins": 19,
+        "position_axis_corroborations": 12,
+        "two_boundary_circle_center_corroborations": 12,
+        "feature_literal_not_native_ID_counterexamples": 12,
+        "partial_thread_span_counterexamples": 7,
+        "malformed_guards": 6,
+        "native_feature_identity_associations_claimed": 0,
+        "production_shared_reader_payload_matches": 19,
+        "production_shared_reader_owner_chain_matches": 19,
+        "production_owner_chain_guard_rejections": 1
+      }
+    },
+    {
+      "file": "validate_fillet_spline_caches.py",
+      "status": "pass",
+      "source_sha256": "a7ffe3f70834ca1ed5c9ba24d1b350fcd7835acfc0002d92be58876d0fd15ca0",
+      "report_sha256": "9a5efc901227193dcd638bfb1953dbc712ee5540757fa8a3bd70bb128a1ddc77",
+      "summary": {
+        "surface_caches": 1,
+        "intersection_curve_caches": 6,
+        "typed_curve_endpoint_checks": 12,
+        "surface_uv_endpoint_checks": 4,
+        "prior_cache_outputs_unchanged": 17,
+        "malformed_guards": 8,
+        "saved_files": 3,
+        "later_supported_variable_blend_holdouts": 2
+      }
+    },
+    {
+      "file": "validate_fpm_partial_coverage.py",
+      "status": "pass",
+      "source_sha256": "2ed83c7574969bfc33337f62fab16d5704d0fb374a0a54d3b31cf0e2ec39425b",
+      "report_sha256": "a19abaffd9ab549c3a7f99a24ac00b41247ecf5bddcfa0c6533dac717f0e34c0",
+      "summary": null
+    },
+    {
+      "file": "validate_fusion_capture_preflight.py",
+      "status": "pass",
+      "source_sha256": "ca2600bf1eaa6ec738a1564792ff277c599d309b486f1820234e92ef64d4e9d0",
+      "report_sha256": "c551e2f6f5ec503dd02e4c18a47a27ec2206893caf263dd153d61142af795f87",
+      "summary": {
+        "behavioral_scenarios": 5,
+        "passed": 5,
+        "active_hold_pre_native_blocks": 1,
+        "locked_pre_event_UI_blocks": 1,
+        "unlocked_verified_target_fallthrough": 1,
+        "unknown_verified_target_fallthrough": 1,
+        "unknown_failed_field_blocks": 1,
+        "actual_native_library_loads": 0,
+        "actual_UI_calls": 0,
+        "actual_keyboard_events": 0,
+        "actual_process_commands": 0
+      }
+    },
+    {
+      "file": "validate_historical_mesh_face_groups.py",
+      "status": "pass",
+      "source_sha256": "78119912d1478432ce26a329cd7b05b9fed9cb997d1a74d1c37c970f478fe1ce",
+      "report_sha256": "7a6eac5d1b30be982ce07e68e9c1356e89132480c2887ecabbc98a203bc72640",
+      "summary": null
+    },
+    {
+      "file": "validate_interp_blend_cache.py",
+      "status": "pass",
+      "source_sha256": "2a8c62185d274ec15fac3fb1b230969395d703fc0a8197043198afec4a39cd93",
+      "report_sha256": "0507f53e9dc8321027f5f44bf1fb8397f232508eccb736fc8d3a78c6d65951a9",
+      "summary": null
+    },
+    {
+      "file": "validate_interp_blend_downstream.py",
+      "status": "pass",
+      "source_sha256": "cd78725debdaead3ed8fc63757538e46d5667236f362e28a9b8ce1a97a79171b",
+      "report_sha256": "85012552d08a0213d12e6dd53565aa438d5a26e67734f3f91fd60c66efbf0963",
+      "summary": null
+    },
+    {
+      "file": "validate_intersection_curve_variants.py",
+      "status": "pass",
+      "source_sha256": "768702b534c8da37e7855f98c912e3efe9d8d39c2b1ef7af890f724649a7cc17",
+      "report_sha256": "da3579580b39796f7784da79bcc13745bfcf6f07783be698aaad450e40c021f0",
+      "summary": {
+        "saved_files": 4,
+        "new_intersection_caches": 56,
+        "ordered_support_slots": 112,
+        "populated_uv_slots": 72,
+        "absent_uv_slots_preserved": 40,
+        "inline_sweep_support_slots": 4,
+        "typed_edges_checked": 56,
+        "direct_native_parameter_endpoint_evaluations": 112,
+        "direct_endpoint_matches_within1e_8": 112,
+        "maximum_direct_parameter_endpoint_error_raw": 1.4198711650870166e-14,
+        "unresolved_parameter_edges": 0,
+        "old_reader_outputs_preserved": 6,
+        "malformed_guards": 6
+      }
+    },
+    {
+      "file": "validate_mesh_asset_errors.py",
+      "status": "pass",
+      "source_sha256": "c292a05479408a2da823f761d6fd6ce00685046c1403dac1b8828dbf23067bd6",
+      "report_sha256": "a1649df0275924b806525022dc8f8dc5c7a3a6b93c30b6b8c07424cd5723eaba",
+      "summary": {
+        "actual_saved_archives": 3,
+        "additional_asset_LZMA_corruptions": 3,
+        "raw_LZMAErrors": 3,
+        "typed_ValueErrors": 3,
+        "structured_operation_failures": 3,
+        "current_mesh_dictionaries_unchanged": 3,
+        "valid_control_summaries_unchanged": 3,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_asset_header_scalar.py",
+      "status": "pass",
+      "source_sha256": "fd73afff2661767f85d013187f84106e067d3d9e03a8e83f88e4c569c2a981f1",
+      "report_sha256": "d36d3042914878339e792933c1dfd6ac3b47574761cf813e436de796435cc3e5",
+      "summary": {
+        "assets": 17,
+        "closed_assets": 16,
+        "current_assets": 11,
+        "archives": 10,
+        "open_assets": 1,
+        "full_main_runs": 0,
+        "live_API_calls": 0,
+        "runtime_semantics_changed": 0
+      }
+    },
+    {
+      "file": "validate_mesh_combine.py",
+      "status": "pass",
+      "source_sha256": "8d8494477e57c3fa54f61636ad7291b88087bafe3440fe7535efb011fa5fe02a",
+      "report_sha256": "8c10061f6b3e095387ef5e0be2b1e2c8dc055840a8093060f17be212ddd9891b",
+      "summary": {
+        "actual_saved_exports": 3,
+        "typed_operation_controls": 3,
+        "actual_default_configured_end_and_rolled_control_readbacks": 12,
+        "exact_retained_tool_array_controls": 3,
+        "exact_additional_asset_array_controls": 3,
+        "exact_current_geometry_array_and_volume_controls": 3,
+        "retained_Cut_strict_geometry_failures": 0,
+        "retained_global_tool_diagnostics": 3,
+        "full_feature_payload_replays": 3,
+        "malformed_guards": 8,
+        "legacy_controls": 2,
+        "feature_mutations": 0,
+        "native_algorithm_or_flag_mapping_claims": 0,
+        "mesh_combine_current_owner_claims": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_combine_face_groups.py",
+      "status": "pass",
+      "source_sha256": "80fc6b3559736e9fb13400c0d597dc41b126aea9c37bf065cf062b7933f3a6ca",
+      "report_sha256": "a90569037dcf17a1c7a8ee78be3b75cac81d690f902d9c77b5a98c97eb95ede2",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_contents.py",
+      "status": "pass",
+      "source_sha256": "d662def51fc6f58ef1be4473b5f992040b1115ef04bb39d07dd11f1134dbc153",
+      "report_sha256": "a467dee49ca76e80412eae58d150dd7e175d93ace9940de1644ff19d49ec054e",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_convert.py",
+      "status": "pass",
+      "source_sha256": "cf0f8c128785cef677af19157502101d2101c06613dd494a8acb754e983b82e2",
+      "report_sha256": "b67fe9a5f679b8a1939dbc1c48639aab426a8022a7a495ed4919ab7d728d79e2",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_convert_inputs.py",
+      "status": "pass",
+      "source_sha256": "37c24511375ee65983db2dfcce1be2bb86ba4de2faa9c5967a98bcda4509251c",
+      "report_sha256": "6bf9a14f35e697475b20bb4e6e3764442318a3af494914bb27c7ddc889074c2f",
+      "summary": {
+        "actual_capture_archives": 3,
+        "decoded_multi_input_features": 1,
+        "BaseFeature_cases_excluded": 2,
+        "exact_retained_source_API_array_checks": 2,
+        "exact_controller_UUID_result_correspondences": 2,
+        "full_feature_payload_replays": 1,
+        "full_state_payload_replays": 1,
+        "full_controller_payload_replays": 2,
+        "malformed_guards": 8,
+        "old_Convert_full_summaries_exact": 3,
+        "common_parser_changes": 0,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_convert_operation_geometry.py",
+      "status": "pass",
+      "source_sha256": "08838e2bd6709576557b31a855c62944d10c9e58a9cc5bef1d0d5a0c7bb585ad",
+      "report_sha256": "859117df50561aca24e7a62837282d874396d9ce650f04715b5834243484e4c4",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_cut_index_stream.py",
+      "status": "pass",
+      "source_sha256": "0fb22bb14d5749ac55f1c842a5010149cd64df0aee5cbc00bddc883c0a7501a2",
+      "report_sha256": "932c51967bb30b8c52a02d52f60dc97b5407d235828e18467fe1eaf80fffa137",
+      "summary": {
+        "saved_assets": 1,
+        "actual_API_indices_compared_exact": 144,
+        "actual_API_points_compared_exact": 26,
+        "all_six_frame_byte_replays": 6,
+        "output_cap_and_drain_probes": 4,
+        "actual_truncation_counterexamples": 5,
+        "invalid_alignment_endian_alternatives": 2,
+        "malformed_guards": 6,
+        "production_runtime_guards": 0,
+        "runtime_optin_checked": false,
+        "old_exact_controls": 0,
+        "default_strict_failure_preserved": true,
+        "source_bytes_changed": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_face_group_caches.py",
+      "status": "pass",
+      "source_sha256": "cb589d9783f67c0eb62b76d77a76f97dd9dcfe27acb2fc8672538c143ef5488a",
+      "report_sha256": "9d9eb4d761ad9c362f3fd3531411bff77929b39eb426622a45aefd7c588b4ad7",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_face_group_separate.py",
+      "status": "pass",
+      "source_sha256": "1bc27e968709095f50d694755260b8b0c2ad5e9457ea2d8cea19fda4d8ed96de",
+      "report_sha256": "03d80c7a0746636ef41979f850edddfab90cb4b8f6f6d9cc92761cb84a4d6872",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_face_groups.py",
+      "status": "pass",
+      "source_sha256": "8f8707dc47182de10d1856658cfc8cbb831b87506b5dd0e0bb52e275db8c268f",
+      "report_sha256": "04047d669243835ba2c792359f80c5f49a394a095f975b1708c65bb449be65f8",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_normal_variants.py",
+      "status": "pass",
+      "source_sha256": "25169691e134b0a91aa3205a5e6527d3c0480a7230687abac72c5b9f79581b8c",
+      "report_sha256": "55f953779615ec9801dcf872ff480a357cfe9925471509f123335caba7fa2075",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_normals.py",
+      "status": "pass",
+      "source_sha256": "dc636e9e6682bf22fb0f10d36a765540cc7a2d25ebe0e1e992747df8793009da",
+      "report_sha256": "1ad092c7cf68abe9571b96fa9a84ac87ee7cf59dceaec43c6b27ddbee16103cc",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_plane_cuts.py",
+      "status": "pass",
+      "source_sha256": "5ad9ee8defcb35876825613736af880a33cf253fecf10fe420c36dfca5ba3cd6",
+      "report_sha256": "efe7242ff29fe539bf789ce5934de03ed16e5ca67ce83f47caa4d649f50c5b54",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_rebuild_geometry.py",
+      "status": "pass",
+      "source_sha256": "01d504de80af7a2b142b747e19b393b4c850e97c2e301d16acbf92bb427ed78b",
+      "report_sha256": "9465338d4a19f90ab9dacbab3dd4c38c81ce1495ddbc0c776f4d434bf2530ebc",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_reduce.py",
+      "status": "pass",
+      "source_sha256": "c3aab579dcaa220d3a60d62e29b93bb5173e3676ead70a55b304699644f013eb",
+      "report_sha256": "2bab69b769ca6665d91fe52d67aa235b80289ec27823b61d00015df0bf4b4886",
+      "summary": {
+        "actual_samples": 4,
+        "successful_native_Reduce_features": 3,
+        "preserved_failed_expression_archives": 1,
+        "successful_FaceCount6_with_eight_actual_triangles": 2,
+        "successful_Proportion_real50": 1,
+        "shared_selection_variant_controls": 2,
+        "old_no_false_positive_controls": 2,
+        "prefix_numeric_collision_counterexamples": 3,
+        "malformed_guards": 10,
+        "full_main_reader_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_reduce_deviation.py",
+      "status": "pass",
+      "source_sha256": "046cd4ae1608388161aae8747f05146a47d24d57cba355645dee5de0211fcd1f",
+      "report_sha256": "9c3e999416da10d58fb0ce8d6679a6b49e9f51ad39e45cfe5254fc1dc65e6393",
+      "summary": {
+        "saved_archives": 3,
+        "decoded_MaximumDeviation_features": 3,
+        "active_API_method_and_target_readbacks": 9,
+        "owned_parameter_API_checks": 9,
+        "exact_current_and_additional_array_checks": 6,
+        "full_feature_payload_replays": 3,
+        "retained_actual_default_getter_errors": 3,
+        "malformed_guards": 8,
+        "explicit_partial_geometry_guard": 1,
+        "exact_prior_Reduce_summaries": 4,
+        "common_parser_changes": 0,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_reduce_deviation_geometry.py",
+      "status": "pass",
+      "source_sha256": "1324df88aff450eb381e2007033eee73838849dd09d80208ec34080b37c0161c",
+      "report_sha256": "5b4ac5a6569c90449cde4866d159d829d1addecc8574f9ac13b6bde2613645be",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_remesh.py",
+      "status": "pass",
+      "source_sha256": "715b487f3ff5e83e7eafd81958708e85908ac75c3e560005e2f99d1f253adf42",
+      "report_sha256": "9164d50c98b8b33ea315c05a4e4d574a767ef90684c90f807f6acf8a6bae1a44",
+      "summary": {
+        "actual_samples": 3,
+        "Adaptive_features": 2,
+        "Uniform_features": 1,
+        "current_9node14triangle_caches": 2,
+        "current_16node28triangle_caches": 1,
+        "old_full_mesh_summary_controls": 3,
+        "malformed_guards": 10,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_remove.py",
+      "status": "pass",
+      "source_sha256": "e9aec11cc392e1eb0e6286727f73852492587a0f5e90dab057a29ebcd4cd1e9a",
+      "report_sha256": "837c2e2d66f45f5d514dea7d264f4ef33a16ad635a80ffb6f987d22834a9c225",
+      "summary": {
+        "saved_archives": 3,
+        "decoded_native_features": 4,
+        "actual_API_add_calls": 3,
+        "exact_source_array_checks": 4,
+        "exact_remaining_array_checks": 1,
+        "full_feature_payload_replays": 4,
+        "malformed_guards": 8,
+        "exact_legacy_controls": 2,
+        "API_return_order_counterexamples": 1,
+        "common_source_changes": 0,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_repair.py",
+      "status": "pass",
+      "source_sha256": "f6524cdf6b362300e47daf53765d677315495a1902bbb1e52816b738aecc7010",
+      "report_sha256": "b97910c820f5f9fb87ffdfc4e209e783b3496b012858f811a42b76d25f472a20",
+      "summary": {
+        "saved_archives": 3,
+        "decoded_features": 3,
+        "actual_method_readbacks": 12,
+        "owned_inactive_parameter_API_checks": 6,
+        "exact_current_and_additional_array_checks": 6,
+        "full_feature_payload_replays": 3,
+        "malformed_guards": 8,
+        "exact_legacy_controls": 2,
+        "common_parser_changes": 0,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_repair_geometry.py",
+      "status": "pass",
+      "source_sha256": "4f7744b36e240f340f6cdf1684fe3ebd573d15977e677988dc4c71278d21a91d",
+      "report_sha256": "ae0725cb7334fe09ac2411ae42181af8f2892c8c5923fdd10e7c6c18fcfc46f6",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_repair_rebuild.py",
+      "status": "pass",
+      "source_sha256": "5cb7309352d50476cfac28bc685ff74bcadfe9be9269c96cf63817c11889db94",
+      "report_sha256": "0b822a591b2b8009f84f6cc57a147109d8929659e0258a6404d504a1972523f3",
+      "summary": {
+        "saved_archives": 3,
+        "decoded_Rebuild_features": 3,
+        "active_API_control_readbacks": 9,
+        "owned_parameter_API_checks": 6,
+        "exact_current_and_additional_array_checks": 6,
+        "full_feature_payload_replays": 3,
+        "malformed_guards": 8,
+        "explicit_partial_geometry_guard": 1,
+        "exact_prior_Repair_summaries": 3,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_reverse_normals.py",
+      "status": "pass",
+      "source_sha256": "77a778634d8deca032e1d776ca0e0da8d446a96a43ca1627b0fee280bad18035",
+      "report_sha256": "b187fd5a3bbe9766f339aca79300fc5f272004affd76b7a52a21caf6e5cafcec",
+      "summary": null
+    },
+    {
+      "file": "validate_mesh_separate.py",
+      "status": "pass",
+      "source_sha256": "ab056f01f172f9d6387f7d984c42960f547435e3abd7de728df7cfe6c315ffdc",
+      "report_sha256": "d86c60c61762a30bfa66450c3e8687a637fba340b3de9fcf6acbe8a19383113f",
+      "summary": {
+        "saved_archives": 3,
+        "decoded_separate_features": 3,
+        "actual_control_readbacks": 12,
+        "exact_source_array_checks": 3,
+        "exact_current_result_array_checks": 4,
+        "exact_feature_payload_replays": 3,
+        "malformed_guards": 8,
+        "exact_legacy_mesh_controls": 2,
+        "pure_definition_no_geometry_dependency": true,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_separate_normals.py",
+      "status": "pass",
+      "source_sha256": "aff08f5460552f7bb5f6d74d2b301c08038642a69bad43e62928b8d12eef5148",
+      "report_sha256": "08047fb9b513554ac38a0550e79301af8f37e0c1b994127d606ee5ca7e294a13",
+      "summary": {
+        "actual_Separate_archives": 3,
+        "single_FaceGroup_current_mesh_holdouts": 1,
+        "native_current_result_pools": 4,
+        "collectively_compared_multi_result_collections": 1,
+        "old_archive_controls": 25,
+        "old_pool_dictionaries_preserved": 26,
+        "guards": 2,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_shell.py",
+      "status": "pass",
+      "source_sha256": "e7dac2bc2e6f901f2dee213e234085459a74312998345ab34d5ef5503e1874dd",
+      "report_sha256": "89f036af917c765a7404aa9ed455fcd426f2988b956440f0c9679c4497216856",
+      "summary": {
+        "actual_samples": 3,
+        "successful_native_Shell_features": 3,
+        "actual_open_results": 2,
+        "actual_closed_results": 1,
+        "actual_dense_normal_pools": 3,
+        "actual_current_nodes": 7046,
+        "actual_current_triangles": 14066,
+        "old_full_mesh_summary_controls": 3,
+        "malformed_guards": 15,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_shell_normals.py",
+      "status": "pass",
+      "source_sha256": "d480a38ca2d02c30347fa343c8bbd5137b0e57812af32699f89bca8a0940839a",
+      "report_sha256": "adfea3a659e7f09237584027a117953223d0d0f4adf32fdd7174948495c34fe2",
+      "summary": {
+        "actual_Shell_normal_pools": 3,
+        "actual_stored_vectors": 7084,
+        "actual_API_display_vectors": 7076,
+        "old_archive_controls": 22,
+        "old_pool_dictionaries_preserved": 23,
+        "guards": 5,
+        "all_pairs_fallbacks": 0,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mesh_signed_volume_holdouts.py",
+      "status": "pass",
+      "source_sha256": "a90dad729704030c134a1b67fb856862a65760815a523157900e4d81b252d2db",
+      "report_sha256": "16aa4bacc1e8fcd5f04819b7c708a8175d24d6cdbd883d9877c6ed73f228ac53",
+      "summary": {
+        "archives": 3,
+        "assets": 7,
+        "closed_assets": 5,
+        "negative_closed_assets": 2,
+        "open_assets": 2,
+        "current_API_volume_comparisons": 3
+      }
+    },
+    {
+      "file": "validate_mesh_smooth.py",
+      "status": "pass",
+      "source_sha256": "5b90d2abc9107916ae0086a626d673682f75e5a09dbd9c02900786fce48787be",
+      "report_sha256": "10e6197b05449cd8d10a454975807c8317fd855d32a831a7430e641d5c92e13c",
+      "summary": {
+        "actual_samples": 3,
+        "successful_native_Smooth_features": 3,
+        "changed_current_coordinates_with_unchanged_six_eight_counts": 3,
+        "actual_normal_pool_holdouts": 3,
+        "old_full_mesh_summary_controls": 3,
+        "malformed_guards": 9,
+        "full_main_runs": 0,
+        "live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_mirror_cache_sources.py",
+      "status": "pass",
+      "source_sha256": "2dbd720d2cfb0ed90739f0432907280b81394ba3b9f554d9ba4022328438ca38",
+      "report_sha256": "b6be20e96ad04d4ace41b5d522efff80a0f4e85c059cc5223fd8b513413de16f",
+      "summary": null
+    },
+    {
+      "file": "validate_mirror_datum_reflections.py",
+      "status": "pass",
+      "source_sha256": "6deb9ea48f45abd224636219dfe7ae1cf80814dc0d942329c7af98c3b556a820",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_mirror_face_planes.py",
+      "status": "pass",
+      "source_sha256": "778f01911d442127f782a333e8090a2ef6da5cf34aa887a945908f4cf9492ed6",
+      "report_sha256": "5f4e79781d031ce2bdebd1f27ae97039950d061c36338bcc38d75816f02e482c",
+      "summary": null
+    },
+    {
+      "file": "validate_mixed_body_collections.py",
+      "status": "pass",
+      "source_sha256": "25e2b5f0d378dc42a6b4182b75788cdff2ec7e8107949f126aef52e207a68025",
+      "report_sha256": "6193dc9a637951cc5e90649ef4be42a6a2e9b85e560d056cd94b75c0566e6e85",
+      "summary": null
+    },
+    {
+      "file": "validate_mixed_body_ownership_downstream.py",
+      "status": "pass",
+      "source_sha256": "a246bdabebdd1b267848c408daf2a55e99a41e5b263bd222a76945beb41241e8",
+      "report_sha256": "90bdc862762155a3492971c1958ec95370b3d4035be2a85722633a2c2f658bac",
+      "summary": {
+        "focused_files": 2,
+        "typed_BODY_ownership_patches": 4,
+        "qualified_anchor_binding_placement_chains": 2,
+        "API_geometry_corroborations": 2,
+        "main_runs": 0,
+        "live_calls": 0,
+        "current_main_used_as_golden": false
+      }
+    },
+    {
+      "file": "validate_named_vertex_selections.py",
+      "status": "pass",
+      "source_sha256": "5ae8a9c17ac5dacc1b97ef9243c8d2e0e79d2d2b9195264be23ebe8995677387",
+      "report_sha256": "59b83e5bce55c05e68fdfe1c582c8db05a784e1017eaca7754e0b4a3a7df8d59",
+      "summary": {
+        "named_vertex_cache_attributes": 48,
+        "named_vertex_archives": 2,
+        "native_mapped_history_vertices": 24,
+        "unassociated_parallel_asset_vertices": 24,
+        "native_vertex_recipes": 78,
+        "native_vertex_recipe_archives": 34,
+        "direct_named_selection_positive_fixtures": 0,
+        "recipe_name_archive_overlap": [],
+        "native_recipe_payload_sizes": {
+          "84": 10,
+          "40": 34,
+          "64": 34
+        },
+        "guards": 4,
+        "runtime_decoder_added_in_original_baseline": false
+      }
+    },
+    {
+      "file": "validate_naming_registry_variants.py",
+      "status": "pass",
+      "source_sha256": "1975d2f96171cb06b4ae5c2bb903d9ab0015553690db7fd9550f76e21d4f0a19",
+      "report_sha256": "a4c26fe4a9d1d14121b543e7fa3645e5057d0208dd4f3dd6bbc6c3bd1a6dcfb7",
+      "summary": null
+    },
+    {
+      "file": "validate_negative_cylinders.py",
+      "status": "pass",
+      "source_sha256": "79e3bb67d6a466a9e13d7217bc49985586c28744ed6766570ef63c8cf9b449fe",
+      "report_sha256": "a3e58d1b2c097ce9faedc57256a9b0f172020d67d6cb0172e138d2a1887f557e",
+      "summary": {
+        "archives": 40,
+        "recovered_surfaces": 92,
+        "retained_unresolved_surfaces": 0,
+        "boundary_endpoint_occurrences_checked": 608,
+        "previous_successful_analytic_geometry_preserved": 78,
+        "API_dimension_comparisons": 3,
+        "malformed_or_unsupported_guards": 7
+      }
+    },
+    {
+      "file": "validate_parameter_function_modes.py",
+      "status": "pass",
+      "source_sha256": "5131765767200a181e1923b90a933b69ef47f0191b38632af86c296a2b44b0ec",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_parameter_identity_contrasts.py",
+      "status": "pass",
+      "source_sha256": "e30a5ec4f3395dbb15d0a04360cc33ba91c3b6e0a5d06e7133f7ed8ff060ad19",
+      "report_sha256": "24121ca692ed2e91b73935067a33b82e7ed936c51245b9688911618ad1b73c39",
+      "summary": null
+    },
+    {
+      "file": "validate_parting_line_drafts.py",
+      "status": "pass",
+      "source_sha256": "cd42e2fee4df9f4d60e3e0a11e30d22e4114555e964ad2a781d9dfe4749fd211",
+      "report_sha256": "c270201960aa292cbe7ae27ad9202840df5dd33adea8ae497410df620f9b9fb0",
+      "summary": {
+        "actual_samples": 3,
+        "old_fixed_plane_settings_exact": 8,
+        "malformed_new_guards": 9,
+        "strict_default_error_controls": 2,
+        "actual_getter_errors": 0,
+        "actual_case_errors": 0
+      }
+    },
+    {
+      "file": "validate_patch_continuity.py",
+      "status": "pass",
+      "source_sha256": "5ec883cdc24fb7d7122c48e6da4c154f00b83ba01c76f5eb2b513cbb6f848f4a",
+      "report_sha256": "fcd5b5f3cb1fa42e8694e695669592492fe580f3bda26ec8dadd3316e63147e8",
+      "summary": {
+        "successful_actual_exports": 3,
+        "initial_failed_owned_cases_preserved": 3,
+        "continuity_enum_contrasts": 3,
+        "exact_control_payload_replays": 3,
+        "typed_source_and_result_BODY_count_controls": 6,
+        "source_before_rollback_getter_controls": 3,
+        "API_source_annulus_area_controls": 3,
+        "analytic_Free_result_area_matches": 1,
+        "Tangent_Curvature_area_counterexamples": 2,
+        "malformed_guards": 6,
+        "old_patch_default_dictionaries_exact": 2,
+        "all_owned_documents_closed_true": true
+      }
+    },
+    {
+      "file": "validate_path_pattern_cache_evidence.py",
+      "status": "pass",
+      "source_sha256": "538752db54c28413c9d7c0a3a1a4df546bbb97336da692c12c9fa470a17b963e",
+      "report_sha256": "93b9f4d73962103cb7203f601a7badaeddbbd65684facb980341bf2aad88d597",
+      "summary": null
+    },
+    {
+      "file": "validate_path_pattern_inputs.py",
+      "status": "pass",
+      "source_sha256": "e2a9a25a9434642169aed086e580f2006a4af359a3c4b7bbdc29dc21aad1f6e2",
+      "report_sha256": "b3c9c279e6f7c413f271fd35ed802f6c11d2598a097d3ec8be559fa188c381a6",
+      "summary": {
+        "actual_samples": 3,
+        "actual_endpoint_getter_errors": 12,
+        "old_body_goldens": 9,
+        "old_composite_goldens": 4,
+        "malformed_guards": 9
+      }
+    },
+    {
+      "file": "validate_pcurve_cache_modes.py",
+      "status": "pass",
+      "source_sha256": "82a5f459c75659ec746f92d2a7f725b7eca3480e802bb7eaaa2b4550dc6a1583",
+      "report_sha256": "5a6a0193087e69a05d4350cf47b779c1145c29d40e29599ad5ef24707d665079",
+      "summary": {
+        "archives_inspected": 15,
+        "new_caches": 10,
+        "files_with_new_caches": 3,
+        "new_cubic_multispan_caches": 6,
+        "new_linear_flag_variants": 4,
+        "previous_dictionary_outputs_unchanged": 2,
+        "complete_typed_record_replays": 12,
+        "cubic_spans_bernstein_checked": 28,
+        "independent_cubic_interior_evaluations": 84,
+        "independent_linear_interior_evaluations": 18,
+        "maximum_independent_evaluation_error_uv": 4.577566798522237e-16,
+        "malformed_guards": 6,
+        "unresolved_pcurves_in_scope": 0
+      }
+    },
+    {
+      "file": "validate_pipe_operations.py",
+      "status": "pass",
+      "source_sha256": "a773ee3af280051e518b676887f890ab665d88484d17b174a4d765123b54be02",
+      "report_sha256": "41033264b1004625bb0abae18184b3b9781327eaf365abe96e43dcb9f7c85111",
+      "summary": {
+        "actual_exports": 3,
+        "Boolean_operations_decoded": 3,
+        "actual_API_parameter_role_name_value_matches": 9,
+        "explicit_native_target_body_routes": 3,
+        "explicit_API_participant_controls": 2,
+        "Join_inference_distinguished": 1,
+        "keyed_stored_topology_count_controls": 3,
+        "analytic_actual_volume_controls": 3,
+        "target_list_byte_replays": 3,
+        "malformed_guards": 6,
+        "legacy_controls": 3,
+        "all_owned_documents_closed_true": true
+      }
+    },
+    {
+      "file": "validate_placed_profile_portions.py",
+      "status": "pass",
+      "source_sha256": "6a41aecbdd4711bfa1580904a170aaa6c207c5a06c23049c20f02e3d95ef1092",
+      "report_sha256": "6fb786767f52c0e674a369f0f1c3cc5f60428d9d2bf0efdc543c6c40efecc3ef",
+      "summary": {
+        "files": 3,
+        "derived_source_portions": 8,
+        "qualified_COEDGEs": 16,
+        "component_API_geometry_set_checks": 3,
+        "measured_basis_checks": 12,
+        "source_world_geometry_primitives": 12,
+        "inverse_forward_counterexamples": 3,
+        "support_plane_origin_counterexamples": 1,
+        "exact_old_family_dictionaries": 12,
+        "strict_old_placed_error_controls": 3,
+        "guards": 6,
+        "checks": 150
+      }
+    },
+    {
+      "file": "validate_profile_cache_correspondence.py",
+      "status": "pass",
+      "source_sha256": "95cb1f6a5d3dbed088bf7d186e2efa6e7e49642f1869a3796550121c1014cae7",
+      "report_sha256": "926c1bb569e1d8d77089022bf4c063712c366e2b2da078de5a11b7fab8c25cdb",
+      "summary": {
+        "saved_positive_files": 4,
+        "qualified_Extrude_BODY_groups": 5,
+        "native_profile_curves": 8,
+        "retained_COEDGE_candidates": 16,
+        "distinct_cached_EDGE_groups": 8,
+        "circle_API_context_checks": 4,
+        "independent_selected_Pipe_edge_API_negative_control": 1,
+        "modified_geometry_counterexamples": 8,
+        "unbound_namespace_counterexamples": 4,
+        "malformed_guards": 6,
+        "unqualified_controls": 2,
+        "new_live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_profile_circle_portions.py",
+      "status": "pass",
+      "source_sha256": "3ef83b8b97f279525fcefcf7e4aacdf1e75675feb4f54e443005a401e5146dec",
+      "report_sha256": "0c3c04c5dac249bbd744662c8a2497881d3bbd89b66cedc61bd01e4f34d2b71b",
+      "summary": {
+        "qualified_COEDGEs": 32,
+        "derived_source_portions": 16,
+        "files": 6,
+        "source_circle_groups": 14,
+        "API_portion_geometry_set_checks": 6,
+        "repeated_source_groups": 2,
+        "old_unique_source_dictionaries_preserved": 3,
+        "old_default_cache_dictionaries_preserved": 4,
+        "old_guards_preserved": 7,
+        "new_guards": 6,
+        "checks": 202
+      }
+    },
+    {
+      "file": "validate_profile_line_portions.py",
+      "status": "pass",
+      "source_sha256": "c3cdd5a7a2178643da34e0b6b505f7c02888221b1337e95668a99f0f37a349b2",
+      "report_sha256": "c7c78fc564e9aeb39ea8f30a8a478128f77e1784a6fbbdc610dc9ccfdd66d379",
+      "summary": {
+        "files": 3,
+        "derived_source_portions": 12,
+        "qualified_COEDGEs": 24,
+        "typed_all_source_Lines": 24,
+        "API_geometry_set_checks": 3,
+        "API_trimmed_evaluators_zero_one": 12,
+        "old_trim_cache_dictionary_controls": 3,
+        "Circle_empty_gate_and_exact_dictionary_controls": 6,
+        "guards": 6,
+        "checks": 206
+      }
+    },
+    {
+      "file": "validate_profile_mixed_portions.py",
+      "status": "pass",
+      "source_sha256": "e622d9310b0ea13d98486602ae1f22ed2d28dabdcd109017c1f467a1e6530fb3",
+      "report_sha256": "0b1315230030fb78946b62d40e99847162eaf0fcbdbeb3383405eceac60cf358",
+      "summary": {
+        "files": 3,
+        "derived_source_portions": 6,
+        "qualified_COEDGEs": 12,
+        "API_geometry_set_checks": 3,
+        "derived_Line_portions": 3,
+        "derived_Circle_portions": 3,
+        "old_Line_dictionary_controls": 3,
+        "old_Circle_dictionary_controls": 6,
+        "old_Line_guards_preserved": 6,
+        "unrelated_empty_gate_controls": 9,
+        "guards": 6,
+        "checks": 138
+      }
+    },
+    {
+      "file": "validate_rectangular_cache_evidence.py",
+      "status": "pass",
+      "source_sha256": "252a2d589f70a6973c5c016393b0a7cc8d242d200dd5b3fc06f6eddba1784db0",
+      "report_sha256": "7a95cb71b873b49d6b95bb6a23bedc5ba8ab9273874c221a89bee2fbdb093762",
+      "summary": null
+    },
+    {
+      "file": "validate_rectangular_cache_hooks.py",
+      "status": "pass",
+      "source_sha256": "ab8a119e8d5759f28d6ee2a21c76467019b6d966924454ee7a2baee89bb167ef",
+      "report_sha256": "20ba227b0ffc9be822428d344a1063c4afbcd1ee076e14a41929d7cfefd459b4",
+      "summary": null
+    },
+    {
+      "file": "validate_remove_features.py",
+      "status": "pass",
+      "source_sha256": "d9a8b97a1173056c684f2c96e33cefc484d813002e980873ae2b369ce4d05776",
+      "report_sha256": "43fe9320ac18d7d09778d7a7dcf0afcf00c7bf97ab41e0d887f9b0d1f5d8ff41",
+      "summary": null
+    },
+    {
+      "file": "validate_replace_face_body_routes.py",
+      "status": "pass",
+      "source_sha256": "6bee0a28e483bee1a4964e7b134c433e6d175746a940ec98ea292399b4016d89",
+      "report_sha256": "ad8d7b3a06ea8b9a9e1b351e0f91d9924c8e42423a4c3e129dbd75b11742d63c",
+      "summary": null
+    },
+    {
+      "file": "validate_replace_face_targets.py",
+      "status": "pass",
+      "source_sha256": "bcfeb012cf5f5a8a3d6cb166c7715f9b854859ead0420863225be4597f10b18c",
+      "report_sha256": "95e1a9d37fd8f6f792b209e3b69fd1b6145864434010f84e4e51a9b1a5025a6a",
+      "summary": null
+    },
+    {
+      "file": "validate_revolve_axis_modes.py",
+      "status": "pass",
+      "source_sha256": "da2aee25e64afc8901e35e0b3841e81326756385a95b7fcb41a7e75b341c87e6",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_rigid_groups.py",
+      "status": "pass",
+      "source_sha256": "68341811e4d92400ab557f08851e9284c851f9141da877b01f93ab1065fc3bec",
+      "report_sha256": "8ddd569ed70ae279b2d67f9a0d054697de976b75d53e2fdf006293c152d80bf6",
+      "summary": null
+    },
+    {
+      "file": "validate_rule_fillet_surface_witness_lifecycle.py",
+      "status": "pass",
+      "source_sha256": "4ba7e13904dc2ba05d805739f88e6b4b1cc0d61da0842cec50cbbd47f3f8ebf6",
+      "report_sha256": "c468c2570c50d9e5160f013d2d35cfc22853694c49bab7c9a994b49915af483c",
+      "summary": null
+    },
+    {
+      "file": "validate_rule_surface_native_observations.py",
+      "status": "pass",
+      "source_sha256": "9c24ac52101c4132f1deff9f24885693570a87094db92fa142db4d005be872ad",
+      "report_sha256": "35839926abf708e5dce916ff13138a7aaebdb8c36f4cc55c28d0da46923b7d2f",
+      "summary": null
+    },
+    {
+      "file": "validate_rule_surface_witness_bindings.py",
+      "status": "pass",
+      "source_sha256": "a87338031995a11f0604a95ee2b8a11cefdceccfc1def801576a92fe5512af56",
+      "report_sha256": "0c977773bc4d34b0ec23e1968b1e107bdd54e5ca051d6a17dc3f2c66dfbb6c60",
+      "summary": {
+        "qualified_probe_references": 16,
+        "original_native_VBL_faces": 16,
+        "witness_native_VBL_faces": 16,
+        "identity_fixed_boundary_vertex_pairs": 96,
+        "API_captured_samples": 48,
+        "API_successful_on_face_samples": 47,
+        "API_excluded_observations": 1,
+        "coincident_boundary_vertex_pairs": 46,
+        "different_boundary_vertex_pairs": 50,
+        "original_exports": 2,
+        "witness_exports": 2,
+        "changed_local_BODY_handle_pairs": 2,
+        "boundary_coordinate_scope": "Measured after complete incident-FACE-name joins; differences do not invalidate naming correspondence or establish identical geometry",
+        "maximum_boundary_vertex_residual_raw": 0.40393913410542626,
+        "direct_API_grid_residual_range_cm": [
+          1.9554656906952984e-05,
+          0.0016293768315451126
+        ],
+        "cross_case_UUID_guards": 2,
+        "coordinate_identity_choices": 0,
+        "native_VBL_XYZ_evaluators_added": 0,
+        "main_reader_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_rule_surface_witness_native.py",
+      "status": "pass",
+      "source_sha256": "2de0e25f356b54e3b60389f5bc7aec402a350de67ba415014ca830dcc51cf2d3",
+      "report_sha256": "af15200c2f3a17b5292eecf3079772b6c7b4e30a7bd70656126c1628aef07211",
+      "summary": null
+    },
+    {
+      "file": "validate_rule_surface_witness_recovery.py",
+      "status": "pass",
+      "source_sha256": "40e4e9813f6856edba3a115b8abdb4f07efd0b0857a8f297b2db623283553776",
+      "report_sha256": "ba4994c7a020f9fdacc80c37262c752fbfd83aa5a30f8112abe06e309d2e04d0",
+      "summary": {
+        "synthetic_scenarios": 10,
+        "live_API_calls": 0,
+        "native_recovery_verified": false
+      }
+    },
+    {
+      "file": "validate_scale_shell_inputs.py",
+      "status": "pass",
+      "source_sha256": "3e66d1807c29ff2ec2916c6497f6a90fc232bf31dd6d2f02aeb6d5ba4e9d52aa",
+      "report_sha256": "b3d88178bf2f84444037023e10e04034d7ae1f25af00a9c10217199c4560ae73",
+      "summary": null
+    },
+    {
+      "file": "validate_sculpt_tool_attributes.py",
+      "status": "pass",
+      "source_sha256": "22d78db243270c0698cb26152b7b82539c2d29bb566d2731ee704cb49908c8f6",
+      "report_sha256": "7f78044897095aef0296e4fd93e7e247a2e53630f59b3b662150208c5a1e5cb2",
+      "summary": null
+    },
+    {
+      "file": "validate_shell_tangent_holdout.py",
+      "status": "pass",
+      "source_sha256": "fa08bc61a57784e890f2c6dc9c1dd5105f81b6c0274c8c88c9115198d04db767",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_silhouette_splits.py",
+      "status": "pass",
+      "source_sha256": "f871f2550ed175f9b1e125a5d1eb89a4423262098212a7541e0b187fd2872ca1",
+      "report_sha256": "901c6078e4f683100d47de664f456059137fcd1b1ed9eb581f08d94f64656377",
+      "summary": {
+        "successful_archives": 5,
+        "preserved_failed_API_attempts": 1,
+        "getter_errors": 0,
+        "API_comparisons": 57,
+        "native_structure_and_main_equality_checks": 36,
+        "malformed_checks": 4,
+        "all_passed": true
+      }
+    },
+    {
+      "file": "validate_sketch_attributes.py",
+      "status": "pass",
+      "source_sha256": "b1dc8927c4d82ebcfb83ff6829ed3b52b771816b0bd1b73765f1b03363f94d2e",
+      "report_sha256": "da570c982273f851ade6278a70b58e4b4d1366f624db3c61ec06d02d506e92e4",
+      "summary": {
+        "archives": 6,
+        "payload_replays": 99,
+        "owner_counts": {
+          "coedge": 61,
+          "edge": 32,
+          "vertex": 6
+        },
+        "typed_source_checks": 99,
+        "production_dictionary_exact_matches": 99,
+        "preserved_legacy_COEDGE_dictionaries": 61,
+        "guards": 7,
+        "saved_API_contexts": 2
+      }
+    },
+    {
+      "file": "validate_split_body_multi_sheet_routes.py",
+      "status": "pass",
+      "source_sha256": "af2d0ea4466d83ab85c8192b3d247945f69aeead680c4446bf552373e37e577b",
+      "report_sha256": "f402617e8ff3aa4968aac66854630fc9f0dfe74625208439c93872f3984c4c58",
+      "summary": null
+    },
+    {
+      "file": "validate_split_body_multi_sheet_tools.py",
+      "status": "pass",
+      "source_sha256": "01536fa42dfe3c61f1b6a879ff9dbdd796344ae73787da725b848da133b6f3e3",
+      "report_sha256": "fe3ec8a434d2ea00751a0a56ad4a9f71621f673a3464e8fb31dc624041fd0768",
+      "summary": null
+    },
+    {
+      "file": "validate_split_body_profile_attempts.py",
+      "status": "pass",
+      "source_sha256": "eb375f5a741b468b28ceac811001567c5672d7a7480f7837a5a05100f7afa50f",
+      "report_sha256": "528cf0f450892dcc2270f22c500b9a0dc790a0b7b1235388b085680a96ffdad6",
+      "summary": null
+    },
+    {
+      "file": "validate_split_body_sheet_routes.py",
+      "status": "pass",
+      "source_sha256": "a3b991ae18d124c5a5ab6cb3aca08c3e721d4bb8e607b2cd42942a1ec19f3815",
+      "report_sha256": "c488fff548b7767a6d4a0936e8c57835d400de58c61bca583ca712f0cbbfb10f",
+      "summary": null
+    },
+    {
+      "file": "validate_split_body_sheet_tools.py",
+      "status": "pass",
+      "source_sha256": "35a53b7eb4e5d06aca65baf9de9a542dd08565e7fc5a7c57ed805c42353554ba",
+      "report_sha256": "5f6b6fcf5a14250bd5c5833d47dc950d8f2efa7af62798e6524890424b2d08b3",
+      "summary": null
+    },
+    {
+      "file": "validate_split_face_metadata_variants.py",
+      "status": "pass",
+      "source_sha256": "777ac954424471eaf776b48002cbe7b770b0dadf976466c0762413e2f1b13560",
+      "report_sha256": "e92828a3f0be6155c48fcda0590163f0fe1ee04330b60cad68897d391a02e2c8",
+      "summary": {
+        "actual_saved_exports": 3,
+        "metadata12_records": 2,
+        "metadata8_records": 1,
+        "qualified_settings": 3,
+        "exact_metadata_label_replays": 3,
+        "exact_ordered_reference_table_replays": 3,
+        "default_and_frozen_rejections_retained": 3,
+        "typed_source_body_name_corroborations": 3,
+        "healthy_observed_wall_partition_controls": 3,
+        "captured_SplitFace_definition_getters": 0,
+        "malformed_guards": 8,
+        "old_default_controls_exact": 3,
+        "feature_mutations": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_spring_curve_cache.py",
+      "status": "pass",
+      "source_sha256": "4deedb86ffa47fcc396e6022219a6a8a842185649a9a350eb70f9489c3c12790",
+      "report_sha256": "78c2245bae5adf89c3fbaf82f6cccee712e58dfe17c804003465010f9ceedbb6",
+      "summary": null
+    },
+    {
+      "file": "validate_stitch_hint_attributes.py",
+      "status": "pass",
+      "source_sha256": "6cf5174014767e9074e0cdc2173a7a1eae0fb75dca85af3d87976ca0e5c86a93",
+      "report_sha256": "daf1a91cbac45f4684c487275ca184f0f183f43f1d9009f031e692c9b3fb3546",
+      "summary": {
+        "target_initial_chain_diagnostics_recovered": 4,
+        "actual_stitch_hint_records": 4,
+        "production_reader_owner_chain_passes": 4,
+        "new_generic_tags": 4,
+        "old_generic_tag_dictionaries_exact": 20,
+        "exact_hint_record_replays": 4,
+        "exact_generic_payload_replays": 4,
+        "Free_and_no_merge_control_blobs": 3,
+        "malformed_helper_and_production_guards": 8,
+        "main_reader_runs": 0,
+        "live_API_calls": 0,
+        "geometry_identity_claims": 0
+      }
+    },
+    {
+      "file": "validate_surface_trim_line_sources.py",
+      "status": "pass",
+      "source_sha256": "c6693e3af1a8488ccd95b29095dccf54a85ad22e96337aa12a5a2b4746d9d718",
+      "report_sha256": "e8c86912f082c7b3fd985fc9aa9b62b661a855fdbc363620ecee15befb4cafd0",
+      "summary": null
+    },
+    {
+      "file": "validate_surface_trim_lines.py",
+      "status": "pass",
+      "source_sha256": "b8f807ce62cc6144786897e6014cebb76bcd8edcae16ece77d92c90798d20ff7",
+      "report_sha256": "829bb060075efc73990a1f5ce392e8204bee03883bcb1f643dd359960623fb04",
+      "summary": null
+    },
+    {
+      "file": "validate_surface_trim_sources.py",
+      "status": "pass",
+      "source_sha256": "2c3cfd3fc31713d244578afd3180576ed2c137f6386e4945a88337f914c39cec",
+      "report_sha256": "c7a4ec4a22199db2a771f002af02929aad8bf72cfba6e43515eba0e17ba50b3d",
+      "summary": null
+    },
+    {
+      "file": "validate_surface_trim_tools.py",
+      "status": "pass",
+      "source_sha256": "fcaa998a09c9350e171b1ee11b98269b15008a2c94c299df39634d0004a673ac",
+      "report_sha256": "d48851f792f89bfa8ddc10eaa5ebfac4e287eb4c64f13a1e3b1160146bae7654",
+      "summary": null
+    },
+    {
+      "file": "validate_sweep_fixed_spline_paths.py",
+      "status": "pass",
+      "source_sha256": "61ea24d9286523ecc386c9310122a56ef9e35ce83ff44802094c487bf8b8f320",
+      "report_sha256": "3a736395905f1287136c05a6ac130dd657b2c8631bc6a4e9c6102a79c37d385f",
+      "summary": null
+    },
+    {
+      "file": "validate_sweep_fixed_spline_sources.py",
+      "status": "pass",
+      "source_sha256": "8720fef4f688d50188760254c48cfc88c0f0b12bec460d24d99700d0dcbe8c21",
+      "report_sha256": "6b11930dec723d1305d52c64a074b6739d5edd8412016600d9ebc98090399838",
+      "summary": null
+    },
+    {
+      "file": "validate_sweep_surface_caches.py",
+      "status": "pass",
+      "source_sha256": "23f6773a9bb1ae25eb293d9685a5c7c8aa1b3c5cb10ba74fa5a40e4b0df9cf60",
+      "report_sha256": null,
+      "summary": null
+    },
+    {
+      "file": "validate_thin_extrude_body_routes.py",
+      "status": "pass",
+      "source_sha256": "c1dee8c212c18cd6dda61fce43d696d91e40f021163d6973a10e10386f5daf7b",
+      "report_sha256": "841ba13d298025376ec744656e9a284fee0f84109c0903c978e54a1f6a0254cc",
+      "summary": null
+    },
+    {
+      "file": "validate_thin_extrude_operations.py",
+      "status": "pass",
+      "source_sha256": "ef7e275602f37992587b071ffd40b992077e9f840cfe1c0d64e4c3c2d1eec120",
+      "report_sha256": "1662d064ab34a88b581853972ae9556ea20f10a13d22cdf883d6b2aece5d12ae",
+      "summary": {
+        "actual_archives": 3,
+        "decoded_thin_Boolean_features": 3,
+        "actual_owned_wall_getter_checks": 6,
+        "actual_owned_extent_getter_checks": 3,
+        "exact_common_callback_default_controls": 6,
+        "bounded_thin_and_body_list_byte_replays": 3,
+        "malformed_guards": 8,
+        "exact_prior_Thin_full_summaries": 6,
+        "exact_ordinary_False_control": 1,
+        "ordinary_common_parser_edits": 0,
+        "main_runs": 0,
+        "live_calls": 0
+      }
+    },
+    {
+      "file": "validate_thin_extrudes.py",
+      "status": "pass",
+      "source_sha256": "e8926ab0a3be2732e1143794a7463d948e062d9146e67fa10d760db71c3fb9e5",
+      "report_sha256": "4d1c184f3873f0223b94d8b91a7973cde15760fb5f8c5dd93e47f2103117be01",
+      "summary": {
+        "actual_successful_exports": 7,
+        "decoded_thin_features": 6,
+        "closed_profiles": 5,
+        "open_line_profiles": 1,
+        "actual_owned_wall_parameter_matches": 8,
+        "keyed_result_BODY_geometry_controls": 6,
+        "ordinary_actualFalse_controls": 1,
+        "common_callback_default_output_exact_controls": 7,
+        "malformed_guards": 8,
+        "legacy_ordinary_surface_controls": 2,
+        "initial_open_capture_failure_retained": true,
+        "new_live_API_calls": 0
+      }
+    },
+    {
+      "file": "validate_thread_body_routes.py",
+      "status": "pass",
+      "source_sha256": "6ff4e59beb150595e764b76f317d4f2bdb7c72dd0cf3a5d744079cd6d4d12932",
+      "report_sha256": "0fe3a21d0501ff4808ca698e5a4da79e29695471c049f5e09bc588b74eec2e72",
+      "summary": null
+    },
+    {
+      "file": "validate_thread_families.py",
+      "status": "pass",
+      "source_sha256": "edcc8f29283ba72c269da1b07ce000c770bcf69e4f25662d7098d01b743ff2e7",
+      "report_sha256": "0f15d60aa51dbec86cf0e61f90fff3468e5b394c55816184016387fcf9f376f0",
+      "summary": null
+    },
+    {
+      "file": "validate_thread_family_body_routes.py",
+      "status": "pass",
+      "source_sha256": "610272bf1f736f9a7459cecda8dbd7b8c26b7c0bf39bf02f743f199678214d6c",
+      "report_sha256": "379ce27e618d274e15230641425a9abb972326d0ef7e1383906f4bddccc27842",
+      "summary": null
+    },
+    {
+      "file": "validate_thread_multi_faces.py",
+      "status": "pass",
+      "source_sha256": "33cc08a7da48396f4ebe81fef27968276498c446713d463e3841c19890252720",
+      "report_sha256": "b400ab257587f8fd81d242204d49b04902ad0247a89e9bb2d6aeeefa242e5068",
+      "summary": null
+    },
+    {
+      "file": "validate_tolerant_topology.py",
+      "status": "pass",
+      "source_sha256": "a8cab55029f2d60381bae2361f27dfb9941e8d87db3944736e337b35af5fef9e",
+      "report_sha256": "c56c1d0138c65d658a2559b9eb9bb713074291a7e772feb35931088a72d1b6a1",
+      "summary": null
+    },
+    {
+      "file": "validate_trim_lifecycle.py",
+      "status": "pass",
+      "source_sha256": "f79040a985e46e0e8fd47c3f9f24deac76d7cfeb01770f22a1953e7cadaec090",
+      "report_sha256": "5de3f92d415d1d888a142b8b1511fa6d3c9da7a4a671a27581d00bc013f51e8d",
+      "summary": null
+    },
+    {
+      "file": "validate_trimmed_profiles.py",
+      "status": "pass",
+      "source_sha256": "1fddc8a48f869286cb41eea04c30c8c7eede2b21330c31cc70a165e9d039f212",
+      "report_sha256": "f7d8957b1c4833f421f0792d4486838113dd5def00502bcd3292ada41f4c7964",
+      "summary": {
+        "files": 3,
+        "selected_source_references": 8,
+        "matching_COEDGEs": 16,
+        "unique_cached_edges": 8,
+        "API_portion_geometry_set_checks": 3,
+        "stored_edge_endpoint_checks": 32,
+        "partial_circle_portions": 4,
+        "partial_line_portions": 4,
+        "legacy_exact_dictionary_controls": 4,
+        "malformed_and_strict_default_guards": 7,
+        "checks": 131
+      }
+    },
+    {
+      "file": "validate_untrim_cache.py",
+      "status": "pass",
+      "source_sha256": "3d7e3b1c46be357e2e84f30e08d9c82b620ceea178f6691750f7db368a237d6d",
+      "report_sha256": "0adbda2271f7b7a7db1fb65433ddb72200d47df3c96d44a657ef7ac81a949a4b",
+      "summary": null
+    },
+    {
+      "file": "validate_untrim_six_state_cache.py",
+      "status": "pass",
+      "source_sha256": "8daecc23c762a33612e7dace1116783643663b398577ee3cb332781877c8801e",
+      "report_sha256": "5c3289f3e9bd4966710135542a3d743a74658d8ec481863aa8ab51b360292a1d",
+      "summary": null
+    },
+    {
+      "file": "validate_variable_blend_cache.py",
+      "status": "pass",
+      "source_sha256": "f431130e6494695ff3c2c57f5ea6bea17df1d88f34320adddcab15a76af484ec",
+      "report_sha256": "0279e8d182b5e84266b58357143d8313e0061ee660b54b8fbab65de88713c677",
+      "summary": {
+        "saved_files": 2,
+        "new_surface_caches": 2,
+        "rational_controls_decoded": 208,
+        "finite_surface_grid_evaluations": 50,
+        "explicit_parent_boundary_chains": 8,
+        "endpoint_set_checks": 8,
+        "endpoint_points_corroborated": 16,
+        "parameter_interval_counterexamples_retained": 2,
+        "maximum_endpoint_set_error_raw": 2.6645352591003757e-15,
+        "maximum_sampled_interior_xyz_surface_cache_deviation_raw": 6.80442673249639e-05,
+        "old_cache_controls_unchanged": 3,
+        "malformed_guards": 8,
+        "strict_evaluator_domain_guards": 1
+      }
+    },
+    {
+      "file": "validate_variable_fillets.py",
+      "status": "pass",
+      "source_sha256": "77e8af514c8f247bf94323a067902cca3258c714a5a3e9708d9da2362ff884e0",
+      "report_sha256": "ba43c3001f15b8d8539591f02674d7c66403ad4687fca9b6a20d2739fcb5067b",
+      "summary": {
+        "actual_exports": 4,
+        "intermediate_features": 3,
+        "endpoint_control": 1,
+        "actual_parameter_getter_matches": 20,
+        "actual_midpoint_pairs": 4,
+        "exact_edge_set_payload_replays": 4,
+        "before_after_source_getter_controls": 4,
+        "malformed_guards": 8,
+        "legacy_default_controls": 3,
+        "all_owned_documents_closed_true": true
+      }
+    },
+    {
+      "file": "validate_vbl_boundary_corners.py",
+      "status": "pass",
+      "source_sha256": "21c39542c22eab1b1791f80b0fffb336c07d639d0dd353e92b99e055b7005a2d",
+      "report_sha256": "b9b3522054be108eea9362dd91ef962f422d0af8c79c0beaa2474eba4f4c51f4",
+      "summary": null
+    }
+  ],
+  "additional_existing_suites": [
+    {
+      "module": "validate_circular_extrusion_geometry",
+      "status": "pass",
+      "summary": null,
+      "checks": 226,
+      "guards": 18
+    },
+    {
+      "module": "validate_plane_extrusion_geometry",
+      "status": "pass",
+      "summary": null,
+      "checks": 42,
+      "guards": 15
+    },
+    {
+      "module": "validate_trimmed_extrusion_geometry",
+      "status": "pass",
+      "summary": null,
+      "checks": 81,
+      "guards": 11
+    },
+    {
+      "module": "validate_revolve_geometry",
+      "status": "pass",
+      "summary": null,
+      "checks": 71,
+      "guards": 16
+    },
+    {
+      "module": "validate_shell_box_geometry",
+      "status": "pass",
+      "summary": {
+        "analytic_solids": 5,
+        "axis_permutations": 3,
+        "opposite_opening_controls": 3,
+        "malformed_guards": 10,
+        "main_reader_runs": 0,
+        "live_calls": 0
+      },
+      "checks": 0,
+      "guards": 10
+    },
+    {
+      "module": "validate_scale_prism_geometry",
+      "status": "pass",
+      "summary": {
+        "analytic_solids": 3,
+        "whole_plane_equations": 18,
+        "identity_permutation_controls": 1,
+        "malformed_guards": 10,
+        "main_reader_runs": 0,
+        "live_calls": 0
+      },
+      "checks": 4,
+      "guards": 10
+    },
+    {
+      "module": "validate_extrusion_reconstruction",
+      "status": "pass",
+      "summary": null,
+      "checks": 72,
+      "guards": 10
+    },
+    {
+      "module": "validate_plane_extrusion_reconstruction",
+      "status": "pass",
+      "summary": null,
+      "checks": 42,
+      "guards": 8
+    },
+    {
+      "module": "validate_trimmed_extrusion_reconstruction",
+      "status": "pass",
+      "summary": null,
+      "checks": 113,
+      "guards": 10
+    },
+    {
+      "module": "validate_revolve_reconstruction",
+      "status": "pass",
+      "summary": null,
+      "checks": 106,
+      "guards": 10
+    },
+    {
+      "module": "validate_scale_reconstruction",
+      "status": "pass",
+      "summary": null,
+      "checks": 55,
+      "guards": 10
+    },
+    {
+      "module": "validate_shell_reconstruction",
+      "status": "pass",
+      "summary": null,
+      "checks": 165,
+      "guards": 12
+    },
+    {
+      "module": "validate_helix_cache",
+      "status": "pass",
+      "summary": null,
+      "checks": 0,
+      "guards": 0
+    },
+    {
+      "module": "validate_signed_torus",
+      "status": "pass",
+      "summary": {
+        "surface_records": 4,
+        "typed_boundary_endpoint_occurrences": 32,
+        "maximum_tube_locus_residual_raw": 8.881784197001252e-16,
+        "malformed_guards": 5,
+        "new_API_calls": 0
+      },
+      "checks": 0,
+      "guards": 5
+    },
+    {
+      "module": "validate_elliptic_cone",
+      "status": "pass",
+      "summary": {
+        "saved_files": 1,
+        "elliptic_cone_records": 2,
+        "typed_parent_boundary_curves": 4,
+        "entire_boundary_harmonic_coefficients_checked": 20,
+        "maximum_absolute_harmonic_coefficient": 6.831957815367505e-16,
+        "boundary_curve_sample_points": 32,
+        "maximum_absolute_dimensionless_locus_residual": 1.3322676295501878e-15,
+        "native_endpoint_occurrences": 8,
+        "wrong_sign_and_circular_counterexamples": 8,
+        "circular_controls_preserved": 2,
+        "malformed_guards": 5
+      },
+      "checks": 0,
+      "guards": 5
+    },
+    {
+      "module": "validate_scaled_line_directions",
+      "status": "pass",
+      "summary": {
+        "saved_target_files": 8,
+        "recovered_line_records": 98,
+        "typed_endpoint_checks": 196,
+        "maximum_endpoint_error_raw": 9.155133597044475e-16,
+        "unchanged_prior_nodes": 2655,
+        "unchanged_unit_line_archive_controls": 2,
+        "api_root_body_vertex_controls": 2,
+        "malformed_guards": 4
+      },
+      "checks": 0,
+      "guards": 4
+    },
+    {
+      "module": "validate_surface_cache_variants",
+      "status": "pass",
+      "summary": {
+        "target_records": 46,
+        "saved_archives": 23,
+        "loft_spl_sur": 34,
+        "cl_loft_spl_sur": 10,
+        "finite_bound_exact_spl_sur": 2,
+        "independent_tensor_evaluations": 138,
+        "maximum_independent_tensor_error_raw": 1.900395703982448e-15,
+        "closed_capture_cache_records": 2,
+        "seam_checks": 12,
+        "maximum_sampled_seam_error_raw": 0.0,
+        "opaque_prefix_records": 46,
+        "opaque_centerline_tail_records": 10,
+        "one_dimensional_headers_disambiguated": 80,
+        "old_outputs_unchanged": 3,
+        "malformed_guards": 6
+      },
+      "checks": 0,
+      "guards": 6
+    },
+    {
+      "module": "validate_cylindrical_spline_cache",
+      "status": "pass",
+      "summary": {
+        "saved_archives": 1,
+        "asm_blobs": 2,
+        "direct_surface_definitions": 43,
+        "qualified_surface_references": 55,
+        "total_surface_caches": 98,
+        "independent_tensor_bernstein_comparisons": 882,
+        "maximum_independent_tensor_error_raw": 4.440892098500626e-16,
+        "stored_curve_extrusion_sample_comparisons": 882,
+        "maximum_stored_curve_extrusion_sample_error_raw": 4.440892098500626e-16,
+        "qualified_parent_uv_boundary_chains": 16,
+        "endpoint_positions_corroborated": 32,
+        "maximum_endpoint_set_error_raw": 0.0,
+        "qualified_embedded_curve_reference_proofs": 4,
+        "old_output_controls_unchanged": 3,
+        "malformed_guards": 7
+      },
+      "checks": 0,
+      "guards": 7
+    },
+    {
+      "module": "validate_sum_surface_cache",
+      "status": "pass",
+      "summary": {
+        "saved_files": 1,
+        "blobs": 2,
+        "surface_caches": 4,
+        "independent_tensor_evaluations": 12,
+        "maximum_independent_error_raw": 2.220446049250313e-16,
+        "typed_boundary_chains": 16,
+        "typed_endpoint_positions": 32,
+        "maximum_typed_endpoint_set_error_raw": 2.7755575615628914e-17,
+        "maximum_angle_vs_rational_v_difference": 0.004651693775302279,
+        "malformed_guards": 5,
+        "new_API_calls": 0
+      },
+      "checks": 0,
+      "guards": 5
+    },
+    {
+      "module": "validate_parameter_curve_cache",
+      "status": "pass",
+      "summary": {
+        "family_archives": 19,
+        "decoded_parameter_curve_caches": 226,
+        "wrapper_false": 200,
+        "wrapper_true": 26,
+        "rational_xyz_caches": 24,
+        "polynomial_xyz_caches": 202,
+        "inline_sweep_supports": 40,
+        "focused_saved_files": 3,
+        "focused_typed_edges": 26,
+        "direct_native_parameter_endpoint_evaluations": 48,
+        "direct_native_endpoint_matches_within1e_8": 48,
+        "unresolved_edge_parameter_correspondences": 2,
+        "sampled_parent_uv_comparisons": 150,
+        "maximum_direct_native_endpoint_error_raw": 0.0,
+        "maximum_sampled_parent_uv_deviation_raw": 5.014479035752368,
+        "malformed_guards": 8,
+        "previous_cache_controls_unchanged": 3
+      },
+      "checks": 0,
+      "guards": 8
+    },
+    {
+      "module": "validate_exact_curve_form_two",
+      "status": "pass",
+      "summary": {
+        "saved_files": 2,
+        "form2_curve_caches": 4,
+        "independent_raw_basis_evaluations": 32,
+        "maximum_independent_error_raw": 1.900395703982448e-15,
+        "explicit_same_vertex_closed_edges": 4,
+        "native_endpoint_evaluations": 8,
+        "same_parameter_parent_uv_cache_checks": 20,
+        "maximum_same_parameter_parent_uv_deviation_raw": 0.00027864858103349784,
+        "unresolved_parent_uv_domains": 4,
+        "old_output_controls_preserved": 3,
+        "malformed_guards": 5
+      },
+      "checks": 0,
+      "guards": 5
+    },
+    {
+      "module": "validate_compact_pcurve_offsets",
+      "status": "pass",
+      "summary": null,
+      "checks": 0,
+      "guards": 0
+    }
+  ],
+  "new_numeric_suites": {
+    "numeric-conversions-python312.json": {
+      "sha256": "b7dd06e1b19fdd46b09913e88aa12926a88a6dc41a2f4c9c875cceb26c4b9a95",
+      "summary": {
+        "saved_archives": 2,
+        "actual_byte_mutations": 33,
+        "accepted_cases": 15,
+        "explicit_rejections": 18,
+        "all_passed": true
+      },
+      "interpreter": "Python 3.12.13"
+    },
+    "rational-numerics-python312.json": {
+      "sha256": "c46d288898a1247c2d21a3240bb95e61c65a9ba32e9edb4109d2ed79075cbaf2",
+      "summary": {
+        "checks": 100,
+        "guards": 5,
+        "native_weight_scale_controls": 3,
+        "live_calls": 0,
+        "main_reader_calls": 0
+      },
+      "interpreter": "Python 3.12.13"
+    }
+  },
+  "limitations": [
+    "Successful saved-file execution and byte preservation do not prove semantic correctness for unobserved native records, unsupported modes or other Fusion versions.",
+    "The style audit intentionally reports failure for the remaining legacy files. Only changed Python files were brought into the current rationale-comment convention; the complete style migration has not been performed.",
+    "Historical integration comparisons depending on old temporary baseline caches were inventoried separately rather than reported as freshly passing tests. The current full corpus was compared against outputs acquired from the unchanged pre-repair reader.",
+    "No live Fusion sessions or full editable-file translation roundtrips were performed."
+  ]
+}

@@ -1,0 +1,958 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "rail_scale.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "is_solid": true
+        }
+      ],
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 110, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 132, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_surfaces": [],
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "is_chain_selection": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "control_activity": {
+        "orientation": "Guide modes do not expose the single-path orientation getter",
+        "taper_and_twist": "Ignored by SDK when a rail or surface is specified",
+        "profile_scaling_and_extent": "Active with guide rail",
+        "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+        "surface_chain_selection": "Inactive without guide surfaces"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "rail_stretch.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 1,
+        "extent": 0
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "is_solid": true
+        }
+      ],
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 110, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 132, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_surfaces": [],
+        "profile_scaling": 1,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "is_chain_selection": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "control_activity": {
+        "orientation": "Guide modes do not expose the single-path orientation getter",
+        "taper_and_twist": "Ignored by SDK when a rail or surface is specified",
+        "profile_scaling_and_extent": "Active with guide rail",
+        "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+        "surface_chain_selection": "Inactive without guide surfaces"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "rail_no_scaling.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 2,
+        "extent": 0
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "is_solid": true
+        }
+      ],
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 110, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 132, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_surfaces": [],
+        "profile_scaling": 2,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "is_chain_selection": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "control_activity": {
+        "orientation": "Guide modes do not expose the single-path orientation getter",
+        "taper_and_twist": "Ignored by SDK when a rail or surface is specified",
+        "profile_scaling_and_extent": "Active with guide rail",
+        "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+        "surface_chain_selection": "Inactive without guide surfaces"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "rail_full_extents.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.008991914547277
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.6,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 1
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "is_solid": true
+        }
+      ],
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 110, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 132, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surfaces": [],
+        "profile_scaling": 0,
+        "extent": 1,
+        "is_direction_flipped": true,
+        "is_chain_selection": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "control_activity": {
+        "orientation": "Guide modes do not expose the single-path orientation getter",
+        "taper_and_twist": "Ignored by SDK when a rail or surface is specified",
+        "profile_scaling_and_extent": "Active with guide rail",
+        "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+        "surface_chain_selection": "Inactive without guide surfaces"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d3",
+          "role": "AlongRailDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "guide_surface.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_surfaces": [
+          {
+            "body_name": "GuideSurfaceBody",
+            "geometry_type": "Plane",
+            "point_on_face_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "area_cm2": 20.0
+          }
+        ],
+        "is_chain_selection": false
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body2",
+          "is_solid": true
+        }
+      ],
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 110, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 132, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surfaces": [
+          {
+            "body_name": "GuideSurfaceBody",
+            "geometry_type": "Plane",
+            "point_on_face_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "area_cm2": 20.0
+          }
+        ],
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "is_chain_selection": false,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "control_activity": {
+        "orientation": "Guide modes do not expose the single-path orientation getter",
+        "taper_and_twist": "Ignored by SDK when a rail or surface is specified",
+        "profile_scaling_and_extent": "Inactive without guide rail",
+        "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+        "surface_chain_selection": "Active with guide surfaces"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "guide_surface_chain.f3d",
+      "requested": {
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_surfaces": [
+          {
+            "body_name": "GuideSurfaceBody",
+            "geometry_type": "Plane",
+            "point_on_face_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "area_cm2": 20.0
+          }
+        ],
+        "is_chain_selection": true
+      },
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "name": "Body2",
+          "is_solid": true
+        }
+      ],
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 110, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepGuideModes.py\", line 132, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "curve_kind": "NurbsCurve3D",
+              "is_opposed_to_entity": false,
+              "parameter_domain": [
+                0.0,
+                5.0
+              ],
+              "curve_endpoints_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surfaces": [
+          {
+            "body_name": "GuideSurfaceBody",
+            "geometry_type": "Plane",
+            "point_on_face_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "area_cm2": 20.0
+          }
+        ],
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "is_chain_selection": true,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        }
+      },
+      "control_activity": {
+        "orientation": "Guide modes do not expose the single-path orientation getter",
+        "taper_and_twist": "Ignored by SDK when a rail or surface is specified",
+        "profile_scaling_and_extent": "Inactive without guide rail",
+        "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+        "surface_chain_selection": "Active with guide surfaces"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

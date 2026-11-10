@@ -1,0 +1,947 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "faces_brep_edge_x.f3d",
+      "case": "faces_brep_edge_x",
+      "getter_errors": [],
+      "source_before_split": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OPWpDMRCEU/gK6Rf3gpVWUqQuTYzBvcFFMPv0Y9yZ4MJNruHb+BQ+S/qsZAfyJAQ7mv2YEYIBDeSBpspkg1ZuSlHZHJNiTkXVYHNJRieqDlDYxmNTJojSYJvj4f31vvj82Vxvl9v6uy53QpiWG1yMzD5LEBZlJ6tVdCSq8Jv37GLwubOS8TKc3ofQ6ywQGPQgw4rbi9uaUPfZ/zIYNBrun4FQ8qHsv0o6nso+85nhAwIo/bwGVvLEJpt4etsHQvOlmVEte8bR3xpH7hfbn8c8fwEAAA==",
+        "geometry_type": "adsk::core::Line3D",
+        "temp_id": 9,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmZsCABKVUnyIAAAA",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        "start_vertex_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "end_vertex_cm": [
+          8.0,
+          -2.0,
+          0.0
+        ],
+        "line_start_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "line_end_cm": [
+          8.0,
+          -2.0,
+          0.0
+        ],
+        "line_origin_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "line_direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "actual_trimmed_edge_evaluator": {
+          "parameter_extents": [
+            0.0,
+            2.0
+          ],
+          "parameters": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "points_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              7.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -2.0,
+              0.0
+            ]
+          ]
+        }
+      },
+      "requested": {
+        "operation": 0,
+        "view_direction_type": "adsk::fusion::BRepEdge",
+        "source_support_body_name": "SilhouetteDirectionSupportBody",
+        "target_body_name": "SilhouetteDirectionTargetBody",
+        "source_support_feature_name": "SilhouetteDirectionSupportExtrude",
+        "target_feature_name": "SilhouetteTargetCylinder"
+      },
+      "target_before_split": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmxoCAL5Zy0iIAAAA",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OPWpDMRCEU/gK6Rf3gpVWUqQuTYzBvcFFMPv0Y9yZ4MJNruHb+BQ+S/qsZAfyJAQ7mv2YEYIBDeSBpspkg1ZuSlHZHJNiTkXVYHNJRieqDlDYxmNTJojSYJvj4f31vvj82Vxvl9v6uy53QpiWG1yMzD5LEBZlJ6tVdCSq8Jv37GLwubOS8TKc3ofQ6ywQGPQgw4rbi9uaUPfZ/zIYNBrun4FQ8qHsv0o6nso+85nhAwIo/bwGVvLEJpt4etsHQvOlmVEte8bR3xpH7hfbn8c8fwEAAA==",
+        "geometry_type": "adsk::core::Line3D",
+        "temp_id": 33,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmZsCABKVUnyIAAAA",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        "start_vertex_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "end_vertex_cm": [
+          8.0,
+          -2.0,
+          0.0
+        ],
+        "line_start_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "line_end_cm": [
+          8.0,
+          -2.0,
+          0.0
+        ],
+        "line_origin_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "line_direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "actual_trimmed_edge_evaluator": {
+          "parameter_extents": [
+            0.0,
+            2.0
+          ],
+          "parameters": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "points_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              7.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -2.0,
+              0.0
+            ]
+          ]
+        }
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmxoCAL5Zy0iIAAAA",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmxoCAL5Zy0iIAAAA",
+          "name": "SilhouetteDirectionTargetBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmZsCABKVUnyIAAAA",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmxoCAL5Zy0iIAAAA",
+          "name": "SilhouetteDirectionTargetBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "SilhouetteDirectionSupportExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteDirectionSupportExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteTargetCylinder"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteTargetCylinder"
+        }
+      ]
+    },
+    {
+      "file": "faces_brep_face_yz.f3d",
+      "case": "faces_brep_face_yz",
+      "getter_errors": [],
+      "source_before_split": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/62QPU4EMQyF9yi+gKXE8WQyJUhsRU07yo9X2gYQgg5qLkHJCbgBh6BG4iTEWbQww+40EEXK0/MXPycGCCw4DxvpPHNmpMKM3EXGSGVA6a0vnBz7PoKprPJGFYWqLLA6Hp6fXsz568nH49v7w30Jq0qQ9o22EHlxGHo2yKlLmOxAaJP0JeRMLkhja4/VbLU8Ay2OwUE3WNCjujp0Kztj29lmmRl+bvDcoB+GgXR1d1mkjJuYZbyRvL2WscTbCKdrgDWEiqA2Oauyit2m74qKL+9ih7jm0aS4xzVywrlJeX9BuaVIdyByodVhjn+NthTJS6+cUv8VSX/42OOjfQLpbT7bAAMAAA==",
+        "geometry_type": "adsk::core::Plane",
+        "temp_id": 19,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvZG5KQAWZcNiiAAAAA==",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        "origin_cm": [
+          6.0,
+          -1.0,
+          0.0
+        ],
+        "normal": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "area_cm2": 2.0,
+        "centroid_cm": [
+          6.0,
+          -1.5,
+          1.0
+        ],
+        "is_param_reversed": false
+      },
+      "requested": {
+        "operation": 0,
+        "view_direction_type": "adsk::fusion::BRepFace",
+        "source_support_body_name": "SilhouetteDirectionSupportBody",
+        "target_body_name": "SilhouetteDirectionTargetBody",
+        "source_support_feature_name": "SilhouetteDirectionSupportExtrude",
+        "target_feature_name": "SilhouetteTargetCylinder"
+      },
+      "target_before_split": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvbGpIQC6qVpWiAAAAA==",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/62QPU4EMQyF9yi+gKXE8WQyJUhsRU07yo9X2gYQgg5qLkHJCbgBh6BG4iTEWbQww+40EEXK0/MXPycGCCw4DxvpPHNmpMKM3EXGSGVA6a0vnBz7PoKprPJGFYWqLLA6Hp6fXsz568nH49v7w30Jq0qQ9o22EHlxGHo2yKlLmOxAaJP0JeRMLkhja4/VbLU8Ay2OwUE3WNCjujp0Kztj29lmmRl+bvDcoB+GgXR1d1mkjJuYZbyRvL2WscTbCKdrgDWEiqA2Oauyit2m74qKL+9ih7jm0aS4xzVywrlJeX9BuaVIdyByodVhjn+NthTJS6+cUv8VSX/42OOjfQLpbT7bAAMAAA==",
+        "geometry_type": "adsk::core::Plane",
+        "temp_id": 38,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvZG5KQAWZcNiiAAAAA==",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        "origin_cm": [
+          6.0,
+          -1.0,
+          0.0
+        ],
+        "normal": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "area_cm2": 2.0,
+        "centroid_cm": [
+          6.0,
+          -1.5,
+          1.0
+        ],
+        "is_param_reversed": false
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvbGpIQC6qVpWiAAAAA==",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvbGpIQC6qVpWiAAAAA==",
+          "name": "SilhouetteDirectionTargetBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvZG5KQAWZcNiiAAAAA==",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvbGpIQC6qVpWiAAAAA==",
+          "name": "SilhouetteDirectionTargetBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "SilhouetteDirectionSupportExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteDirectionSupportExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteTargetCylinder"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteTargetCylinder"
+        }
+      ]
+    },
+    {
+      "file": "faces_custom_axis_x.f3d",
+      "case": "faces_custom_axis_x",
+      "getter_errors": [],
+      "custom_axis_setByEdge_returned": true,
+      "source_before_split": {
+        "entity_type": "adsk::fusion::ConstructionAxis",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZGFEQDo/BpkiAAAAA==",
+        "geometry_type": "adsk::core::InfiniteLine3D",
+        "name": "SilhouetteCustomSupportAxisX",
+        "origin_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "definition_type": "adsk::fusion::ConstructionAxisEdgeDefinition",
+        "definition_edge": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OzWkDMRCFXUCKGHIfmL/VSgXEV9+CL2GRVkrIzYRtyWBcgvtIB7mliUiKA9kVgnl68/GeCAQY1IENiX2ZFZMFQyuUMEQnKHFmZR5TdgpU2cZTU+KrYrDmOLi8fB3Pj4fb9fj9sHzqVAlpuWUOyY/FMDnLaGoBA7uI3gYbSbJ/zdbZmrHbnN5H0OsMFIQc1GHV7cVtrcR99r9sDN0awz+DoOS3Mn2U+f1UphyXCE/gAfl+Bfb1SU02cfeefxFdL2VFtewVp39r2nI/4raQxX8BAAA=",
+          "geometry_type": "adsk::core::Line3D",
+          "temp_id": 9,
+          "body": {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZG5KQCEdeZ9iAAAAA==",
+            "name": "SilhouetteDirectionSupportBody",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "volume_cm3": 4.0,
+            "bounding_box_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -1.0,
+                2.0
+              ]
+            ]
+          },
+          "start_vertex_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "end_vertex_cm": [
+            8.0,
+            -2.0,
+            0.0
+          ],
+          "line_start_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "line_end_cm": [
+            8.0,
+            -2.0,
+            0.0
+          ],
+          "line_origin_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "line_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "actual_trimmed_edge_evaluator": {
+            "parameter_extents": [
+              0.0,
+              2.0
+            ],
+            "parameters": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "points_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                7.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -2.0,
+                0.0
+              ]
+            ]
+          }
+        }
+      },
+      "requested": {
+        "operation": 0,
+        "view_direction_type": "adsk::fusion::ConstructionAxis",
+        "source_support_body_name": "SilhouetteDirectionSupportBody",
+        "target_body_name": "SilhouetteDirectionTargetBody",
+        "source_support_feature_name": "SilhouetteDirectionSupportExtrude",
+        "target_feature_name": "SilhouetteTargetCylinder"
+      },
+      "target_before_split": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvbG5EQAQikDiiAAAAA==",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::ConstructionAxis",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZGFEQDo/BpkiAAAAA==",
+        "geometry_type": "adsk::core::InfiniteLine3D",
+        "name": "SilhouetteCustomSupportAxisX",
+        "origin_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "definition_type": "adsk::fusion::ConstructionAxisEdgeDefinition",
+        "definition_edge": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OzWkDMRCFXUCKGHIfmL/VSgXEV9+CL2GRVkrIzYRtyWBcgvtIB7mliUiKA9kVgnl68/GeCAQY1IENiX2ZFZMFQyuUMEQnKHFmZR5TdgpU2cZTU+KrYrDmOLi8fB3Pj4fb9fj9sHzqVAlpuWUOyY/FMDnLaGoBA7uI3gYbSbJ/zdbZmrHbnN5H0OsMFIQc1GHV7cVtrcR99r9sDN0awz+DoOS3Mn2U+f1UphyXCE/gAfl+Bfb1SU02cfeefxFdL2VFtewVp39r2nI/4raQxX8BAAA=",
+          "geometry_type": "adsk::core::Line3D",
+          "temp_id": 33,
+          "body": {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZG5KQCEdeZ9iAAAAA==",
+            "name": "SilhouetteDirectionSupportBody",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "volume_cm3": 4.0,
+            "bounding_box_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -1.0,
+                2.0
+              ]
+            ]
+          },
+          "start_vertex_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "end_vertex_cm": [
+            8.0,
+            -2.0,
+            0.0
+          ],
+          "line_start_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "line_end_cm": [
+            8.0,
+            -2.0,
+            0.0
+          ],
+          "line_origin_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "line_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "actual_trimmed_edge_evaluator": {
+            "parameter_extents": [
+              0.0,
+              2.0
+            ],
+            "parameters": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "points_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                7.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -2.0,
+                0.0
+              ]
+            ]
+          }
+        }
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvbG5EQAQikDiiAAAAA==",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvbG5EQAQikDiiAAAAA==",
+          "name": "SilhouetteDirectionTargetBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZG5KQCEdeZ9iAAAAA==",
+          "name": "SilhouetteDirectionSupportBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "volume_cm3": 4.0,
+          "bounding_box_cm": [
+            [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            [
+              8.0,
+              -1.0,
+              2.0
+            ]
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvbG5EQAQikDiiAAAAA==",
+          "name": "SilhouetteDirectionTargetBody",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "SilhouetteDirectionSupportExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteDirectionSupportExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteTargetCylinder"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteTargetCylinder"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "scope": "Independent support block supplies a linear edge or planar face; custom axis defined from that edge. Actual rolled-back source geometry getters are independent evidence, not native geometry-cache decoding."
+}

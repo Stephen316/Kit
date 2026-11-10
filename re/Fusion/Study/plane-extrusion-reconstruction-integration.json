@@ -1,0 +1,574 @@
+{
+  "scope": "Three selected construction-plane Extrude reconstructions with independent native plane/Sketch/BODY joins, analytic cache equations and actual API bounds; all prior outputs preserved exactly",
+  "baseline_commit": "f33f478",
+  "files": [
+    "extents-f0f33a9a605f/to_plane.f3d",
+    "extents-f0f33a9a605f/to_plane_offset.f3d",
+    "extents-f0f33a9a605f/from_plane.f3d",
+    "extents-f0f33a9a605f/distance_positive.f3d",
+    "extents-f0f33a9a605f/offset_negative.f3d",
+    "extents-f0f33a9a605f/two_sided_mixed.f3d",
+    "holes-926347c1eaa8/to_bottom.f3d",
+    "placement-c6ad25e75d60/placement.f3d"
+  ],
+  "summary": {
+    "saved_files": 8,
+    "decoded_plane_limited_Extrudes": 3,
+    "new_summaries": 3,
+    "receiving_feature_annotations": 3,
+    "ToEntity_plane_limits": 2,
+    "FromEntity_plane_limits": 1,
+    "raw_native_provenance_records": 69,
+    "complete_cylinder_coefficient_proofs": 3,
+    "complete_cap_circle_proofs": 6,
+    "native_endpoint_evaluations": 12,
+    "native_FACE_count": 9,
+    "native_LOOP_count": 12,
+    "native_COEDGE_count": 12,
+    "native_EDGE_count": 6,
+    "native_VERTEX_count": 6,
+    "independent_saved_API_bound_controls": 3,
+    "whole_output_unchanged_controls": 5,
+    "unexpected_changes": 0,
+    "comparator_baseline_main_calls": 0,
+    "comparator_current_main_calls": 0,
+    "live_API_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "extents-f0f33a9a605f/to_plane.f3d",
+      "archive_sha256": "303569cf8385ec8da507a57a5f5b14cdb73d590463d474481cd763da9c97afe1",
+      "decoded_plane_limited_Extrudes": 1,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 256,
+          "native_body_object_id": 293,
+          "source_plane_reference": {
+            "feature_object_id": 256,
+            "selection_role": "ToEntity",
+            "selection_record_object_id": 264,
+            "descriptor_object_id": 267,
+            "terminal_object_id": 270,
+            "plane_object_id": 234,
+            "plane_feature_object_id": 235,
+            "native_sketch_object_id": 202,
+            "native_Circle_object_id": 230,
+            "component_object_id": 3,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "plane_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "profile_center_component_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis_direction_component": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0,
+            "independent_plane_crossing_cm": 3.0,
+            "selected_offset_cm": 0.0,
+            "axial_stations_cm": [
+              0.0,
+              3.0
+            ],
+            "cap_centers_component_cm": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                3.0
+              ]
+            ],
+            "independent_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                3.0
+              ]
+            ],
+            "independent_volume_cm3": 9.42477796076938,
+            "geometry_selects_identity": false,
+            "API_ENTITY_assignment": null
+          },
+          "raw_native_provenance_records": 23,
+          "original_native_controls_and_flags_preserved": true,
+          "mathematical_distance_controls_are_separate": true,
+          "complete_cylinder_coefficient_proofs": 1,
+          "complete_cap_circle_proofs": 2,
+          "native_endpoint_evaluations": 4,
+          "native_cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "saved_API_bounds": {
+            "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+            "actual_API_body_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                3.0
+              ]
+            ],
+            "independently_derived_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                3.0
+              ]
+            ],
+            "actual_API_selected_entity_name": "TargetPlane",
+            "actual_API_offset_cm": 0.0,
+            "native_ID_joins_precede_numerical_comparison": true,
+            "API_ENTITY_assignment": null,
+            "scope": "Actual complete result bounds and selected limit controls corroborate after native feature/Sketch/plane/BODY joins; no API entity assigned by geometry or label"
+          },
+          "native_ID_joins_precede_arithmetic": true,
+          "semantic_to_native_ENTITY_assignment": null
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "2f76508cf2601ba89449ae9f9fe0faecc743d29981f97b4bf084e8ecbe8b447e",
+      "current_output_sha256": "87835f033de5fea076dc5f3237042f1256ce95bf50d7bb691a978ff30794ab78",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/plane_extrusion_reconstruction",
+        "/streams/0/plane_extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/to_plane_offset.f3d",
+      "archive_sha256": "f3a634322fee984a9ef99375ada9f0ca849ca963c103736d9e190875066f83ad",
+      "decoded_plane_limited_Extrudes": 1,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 256,
+          "native_body_object_id": 293,
+          "source_plane_reference": {
+            "feature_object_id": 256,
+            "selection_role": "ToEntity",
+            "selection_record_object_id": 264,
+            "descriptor_object_id": 267,
+            "terminal_object_id": 270,
+            "plane_object_id": 234,
+            "plane_feature_object_id": 235,
+            "native_sketch_object_id": 202,
+            "native_Circle_object_id": 230,
+            "component_object_id": 3,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "plane_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "profile_center_component_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis_direction_component": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0,
+            "independent_plane_crossing_cm": 3.0,
+            "selected_offset_cm": 0.4,
+            "axial_stations_cm": [
+              0.0,
+              3.4
+            ],
+            "cap_centers_component_cm": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                3.4
+              ]
+            ],
+            "independent_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                3.4
+              ]
+            ],
+            "independent_volume_cm3": 10.681415022205297,
+            "geometry_selects_identity": false,
+            "API_ENTITY_assignment": null
+          },
+          "raw_native_provenance_records": 23,
+          "original_native_controls_and_flags_preserved": true,
+          "mathematical_distance_controls_are_separate": true,
+          "complete_cylinder_coefficient_proofs": 1,
+          "complete_cap_circle_proofs": 2,
+          "native_endpoint_evaluations": 4,
+          "native_cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "saved_API_bounds": {
+            "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+            "actual_API_body_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                3.4
+              ]
+            ],
+            "independently_derived_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                3.4
+              ]
+            ],
+            "actual_API_selected_entity_name": "TargetPlane",
+            "actual_API_offset_cm": 0.4,
+            "native_ID_joins_precede_numerical_comparison": true,
+            "API_ENTITY_assignment": null,
+            "scope": "Actual complete result bounds and selected limit controls corroborate after native feature/Sketch/plane/BODY joins; no API entity assigned by geometry or label"
+          },
+          "native_ID_joins_precede_arithmetic": true,
+          "semantic_to_native_ENTITY_assignment": null
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "7e201b3b0465290c6f6b65f6a3c52ac4064d61e51f8d09162ea83f60b5008fb6",
+      "current_output_sha256": "e06e579129b92cc83033b41d5a69aa87e2639a6e8f020921f3994ae0b8079c1e",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/plane_extrusion_reconstruction",
+        "/streams/0/plane_extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/from_plane.f3d",
+      "archive_sha256": "535708797f1600c2b314019077462326bc371363cf75da9195e6cb0d60f0e23e",
+      "decoded_plane_limited_Extrudes": 1,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 256,
+          "native_body_object_id": 296,
+          "source_plane_reference": {
+            "feature_object_id": 256,
+            "selection_role": "FromEntity",
+            "selection_record_object_id": 264,
+            "descriptor_object_id": 267,
+            "terminal_object_id": 270,
+            "plane_object_id": 234,
+            "plane_feature_object_id": 235,
+            "native_sketch_object_id": 202,
+            "native_Circle_object_id": 230,
+            "component_object_id": 3,
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "plane_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "profile_center_component_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis_direction_component": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0,
+            "independent_plane_crossing_cm": 3.0,
+            "selected_offset_cm": 0.5,
+            "axial_stations_cm": [
+              3.5,
+              5.2
+            ],
+            "cap_centers_component_cm": [
+              [
+                0.0,
+                0.0,
+                3.5
+              ],
+              [
+                0.0,
+                0.0,
+                5.2
+              ]
+            ],
+            "independent_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                3.5
+              ],
+              [
+                1.0,
+                1.0,
+                5.2
+              ]
+            ],
+            "independent_volume_cm3": 5.340707511102649,
+            "geometry_selects_identity": false,
+            "API_ENTITY_assignment": null
+          },
+          "raw_native_provenance_records": 23,
+          "original_native_controls_and_flags_preserved": true,
+          "mathematical_distance_controls_are_separate": true,
+          "complete_cylinder_coefficient_proofs": 1,
+          "complete_cap_circle_proofs": 2,
+          "native_endpoint_evaluations": 4,
+          "native_cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "saved_API_bounds": {
+            "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+            "actual_API_body_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                3.5
+              ],
+              [
+                1.0,
+                1.0,
+                5.2
+              ]
+            ],
+            "independently_derived_bounds_cm": [
+              [
+                -1.0,
+                -1.0,
+                3.5
+              ],
+              [
+                1.0,
+                1.0,
+                5.2
+              ]
+            ],
+            "actual_API_selected_entity_name": "TargetPlane",
+            "actual_API_offset_cm": 0.5,
+            "native_ID_joins_precede_numerical_comparison": true,
+            "API_ENTITY_assignment": null,
+            "scope": "Actual complete result bounds and selected limit controls corroborate after native feature/Sketch/plane/BODY joins; no API entity assigned by geometry or label"
+          },
+          "native_ID_joins_precede_arithmetic": true,
+          "semantic_to_native_ENTITY_assignment": null
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "3a8e78f821cddfdff02c64067ba52a900549ec676389f5b5830593caed388990",
+      "current_output_sha256": "d92bd9f3e9aa1e1e4e348c92469d27e29d351f460ce7adf43eeb4296d488fa2b",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/plane_extrusion_reconstruction",
+        "/streams/0/plane_extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/distance_positive.f3d",
+      "archive_sha256": "dd9067920bccc513668d479ae4e32c88456aac037c2dcf976e5d9d7dc310ffe0",
+      "decoded_plane_limited_Extrudes": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "4b5e4dc946f38d136459a5001f2a7ac1eec850d93f6baabfd2804b7043a5d844",
+      "current_output_sha256": "4b5e4dc946f38d136459a5001f2a7ac1eec850d93f6baabfd2804b7043a5d844",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "extents-f0f33a9a605f/offset_negative.f3d",
+      "archive_sha256": "e9bd6d5af4ce1b8f3272ae81b2e418a6eb20e5c2bb854201c03b5cfe3485a8ff",
+      "decoded_plane_limited_Extrudes": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "adc4f4c46bc15e42b298a07154dae969705c16a5bac398e3f1a5b2cc168d02e5",
+      "current_output_sha256": "adc4f4c46bc15e42b298a07154dae969705c16a5bac398e3f1a5b2cc168d02e5",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "extents-f0f33a9a605f/two_sided_mixed.f3d",
+      "archive_sha256": "a61f0752312bbee70e3a6dc7b2f152e5532718feb796c1ecdfe62e305e16ee00",
+      "decoded_plane_limited_Extrudes": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "9ee6c6de7f0b559253be46792b1dc27283e411668bce89b6fbe27937ce5472f3",
+      "current_output_sha256": "9ee6c6de7f0b559253be46792b1dc27283e411668bce89b6fbe27937ce5472f3",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "holes-926347c1eaa8/to_bottom.f3d",
+      "archive_sha256": "79945778a5bc03f18d1c681fdedd5110d1601b90dd8312ffb97ca2d140708486",
+      "decoded_plane_limited_Extrudes": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "683d589ca2192c5d02e97f09a50daa2d171de98deca6e7c89753a92a4c997111",
+      "current_output_sha256": "683d589ca2192c5d02e97f09a50daa2d171de98deca6e7c89753a92a4c997111",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "placement-c6ad25e75d60/placement.f3d",
+      "archive_sha256": "bbc9669c1767727dc5f3a1aefe955338608caa4a87a221d61f70a5bd189b38be",
+      "decoded_plane_limited_Extrudes": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "f0a87b2ae735aa0036d65e1a2701d6fd1ae9081f0c552ed4d1dce887e3ca4ba3",
+      "current_output_sha256": "f0a87b2ae735aa0036d65e1a2701d6fd1ae9081f0c552ed4d1dce887e3ca4ba3",
+      "qualified_difference_paths": []
+    }
+  ],
+  "fixed_manifest_acquisition": {
+    "baseline_main_calls": 8,
+    "current_main_calls": 8,
+    "baseline_passes": 1,
+    "current_passes": 1,
+    "interpreter": "/usr/bin/python3",
+    "entrypoint": "decode_basics.decode_basics(ROOT / filename, zstd_library)",
+    "fixed_order": [
+      "extents-f0f33a9a605f/to_plane.f3d",
+      "extents-f0f33a9a605f/to_plane_offset.f3d",
+      "extents-f0f33a9a605f/from_plane.f3d",
+      "extents-f0f33a9a605f/distance_positive.f3d",
+      "extents-f0f33a9a605f/offset_negative.f3d",
+      "extents-f0f33a9a605f/two_sided_mixed.f3d",
+      "holes-926347c1eaa8/to_bottom.f3d",
+      "placement-c6ad25e75d60/placement.f3d"
+    ],
+    "scope": "Original fixed acquisition, distinct from cached comparator zero-main execution"
+  },
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-plane-extrusion-reconstruction-baseline.json",
+      "sha256": "12c752ae2d56468d131aadc4ff2495b6d4db874d6c33a3251522dcaa4747384f"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-plane-extrusion-reconstruction-current.json",
+      "sha256": "e1870dcedb94767389c43343dafb91c4a894c305df6de4dd798542a1a81cc799"
+    }
+  },
+  "frozen_production_sha256": {
+    "decode_extrusion_plane_limits.py": "66a697e7cc88884caa68066252aa533d360d37d570cd257b1f494ea95ad43497",
+    "decode_extrusion_source_operands.py": "e1fda3565f5a8a4f2d3b5881325383d63f44642a2136b3baca3d421cb0e7613f",
+    "decode_plane_extrusion_reconstruction.py": "8eebab305d044e67086dfc50712f2892bd7191f5f8f90c73fc2465e607118c34",
+    "decode_plane_extrusion_geometry.py": "1c695e5513fc85af2df9542824b4745319fae1b380991214a8f467d9fdf3a590",
+    "decode_extrusion_reconstruction.py": "4bcf4e5326fc2fafc9dcb17b7c870e6e39a97ea8fc8c86a4c26ad739779902f8"
+  },
+  "evidence_sha256": {
+    "plane-extrusion-reconstruction-decoding.json": "fe0aaef181442bb826b81ca1624a32bed8073a1bf33c432424d7d61dbbc448e7",
+    "extrusion-plane-limit-source-decoding.json": "1e32c623aadab871b356c115ef63ba3bc82d64edf39aa21e1d292083778192a2",
+    "plane-extrusion-geometry-decoding.json": "3a838cbbf5af15d941ac3ec338b7f4cb64a03729197a74e15564e2a9bb2d59a3"
+  },
+  "saved_API_truth_sha256": {
+    "extents-f0f33a9a605f/ground_truth.json": "26bd0b62fc010805faab5504a61616d850c003bb942a2db5d8448abeae61fb7b"
+  },
+  "source_sha256": {
+    "validate_plane_extrusion_reconstruction_integration.py": "f7f13623875883b345c4d097196e4920d429d6d1f6b1c7b5d73aa64ae87deca6",
+    "validate_extrusion_reconstruction_integration.py": "36feea1c0f7405bbd4e69727fbcbd525f7ef4b4115c6cf3da7eeeecdfe5c041e",
+    "decode_extrusion_plane_limits.py": "66a697e7cc88884caa68066252aa533d360d37d570cd257b1f494ea95ad43497",
+    "decode_extrusion_source_operands.py": "e1fda3565f5a8a4f2d3b5881325383d63f44642a2136b3baca3d421cb0e7613f",
+    "decode_plane_extrusion_reconstruction.py": "8eebab305d044e67086dfc50712f2892bd7191f5f8f90c73fc2465e607118c34",
+    "decode_plane_extrusion_geometry.py": "1c695e5513fc85af2df9542824b4745319fae1b380991214a8f467d9fdf3a590",
+    "decode_extrusion_reconstruction.py": "4bcf4e5326fc2fafc9dcb17b7c870e6e39a97ea8fc8c86a4c26ad739779902f8",
+    "decode_basics.py": "6e929aae1fffaa0fccf8dd4e63eb3124850e94489d96120a00e5ff92daf0963b"
+  },
+  "limitations": [
+    "Selected source/plane proxy, descriptor, leaf, creator, component and BODY identities precede numerical intersection and cache comparison.",
+    "Original native ToEntity/FromEntity kinds and flags remain literal; constructed equivalent Distance controls exist only in derived mathematical geometry.",
+    "Only observed co-directed parallel +Z planes and nonnegative selected offsets are covered; reversed/oblique selected-plane conventions remain unresolved.",
+    "Three complete saved API bound sets corroborate results after native joins; no API ENTITY assignment, chronological/current/final or persistent identity is established.",
+    "No saved Extrude BRepFace target contrast exists. Hole to_bottom is an actual BRepFace ToEntity limit in another feature family, used only to check non-admission.",
+    "Five controls remain whole-output exact. Existing ordinary extrusion reconstruction warnings, all prior ASM geometry/topology and placement stay unchanged."
+  ]
+}

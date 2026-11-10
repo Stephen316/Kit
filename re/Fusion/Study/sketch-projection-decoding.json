@@ -1,0 +1,776 @@
+{
+  "scope": "Observed explicit linked sketch Project/Include provenance; output cache geometry retained separately from ordinary sketch primitives. Missing link records are not treated as proof geometry was never linked.",
+  "fusion_version": "2705.1.30",
+  "generators": [
+    "GenerateSketchProjections.py",
+    "GenerateSketchProjectionHoldouts.py"
+  ],
+  "capture_folders": [
+    "sketchprojections-67c0c4531b8f",
+    "sketchprojections-8fedd685854a"
+  ],
+  "summary": {
+    "archives": 7,
+    "linked_relationships": 5,
+    "detached_control_archives": 2,
+    "api_comparisons": 47,
+    "all_comparisons_passed": true,
+    "malformed_checks": 3,
+    "initial_getter_errors": 2
+  },
+  "layout": {
+    "controller_class_guid": "F1451EC8-11A4-4952-84ED-5AB7C13E2E83",
+    "entry_class_guid": "CA72DD8E-2861-4DDD-9721-03039B5FB113",
+    "controller_fields": {
+      "byte5_observed_mode": {
+        "0": "Include",
+        "1": "Project"
+      },
+      "reference6": "output entry",
+      "reference30_and94": "target Sketch feature owner",
+      "reference41": "source selection proxy"
+    },
+    "entry_fields": {
+      "reference6": "output naming record",
+      "u64at17": "explicit output entity object ID",
+      "u64at25": "observed1 retained as guarded uninterpreted field"
+    },
+    "sketch_source_leaves": {
+      "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8": "26bytes:tenzeros,u64sketchID,u64curveTag",
+      "D95DBAC0-238B-4429-A0AD-4AE5BEE79ADF": "18bytes:twozeros,u64sketchID,u64pointTag"
+    },
+    "body_edge_sources": "Typed5662F619 descriptor pointsedge_recipe_data; output naming4B31 pointsanotheredge_recipe_data withmatchingname_table. Recipe payloads remainopaque.",
+    "output_cache": "Known Line/Circle/Point class and bounded primitive layouts, EntityGenesis0, explicit target-sketch owner and endpoint/center references."
+  },
+  "notes": [
+    "Existing decode_sketch omits EntityGenesis0 curve caches; this module reports those caches inside projection relationships without silently inserting them into ordinary geometry.",
+    "Both source-proxy and output-naming chains independently identify the source sketch ID/tag and must agree. No nearest-geometry heuristic is used.",
+    "API isReferenceTrue matches complete linked controller chains in all five linked captures. No universal isReference bit is inferred.",
+    "Unlinked and broken controls have no F145 controller and produce no relationship. This does not distinguish never-linked from previously-linked geometry, and no source provenance is invented for detached geometry.",
+    "The local SDK throws when referencedEntity is queried on detached outputs. Corrected generator queries only when isReferenceTrue; both initial errors are retained.",
+    "Project mode drops sourceheight1cm in these rootXY targets; Include retainsheight1cm and API is2DFalse. The result is read from cache coordinates, not reconstructed by applying guessed transforms."
+  ],
+  "limitations": [
+    "No transformed occurrence, multiple-output/silhouette, cut/intersection projection variants.",
+    "Only single Line/Circle/Point sketch sources and an opaque bodyedge recipe observed; general conics/splines unsupported.",
+    "Bodyedge persistent identity and recipe operations unresolved; no ASM edge index guessed.",
+    "No general inference of linkage absence, history of broken links, or solver regeneration."
+  ],
+  "capture_errors": [
+    {
+      "capture_folder": "sketchprojections-67c0c4531b8f",
+      "case": "unlinked_line",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 79, in run\n    \"outputs\": [entity_summary(entity) for entity in projected]}}\n                ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 25, in entity_summary\n    reference = entity.referencedEntity\n                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 71078, in _get_referencedEntity\n    return _fusion.SketchEntity__get_referencedEntity(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+    },
+    {
+      "capture_folder": "sketchprojections-67c0c4531b8f",
+      "case": "broken_line",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 79, in run\n    \"outputs\": [entity_summary(entity) for entity in projected]}}\n                ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 25, in entity_summary\n    reference = entity.referencedEntity\n                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 71078, in _get_referencedEntity\n    return _fusion.SketchEntity__get_referencedEntity(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+    }
+  ],
+  "samples": [
+    {
+      "file": "sketchprojections-67c0c4531b8f/linked_line.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::SketchLine",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchLine",
+            "referenced_sketch_name": "ProjectionSource",
+            "start_world_cm": [
+              0.5,
+              0.7,
+              0.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 283,
+            "entry_object_id": 291,
+            "target_feature_object_id": 262,
+            "target_sketch_object_id": 258,
+            "target_sketch_name": "ProjectionTarget",
+            "method": "Project",
+            "stored_projection_mode": 1,
+            "is_linked": true,
+            "source_proxy_object_id": 284,
+            "source_descriptor_object_id": 287,
+            "output_naming_record_object_id": 314,
+            "endpoint_progenitor_record_object_ids": {
+              "EdgeEndVertexProgenitor": 318,
+              "EdgeStartVertexProgenitor": 316
+            },
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 290,
+              "sketch_object_id": 224,
+              "sketch_name": "ProjectionSource",
+              "entity_tag": 103,
+              "entity_object_id": 254,
+              "entity_kind": "Line",
+              "output_naming_source_leaf_object_id": 315
+            },
+            "output_cache": {
+              "object_id": 324,
+              "sketch_object_id": 258,
+              "entity_genesis": 0,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "kind": "Line",
+              "entity_tag": 107,
+              "start_point_id": 320,
+              "end_point_id": 322,
+              "start_cm": [
+                0.5,
+                0.7,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                1.3,
+                0.0
+              ]
+            },
+            "link_status": "Explicit controller/output-entry/source-proxy and output naming references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "output_count": true,
+        "target_sketch_name": true,
+        "method": true,
+        "linked_relationship_matches_api_reference": true,
+        "output_kind": true,
+        "source_sketch_name": true,
+        "source_entity_kind": true,
+        "cache_start": true,
+        "cache_end": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    },
+    {
+      "file": "sketchprojections-67c0c4531b8f/linked_circle.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::SketchCircle",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchCircle",
+            "referenced_sketch_name": "ProjectionSource",
+            "center_world_cm": [
+              0.8,
+              1.2,
+              0.0
+            ],
+            "radius_cm": 0.5999999999999999
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 281,
+            "entry_object_id": 289,
+            "target_feature_object_id": 260,
+            "target_sketch_object_id": 256,
+            "target_sketch_name": "ProjectionTarget",
+            "method": "Project",
+            "stored_projection_mode": 1,
+            "is_linked": true,
+            "source_proxy_object_id": 282,
+            "source_descriptor_object_id": 285,
+            "output_naming_record_object_id": 304,
+            "endpoint_progenitor_record_object_ids": {},
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 288,
+              "sketch_object_id": 224,
+              "sketch_name": "ProjectionSource",
+              "entity_tag": 102,
+              "entity_object_id": 252,
+              "entity_kind": "Circle",
+              "output_naming_source_leaf_object_id": 305
+            },
+            "output_cache": {
+              "object_id": 308,
+              "sketch_object_id": 256,
+              "entity_genesis": 0,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "kind": "Circle",
+              "entity_tag": 105,
+              "center_point_id": 306,
+              "center_cm": [
+                0.8,
+                1.2,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "radius_cm": 0.5999999999999999
+            },
+            "link_status": "Explicit controller/output-entry/source-proxy and output naming references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "output_count": true,
+        "target_sketch_name": true,
+        "method": true,
+        "linked_relationship_matches_api_reference": true,
+        "output_kind": true,
+        "source_sketch_name": true,
+        "source_entity_kind": true,
+        "cache_center": true,
+        "cache_radius": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    },
+    {
+      "file": "sketchprojections-67c0c4531b8f/linked_point.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::SketchPoint",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchPoint",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchPoint",
+            "referenced_sketch_name": "ProjectionSource",
+            "position_world_cm": [
+              0.8,
+              1.2,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 280,
+            "entry_object_id": 288,
+            "target_feature_object_id": 259,
+            "target_sketch_object_id": 255,
+            "target_sketch_name": "ProjectionTarget",
+            "method": "Project",
+            "stored_projection_mode": 1,
+            "is_linked": true,
+            "source_proxy_object_id": 281,
+            "source_descriptor_object_id": 284,
+            "output_naming_record_object_id": 303,
+            "endpoint_progenitor_record_object_ids": {},
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 287,
+              "sketch_object_id": 224,
+              "sketch_name": "ProjectionSource",
+              "entity_tag": 101,
+              "entity_object_id": 250,
+              "entity_kind": "Point",
+              "output_naming_source_leaf_object_id": 304
+            },
+            "output_cache": {
+              "object_id": 305,
+              "sketch_object_id": 255,
+              "entity_genesis": 0,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "kind": "Point",
+              "entity_tag": 103,
+              "position_cm": [
+                0.8,
+                1.2,
+                0.0
+              ]
+            },
+            "link_status": "Explicit controller/output-entry/source-proxy and output naming references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "output_count": true,
+        "target_sketch_name": true,
+        "method": true,
+        "linked_relationship_matches_api_reference": true,
+        "output_kind": true,
+        "source_sketch_name": true,
+        "source_entity_kind": true,
+        "cache_position": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    },
+    {
+      "file": "sketchprojections-67c0c4531b8f/included_line.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::SketchLine",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "include",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchLine",
+            "referenced_sketch_name": "ProjectionSource",
+            "start_world_cm": [
+              0.5,
+              0.7,
+              1.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              1.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 283,
+            "entry_object_id": 291,
+            "target_feature_object_id": 262,
+            "target_sketch_object_id": 258,
+            "target_sketch_name": "ProjectionTarget",
+            "method": "Include",
+            "stored_projection_mode": 0,
+            "is_linked": true,
+            "source_proxy_object_id": 284,
+            "source_descriptor_object_id": 287,
+            "output_naming_record_object_id": 314,
+            "endpoint_progenitor_record_object_ids": {
+              "EdgeEndVertexProgenitor": 318,
+              "EdgeStartVertexProgenitor": 316
+            },
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 290,
+              "sketch_object_id": 224,
+              "sketch_name": "ProjectionSource",
+              "entity_tag": 103,
+              "entity_object_id": 254,
+              "entity_kind": "Line",
+              "output_naming_source_leaf_object_id": 315
+            },
+            "output_cache": {
+              "object_id": 324,
+              "sketch_object_id": 258,
+              "entity_genesis": 0,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "kind": "Line",
+              "entity_tag": 107,
+              "start_point_id": 320,
+              "end_point_id": 322,
+              "start_cm": [
+                0.5,
+                0.7,
+                1.0
+              ],
+              "end_cm": [
+                2.0,
+                1.3,
+                1.0
+              ]
+            },
+            "link_status": "Explicit controller/output-entry/source-proxy and output naming references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "output_count": true,
+        "target_sketch_name": true,
+        "method": true,
+        "linked_relationship_matches_api_reference": true,
+        "output_kind": true,
+        "source_sketch_name": true,
+        "source_entity_kind": true,
+        "cache_start": true,
+        "cache_end": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    },
+    {
+      "file": "sketchprojections-67c0c4531b8f/body_edge.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_sketch_name": null,
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::BRepEdge",
+            "referenced_sketch_name": null,
+            "start_world_cm": [
+              -1.0,
+              1.0,
+              0.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 307,
+            "entry_object_id": 315,
+            "target_feature_object_id": 286,
+            "target_sketch_object_id": 282,
+            "target_sketch_name": "ProjectionTarget",
+            "method": "Project",
+            "stored_projection_mode": 1,
+            "is_linked": true,
+            "source_proxy_object_id": 308,
+            "source_descriptor_object_id": 311,
+            "output_naming_record_object_id": 341,
+            "endpoint_progenitor_record_object_ids": {
+              "EdgeEndVertexProgenitor": 345,
+              "EdgeStartVertexProgenitor": 343
+            },
+            "source": {
+              "kind": "BRepEdgeRecipe",
+              "input_recipe": {
+                "object_id": 314,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 37046,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "6",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 138,
+                "payload_length": 116,
+                "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff01000000ffffffff00000000ffffffff000000000000000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "output_naming_recipe": {
+                "object_id": 342,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 39145,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "6",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 138,
+                "payload_length": 116,
+                "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "topology_status": "Explicit native edge recipes retained; persistent BRep/ASM edge identity unresolved"
+            },
+            "output_cache": {
+              "object_id": 351,
+              "sketch_object_id": 282,
+              "entity_genesis": 0,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "kind": "Line",
+              "entity_tag": 112,
+              "start_point_id": 347,
+              "end_point_id": 349,
+              "start_cm": [
+                -1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ]
+            },
+            "link_status": "Explicit controller/output-entry/source-proxy and output naming references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "output_count": true,
+        "target_sketch_name": true,
+        "method": true,
+        "linked_relationship_matches_api_reference": true,
+        "output_kind": true,
+        "source_brep_edge_recipe_kind": true,
+        "cache_start": true,
+        "cache_end": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    },
+    {
+      "file": "sketchprojections-8fedd685854a/unlinked_line.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::SketchLine",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": false,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": false,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": null,
+            "referenced_sketch_name": null,
+            "start_world_cm": [
+              0.5,
+              0.7,
+              0.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "no_explicit_controller_in_detached_control": true,
+        "no_relationship_reported": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    },
+    {
+      "file": "sketchprojections-8fedd685854a/broken_line.f3d",
+      "api_settings": {
+        "source_type": "adsk::fusion::SketchLine",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": false,
+        "broken_after_projection": true,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": false,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": null,
+            "referenced_sketch_name": null,
+            "start_world_cm": [
+              0.5,
+              0.7,
+              0.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [],
+        "unresolved": [],
+        "scope": "Observed linked Project/Include provenance with explicit output geometry caches; missing controllers do not prove geometry was never linked",
+        "limitations": "Multiple outputs, silhouette/cut/intersection, transformed occurrences, general projected conics/splines and persistent BRep topology unresolved"
+      },
+      "comparisons": {
+        "no_explicit_controller_in_detached_control": true,
+        "no_relationship_reported": true
+      },
+      "cache_coordinate_comparison_scope": "Target sketch is root XY plane in these captures, so local cache coordinates coincide with world coordinates."
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "unsupported_projection_mode",
+      "rejected": true,
+      "reason": "Unsupported projection controller layout"
+    },
+    {
+      "case": "target_controller_owner_mismatch",
+      "rejected": true,
+      "reason": "Projection controller target sketch owner unresolved"
+    },
+    {
+      "case": "input_proxy_and_output_naming_source_disagree",
+      "rejected": true,
+      "reason": "Projection input proxy and output naming source disagree"
+    }
+  ],
+  "core_geometry_integration": {
+    "verified_linked_output_primitives": 5,
+    "scope": "Bounded EntityGenesis0 primitives admitted to ordinary sketch geometry; reference state annotated only for explicit validated links",
+    "downstream_scope": "Curve IDs/tags are available for profile membership; no general projection reconstruction or solver"
+  }
+}

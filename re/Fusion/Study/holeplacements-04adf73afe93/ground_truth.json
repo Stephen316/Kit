@@ -1,0 +1,286 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "reversed_distance.f3d",
+      "position_definition": "PointHolePositionDefinition",
+      "input_positions_cm": [
+        [
+          3.0,
+          2.0,
+          0.0
+        ]
+      ],
+      "position_cm": [
+        3.0,
+        2.0,
+        0.0
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "is_default_direction": false,
+      "diameter_cm": 0.45,
+      "extent_kind": "DistanceExtentDefinition",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "HoleDepth",
+          "value": 1.1,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d4",
+          "role": "HoleDiameter",
+          "value": 0.45,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d5",
+          "role": "TipAngle",
+          "value": 2.059488517353309,
+          "created_by": "ProbeHolePlacement"
+        }
+      ]
+    },
+    {
+      "file": "reversed_all.f3d",
+      "position_definition": "PointHolePositionDefinition",
+      "input_positions_cm": [
+        [
+          3.0,
+          2.0,
+          0.0
+        ]
+      ],
+      "position_cm": [
+        3.0,
+        2.0,
+        0.0
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "is_default_direction": false,
+      "diameter_cm": 0.45,
+      "extent_kind": "AllExtentDefinition",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "HoleDiameter",
+          "value": 0.45,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d4",
+          "role": "TipAngle",
+          "value": 2.059488517353309,
+          "created_by": "ProbeHolePlacement"
+        }
+      ]
+    },
+    {
+      "file": "sketch_point.f3d",
+      "position_definition": "SketchPointHolePositionDefinition",
+      "input_positions_cm": [
+        [
+          3.0,
+          2.0,
+          2.0
+        ]
+      ],
+      "position_cm": [
+        3.0,
+        2.0,
+        2.0
+      ],
+      "direction": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "is_default_direction": true,
+      "diameter_cm": 0.45,
+      "extent_kind": "DistanceExtentDefinition",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "HoleDepth",
+          "value": 1.1,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d4",
+          "role": "HoleDiameter",
+          "value": 0.45,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d5",
+          "role": "TipAngle",
+          "value": 2.059488517353309,
+          "created_by": "ProbeHolePlacement"
+        }
+      ]
+    },
+    {
+      "file": "sketch_points.f3d",
+      "position_definition": "SketchPointsHolePositionDefinition",
+      "input_positions_cm": [
+        [
+          2.0,
+          1.5,
+          2.0
+        ],
+        [
+          3.0,
+          2.5,
+          2.0
+        ],
+        [
+          4.0,
+          3.0,
+          2.0
+        ]
+      ],
+      "position_cm": null,
+      "direction": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "is_default_direction": true,
+      "diameter_cm": 0.45,
+      "extent_kind": "DistanceExtentDefinition",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "HoleDepth",
+          "value": 1.1,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d4",
+          "role": "HoleDiameter",
+          "value": 0.45,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d5",
+          "role": "TipAngle",
+          "value": 2.059488517353309,
+          "created_by": "ProbeHolePlacement"
+        }
+      ]
+    },
+    {
+      "file": "center_edge.f3d",
+      "position_definition": "AtCenterHolePositionDefinition",
+      "input_positions_cm": [
+        [
+          3.0,
+          2.0,
+          2.0
+        ]
+      ],
+      "position_cm": [
+        3.0,
+        2.0,
+        2.0
+      ],
+      "direction": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "is_default_direction": true,
+      "diameter_cm": 0.45,
+      "extent_kind": "DistanceExtentDefinition",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "HoleDepth",
+          "value": 1.1,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d4",
+          "role": "HoleDiameter",
+          "value": 0.45,
+          "created_by": "ProbeHolePlacement"
+        },
+        {
+          "name": "d5",
+          "role": "TipAngle",
+          "value": 2.059488517353309,
+          "created_by": "ProbeHolePlacement"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,722 @@
+{
+  "scope": "Seven saved BODY Scale reconstructions from typed Sketch/Extrude inputs; three explicit unsupported Scale summaries and two whole unchanged unrelated controls",
+  "baseline_commit": "fb2865a",
+  "files": [
+    "tools-fda3948848f4/Scale.f3d",
+    "bodymodes-df9b7113539f/scale_uniform.f3d",
+    "bodymodes-df9b7113539f/scale_nonuniform.f3d",
+    "bodymodes-d696a14d5f0b/scale_holdout.f3d",
+    "bodyselections-62e42366c722/scale_two_bodies_point.f3d",
+    "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
+    "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
+    "scaleshellinputs-97ef1cfd19e4/scale_sketch.f3d",
+    "remainingbodyinputs-7b3357274e85/scale_two_sketches.f3d",
+    "namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d",
+    "circularmodes-45f859c1f1b6/body_full.f3d",
+    "surfacetools-856ca50cf4c7/offset_positive.f3d"
+  ],
+  "summary": {
+    "qualified_Scale_features": 7,
+    "receiving_feature_annotations": 7,
+    "qualified_prism_groups": 8,
+    "source_prism_vertices": 64,
+    "scaled_prism_vertices": 64,
+    "native_cache_vertex_pairs": 64,
+    "source_line_segments": 96,
+    "scaled_line_segments": 96,
+    "source_planar_boundaries": 48,
+    "scaled_planar_boundaries": 48,
+    "native_Scale_parameter_sets": 7,
+    "selected_centre_controls": 7,
+    "independent_native_source_dictionary_checks": 7,
+    "same_ID_literal_view_proofs": 8,
+    "literal_source_vertex_pairs": 64,
+    "complete_signed_FACE_names": 48,
+    "native_Line_equation_checks": 96,
+    "native_Plane_equation_checks": 48,
+    "native_EDGE_endpoint_evaluations": 192,
+    "independent_API_vertex_set_controls": 2,
+    "independent_API_vertices": 16,
+    "selected_vertex_centre_native_source_proofs": 1,
+    "explicit_unsupported_Scale_controls": 3,
+    "saved_files": 12,
+    "whole_output_unchanged_controls": 2,
+    "unexpected_changes": 0,
+    "comparator_baseline_main_calls": 0,
+    "comparator_current_main_calls": 0,
+    "live_API_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "tools-fda3948848f4/Scale.f3d",
+      "archive_sha256": "49a726d8dfa9590ba350ac13fe823bf1368d1dc31b4a5a5653de47aeb1b35646",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 1,
+      "source_prism_vertices": 8,
+      "scaled_prism_vertices": 8,
+      "native_cache_vertex_pairs": 8,
+      "source_line_segments": 12,
+      "scaled_line_segments": 12,
+      "source_planar_boundaries": 6,
+      "scaled_planar_boundaries": 6,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 1,
+      "literal_source_vertex_pairs": 8,
+      "complete_signed_FACE_names": 6,
+      "native_Line_equation_checks": 12,
+      "native_Plane_equation_checks": 6,
+      "native_EDGE_endpoint_evaluations": 24,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": null,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "097768cab2aa290921f7ba7783f193a98e6502d789735c3735057b83b4f45c82",
+      "current_output_sha256": "767031665c67b42b90f85fff10609493b18e108672fcc55f8c3cbfc56b380959",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "bodymodes-df9b7113539f/scale_uniform.f3d",
+      "archive_sha256": "98a75221dd3b44c233f2e7feb142d25042340863030152e5a4b87b23d233ad04",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 1,
+      "source_prism_vertices": 8,
+      "scaled_prism_vertices": 8,
+      "native_cache_vertex_pairs": 8,
+      "source_line_segments": 12,
+      "scaled_line_segments": 12,
+      "source_planar_boundaries": 6,
+      "scaled_planar_boundaries": 6,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 1,
+      "literal_source_vertex_pairs": 8,
+      "complete_signed_FACE_names": 6,
+      "native_Line_equation_checks": 12,
+      "native_Plane_equation_checks": 6,
+      "native_EDGE_endpoint_evaluations": 24,
+      "independent_API_vertex_set_controls": 1,
+      "independent_API_vertices": 8,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": {
+        "truth_file": "bodycoords-2c2aa8982ad4/ground_truth.json",
+        "API_root_body_name": "Body1",
+        "component_occurrence_path": "",
+        "actual_root_vertices_cm": [
+          [
+            8.75,
+            7.0,
+            0.0
+          ],
+          [
+            1.75,
+            7.0,
+            0.0
+          ],
+          [
+            1.75,
+            7.0,
+            3.5
+          ],
+          [
+            8.75,
+            7.0,
+            3.5
+          ],
+          [
+            8.75,
+            1.75,
+            0.0
+          ],
+          [
+            8.75,
+            1.75,
+            3.5
+          ],
+          [
+            1.75,
+            1.75,
+            0.0
+          ],
+          [
+            1.75,
+            1.75,
+            3.5
+          ]
+        ],
+        "native_derived_scaled_vertices_cm": [
+          [
+            1.75,
+            1.75,
+            0.0
+          ],
+          [
+            1.75,
+            1.75,
+            3.5
+          ],
+          [
+            8.75,
+            1.75,
+            0.0
+          ],
+          [
+            8.75,
+            1.75,
+            3.5
+          ],
+          [
+            8.75,
+            7.0,
+            0.0
+          ],
+          [
+            8.75,
+            7.0,
+            3.5
+          ],
+          [
+            1.75,
+            7.0,
+            0.0
+          ],
+          [
+            1.75,
+            7.0,
+            3.5
+          ]
+        ],
+        "complete_native_ID_joins_precede_comparison": true,
+        "API_vertex_assignment": null,
+        "maximum_point_residual_cm": 0.0,
+        "scope": "Complete root vertex sets compared collectively after native source/BODY/POINT-layer joins; no API entity assigned by coordinates"
+      },
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "632ec3cafa40b60cce576512d82a4c3705c972c42ee3971fb31e3fb7f17949e0",
+      "current_output_sha256": "c2bf9ef9e50ba286e21d8f72e88fb96dd609da0786cdb01b6c8229ca8b171205",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "bodymodes-df9b7113539f/scale_nonuniform.f3d",
+      "archive_sha256": "31974211d9b6ff0ec899c208f04ba57a1a84ca405b04b58eac7d969164ea74cb",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 1,
+      "source_prism_vertices": 8,
+      "scaled_prism_vertices": 8,
+      "native_cache_vertex_pairs": 8,
+      "source_line_segments": 12,
+      "scaled_line_segments": 12,
+      "source_planar_boundaries": 6,
+      "scaled_planar_boundaries": 6,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 1,
+      "literal_source_vertex_pairs": 8,
+      "complete_signed_FACE_names": 6,
+      "native_Line_equation_checks": 12,
+      "native_Plane_equation_checks": 6,
+      "native_EDGE_endpoint_evaluations": 24,
+      "independent_API_vertex_set_controls": 1,
+      "independent_API_vertices": 8,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": {
+        "truth_file": "bodycoords-2c2aa8982ad4/ground_truth.json",
+        "API_root_body_name": "Body1",
+        "component_occurrence_path": "",
+        "actual_root_vertices_cm": [
+          [
+            6.0,
+            3.2,
+            0.0
+          ],
+          [
+            1.2,
+            3.2,
+            0.0
+          ],
+          [
+            1.2,
+            3.2,
+            3.2
+          ],
+          [
+            6.0,
+            3.2,
+            3.2
+          ],
+          [
+            6.0,
+            0.8,
+            0.0
+          ],
+          [
+            6.0,
+            0.8,
+            3.2
+          ],
+          [
+            1.2,
+            0.8,
+            0.0
+          ],
+          [
+            1.2,
+            0.8,
+            3.2
+          ]
+        ],
+        "native_derived_scaled_vertices_cm": [
+          [
+            1.2,
+            0.8,
+            0.0
+          ],
+          [
+            1.2,
+            0.8,
+            3.2
+          ],
+          [
+            6.0,
+            0.8,
+            0.0
+          ],
+          [
+            6.0,
+            0.8,
+            3.2
+          ],
+          [
+            6.0,
+            3.2,
+            0.0
+          ],
+          [
+            6.0,
+            3.2,
+            3.2
+          ],
+          [
+            1.2,
+            3.2,
+            0.0
+          ],
+          [
+            1.2,
+            3.2,
+            3.2
+          ]
+        ],
+        "complete_native_ID_joins_precede_comparison": true,
+        "API_vertex_assignment": null,
+        "maximum_point_residual_cm": 0.0,
+        "scope": "Complete root vertex sets compared collectively after native source/BODY/POINT-layer joins; no API entity assigned by coordinates"
+      },
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "8ea33d6a253487564372c2e50990756108303dcf057849c5a90448aeacc49e8d",
+      "current_output_sha256": "5df66b1004250c5641d6fdaf2e173a07f1aeda19bdb590447989b173443c656e",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "bodymodes-d696a14d5f0b/scale_holdout.f3d",
+      "archive_sha256": "30863518ee8fc889e1f08a57c5b2a50d04806f45a0841713249af155c9ec6735",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 1,
+      "source_prism_vertices": 8,
+      "scaled_prism_vertices": 8,
+      "native_cache_vertex_pairs": 8,
+      "source_line_segments": 12,
+      "scaled_line_segments": 12,
+      "source_planar_boundaries": 6,
+      "scaled_planar_boundaries": 6,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 1,
+      "literal_source_vertex_pairs": 8,
+      "complete_signed_FACE_names": 6,
+      "native_Line_equation_checks": 12,
+      "native_Plane_equation_checks": 6,
+      "native_EDGE_endpoint_evaluations": 24,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": null,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "7838e0a35a5c3cf35ffde03619fbceb475afec2bf2b422e194e8982ceb344e8f",
+      "current_output_sha256": "1a5d025023b911dc1293a9c1565e7e2c5966e2f53b2c5bdd1cb92a0a423e3f9d",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "bodyselections-62e42366c722/scale_two_bodies_point.f3d",
+      "archive_sha256": "102cd32ea5fd1322f8cd404928d91004bbfed0169ec315c6c460c8a9cc42c30d",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 2,
+      "source_prism_vertices": 16,
+      "scaled_prism_vertices": 16,
+      "native_cache_vertex_pairs": 16,
+      "source_line_segments": 24,
+      "scaled_line_segments": 24,
+      "source_planar_boundaries": 12,
+      "scaled_planar_boundaries": 12,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 2,
+      "literal_source_vertex_pairs": 16,
+      "complete_signed_FACE_names": 12,
+      "native_Line_equation_checks": 24,
+      "native_Plane_equation_checks": 12,
+      "native_EDGE_endpoint_evaluations": 48,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": null,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "f796c3e325759f544e9990facf5c21fc20808a00866a719248e1f5f4bdafd75f",
+      "current_output_sha256": "aaa57c6a4db3ebc817607aab74b98a44c09017646840d53fab44b505a54bfd4f",
+      "qualified_difference_paths": [
+        "/streams/0/features/5/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
+      "archive_sha256": "8df1c9bb14b658b445ef3e69d73403046a061d63aef7fc90b54fa163861d3c22",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 1,
+      "source_prism_vertices": 8,
+      "scaled_prism_vertices": 8,
+      "native_cache_vertex_pairs": 8,
+      "source_line_segments": 12,
+      "scaled_line_segments": 12,
+      "source_planar_boundaries": 6,
+      "scaled_planar_boundaries": 6,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 1,
+      "literal_source_vertex_pairs": 8,
+      "complete_signed_FACE_names": 6,
+      "native_Line_equation_checks": 12,
+      "native_Plane_equation_checks": 6,
+      "native_EDGE_endpoint_evaluations": 24,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 1,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": null,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "def507099b685835d9e3f54063d9e6b6baf5cc81278cbb28c698a05ee26401aa",
+      "current_output_sha256": "92a164da10373350eae5df9881bc4971f07c40438afa310c2cf25c9f075fc4cc",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
+      "archive_sha256": "df4dd93a0da0fa957d92e9c2fe90fd0eab1ac9b3bc8d23272da3fd9d098a0957",
+      "qualified_Scale_features": 1,
+      "receiving_feature_annotations": 1,
+      "qualified_prism_groups": 1,
+      "source_prism_vertices": 8,
+      "scaled_prism_vertices": 8,
+      "native_cache_vertex_pairs": 8,
+      "source_line_segments": 12,
+      "scaled_line_segments": 12,
+      "source_planar_boundaries": 6,
+      "scaled_planar_boundaries": 6,
+      "native_Scale_parameter_sets": 1,
+      "selected_centre_controls": 1,
+      "independent_native_source_dictionary_checks": 1,
+      "same_ID_literal_view_proofs": 1,
+      "literal_source_vertex_pairs": 8,
+      "complete_signed_FACE_names": 6,
+      "native_Line_equation_checks": 12,
+      "native_Plane_equation_checks": 6,
+      "native_EDGE_endpoint_evaluations": 24,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "API_vertex_corroboration": null,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "1ece8849b1e38d87f99287d4b6764fddfbe5c0943fbac7300f7431ed33c77215",
+      "current_output_sha256": "29c2f57e1d26de93a9d31d5be6d8b29a0d325bab47a6f629be12ad5e2a55e4b6",
+      "qualified_difference_paths": [
+        "/streams/0/features/4/scale_reconstruction",
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/scale_sketch.f3d",
+      "archive_sha256": "4358cdf17df0801ee70c9ea23b83143c45be2c85ff3b355231c5c1f4d3929232",
+      "qualified_Scale_features": 0,
+      "receiving_feature_annotations": 0,
+      "qualified_prism_groups": 0,
+      "source_prism_vertices": 0,
+      "scaled_prism_vertices": 0,
+      "native_cache_vertex_pairs": 0,
+      "source_line_segments": 0,
+      "scaled_line_segments": 0,
+      "source_planar_boundaries": 0,
+      "scaled_planar_boundaries": 0,
+      "native_Scale_parameter_sets": 0,
+      "selected_centre_controls": 0,
+      "independent_native_source_dictionary_checks": 0,
+      "same_ID_literal_view_proofs": 0,
+      "literal_source_vertex_pairs": 0,
+      "complete_signed_FACE_names": 0,
+      "native_Line_equation_checks": 0,
+      "native_Plane_equation_checks": 0,
+      "native_EDGE_endpoint_evaluations": 0,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "73c11d5c0cee6077da1e52cd1c145523837ce0047f5c0df22370f01332c7f9f5",
+      "current_output_sha256": "b0c1ce428237ab7f13b1efa722b9aa84aefafe7a22d5d123152103670b419e54",
+      "qualified_difference_paths": [
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "remainingbodyinputs-7b3357274e85/scale_two_sketches.f3d",
+      "archive_sha256": "6be48a43ffb8f056fb1c1b288b0c96094397d8cad3eb012277d131c50c6dcc8f",
+      "qualified_Scale_features": 0,
+      "receiving_feature_annotations": 0,
+      "qualified_prism_groups": 0,
+      "source_prism_vertices": 0,
+      "scaled_prism_vertices": 0,
+      "native_cache_vertex_pairs": 0,
+      "source_line_segments": 0,
+      "scaled_line_segments": 0,
+      "source_planar_boundaries": 0,
+      "scaled_planar_boundaries": 0,
+      "native_Scale_parameter_sets": 0,
+      "selected_centre_controls": 0,
+      "independent_native_source_dictionary_checks": 0,
+      "same_ID_literal_view_proofs": 0,
+      "literal_source_vertex_pairs": 0,
+      "complete_signed_FACE_names": 0,
+      "native_Line_equation_checks": 0,
+      "native_Plane_equation_checks": 0,
+      "native_EDGE_endpoint_evaluations": 0,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "039ff6e5f633b2fb9df248824078dd2586e0ba71edf1bd5e3a38ced5daa36e30",
+      "current_output_sha256": "c5576f90c64960c2f2f282e396ee2e06563565814d25f24fca20676cbd1c63f4",
+      "qualified_difference_paths": [
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d",
+      "archive_sha256": "0e190763e2f2d78e4453f8409d08c2afbb1648905620cb2d81503f470fc8c1ff",
+      "qualified_Scale_features": 0,
+      "receiving_feature_annotations": 0,
+      "qualified_prism_groups": 0,
+      "source_prism_vertices": 0,
+      "scaled_prism_vertices": 0,
+      "native_cache_vertex_pairs": 0,
+      "source_line_segments": 0,
+      "scaled_line_segments": 0,
+      "source_planar_boundaries": 0,
+      "scaled_planar_boundaries": 0,
+      "native_Scale_parameter_sets": 0,
+      "selected_centre_controls": 0,
+      "independent_native_source_dictionary_checks": 0,
+      "same_ID_literal_view_proofs": 0,
+      "literal_source_vertex_pairs": 0,
+      "complete_signed_FACE_names": 0,
+      "native_Line_equation_checks": 0,
+      "native_Plane_equation_checks": 0,
+      "native_EDGE_endpoint_evaluations": 0,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "cb001cf2d89ddf300b70ddfbd004a52c3970f79844472528cdaedc40a262d5f3",
+      "current_output_sha256": "b2ce4188d0cf5bf4de348fecc8d01b0c9786a22dcd11996df89b7d37f2207dd2",
+      "qualified_difference_paths": [
+        "/streams/0/scale_reconstruction"
+      ]
+    },
+    {
+      "archive": "circularmodes-45f859c1f1b6/body_full.f3d",
+      "archive_sha256": "258e775beb5ba17ce7ea506fadc29d56db78fc3d74eb5fad854b3e194263dcc2",
+      "qualified_Scale_features": 0,
+      "receiving_feature_annotations": 0,
+      "qualified_prism_groups": 0,
+      "source_prism_vertices": 0,
+      "scaled_prism_vertices": 0,
+      "native_cache_vertex_pairs": 0,
+      "source_line_segments": 0,
+      "scaled_line_segments": 0,
+      "source_planar_boundaries": 0,
+      "scaled_planar_boundaries": 0,
+      "native_Scale_parameter_sets": 0,
+      "selected_centre_controls": 0,
+      "independent_native_source_dictionary_checks": 0,
+      "same_ID_literal_view_proofs": 0,
+      "literal_source_vertex_pairs": 0,
+      "complete_signed_FACE_names": 0,
+      "native_Line_equation_checks": 0,
+      "native_Plane_equation_checks": 0,
+      "native_EDGE_endpoint_evaluations": 0,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "2e5060ae3199091bb7c1c08750bd11c828d033ae7705c70b30a1c19c2b3057ac",
+      "current_output_sha256": "2e5060ae3199091bb7c1c08750bd11c828d033ae7705c70b30a1c19c2b3057ac",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_positive.f3d",
+      "archive_sha256": "6df9a1ba1cb825e0edee881d65763da70e573d34d7157c67de89af7b09429f3b",
+      "qualified_Scale_features": 0,
+      "receiving_feature_annotations": 0,
+      "qualified_prism_groups": 0,
+      "source_prism_vertices": 0,
+      "scaled_prism_vertices": 0,
+      "native_cache_vertex_pairs": 0,
+      "source_line_segments": 0,
+      "scaled_line_segments": 0,
+      "source_planar_boundaries": 0,
+      "scaled_planar_boundaries": 0,
+      "native_Scale_parameter_sets": 0,
+      "selected_centre_controls": 0,
+      "independent_native_source_dictionary_checks": 0,
+      "same_ID_literal_view_proofs": 0,
+      "literal_source_vertex_pairs": 0,
+      "complete_signed_FACE_names": 0,
+      "native_Line_equation_checks": 0,
+      "native_Plane_equation_checks": 0,
+      "native_EDGE_endpoint_evaluations": 0,
+      "independent_API_vertex_set_controls": 0,
+      "independent_API_vertices": 0,
+      "selected_vertex_centre_native_source_proofs": 0,
+      "explicit_unsupported_Scale_controls": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotation": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "2a3969c14b44d0eb4dfefdca7f73d28299f1562586b4516eaf23302f9b3e4a31",
+      "current_output_sha256": "2a3969c14b44d0eb4dfefdca7f73d28299f1562586b4516eaf23302f9b3e4a31",
+      "qualified_difference_paths": []
+    }
+  ],
+  "fixed_manifest_acquisition": {
+    "baseline_main_calls": 12,
+    "current_main_calls": 12,
+    "baseline_passes": 1,
+    "current_passes": 1,
+    "interpreter": "/usr/bin/python3",
+    "entrypoint": "decode_basics.decode_basics(ROOT / filename, zstd_library)",
+    "fixed_order": [
+      "tools-fda3948848f4/Scale.f3d",
+      "bodymodes-df9b7113539f/scale_uniform.f3d",
+      "bodymodes-df9b7113539f/scale_nonuniform.f3d",
+      "bodymodes-d696a14d5f0b/scale_holdout.f3d",
+      "bodyselections-62e42366c722/scale_two_bodies_point.f3d",
+      "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
+      "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
+      "scaleshellinputs-97ef1cfd19e4/scale_sketch.f3d",
+      "remainingbodyinputs-7b3357274e85/scale_two_sketches.f3d",
+      "namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d",
+      "circularmodes-45f859c1f1b6/body_full.f3d",
+      "surfacetools-856ca50cf4c7/offset_positive.f3d"
+    ],
+    "scope": "Original fixed acquisition, distinct from cached comparator zero-main execution"
+  },
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-scale-reconstruction-baseline.json",
+      "sha256": "2e49e601f3331badb445f953a28e37e616f77efd5d778ab223bddcaeda2d7173"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-scale-reconstruction-current.json",
+      "sha256": "6a35bcda8de1bc592f8c5f55f1b1a4a4e26251d5c0bf6b80384606481adf7a7f"
+    }
+  },
+  "evidence_sha256": {
+    "scale-reconstruction-decoding.json": "4175b8051985ea1929a1e9bb85409d36b0e69d21bcf2422fa6d6b7c6dedfcb13",
+    "scale-reconstruction-source-decoding.json": "72f5203e0449880e4dd87b209d152d1e16a2299bb6904eab81ee625bc5434c65",
+    "bodycoords-2c2aa8982ad4/ground_truth.json": "3889dafc1ae1ae253fb818aaf1097d823a2ea60c74ac844450bf45658062817c"
+  },
+  "frozen_production_sha256": {
+    "decode_scale_reconstruction_sources.py": "c788206817af9fcb0431c8ff34822ada0f7af35ed3e9c22c7c393280cfbbadf9",
+    "decode_scale_reconstruction.py": "342974414ebaf1e97f40559103b48756c52ea638c70ad5d90456e021c042e112",
+    "decode_scale_prism_geometry.py": "4a17d115d2d6dace311901c1bf113b8ea611c706f0375d3f2d195adbdc9b54eb"
+  },
+  "source_sha256": {
+    "validate_scale_reconstruction_integration.py": "f1dedac003a166ec9b37f8a093ce0a0bfb0905c44c6661a294454abc14cd8e05",
+    "decode_scale_reconstruction.py": "342974414ebaf1e97f40559103b48756c52ea638c70ad5d90456e021c042e112",
+    "decode_scale_prism_geometry.py": "4a17d115d2d6dace311901c1bf113b8ea611c706f0375d3f2d195adbdc9b54eb",
+    "decode_scale_reconstruction_sources.py": "c788206817af9fcb0431c8ff34822ada0f7af35ed3e9c22c7c393280cfbbadf9",
+    "decode_basics.py": "67729fdb1f9dab5c316aee368c52433ad193de07184c801e744801059abdb9bd"
+  },
+  "limitations": [
+    "Typed source routes and source POINT/layer, EDGE/FACE identities precede numerical cache corroboration.",
+    "Actual API root vertex sets corroborate two complete results collectively after native joins; no API entity assignment by geometry.",
+    "Other five BODY captures supply API settings and point/source controls, without new API geometry claims.",
+    "Three unsupported cases retain every old warning and setting; no current/history/persistent identity or native regeneration claim.",
+    "No live API calls or whole-corpus decoding; exact full previous outputs are preserved."
+  ]
+}

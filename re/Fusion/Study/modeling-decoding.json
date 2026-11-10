@@ -1,0 +1,2961 @@
+{
+  "status": "pass",
+  "checks": [
+    {
+      "file": "models-b8a640dbddc6/new_body.f3d",
+      "features": 1,
+      "parameters": 2,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/join.f3d",
+      "features": 2,
+      "parameters": 4,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/cut.f3d",
+      "features": 2,
+      "parameters": 4,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/intersect.f3d",
+      "features": 2,
+      "parameters": 4,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/symmetric_full.f3d",
+      "features": 1,
+      "parameters": 2,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/symmetric_half.f3d",
+      "features": 1,
+      "parameters": 2,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/two_sided.f3d",
+      "features": 1,
+      "parameters": 4,
+      "status": "pass"
+    },
+    {
+      "file": "models-b8a640dbddc6/through_all.f3d",
+      "features": 2,
+      "parameters": 3,
+      "status": "pass"
+    },
+    {
+      "file": "models-97a5e41e2ba7/revolve_partial.f3d",
+      "features": 1,
+      "parameters": 1,
+      "status": "pass"
+    },
+    {
+      "file": "models-97a5e41e2ba7/revolve_full.f3d",
+      "features": 1,
+      "parameters": 1,
+      "status": "pass"
+    }
+  ],
+  "checked_features": 14,
+  "checked_parameters": 27,
+  "limitations": [
+    "Through-all is deliberately unresolved among non-distance end conditions.",
+    "Revolve-axis selection is undecoded.",
+    "No feature body regeneration or writer.",
+    "One Fusion version and controlled samples only."
+  ],
+  "results": [
+    {
+      "file": "models-b8a640dbddc6/new_body.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 24172,
+              "type_code": "347",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23914,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 25475,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25744,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 26091,
+              "type_code": "385",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 1.7000000000000002,
+                  "role_offset": 27378,
+                  "value_offset": 27428,
+                  "expression_candidates": [
+                    "17 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 17.0,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 27448,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 27718,
+                  "value_offset": 27764,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 27784,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 26840,
+                  "namespace_text": "f6502d51-7627-4069-95d1-0ba538242afb",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 1.7000000000000002,
+                    "role_offset": 27378,
+                    "value_offset": 27428,
+                    "expression_candidates": [
+                      "17 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 17.0,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 27448,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 27718,
+                    "value_offset": 27764,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 27784,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  1.7000000000000002
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 271,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/join.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 25406,
+              "type_code": "347",
+              "parameters": [],
+              "name": "BaseProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 25148,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 26709,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 26978,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 2.0,
+                  "radius_mm": 20.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 27325,
+              "type_code": "354",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 3.0,
+                  "role_offset": 28610,
+                  "value_offset": 28660,
+                  "expression_candidates": [
+                    "30 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 30.0,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 28680,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 28950,
+                  "value_offset": 28996,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 29016,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "BaseExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "BaseProfile",
+                  "reference_record_offset": 28072,
+                  "namespace_text": "7c0a1352-5f2e-48e7-bb7b-bb3dbac4a1ef",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 3.0,
+                    "role_offset": 28610,
+                    "value_offset": 28660,
+                    "expression_candidates": [
+                      "30 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 30.0,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 28680,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 28950,
+                    "value_offset": 28996,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 29016,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  3.0
+                ]
+              }
+            },
+            {
+              "kind": "Sketch",
+              "object_id": 271,
+              "stored_index": 2,
+              "record_offset": 32161,
+              "type_code": "347",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 267,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 269,
+                  "sketch_object_id": 267,
+                  "record_offset": 31903,
+                  "kind": "Point",
+                  "entity_tag": 103,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 292,
+                  "sketch_object_id": 267,
+                  "record_offset": 33464,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 294,
+                  "sketch_object_id": 267,
+                  "record_offset": 33733,
+                  "kind": "Circle",
+                  "center_point_id": 292,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 105,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 298,
+              "stored_index": 2,
+              "record_offset": 34080,
+              "type_code": "354",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d3",
+                  "display_units": "mm",
+                  "raw_float64": 5.0,
+                  "role_offset": 36263,
+                  "value_offset": 36313,
+                  "expression_candidates": [
+                    "50 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 50.0,
+                  "parameter_object_id": 313,
+                  "binding_object_id": 314,
+                  "binding_offset": 36333,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d4",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 36603,
+                  "value_offset": 36649,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 316,
+                  "binding_object_id": 317,
+                  "binding_offset": 36669,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 267,
+                  "feature_object_id": 271,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 35725,
+                  "namespace_text": "7c0a1352-5f2e-48e7-bb7b-bb3dbac4a1ef",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d3",
+                    "display_units": "mm",
+                    "raw_float64": 5.0,
+                    "role_offset": 36263,
+                    "value_offset": 36313,
+                    "expression_candidates": [
+                      "50 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 50.0,
+                    "parameter_object_id": 313,
+                    "binding_object_id": 314,
+                    "binding_offset": 36333,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d4",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 36603,
+                    "value_offset": 36649,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 316,
+                    "binding_object_id": 317,
+                    "binding_offset": 36669,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 1,
+                "kind": "Join"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  5.0
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 346,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/cut.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 25406,
+              "type_code": "333",
+              "parameters": [],
+              "name": "BaseProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 25148,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 26709,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 26978,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 2.0,
+                  "radius_mm": 20.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 27325,
+              "type_code": "377",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 3.0,
+                  "role_offset": 28610,
+                  "value_offset": 28660,
+                  "expression_candidates": [
+                    "30 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 30.0,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 28680,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 28950,
+                  "value_offset": 28996,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 29016,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "BaseExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "BaseProfile",
+                  "reference_record_offset": 28072,
+                  "namespace_text": "c45f6893-868e-452c-8de9-4e5cbaeb1510",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 3.0,
+                    "role_offset": 28610,
+                    "value_offset": 28660,
+                    "expression_candidates": [
+                      "30 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 30.0,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 28680,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 28950,
+                    "value_offset": 28996,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 29016,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  3.0
+                ]
+              }
+            },
+            {
+              "kind": "Sketch",
+              "object_id": 271,
+              "stored_index": 2,
+              "record_offset": 32161,
+              "type_code": "333",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 267,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 269,
+                  "sketch_object_id": 267,
+                  "record_offset": 31903,
+                  "kind": "Point",
+                  "entity_tag": 103,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 292,
+                  "sketch_object_id": 267,
+                  "record_offset": 33464,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 294,
+                  "sketch_object_id": 267,
+                  "record_offset": 33733,
+                  "kind": "Circle",
+                  "center_point_id": 292,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 105,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 298,
+              "stored_index": 2,
+              "record_offset": 34080,
+              "type_code": "377",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d3",
+                  "display_units": "mm",
+                  "raw_float64": 1.7000000000000002,
+                  "role_offset": 36263,
+                  "value_offset": 36313,
+                  "expression_candidates": [
+                    "17 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 17.0,
+                  "parameter_object_id": 313,
+                  "binding_object_id": 314,
+                  "binding_offset": 36333,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d4",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 36603,
+                  "value_offset": 36649,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 316,
+                  "binding_object_id": 317,
+                  "binding_offset": 36669,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 267,
+                  "feature_object_id": 271,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 35725,
+                  "namespace_text": "c45f6893-868e-452c-8de9-4e5cbaeb1510",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d3",
+                    "display_units": "mm",
+                    "raw_float64": 1.7000000000000002,
+                    "role_offset": 36263,
+                    "value_offset": 36313,
+                    "expression_candidates": [
+                      "17 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 17.0,
+                    "parameter_object_id": 313,
+                    "binding_object_id": 314,
+                    "binding_offset": 36333,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d4",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 36603,
+                    "value_offset": 36649,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 316,
+                    "binding_object_id": 317,
+                    "binding_offset": 36669,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 2,
+                "kind": "Cut"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  1.7000000000000002
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 342,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/intersect.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 25406,
+              "type_code": "323",
+              "parameters": [],
+              "name": "BaseProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 25148,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 26709,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 26978,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 2.0,
+                  "radius_mm": 20.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 27325,
+              "type_code": "381",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 3.0,
+                  "role_offset": 28610,
+                  "value_offset": 28660,
+                  "expression_candidates": [
+                    "30 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 30.0,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 28680,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 28950,
+                  "value_offset": 28996,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 29016,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "BaseExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "BaseProfile",
+                  "reference_record_offset": 28072,
+                  "namespace_text": "c63f798f-219d-4c68-9cb2-a5adec9bc7ed",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 3.0,
+                    "role_offset": 28610,
+                    "value_offset": 28660,
+                    "expression_candidates": [
+                      "30 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 30.0,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 28680,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 28950,
+                    "value_offset": 28996,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 29016,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  3.0
+                ]
+              }
+            },
+            {
+              "kind": "Sketch",
+              "object_id": 271,
+              "stored_index": 2,
+              "record_offset": 32129,
+              "type_code": "323",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 267,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 269,
+                  "sketch_object_id": 267,
+                  "record_offset": 31871,
+                  "kind": "Point",
+                  "entity_tag": 103,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 292,
+                  "sketch_object_id": 267,
+                  "record_offset": 33432,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 294,
+                  "sketch_object_id": 267,
+                  "record_offset": 33701,
+                  "kind": "Circle",
+                  "center_point_id": 292,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 105,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 298,
+              "stored_index": 2,
+              "record_offset": 34048,
+              "type_code": "381",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d3",
+                  "display_units": "mm",
+                  "raw_float64": 1.7000000000000002,
+                  "role_offset": 36231,
+                  "value_offset": 36281,
+                  "expression_candidates": [
+                    "17 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 17.0,
+                  "parameter_object_id": 313,
+                  "binding_object_id": 314,
+                  "binding_offset": 36301,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d4",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 36571,
+                  "value_offset": 36617,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 316,
+                  "binding_object_id": 317,
+                  "binding_offset": 36637,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 267,
+                  "feature_object_id": 271,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 35693,
+                  "namespace_text": "c63f798f-219d-4c68-9cb2-a5adec9bc7ed",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d3",
+                    "display_units": "mm",
+                    "raw_float64": 1.7000000000000002,
+                    "role_offset": 36231,
+                    "value_offset": 36281,
+                    "expression_candidates": [
+                      "17 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 17.0,
+                    "parameter_object_id": 313,
+                    "binding_object_id": 314,
+                    "binding_offset": 36301,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d4",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 36571,
+                    "value_offset": 36617,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 316,
+                    "binding_object_id": 317,
+                    "binding_offset": 36637,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 3,
+                "kind": "Intersect"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  1.7000000000000002
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 342,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/symmetric_full.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 24172,
+              "type_code": "335",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23914,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 25475,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25744,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 26091,
+              "type_code": "386",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 2.4000000000000004,
+                  "role_offset": 27388,
+                  "value_offset": 27438,
+                  "expression_candidates": [
+                    "24 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 24.000000000000004,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 27458,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 27728,
+                  "value_offset": 27774,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 27794,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 26850,
+                  "namespace_text": "d3d2ae35-e4a2-4672-ba14-6237d5fdf4a5",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 2.4000000000000004,
+                    "role_offset": 27388,
+                    "value_offset": 27438,
+                    "expression_candidates": [
+                      "24 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 24.000000000000004,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 27458,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 27728,
+                    "value_offset": 27774,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 27794,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 3,
+                "mode": "Symmetric",
+                "distance_convention": "FullLength",
+                "stored_distance_convention": 1,
+                "side_one_distance_cm": [
+                  2.4000000000000004
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 271,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/symmetric_half.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 24172,
+              "type_code": "336",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23914,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 25475,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25744,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 26091,
+              "type_code": "377",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 2.4000000000000004,
+                  "role_offset": 27388,
+                  "value_offset": 27438,
+                  "expression_candidates": [
+                    "24 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 24.000000000000004,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 27458,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 27728,
+                  "value_offset": 27774,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 27794,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 26850,
+                  "namespace_text": "d1764c35-8c8e-431b-bf92-825fa6294a7c",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 2.4000000000000004,
+                    "role_offset": 27388,
+                    "value_offset": 27438,
+                    "expression_candidates": [
+                      "24 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 24.000000000000004,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 27458,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 27728,
+                    "value_offset": 27774,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 27794,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 3,
+                "mode": "Symmetric",
+                "distance_convention": "HalfLength",
+                "stored_distance_convention": 2,
+                "side_one_distance_cm": [
+                  2.4000000000000004
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 271,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/two_sided.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 24396,
+              "type_code": "336",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 24138,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 25699,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25968,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 26315,
+              "type_code": "354",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 1.1,
+                  "role_offset": 27644,
+                  "value_offset": 27694,
+                  "expression_candidates": [
+                    "11 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 11.0,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 27714,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 27984,
+                  "value_offset": 28030,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 28050,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "AgainstDistance",
+                  "parameter_name": "d3",
+                  "display_units": "mm",
+                  "raw_float64": 2.3000000000000003,
+                  "role_offset": 28316,
+                  "value_offset": 28370,
+                  "expression_candidates": [
+                    "23 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 23.000000000000004,
+                  "parameter_object_id": 248,
+                  "binding_object_id": 249,
+                  "binding_offset": 28390,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "Side2TaperAngle",
+                  "parameter_name": "d4",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 28660,
+                  "value_offset": 28716,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 251,
+                  "binding_object_id": 252,
+                  "binding_offset": 28736,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 27106,
+                  "namespace_text": "fa00f34c-eee1-426c-b6ec-1e6731d2f9a6",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 1.1,
+                    "role_offset": 27644,
+                    "value_offset": 27694,
+                    "expression_candidates": [
+                      "11 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 11.0,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 27714,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 27984,
+                    "value_offset": 28030,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 28050,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "AgainstDistance": [
+                  {
+                    "role": "AgainstDistance",
+                    "parameter_name": "d3",
+                    "display_units": "mm",
+                    "raw_float64": 2.3000000000000003,
+                    "role_offset": 28316,
+                    "value_offset": 28370,
+                    "expression_candidates": [
+                      "23 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 23.000000000000004,
+                    "parameter_object_id": 248,
+                    "binding_object_id": 249,
+                    "binding_offset": 28390,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "Side2TaperAngle": [
+                  {
+                    "role": "Side2TaperAngle",
+                    "parameter_name": "d4",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 28660,
+                    "value_offset": 28716,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 251,
+                    "binding_object_id": 252,
+                    "binding_offset": 28736,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 2,
+                "mode": "TwoSided",
+                "side_one_distance_cm": [
+                  1.1
+                ],
+                "side_two_distance_cm": [
+                  2.3000000000000003
+                ]
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 279,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-b8a640dbddc6/through_all.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 25504,
+              "type_code": "344",
+              "parameters": [],
+              "name": "BaseProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 25246,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 26807,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 27076,
+                  "kind": "Circle",
+                  "center_point_id": 228,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 2.0,
+                  "radius_mm": 20.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 102,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 234,
+              "stored_index": 1,
+              "record_offset": 27423,
+              "type_code": "381",
+              "parameters": [
+                {
+                  "role": "AlongDistance",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 3.0,
+                  "role_offset": 28708,
+                  "value_offset": 28758,
+                  "expression_candidates": [
+                    "30 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 30.0,
+                  "parameter_object_id": 242,
+                  "binding_object_id": 243,
+                  "binding_offset": 28778,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                },
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d2",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 29048,
+                  "value_offset": 29094,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 245,
+                  "binding_object_id": 246,
+                  "binding_offset": 29114,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "BaseExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "BaseProfile",
+                  "reference_record_offset": 28170,
+                  "namespace_text": "0b1e4d5c-6032-4e78-b751-7f41cca2ccfd",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongDistance": [
+                  {
+                    "role": "AlongDistance",
+                    "parameter_name": "d1",
+                    "display_units": "mm",
+                    "raw_float64": 3.0,
+                    "role_offset": 28708,
+                    "value_offset": 28758,
+                    "expression_candidates": [
+                      "30 mm"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_mm": 30.0,
+                    "parameter_object_id": 242,
+                    "binding_object_id": 243,
+                    "binding_offset": 28778,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ],
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d2",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 29048,
+                    "value_offset": 29094,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 245,
+                    "binding_object_id": 246,
+                    "binding_offset": 29114,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_distance_cm": [
+                  3.0
+                ]
+              }
+            },
+            {
+              "kind": "Sketch",
+              "object_id": 271,
+              "stored_index": 2,
+              "record_offset": 32251,
+              "type_code": "344",
+              "parameters": [],
+              "name": "ProbeProfile",
+              "sketch_object_id": 267,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 269,
+                  "sketch_object_id": 267,
+                  "record_offset": 31993,
+                  "kind": "Point",
+                  "entity_tag": 103,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 292,
+                  "sketch_object_id": 267,
+                  "record_offset": 33554,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 294,
+                  "sketch_object_id": 267,
+                  "record_offset": 33823,
+                  "kind": "Circle",
+                  "center_point_id": 292,
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0,
+                  "radius_mm": 10.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 105,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Extrude",
+              "object_id": 298,
+              "stored_index": 2,
+              "record_offset": 34170,
+              "type_code": "381",
+              "parameters": [
+                {
+                  "role": "TaperAngle",
+                  "parameter_name": "d3",
+                  "display_units": "deg",
+                  "raw_float64": 0.0,
+                  "role_offset": 37253,
+                  "value_offset": 37299,
+                  "expression_candidates": [
+                    "0.0 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 0.0,
+                  "parameter_object_id": 320,
+                  "binding_object_id": 321,
+                  "binding_offset": 37319,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeExtrusion",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 267,
+                  "feature_object_id": 271,
+                  "name": "ProbeProfile",
+                  "reference_record_offset": 35826,
+                  "namespace_text": "0b1e4d5c-6032-4e78-b751-7f41cca2ccfd",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "TaperAngle": [
+                  {
+                    "role": "TaperAngle",
+                    "parameter_name": "d3",
+                    "display_units": "deg",
+                    "raw_float64": 0.0,
+                    "role_offset": 37253,
+                    "value_offset": 37299,
+                    "expression_candidates": [
+                      "0.0 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 0.0,
+                    "parameter_object_id": 320,
+                    "binding_object_id": 321,
+                    "binding_offset": 37319,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 2,
+                "kind": "Cut"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one_condition": "NonDistanceUnresolved"
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 352,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [
+              {
+                "object_id": 298,
+                "reason": "Non-distance end condition not differentiated"
+              }
+            ],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-97a5e41e2ba7/revolve_partial.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 24255,
+              "type_code": "330",
+              "parameters": [],
+              "name": "RevolveProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23997,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 25558,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25838,
+                  "kind": "Point",
+                  "entity_tag": 102,
+                  "position_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 232,
+                  "sketch_object_id": 202,
+                  "record_offset": 26118,
+                  "kind": "Point",
+                  "entity_tag": 103,
+                  "position_cm": [
+                    2.0,
+                    1.5,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 234,
+                  "sketch_object_id": 202,
+                  "record_offset": 26398,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    1.0,
+                    1.5,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 236,
+                  "sketch_object_id": 202,
+                  "record_offset": 26678,
+                  "kind": "Line",
+                  "start_point_id": 228,
+                  "end_point_id": 230,
+                  "start_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "entity_tag": 105,
+                  "is_fixed": false,
+                  "is_construction": false
+                },
+                {
+                  "object_id": 237,
+                  "sketch_object_id": 202,
+                  "record_offset": 27034,
+                  "kind": "Line",
+                  "start_point_id": 230,
+                  "end_point_id": 232,
+                  "start_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.0,
+                    1.5,
+                    0.0
+                  ],
+                  "entity_tag": 106,
+                  "is_fixed": false,
+                  "is_construction": false
+                },
+                {
+                  "object_id": 238,
+                  "sketch_object_id": 202,
+                  "record_offset": 27390,
+                  "kind": "Line",
+                  "start_point_id": 232,
+                  "end_point_id": 234,
+                  "start_cm": [
+                    2.0,
+                    1.5,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.0,
+                    1.5,
+                    0.0
+                  ],
+                  "entity_tag": 107,
+                  "is_fixed": false,
+                  "is_construction": false
+                },
+                {
+                  "object_id": 239,
+                  "sketch_object_id": 202,
+                  "record_offset": 27746,
+                  "kind": "Line",
+                  "start_point_id": 234,
+                  "end_point_id": 228,
+                  "start_cm": [
+                    1.0,
+                    1.5,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "entity_tag": 108,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Revolve",
+              "object_id": 243,
+              "stored_index": 1,
+              "record_offset": 28102,
+              "type_code": "354",
+              "parameters": [
+                {
+                  "role": "AlongAngle",
+                  "parameter_name": "d1",
+                  "display_units": "deg",
+                  "raw_float64": 1.1344640137963142,
+                  "role_offset": 30160,
+                  "value_offset": 30206,
+                  "expression_candidates": [
+                    "65 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 65.0,
+                  "parameter_object_id": 258,
+                  "binding_object_id": 259,
+                  "binding_offset": 30226,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeRevolve",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "RevolveProfile",
+                  "reference_record_offset": 28785,
+                  "namespace_text": "a5ebc1cd-6574-471a-b3a8-6a83c2638a37",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongAngle": [
+                  {
+                    "role": "AlongAngle",
+                    "parameter_name": "d1",
+                    "display_units": "deg",
+                    "raw_float64": 1.1344640137963142,
+                    "role_offset": 30160,
+                    "value_offset": 30206,
+                    "expression_candidates": [
+                      "65 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 65.0,
+                    "parameter_object_id": 258,
+                    "binding_object_id": 259,
+                    "binding_offset": 30226,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "revolve": {
+                "axis_selection": "Undecoded",
+                "angle_radians": 1.1344640137963142,
+                "angle_degrees": 65.0,
+                "is_full_turn": false
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 295,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    },
+    {
+      "file": "models-97a5e41e2ba7/revolve_full.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+        "No general feature history, suppression, all end conditions, axis selection, or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 24255,
+              "type_code": "333",
+              "parameters": [],
+              "name": "RevolveProfile",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23997,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 25558,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25838,
+                  "kind": "Point",
+                  "entity_tag": 102,
+                  "position_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 232,
+                  "sketch_object_id": 202,
+                  "record_offset": 26118,
+                  "kind": "Point",
+                  "entity_tag": 103,
+                  "position_cm": [
+                    2.0,
+                    1.5,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 234,
+                  "sketch_object_id": 202,
+                  "record_offset": 26398,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    1.0,
+                    1.5,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 236,
+                  "sketch_object_id": 202,
+                  "record_offset": 26678,
+                  "kind": "Line",
+                  "start_point_id": 228,
+                  "end_point_id": 230,
+                  "start_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "entity_tag": 105,
+                  "is_fixed": false,
+                  "is_construction": false
+                },
+                {
+                  "object_id": 237,
+                  "sketch_object_id": 202,
+                  "record_offset": 27034,
+                  "kind": "Line",
+                  "start_point_id": 230,
+                  "end_point_id": 232,
+                  "start_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.0,
+                    1.5,
+                    0.0
+                  ],
+                  "entity_tag": 106,
+                  "is_fixed": false,
+                  "is_construction": false
+                },
+                {
+                  "object_id": 238,
+                  "sketch_object_id": 202,
+                  "record_offset": 27390,
+                  "kind": "Line",
+                  "start_point_id": 232,
+                  "end_point_id": 234,
+                  "start_cm": [
+                    2.0,
+                    1.5,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.0,
+                    1.5,
+                    0.0
+                  ],
+                  "entity_tag": 107,
+                  "is_fixed": false,
+                  "is_construction": false
+                },
+                {
+                  "object_id": 239,
+                  "sketch_object_id": 202,
+                  "record_offset": 27746,
+                  "kind": "Line",
+                  "start_point_id": 234,
+                  "end_point_id": 228,
+                  "start_cm": [
+                    1.0,
+                    1.5,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "entity_tag": 108,
+                  "is_fixed": false,
+                  "is_construction": false
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            },
+            {
+              "kind": "Revolve",
+              "object_id": 243,
+              "stored_index": 1,
+              "record_offset": 28102,
+              "type_code": "277",
+              "parameters": [
+                {
+                  "role": "AlongAngle",
+                  "parameter_name": "d1",
+                  "display_units": "deg",
+                  "raw_float64": 6.283185307179586,
+                  "role_offset": 30162,
+                  "value_offset": 30208,
+                  "expression_candidates": [
+                    "360 deg"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_degrees": 360.0,
+                  "parameter_object_id": 258,
+                  "binding_object_id": 259,
+                  "binding_offset": 30228,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "ProbeRevolve",
+              "sketch_reference_candidates": [
+                {
+                  "sketch_object_id": 202,
+                  "feature_object_id": 207,
+                  "name": "RevolveProfile",
+                  "reference_record_offset": 28785,
+                  "namespace_text": "0a7177f0-848b-4ca3-8a1f-f819956a90a9",
+                  "scope": "observed sketch reference; selected contour is not decoded"
+                }
+              ],
+              "parameter_roles": {
+                "AlongAngle": [
+                  {
+                    "role": "AlongAngle",
+                    "parameter_name": "d1",
+                    "display_units": "deg",
+                    "raw_float64": 6.283185307179586,
+                    "role_offset": 30162,
+                    "value_offset": 30208,
+                    "expression_candidates": [
+                      "360 deg"
+                    ],
+                    "layout": "u32-length UTF16LE strings followed by LE float64",
+                    "hypothesized_value_degrees": 360.0,
+                    "parameter_object_id": 258,
+                    "binding_object_id": 259,
+                    "binding_offset": 30228,
+                    "association": "explicit owner and parameter references with matching numeric payload"
+                  }
+                ]
+              },
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "revolve": {
+                "axis_selection": "Undecoded",
+                "angle_radians": 6.283185307179586,
+                "angle_degrees": 360.0,
+                "is_full_turn": true
+              }
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 295,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion fields and revolve angles only; no body regeneration"
+          }
+        }
+      ]
+    }
+  ]
+}

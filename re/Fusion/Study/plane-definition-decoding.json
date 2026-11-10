@@ -1,0 +1,1739 @@
+{
+  "status": "Observed construction-plane parametric definitions and explicit support provenance",
+  "fixture_directory": "planedefinitions-6cd0820a832e",
+  "fusion_version": "2705.1.30",
+  "checks": {
+    "probe_definition_matches_api": 8,
+    "probe_cached_geometry_matches_api": 8,
+    "ordered_support_roles_match_api": 8,
+    "support_entity_kinds_match_api": 16,
+    "native_support_geometry_matches_api": 9,
+    "explicit_sketch_point_geometry_matches_api": 5,
+    "tangent_face_native_body_matches_api": 2,
+    "explicit_scalar_matches_api": 3,
+    "total_native_definitions_decoded": 9
+  },
+  "samples": [
+    {
+      "file": "planedefinitions-6cd0820a832e/offset.f3d",
+      "probe_definition": {
+        "feature_object_id": 203,
+        "plane_object_id": 202,
+        "backend_object_id": 211,
+        "definition_kind": "Offset",
+        "stored_backend_method_code": 2,
+        "stored_feature_variant_code": 0,
+        "stored_cached_plane_mode": 1,
+        "support_inputs": [
+          {
+            "role": "planarEntity",
+            "input_record_object_id": 207,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionPlane",
+              "native_entity": {
+                "kind": "ConstructionPlane",
+                "name": "XY",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "y_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "object_id": 42,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "descriptor_object_id": 207,
+              "terminal_object_id": 210,
+              "namespace_text": "79d0c4b8-858c-41f3-8aeb-43ed09820965",
+              "entity_guid_text": "811e0d18-78eb-4dd9-a5fa-404f571b081c"
+            }
+          }
+        ],
+        "scalar_parameters": [
+          {
+            "role": "AlongDistance",
+            "binding_object_id": 205,
+            "value": 1.2000000000000002,
+            "units": "cm",
+            "activity_scope": "Observed explicit definition scalar binding"
+          }
+        ],
+        "extra_offset_binding_object_id": 218,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 202,
+          "plane_definition": "Offset",
+          "origin_cm": [
+            0.0,
+            0.0,
+            1.2000000000000002
+          ],
+          "x_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_to_component_matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.2000000000000002,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 22699,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "0000000000000000000000000000f03f0000000000000080000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000800000000000000000000000000000f03f343333333333f33f000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "offset.f3d",
+        "definition_type": "ConstructionPlaneOffsetDefinition",
+        "inputs": [
+          {
+            "role": "planarEntity",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "XY",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "scalars": {
+          "offset": 1.2000000000000002
+        },
+        "geometry": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            1.2000000000000002
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "created_by": "ProbePlane"
+          }
+        ]
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/angle.f3d",
+      "probe_definition": {
+        "feature_object_id": 203,
+        "plane_object_id": 202,
+        "backend_object_id": 207,
+        "definition_kind": "Angle",
+        "stored_backend_method_code": 3,
+        "stored_feature_variant_code": 5,
+        "stored_cached_plane_mode": 2,
+        "support_inputs": [
+          {
+            "role": "linearEntity",
+            "input_record_object_id": 210,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionAxis",
+              "native_entity": {
+                "kind": "ConstructionAxis",
+                "name": "X",
+                "object_id": 39,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "descriptor_object_id": 210,
+              "terminal_object_id": 213,
+              "namespace_text": "6cdcba9d-b1a6-45b8-85ce-196c0b2d851d",
+              "entity_guid_text": "e3c273ce-447e-4c9e-b33d-e49d4aad4ed5"
+            }
+          },
+          {
+            "role": "planarEntity",
+            "input_record_object_id": 214,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionPlane",
+              "native_entity": {
+                "kind": "ConstructionPlane",
+                "name": "XY",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "y_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "object_id": 42,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "descriptor_object_id": 214,
+              "terminal_object_id": 217,
+              "namespace_text": "6cdcba9d-b1a6-45b8-85ce-196c0b2d851d",
+              "entity_guid_text": "e3c273ce-447e-4c9e-b33d-e49d4aad4ed5"
+            }
+          }
+        ],
+        "scalar_parameters": [
+          {
+            "role": "RotateAngle",
+            "binding_object_id": 205,
+            "value": 0.6108652381980153,
+            "units": "rad",
+            "activity_scope": "Observed explicit definition scalar binding"
+          }
+        ],
+        "extra_offset_binding_object_id": 222,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 202,
+          "plane_definition": "Angle",
+          "origin_cm": [
+            1.2125000000000001,
+            0.0,
+            0.0
+          ],
+          "x_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_axis": [
+            -0.0,
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "normal": [
+            0.0,
+            -0.573576436351046,
+            0.8191520442889918
+          ],
+          "plane_to_component_matrix": [
+            1.0,
+            -0.0,
+            0.0,
+            1.2125000000000001,
+            0.0,
+            0.8191520442889918,
+            -0.573576436351046,
+            0.0,
+            0.0,
+            0.573576436351046,
+            0.8191520442889918,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 22766,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "0000000000000000000000000000f03f00000000000000800000000000000000676666666666f33f0000000000000000478715597e36ea3f78497cf8bc5ae2bf0000000000000000000000000000000078497cf8bc5ae23f478715597e36ea3f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "angle.f3d",
+        "definition_type": "ConstructionPlaneAtAngleDefinition",
+        "inputs": [
+          {
+            "role": "linearEntity",
+            "entity": {
+              "kind": "ConstructionAxis",
+              "name": "X",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "role": "planarEntity",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "XY",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "scalars": {
+          "angle": 0.6108652381980153
+        },
+        "geometry": {
+          "origin_cm": [
+            1.2125000000000001,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            -0.5735764363510462,
+            0.819152044288992
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "RotateAngle",
+            "value": 0.6108652381980153,
+            "unit": "deg",
+            "created_by": "ProbePlane"
+          }
+        ]
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/midplane.f3d",
+      "probe_definition": {
+        "feature_object_id": 225,
+        "plane_object_id": 224,
+        "backend_object_id": 226,
+        "definition_kind": "Midplane",
+        "stored_backend_method_code": 5,
+        "stored_feature_variant_code": 3,
+        "stored_cached_plane_mode": 4,
+        "support_inputs": [
+          {
+            "role": "planarEntityOne",
+            "input_record_object_id": 229,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionPlane",
+              "native_entity": {
+                "kind": "ConstructionPlane",
+                "name": "XY",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "y_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "object_id": 42,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "descriptor_object_id": 229,
+              "terminal_object_id": 232,
+              "namespace_text": "9e5115be-70cc-4546-b9fb-eec43b36626f",
+              "entity_guid_text": "9c859260-f248-4f6d-89e5-3c3edd2a9d6d"
+            }
+          },
+          {
+            "role": "planarEntityTwo",
+            "input_record_object_id": 233,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionPlane",
+              "native_entity": {
+                "kind": "ConstructionPlane",
+                "name": "SupportPlane",
+                "object_id": 202,
+                "feature_object_id": 203,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "descriptor_object_id": 233,
+              "terminal_object_id": 236,
+              "namespace_text": "9e5115be-70cc-4546-b9fb-eec43b36626f",
+              "entity_guid_text": "9c859260-f248-4f6d-89e5-3c3edd2a9d6d"
+            }
+          }
+        ],
+        "scalar_parameters": [],
+        "extra_offset_binding_object_id": null,
+        "stored_extra_offset_cm": null,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 224,
+          "plane_definition": "Midplane",
+          "origin_cm": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "x_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_to_component_matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.5,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 25771,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "0000000000000000000000000000f03f0000000000000080000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000800000000000000000000000000000f03f000000000000f83f000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [
+        {
+          "feature_object_id": 203,
+          "plane_object_id": 202,
+          "backend_object_id": 211,
+          "definition_kind": "Offset",
+          "stored_backend_method_code": 2,
+          "stored_feature_variant_code": 0,
+          "stored_cached_plane_mode": 1,
+          "support_inputs": [
+            {
+              "role": "planarEntity",
+              "input_record_object_id": 207,
+              "proxy_object_id": null,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "native_entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "XY",
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "x_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "y_axis": [
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "object_id": 42,
+                  "origin_container_object_id": 37,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "descriptor_object_id": 207,
+                "terminal_object_id": 210,
+                "namespace_text": "9e5115be-70cc-4546-b9fb-eec43b36626f",
+                "entity_guid_text": "9c859260-f248-4f6d-89e5-3c3edd2a9d6d"
+              }
+            }
+          ],
+          "scalar_parameters": [
+            {
+              "role": "AlongDistance",
+              "binding_object_id": 205,
+              "value": 3.0,
+              "units": "cm",
+              "activity_scope": "Observed explicit definition scalar binding"
+            }
+          ],
+          "extra_offset_binding_object_id": 218,
+          "stored_extra_offset_cm": 0.0,
+          "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+          "cached_geometry": {
+            "name": "SupportPlane",
+            "plane_object_id": 202,
+            "plane_definition": "Offset",
+            "origin_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "coordinate_units": "cm",
+            "geometry_record_offset": 23091,
+            "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+          },
+          "backend_geometry_prefix_hex": "0000000000000000000000000000f03f0000000000000080000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000800000000000000000000000000000f03f0000000000000840000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+          "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+          "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+          "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+        }
+      ],
+      "api_evidence": {
+        "file": "midplane.f3d",
+        "definition_type": "ConstructionPlaneMidplaneDefinition",
+        "inputs": [
+          {
+            "role": "planarEntityOne",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "XY",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "role": "planarEntityTwo",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "SupportPlane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "scalars": {},
+        "geometry": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 3.0,
+            "unit": "mm",
+            "created_by": "SupportPlane"
+          }
+        ]
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/three_points.f3d",
+      "probe_definition": {
+        "feature_object_id": 244,
+        "plane_object_id": 243,
+        "backend_object_id": 245,
+        "definition_kind": "ThreePoints",
+        "stored_backend_method_code": 12,
+        "stored_feature_variant_code": 2,
+        "stored_cached_plane_mode": 6,
+        "support_inputs": [
+          {
+            "role": "pointEntityOne",
+            "input_record_object_id": 248,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportPoints",
+              "point_object_id": 228,
+              "point_entity_tag": 101,
+              "component_position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_scope": "Explicit sketch/tag association and decoded native component placement",
+              "descriptor_object_id": 248,
+              "terminal_object_id": 251,
+              "namespace_text": "3d68954b-de93-4dff-9957-09726db15c75",
+              "entity_guid_text": "7f4d37f9-09e5-4bfa-8fba-c36dc0a17602"
+            }
+          },
+          {
+            "role": "pointEntityTwo",
+            "input_record_object_id": 252,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportPoints",
+              "point_object_id": 233,
+              "point_entity_tag": 102,
+              "component_position_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_scope": "Explicit sketch/tag association and decoded native component placement",
+              "descriptor_object_id": 252,
+              "terminal_object_id": 255,
+              "namespace_text": "3d68954b-de93-4dff-9957-09726db15c75",
+              "entity_guid_text": "7f4d37f9-09e5-4bfa-8fba-c36dc0a17602"
+            }
+          },
+          {
+            "role": "pointEntityThree",
+            "input_record_object_id": 256,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportPoints",
+              "point_object_id": 238,
+              "point_entity_tag": 103,
+              "component_position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "coordinate_scope": "Explicit sketch/tag association and decoded native component placement",
+              "descriptor_object_id": 256,
+              "terminal_object_id": 259,
+              "namespace_text": "3d68954b-de93-4dff-9957-09726db15c75",
+              "entity_guid_text": "7f4d37f9-09e5-4bfa-8fba-c36dc0a17602"
+            }
+          }
+        ],
+        "scalar_parameters": [],
+        "extra_offset_binding_object_id": 264,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 243,
+          "plane_definition": "ThreePoints",
+          "origin_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "x_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "y_axis": [
+            -0.0,
+            1.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_to_component_matrix": [
+            1.0,
+            -0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            -0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 26068,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "0000000000000000000000000000f03f00000000000000800000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000800000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "three_points.f3d",
+        "definition_type": "ConstructionPlaneThreePointsDefinition",
+        "inputs": [
+          {
+            "role": "pointEntityOne",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "sketch_name": "SupportPoints"
+            }
+          },
+          {
+            "role": "pointEntityTwo",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "sketch_name": "SupportPoints"
+            }
+          },
+          {
+            "role": "pointEntityThree",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "sketch_name": "SupportPoints"
+            }
+          }
+        ],
+        "scalars": {},
+        "geometry": {
+          "origin_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/two_edges.f3d",
+      "probe_definition": {
+        "feature_object_id": 203,
+        "plane_object_id": 202,
+        "backend_object_id": 204,
+        "definition_kind": "TwoEdges",
+        "stored_backend_method_code": 8,
+        "stored_feature_variant_code": 7,
+        "stored_cached_plane_mode": 5,
+        "support_inputs": [
+          {
+            "role": "linearEntityOne",
+            "input_record_object_id": 207,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionAxis",
+              "native_entity": {
+                "kind": "ConstructionAxis",
+                "name": "X",
+                "object_id": 39,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "descriptor_object_id": 207,
+              "terminal_object_id": 210,
+              "namespace_text": "5599981e-b4e5-4ba4-a585-805ae335ed46",
+              "entity_guid_text": "1019ca55-aa52-4ce4-a4c7-29b372cc97bd"
+            }
+          },
+          {
+            "role": "linearEntityTwo",
+            "input_record_object_id": 211,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionAxis",
+              "native_entity": {
+                "kind": "ConstructionAxis",
+                "name": "Y",
+                "object_id": 40,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "descriptor_object_id": 211,
+              "terminal_object_id": 214,
+              "namespace_text": "5599981e-b4e5-4ba4-a585-805ae335ed46",
+              "entity_guid_text": "1019ca55-aa52-4ce4-a4c7-29b372cc97bd"
+            }
+          }
+        ],
+        "scalar_parameters": [],
+        "extra_offset_binding_object_id": 219,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 202,
+          "plane_definition": "TwoEdges",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "x_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_to_component_matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 22654,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "00000000000000010000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "two_edges.f3d",
+        "definition_type": "ConstructionPlaneTwoEdgesDefinition",
+        "inputs": [
+          {
+            "role": "linearEntityOne",
+            "entity": {
+              "kind": "ConstructionAxis",
+              "name": "X",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "role": "linearEntityTwo",
+            "entity": {
+              "kind": "ConstructionAxis",
+              "name": "Y",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          }
+        ],
+        "scalars": {},
+        "geometry": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/offset_through_point.f3d",
+      "probe_definition": {
+        "feature_object_id": 244,
+        "plane_object_id": 243,
+        "backend_object_id": 259,
+        "definition_kind": "OffsetThroughPoint",
+        "stored_backend_method_code": 17,
+        "stored_feature_variant_code": 0,
+        "stored_cached_plane_mode": 1,
+        "support_inputs": [
+          {
+            "role": "planarEntity",
+            "input_record_object_id": 255,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "ConstructionPlane",
+              "native_entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "descriptor_object_id": 255,
+              "terminal_object_id": 258,
+              "namespace_text": "6f81bdcd-4182-439e-9758-a9246df7ce79",
+              "entity_guid_text": "df43672e-83e0-4f60-a067-d02d6f12ed3f"
+            }
+          },
+          {
+            "role": "point",
+            "input_record_object_id": 248,
+            "proxy_object_id": 248,
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportPoints",
+              "point_object_id": 233,
+              "point_entity_tag": 102,
+              "component_position_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "coordinate_scope": "Explicit sketch/tag association and decoded native component placement",
+              "descriptor_object_id": 251,
+              "terminal_object_id": 254,
+              "namespace_text": "6f81bdcd-4182-439e-9758-a9246df7ce79",
+              "entity_guid_text": "df43672e-83e0-4f60-a067-d02d6f12ed3f"
+            }
+          }
+        ],
+        "scalar_parameters": [
+          {
+            "role": "AlongDistance",
+            "binding_object_id": 246,
+            "value": 3.0,
+            "units": "cm",
+            "activity_scope": "Stored evaluated offset; the explicit point support defines this method"
+          }
+        ],
+        "extra_offset_binding_object_id": 266,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 243,
+          "plane_definition": "OffsetThroughPoint",
+          "origin_cm": [
+            3.0,
+            0.0,
+            0.0
+          ],
+          "x_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "y_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "plane_to_component_matrix": [
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 26105,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "000000000000000000000000000000000000000000000000000000000000f03f0000000000000840000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "offset_through_point.f3d",
+        "definition_type": "ConstructionPlaneOffsetThroughPointDefinition",
+        "inputs": [
+          {
+            "role": "planarEntity",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "YZ",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "role": "point",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "sketch_name": "SupportPoints"
+            }
+          }
+        ],
+        "scalars": {},
+        "geometry": {
+          "origin_cm": [
+            3.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/tangent.f3d",
+      "probe_definition": {
+        "feature_object_id": 268,
+        "plane_object_id": 267,
+        "backend_object_id": 287,
+        "definition_kind": "Tangent",
+        "stored_backend_method_code": 15,
+        "stored_feature_variant_code": 10,
+        "stored_cached_plane_mode": 3,
+        "support_inputs": [
+          {
+            "role": "tangentFace",
+            "input_record_object_id": 272,
+            "proxy_object_id": 272,
+            "entity": {
+              "kind": "Face",
+              "descriptor_object_id": 275,
+              "recipe": {
+                "object_id": 278,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 33491,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "2DF7DA30-A4E4-4260-AFD1-D9C7154CB44B",
+                          "record_offset": 35785,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "face_recipe_data",
+                "payload_relative_offset": 63,
+                "payload_length": 8,
+                "payload_hex": "00000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1
+                ]
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                296
+              ],
+              "geometry_status": "Persistent face recipe and native historical body retained; exact ASM face unresolved"
+            }
+          },
+          {
+            "role": "planarEntity",
+            "input_record_object_id": 280,
+            "proxy_object_id": 280,
+            "entity": {
+              "kind": "ConstructionPlane",
+              "native_entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "descriptor_object_id": 283,
+              "terminal_object_id": 286,
+              "namespace_text": "8411911e-5075-455e-8983-88f341d845ed",
+              "entity_guid_text": "1c4289db-add1-4d0c-8ea6-0be6c55fefb8"
+            }
+          }
+        ],
+        "scalar_parameters": [
+          {
+            "role": "RotateAngle",
+            "binding_object_id": 270,
+            "value": 0.4363323129985824,
+            "units": "rad",
+            "activity_scope": "Observed explicit definition scalar binding"
+          }
+        ],
+        "extra_offset_binding_object_id": 294,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 267,
+          "plane_definition": "Tangent",
+          "origin_cm": [
+            0.9063077870366499,
+            0.42261826174069944,
+            1.0
+          ],
+          "x_axis": [
+            -0.42261826174069944,
+            0.9063077870366499,
+            0.0
+          ],
+          "y_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "normal": [
+            0.9063077870366499,
+            0.42261826174069944,
+            -0.0
+          ],
+          "plane_to_component_matrix": [
+            -0.42261826174069944,
+            0.0,
+            0.9063077870366499,
+            0.9063077870366499,
+            0.9063077870366499,
+            0.0,
+            0.42261826174069944,
+            0.42261826174069944,
+            0.0,
+            1.0,
+            -0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 31803,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "0000000000000000539837772d0cdbbf000000000000000067d72d307900ed3f67d72d307900ed3f67d72d307900ed3f0000000000000000539837772d0cdb3f539837772d0cdb3f0000000000000000000000000000f03f0000000000000080000000000000f03f000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "tangent.f3d",
+        "definition_type": "ConstructionPlaneTangentDefinition",
+        "inputs": [
+          {
+            "role": "tangentFace",
+            "entity": {
+              "kind": "BRepFace",
+              "body_name": "CylinderBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          },
+          {
+            "role": "planarEntity",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "YZ",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        ],
+        "scalars": {
+          "angle": 0.4363323129985824
+        },
+        "geometry": {
+          "origin_cm": [
+            0.9063077870366499,
+            0.42261826174069944,
+            1.0
+          ],
+          "normal": [
+            0.9063077870366499,
+            0.42261826174069944,
+            -0.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d3",
+            "role": "RotateAngle",
+            "value": 0.4363323129985824,
+            "unit": "deg",
+            "created_by": "ProbePlane"
+          }
+        ]
+      }
+    },
+    {
+      "file": "planedefinitions-6cd0820a832e/tangent_at_point.f3d",
+      "probe_definition": {
+        "feature_object_id": 298,
+        "plane_object_id": 297,
+        "backend_object_id": 299,
+        "definition_kind": "TangentAtPoint",
+        "stored_backend_method_code": 11,
+        "stored_feature_variant_code": 9,
+        "stored_cached_plane_mode": 7,
+        "support_inputs": [
+          {
+            "role": "tangentFace",
+            "input_record_object_id": 302,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "Face",
+              "descriptor_object_id": 302,
+              "recipe": {
+                "object_id": 305,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 35777,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35309,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "face_recipe_data",
+                "payload_relative_offset": 63,
+                "payload_length": 8,
+                "payload_hex": "00000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1
+                ]
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                317
+              ],
+              "geometry_status": "Persistent face recipe and native historical body retained; exact ASM face unresolved"
+            }
+          },
+          {
+            "role": "pointEntity",
+            "input_record_object_id": 307,
+            "proxy_object_id": null,
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 267,
+              "sketch_name": "TangentPoint",
+              "point_object_id": 292,
+              "point_entity_tag": 104,
+              "component_position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "coordinate_scope": "Explicit sketch/tag association and decoded native component placement",
+              "descriptor_object_id": 307,
+              "terminal_object_id": 310,
+              "namespace_text": "7dab8b5a-02da-4f63-ab35-503caba12791",
+              "entity_guid_text": "b65855f1-9600-4971-b75d-ed471a6eee84"
+            }
+          }
+        ],
+        "scalar_parameters": [],
+        "extra_offset_binding_object_id": 315,
+        "stored_extra_offset_cm": 0.0,
+        "extra_offset_scope": "Explicit optional binding retained; general effect is not derived",
+        "cached_geometry": {
+          "name": "ProbePlane",
+          "plane_object_id": 297,
+          "plane_definition": "TangentAtPoint",
+          "origin_cm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "x_axis": [
+            -0.0,
+            1.0,
+            0.0
+          ],
+          "y_axis": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "plane_to_component_matrix": [
+            -0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "coordinate_units": "cm",
+          "geometry_record_offset": 34182,
+          "coordinate_scope": "Native component cached geometry; occurrence transforms are not inferred"
+        },
+        "backend_geometry_prefix_hex": "000000000000000000000000000000800000000000000000000000000000f03f000000000000f03f000000000000f03f0000000000000080000000000000000000000000000000000000000000000000000000000000f03f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000",
+        "backend_prefix_scope": "Observed layout retained; geometry prefix field meanings are not interpreted",
+        "definition_scope": "Observed ordered support roles from the native definition backend, independent of cached plane mode",
+        "geometry_status": "Native cached plane and support identities decoded; parametric geometry is not regenerated"
+      },
+      "additional_plane_definitions": [],
+      "api_evidence": {
+        "file": "tangent_at_point.f3d",
+        "definition_type": "ConstructionPlaneTangentAtPointDefinition",
+        "inputs": [
+          {
+            "role": "tangentFace",
+            "entity": {
+              "kind": "BRepFace",
+              "body_name": "CylinderBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          },
+          {
+            "role": "pointEntity",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "sketch_name": "TangentPoint"
+            }
+          }
+        ],
+        "scalars": {},
+        "geometry": {
+          "origin_cm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Eight parametric plane methods are sampled; other construction methods remain unsupported.",
+    "OffsetThroughPoint and ordinary Offset share cached mode1; the native backend method code distinguishes their definitions.",
+    "New plane geometry is recovered from stored native caches, independently checked against API output; it is not rebuilt from support inputs.",
+    "Tangent face supports retain explicit historical body IDs and persistent face recipes; exact ASM faces and tangent construction regeneration remain unresolved.",
+    "Sketch-point supports are explicit sketchID/entitytag associations with decoded native component placement; occurrence transforms are not inferred.",
+    "ExtraOffset optional bindings are retained; only zero values are sampled, so their general geometric effect remains unverified.",
+    "OffsetThroughPoint AlongDistance is a stored evaluated parameter; its defining support is the explicit point input.",
+    "Backend geometry prefix bytes and later shared metadata are preserved or bounded without interpreting their general field meanings.",
+    "No native file writer or parametric construction regeneration is implemented."
+  ],
+  "guard_rejections": [
+    {
+      "case": "Unsupported backend method code",
+      "reason": "Unobserved plane backend/feature/cache method combination"
+    },
+    {
+      "case": "ExtraOffset binding copy disagrees",
+      "reason": "Plane ExtraOffset references disagree"
+    },
+    {
+      "case": "Support descriptor owner disagrees",
+      "reason": "Unsupported plane native support descriptor layout/owner"
+    }
+  ],
+  "earlier_fixture_compatibility": {
+    "file": "boundaryfills-a0953038318b/plane_first.f3d",
+    "passed": true,
+    "scope": "Previously decoded YZ-offset ToolPlane now also resolves explicit support provenance"
+  }
+}

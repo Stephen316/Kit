@@ -1,0 +1,875 @@
+{
+  "scope": "Three actual singleton circular BRep boundary Patch exports, per-edge Free/Connected,Tangent,Curvature; exact common parser defaults and typed ownership before body geometry controls",
+  "interface": "decode_patch_continuity(data,records,features)->decoded/unresolved/scope; decoded rows feature_object_id/settings",
+  "integration": "After decode_tools, publish optional patch_continuity stream and qualified SurfacePatch settings; clear only same-feature Unsupported basic sketch-profile patch layout. Existing sketch-profile defaults and selection/lifecycle warnings remain separate.",
+  "capture_provenance": {
+    "ground_truth_file": "patchcontinuity-b9b0be85a281/ground_truth.json",
+    "sha256": "7f3f4a9b4de15bb1fab2727e26d3d170700d059f82258c02b860c631c6980c0b",
+    "executed_generator_sha256": "ec766b26e8865d86c5b05760c757220fe99a07ca43209629b498b956c0c45437",
+    "executed_source_snapshot": "patchcontinuity-b9b0be85a281/executed-generator-source.txt",
+    "initial_failed_capture": {
+      "directory": "patchcontinuity-f67ca5b5f724",
+      "ground_truth_sha256": "c6ea61794883c95125630b3afc3732f8fb5d0144000bdef2a8c90c2c0a7ff3a0",
+      "executed_generator_sha256": "f2c47bbb707d73c0f35b0540a5451843103a05299aa842b3875acec9686bfefc",
+      "errors": [
+        {
+          "case": "brep_free",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 115, in run\n    sample['input_boundary']=boundary_truth(inputs.boundaryCurve,'input_boundary')\n                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 75, in boundary_truth\n    return {'entity_type':boundary.objectType,'count':boundary.count,'edges':[edge_truth(boundary.item(i),label+'.edge'+str(i)) for i in range(boundary.count)]}\n                                                                              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 55, in edge_truth\n    curve=edge.geometry;circle=adsk.core.Circle3D.cast(curve)\n          ^^^^^^^^^^^^^\nAttributeError: 'PathEntity' object has no attribute 'geometry'\n"
+        },
+        {
+          "case": "brep_tangent",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 115, in run\n    sample['input_boundary']=boundary_truth(inputs.boundaryCurve,'input_boundary')\n                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 75, in boundary_truth\n    return {'entity_type':boundary.objectType,'count':boundary.count,'edges':[edge_truth(boundary.item(i),label+'.edge'+str(i)) for i in range(boundary.count)]}\n                                                                              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 55, in edge_truth\n    curve=edge.geometry;circle=adsk.core.Circle3D.cast(curve)\n          ^^^^^^^^^^^^^\nAttributeError: 'PathEntity' object has no attribute 'geometry'\n"
+        },
+        {
+          "case": "brep_curvature",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 115, in run\n    sample['input_boundary']=boundary_truth(inputs.boundaryCurve,'input_boundary')\n                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 75, in boundary_truth\n    return {'entity_type':boundary.objectType,'count':boundary.count,'edges':[edge_truth(boundary.item(i),label+'.edge'+str(i)) for i in range(boundary.count)]}\n                                                                              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePatchContinuityContrasts.py\", line 55, in edge_truth\n    curve=edge.geometry;circle=adsk.core.Circle3D.cast(curve)\n          ^^^^^^^^^^^^^\nAttributeError: 'PathEntity' object has no attribute 'geometry'\n"
+        }
+      ],
+      "all_owned_closed_true": true,
+      "fix": "boundary getter returns Path/PathEntity rather than direct edges; corrected typed entity dispatch before successful rerun"
+    }
+  },
+  "schema": {
+    "definition_class_guid": "7A1DDA31-F6C4-42F6-8282-8654B2085F40",
+    "definition_body_bytes": 56,
+    "continuity": "uint32@3 varies0/1/2 exactly with actual Connected/Tangent/Curvature getter; only this contrasted meaning promoted",
+    "raw_fields": "prefix3bytes, u32@7 literal2, float64@11=.5, bytes30..32 literal010000, byte44zero remain bounded raw fields; scalar agrees actual weight in these captures only",
+    "references": "sourceproxy@19, typed bookkeeping@33 with backlink to definition, ownerfeature@45; shared feature prefix/opNewBody/count then callback; source proxy\u2192owned topology descriptor\u2192edge_recipe_data\u2192historical native BODY; owned result anchor separately decoded"
+  },
+  "samples": [
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_free.f3d",
+      "archive_sha256": "96a9d009201a36ffed05b20934e594dc1181739fb3182cfa6b5f766a6dd190e4",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 328,
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "operation": "NewBody",
+              "boundary_input_kind": "BRepEdgeRecipe",
+              "boundary_selection": {
+                "selection_record_object_id": 329,
+                "descriptor_object_ids": [
+                  332
+                ],
+                "stored_descriptor_count": 1
+              },
+              "boundary_curve_count": 1,
+              "boundary_sources": [
+                {
+                  "kind": "BRepEdgeRecipe",
+                  "selection_record_object_id": 329,
+                  "descriptor_object_id": 332,
+                  "recipe": {
+                    "object_id": 335,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 32189,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "edge_recipe_data",
+                    "payload_relative_offset": 88,
+                    "payload_length": 28,
+                    "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                  },
+                  "body_anchor_object_id": 273,
+                  "native_body_object_id": 267,
+                  "source_owner_object_id": 240,
+                  "namespace_text": "caf7a61e-b2cf-42af-8964-dc0d25f7182d",
+                  "entity_guid_text": "6c825f6d-2c00-428f-ae1b-eb2f3b9e35f6",
+                  "context_record_object_id": 377,
+                  "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+                  "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+                  "context_scope": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+                  "identity_scope": "Explicit owned edge recipe and typed historical native BODY; exact selected ASM edge and persistent topology unresolved"
+                }
+              ],
+              "boundary_controls": [
+                {
+                  "definition_record_object_id": 336,
+                  "stored_continuity_code": 0,
+                  "continuity": "Connected",
+                  "boundary_selection_record_object_id": 329,
+                  "stored_scalar_at_11": 0.5,
+                  "scalar_scope": "Storedfloat64.5 agrees actual API weight in these captures only; other weights unverified and not admitted",
+                  "stored_prefix_hex": "000000",
+                  "stored_field_at_7": 2,
+                  "stored_flags_30_to_32_hex": "010000",
+                  "stored_flag_at_44": 0,
+                  "flags_scope": "Uncontrasted raw fields retained without assigning flip/direction semantics",
+                  "control_bookkeeping_object_id": 337,
+                  "stored_bookkeeping_timestamp_hex": "1d72d540585e0600",
+                  "control_payload_hex": "0000000000000002000000000000000000e03f01490100000000000000000100000151010000000000000000000148010000000000000000"
+                }
+              ],
+              "feature_bookkeeping_object_id": 338,
+              "stored_group_field_at_11": 0,
+              "group_status": "Captured setContinuity returns isGroupEdgesFalse; this raw header field has no contrasted True BRep mapping",
+              "continuity_status": "Actual BRep getter continuity0/1/2 matches typed per-edge definition field; exact surface continuity construction remains unresolved",
+              "result_body_anchors": [
+                {
+                  "body_anchor_object_id": 357,
+                  "native_body_object_id": 353,
+                  "source_owner_object_id": 328,
+                  "identity_scope": "Explicit feature-owned native BODY anchor, no current/final visibility claim"
+                }
+              ],
+              "geometry_status": "Owned edge recipe/historical body and result provenance only; exact boundary curve/ASM edge and patch surface regeneration unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured singleton BRep edge-recipe Patch NewBody continuity0/1/2 with explicit historical body and result anchors; rawscalar/group/flip semantics, exact ASM edge, surface continuity solving and regeneration unresolved"
+      },
+      "expected_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "operation": "NewBody",
+        "boundary_input_kind": "BRepEdgeRecipe",
+        "boundary_selection": {
+          "selection_record_object_id": 329,
+          "descriptor_object_ids": [
+            332
+          ],
+          "stored_descriptor_count": 1
+        },
+        "boundary_curve_count": 1,
+        "boundary_sources": [
+          {
+            "kind": "BRepEdgeRecipe",
+            "selection_record_object_id": 329,
+            "descriptor_object_id": 332,
+            "recipe": {
+              "object_id": 335,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 32189,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 88,
+              "payload_length": 28,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "body_anchor_object_id": 273,
+            "native_body_object_id": 267,
+            "source_owner_object_id": 240,
+            "namespace_text": "caf7a61e-b2cf-42af-8964-dc0d25f7182d",
+            "entity_guid_text": "6c825f6d-2c00-428f-ae1b-eb2f3b9e35f6",
+            "context_record_object_id": 377,
+            "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+            "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+            "context_scope": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+            "identity_scope": "Explicit owned edge recipe and typed historical native BODY; exact selected ASM edge and persistent topology unresolved"
+          }
+        ],
+        "boundary_controls": [
+          {
+            "definition_record_object_id": 336,
+            "stored_continuity_code": 0,
+            "continuity": "Connected",
+            "boundary_selection_record_object_id": 329,
+            "stored_scalar_at_11": 0.5,
+            "scalar_scope": "Storedfloat64.5 agrees actual API weight in these captures only; other weights unverified and not admitted",
+            "stored_prefix_hex": "000000",
+            "stored_field_at_7": 2,
+            "stored_flags_30_to_32_hex": "010000",
+            "stored_flag_at_44": 0,
+            "flags_scope": "Uncontrasted raw fields retained without assigning flip/direction semantics",
+            "control_bookkeeping_object_id": 337,
+            "stored_bookkeeping_timestamp_hex": "1d72d540585e0600",
+            "control_payload_hex": "0000000000000002000000000000000000e03f01490100000000000000000100000151010000000000000000000148010000000000000000"
+          }
+        ],
+        "feature_bookkeeping_object_id": 338,
+        "stored_group_field_at_11": 0,
+        "group_status": "Captured setContinuity returns isGroupEdgesFalse; this raw header field has no contrasted True BRep mapping",
+        "continuity_status": "Actual BRep getter continuity0/1/2 matches typed per-edge definition field; exact surface continuity construction remains unresolved",
+        "result_body_anchors": [
+          {
+            "body_anchor_object_id": 357,
+            "native_body_object_id": 353,
+            "source_owner_object_id": 328,
+            "identity_scope": "Explicit feature-owned native BODY anchor, no current/final visibility claim"
+          }
+        ],
+        "geometry_status": "Owned edge recipe/historical body and result provenance only; exact boundary curve/ASM edge and patch surface regeneration unresolved"
+      },
+      "actual_API_continuity": 0,
+      "actual_API_weights": [
+        0.5
+      ],
+      "actual_API_flip_flags": [
+        false
+      ],
+      "source_before_rolled_getters_agree": true,
+      "exact_definition_payload_replay": true,
+      "typed_BODY_cache_controls": [
+        {
+          "native_body_object_id": 267,
+          "asm_body_index": 3,
+          "stored_handle": 9,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c829c4ae-3a51-4428-abfa-1b62e1ca2c9d.smbh",
+          "counts_match_actual_getters": true
+        },
+        {
+          "native_body_object_id": 353,
+          "asm_body_index": 4,
+          "stored_handle": 10,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c829c4ae-3a51-4428-abfa-1b62e1ca2c9d.smbh",
+          "counts_match_actual_getters": true
+        }
+      ],
+      "actual_source_area_cm2": 11.026990214100174,
+      "actual_result_area_cm2": 1.5393804002589984,
+      "analytic_circle_area_reference_cm2": 1.5393804002589986,
+      "actual_minus_circle_area_cm2": -2.220446049250313e-16,
+      "actual_result_bounds_cm": [
+        [
+          -0.7,
+          -0.7,
+          0.0
+        ],
+        [
+          0.7,
+          0.7,
+          0.0
+        ]
+      ],
+      "area_scope": "Free agrees analytic disk; Tangent/Curvature actual area differs and is retained as counterevidence to exact circle-patch area, not an identity selector",
+      "all_body_identity_joins_precede_geometry_checks": true
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 328,
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "operation": "NewBody",
+              "boundary_input_kind": "BRepEdgeRecipe",
+              "boundary_selection": {
+                "selection_record_object_id": 329,
+                "descriptor_object_ids": [
+                  332
+                ],
+                "stored_descriptor_count": 1
+              },
+              "boundary_curve_count": 1,
+              "boundary_sources": [
+                {
+                  "kind": "BRepEdgeRecipe",
+                  "selection_record_object_id": 329,
+                  "descriptor_object_id": 332,
+                  "recipe": {
+                    "object_id": 335,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 32195,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "edge_recipe_data",
+                    "payload_relative_offset": 88,
+                    "payload_length": 28,
+                    "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                  },
+                  "body_anchor_object_id": 273,
+                  "native_body_object_id": 267,
+                  "source_owner_object_id": 240,
+                  "namespace_text": "62fa5d73-c0ac-4a21-be5a-c8cd9f1071b7",
+                  "entity_guid_text": "9f8904b8-d90d-490e-9b29-0d1321c1b6ef",
+                  "context_record_object_id": 377,
+                  "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+                  "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+                  "context_scope": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+                  "identity_scope": "Explicit owned edge recipe and typed historical native BODY; exact selected ASM edge and persistent topology unresolved"
+                }
+              ],
+              "boundary_controls": [
+                {
+                  "definition_record_object_id": 336,
+                  "stored_continuity_code": 1,
+                  "continuity": "Tangent",
+                  "boundary_selection_record_object_id": 329,
+                  "stored_scalar_at_11": 0.5,
+                  "scalar_scope": "Storedfloat64.5 agrees actual API weight in these captures only; other weights unverified and not admitted",
+                  "stored_prefix_hex": "000000",
+                  "stored_field_at_7": 2,
+                  "stored_flags_30_to_32_hex": "010000",
+                  "stored_flag_at_44": 0,
+                  "flags_scope": "Uncontrasted raw fields retained without assigning flip/direction semantics",
+                  "control_bookkeeping_object_id": 337,
+                  "stored_bookkeeping_timestamp_hex": "2d02db40585e0600",
+                  "control_payload_hex": "0000000100000002000000000000000000e03f01490100000000000000000100000151010000000000000000000148010000000000000000"
+                }
+              ],
+              "feature_bookkeeping_object_id": 338,
+              "stored_group_field_at_11": 0,
+              "group_status": "Captured setContinuity returns isGroupEdgesFalse; this raw header field has no contrasted True BRep mapping",
+              "continuity_status": "Actual BRep getter continuity0/1/2 matches typed per-edge definition field; exact surface continuity construction remains unresolved",
+              "result_body_anchors": [
+                {
+                  "body_anchor_object_id": 357,
+                  "native_body_object_id": 353,
+                  "source_owner_object_id": 328,
+                  "identity_scope": "Explicit feature-owned native BODY anchor, no current/final visibility claim"
+                }
+              ],
+              "geometry_status": "Owned edge recipe/historical body and result provenance only; exact boundary curve/ASM edge and patch surface regeneration unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured singleton BRep edge-recipe Patch NewBody continuity0/1/2 with explicit historical body and result anchors; rawscalar/group/flip semantics, exact ASM edge, surface continuity solving and regeneration unresolved"
+      },
+      "expected_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "operation": "NewBody",
+        "boundary_input_kind": "BRepEdgeRecipe",
+        "boundary_selection": {
+          "selection_record_object_id": 329,
+          "descriptor_object_ids": [
+            332
+          ],
+          "stored_descriptor_count": 1
+        },
+        "boundary_curve_count": 1,
+        "boundary_sources": [
+          {
+            "kind": "BRepEdgeRecipe",
+            "selection_record_object_id": 329,
+            "descriptor_object_id": 332,
+            "recipe": {
+              "object_id": 335,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 32195,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 88,
+              "payload_length": 28,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "body_anchor_object_id": 273,
+            "native_body_object_id": 267,
+            "source_owner_object_id": 240,
+            "namespace_text": "62fa5d73-c0ac-4a21-be5a-c8cd9f1071b7",
+            "entity_guid_text": "9f8904b8-d90d-490e-9b29-0d1321c1b6ef",
+            "context_record_object_id": 377,
+            "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+            "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+            "context_scope": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+            "identity_scope": "Explicit owned edge recipe and typed historical native BODY; exact selected ASM edge and persistent topology unresolved"
+          }
+        ],
+        "boundary_controls": [
+          {
+            "definition_record_object_id": 336,
+            "stored_continuity_code": 1,
+            "continuity": "Tangent",
+            "boundary_selection_record_object_id": 329,
+            "stored_scalar_at_11": 0.5,
+            "scalar_scope": "Storedfloat64.5 agrees actual API weight in these captures only; other weights unverified and not admitted",
+            "stored_prefix_hex": "000000",
+            "stored_field_at_7": 2,
+            "stored_flags_30_to_32_hex": "010000",
+            "stored_flag_at_44": 0,
+            "flags_scope": "Uncontrasted raw fields retained without assigning flip/direction semantics",
+            "control_bookkeeping_object_id": 337,
+            "stored_bookkeeping_timestamp_hex": "2d02db40585e0600",
+            "control_payload_hex": "0000000100000002000000000000000000e03f01490100000000000000000100000151010000000000000000000148010000000000000000"
+          }
+        ],
+        "feature_bookkeeping_object_id": 338,
+        "stored_group_field_at_11": 0,
+        "group_status": "Captured setContinuity returns isGroupEdgesFalse; this raw header field has no contrasted True BRep mapping",
+        "continuity_status": "Actual BRep getter continuity0/1/2 matches typed per-edge definition field; exact surface continuity construction remains unresolved",
+        "result_body_anchors": [
+          {
+            "body_anchor_object_id": 357,
+            "native_body_object_id": 353,
+            "source_owner_object_id": 328,
+            "identity_scope": "Explicit feature-owned native BODY anchor, no current/final visibility claim"
+          }
+        ],
+        "geometry_status": "Owned edge recipe/historical body and result provenance only; exact boundary curve/ASM edge and patch surface regeneration unresolved"
+      },
+      "actual_API_continuity": 1,
+      "actual_API_weights": [
+        0.5
+      ],
+      "actual_API_flip_flags": [
+        false
+      ],
+      "source_before_rolled_getters_agree": true,
+      "exact_definition_payload_replay": true,
+      "typed_BODY_cache_controls": [
+        {
+          "native_body_object_id": 267,
+          "asm_body_index": 3,
+          "stored_handle": 9,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh",
+          "counts_match_actual_getters": true
+        },
+        {
+          "native_body_object_id": 353,
+          "asm_body_index": 4,
+          "stored_handle": 10,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh",
+          "counts_match_actual_getters": true
+        }
+      ],
+      "actual_source_area_cm2": 11.026990214100174,
+      "actual_result_area_cm2": 1.5392589433772614,
+      "analytic_circle_area_reference_cm2": 1.5393804002589986,
+      "actual_minus_circle_area_cm2": -0.00012145688173714753,
+      "actual_result_bounds_cm": [
+        [
+          -0.7005857761474843,
+          -0.700100789080967,
+          0.0
+        ],
+        [
+          0.6992771032664715,
+          0.699889630114144,
+          0.0
+        ]
+      ],
+      "area_scope": "Free agrees analytic disk; Tangent/Curvature actual area differs and is retained as counterevidence to exact circle-patch area, not an identity selector",
+      "all_body_identity_joins_precede_geometry_checks": true
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+      "archive_sha256": "4e6c85c63ff82fbcee77e02571287701e46f3f55a55d499fe65668768ef3fe0d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 328,
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "operation": "NewBody",
+              "boundary_input_kind": "BRepEdgeRecipe",
+              "boundary_selection": {
+                "selection_record_object_id": 329,
+                "descriptor_object_ids": [
+                  332
+                ],
+                "stored_descriptor_count": 1
+              },
+              "boundary_curve_count": 1,
+              "boundary_sources": [
+                {
+                  "kind": "BRepEdgeRecipe",
+                  "selection_record_object_id": 329,
+                  "descriptor_object_id": 332,
+                  "recipe": {
+                    "object_id": 335,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 32199,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "edge_recipe_data",
+                    "payload_relative_offset": 88,
+                    "payload_length": 28,
+                    "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                  },
+                  "body_anchor_object_id": 273,
+                  "native_body_object_id": 267,
+                  "source_owner_object_id": 240,
+                  "namespace_text": "b981f431-059a-44fb-8e09-67515cd4cd63",
+                  "entity_guid_text": "afd752ad-80b2-4f60-9278-fd0bd8d1b24e",
+                  "context_record_object_id": 377,
+                  "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+                  "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+                  "context_scope": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+                  "identity_scope": "Explicit owned edge recipe and typed historical native BODY; exact selected ASM edge and persistent topology unresolved"
+                }
+              ],
+              "boundary_controls": [
+                {
+                  "definition_record_object_id": 336,
+                  "stored_continuity_code": 2,
+                  "continuity": "Curvature",
+                  "boundary_selection_record_object_id": 329,
+                  "stored_scalar_at_11": 0.5,
+                  "scalar_scope": "Storedfloat64.5 agrees actual API weight in these captures only; other weights unverified and not admitted",
+                  "stored_prefix_hex": "000000",
+                  "stored_field_at_7": 2,
+                  "stored_flags_30_to_32_hex": "010000",
+                  "stored_flag_at_44": 0,
+                  "flags_scope": "Uncontrasted raw fields retained without assigning flip/direction semantics",
+                  "control_bookkeeping_object_id": 337,
+                  "stored_bookkeeping_timestamp_hex": "0fb4e040585e0600",
+                  "control_payload_hex": "0000000200000002000000000000000000e03f01490100000000000000000100000151010000000000000000000148010000000000000000"
+                }
+              ],
+              "feature_bookkeeping_object_id": 338,
+              "stored_group_field_at_11": 0,
+              "group_status": "Captured setContinuity returns isGroupEdgesFalse; this raw header field has no contrasted True BRep mapping",
+              "continuity_status": "Actual BRep getter continuity0/1/2 matches typed per-edge definition field; exact surface continuity construction remains unresolved",
+              "result_body_anchors": [
+                {
+                  "body_anchor_object_id": 357,
+                  "native_body_object_id": 353,
+                  "source_owner_object_id": 328,
+                  "identity_scope": "Explicit feature-owned native BODY anchor, no current/final visibility claim"
+                }
+              ],
+              "geometry_status": "Owned edge recipe/historical body and result provenance only; exact boundary curve/ASM edge and patch surface regeneration unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured singleton BRep edge-recipe Patch NewBody continuity0/1/2 with explicit historical body and result anchors; rawscalar/group/flip semantics, exact ASM edge, surface continuity solving and regeneration unresolved"
+      },
+      "expected_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "operation": "NewBody",
+        "boundary_input_kind": "BRepEdgeRecipe",
+        "boundary_selection": {
+          "selection_record_object_id": 329,
+          "descriptor_object_ids": [
+            332
+          ],
+          "stored_descriptor_count": 1
+        },
+        "boundary_curve_count": 1,
+        "boundary_sources": [
+          {
+            "kind": "BRepEdgeRecipe",
+            "selection_record_object_id": 329,
+            "descriptor_object_id": 332,
+            "recipe": {
+              "object_id": 335,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 32199,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 88,
+              "payload_length": 28,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "body_anchor_object_id": 273,
+            "native_body_object_id": 267,
+            "source_owner_object_id": 240,
+            "namespace_text": "b981f431-059a-44fb-8e09-67515cd4cd63",
+            "entity_guid_text": "afd752ad-80b2-4f60-9278-fd0bd8d1b24e",
+            "context_record_object_id": 377,
+            "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+            "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+            "context_scope": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+            "identity_scope": "Explicit owned edge recipe and typed historical native BODY; exact selected ASM edge and persistent topology unresolved"
+          }
+        ],
+        "boundary_controls": [
+          {
+            "definition_record_object_id": 336,
+            "stored_continuity_code": 2,
+            "continuity": "Curvature",
+            "boundary_selection_record_object_id": 329,
+            "stored_scalar_at_11": 0.5,
+            "scalar_scope": "Storedfloat64.5 agrees actual API weight in these captures only; other weights unverified and not admitted",
+            "stored_prefix_hex": "000000",
+            "stored_field_at_7": 2,
+            "stored_flags_30_to_32_hex": "010000",
+            "stored_flag_at_44": 0,
+            "flags_scope": "Uncontrasted raw fields retained without assigning flip/direction semantics",
+            "control_bookkeeping_object_id": 337,
+            "stored_bookkeeping_timestamp_hex": "0fb4e040585e0600",
+            "control_payload_hex": "0000000200000002000000000000000000e03f01490100000000000000000100000151010000000000000000000148010000000000000000"
+          }
+        ],
+        "feature_bookkeeping_object_id": 338,
+        "stored_group_field_at_11": 0,
+        "group_status": "Captured setContinuity returns isGroupEdgesFalse; this raw header field has no contrasted True BRep mapping",
+        "continuity_status": "Actual BRep getter continuity0/1/2 matches typed per-edge definition field; exact surface continuity construction remains unresolved",
+        "result_body_anchors": [
+          {
+            "body_anchor_object_id": 357,
+            "native_body_object_id": 353,
+            "source_owner_object_id": 328,
+            "identity_scope": "Explicit feature-owned native BODY anchor, no current/final visibility claim"
+          }
+        ],
+        "geometry_status": "Owned edge recipe/historical body and result provenance only; exact boundary curve/ASM edge and patch surface regeneration unresolved"
+      },
+      "actual_API_continuity": 2,
+      "actual_API_weights": [
+        0.5
+      ],
+      "actual_API_flip_flags": [
+        false
+      ],
+      "source_before_rolled_getters_agree": true,
+      "exact_definition_payload_replay": true,
+      "typed_BODY_cache_controls": [
+        {
+          "native_body_object_id": 267,
+          "asm_body_index": 3,
+          "stored_handle": 9,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4530a523-0a85-4518-af28-62157a3e6e56.smbh",
+          "counts_match_actual_getters": true
+        },
+        {
+          "native_body_object_id": 353,
+          "asm_body_index": 4,
+          "stored_handle": 10,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4530a523-0a85-4518-af28-62157a3e6e56.smbh",
+          "counts_match_actual_getters": true
+        }
+      ],
+      "actual_source_area_cm2": 11.026990214100174,
+      "actual_result_area_cm2": 1.5392589433772597,
+      "analytic_circle_area_reference_cm2": 1.5393804002589986,
+      "actual_minus_circle_area_cm2": -0.00012145688173892388,
+      "actual_result_bounds_cm": [
+        [
+          -0.7005857761474862,
+          -0.7001007890809671,
+          0.0
+        ],
+        [
+          0.6992771032664719,
+          0.6998896301141445,
+          0.0
+        ]
+      ],
+      "area_scope": "Free agrees analytic disk; Tangent/Curvature actual area differs and is retained as counterevidence to exact circle-patch area, not an identity selector",
+      "all_body_identity_joins_precede_geometry_checks": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "Unknown continuity enum",
+      "reason": "BRep Patch continuity/scalar outside captured contrasts"
+    },
+    {
+      "case": "Uncontrasted scalar value remains unsupported",
+      "reason": "BRep Patch continuity/scalar outside captured contrasts"
+    },
+    {
+      "case": "Continuity control owner differs",
+      "reason": "Unobserved BRep Patch control framing/owner"
+    },
+    {
+      "case": "Boundary proxy owner differs",
+      "reason": "Surface-tool proxy owner disagrees with feature"
+    },
+    {
+      "case": "Owned recipe has wrong topology kind",
+      "reason": "BRep Patch boundary requires explicit edge recipe"
+    },
+    {
+      "case": "Result anchor owner differs",
+      "reason": "BRep Patch result anchor is not owned by feature"
+    }
+  ],
+  "old_default_controls": [
+    {
+      "archive": "surfacetools-856ca50cf4c7/patch_rectangle.f3d",
+      "frozen_source_revision": "cd4cad1",
+      "default_dictionary_exact": true,
+      "optin_callback_not_called": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/patch_circle.f3d",
+      "frozen_source_revision": "cd4cad1",
+      "default_dictionary_exact": true,
+      "optin_callback_not_called": true
+    }
+  ],
+  "limitations": [
+    "Weight.5 and false flip were not contrasted; no arbitrary weight or flip semantics accepted. Free weight and one-face flip are inactive in SDK docs.",
+    "Raw BRep group/header field0 matches returned per-edge mode but no True BRep contrast establishes a general bool mapping.",
+    "Referenced B0B3FA59 typed103-byte cache remains literal and opaque; no radius/closure/parameterization or occurrence transform inferred from it.",
+    "API edge tokens/names and source geometry are capture evidence only. Exact selected ASM edge, recipe evaluation/persistent topology and lifecycle remain unresolved.",
+    "Stored keyed BODY topology/area corroboration follows explicit body identities, never chooses source edge by geometry.",
+    "No patch surface continuity solver, geometry regeneration or native writer implemented."
+  ],
+  "continuity_contrast": {
+    "sole_changed_definition_byte_offset": 3,
+    "actual_codes": [
+      0,
+      1,
+      2
+    ],
+    "raw_weight_and_flags_identical": true,
+    "cross_document_object_ids_are_not_global_identity": true
+  },
+  "summary": {
+    "successful_actual_exports": 3,
+    "initial_failed_owned_cases_preserved": 3,
+    "continuity_enum_contrasts": 3,
+    "exact_control_payload_replays": 3,
+    "typed_source_and_result_BODY_count_controls": 6,
+    "source_before_rollback_getter_controls": 3,
+    "API_source_annulus_area_controls": 3,
+    "analytic_Free_result_area_matches": 1,
+    "Tangent_Curvature_area_counterexamples": 2,
+    "malformed_guards": 6,
+    "old_patch_default_dictionaries_exact": 2,
+    "all_owned_documents_closed_true": true
+  }
+}

@@ -1,0 +1,3228 @@
+{
+  "interface": "decode_mesh_combine_face_groups(data,records,features,member,members,mesh_contents=None)",
+  "sample_count": 3,
+  "decoded_feature_count": 3,
+  "selected_asset_group_key_count": 7,
+  "current_triangle_temporary_label_count": 24,
+  "check_count": 81,
+  "malformed_guard_count": 8,
+  "samples": [
+    {
+      "archive": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 488,
+            "kind": "MeshCombineFaceGroups",
+            "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+            "settings": {
+              "input_selection": {
+                "proxy_object_id": 489,
+                "descriptor_object_id": 492,
+                "mesh_object_id": 213,
+                "leaf_object_id": 495,
+                "owner_feature_object_id": 488,
+                "namespace_text": "038c3530-330c-4c46-9e6a-d601009f7cef",
+                "entity_guid_text": "b6db1d4f-252f-4c2b-ad07-5907ed2c0c38",
+                "stored_secondary_count": 1,
+                "secondary_record_object_id": 511,
+                "secondary_payload_hex": "0000010100",
+                "stored_descriptor_context_counts": [
+                  0,
+                  0
+                ],
+                "stored_proxy_trailer_hex": "0000000004000000000000000000000000000101000040a8789bb8ceef3e0101000001eb01000000000000000001000001ea01000000000000000000",
+                "stored_descriptor_trailer_hex": "0400000000000000000000000000010100000069e388b5f8e43e0101000001ee01000000000000000001000001ed01000000000000000000",
+                "association": "Owned typed proxy/descriptor and matching direct mesh pointer plus bounded90055 mesh identity leaf",
+                "scope": "Explicit native mesh selection identity only; optional secondary literal/context fields carry no geometry, lifecycle or solved-ownership semantics. Invariant mesh prefix numeric coincidences are not object links"
+              },
+              "native_mesh_object_id": 213,
+              "component_object_id": 3,
+              "mesh_name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+              "current_mesh_native_feature_owner_object_id": 218,
+              "current_mesh_native_owner_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+              "stored_selected_asset_group_uuids": [
+                "f8e200ea-8756-45a2-92c2-f75d0763102a",
+                "b9485dea-9b01-47de-8bbb-0d9fe2516f84"
+              ],
+              "stored_leading_asset_group_uuid": "b9485dea-9b01-47de-8bbb-0d9fe2516f84",
+              "selected_asset_group_labels": [
+                1,
+                2
+              ],
+              "selected_current_triangle_label_occurrence_counts": [
+                0,
+                2
+              ],
+              "leading_key_current_triangle_label_occurrence_count": 2,
+              "selection_scope": "Ordered feature UUIDs resolve through the explicitly selected native mesh current/additional asset metadata tables. Labels remain asset-scoped temporary cache keys; no persistent geometry/handle identity",
+              "leading_key_scope": "Literal leading UUID equals last selected UUID in observed2/3 layouts; no universal merge-survivor or lifecycle semantics",
+              "current_asset_group_namespace": {
+                "asset_object_id": 512,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.cdbebe0a-783e-441a-a371-05cc935b4730.paramesh",
+                "asset_fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+                "metadata_field_number": 5,
+                "stored_namespace_descriptor_hex": "080712027232",
+                "stored_payload_hex": "2a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280802122462393438356465612d396230312d343764652d386262622d30643966653235313666383432280803122465323762303932352d633663392d343933312d626666662d303833633434373637343134",
+                "entries": [
+                  {
+                    "stored_asset_group_label": 7,
+                    "stored_asset_group_uuid": "19952526-6586-45fc-82db-2514595ea225"
+                  },
+                  {
+                    "stored_asset_group_label": 6,
+                    "stored_asset_group_uuid": "5daddbc8-d42c-4c8a-8a98-9e4a891e59f1"
+                  },
+                  {
+                    "stored_asset_group_label": 4,
+                    "stored_asset_group_uuid": "580c36ff-3514-42b2-a859-87bfb2cb435b"
+                  },
+                  {
+                    "stored_asset_group_label": 1,
+                    "stored_asset_group_uuid": "f8e200ea-8756-45a2-92c2-f75d0763102a"
+                  },
+                  {
+                    "stored_asset_group_label": 5,
+                    "stored_asset_group_uuid": "0d8d807b-0d2d-47ee-af83-6bbeee358b84"
+                  },
+                  {
+                    "stored_asset_group_label": 8,
+                    "stored_asset_group_uuid": "565fd5f9-113b-4398-8311-65410397a275"
+                  },
+                  {
+                    "stored_asset_group_label": 2,
+                    "stored_asset_group_uuid": "b9485dea-9b01-47de-8bbb-0d9fe2516f84"
+                  },
+                  {
+                    "stored_asset_group_label": 3,
+                    "stored_asset_group_uuid": "e27b0925-c6c9-4931-bfff-083c44767414"
+                  }
+                ],
+                "identity_scope": "Label/UUID pairs scoped to this explicit native asset. Table presence does not imply current triangle use or persistent geometry identity"
+              },
+              "additional_asset_group_namespace": {
+                "asset_object_id": 509,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.b235cec8-3fd0-471d-bf54-5b6af3c672e2.paramesh",
+                "asset_fusion_uuid": "4998eea2-a60b-4bf9-9993-4fc86458282b",
+                "metadata_field_number": 5,
+                "stored_namespace_descriptor_hex": "080712027232",
+                "stored_payload_hex": "2a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280803122465323762303932352d633663392d343933312d626666662d30383363343437363734313432280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280802122462393438356465612d396230312d343764652d386262622d306439666532353136663834",
+                "entries": [
+                  {
+                    "stored_asset_group_label": 7,
+                    "stored_asset_group_uuid": "19952526-6586-45fc-82db-2514595ea225"
+                  },
+                  {
+                    "stored_asset_group_label": 4,
+                    "stored_asset_group_uuid": "580c36ff-3514-42b2-a859-87bfb2cb435b"
+                  },
+                  {
+                    "stored_asset_group_label": 8,
+                    "stored_asset_group_uuid": "565fd5f9-113b-4398-8311-65410397a275"
+                  },
+                  {
+                    "stored_asset_group_label": 6,
+                    "stored_asset_group_uuid": "5daddbc8-d42c-4c8a-8a98-9e4a891e59f1"
+                  },
+                  {
+                    "stored_asset_group_label": 5,
+                    "stored_asset_group_uuid": "0d8d807b-0d2d-47ee-af83-6bbeee358b84"
+                  },
+                  {
+                    "stored_asset_group_label": 3,
+                    "stored_asset_group_uuid": "e27b0925-c6c9-4931-bfff-083c44767414"
+                  },
+                  {
+                    "stored_asset_group_label": 1,
+                    "stored_asset_group_uuid": "f8e200ea-8756-45a2-92c2-f75d0763102a"
+                  },
+                  {
+                    "stored_asset_group_label": 2,
+                    "stored_asset_group_uuid": "b9485dea-9b01-47de-8bbb-0d9fe2516f84"
+                  }
+                ],
+                "identity_scope": "Label/UUID pairs scoped to this explicit native asset. Table presence does not imply current triangle use or persistent geometry identity"
+              },
+              "current_mesh_asset": {
+                "asset_object_id": 512,
+                "asset_record_offset": 31145,
+                "asset_filename_object_id": 513,
+                "asset_filename_record_offset": 31232,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.cdbebe0a-783e-441a-a371-05cc935b4730.paramesh",
+                "asset_fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+                "stored_asset_header_scalar": 1.3333333333333333,
+                "stored_asset_header_flag": 1,
+                "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+                "geometry": {
+                  "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+                  "asset_size_bytes": 942,
+                  "asset_sha256": "ceeba846ce6516d06994001f74af087e070338434f8accc007aa46a74f8a6856",
+                  "fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+                  "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2432306534336433342d356466362d346364612d623337332d3233303163613961653733322a0b0805120272301a037230692ad8022a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280802122462393438356465612d396230312d343764652d386262622d30643966653235313666383432280803122465323762303932352d633663392d343933312d626666662d3038336334343736373431343a042202723142330a0b667573696f6e5f757569641a2431323662636134612d616462392d343930372d623636612d3232363965653531393033624801622463393831616434662d666334362d346263332d616161632d333966383239623034623532aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+                  "stored_metadata_hex": "22331a2432306534336433342d356466362d346364612d623337332d3233303163613961653733322a0b0805120272301a037230692ad8022a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280802122462393438356465612d396230312d343764652d386262622d30643966653235313666383432280803122465323762303932352d633663392d343933312d626666662d3038336334343736373431343a042202723142330a0b667573696f6e5f757569641a2431323662636134612d616462392d343930372d623636612d3232363965653531393033624801622463393831616434662d666334362d346263332d616161632d333966383239623034623532aa010176b2010174",
+                  "buffers": [
+                    {
+                      "buffer_ordinal": 0,
+                      "asset_offset": 603,
+                      "stored_length": 34,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a14403a15403",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                      "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                      "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                    },
+                    {
+                      "buffer_ordinal": 1,
+                      "asset_offset": 649,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                      "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                    },
+                    {
+                      "buffer_ordinal": 2,
+                      "asset_offset": 719,
+                      "stored_length": 55,
+                      "stored_kind": 4,
+                      "descriptor_hex": "83a14403a15403a155c3",
+                      "uncompressed_size": 192,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                      "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                      "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                    },
+                    {
+                      "buffer_ordinal": 3,
+                      "asset_offset": 786,
+                      "stored_length": 33,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                      "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                      "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                    },
+                    {
+                      "buffer_ordinal": 4,
+                      "asset_offset": 831,
+                      "stored_length": 60,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00020036e308741c6290be1c8a58940e1641e5148d71283d4fb0f845874b88d3a7e803ed9b359d3e5763b67393",
+                      "uncompressed_payload_hex": "04000000fcffffff010000000300000001000000fbffffff02000000ffffffff04000000fcffffff01000000ffffffff020000000000000002000000fbffffff03000000ffffffff02000000ffffffff01000000feffffff0300000005000000",
+                      "stored_frame_hex": "3c0000000000000004000000070082a15401a16401600000005d1400020036e308741c6290be1c8a58940e1641e5148d71283d4fb0f845874b88d3a7e803ed9b359d3e5763b67393"
+                    },
+                    {
+                      "buffer_ordinal": 5,
+                      "asset_offset": 903,
+                      "stored_length": 27,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 32,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000687eca1280010a9b1060",
+                      "uncompressed_payload_hex": "0000000001000000010000000100000001000000010000000100000008000000",
+                      "stored_frame_hex": "1b0000000000000004000000070082a15401a16401200000005d140000687eca1280010a9b1060"
+                    }
+                  ],
+                  "stored_node_coordinates_float32": [
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "triangle_node_indices": [
+                    5,
+                    4,
+                    3,
+                    4,
+                    0,
+                    3,
+                    0,
+                    1,
+                    3,
+                    1,
+                    5,
+                    3,
+                    4,
+                    5,
+                    2,
+                    0,
+                    4,
+                    2,
+                    1,
+                    0,
+                    2,
+                    5,
+                    1,
+                    2
+                  ],
+                  "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+                  "node_count": 6,
+                  "triangle_count": 8,
+                  "count_evidence": {
+                    "stored_coordinate_buffer_bytes": 72,
+                    "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                    "stored_triangle_buffer_bytes": 96,
+                    "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                    "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                    "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                    "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+                  },
+                  "unresolved_buffers": [
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved"
+                }
+              },
+              "additional_stored_asset": {
+                "asset_object_id": 509,
+                "asset_record_offset": 30874,
+                "asset_filename_object_id": 510,
+                "asset_filename_record_offset": 30961,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.b235cec8-3fd0-471d-bf54-5b6af3c672e2.paramesh",
+                "asset_fusion_uuid": "4998eea2-a60b-4bf9-9993-4fc86458282b",
+                "stored_asset_header_scalar": 1.3333333333333333,
+                "stored_asset_header_flag": 1,
+                "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+                "geometry": {
+                  "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+                  "asset_size_bytes": 940,
+                  "asset_sha256": "3032bdef2c7282c8daecffa8f80ada540ce88aaa9e89e37b3fc0e92a94dca16d",
+                  "fusion_uuid": "4998eea2-a60b-4bf9-9993-4fc86458282b",
+                  "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2432306534336433342d356466362d346364612d623337332d3233303163613961653733322a0b0805120272301a037230692ad8022a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280803122465323762303932352d633663392d343933312d626666662d30383363343437363734313432280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280802122462393438356465612d396230312d343764652d386262622d3064396665323531366638343a042202723142330a0b667573696f6e5f757569641a2434393938656561322d613630622d346266392d393939332d3466633836343538323832624801622431626532373562642d386163652d346564352d626130332d363333666566663733613664aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+                  "stored_metadata_hex": "22331a2432306534336433342d356466362d346364612d623337332d3233303163613961653733322a0b0805120272301a037230692ad8022a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280803122465323762303932352d633663392d343933312d626666662d30383363343437363734313432280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280802122462393438356465612d396230312d343764652d386262622d3064396665323531366638343a042202723142330a0b667573696f6e5f757569641a2434393938656561322d613630622d346266392d393939332d3466633836343538323832624801622431626532373562642d386163652d346564352d626130332d363333666566663733613664aa010176b2010174",
+                  "buffers": [
+                    {
+                      "buffer_ordinal": 0,
+                      "asset_offset": 603,
+                      "stored_length": 34,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a14403a15403",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                      "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                      "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                    },
+                    {
+                      "buffer_ordinal": 1,
+                      "asset_offset": 649,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                      "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                    },
+                    {
+                      "buffer_ordinal": 2,
+                      "asset_offset": 719,
+                      "stored_length": 55,
+                      "stored_kind": 4,
+                      "descriptor_hex": "83a14403a15403a155c3",
+                      "uncompressed_size": 192,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                      "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                      "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                    },
+                    {
+                      "buffer_ordinal": 3,
+                      "asset_offset": 786,
+                      "stored_length": 33,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                      "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                      "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                    },
+                    {
+                      "buffer_ordinal": 4,
+                      "asset_offset": 831,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803ca046f296d044076e330a982098d4398fa36729572377880f8163ebc0c2de573da7527622bd41de",
+                      "uncompressed_payload_hex": "01000000ffffffff04000000feffffff03000000ffffffff01000000fbffffff02000000ffffffff020000000000000002000000fbffffff03000000ffffffff02000000ffffffff01000000fdffffff04000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d140000803ca046f296d044076e330a982098d4398fa36729572377880f8163ebc0c2de573da7527622bd41de"
+                    },
+                    {
+                      "buffer_ordinal": 5,
+                      "asset_offset": 901,
+                      "stored_length": 27,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 32,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caed5cf7fbd116400",
+                      "uncompressed_payload_hex": "0100000001000000010000000100000001000000010000000100000008000000",
+                      "stored_frame_hex": "1b0000000000000004000000070082a15401a16401200000005d140000803caed5cf7fbd116400"
+                    }
+                  ],
+                  "stored_node_coordinates_float32": [
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "triangle_node_indices": [
+                    5,
+                    4,
+                    3,
+                    4,
+                    0,
+                    3,
+                    0,
+                    1,
+                    3,
+                    1,
+                    5,
+                    3,
+                    4,
+                    5,
+                    2,
+                    0,
+                    4,
+                    2,
+                    1,
+                    0,
+                    2,
+                    5,
+                    1,
+                    2
+                  ],
+                  "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+                  "node_count": 6,
+                  "triangle_count": 8,
+                  "count_evidence": {
+                    "stored_coordinate_buffer_bytes": 72,
+                    "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                    "stored_triangle_buffer_bytes": 96,
+                    "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                    "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                    "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                    "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+                  },
+                  "unresolved_buffers": [
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved"
+                }
+              },
+              "additional_asset_temporal_role": null,
+              "current_triangle_face_groups": {
+                "mesh_object_id": 213,
+                "component_object_id": 3,
+                "asset_object_id": 512,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.cdbebe0a-783e-441a-a371-05cc935b4730.paramesh",
+                "asset_fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+                "asset_sha256": "ceeba846ce6516d06994001f74af087e070338434f8accc007aa46a74f8a6856",
+                "buffer_ordinal": 5,
+                "buffer_asset_offset": 903,
+                "stored_descriptor_hex": "82a15401a16401",
+                "stored_payload_hex": "0000000001000000010000000100000001000000010000000100000008000000",
+                "stored_int32_forward_differences": [
+                  0,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  8
+                ],
+                "decoded_triangle_face_group_temporary_ids": [
+                  2,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8
+                ],
+                "triangle_label_count": 8,
+                "distinct_temporary_label_count": 7,
+                "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+                "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+                "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+                "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+                "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+              },
+              "repeated_dependency_object_ids": [
+                489,
+                492
+              ],
+              "stored_feature_index": 1,
+              "stored_state_object_id": 498,
+              "stored_state_payload_hex": "0000000000000100000000000000",
+              "stored_shared_footer_hex": "0000000000000001f201000000000000000000ffffffff010100003efcb3212a4d5d3f0101000001f101000000000000000001000001f00100000000000000000000",
+              "layout": {
+                "feature_record_offset": 29458,
+                "feature_body_offset": 29477,
+                "feature_body_end_offset": 29942,
+                "stored_feature_body_hex": "00002400000062393438356465612d396230312d343764652d386262622d306439666532353136663834010002000000000000000001fd010000000000000000020000002400000066386532303065612d383735362d343561322d393263322d6637356430373633313032612400000062393438356465612d396230312d343764652d386262622d30643966653235313666383401e90100000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000200000001e901000000000000000001ec010000000000000000ffffffff1100000043006f006d00620069006e0065004600610063006500470072006f007500700073000100000000000000280000004f0077006e00650064004d0065007300680043006f006d00620069006e0065004600610063006500470072006f007500700073005f00610064006a006100630065006e0074005f0070006100690072000000000000000001f201000000000000000000ffffffff010100003efcb3212a4d5d3f0101000001f101000000000000000001000001f00100000000000000000000",
+                "exact_full_payload_replay": true
+              },
+              "source_scope": "Typed input proxy/descriptor proves MeshBody selection; independent native BaseMesh owner retained",
+              "regeneration_scope": "Stored selection/control/cache evidence only; no grouping algorithm, history replay or regeneration"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed CombineFaceGroups ordered2/3 asset-group UUID keys, typed selected current mesh/asset ownership, exact metadata label/UUID table and current ordered triangle temporary labels. UUIDs qualify only this stored asset namespace; persistent face identity, handle stability across rollback, additional asset temporal role, lifecycle and regeneration remain unresolved."
+      },
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 25037,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 209,
+            "mesh_collection_record_offset": 24677,
+            "mesh_collection_base_record_offset": 24715,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 512,
+            "asset_record_offset": 31145,
+            "asset_filename_object_id": 513,
+            "asset_filename_record_offset": 31232,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.cdbebe0a-783e-441a-a371-05cc935b4730.paramesh",
+            "asset_fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+            "asset_reference_field_offset": 25578,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 942,
+              "asset_sha256": "ceeba846ce6516d06994001f74af087e070338434f8accc007aa46a74f8a6856",
+              "fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2432306534336433342d356466362d346364612d623337332d3233303163613961653733322a0b0805120272301a037230692ad8022a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280802122462393438356465612d396230312d343764652d386262622d30643966653235313666383432280803122465323762303932352d633663392d343933312d626666662d3038336334343736373431343a042202723142330a0b667573696f6e5f757569641a2431323662636134612d616462392d343930372d623636612d3232363965653531393033624801622463393831616434662d666334362d346263332d616161632d333966383239623034623532aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2432306534336433342d356466362d346364612d623337332d3233303163613961653733322a0b0805120272301a037230692ad8022a0608071202723232280807122431393935323532362d363538362d343566632d383264622d32353134353935656132323532280806122435646164646263382d643432632d346338612d386139382d39653461383931653539663132280804122435383063333666662d333531342d343262322d613835392d38376266623263623433356232280801122466386532303065612d383735362d343561322d393263322d66373564303736333130326132280805122430643864383037622d306432642d343765652d616638332d36626265656533353862383432280808122435363566643566392d313133622d343339382d383331312d36353431303339376132373532280802122462393438356465612d396230312d343764652d386262622d30643966653235313666383432280803122465323762303932352d633663392d343933312d626666662d3038336334343736373431343a042202723142330a0b667573696f6e5f757569641a2431323662636134612d616462392d343930372d623636612d3232363965653531393033624801622463393831616434662d666334362d346263332d616161632d333966383239623034623532aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 603,
+                  "stored_length": 34,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                  "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                  "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 649,
+                  "stored_length": 58,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                  "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                  "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 719,
+                  "stored_length": 55,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 192,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                  "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                  "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 786,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                  "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                  "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 831,
+                  "stored_length": 60,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00020036e308741c6290be1c8a58940e1641e5148d71283d4fb0f845874b88d3a7e803ed9b359d3e5763b67393",
+                  "uncompressed_payload_hex": "04000000fcffffff010000000300000001000000fbffffff02000000ffffffff04000000fcffffff01000000ffffffff020000000000000002000000fbffffff03000000ffffffff02000000ffffffff01000000feffffff0300000005000000",
+                  "stored_frame_hex": "3c0000000000000004000000070082a15401a16401600000005d1400020036e308741c6290be1c8a58940e1641e5148d71283d4fb0f845874b88d3a7e803ed9b359d3e5763b67393"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 903,
+                  "stored_length": 27,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000687eca1280010a9b1060",
+                  "uncompressed_payload_hex": "0000000001000000010000000100000001000000010000000100000008000000",
+                  "stored_frame_hex": "1b0000000000000004000000070082a15401a16401200000005d140000687eca1280010a9b1060"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                5,
+                4,
+                3,
+                4,
+                0,
+                3,
+                0,
+                1,
+                3,
+                1,
+                5,
+                3,
+                4,
+                5,
+                2,
+                0,
+                4,
+                2,
+                1,
+                0,
+                2,
+                5,
+                1,
+                2
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 6,
+              "triangle_count": 8,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 72,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 96,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  -1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  -1.0000000149011612,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0000000149011612
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0000000149011612
+                ],
+                [
+                  0.0,
+                  1.0000000149011612,
+                  0.0
+                ],
+                [
+                  1.0000000149011612,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "derived_area_cm2": 6.928203436752057,
+              "derived_signed_volume_cm3": 1.333333392937979,
+              "derived_absolute_volume_cm3": 1.333333392937979,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 12,
+              "derived_component_bounds_cm": {
+                "min": [
+                  -1.0000000149011612,
+                  -1.0000000149011612,
+                  -1.0000000149011612
+                ],
+                "max": [
+                  1.0000000149011612,
+                  1.0000000149011612,
+                  1.0000000149011612
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0101010000000000000000",
+            "prefix_scope": "Stored index1/2 observed; remaining packed prefix retained literally, never treated as coincident native object257 reference",
+            "stored_asset_header_scalar": 1.3333333333333333,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 512,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.cdbebe0a-783e-441a-a371-05cc935b4730.paramesh",
+            "asset_fusion_uuid": "126bca4a-adb9-4907-b66a-2269ee51903b",
+            "asset_sha256": "ceeba846ce6516d06994001f74af087e070338434f8accc007aa46a74f8a6856",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 903,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "0000000001000000010000000100000001000000010000000100000008000000",
+            "stored_int32_forward_differences": [
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              8
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              2,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "triangle_label_count": 8,
+            "distinct_temporary_label_count": 7,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "expected_preparatory_face_groups": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 268,
+            "class_guid": "CA2AE956-FD81-4EBD-A601-F93A0F335722",
+            "reason": "FaceGroups selected mesh current asset route unresolved"
+          }
+        ],
+        "scope": "Observed Fast20/80-degree minimum-size0.02 and Accurate boundary-tolerance0.001cm GenerateFaceGroups controls, owned current mesh/asset route and eight ordered cached triangle temporary group IDs. Additional asset lifecycle, persistent group identity, other buffer semantics and procedural grouping/regeneration remain unresolved."
+      },
+      "actual_API_selected_temporary_ids": [
+        1,
+        2
+      ],
+      "actual_API_output_triangle_group_temporary_ids": [
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "actual_before_add_handle_matrix": [
+        [
+          true,
+          false
+        ],
+        [
+          false,
+          true
+        ]
+      ],
+      "actual_rolled_handle_matrix": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ]
+      ],
+      "identity_scope": "Typed mesh selection plus exact same-asset label/UUID table precedes API temporary-label comparison. Original and rolled group handles are not claimed persistent."
+    },
+    {
+      "archive": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 488,
+            "kind": "MeshCombineFaceGroups",
+            "name": "OwnedMeshCombineFaceGroups_adjacent_pair_reversed",
+            "settings": {
+              "input_selection": {
+                "proxy_object_id": 489,
+                "descriptor_object_id": 492,
+                "mesh_object_id": 213,
+                "leaf_object_id": 495,
+                "owner_feature_object_id": 488,
+                "namespace_text": "d23d2476-d1b7-451d-8930-c71bce13b4e9",
+                "entity_guid_text": "7bd41b38-c7d5-45cd-bdb2-83b04bd1eaf2",
+                "stored_secondary_count": 1,
+                "secondary_record_object_id": 511,
+                "secondary_payload_hex": "0000010100",
+                "stored_descriptor_context_counts": [
+                  0,
+                  0
+                ],
+                "stored_proxy_trailer_hex": "0000000004000000000000000000000000000101000000834f73f222f33e0101000001eb01000000000000000001000001ea01000000000000000000",
+                "stored_descriptor_trailer_hex": "0400000000000000000000000000010100008004ce9116e0eb3e0101000001ee01000000000000000001000001ed01000000000000000000",
+                "association": "Owned typed proxy/descriptor and matching direct mesh pointer plus bounded90055 mesh identity leaf",
+                "scope": "Explicit native mesh selection identity only; optional secondary literal/context fields carry no geometry, lifecycle or solved-ownership semantics. Invariant mesh prefix numeric coincidences are not object links"
+              },
+              "native_mesh_object_id": 213,
+              "component_object_id": 3,
+              "mesh_name": "OwnedCombineFaceGroupsSource_adjacent_pair_reversed",
+              "current_mesh_native_feature_owner_object_id": 218,
+              "current_mesh_native_owner_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+              "stored_selected_asset_group_uuids": [
+                "9b6b948d-3a59-4b7c-8e78-9e794b6ae5bc",
+                "65864770-7e43-4fcc-9bf7-90b93ddfc86f"
+              ],
+              "stored_leading_asset_group_uuid": "65864770-7e43-4fcc-9bf7-90b93ddfc86f",
+              "selected_asset_group_labels": [
+                2,
+                1
+              ],
+              "selected_current_triangle_label_occurrence_counts": [
+                0,
+                2
+              ],
+              "leading_key_current_triangle_label_occurrence_count": 2,
+              "selection_scope": "Ordered feature UUIDs resolve through the explicitly selected native mesh current/additional asset metadata tables. Labels remain asset-scoped temporary cache keys; no persistent geometry/handle identity",
+              "leading_key_scope": "Literal leading UUID equals last selected UUID in observed2/3 layouts; no universal merge-survivor or lifecycle semantics",
+              "current_asset_group_namespace": {
+                "asset_object_id": 512,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.88a30d7f-eaf8-4950-b15c-c6c2f49f13a7.paramesh",
+                "asset_fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+                "metadata_field_number": 5,
+                "stored_namespace_descriptor_hex": "080712027232",
+                "stored_payload_hex": "2a0608071202723232280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280804122465346131323830652d656165652d346465322d383066372d35366335313765356630636232280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d393661666237613339623265",
+                "entries": [
+                  {
+                    "stored_asset_group_label": 1,
+                    "stored_asset_group_uuid": "65864770-7e43-4fcc-9bf7-90b93ddfc86f"
+                  },
+                  {
+                    "stored_asset_group_label": 7,
+                    "stored_asset_group_uuid": "9f0ae2cd-cf8a-4df4-b561-0dd1272673a9"
+                  },
+                  {
+                    "stored_asset_group_label": 4,
+                    "stored_asset_group_uuid": "e4a1280e-eaee-4de2-80f7-56c517e5f0cb"
+                  },
+                  {
+                    "stored_asset_group_label": 6,
+                    "stored_asset_group_uuid": "afa7f57a-70d3-472b-862b-c2ba1256682d"
+                  },
+                  {
+                    "stored_asset_group_label": 5,
+                    "stored_asset_group_uuid": "c6138d80-70bf-41da-bb32-81163bdb1771"
+                  },
+                  {
+                    "stored_asset_group_label": 8,
+                    "stored_asset_group_uuid": "86509ff5-d3fb-492a-9a3e-5e580478cdeb"
+                  },
+                  {
+                    "stored_asset_group_label": 2,
+                    "stored_asset_group_uuid": "9b6b948d-3a59-4b7c-8e78-9e794b6ae5bc"
+                  },
+                  {
+                    "stored_asset_group_label": 3,
+                    "stored_asset_group_uuid": "43329877-1edb-4fab-b884-96afb7a39b2e"
+                  }
+                ],
+                "identity_scope": "Label/UUID pairs scoped to this explicit native asset. Table presence does not imply current triangle use or persistent geometry identity"
+              },
+              "additional_asset_group_namespace": {
+                "asset_object_id": 509,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.b1c26ca4-b1f0-4282-9246-559343492a50.paramesh",
+                "asset_fusion_uuid": "319c5089-965a-4162-9c8c-d75e30c10b35",
+                "metadata_field_number": 5,
+                "stored_namespace_descriptor_hex": "080712027232",
+                "stored_payload_hex": "2a0608071202723232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d39366166623761333962326532280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280804122465346131323830652d656165652d346465322d383066372d353663353137653566306362",
+                "entries": [
+                  {
+                    "stored_asset_group_label": 2,
+                    "stored_asset_group_uuid": "9b6b948d-3a59-4b7c-8e78-9e794b6ae5bc"
+                  },
+                  {
+                    "stored_asset_group_label": 3,
+                    "stored_asset_group_uuid": "43329877-1edb-4fab-b884-96afb7a39b2e"
+                  },
+                  {
+                    "stored_asset_group_label": 5,
+                    "stored_asset_group_uuid": "c6138d80-70bf-41da-bb32-81163bdb1771"
+                  },
+                  {
+                    "stored_asset_group_label": 7,
+                    "stored_asset_group_uuid": "9f0ae2cd-cf8a-4df4-b561-0dd1272673a9"
+                  },
+                  {
+                    "stored_asset_group_label": 6,
+                    "stored_asset_group_uuid": "afa7f57a-70d3-472b-862b-c2ba1256682d"
+                  },
+                  {
+                    "stored_asset_group_label": 1,
+                    "stored_asset_group_uuid": "65864770-7e43-4fcc-9bf7-90b93ddfc86f"
+                  },
+                  {
+                    "stored_asset_group_label": 8,
+                    "stored_asset_group_uuid": "86509ff5-d3fb-492a-9a3e-5e580478cdeb"
+                  },
+                  {
+                    "stored_asset_group_label": 4,
+                    "stored_asset_group_uuid": "e4a1280e-eaee-4de2-80f7-56c517e5f0cb"
+                  }
+                ],
+                "identity_scope": "Label/UUID pairs scoped to this explicit native asset. Table presence does not imply current triangle use or persistent geometry identity"
+              },
+              "current_mesh_asset": {
+                "asset_object_id": 512,
+                "asset_record_offset": 31217,
+                "asset_filename_object_id": 513,
+                "asset_filename_record_offset": 31304,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.88a30d7f-eaf8-4950-b15c-c6c2f49f13a7.paramesh",
+                "asset_fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+                "stored_asset_header_scalar": 1.3333333333333333,
+                "stored_asset_header_flag": 1,
+                "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+                "geometry": {
+                  "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+                  "asset_size_bytes": 942,
+                  "asset_sha256": "9f997f3ce9a58279496de4ee3ecfe602da7da9bc124b5be96e361c98fb4c468d",
+                  "fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+                  "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2437346533653665622d363361392d343731362d613636662d3831633135313265626336342a0b0805120272301a037230692ad8022a0608071202723232280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280804122465346131323830652d656165652d346465322d383066372d35366335313765356630636232280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d3936616662376133396232653a042202723142330a0b667573696f6e5f757569641a2437613835663838382d623835372d346432352d383030372d3662393166356630386331634801622430383334643034342d386233382d346165372d386563632d313336656165353465643065aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+                  "stored_metadata_hex": "22331a2437346533653665622d363361392d343731362d613636662d3831633135313265626336342a0b0805120272301a037230692ad8022a0608071202723232280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280804122465346131323830652d656165652d346465322d383066372d35366335313765356630636232280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d3936616662376133396232653a042202723142330a0b667573696f6e5f757569641a2437613835663838382d623835372d346432352d383030372d3662393166356630386331634801622430383334643034342d386233382d346165372d386563632d313336656165353465643065aa010176b2010174",
+                  "buffers": [
+                    {
+                      "buffer_ordinal": 0,
+                      "asset_offset": 603,
+                      "stored_length": 34,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a14403a15403",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                      "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                      "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                    },
+                    {
+                      "buffer_ordinal": 1,
+                      "asset_offset": 649,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                      "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                    },
+                    {
+                      "buffer_ordinal": 2,
+                      "asset_offset": 719,
+                      "stored_length": 55,
+                      "stored_kind": 4,
+                      "descriptor_hex": "83a14403a15403a155c3",
+                      "uncompressed_size": 192,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                      "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                      "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                    },
+                    {
+                      "buffer_ordinal": 3,
+                      "asset_offset": 786,
+                      "stored_length": 33,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                      "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                      "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                    },
+                    {
+                      "buffer_ordinal": 4,
+                      "asset_offset": 831,
+                      "stored_length": 57,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00018038bc0628eab18e5dc20ffd4232e444efc71e14e1bc642b46f53928ab15a5363553764bdb39cc65",
+                      "uncompressed_payload_hex": "03000000ffffffff02000000fdffffff02000000fdffffff04000000fcffffff010000000300000001000000fcffffff010000000100000001000000feffffff03000000fbffffff020000000100000002000000fcffffff0400000005000000",
+                      "stored_frame_hex": "390000000000000004000000070082a15401a16401600000005d1400018038bc0628eab18e5dc20ffd4232e444efc71e14e1bc642b46f53928ab15a5363553764bdb39cc65"
+                    },
+                    {
+                      "buffer_ordinal": 5,
+                      "asset_offset": 900,
+                      "stored_length": 30,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 32,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000687ede1f409b09bda7b732a160",
+                      "uncompressed_payload_hex": "0000000002000000010000000100000001000000010000000100000008000000",
+                      "stored_frame_hex": "1e0000000000000004000000070082a15401a16401200000005d140000687ede1f409b09bda7b732a160"
+                    }
+                  ],
+                  "stored_node_coordinates_float32": [
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "triangle_node_indices": [
+                    5,
+                    4,
+                    3,
+                    4,
+                    0,
+                    3,
+                    0,
+                    1,
+                    3,
+                    1,
+                    5,
+                    3,
+                    4,
+                    5,
+                    2,
+                    0,
+                    4,
+                    2,
+                    1,
+                    0,
+                    2,
+                    5,
+                    1,
+                    2
+                  ],
+                  "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+                  "node_count": 6,
+                  "triangle_count": 8,
+                  "count_evidence": {
+                    "stored_coordinate_buffer_bytes": 72,
+                    "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                    "stored_triangle_buffer_bytes": 96,
+                    "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                    "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                    "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                    "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+                  },
+                  "unresolved_buffers": [
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved"
+                }
+              },
+              "additional_stored_asset": {
+                "asset_object_id": 509,
+                "asset_record_offset": 30946,
+                "asset_filename_object_id": 510,
+                "asset_filename_record_offset": 31033,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.b1c26ca4-b1f0-4282-9246-559343492a50.paramesh",
+                "asset_fusion_uuid": "319c5089-965a-4162-9c8c-d75e30c10b35",
+                "stored_asset_header_scalar": 1.3333333333333333,
+                "stored_asset_header_flag": 1,
+                "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+                "geometry": {
+                  "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+                  "asset_size_bytes": 945,
+                  "asset_sha256": "a78a4b2ab0675c14175b45a86f63bae04b695c6f76dde4416d497ff4945aa16f",
+                  "fusion_uuid": "319c5089-965a-4162-9c8c-d75e30c10b35",
+                  "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2437346533653665622d363361392d343731362d613636662d3831633135313265626336342a0b0805120272301a037230692ad8022a0608071202723232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d39366166623761333962326532280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280804122465346131323830652d656165652d346465322d383066372d3536633531376535663063623a042202723142330a0b667573696f6e5f757569641a2433313963353038392d393635612d343136322d396338632d6437356533306331306233354801622462333237363233352d303063322d346634342d626166622d333166663534383461373962aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+                  "stored_metadata_hex": "22331a2437346533653665622d363361392d343731362d613636662d3831633135313265626336342a0b0805120272301a037230692ad8022a0608071202723232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d39366166623761333962326532280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280804122465346131323830652d656165652d346465322d383066372d3536633531376535663063623a042202723142330a0b667573696f6e5f757569641a2433313963353038392d393635612d343136322d396338632d6437356533306331306233354801622462333237363233352d303063322d346634342d626166622d333166663534383461373962aa010176b2010174",
+                  "buffers": [
+                    {
+                      "buffer_ordinal": 0,
+                      "asset_offset": 603,
+                      "stored_length": 34,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a14403a15403",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                      "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                      "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                    },
+                    {
+                      "buffer_ordinal": 1,
+                      "asset_offset": 649,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                      "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                    },
+                    {
+                      "buffer_ordinal": 2,
+                      "asset_offset": 719,
+                      "stored_length": 55,
+                      "stored_kind": 4,
+                      "descriptor_hex": "83a14403a15403a155c3",
+                      "uncompressed_size": 192,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                      "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                      "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                    },
+                    {
+                      "buffer_ordinal": 3,
+                      "asset_offset": 786,
+                      "stored_length": 33,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                      "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                      "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                    },
+                    {
+                      "buffer_ordinal": 4,
+                      "asset_offset": 831,
+                      "stored_length": 63,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00020036e308741c6290be1c8a58940e6b2ccfeec269d46344484bd708692bffca4615386b9b09a92d6468eed79c040b",
+                      "uncompressed_payload_hex": "04000000fcffffff010000000300000001000000fdffffff03000000fbffffff02000000ffffffff01000000ffffffff020000000000000002000000fbffffff03000000ffffffff02000000ffffffff01000000fdffffff0400000005000000",
+                      "stored_frame_hex": "3f0000000000000004000000070082a15401a16401600000005d1400020036e308741c6290be1c8a58940e6b2ccfeec269d46344484bd708692bffca4615386b9b09a92d6468eed79c040b"
+                    },
+                    {
+                      "buffer_ordinal": 5,
+                      "asset_offset": 906,
+                      "stored_length": 27,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 32,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caed5cf7fbd116400",
+                      "uncompressed_payload_hex": "0100000001000000010000000100000001000000010000000100000008000000",
+                      "stored_frame_hex": "1b0000000000000004000000070082a15401a16401200000005d140000803caed5cf7fbd116400"
+                    }
+                  ],
+                  "stored_node_coordinates_float32": [
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "triangle_node_indices": [
+                    5,
+                    4,
+                    3,
+                    4,
+                    0,
+                    3,
+                    0,
+                    1,
+                    3,
+                    1,
+                    5,
+                    3,
+                    4,
+                    5,
+                    2,
+                    0,
+                    4,
+                    2,
+                    1,
+                    0,
+                    2,
+                    5,
+                    1,
+                    2
+                  ],
+                  "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+                  "node_count": 6,
+                  "triangle_count": 8,
+                  "count_evidence": {
+                    "stored_coordinate_buffer_bytes": 72,
+                    "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                    "stored_triangle_buffer_bytes": 96,
+                    "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                    "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                    "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                    "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+                  },
+                  "unresolved_buffers": [
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved"
+                }
+              },
+              "additional_asset_temporal_role": null,
+              "current_triangle_face_groups": {
+                "mesh_object_id": 213,
+                "component_object_id": 3,
+                "asset_object_id": 512,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.88a30d7f-eaf8-4950-b15c-c6c2f49f13a7.paramesh",
+                "asset_fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+                "asset_sha256": "9f997f3ce9a58279496de4ee3ecfe602da7da9bc124b5be96e361c98fb4c468d",
+                "buffer_ordinal": 5,
+                "buffer_asset_offset": 900,
+                "stored_descriptor_hex": "82a15401a16401",
+                "stored_payload_hex": "0000000002000000010000000100000001000000010000000100000008000000",
+                "stored_int32_forward_differences": [
+                  0,
+                  2,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  8
+                ],
+                "decoded_triangle_face_group_temporary_ids": [
+                  1,
+                  1,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8
+                ],
+                "triangle_label_count": 8,
+                "distinct_temporary_label_count": 7,
+                "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+                "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+                "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+                "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+                "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+              },
+              "repeated_dependency_object_ids": [
+                489,
+                492
+              ],
+              "stored_feature_index": 1,
+              "stored_state_object_id": 498,
+              "stored_state_payload_hex": "0000000000000100000000000000",
+              "stored_shared_footer_hex": "0000000000000001f201000000000000000000ffffffff01010000f5c1323674b35f3f0101000001f101000000000000000001000001f00100000000000000000000",
+              "layout": {
+                "feature_record_offset": 29512,
+                "feature_body_offset": 29531,
+                "feature_body_end_offset": 30014,
+                "stored_feature_body_hex": "00002400000036353836343737302d376534332d346663632d396266372d393062393364646663383666010002000000000000000001fd010000000000000000020000002400000039623662393438642d336135392d346237632d386537382d3965373934623661653562632400000036353836343737302d376534332d346663632d396266372d39306239336464666338366601e90100000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000200000001e901000000000000000001ec010000000000000000ffffffff1100000043006f006d00620069006e0065004600610063006500470072006f007500700073000100000000000000310000004f0077006e00650064004d0065007300680043006f006d00620069006e0065004600610063006500470072006f007500700073005f00610064006a006100630065006e0074005f0070006100690072005f00720065007600650072007300650064000000000000000001f201000000000000000000ffffffff01010000f5c1323674b35f3f0101000001f101000000000000000001000001f00100000000000000000000",
+                "exact_full_payload_replay": true
+              },
+              "source_scope": "Typed input proxy/descriptor proves MeshBody selection; independent native BaseMesh owner retained",
+              "regeneration_scope": "Stored selection/control/cache evidence only; no grouping algorithm, history replay or regeneration"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed CombineFaceGroups ordered2/3 asset-group UUID keys, typed selected current mesh/asset ownership, exact metadata label/UUID table and current ordered triangle temporary labels. UUIDs qualify only this stored asset namespace; persistent face identity, handle stability across rollback, additional asset temporal role, lifecycle and regeneration remain unresolved."
+      },
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 25055,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 209,
+            "mesh_collection_record_offset": 24695,
+            "mesh_collection_base_record_offset": 24733,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedCombineFaceGroupsSource_adjacent_pair_reversed",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 512,
+            "asset_record_offset": 31217,
+            "asset_filename_object_id": 513,
+            "asset_filename_record_offset": 31304,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.88a30d7f-eaf8-4950-b15c-c6c2f49f13a7.paramesh",
+            "asset_fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+            "asset_reference_field_offset": 25596,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 942,
+              "asset_sha256": "9f997f3ce9a58279496de4ee3ecfe602da7da9bc124b5be96e361c98fb4c468d",
+              "fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2437346533653665622d363361392d343731362d613636662d3831633135313265626336342a0b0805120272301a037230692ad8022a0608071202723232280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280804122465346131323830652d656165652d346465322d383066372d35366335313765356630636232280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d3936616662376133396232653a042202723142330a0b667573696f6e5f757569641a2437613835663838382d623835372d346432352d383030372d3662393166356630386331634801622430383334643034342d386233382d346165372d386563632d313336656165353465643065aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2437346533653665622d363361392d343731362d613636662d3831633135313265626336342a0b0805120272301a037230692ad8022a0608071202723232280801122436353836343737302d376534332d346663632d396266372d39306239336464666338366632280807122439663061653263642d636638612d346466342d623536312d30646431323732363733613932280804122465346131323830652d656165652d346465322d383066372d35366335313765356630636232280806122461666137663537612d373064332d343732622d383632622d63326261313235363638326432280805122463363133386438302d373062662d343164612d626233322d38313136336264623137373132280808122438363530396666352d643366622d343932612d396133652d35653538303437386364656232280802122439623662393438642d336135392d346237632d386537382d39653739346236616535626332280803122434333332393837372d316564622d346661622d623838342d3936616662376133396232653a042202723142330a0b667573696f6e5f757569641a2437613835663838382d623835372d346432352d383030372d3662393166356630386331634801622430383334643034342d386233382d346165372d386563632d313336656165353465643065aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 603,
+                  "stored_length": 34,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                  "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                  "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 649,
+                  "stored_length": 58,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                  "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                  "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 719,
+                  "stored_length": 55,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 192,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                  "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                  "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 786,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                  "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                  "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 831,
+                  "stored_length": 57,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00018038bc0628eab18e5dc20ffd4232e444efc71e14e1bc642b46f53928ab15a5363553764bdb39cc65",
+                  "uncompressed_payload_hex": "03000000ffffffff02000000fdffffff02000000fdffffff04000000fcffffff010000000300000001000000fcffffff010000000100000001000000feffffff03000000fbffffff020000000100000002000000fcffffff0400000005000000",
+                  "stored_frame_hex": "390000000000000004000000070082a15401a16401600000005d1400018038bc0628eab18e5dc20ffd4232e444efc71e14e1bc642b46f53928ab15a5363553764bdb39cc65"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 900,
+                  "stored_length": 30,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000687ede1f409b09bda7b732a160",
+                  "uncompressed_payload_hex": "0000000002000000010000000100000001000000010000000100000008000000",
+                  "stored_frame_hex": "1e0000000000000004000000070082a15401a16401200000005d140000687ede1f409b09bda7b732a160"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                5,
+                4,
+                3,
+                4,
+                0,
+                3,
+                0,
+                1,
+                3,
+                1,
+                5,
+                3,
+                4,
+                5,
+                2,
+                0,
+                4,
+                2,
+                1,
+                0,
+                2,
+                5,
+                1,
+                2
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 6,
+              "triangle_count": 8,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 72,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 96,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  -1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  -1.0000000149011612,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0000000149011612
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0000000149011612
+                ],
+                [
+                  0.0,
+                  1.0000000149011612,
+                  0.0
+                ],
+                [
+                  1.0000000149011612,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "derived_area_cm2": 6.928203436752057,
+              "derived_signed_volume_cm3": 1.333333392937979,
+              "derived_absolute_volume_cm3": 1.333333392937979,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 12,
+              "derived_component_bounds_cm": {
+                "min": [
+                  -1.0000000149011612,
+                  -1.0000000149011612,
+                  -1.0000000149011612
+                ],
+                "max": [
+                  1.0000000149011612,
+                  1.0000000149011612,
+                  1.0000000149011612
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0101010000000000000000",
+            "prefix_scope": "Stored index1/2 observed; remaining packed prefix retained literally, never treated as coincident native object257 reference",
+            "stored_asset_header_scalar": 1.3333333333333333,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 512,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.88a30d7f-eaf8-4950-b15c-c6c2f49f13a7.paramesh",
+            "asset_fusion_uuid": "7a85f888-b857-4d25-8007-6b91f5f08c1c",
+            "asset_sha256": "9f997f3ce9a58279496de4ee3ecfe602da7da9bc124b5be96e361c98fb4c468d",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 900,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "0000000002000000010000000100000001000000010000000100000008000000",
+            "stored_int32_forward_differences": [
+              0,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              8
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              1,
+              1,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "triangle_label_count": 8,
+            "distinct_temporary_label_count": 7,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "expected_preparatory_face_groups": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 268,
+            "class_guid": "CA2AE956-FD81-4EBD-A601-F93A0F335722",
+            "reason": "FaceGroups selected mesh current asset route unresolved"
+          }
+        ],
+        "scope": "Observed Fast20/80-degree minimum-size0.02 and Accurate boundary-tolerance0.001cm GenerateFaceGroups controls, owned current mesh/asset route and eight ordered cached triangle temporary group IDs. Additional asset lifecycle, persistent group identity, other buffer semantics and procedural grouping/regeneration remain unresolved."
+      },
+      "actual_API_selected_temporary_ids": [
+        2,
+        1
+      ],
+      "actual_API_output_triangle_group_temporary_ids": [
+        1,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "actual_before_add_handle_matrix": [
+        [
+          true,
+          false
+        ],
+        [
+          false,
+          true
+        ]
+      ],
+      "actual_rolled_handle_matrix": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          false
+        ]
+      ],
+      "identity_scope": "Typed mesh selection plus exact same-asset label/UUID table precedes API temporary-label comparison. Original and rolled group handles are not claimed persistent."
+    },
+    {
+      "archive": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 512,
+            "kind": "MeshCombineFaceGroups",
+            "name": "OwnedMeshCombineFaceGroups_connected_triple",
+            "settings": {
+              "input_selection": {
+                "proxy_object_id": 513,
+                "descriptor_object_id": 516,
+                "mesh_object_id": 213,
+                "leaf_object_id": 519,
+                "owner_feature_object_id": 512,
+                "namespace_text": "1b4558ed-b6c1-469e-a78b-4ad695b72dda",
+                "entity_guid_text": "823b9c5d-c2c9-4889-b9b0-2c554c89c812",
+                "stored_secondary_count": 1,
+                "secondary_record_object_id": 535,
+                "secondary_payload_hex": "0000010100",
+                "stored_descriptor_context_counts": [
+                  0,
+                  0
+                ],
+                "stored_proxy_trailer_hex": "0000000004000000000000000000000000000101000040abcc94d6dff23e010100000103020000000000000000010000010202000000000000000000",
+                "stored_descriptor_trailer_hex": "040000000000000000000000000001010000c079aa436e86eb3e010100000106020000000000000000010000010502000000000000000000",
+                "association": "Owned typed proxy/descriptor and matching direct mesh pointer plus bounded90055 mesh identity leaf",
+                "scope": "Explicit native mesh selection identity only; optional secondary literal/context fields carry no geometry, lifecycle or solved-ownership semantics. Invariant mesh prefix numeric coincidences are not object links"
+              },
+              "native_mesh_object_id": 213,
+              "component_object_id": 3,
+              "mesh_name": "OwnedCombineFaceGroupsSource_connected_triple",
+              "current_mesh_native_feature_owner_object_id": 218,
+              "current_mesh_native_owner_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+              "stored_selected_asset_group_uuids": [
+                "7ad38abe-342e-4e03-92c4-12868ac6b983",
+                "cb8c47fa-4439-4bfa-a471-8c148dee3572",
+                "b6a34b09-da19-44a7-ace6-f8f845967294"
+              ],
+              "stored_leading_asset_group_uuid": "b6a34b09-da19-44a7-ace6-f8f845967294",
+              "selected_asset_group_labels": [
+                1,
+                2,
+                4
+              ],
+              "selected_current_triangle_label_occurrence_counts": [
+                0,
+                0,
+                3
+              ],
+              "leading_key_current_triangle_label_occurrence_count": 3,
+              "selection_scope": "Ordered feature UUIDs resolve through the explicitly selected native mesh current/additional asset metadata tables. Labels remain asset-scoped temporary cache keys; no persistent geometry/handle identity",
+              "leading_key_scope": "Literal leading UUID equals last selected UUID in observed2/3 layouts; no universal merge-survivor or lifecycle semantics",
+              "current_asset_group_namespace": {
+                "asset_object_id": 536,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.f4f24026-683f-4cf5-bd37-5968baa6d891.paramesh",
+                "asset_fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+                "metadata_field_number": 5,
+                "stored_namespace_descriptor_hex": "080712027232",
+                "stored_payload_hex": "2a0608071202723232280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280807122431636235313637392d623466342d343665362d386334382d66623931393931316637633832280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280804122462366133346230392d646131392d343461372d616365362d663866383435393637323934",
+                "entries": [
+                  {
+                    "stored_asset_group_label": 1,
+                    "stored_asset_group_uuid": "7ad38abe-342e-4e03-92c4-12868ac6b983"
+                  },
+                  {
+                    "stored_asset_group_label": 3,
+                    "stored_asset_group_uuid": "042c948a-8d38-4808-8954-874d4f1b97e3"
+                  },
+                  {
+                    "stored_asset_group_label": 8,
+                    "stored_asset_group_uuid": "0d1a7853-120c-41dd-b3d1-f54014c0f196"
+                  },
+                  {
+                    "stored_asset_group_label": 7,
+                    "stored_asset_group_uuid": "1cb51679-b4f4-46e6-8c48-fb919911f7c8"
+                  },
+                  {
+                    "stored_asset_group_label": 2,
+                    "stored_asset_group_uuid": "cb8c47fa-4439-4bfa-a471-8c148dee3572"
+                  },
+                  {
+                    "stored_asset_group_label": 6,
+                    "stored_asset_group_uuid": "72d40a88-bbd4-4789-b4c2-2d2c562f7259"
+                  },
+                  {
+                    "stored_asset_group_label": 5,
+                    "stored_asset_group_uuid": "e74fae96-af55-49e5-864d-b7df8f74965e"
+                  },
+                  {
+                    "stored_asset_group_label": 4,
+                    "stored_asset_group_uuid": "b6a34b09-da19-44a7-ace6-f8f845967294"
+                  }
+                ],
+                "identity_scope": "Label/UUID pairs scoped to this explicit native asset. Table presence does not imply current triangle use or persistent geometry identity"
+              },
+              "additional_asset_group_namespace": {
+                "asset_object_id": 533,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.d9a5e42d-be02-43d1-9573-6e2909f625b2.paramesh",
+                "asset_fusion_uuid": "2307269e-45db-49b2-b720-eed615cba15b",
+                "metadata_field_number": 5,
+                "stored_namespace_descriptor_hex": "080712027232",
+                "stored_payload_hex": "2a0608071202723232280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280804122462366133346230392d646131392d343461372d616365362d66386638343539363732393432280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280807122431636235313637392d623466342d343665362d386334382d666239313939313166376338",
+                "entries": [
+                  {
+                    "stored_asset_group_label": 8,
+                    "stored_asset_group_uuid": "0d1a7853-120c-41dd-b3d1-f54014c0f196"
+                  },
+                  {
+                    "stored_asset_group_label": 5,
+                    "stored_asset_group_uuid": "e74fae96-af55-49e5-864d-b7df8f74965e"
+                  },
+                  {
+                    "stored_asset_group_label": 2,
+                    "stored_asset_group_uuid": "cb8c47fa-4439-4bfa-a471-8c148dee3572"
+                  },
+                  {
+                    "stored_asset_group_label": 3,
+                    "stored_asset_group_uuid": "042c948a-8d38-4808-8954-874d4f1b97e3"
+                  },
+                  {
+                    "stored_asset_group_label": 1,
+                    "stored_asset_group_uuid": "7ad38abe-342e-4e03-92c4-12868ac6b983"
+                  },
+                  {
+                    "stored_asset_group_label": 4,
+                    "stored_asset_group_uuid": "b6a34b09-da19-44a7-ace6-f8f845967294"
+                  },
+                  {
+                    "stored_asset_group_label": 6,
+                    "stored_asset_group_uuid": "72d40a88-bbd4-4789-b4c2-2d2c562f7259"
+                  },
+                  {
+                    "stored_asset_group_label": 7,
+                    "stored_asset_group_uuid": "1cb51679-b4f4-46e6-8c48-fb919911f7c8"
+                  }
+                ],
+                "identity_scope": "Label/UUID pairs scoped to this explicit native asset. Table presence does not imply current triangle use or persistent geometry identity"
+              },
+              "current_mesh_asset": {
+                "asset_object_id": 536,
+                "asset_record_offset": 31209,
+                "asset_filename_object_id": 537,
+                "asset_filename_record_offset": 31296,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.f4f24026-683f-4cf5-bd37-5968baa6d891.paramesh",
+                "asset_fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+                "stored_asset_header_scalar": 1.3333333333333333,
+                "stored_asset_header_flag": 1,
+                "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+                "geometry": {
+                  "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+                  "asset_size_bytes": 944,
+                  "asset_sha256": "67beb0d4214bcc066b7d9a3ee2655fab37cfc12ba8867398586c1e5efc375298",
+                  "fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+                  "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2438383236616334372d313834352d346138312d613861642d3235643566366633663565652a0b0805120272301a037230692ad8022a0608071202723232280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280807122431636235313637392d623466342d343665362d386334382d66623931393931316637633832280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280804122462366133346230392d646131392d343461372d616365362d6638663834353936373239343a042202723142330a0b667573696f6e5f757569641a2463313938393233642d646663372d346466392d396163642d3539353263393833313361624801622465373265353032632d393562352d343836352d613934312d316564376366336166366466aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+                  "stored_metadata_hex": "22331a2438383236616334372d313834352d346138312d613861642d3235643566366633663565652a0b0805120272301a037230692ad8022a0608071202723232280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280807122431636235313637392d623466342d343665362d386334382d66623931393931316637633832280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280804122462366133346230392d646131392d343461372d616365362d6638663834353936373239343a042202723142330a0b667573696f6e5f757569641a2463313938393233642d646663372d346466392d396163642d3539353263393833313361624801622465373265353032632d393562352d343836352d613934312d316564376366336166366466aa010176b2010174",
+                  "buffers": [
+                    {
+                      "buffer_ordinal": 0,
+                      "asset_offset": 603,
+                      "stored_length": 34,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a14403a15403",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                      "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                      "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                    },
+                    {
+                      "buffer_ordinal": 1,
+                      "asset_offset": 649,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                      "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                    },
+                    {
+                      "buffer_ordinal": 2,
+                      "asset_offset": 719,
+                      "stored_length": 55,
+                      "stored_kind": 4,
+                      "descriptor_hex": "83a14403a15403a155c3",
+                      "uncompressed_size": 192,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                      "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                      "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                    },
+                    {
+                      "buffer_ordinal": 3,
+                      "asset_offset": 786,
+                      "stored_length": 33,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                      "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                      "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                    },
+                    {
+                      "buffer_ordinal": 4,
+                      "asset_offset": 831,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803ca7942e45298ff9d05b73c44c161c044f435c58b437b9ec3e6faa87770c454d286de4b753664d23",
+                      "uncompressed_payload_hex": "010000000100000001000000feffffff03000000fcffffff04000000feffffff02000000fbffffff02000000feffffff03000000ffffffff02000000fdffffff02000000fdffffff04000000fcffffff01000000030000000100000005000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d140000803ca7942e45298ff9d05b73c44c161c044f435c58b437b9ec3e6faa87770c454d286de4b753664d23"
+                    },
+                    {
+                      "buffer_ordinal": 5,
+                      "asset_offset": 901,
+                      "stored_length": 31,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 32,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "000068be5144505fd93dc143cfadded2",
+                      "uncompressed_payload_hex": "00000000ffffffff010000000100000001000000010000000100000008000000",
+                      "stored_frame_hex": "1f0000000000000004000000070082a15401a16401200000005d14000068be5144505fd93dc143cfadded2"
+                    }
+                  ],
+                  "stored_node_coordinates_float32": [
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "triangle_node_indices": [
+                    5,
+                    4,
+                    3,
+                    4,
+                    0,
+                    3,
+                    0,
+                    1,
+                    3,
+                    1,
+                    5,
+                    3,
+                    4,
+                    5,
+                    2,
+                    0,
+                    4,
+                    2,
+                    1,
+                    0,
+                    2,
+                    5,
+                    1,
+                    2
+                  ],
+                  "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+                  "node_count": 6,
+                  "triangle_count": 8,
+                  "count_evidence": {
+                    "stored_coordinate_buffer_bytes": 72,
+                    "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                    "stored_triangle_buffer_bytes": 96,
+                    "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                    "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                    "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                    "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+                  },
+                  "unresolved_buffers": [
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved"
+                }
+              },
+              "additional_stored_asset": {
+                "asset_object_id": 533,
+                "asset_record_offset": 30938,
+                "asset_filename_object_id": 534,
+                "asset_filename_record_offset": 31025,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.d9a5e42d-be02-43d1-9573-6e2909f625b2.paramesh",
+                "asset_fusion_uuid": "2307269e-45db-49b2-b720-eed615cba15b",
+                "stored_asset_header_scalar": 1.3333333333333333,
+                "stored_asset_header_flag": 1,
+                "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+                "geometry": {
+                  "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+                  "asset_size_bytes": 939,
+                  "asset_sha256": "196c3b444359ec1fe6ab9ca43dfc1541681d3b67f1800fdd8a99f0f7c09902ac",
+                  "fusion_uuid": "2307269e-45db-49b2-b720-eed615cba15b",
+                  "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2438383236616334372d313834352d346138312d613861642d3235643566366633663565652a0b0805120272301a037230692ad8022a0608071202723232280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280804122462366133346230392d646131392d343461372d616365362d66386638343539363732393432280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280807122431636235313637392d623466342d343665362d386334382d6662393139393131663763383a042202723142330a0b667573696f6e5f757569641a2432333037323639652d343564622d343962322d623732302d6565643631356362613135624801622466303237313131662d633063622d346535612d383764642d626364323863643931633236aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+                  "stored_metadata_hex": "22331a2438383236616334372d313834352d346138312d613861642d3235643566366633663565652a0b0805120272301a037230692ad8022a0608071202723232280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280804122462366133346230392d646131392d343461372d616365362d66386638343539363732393432280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280807122431636235313637392d623466342d343665362d386334382d6662393139393131663763383a042202723142330a0b667573696f6e5f757569641a2432333037323639652d343564622d343962322d623732302d6565643631356362613135624801622466303237313131662d633063622d346535612d383764642d626364323863643931633236aa010176b2010174",
+                  "buffers": [
+                    {
+                      "buffer_ordinal": 0,
+                      "asset_offset": 603,
+                      "stored_length": 34,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a14403a15403",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                      "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                      "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                    },
+                    {
+                      "buffer_ordinal": 1,
+                      "asset_offset": 649,
+                      "stored_length": 58,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                      "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                      "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                    },
+                    {
+                      "buffer_ordinal": 2,
+                      "asset_offset": 719,
+                      "stored_length": 55,
+                      "stored_kind": 4,
+                      "descriptor_hex": "83a14403a15403a155c3",
+                      "uncompressed_size": 192,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                      "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                      "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                    },
+                    {
+                      "buffer_ordinal": 3,
+                      "asset_offset": 786,
+                      "stored_length": 33,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 72,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                      "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                      "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                    },
+                    {
+                      "buffer_ordinal": 4,
+                      "asset_offset": 831,
+                      "stored_length": 57,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 96,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "00010038bb8a7d0cb1dd2b514910570b0df3494e56e3675d61a857dd19dcaabc0de8ee5e58acfb000000",
+                      "uncompressed_payload_hex": "02000000fcffffff02000000feffffff010000000200000001000000fbffffff01000000ffffffff04000000feffffff03000000feffffff01000000fdffffff04000000fbffffff03000000ffffffff02000000fcffffff0200000002000000",
+                      "stored_frame_hex": "390000000000000004000000070082a15401a16401600000005d1400010038bb8a7d0cb1dd2b514910570b0df3494e56e3675d61a857dd19dcaabc0de8ee5e58acfb000000"
+                    },
+                    {
+                      "buffer_ordinal": 5,
+                      "asset_offset": 900,
+                      "stored_length": 27,
+                      "stored_kind": 4,
+                      "descriptor_hex": "82a15401a16401",
+                      "uncompressed_size": 32,
+                      "compressed_properties_hex": "5d14",
+                      "compressed_payload_hex": "0000803caed5cf7fbd116400",
+                      "uncompressed_payload_hex": "0100000001000000010000000100000001000000010000000100000008000000",
+                      "stored_frame_hex": "1b0000000000000004000000070082a15401a16401200000005d140000803caed5cf7fbd116400"
+                    }
+                  ],
+                  "stored_node_coordinates_float32": [
+                    [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    [
+                      0.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "triangle_node_indices": [
+                    5,
+                    4,
+                    3,
+                    4,
+                    0,
+                    3,
+                    0,
+                    1,
+                    3,
+                    1,
+                    5,
+                    3,
+                    4,
+                    5,
+                    2,
+                    0,
+                    4,
+                    2,
+                    1,
+                    0,
+                    2,
+                    5,
+                    1,
+                    2
+                  ],
+                  "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+                  "node_count": 6,
+                  "triangle_count": 8,
+                  "count_evidence": {
+                    "stored_coordinate_buffer_bytes": 72,
+                    "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                    "stored_triangle_buffer_bytes": 96,
+                    "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                    "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                    "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                    "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+                  },
+                  "unresolved_buffers": [
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved"
+                }
+              },
+              "additional_asset_temporal_role": null,
+              "current_triangle_face_groups": {
+                "mesh_object_id": 213,
+                "component_object_id": 3,
+                "asset_object_id": 536,
+                "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.f4f24026-683f-4cf5-bd37-5968baa6d891.paramesh",
+                "asset_fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+                "asset_sha256": "67beb0d4214bcc066b7d9a3ee2655fab37cfc12ba8867398586c1e5efc375298",
+                "buffer_ordinal": 5,
+                "buffer_asset_offset": 901,
+                "stored_descriptor_hex": "82a15401a16401",
+                "stored_payload_hex": "00000000ffffffff010000000100000001000000010000000100000008000000",
+                "stored_int32_forward_differences": [
+                  0,
+                  -1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  8
+                ],
+                "decoded_triangle_face_group_temporary_ids": [
+                  4,
+                  4,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8
+                ],
+                "triangle_label_count": 8,
+                "distinct_temporary_label_count": 6,
+                "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+                "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+                "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+                "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+                "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+              },
+              "repeated_dependency_object_ids": [
+                513,
+                516
+              ],
+              "stored_feature_index": 1,
+              "stored_state_object_id": 522,
+              "stored_state_payload_hex": "0000000000000100000000000000",
+              "stored_shared_footer_hex": "00000000000000010a02000000000000000000ffffffff01010000aa2d409e07be5c3f01010000010902000000000000000001000001080200000000000000000000",
+              "layout": {
+                "feature_record_offset": 29476,
+                "feature_body_offset": 29495,
+                "feature_body_end_offset": 30006,
+                "stored_feature_body_hex": "00002400000062366133346230392d646131392d343461372d616365362d66386638343539363732393401180200000000000000000115020000000000000000030000002400000037616433386162652d333432652d346530332d393263342d3132383638616336623938332400000063623863343766612d343433392d346266612d613437312d3863313438646565333537322400000062366133346230392d646131392d343461372d616365362d66386638343539363732393401010200000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000200000001010200000000000000000104020000000000000000ffffffff1100000043006f006d00620069006e0065004600610063006500470072006f0075007000730001000000000000002b0000004f0077006e00650064004d0065007300680043006f006d00620069006e0065004600610063006500470072006f007500700073005f0063006f006e006e00650063007400650064005f0074007200690070006c00650000000000000000010a02000000000000000000ffffffff01010000aa2d409e07be5c3f01010000010902000000000000000001000001080200000000000000000000",
+                "exact_full_payload_replay": true
+              },
+              "source_scope": "Typed input proxy/descriptor proves MeshBody selection; independent native BaseMesh owner retained",
+              "regeneration_scope": "Stored selection/control/cache evidence only; no grouping algorithm, history replay or regeneration"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed CombineFaceGroups ordered2/3 asset-group UUID keys, typed selected current mesh/asset ownership, exact metadata label/UUID table and current ordered triangle temporary labels. UUIDs qualify only this stored asset namespace; persistent face identity, handle stability across rollback, additional asset temporal role, lifecycle and regeneration remain unresolved."
+      },
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 25043,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 209,
+            "mesh_collection_record_offset": 24683,
+            "mesh_collection_base_record_offset": 24721,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedCombineFaceGroupsSource_connected_triple",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 536,
+            "asset_record_offset": 31209,
+            "asset_filename_object_id": 537,
+            "asset_filename_record_offset": 31296,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.f4f24026-683f-4cf5-bd37-5968baa6d891.paramesh",
+            "asset_fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+            "asset_reference_field_offset": 25584,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 944,
+              "asset_sha256": "67beb0d4214bcc066b7d9a3ee2655fab37cfc12ba8867398586c1e5efc375298",
+              "fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000fb010000000000000100000022331a2438383236616334372d313834352d346138312d613861642d3235643566366633663565652a0b0805120272301a037230692ad8022a0608071202723232280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280807122431636235313637392d623466342d343665362d386334382d66623931393931316637633832280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280804122462366133346230392d646131392d343461372d616365362d6638663834353936373239343a042202723142330a0b667573696f6e5f757569641a2463313938393233642d646663372d346466392d396163642d3539353263393833313361624801622465373265353032632d393562352d343836352d613934312d316564376366336166366466aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2438383236616334372d313834352d346138312d613861642d3235643566366633663565652a0b0805120272301a037230692ad8022a0608071202723232280801122437616433386162652d333432652d346530332d393263342d31323836386163366239383332280803122430343263393438612d386433382d343830382d383935342d38373464346631623937653332280808122430643161373835332d313230632d343164642d623364312d66353430313463306631393632280807122431636235313637392d623466342d343665362d386334382d66623931393931316637633832280802122463623863343766612d343433392d346266612d613437312d38633134386465653335373232280806122437326434306138382d626264342d343738392d623463322d32643263353632663732353932280805122465373466616539362d616635352d343965352d383634642d62376466386637343936356532280804122462366133346230392d646131392d343461372d616365362d6638663834353936373239343a042202723142330a0b667573696f6e5f757569641a2463313938393233642d646663372d346466392d396163642d3539353263393833313361624801622465373265353032632d393562352d343836352d613934312d316564376366336166366466aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 603,
+                  "stored_length": 34,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce978c15cb5f8bbeb664c747000",
+                  "uncompressed_payload_hex": "000080bf000000000000000000000000000080bf000000000000000000000000000080bf00000000000000000000803f000000000000803f000000000000803f0000000000000000",
+                  "stored_frame_hex": "220000000000000004000000070082a14403a15403480000005d1400000015c74ce978c15cb5f8bbeb664c747000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 649,
+                  "stored_length": 58,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00",
+                  "uncompressed_payload_hex": "ffffffffffffffff01000000fcffffff03000000fdffffff0100000002000000feffffff04000000feffffff0100000001000000fdfffffffeffffff04000000feffffffffffffffffffffff0200000003000000fcffffff0100000002000000",
+                  "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d14007fea7c401940389001fd9cd426f9feb4b2686baeed0871b60d5d89d386318021984fb5b5d613fc71fe00"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 719,
+                  "stored_length": 55,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 192,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0",
+                  "uncompressed_payload_hex": "abaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaaaa3eabaaaabeabaa2abfabaa2a3fabaa2a3fabaa2abfabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abf",
+                  "stored_frame_hex": "3700000000000000040000000a0083a14403a15403a155c3c00000005d140055aa812199ad3e9f25fc20e8bb991e33975689b066615fc4e016662ddda7fc55181fd9e0"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 786,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                  "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                  "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 831,
+                  "stored_length": 58,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803ca7942e45298ff9d05b73c44c161c044f435c58b437b9ec3e6faa87770c454d286de4b753664d23",
+                  "uncompressed_payload_hex": "010000000100000001000000feffffff03000000fcffffff04000000feffffff02000000fbffffff02000000feffffff03000000ffffffff02000000fdffffff02000000fdffffff04000000fcffffff01000000030000000100000005000000",
+                  "stored_frame_hex": "3a0000000000000004000000070082a15401a16401600000005d140000803ca7942e45298ff9d05b73c44c161c044f435c58b437b9ec3e6faa87770c454d286de4b753664d23"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 901,
+                  "stored_length": 31,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "000068be5144505fd93dc143cfadded2",
+                  "uncompressed_payload_hex": "00000000ffffffff010000000100000001000000010000000100000008000000",
+                  "stored_frame_hex": "1f0000000000000004000000070082a15401a16401200000005d14000068be5144505fd93dc143cfadded2"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                5,
+                4,
+                3,
+                4,
+                0,
+                3,
+                0,
+                1,
+                3,
+                1,
+                5,
+                3,
+                4,
+                5,
+                2,
+                0,
+                4,
+                2,
+                1,
+                0,
+                2,
+                5,
+                1,
+                2
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 6,
+              "triangle_count": 8,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 72,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 96,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  -1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  -1.0000000149011612,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0000000149011612
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0000000149011612
+                ],
+                [
+                  0.0,
+                  1.0000000149011612,
+                  0.0
+                ],
+                [
+                  1.0000000149011612,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "derived_area_cm2": 6.928203436752057,
+              "derived_signed_volume_cm3": 1.333333392937979,
+              "derived_absolute_volume_cm3": 1.333333392937979,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 12,
+              "derived_component_bounds_cm": {
+                "min": [
+                  -1.0000000149011612,
+                  -1.0000000149011612,
+                  -1.0000000149011612
+                ],
+                "max": [
+                  1.0000000149011612,
+                  1.0000000149011612,
+                  1.0000000149011612
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0101010000000000000000",
+            "prefix_scope": "Stored index1/2 observed; remaining packed prefix retained literally, never treated as coincident native object257 reference",
+            "stored_asset_header_scalar": 1.3333333333333333,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 536,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.f4f24026-683f-4cf5-bd37-5968baa6d891.paramesh",
+            "asset_fusion_uuid": "c198923d-dfc7-4df9-9acd-5952c98313ab",
+            "asset_sha256": "67beb0d4214bcc066b7d9a3ee2655fab37cfc12ba8867398586c1e5efc375298",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 901,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "00000000ffffffff010000000100000001000000010000000100000008000000",
+            "stored_int32_forward_differences": [
+              0,
+              -1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              8
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              4,
+              4,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "triangle_label_count": 8,
+            "distinct_temporary_label_count": 6,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "expected_preparatory_face_groups": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 268,
+            "class_guid": "CA2AE956-FD81-4EBD-A601-F93A0F335722",
+            "reason": "FaceGroups selected mesh current asset route unresolved"
+          }
+        ],
+        "scope": "Observed Fast20/80-degree minimum-size0.02 and Accurate boundary-tolerance0.001cm GenerateFaceGroups controls, owned current mesh/asset route and eight ordered cached triangle temporary group IDs. Additional asset lifecycle, persistent group identity, other buffer semantics and procedural grouping/regeneration remain unresolved."
+      },
+      "actual_API_selected_temporary_ids": [
+        1,
+        2,
+        4
+      ],
+      "actual_API_output_triangle_group_temporary_ids": [
+        4,
+        4,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "actual_before_add_handle_matrix": [
+        [
+          true,
+          false,
+          false
+        ],
+        [
+          false,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          true
+        ]
+      ],
+      "actual_rolled_handle_matrix": [
+        [
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false
+        ]
+      ],
+      "identity_scope": "Typed mesh selection plus exact same-asset label/UUID table precedes API temporary-label comparison. Original and rolled group handles are not claimed persistent."
+    }
+  ],
+  "old_controls": [
+    {
+      "archive": "meshfacegroups-0b682fa7d749/fast_twenty_degrees.f3d",
+      "prior_GenerateFaceGroups_dictionary_exact": true
+    },
+    {
+      "archive": "meshfacegroups-0b682fa7d749/fast_eighty_degrees.f3d",
+      "prior_GenerateFaceGroups_dictionary_exact": true
+    },
+    {
+      "archive": "meshfacegroups-0b682fa7d749/accurate_boundary_point_zero_zero_one.f3d",
+      "prior_GenerateFaceGroups_dictionary_exact": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "Actual complete3 exports without case errors"
+    },
+    {
+      "check": "Owned closeFalse returned true3times"
+    },
+    {
+      "check": "Exact executed generator source snapshot hash"
+    },
+    {
+      "check": "Exact SDK surface snapshot hash"
+    },
+    {
+      "check": "Actual terminal journal agrees with captures"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d exactly one observed feature/no unresolved"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d actual archive exporthash"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d actual feature class/name/healthy agree"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d direct actual input mesh equality and group ownership"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d native asset namespace labels corroborate actual selected temporary labels"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d before-add submitted handle matrix identity"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d rolled actual group temporary labels/parent mesh agree"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d original and rolled handles compare unequal, no persistence assumption"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d native feature fullpayload byte replay proved"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d typed current mesh source/asset agrees"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d independent native BaseMesh owner retained"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d current_asset_group_namespace exact unique8label/UUID table"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d additional_asset_group_namespace exact unique8label/UUID table"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d selected orderedUUIDs distinct and leading repeatslast"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d exact current triangle index order"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d exact current ordered coordinate array"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d exact current ordered API group IDs"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d actual preparation group array retained separately"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d old preparatory current-asset diagnostic remains scoped"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair.f3d existing hierarchy and mesh diagnostics not mutated"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d exactly one observed feature/no unresolved"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d actual archive exporthash"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d actual feature class/name/healthy agree"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d direct actual input mesh equality and group ownership"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d native asset namespace labels corroborate actual selected temporary labels"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d before-add submitted handle matrix identity"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d rolled actual group temporary labels/parent mesh agree"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d original and rolled handles compare unequal, no persistence assumption"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d native feature fullpayload byte replay proved"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d typed current mesh source/asset agrees"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d independent native BaseMesh owner retained"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d current_asset_group_namespace exact unique8label/UUID table"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d additional_asset_group_namespace exact unique8label/UUID table"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d selected orderedUUIDs distinct and leading repeatslast"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d exact current triangle index order"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d exact current ordered coordinate array"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d exact current ordered API group IDs"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d actual preparation group array retained separately"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d old preparatory current-asset diagnostic remains scoped"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d existing hierarchy and mesh diagnostics not mutated"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d exactly one observed feature/no unresolved"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d actual archive exporthash"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d actual feature class/name/healthy agree"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d direct actual input mesh equality and group ownership"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d native asset namespace labels corroborate actual selected temporary labels"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d before-add submitted handle matrix identity"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d rolled actual group temporary labels/parent mesh agree"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d original and rolled handles compare unequal, no persistence assumption"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d native feature fullpayload byte replay proved"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d typed current mesh source/asset agrees"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d independent native BaseMesh owner retained"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d current_asset_group_namespace exact unique8label/UUID table"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d additional_asset_group_namespace exact unique8label/UUID table"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d selected orderedUUIDs distinct and leading repeatslast"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d exact current triangle index order"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d exact current ordered coordinate array"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d exact current ordered API group IDs"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d actual preparation group array retained separately"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d old preparatory current-asset diagnostic remains scoped"
+    },
+    {
+      "check": "meshcombinefacegroups-33142f03b86e/connected_triple.f3d existing hierarchy and mesh diagnostics not mutated"
+    },
+    {
+      "check": "Actual reversed selection order changes observed resulting cache labels"
+    },
+    {
+      "check": "Actual connected triple observed output retained without general algorithm"
+    },
+    {
+      "check": "Reject unsupported selected count4"
+    },
+    {
+      "check": "Reject leading UUID disagreement"
+    },
+    {
+      "check": "Reject selected UUID duplicate"
+    },
+    {
+      "check": "Reject typed selection owner backlink mismatch"
+    },
+    {
+      "check": "Reject duplicated discovery feature identity"
+    },
+    {
+      "check": "Reject duplicate metadata groupUUID"
+    },
+    {
+      "check": "Reject duplicate metadata numericlabel"
+    },
+    {
+      "check": "Reject metadata namespace descriptor variant"
+    },
+    {
+      "check": "meshfacegroups-0b682fa7d749/fast_twenty_degrees.f3d prior GenerateFaceGroups dictionaries exact"
+    },
+    {
+      "check": "meshfacegroups-0b682fa7d749/fast_twenty_degrees.f3d new helper empty outside native Combine class"
+    },
+    {
+      "check": "meshfacegroups-0b682fa7d749/fast_eighty_degrees.f3d prior GenerateFaceGroups dictionaries exact"
+    },
+    {
+      "check": "meshfacegroups-0b682fa7d749/fast_eighty_degrees.f3d new helper empty outside native Combine class"
+    },
+    {
+      "check": "meshfacegroups-0b682fa7d749/accurate_boundary_point_zero_zero_one.f3d prior GenerateFaceGroups dictionaries exact"
+    },
+    {
+      "check": "meshfacegroups-0b682fa7d749/accurate_boundary_point_zero_zero_one.f3d new helper empty outside native Combine class"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject unsupported selected count4",
+      "reason": "Unobserved CombineFaceGroups selection count"
+    },
+    {
+      "guard": "Reject leading UUID disagreement",
+      "reason": "CombineFaceGroups selected UUIDs duplicate or leading key differs from last selection"
+    },
+    {
+      "guard": "Reject selected UUID duplicate",
+      "reason": "CombineFaceGroups selected UUIDs duplicate or leading key differs from last selection"
+    },
+    {
+      "guard": "Reject typed selection owner backlink mismatch",
+      "reason": "Unobserved mesh singleton proxy framing/owner"
+    },
+    {
+      "guard": "Reject duplicated discovery feature identity",
+      "reason": "CombineFaceGroups discovery feature identity ambiguous/absent"
+    },
+    {
+      "guard": "Reject duplicate metadata groupUUID",
+      "reason": "CombineFaceGroups metadata label/UUID identities duplicate or absent"
+    },
+    {
+      "guard": "Reject duplicate metadata numericlabel",
+      "reason": "CombineFaceGroups metadata label/UUID identities duplicate or absent"
+    },
+    {
+      "guard": "Reject metadata namespace descriptor variant",
+      "reason": "CombineFaceGroups eight-entry asset label namespace differs"
+    }
+  ],
+  "actual_terminal_journal": {
+    "time_utc": "2026-10-21T14:08:43.201648+00:00",
+    "phase": "batch_terminal",
+    "case": null,
+    "sample_count": 3,
+    "error_count": 0
+  },
+  "actual_document_close_journal": [
+    {
+      "time_utc": "2026-10-21T14:08:42.430987+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "adjacent_pair",
+      "sample_count": 1,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:08:42.830353+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "adjacent_pair_reversed",
+      "sample_count": 2,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:08:43.197504+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "connected_triple",
+      "sample_count": 3,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    }
+  ],
+  "capture": "meshcombinefacegroups-33142f03b86e",
+  "executed_generator_sha256": "ea09e12c5bc325d87b534e737001dd5c5176f447313064ee6a02b32b23e3fe79",
+  "limitations": [
+    "Ordered selectedUUIDs resolve only inside explicit native selected-mesh asset metadata namespaces",
+    "Temporary labels and groupUUIDs are not promoted to persistent native geometry identity",
+    "Before-add handle identity holds; rollback handles all compare unequal despite matching temporary labels",
+    "Observed reversed-input order effect is recorded, no universal merge-survivor algorithm inferred",
+    "Additional asset temporal role unqualified; metadata table entries may have no current triangle occurrence",
+    "Old preparatory GenerateFaceGroups current-asset diagnostic intentionally preserved",
+    "No regeneration, history replay or lifecycle claim"
+  ],
+  "source_sha256": {
+    "decode_mesh_combine_face_groups.py": "61c791a6d077b06894fd96d4af956d334a7476ee79cfa6e37f3a61039958c83a",
+    "validate_mesh_combine_face_groups.py": "80fc6b3559736e9fb13400c0d597dc41b126aea9c37bf065cf062b7933f3a6ca",
+    "GenerateMeshCombineFaceGroupContrasts.py": "ea09e12c5bc325d87b534e737001dd5c5176f447313064ee6a02b32b23e3fe79",
+    "decode_mesh_contents.py": "7f01b75449612fed2f84833e96e7c7ebda6333fd7c8a2e630a75d36f84a23ad1",
+    "decode_mesh_geometry_variants.py": "eb56c540cee3d1a45e13ed82fa3cba9417cbf9ddee588919151541b8010d48af",
+    "decode_mesh_selections.py": "70ab7c5184ceb907a8342b464906630caadf481e467d407788a03345a7ee35d1",
+    "decode_mesh_face_group_caches.py": "2d7ab424f5a6c48eeb14fa629553b23abd8eed42c87d305fad98a773853d90d2"
+  }
+}

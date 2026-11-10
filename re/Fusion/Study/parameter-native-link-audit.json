@@ -1,0 +1,1156 @@
+{
+  "stage": "Offline native expression dependency-link inventory",
+  "status": "No evidence-backed native expression edge decoder identified; no graph helper added",
+  "scope": "Eleven saved parameter-only archives with actual API dependency/dependent getter truth. This is a structural audit, not AST-derived native edges or proof that compact/implicit dependency representations do not exist.",
+  "findings": [
+    {
+      "claim": "Every parameter ID has exactly four literal u64 occurrences in the complete indexed Design stream: object header, collection member, all-member registry slot, registry name mapping. No additional u32 ID patterns occur.",
+      "interpretation": "Collection/name references are validated ownership/membership; cannot distinguish expression dependencies."
+    },
+    {
+      "claim": "Product_sum has two actual API edges and an unused probeAllowance; text_name_literal has zero actual edges. Both share four parameter IDs202..205 and the same validated collection/name membership schema.",
+      "interpretation": "Registry all-member slots include unused/literal-only parameters equally; reject them as expression graph edges."
+    },
+    {
+      "claim": "All eleven B131 paired feature dependency tables are structurally empty despite referenced arithmetic/function expressions.",
+      "interpretation": "Existing native feature dependency table does not expose these user-parameter expression edges in this corpus."
+    },
+    {
+      "claim": "Complete observed unbound parameter records contain expression, ten metadata bytes, role/value/unit/name, cached scalar/Text value and one collection owner; no parameter-ID list is present.",
+      "interpretation": "No separately proven dependency cache is decoded in these parameter record layouts."
+    },
+    {
+      "claim": "ACT/Browser, property/protein/configuration and OGS members contain no same-ID u32/u64 patterns in this bounded corpus; MetaStream typed object indexes are excluded from edge claims.",
+      "interpretation": "Does not rule out alternate namespace IDs, compressed/indirect formats or regeneration from expression text."
+    }
+  ],
+  "validation": {
+    "checks": 533,
+    "files": 11,
+    "parameters": 43,
+    "actual_API_edge_count": 16,
+    "negative_controls": [
+      "Unused probeAllowance still belongs to the all-member registry.",
+      "Quoted probeWidth literal has API dependency_names=[] despite owned probeWidth.",
+      "Repeated-reference and nested-function cases compare API set semantics without inventing native occurrence edges."
+    ],
+    "malformed_guard_scope": "No new decoder or shared parser changed; this audit uses existing strict metadata/collection/paired-graph readers. No additional malformed-input test suite added."
+  },
+  "next_capture_proposal": {
+    "status": "Prepared compiled generator only; not dispatched, no new exports or getter evidence",
+    "purpose": "Hold native identities, expression byte length and cached numeric result constant while switching actual API dependency IDs in one owned document.",
+    "setup": "Single parametric document: alpha=10 mm, bravo=10 mm, result=10 mm, all three names distinct and stable. Capture API dependencyParameters/dependentParameters after computeAll at each step.",
+    "exports": [
+      {
+        "case": "literal",
+        "result_expression": "10 mm",
+        "expected_API_dependency_names": [],
+        "expected_cached_cm": 1.0
+      },
+      {
+        "case": "alpha_reference",
+        "result_expression": "alpha",
+        "expected_API_dependency_names": [
+          "alpha"
+        ],
+        "expected_cached_cm": 1.0
+      },
+      {
+        "case": "bravo_reference",
+        "result_expression": "bravo",
+        "expected_API_dependency_names": [
+          "bravo"
+        ],
+        "expected_cached_cm": 1.0
+      },
+      {
+        "case": "literal_return",
+        "result_expression": "10 mm",
+        "expected_API_dependency_names": [],
+        "expected_cached_cm": 1.0
+      }
+    ],
+    "discrimination": "All four expression strings have five characters. Compare every indexed raw payload and other archive members within one document, separately accounting for expression bytes, document save/bookkeeping changes and native record index offsets. Candidate edge storage must switch alpha-ID to bravo-ID and disappear on literal return, with count/owner/reciprocity demonstrated independently.",
+    "safety_scope": "Owned document/local exports only, journal progress and actual getters, restore timeline, close(False); root serial dispatch if later authorized/available. No present Fusion calls.",
+    "optional_followup": "Only if candidate links emerge: same-length rename alpha->delta with identity preserved, then a preregistered two-reference holdout. Do not treat future predictions as evidence.",
+    "generator": "GenerateParameterIdentityContrasts.py",
+    "output_prefix": "parameteridentity-<12 generated hex characters>",
+    "compile_validation": {
+      "method": "Python compile() plus static AST check of four fixed stage expressions",
+      "passed": true,
+      "planned_stage_count": 4,
+      "all_requested_expression_characters": 5,
+      "all_requested_expression_utf16le_bytes": 10,
+      "Fusion_imports_executed": false,
+      "Fusion_dispatch_performed": false
+    },
+    "caveats": [
+      "Same source document and API handles retained; native object-ID stability must be checked from actual future exports.",
+      "Actual getters may normalize expression spelling or fail; errors and observed control checks are saved independently before each export.",
+      "Any setter/computation/export failure aborts later steps, preserving completed archives and active partial truth. Completion marker denotes terminal status, not guaranteed success.",
+      "No existing document is closed; only the newly created owned document is closed(False), with no cloud save."
+    ]
+  },
+  "integration": "No shared hook requested. Existing syntactically derived dependencies and literal Text results retain their explicit derived source labels; no native expression edge field should be populated from this audit.",
+  "samples": [
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/product_sum.f3d",
+      "sha256": "53a3e7916b0beccd5a067881009af8474ef04bad178de4d51c5c2e91e76ab7af",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        },
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 203,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeScale"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeWidth",
+            "probeScale"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37713,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/parenthesized.f3d",
+      "sha256": "f1ba8a76be3c2c34c8dd021265ee5c6e46525f51ed3a7d08301c54242d7391b6",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        },
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 204,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeAllowance"
+        },
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 203,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeScale"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeWidth",
+            "probeAllowance",
+            "probeScale"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37756,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/repeated_reference.f3d",
+      "sha256": "ce78bd0fc0fb4ab0f95abc600efe9417479fd51e6ac07f61fa1f443c0a240650",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        },
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 204,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeAllowance"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeWidth",
+            "probeAllowance"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37704,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/unary_reference.f3d",
+      "sha256": "a764a85b7de1708b6d13af134c5eeefc9953eaf93393b6c6e91e823dcc57141c",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeWidth"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37755,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/function_outside_subset.f3d",
+      "sha256": "a66ebe3ca3027b0a089d412a1ac7f76b40881f5ec018b8a796da379c4f2f0c8b",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 203,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeScale"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeScale"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37818,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/text_name_literal.f3d",
+      "sha256": "6e04acb342aa0fe64ea88d83366d61267ad9ad23cce1df63f555152fbc1e8f01",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37775,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 3,
+        "01000000000000000001": 1
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/sqrt_sum.f3d",
+      "sha256": "abe397dc3b710890f1f8792cc5304b3982c7452cada6b0982507d8e8b2f5bd6c",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 203,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeScale"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeScale"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37693,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/abs_difference.f3d",
+      "sha256": "24675103403d55ba67033c1f9c1c3dbf5edbc319d090c26b7f8ff1846e080f03",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 204,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeAllowance"
+        },
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeAllowance",
+            "probeWidth"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37690,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/nested_sqrt.f3d",
+      "sha256": "b664b5ea954feb34c5254194b3e8a956f86caf87aee996aa97a5e712d5d7c928",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 203,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeScale"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeScale"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37709,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/nested_unary_abs.f3d",
+      "sha256": "64832eaf6e86688fb99179b3be14db7349eb5a4294faae81a02512c3972d2137",
+      "design_records": 221,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204,
+          205
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 205,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2619,
+            "RegistryNameToParameterReference": 2823,
+            "IndexedObjectHeader": 22425
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2634,
+            "RegistryNameToParameterReference": 2788,
+            "IndexedObjectHeader": 22579
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeAllowance",
+          "API_dependency_names": [],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2649,
+            "RegistryNameToParameterReference": 2716,
+            "IndexedObjectHeader": 22723
+          }
+        },
+        {
+          "object_id": 205,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeWidth"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2558,
+            "RegistryAllMemberSlot": 2664,
+            "RegistryNameToParameterReference": 2753,
+            "IndexedObjectHeader": 22885
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37721,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 4
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/dependency_chain.f3d",
+      "sha256": "cb5c4a205cb5f5d419d374e7ed627d53e967f58d4ae752426e5a4445363f0132",
+      "design_records": 220,
+      "collection": {
+        "collection_object_id": 16,
+        "name_registry_object_id": 17,
+        "member_object_ids": [
+          202,
+          203,
+          204
+        ]
+      },
+      "API_edges_only_not_native": [
+        {
+          "dependent_parameter_object_id": 204,
+          "dependency_parameter_object_id": 202,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeWidth"
+        },
+        {
+          "dependent_parameter_object_id": 204,
+          "dependency_parameter_object_id": 203,
+          "dependent_name": "probeResult",
+          "dependency_name": "probeScale"
+        }
+      ],
+      "parameter_inventory": [
+        {
+          "object_id": 202,
+          "name": "probeWidth",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2525,
+            "RegistryAllMemberSlot": 2608,
+            "RegistryNameToParameterReference": 2754,
+            "IndexedObjectHeader": 22356
+          }
+        },
+        {
+          "object_id": 203,
+          "name": "probeScale",
+          "API_dependency_names": [],
+          "API_dependent_names": [
+            "probeResult"
+          ],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2536,
+            "RegistryAllMemberSlot": 2623,
+            "RegistryNameToParameterReference": 2719,
+            "IndexedObjectHeader": 22510
+          }
+        },
+        {
+          "object_id": 204,
+          "name": "probeResult",
+          "API_dependency_names": [
+            "probeWidth",
+            "probeScale"
+          ],
+          "API_dependent_names": [],
+          "classified_u64_offsets": {
+            "ParameterCollectionMember": 2547,
+            "RegistryAllMemberSlot": 2638,
+            "RegistryNameToParameterReference": 2684,
+            "IndexedObjectHeader": 22654
+          }
+        }
+      ],
+      "extra_design_u32_hits": [],
+      "unclassified_design_u64_hits": [],
+      "other_native_members_scanned": 10,
+      "other_native_member_bytes_scanned": 37657,
+      "other_member_same_ID_u32_u64_hits": [],
+      "paired_feature_graphs": [
+        {
+          "object_id": 29,
+          "owner_object_id": 26,
+          "edge_count": 0
+        }
+      ],
+      "parameter_payload_metadata_hex_counts": {
+        "00000000000000000001": 3
+      },
+      "parameter_payload_references": "Only explicit collection-owner suffix; all bindings absent in these43 owned user parameters"
+    }
+  ],
+  "sample_inventory_format": {
+    "identity_inventory": "Each ID has one metadata-validated own object header and three complete native reference fields; positions below are absolute u64 payload/header offsets, not inferred edges.",
+    "parameter_payload_metadata": "Expression metadata retained as bytes; no edge meaning assigned.",
+    "non_design_scan": "All native non-Meta/non-image members other than Design were scanned for the same u32/u64 bit patterns. Zero counts do not establish namespace equivalence or exclude compressed/indirect encodings."
+  }
+}

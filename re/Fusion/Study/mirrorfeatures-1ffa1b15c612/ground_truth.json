@@ -1,0 +1,959 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "feature_optimized",
+      "file": "feature_optimized.f3d",
+      "getter_errors": [],
+      "journal": [
+        "starting_case",
+        "creating_same_seed",
+        "creating_mirror_input",
+        "adding_mirror_feature",
+        "mirror_added",
+        "reading_rolled_back_inputs",
+        "reading_results_at_timeline_end",
+        "exporting",
+        "exported"
+      ],
+      "requested": {
+        "input_kind": "ExtrudeFeature",
+        "source_feature_name": "MirrorSeedExtrude",
+        "compute_option": 0,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.001
+      },
+      "input_entities_before_mirror": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZGJMQAeFVA2iAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZG5KQDo4x70iAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "mirror_plane_before_mirror": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvYkJADk/bwqHAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZGJMQAeFVA2iAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZG5KQDo4x70iAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvYkJADk/bwqHAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "settings": {
+        "compute_option": 0,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature": {
+        "entity_type": "adsk::fusion::MirrorFeature",
+        "name": "ProbeMirrorFeatureModes",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvbGBAQCX6/fKiAAAAA==",
+        "timeline_index": 2,
+        "parent_component_name": "(Unsaved)"
+      },
+      "api_feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvbGxJQDwAAaYiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              -1.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZG5KQDo4x70iAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "api_result_features": null,
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZG5KQDo4x70iAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvbGxJQDwAAaYiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              -1.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "MirrorSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "MirrorSeedExtrude"
+        }
+      ],
+      "export_exists": true
+    },
+    {
+      "case": "feature_identical",
+      "file": "feature_identical.f3d",
+      "getter_errors": [],
+      "journal": [
+        "starting_case",
+        "creating_same_seed",
+        "creating_mirror_input",
+        "adding_mirror_feature",
+        "mirror_added",
+        "reading_rolled_back_inputs",
+        "reading_results_at_timeline_end",
+        "exporting",
+        "exported"
+      ],
+      "requested": {
+        "input_kind": "ExtrudeFeature",
+        "source_feature_name": "MirrorSeedExtrude",
+        "compute_option": 1,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.001
+      },
+      "input_entities_before_mirror": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZGJMQAOyVifiAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZG5KQD4PxZdiAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "mirror_plane_before_mirror": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvYkJANV8Hb6HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZGJMQAOyVifiAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZG5KQD4PxZdiAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvYkJANV8Hb6HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "settings": {
+        "compute_option": 1,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature": {
+        "entity_type": "adsk::fusion::MirrorFeature",
+        "name": "ProbeMirrorFeatureModes",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvbGBAQCHN/9jiAAAAA==",
+        "timeline_index": 2,
+        "parent_component_name": "(Unsaved)"
+      },
+      "api_feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvbGxJQDg3A4xiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              -1.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZG5KQD4PxZdiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "api_result_features": null,
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZG5KQD4PxZdiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvbGxJQDg3A4xiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              -1.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "MirrorSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "MirrorSeedExtrude"
+        }
+      ],
+      "export_exists": true
+    },
+    {
+      "case": "feature_adjust",
+      "file": "feature_adjust.f3d",
+      "getter_errors": [],
+      "journal": [
+        "starting_case",
+        "creating_same_seed",
+        "creating_mirror_input",
+        "adding_mirror_feature",
+        "mirror_added",
+        "reading_rolled_back_inputs",
+        "reading_results_at_timeline_end",
+        "exporting",
+        "exported"
+      ],
+      "requested": {
+        "input_kind": "ExtrudeFeature",
+        "source_feature_name": "MirrorSeedExtrude",
+        "compute_option": 2,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.001
+      },
+      "input_entities_before_mirror": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZGJMQC+mjF3iAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZG5KQBIbH+1iAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "mirror_plane_before_mirror": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvYkJAJL/mm+HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZGJMQC+mjF3iAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZG5KQBIbH+1iAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvYkJAJL/mm+HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "settings": {
+        "compute_option": 2,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature": {
+        "entity_type": "adsk::fusion::MirrorFeature",
+        "name": "ProbeMirrorFeatureModes",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvbGBAQA3ZJaLiAAAAA==",
+        "timeline_index": 2,
+        "parent_component_name": "(Unsaved)"
+      },
+      "api_feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvbGJCQAqZZfoiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              -1.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZG5KQBIbH+1iAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "api_result_features": null,
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZG5KQBIbH+1iAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvbGJCQAqZZfoiAAAAA==",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              -1.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "MirrorSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "MirrorSeedExtrude"
+        }
+      ],
+      "export_exists": true
+    },
+    {
+      "case": "body_brep_face_plane",
+      "file": "body_brep_face_plane.f3d",
+      "getter_errors": [],
+      "journal": [
+        "starting_case",
+        "creating_same_seed",
+        "creating_mirror_input",
+        "adding_mirror_feature",
+        "mirror_added",
+        "reading_rolled_back_inputs",
+        "reading_results_at_timeline_end",
+        "exporting",
+        "exported"
+      ],
+      "requested": {
+        "input_kind": "BRepBody",
+        "source_feature_name": "MirrorSeedExtrude",
+        "compute_option": null,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.001
+      },
+      "input_entities_before_mirror": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1huZmwIAc1iJCYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "mirror_plane_before_mirror": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQUrEMBSGXbn3Bu8CgeTlJW3A1cDMyrUroaR5Kc5mFBlP4c4zCHoCr+UVzMtgsXUIltD8/O/L/4dWA4IB66ELkazpkspjZEWakxp7HZXDGEIamSfDoAsrvBaFfVEGSBwPL+9veHl/c/f68Xl1/bXfFgIl12DuQnBeuTQaRcZLruPyCjzF3oeOXGVLxsXqqX0aah2BBRcMyFbcehEZW011F7k2/NqgteF+GRrGh+cDZx6mmPLwlNP+MQ8cjxE2O4Ad9AVRErItsojTwjqpckYQbk+IrR7+DJeUVC44uxjPB4Q7U2lblY2oBUd/ONuopFZlI+r815g5alRiq7IR9c8f8A0z2s7NAAMAAA==",
+        "source_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorPlaneSupportBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1hubmgAAUGB6TYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              -4.0,
+              0.0
+            ],
+            "max": [
+              -2.0,
+              -2.0,
+              3.0
+            ]
+          }
+        },
+        "surface_type": 0,
+        "point_on_face_cm": [
+          -3.0,
+          -3.0,
+          3.0
+        ],
+        "origin_cm": [
+          -3.0,
+          -3.0,
+          3.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1huZmwIAc1iJCYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQUrEMBSGXbn3Bu8CgeTlJW3A1cDMyrUroaR5Kc5mFBlP4c4zCHoCr+UVzMtgsXUIltD8/O/L/4dWA4IB66ELkazpkspjZEWakxp7HZXDGEIamSfDoAsrvBaFfVEGSBwPL+9veHl/c/f68Xl1/bXfFgIl12DuQnBeuTQaRcZLruPyCjzF3oeOXGVLxsXqqX0aah2BBRcMyFbcehEZW011F7k2/NqgteF+GRrGh+cDZx6mmPLwlNP+MQ8cjxE2O4Ad9AVRErItsojTwjqpckYQbk+IrR7+DJeUVC44uxjPB4Q7U2lblY2oBUd/ONuopFZlI+r815g5alRiq7IR9c8f8A0z2s7NAAMAAA==",
+        "source_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorPlaneSupportBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1hubmgAAUGB6TYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              -4.0,
+              0.0
+            ],
+            "max": [
+              -2.0,
+              -2.0,
+              3.0
+            ]
+          }
+        },
+        "surface_type": 0,
+        "point_on_face_cm": [
+          -3.0,
+          -3.0,
+          3.0
+        ],
+        "origin_cm": [
+          -3.0,
+          -3.0,
+          3.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "settings": {
+        "compute_option": 2,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature": {
+        "entity_type": "adsk::fusion::MirrorFeature",
+        "name": "ProbeMirrorFeatureModes",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1hubmwMAaFNF5ogAAAA=",
+        "timeline_index": 4,
+        "parent_component_name": "(Unsaved)"
+      },
+      "api_feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1psYmgIAR4NeW4gAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              4.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              6.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1huZmwIAc1iJCYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "api_result_features": null,
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1huZmwIAc1iJCYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorPlaneSupportBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1hubmgAAUGB6TYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              -4.0,
+              0.0
+            ],
+            "max": [
+              -2.0,
+              -2.0,
+              3.0
+            ]
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody (1)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1psYmgIAR4NeW4gAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              4.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              6.0
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "MirrorSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "MirrorSeedExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "expression": "30.00 mm",
+          "created_by": "MirrorPlaneSupportExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "MirrorPlaneSupportExtrude"
+        }
+      ],
+      "export_exists": true
+    }
+  ],
+  "errors": [],
+  "scope": "Three same-Extrude feature inputs with actual active compute getters; one body input mirrored across an actual planar BRepFace",
+  "sdk_evidence": {
+    "compute": "MirrorFeatureInput.patternComputeOption applies only to feature inputs; Optimized0/Identical1/Adjust2 are requested independently of native encoding",
+    "mirror_plane": "MirrorFeatures.createInput accepts planar BRepFace or ConstructionPlane",
+    "input_getter": "MirrorFeature.inputEntities requires timeline immediately before feature",
+    "participant_bodies": "MirrorFeature has no participantBodies property in the local SDK. Actual source-feature/source-input bodies and Feature.bodies/resultFeatures are captured separately."
+  }
+}

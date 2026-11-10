@@ -1,0 +1,953 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+      "checks": {
+        "explicit_source_path_matches_actual": true,
+        "source_component_name_matches_actual": true,
+        "source_stored_context_composition_matches_actual": true,
+        "parent_context_cache_matches_actual_request": true,
+        "owner_is_parent_component_not_document_root": true,
+        "two_level_source_route_extends_one_level_parent_route": true,
+        "derived_path_matches_independent_actual_collection": true,
+        "derived_stored_composition_matches_actual_collection": true,
+        "actual_resultFeatures_returns_null": true,
+        "unavailable_native_tokens_not_used": true,
+        "mirror_plane_matches_actual_getter": true
+      },
+      "decoded": {
+        "feature_object_id": 450,
+        "feature_class_guid": "71BBEDD5-81F8-4585-816B-05908C207204",
+        "status": "ObservedNestedOccurrenceMirrorProvenance",
+        "owner_component_object_id": 202,
+        "owner_component_name": "NestedMirrorParent",
+        "parent_context": {
+          "frame_object_id": 451,
+          "context_link_object_id": 264,
+          "route_wrapper_object_id": 453,
+          "route": {
+            "occurrence_object_ids": [
+              253
+            ],
+            "chain": [
+              {
+                "native_occurrence_object_id": 253,
+                "instance_guid_text": "26117544-f980-465c-99a9-fa3a1dc4ad87",
+                "component_object_id": 202,
+                "component_name": "NestedMirrorParent",
+                "parent_collection_object_id": 6,
+                "parent_component_object_id": 3,
+                "stored_local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "namespace_text": "32c10ce5-0471-4730-a767-c94d085adca4",
+            "entity_guid_text": "e7a17455-536e-4e68-af56-92af8a552124",
+            "endpoint_guid_text": "319b23ea-877d-46dd-b4bd-b02b3c37d18f",
+            "composed_stored_occurrence_cache_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "route_object_id": 452
+          },
+          "stored_context_matrix": [
+            1.0,
+            0.0,
+            0.0,
+            2.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "link_scope": "Typed context link retained; its ownership/field meanings are not inferred"
+        },
+        "source_context": {
+          "frame_object_id": 454,
+          "context_link_object_id": null,
+          "route_wrapper_object_id": 456,
+          "route": {
+            "occurrence_object_ids": [
+              253,
+              316
+            ],
+            "chain": [
+              {
+                "native_occurrence_object_id": 253,
+                "instance_guid_text": "26117544-f980-465c-99a9-fa3a1dc4ad87",
+                "component_object_id": 202,
+                "component_name": "NestedMirrorParent",
+                "parent_collection_object_id": 6,
+                "parent_component_object_id": 3,
+                "stored_local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              {
+                "native_occurrence_object_id": 316,
+                "instance_guid_text": "82f86bb0-dc27-44fa-a5ba-a01f07511460",
+                "component_object_id": 265,
+                "component_name": "NestedMirrorSource",
+                "parent_collection_object_id": 204,
+                "parent_component_object_id": 202,
+                "stored_local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "namespace_text": "32c10ce5-0471-4730-a767-c94d085adca4",
+            "entity_guid_text": "691e8d24-19ad-4855-a20a-7fb180c2c320",
+            "endpoint_guid_text": "319b23ea-877d-46dd-b4bd-b02b3c37d18f",
+            "composed_stored_occurrence_cache_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "route_object_id": 455
+          },
+          "stored_context_matrix": [
+            1.0,
+            0.0,
+            0.0,
+            5.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "link_scope": "Typed context link retained; its ownership/field meanings are not inferred"
+        },
+        "source_occurrence": {
+          "native_occurrence_object_id": 316,
+          "component_object_id": 265,
+          "component_name": "NestedMirrorSource",
+          "occurrence_paths": [
+            "NestedMirrorParent:1+NestedMirrorSource:1"
+          ],
+          "stored_local_transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "composed_stored_occurrence_cache_matrix": [
+            1.0,
+            0.0,
+            0.0,
+            5.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "derived_occurrence": {
+          "native_occurrence_object_id": 528,
+          "component_object_id": 467,
+          "component_name": "NestedMirrorSource(Mirror)",
+          "occurrence_paths": [
+            "NestedMirrorParent:1+NestedMirrorSource(Mirror):1"
+          ],
+          "stored_local_transform": [
+            -1.0,
+            0.0,
+            0.0,
+            -7.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            -1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "composed_stored_occurrence_cache_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            -5.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            -1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "source_and_output_parent_collection_object_id": 204,
+        "derived_instance_feature_object_id": 531,
+        "derived_occurrence_link_object_id": 529,
+        "mirror_plane": {
+          "descriptor_object_id": 457,
+          "terminal_object_id": 460,
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "YZ",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              -0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "object_id": 44,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+        },
+        "association": "Owned parent/source frames carry exact one-/two-level UUID routes; direct source occurrence agrees; source/output reciprocal collection owner is the parent component; derived-instance link explicitly selects output occurrence",
+        "placement_scope": "Composed stored occurrence-cache and context matrices only; no reflection regeneration, joint solving or current grounding state inferred",
+        "unresolved_controls": [
+          "General MirrorComponent operation/lifecycle replay",
+          "Compute/combine/tolerance semantics outside feature inputs",
+          "Native proxy tokens unavailable and never used for native ID associations"
+        ]
+      },
+      "actual_source_input": {
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "NestedMirrorSource:1",
+        "full_path_name": "NestedMirrorParent:1+NestedMirrorSource:1",
+        "component_name": "NestedMirrorSource",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxEGwoKhsgClmzHSZwJqFiAzo4JNTshMQclO9CyB/miRyedTqdX3GGSxIkSLhHrSvRrauLn4bO7HfFxfZ325/d9EZxyTZm6c74YaGsBUiPAxZchex65Ben8kVyJWhGB2RUXWQb0bh2mZaMYYqFt45SnVneEGNxAZBpY8WVIE1shkor/N9VOFw0WoG5rk5YCxmjQppPi4JF5e4hfwAOLme8AAAA=",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          5.0,
+          0.0,
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": "NestedMirrorParent:1",
+        "native_object_token": null,
+        "bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "NestedSourceBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Psa2CMQyEm1dQvCGygCXbcWJnAioWoHPiP9RvpycxByU70LIH+aFHlk+n01fcYbKE6yjx+rdjW46S7ElNfPt9/vwd8Xq5nw7nx/8iOOWaMrXOeXMw1QCpEdClL0HueWQNsvkhuRJpEYHZDBdZBrTmDaZnpxjiYbpzxtNq7wgxWEFkOnjpS5AmaiGSit871UabBQtQ89XJSgFndNDZyXDwyIzvjftmQXoB96SKsv0AAAA=",
+            "bounding_box_cm": {
+              "min": [
+                5.0,
+                2.0,
+                3.0
+              ],
+              "max": [
+                7.0,
+                3.0,
+                4.0
+              ]
+            }
+          }
+        ]
+      },
+      "independent_actual_target_occurrences": [
+        {
+          "entity_type": "adsk::fusion::Occurrence",
+          "name": "NestedMirrorSource(Mirror):1",
+          "full_path_name": "NestedMirrorParent:1+NestedMirrorSource(Mirror):1",
+          "component_name": "NestedMirrorSource(Mirror)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw1CMQxFGwoKhsgCluLPc5wJqFiAznESanZCYg5KdqBlD4LokaUr6+rIOs5JEiVMeQ2SrQ1/jSZ6HN676zHfL8/T/vy6LYISa2KsjXg4WCkdRHuHJm1FpsbBpaPNH0mKWDYRmNXyIreAWr3CdHbsId6tfDln5DJpA6w2QHwYNK0CrZDldW/Q1P9OY2BosC8TZZChAm6h4G4zR0Su1r8/fgDYDFJ67wAAAA==",
+          "transform": [
+            -1.0,
+            0.0,
+            0.0,
+            -5.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            -1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": "NestedMirrorParent:1",
+          "native_object_token": null,
+          "bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "NestedSourceBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Pu22DMQyEGxcpPIQWICA+RFETpMoC7ihKSp2dAmSOlN7Brfewfrs3CBKHwwfiLidLeQ8m2vtUZFthksPRRP/n++nnM/99X78+LrffTVBiTYytE08Hq3WA6BjQpe+TqXNwHWjrRZIi1iICq1neZAlozRssZ8cR4sPqwTkj10UFsNkE8WnQtQn0Spb3v0lL32eaE0ODfSdRBpkq4BYK7rZyRORm49nx6FwKPQCgwWVU/QAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  -7.0,
+                  2.0,
+                  3.0
+                ],
+                "max": [
+                  -5.0,
+                  3.0,
+                  4.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_getter_errors": [
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        }
+      ],
+      "actual_resultFeatures": {
+        "status": "returned_null",
+        "entities": [],
+        "scope": "Actual resultFeatures getter returnedNone; independently enumerated construction planes/occurrences are separate evidence"
+      }
+    },
+    {
+      "archive": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+      "checks": {
+        "explicit_source_path_matches_actual": true,
+        "source_component_name_matches_actual": true,
+        "source_stored_context_composition_matches_actual": true,
+        "parent_context_cache_matches_actual_request": true,
+        "owner_is_parent_component_not_document_root": true,
+        "two_level_source_route_extends_one_level_parent_route": true,
+        "derived_path_matches_independent_actual_collection": true,
+        "derived_stored_composition_matches_actual_collection": true,
+        "actual_resultFeatures_returns_null": true,
+        "unavailable_native_tokens_not_used": true,
+        "mirror_plane_matches_actual_getter": true
+      },
+      "decoded": {
+        "feature_object_id": 450,
+        "feature_class_guid": "71BBEDD5-81F8-4585-816B-05908C207204",
+        "status": "ObservedNestedOccurrenceMirrorProvenance",
+        "owner_component_object_id": 202,
+        "owner_component_name": "NestedMirrorParent",
+        "parent_context": {
+          "frame_object_id": 451,
+          "context_link_object_id": 264,
+          "route_wrapper_object_id": 453,
+          "route": {
+            "occurrence_object_ids": [
+              253
+            ],
+            "chain": [
+              {
+                "native_occurrence_object_id": 253,
+                "instance_guid_text": "75be2b29-9b4c-4696-9484-6db128c7e945",
+                "component_object_id": 202,
+                "component_name": "NestedMirrorParent",
+                "parent_collection_object_id": 6,
+                "parent_component_object_id": 3,
+                "stored_local_transform": [
+                  2.220446049250313e-16,
+                  -1.0,
+                  0.0,
+                  2.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "namespace_text": "f6b800c0-827e-4638-adf6-a7b46a0a9160",
+            "entity_guid_text": "4aede5a1-c6bc-4275-9f26-079813d9fbc3",
+            "endpoint_guid_text": "39b12b24-048a-4d38-afd4-e51a3b8fbdf2",
+            "composed_stored_occurrence_cache_matrix": [
+              2.220446049250313e-16,
+              -1.0,
+              0.0,
+              2.0,
+              1.0,
+              2.220446049250313e-16,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "route_object_id": 452
+          },
+          "stored_context_matrix": [
+            2.220446049250313e-16,
+            -1.0,
+            0.0,
+            2.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            3.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "link_scope": "Typed context link retained; its ownership/field meanings are not inferred"
+        },
+        "source_context": {
+          "frame_object_id": 454,
+          "context_link_object_id": null,
+          "route_wrapper_object_id": 456,
+          "route": {
+            "occurrence_object_ids": [
+              253,
+              316
+            ],
+            "chain": [
+              {
+                "native_occurrence_object_id": 253,
+                "instance_guid_text": "75be2b29-9b4c-4696-9484-6db128c7e945",
+                "component_object_id": 202,
+                "component_name": "NestedMirrorParent",
+                "parent_collection_object_id": 6,
+                "parent_component_object_id": 3,
+                "stored_local_transform": [
+                  2.220446049250313e-16,
+                  -1.0,
+                  0.0,
+                  2.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              {
+                "native_occurrence_object_id": 316,
+                "instance_guid_text": "d0507d4f-46b7-42a0-8fa8-2655d79cebb7",
+                "component_object_id": 265,
+                "component_name": "NestedMirrorSource",
+                "parent_collection_object_id": 204,
+                "parent_component_object_id": 202,
+                "stored_local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "namespace_text": "f6b800c0-827e-4638-adf6-a7b46a0a9160",
+            "entity_guid_text": "e2148664-4d96-4048-88cc-df03e305986b",
+            "endpoint_guid_text": "39b12b24-048a-4d38-afd4-e51a3b8fbdf2",
+            "composed_stored_occurrence_cache_matrix": [
+              2.220446049250313e-16,
+              -1.0,
+              0.0,
+              3.000000000000001,
+              1.0,
+              2.220446049250313e-16,
+              0.0,
+              6.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "route_object_id": 455
+          },
+          "stored_context_matrix": [
+            2.220446049250313e-16,
+            -1.0,
+            0.0,
+            3.000000000000001,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            6.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "link_scope": "Typed context link retained; its ownership/field meanings are not inferred"
+        },
+        "source_occurrence": {
+          "native_occurrence_object_id": 316,
+          "component_object_id": 265,
+          "component_name": "NestedMirrorSource",
+          "occurrence_paths": [
+            "NestedMirrorParent:1+NestedMirrorSource:1"
+          ],
+          "stored_local_transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "composed_stored_occurrence_cache_matrix": [
+            2.220446049250313e-16,
+            -1.0,
+            0.0,
+            3.000000000000001,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            6.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "derived_occurrence": {
+          "native_occurrence_object_id": 528,
+          "component_object_id": 467,
+          "component_name": "NestedMirrorSource(Mirror)",
+          "occurrence_paths": [
+            "NestedMirrorParent:1+NestedMirrorSource(Mirror):1"
+          ],
+          "stored_local_transform": [
+            -1.0,
+            -4.440892098500626e-16,
+            0.0,
+            -9.0,
+            -4.440892098500626e-16,
+            1.0,
+            0.0,
+            -1.0000000000000029,
+            0.0,
+            0.0,
+            -1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "composed_stored_occurrence_cache_matrix": [
+            2.220446049250313e-16,
+            -1.0,
+            0.0,
+            3.000000000000001,
+            -1.0,
+            -2.220446049250313e-16,
+            0.0,
+            -6.0,
+            0.0,
+            0.0,
+            -1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "source_and_output_parent_collection_object_id": 204,
+        "derived_instance_feature_object_id": 531,
+        "derived_occurrence_link_object_id": 529,
+        "mirror_plane": {
+          "descriptor_object_id": 457,
+          "terminal_object_id": 460,
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "XZ",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "y_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "object_id": 43,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+        },
+        "association": "Owned parent/source frames carry exact one-/two-level UUID routes; direct source occurrence agrees; source/output reciprocal collection owner is the parent component; derived-instance link explicitly selects output occurrence",
+        "placement_scope": "Composed stored occurrence-cache and context matrices only; no reflection regeneration, joint solving or current grounding state inferred",
+        "unresolved_controls": [
+          "General MirrorComponent operation/lifecycle replay",
+          "Compute/combine/tolerance semantics outside feature inputs",
+          "Native proxy tokens unavailable and never used for native ID associations"
+        ]
+      },
+      "actual_source_input": {
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "NestedMirrorSource:1",
+        "full_path_name": "NestedMirrorParent:1+NestedMirrorSource:1",
+        "component_name": "NestedMirrorSource",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFqZkiC1hKHMdxFmAO4jgpGIKCDZiCio6Ckql+jb/okZsn6+R3joEChhSiT0LxlH4bDtv78LldT/LcHq/L8X52AkPmkJsmVCSIJB3IskBfRjBL6lllqS38kbXodLJBUxpA3BgaCQGbX5BRZ6OycxZLrEbLEa1A2CPI6gLIpVhtY6rW/04TEwkzuY6XkJuByBhgK+aZY2nCuv/4BY+AQw/vAAAA",
+        "transform": [
+          2.220446049250313e-16,
+          -1.0,
+          0.0,
+          3.000000000000001,
+          1.0,
+          2.220446049250313e-16,
+          0.0,
+          6.0,
+          0.0,
+          0.0,
+          1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": "NestedMirrorParent:1",
+        "native_object_token": null,
+        "bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "NestedSourceBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw2CMQyEqZkiC1hyHMdxFmAO4jwKhqBgA6agoqOgZCpq/EOPLEun0yf7DoMG9ImBfL+K1FUMvDkS3s/d63I+6P19e5z216MTFJKEVC2SEQOyNuCRFNoaDDPHlkyXjUU/smSbTlaoxh1YqkBlZZDhF7SXWTlv3MCMZfByxAowNQRdTYEk51Fqn2blf6ZJkVWEPY4/YU8Gqr3DWJhmwlxV7Ntx68wYP7DKNFj9AAAA",
+            "bounding_box_cm": {
+              "min": [
+                2.000000000000001,
+                6.0,
+                3.0
+              ],
+              "max": [
+                3.0000000000000013,
+                8.0,
+                4.0
+              ]
+            }
+          }
+        ]
+      },
+      "independent_actual_target_occurrences": [
+        {
+          "entity_type": "adsk::fusion::Occurrence",
+          "name": "NestedMirrorSource(Mirror):1",
+          "full_path_name": "NestedMirrorParent:1+NestedMirrorSource(Mirror):1",
+          "component_name": "NestedMirrorSource(Mirror)",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw1CMQxFqZkiC1hKHMdxFmAO7HwKhqBgA6agoqOgZKpX4yd65MayjnzPjYEChhSiT0LxLf0uHLb34XO7nuS5PV6X4/3sBIbMITdLaEgQSRRoZAFdg2CWpNlk2Vj4I2ux6WSDZtSBuDE0EgIe/kF6nY3Kzo0qS7oWqJQTUC0DhJPCNMo0Oyrx/O/kFli1K2DL7EnsTlwRyoi0usU9e+/4BenaJeDvAAAA",
+          "transform": [
+            2.220446049250313e-16,
+            -1.0,
+            0.0,
+            3.000000000000001,
+            -1.0,
+            -2.220446049250313e-16,
+            0.0,
+            -6.0,
+            0.0,
+            0.0,
+            -1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": "NestedMirrorParent:1",
+          "native_object_token": null,
+          "bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "NestedSourceBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEqZkiC1hKHNtxFmAO8lswBAUbMAUVHQUlU70a59Ejy9LJ+uS7806dtwkObXeFaio4Whdx2/vwuV1P+twer8vxfjYCXRQXcw1YkcCTFqAeFcrsBINDiVVn7RN/ZOI6jMyQKzUgyQKZlEC6fdCWRiZeXE86tRWGRDEAJe6gEgqMSpFGw0Iy/meyFJhKK4A5ijmJZZKEwN3TbNUv773j6syMX/SmgFj9AAAA",
+              "bounding_box_cm": {
+                "min": [
+                  2.000000000000001,
+                  -8.0,
+                  3.0
+                ],
+                "max": [
+                  3.0000000000000013,
+                  -6.0,
+                  4.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_getter_errors": [
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "occurrence.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in <lambda>\n    'native_object_token':observe('occurrence.nativeObject.entityToken',lambda:native.entityToken) if native else None,\n                                                                               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        }
+      ],
+      "actual_resultFeatures": {
+        "status": "returned_null",
+        "entities": [],
+        "scope": "Actual resultFeatures getter returnedNone; independently enumerated construction planes/occurrences are separate evidence"
+      }
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Nested source-frame reciprocal Mirror owner mismatch",
+      "passed": true,
+      "reason": "Nested Mirror context frame reciprocal owner/footer unsupported"
+    },
+    {
+      "check": "Nested source-route count unsupported",
+      "passed": true,
+      "reason": "Nested Mirror occurrence route count/size unsupported"
+    },
+    {
+      "check": "Nested ancestor valid UUID absent from native occurrences",
+      "passed": true,
+      "reason": "Nested route UUID does not select one native occurrence"
+    },
+    {
+      "check": "Derived link reciprocal owner mismatch",
+      "passed": true,
+      "reason": "Nested Mirror derived occurrence-link reciprocal owner unsupported"
+    }
+  ],
+  "interface": "decode_mirror_nested_occurrences(data,records,body,feature,known,assembly)",
+  "validation_command": "python3 decode_mirror_nested_occurrences.py --validate --zstd-library <local libzstd path>",
+  "limitations": [
+    "Exact native source/output and parent ownership come from typed identities, UUID routes and reciprocal collection membership; no token or geometry-derived ID associations.",
+    "Only captured two-level source routes, one-level parent contexts and same-parent derived occurrences supported; deeper/repeated-context paths remain unsupported.",
+    "Matrices are stored occurrence/context caches corroborated by actual getters, including rotated parent; no general reflection, assembly solving or lifecycle replay.",
+    "Optional native proxy token getters fail as expected and are preserved; actual resultFeatures returnedNone in both captures."
+  ]
+}

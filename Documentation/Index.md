@@ -5,6 +5,9 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Kit documentation
 
+The [Fusion research import](Changes/FusionResearchImport.md) records the explicit
+reader boundary, SDK changes, supported research scope, and acceptance limits.
+
 Start with [Getting started](GettingStarted.md), [API reference](Reference/Overview/ApiReference.md), and [architecture](Reference/Architecture/Overview.md).
 
 - [GitHub wiki](https://github.com/TryUniCAD/Kit/wiki)

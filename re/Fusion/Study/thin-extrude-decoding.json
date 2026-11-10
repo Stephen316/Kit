@@ -1,0 +1,1209 @@
+{
+  "scope": "Six actual thin Extrude exports plus one ordinary-solid control; initial failed open-profile capture retained and one targeted retry succeeds",
+  "interface": "decode_thin_extrudes(data,records,features)->decoded/unresolved/scope; no mutation; onlyTrue thin rows published",
+  "inspection_interface": "inspect_thin_extrude(data,records,body,feature,*,features=()) additionally exposes the ordinaryFalse block for focused controls",
+  "integration": "Attach thin_metadata and explicit source/profile/body evidence to corresponding Extrude feature IDs in a separate thin_extrudes summary. Existing common operation/start/extent settings remain exactly those of shared decode_extrude. Helper itself does not mutate warnings; integration may clear only the same-feature profile-source failure after the independently owned single-Line route is resolved.",
+  "schema": {
+    "shared_common_controls": "decode_extrude.layout_observer supplies common_controls_end_offset and extent_mode_code; no common extrusion schema copied into new reader",
+    "thin_block": "Reserveduint32zero; one nativeboolthin flag; uint32wallLocationOne+optional typed11-byte binding; uint32wallLocationTwo+optional binding. Variable optional references determine following profile/result list offsets.",
+    "wall_locations": "Native0/1/2 match actual API ThinExtrudeWallLocation.Side1/Center/Side2; names are preserved, no universal inward/outward claim.",
+    "binding": "Existing attached feature bindings reused. Each wall has typed numeric ModelParameter, decoded again by decode_parameters.decode_stream, correct Side1/2WallThickness role, positive finite internal cm value and reciprocal85-byte binding owner/parameter/value copies.",
+    "unverified": "Other operations, symmetric extents, taper/start offsets, non-distance extents, negative/zero thickness and general thin geometry regeneration remain unsupported."
+  },
+  "capture_provenance": {
+    "actual_truth_files": [
+      {
+        "file": "thinextrudes-c1632bcb5efe/ground_truth.json",
+        "sha256": "9d6736ba99d6837cc0e18b4dab51ba85f2117df4a7e9c452fc4858feeeaf3ec9"
+      },
+      {
+        "file": "thinextrudes-f758eff14202/ground_truth.json",
+        "sha256": "037033f24407160c1bde526e9499e28129aa485bf81ec38bbf7a38a9a88b374c"
+      }
+    ],
+    "current_reproduction_source_sha256": {
+      "GenerateThinExtrudeContrasts.py": "b074d5241e9c570cc3904626d3ba7815890bb602425befa9f5d3b1091ffbd850",
+      "GenerateThinOpenProfileRetry.py": "eba9e3bae99690eb545a9b9e078d1d6593b19bca3e127b69b18ae585d1076080"
+    },
+    "source_hash_scope": "Current reproduction source hashes only. Initial generator was corrected after the first six exports; no exact executed-source hash was captured, reconstructed or claimed.",
+    "initial_open_failure": {
+      "case": "open_line_side1",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 119, in run\n    sample['source_profile_before_feature'] = profile_truth(profile,'source_profile')\n                                              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 78, in profile_truth\n    result['sketch_name'] = profile.parentSketch.name\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'name'\n",
+      "getter_errors": [
+        {
+          "field": "source_profile.token",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 62, in read\n    try: return callback()\n                ~~~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 75, in <lambda>\n    'entity_token':read(label+'.token',lambda:entity.entityToken)}\n                                              ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60328, in _get_entityToken\n    return _fusion.Profile__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : Xl::Utils::referenceKey(this, referenceKey)\n"
+        }
+      ]
+    },
+    "targeted_retry": "Generic Profile.parentSketch can be null; unsupported optional generic-profile token getter not retried. Original selected SketchLine endpoints/token retained separately.",
+    "all_owned_documents_closed_true": true
+  },
+  "samples": [
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_side1.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 279,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 0,
+                "wall_location": "Side1",
+                "binding_object_id": 281,
+                "parameter_object_id": 280,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d1",
+                "thickness_cm": 0.12,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010000000001190100000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 291,
+                "opaque": 296,
+                "second_descriptor": null,
+                "taper": 294,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 283,
+              "descriptor_object_id": 286,
+              "loop_definition_object_id": 289,
+              "sketch_object_id": 202,
+              "sketch_name": "ThinProbeSource",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 236,
+                      "entity_kind": "Line",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 237,
+                      "entity_kind": "Line",
+                      "entity_tag": 106,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 238,
+                      "entity_kind": "Line",
+                      "entity_tag": 107,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 239,
+                      "entity_kind": "Line",
+                      "entity_tag": 108,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 283,
+            "result_anchor_object_id": 320,
+            "native_body_object_id": 314,
+            "body_scope": "Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved",
+            "geometry_status": "Thin wall controls and source/profile provenance only; no wall geometry regeneration",
+            "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "common_default_and_callback_outputs_exact": true,
+      "actual_API_isThinExtrude": true,
+      "actual_API_hasTwoExtents": false,
+      "actual_API_profile_returned_type": "adsk::fusion::Profile",
+      "actual_API_wall_one": {
+        "location": 0,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_wall_two": {
+        "applicable": false,
+        "getter_status": "Inactive side two not read"
+      },
+      "actual_API_health_state": 0,
+      "actual_API_warning": "",
+      "typed_result_geometry_control": {
+        "native_body_object_id": 314,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dedb0793-b65a-4e1c-b483-48b2797113b9.smbh",
+        "asm_body_index": 3,
+        "stored_identifier": 0,
+        "counts_match_actual_getters": true,
+        "bounds_match_actual_getters_after_keyed_join": true
+      },
+      "feature_dictionaries_unchanged": true
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_center.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 279,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 1,
+                "wall_location": "Center",
+                "binding_object_id": 281,
+                "parameter_object_id": 280,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d1",
+                "thickness_cm": 0.2,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010100000001190100000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 291,
+                "opaque": 296,
+                "second_descriptor": null,
+                "taper": 294,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 283,
+              "descriptor_object_id": 286,
+              "loop_definition_object_id": 289,
+              "sketch_object_id": 202,
+              "sketch_name": "ThinProbeSource",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 236,
+                      "entity_kind": "Line",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 239,
+                      "entity_kind": "Line",
+                      "entity_tag": 108,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 237,
+                      "entity_kind": "Line",
+                      "entity_tag": 106,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 238,
+                      "entity_kind": "Line",
+                      "entity_tag": 107,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 283,
+            "result_anchor_object_id": 320,
+            "native_body_object_id": 314,
+            "body_scope": "Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved",
+            "geometry_status": "Thin wall controls and source/profile provenance only; no wall geometry regeneration",
+            "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "common_default_and_callback_outputs_exact": true,
+      "actual_API_isThinExtrude": true,
+      "actual_API_hasTwoExtents": false,
+      "actual_API_profile_returned_type": "adsk::fusion::Profile",
+      "actual_API_wall_one": {
+        "location": 1,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.2,
+          "unit": "mm",
+          "expression": "2.00 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_wall_two": {
+        "applicable": false,
+        "getter_status": "Inactive side two not read"
+      },
+      "actual_API_health_state": 0,
+      "actual_API_warning": "",
+      "typed_result_geometry_control": {
+        "native_body_object_id": 314,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.315d3190-ea2b-4a9a-b3c2-1c1863b97231.smbh",
+        "asm_body_index": 3,
+        "stored_identifier": 0,
+        "counts_match_actual_getters": true,
+        "bounds_match_actual_getters_after_keyed_join": true
+      },
+      "feature_dictionaries_unchanged": true
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_side2.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 279,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 2,
+                "wall_location": "Side2",
+                "binding_object_id": 281,
+                "parameter_object_id": 280,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d1",
+                "thickness_cm": 0.15000000000000002,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010200000001190100000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 291,
+                "opaque": 296,
+                "second_descriptor": null,
+                "taper": 294,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 283,
+              "descriptor_object_id": 286,
+              "loop_definition_object_id": 289,
+              "sketch_object_id": 202,
+              "sketch_name": "ThinProbeSource",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 236,
+                      "entity_kind": "Line",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 237,
+                      "entity_kind": "Line",
+                      "entity_tag": 106,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 238,
+                      "entity_kind": "Line",
+                      "entity_tag": 107,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 239,
+                      "entity_kind": "Line",
+                      "entity_tag": 108,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 283,
+            "result_anchor_object_id": 320,
+            "native_body_object_id": 314,
+            "body_scope": "Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved",
+            "geometry_status": "Thin wall controls and source/profile provenance only; no wall geometry regeneration",
+            "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "common_default_and_callback_outputs_exact": true,
+      "actual_API_isThinExtrude": true,
+      "actual_API_hasTwoExtents": false,
+      "actual_API_profile_returned_type": "adsk::fusion::Profile",
+      "actual_API_wall_one": {
+        "location": 2,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.15000000000000002,
+          "unit": "mm",
+          "expression": "1.50 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_wall_two": {
+        "applicable": false,
+        "getter_status": "Inactive side two not read"
+      },
+      "actual_API_health_state": 0,
+      "actual_API_warning": "",
+      "typed_result_geometry_control": {
+        "native_body_object_id": 314,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.28cab126-b1ae-4aa1-8f03-74f98dffe208.smbh",
+        "asm_body_index": 3,
+        "stored_identifier": 0,
+        "counts_match_actual_getters": true,
+        "bounds_match_actual_getters_after_keyed_join": true
+      },
+      "feature_dictionaries_unchanged": true
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 279,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 0,
+                "wall_location": "Side1",
+                "binding_object_id": 281,
+                "parameter_object_id": 280,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d1",
+                "thickness_cm": 0.12,
+                "display_units": "mm",
+                "location_code_offset": 138,
+                "binding_reference_offset": 142
+              },
+              "side_two": {
+                "applicable": true,
+                "stored_wall_location_code": 2,
+                "wall_location": "Side2",
+                "binding_object_id": 284,
+                "parameter_object_id": 283,
+                "parameter_role": "Side2WallThickness",
+                "parameter_name": "d2",
+                "thickness_cm": 0.22000000000000003,
+                "display_units": "mm",
+                "location_code_offset": 153,
+                "binding_reference_offset": 157
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 137,
+              "block_start_offset": 133,
+              "block_end_offset": 168,
+              "block_hex": "000000000100000000011901000000000000000002000000011c010000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 2,
+                "mode": "TwoSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ],
+                "side_two": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 1.3
+                },
+                "side_two_distance_cm": [
+                  1.3
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": 300,
+                "along": 294,
+                "opaque": 305,
+                "second_descriptor": null,
+                "taper": 297,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": 303,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 1
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 286,
+              "descriptor_object_id": 289,
+              "loop_definition_object_id": 292,
+              "sketch_object_id": 202,
+              "sketch_name": "ThinProbeSource",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 238,
+                      "entity_kind": "Line",
+                      "entity_tag": 107,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 237,
+                      "entity_kind": "Line",
+                      "entity_tag": 106,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 239,
+                      "entity_kind": "Line",
+                      "entity_tag": 108,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 236,
+                      "entity_kind": "Line",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 286,
+            "result_anchor_object_id": 329,
+            "native_body_object_id": 323,
+            "body_scope": "Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved",
+            "geometry_status": "Thin wall controls and source/profile provenance only; no wall geometry regeneration",
+            "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "common_default_and_callback_outputs_exact": true,
+      "actual_API_isThinExtrude": true,
+      "actual_API_hasTwoExtents": true,
+      "actual_API_profile_returned_type": "adsk::fusion::Profile",
+      "actual_API_wall_one": {
+        "location": 0,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_wall_two": {
+        "applicable": true,
+        "location": 2,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "Side2WallThickness",
+          "raw_value": 0.22000000000000003,
+          "unit": "mm",
+          "expression": "2.20 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_health_state": 0,
+      "actual_API_warning": "",
+      "typed_result_geometry_control": {
+        "native_body_object_id": 323,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d6ec6a9b-baee-483b-b6be-8700eab4c321.smbh",
+        "asm_body_index": 3,
+        "stored_identifier": 0,
+        "counts_match_actual_getters": true,
+        "bounds_match_actual_getters_after_keyed_join": true
+      },
+      "feature_dictionaries_unchanged": true
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_two_sides_center.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 279,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 1,
+                "wall_location": "Center",
+                "binding_object_id": 281,
+                "parameter_object_id": 280,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d1",
+                "thickness_cm": 0.25,
+                "display_units": "mm",
+                "location_code_offset": 138,
+                "binding_reference_offset": 142
+              },
+              "side_two": {
+                "applicable": true,
+                "stored_wall_location_code": 1,
+                "wall_location": "Center",
+                "binding_object_id": 284,
+                "parameter_object_id": 283,
+                "parameter_role": "Side2WallThickness",
+                "parameter_name": "d2",
+                "thickness_cm": 0.1,
+                "display_units": "mm",
+                "location_code_offset": 153,
+                "binding_reference_offset": 157
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 137,
+              "block_start_offset": 133,
+              "block_end_offset": 168,
+              "block_hex": "000000000101000000011901000000000000000001000000011c010000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 2,
+                "mode": "TwoSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 1.7000000000000002
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  1.7000000000000002
+                ],
+                "side_two": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 0.8
+                },
+                "side_two_distance_cm": [
+                  0.8
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": 300,
+                "along": 294,
+                "opaque": 305,
+                "second_descriptor": null,
+                "taper": 297,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": 303,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 1
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 286,
+              "descriptor_object_id": 289,
+              "loop_definition_object_id": 292,
+              "sketch_object_id": 202,
+              "sketch_name": "ThinProbeSource",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 238,
+                      "entity_kind": "Line",
+                      "entity_tag": 107,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 239,
+                      "entity_kind": "Line",
+                      "entity_tag": 108,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 237,
+                      "entity_kind": "Line",
+                      "entity_tag": 106,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 236,
+                      "entity_kind": "Line",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 286,
+            "result_anchor_object_id": 329,
+            "native_body_object_id": 323,
+            "body_scope": "Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved",
+            "geometry_status": "Thin wall controls and source/profile provenance only; no wall geometry regeneration",
+            "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "common_default_and_callback_outputs_exact": true,
+      "actual_API_isThinExtrude": true,
+      "actual_API_hasTwoExtents": true,
+      "actual_API_profile_returned_type": "adsk::fusion::Profile",
+      "actual_API_wall_one": {
+        "location": 1,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.25,
+          "unit": "mm",
+          "expression": "2.50 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_wall_two": {
+        "applicable": true,
+        "location": 1,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "Side2WallThickness",
+          "raw_value": 0.1,
+          "unit": "mm",
+          "expression": "1.00 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_health_state": 0,
+      "actual_API_warning": "",
+      "typed_result_geometry_control": {
+        "native_body_object_id": 323,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4c469c05-aede-4055-81e8-bd82b57003cf.smbh",
+        "asm_body_index": 3,
+        "stored_identifier": 0,
+        "counts_match_actual_getters": true,
+        "bounds_match_actual_getters_after_keyed_join": true
+      },
+      "feature_dictionaries_unchanged": true
+    },
+    {
+      "file": "thinextrudes-f758eff14202/open_line_side1.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 242,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 0,
+                "wall_location": "Side1",
+                "binding_object_id": 244,
+                "parameter_object_id": 243,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d1",
+                "thickness_cm": 0.12,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010000000001f40000000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 254,
+                "opaque": 259,
+                "second_descriptor": null,
+                "taper": 257,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "profile_kind": "SketchOpenProfile",
+              "selection_record_object_id": 246,
+              "descriptor_object_id": 249,
+              "terminal_object_id": 252,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false
+            },
+            "profile_proxy_object_id": 246,
+            "result_anchor_object_id": 295,
+            "native_body_object_id": 289,
+            "body_scope": "Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved",
+            "geometry_status": "Thin wall controls and source/profile provenance only; no wall geometry regeneration",
+            "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "common_default_and_callback_outputs_exact": true,
+      "actual_API_isThinExtrude": true,
+      "actual_API_hasTwoExtents": false,
+      "actual_API_profile_returned_type": "adsk::fusion::Path",
+      "actual_API_wall_one": {
+        "location": 0,
+        "thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeThinExtrude"
+        }
+      },
+      "actual_API_wall_two": {
+        "applicable": false,
+        "getter_status": "Inactive side two not read"
+      },
+      "actual_API_health_state": 0,
+      "actual_API_warning": "",
+      "typed_result_geometry_control": {
+        "native_body_object_id": 289,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e61ca431-b97e-4420-9a20-97daebd5c138.smbh",
+        "asm_body_index": 1,
+        "stored_identifier": 0,
+        "counts_match_actual_getters": true,
+        "bounds_match_actual_getters_after_keyed_join": true
+      },
+      "feature_dictionaries_unchanged": true
+    }
+  ],
+  "ordinary_control": {
+    "file": "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+    "actual_API_isThinExtrude": false,
+    "expected_inspection": {
+      "feature_object_id": 279,
+      "is_thin_extrude": false,
+      "stored_flag_offset": 117,
+      "block_start_offset": 113,
+      "block_end_offset": 128,
+      "block_hex": "000000000000000000000000000000",
+      "common_extrusion_controls": {
+        "operation": {
+          "stored_code": 4,
+          "kind": "NewBody"
+        },
+        "extent": {
+          "stored_code": 1,
+          "mode": "OneSided",
+          "side_one": {
+            "stored_code": 1,
+            "condition": "Distance",
+            "uninterpreted_flags": 0,
+            "taper_angle_radians": 0.0,
+            "taper_angle_degrees": 0.0,
+            "distance_cm": 2.5
+          },
+          "side_one_condition": "Distance",
+          "stored_direction_vector": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+          "side_one_distance_cm": [
+            2.5
+          ]
+        },
+        "start": {
+          "stored_code": 0,
+          "kind": "ProfilePlane"
+        },
+        "extrusion_reference_fields": {
+          "start": null,
+          "against": null,
+          "along": 288,
+          "opaque": 293,
+          "second_descriptor": null,
+          "taper": 291,
+          "target": null,
+          "offset": null,
+          "target_two": null,
+          "taper_two": null,
+          "offset_two": null
+        },
+        "stored_second_extent_enabled": 0
+      },
+      "scope": "ObservedFalse flag and absent inactive bindings; ordinary runtime output stays with existing parser"
+    },
+    "no_runtime_thin_sidecar_or_diagnostic": true,
+    "common_default_and_callback_outputs_exact": true
+  },
+  "malformed_guards": [
+    {
+      "case": "Native thin flag is not boolean",
+      "rejected": true,
+      "reason": "Unobserved native thin-extrude boolean"
+    },
+    {
+      "case": "Unknown wall location enum",
+      "rejected": true,
+      "reason": "Thin Extrude wall location/thickness role unresolved"
+    },
+    {
+      "case": "Thickness field points to valid binding with wrong role",
+      "rejected": true,
+      "reason": "Thin Extrude wall location/thickness role unresolved"
+    },
+    {
+      "case": "Wall binding footer owner is not feature",
+      "rejected": true,
+      "reason": "Thin Extrude wall binding owner/parameter/value copies disagree"
+    },
+    {
+      "case": "Wall binding cached value differs from numeric parameter",
+      "rejected": true,
+      "reason": "Thin Extrude wall binding owner/parameter/value copies disagree"
+    },
+    {
+      "case": "Zero thickness rejected with matching parameter/binding copies",
+      "rejected": true,
+      "reason": "Thin Extrude wall binding owner/parameter/value copies disagree"
+    },
+    {
+      "case": "Active second side missing thickness binding",
+      "rejected": true,
+      "reason": "Thin Extrude wall location/thickness role unresolved"
+    },
+    {
+      "case": "Profile proxy owner no longer feature",
+      "rejected": true,
+      "reason": "Thin Extrude profile proxy count/owner unsupported"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "file": "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
+      "no_new_sidecars_or_diagnostics": true,
+      "feature_dictionaries_unchanged": true
+    },
+    {
+      "file": "moretools-88a2cd6cad0b/Thicken.f3d",
+      "no_new_sidecars_or_diagnostics": true,
+      "feature_dictionaries_unchanged": true
+    }
+  ],
+  "limitations": [
+    "Thin wall sides denote extrusion extent sides, not independently asymmetric offsets around a single profile.",
+    "Inactive one-sided wall-two code is retained without interpreting it as an active getter value; no inactive getter was called.",
+    "Open source generic Profile has no parentSketch, and feature.profile actually returns Path. No actual Path member getters were captured; original selected Line getters and native owned single-Line references remain explicit. Profile loops/open single-line selection and feature-owned native BODY anchors are explicit provenance; persistent topology/current-final lifecycle and wall geometry generation are not established.",
+    "Positive finite numeric values are not restricted to fixture constants; actual numeric bindings and parameter roles establish their meaning.",
+    "Stored body bounds/counts below corroborate actual results after keyed identity mapping; no candidate chosen by coordinates.",
+    "Ordinary/surface existing features get no new thin sidecar or diagnostic. Current generator hashes are not historical capture-source hashes."
+  ],
+  "summary": {
+    "actual_successful_exports": 7,
+    "decoded_thin_features": 6,
+    "closed_profiles": 5,
+    "open_line_profiles": 1,
+    "actual_owned_wall_parameter_matches": 8,
+    "keyed_result_BODY_geometry_controls": 6,
+    "ordinary_actualFalse_controls": 1,
+    "common_callback_default_output_exact_controls": 7,
+    "malformed_guards": 8,
+    "legacy_ordinary_surface_controls": 2,
+    "initial_open_capture_failure_retained": true,
+    "new_live_API_calls": 0
+  }
+}

@@ -98,8 +98,12 @@ from interchange.enums.EnumFeatures import FeatureKind
 from interchange.enums.EnumGeometry import ConstraintKind, GeometryKind
 from interchange.enums.EnumUnits import UnitSystem
 from interchange.enums.EnumValues import ParameterRole, ValueKind
+from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBody import DesignBody
 from interchange.features.FeatureContract import FeatureDef
+from interchange.features.FeatureBoundPlane import BoundConstructionPlane
+from interchange.features.FeatureBoundScale import BoundScale
+from interchange.features.FeatureDistExt import DistanceExtrude
 from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeatureKinds import (
     ChamferFeature,
@@ -116,6 +120,8 @@ from interchange.features.FeatureKinds import (
     ScaleFeature,
     ShellFeature,
 )
+from interchange.features.FeaturePlaneExt import PlaneExtrude
+from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureCfgState, FeatureStep
 from interchange.geometry.models.GeometryConics import (
     ArcEllipseGeom,
@@ -365,6 +371,12 @@ BindTypeGlobals(
 )
 
 RegisterTypes(
+    AngularRevolve,
+    BoundConstructionPlane,
+    BoundScale,
+    DistanceExtrude,
+    PlaneExtrude,
+    PlaneRevolve,
     *(
         # nosemgrep: python.lang.security.dangerous-globals-use.dangerous-globals-use
         globals()[NameValue]
@@ -377,7 +389,7 @@ RegisterTypes(
             # nosemgrep: python.lang.security.dangerous-globals-use.dangerous-globals-use
             or issubclass(globals()[NameValue], EnumBase)
         )
-    )
+    ),
 )
 
 RegMigration(BrepPayload, MigratePayload)

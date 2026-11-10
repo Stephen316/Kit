@@ -1,0 +1,1242 @@
+{
+  "scope": "Three actual owned one-sided Side1 thin rectangle operations: Join/Cut/Intersect with typed historical target/new anchor/current collection evidence. Controls/profile/body metadata only; independent geometry corroboration is separate.",
+  "interface": "decode_thin_extrude_operations(data,records,features)->decoded/unresolved/scope; rows reuse unchanged common_extrusion_controls/thin_metadata/profile and add body_list_evidence",
+  "shared_opt_ins": "inspect_thin_extrude(...,allowed_operations=(NewBody,),body_list_resolver=None). Defaults remain unchanged; approved callback receives(data,records,body,feature,cursor) immediately after profile list.",
+  "integration": {
+    "merged_family": "thin_extrudes",
+    "variant_scope_key": "operation_variant_scope",
+    "cleared_old_reason": "Only observed solid NewBody untapered distance Thin Extrude family supported",
+    "scope": "Append only successful rows and remove only corresponding same-feature family rejection; ordinary extrusion controls/warnings and unrelated errors remain exact."
+  },
+  "capture_provenance": {
+    "ground_truth": "thinextrudeoperations-edb76642a509/ground_truth.json",
+    "ground_truth_sha256": "d4857fe044c7586788980b7bf9fe6300823c13e713192b853aedab0c61ef986c",
+    "executed_generator_sha256": "af0bd029dd98270586f0c60cba6a372b95dd75a654569a972d570e25dbd159ba",
+    "source_helper_sha256": "b074d5241e9c570cc3904626d3ba7815890bb602425befa9f5d3b1091ffbd850",
+    "sdk_runtime_source_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+    "sdk_surface_snapshot_sha256": "3827327eda5c06efef250cad0835360234d078119307720ddb45f501a4d9c59e"
+  },
+  "native_schema": {
+    "Extrude_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+    "common_controls": "Existing decode_extrude/layout_observer; no common schema copied or ordinary fields changed",
+    "thin_block": "Same bounded native bool/location/owned thickness parameter schema as prior Thin Extrude captures",
+    "following_frame": "Single typed profile selection, reservedzero4, owned-new-anchor count0/1+refs, reservedzero4, target-body-proxy count1+ref",
+    "historical_target_scope": "Owned body proxy references seed anchor/nativeBODY311; target is not relabelled a new feature-owned body",
+    "owned_new_anchor_scope": "Cut alone owns one additional anchor\u2192BODY1764. Join/Intersect own no new anchor although they have current geometry.",
+    "body_list_runtime_proof": "Independent callback validates typed target/seed/new ownership, reciprocal current BODY collection, mapping membership and exact bounded bytes; late same-asset ASM ID qualification remains separate."
+  },
+  "samples": [
+    {
+      "archive": "thinextrudeoperations-edb76642a509/join.f3d",
+      "archive_sha256": "07b62be87bbed00ce9e5b02ab33fcc07b7149eb115e6222246a41a9cf21c11cf",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 1414,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 0,
+                "wall_location": "Side1",
+                "binding_object_id": 1416,
+                "parameter_object_id": 1415,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d3",
+                "thickness_cm": 0.12,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010000000001880500000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 1,
+                "kind": "Join"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 1433,
+                "opaque": 1438,
+                "second_descriptor": null,
+                "taper": 1436,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 1425,
+              "descriptor_object_id": 1428,
+              "loop_definition_object_id": 1431,
+              "sketch_object_id": 1242,
+              "sketch_name": "OwnedThinOperationRingProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 1276,
+                      "entity_kind": "Line",
+                      "entity_tag": 115,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1277,
+                      "entity_kind": "Line",
+                      "entity_tag": 116,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1278,
+                      "entity_kind": "Line",
+                      "entity_tag": 117,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1275,
+                      "entity_kind": "Line",
+                      "entity_tag": 114,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 1425,
+            "body_scope": "Explicit typed target selections and separately owned new-body anchors; current membership facts do not infer general lifecycle or persistent topology",
+            "geometry_status": "Thin Boolean wall controls, closed source profile and typed target/new-anchor/current body-list provenance; geometric regeneration and persistent topology unresolved",
+            "scope": "Observed solid one-sided untapered distance Thin Extrude Join/Cut/Intersect, Side1 wall with owned positive thickness and one closed four-Line sketch profile. Historical target selection, newly owned BODY anchors and current native collection facts remain distinct; topology/lifecycle and regeneration unresolved.",
+            "body_list_evidence": {
+              "feature_object_id": 1414,
+              "feature_record_offset": 39318,
+              "body_list_start_offset": 153,
+              "body_list_end_offset": 180,
+              "stored_body_list_hex": "00000000000000000000000001000000018a050000000000000000",
+              "new_result_anchor_object_ids": [],
+              "new_result_body_anchors": [],
+              "new_result_native_body_object_ids": [],
+              "target_body_selection_object_ids": [
+                1418
+              ],
+              "target_body_selection_proxy": {
+                "selection_record_object_id": 1418,
+                "owner_object_id": 1414,
+                "attributes": {},
+                "descriptor_object_ids": [
+                  1421
+                ],
+                "native_body_object_ids": [
+                  311
+                ],
+                "association": "Explicit counted proxy list with matching descriptor owners"
+              },
+              "target_body_descriptor": {
+                "object_id": 1421,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 1414,
+                "body_anchor_object_id": 317,
+                "native_body_object_id": 311,
+                "body_properties": {},
+                "source_owner_object_id": 279,
+                "recipe_record_object_id": 1424,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "becdbd5e-0f83-416d-b493-2096402d2ef2",
+                "entity_uuid_text": "530ab561-16d2-439c-83ec-16f801ce03d9",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 5.0792000000000025e-05,
+                "helper_record_object_id": 1423,
+                "support_record_object_id": 1422,
+                "support_reference_object_ids": [
+                  279
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "target_native_body_object_ids": [
+                311
+              ],
+              "target_seed_anchor_object_ids": [
+                317
+              ],
+              "target_seed_owner_object_ids": [
+                279
+              ],
+              "native_current_body_collection": {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  311
+                ],
+                "stored_field_at_3": 1,
+                "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+              },
+              "native_current_body_object_ids": [
+                311
+              ],
+              "stored_history_filename": "BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh",
+              "native_history_mapping": {
+                "mapping_record_object_id": 8,
+                "owner_object_id": 7,
+                "body_count": 1,
+                "bindings": [
+                  {
+                    "stored_handle": 102,
+                    "native_body_object_id": 311
+                  }
+                ]
+              },
+              "layout": {
+                "collection_record_offset": 2042,
+                "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+                "mapping_record_offset": 2145,
+                "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00330035006100300039003800310033002d0035003600650066002d0034006500610062002d0061006500380038002d003200640034003800300034006200630037003800360062002e0073006d0062006800",
+                "exact_body_list_and_mapping_replay": true
+              },
+              "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+              "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid one-sided untapered distance Thin Extrude Join/Cut/Intersect, Side1 wall with owned positive thickness and one closed four-Line sketch profile. Historical target selection, newly owned BODY anchors and current native collection facts remain distinct; topology/lifecycle and regeneration unresolved."
+      },
+      "expected_legacy_thin_summary": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 1414,
+            "reason": "Only observed solid NewBody untapered distance Thin Extrude family supported"
+          }
+        ],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "expected_common_extrusion_controls": [
+        {
+          "feature_object_id": 279,
+          "controls": {
+            "operation": {
+              "stored_code": 4,
+              "kind": "NewBody"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 1.5
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                1.5
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 288,
+              "opaque": 293,
+              "second_descriptor": null,
+              "taper": 291,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0
+          },
+          "unresolved": []
+        },
+        {
+          "feature_object_id": 1414,
+          "controls": {
+            "operation": {
+              "stored_code": 1,
+              "kind": "Join"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 2.5
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                2.5
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 1433,
+              "opaque": 1438,
+              "second_descriptor": null,
+              "taper": 1436,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0
+          },
+          "unresolved": []
+        }
+      ],
+      "actual_API_operation": 0,
+      "actual_API_isThinExtrude": true,
+      "actual_API_wall_thickness_cm": 0.12,
+      "actual_API_side_one_distance_cm": 2.5,
+      "actual_API_current_BRep_count": 1,
+      "actual_API_participant_getter_called": false,
+      "historical_target_native_body_ids": [
+        311
+      ],
+      "new_owned_native_body_ids": [],
+      "exact_thin_block_and_body_list_byte_replays": true,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "thinextrudeoperations-edb76642a509/cut.f3d",
+      "archive_sha256": "f0c1e0c66dd249375a226c4ba12a609ce5377b19cb5c6c20655170e29649c68c",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 1720,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 0,
+                "wall_location": "Side1",
+                "binding_object_id": 1722,
+                "parameter_object_id": 1721,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d3",
+                "thickness_cm": 0.12,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010000000001ba0600000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 2,
+                "kind": "Cut"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 1739,
+                "opaque": 1744,
+                "second_descriptor": null,
+                "taper": 1742,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 1731,
+              "descriptor_object_id": 1734,
+              "loop_definition_object_id": 1737,
+              "sketch_object_id": 1242,
+              "sketch_name": "OwnedThinOperationRingProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 1278,
+                      "entity_kind": "Line",
+                      "entity_tag": 117,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1276,
+                      "entity_kind": "Line",
+                      "entity_tag": 115,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1277,
+                      "entity_kind": "Line",
+                      "entity_tag": 116,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1275,
+                      "entity_kind": "Line",
+                      "entity_tag": 114,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 1731,
+            "body_scope": "Explicit typed target selections and separately owned new-body anchors; current membership facts do not infer general lifecycle or persistent topology",
+            "geometry_status": "Thin Boolean wall controls, closed source profile and typed target/new-anchor/current body-list provenance; geometric regeneration and persistent topology unresolved",
+            "scope": "Observed solid one-sided untapered distance Thin Extrude Join/Cut/Intersect, Side1 wall with owned positive thickness and one closed four-Line sketch profile. Historical target selection, newly owned BODY anchors and current native collection facts remain distinct; topology/lifecycle and regeneration unresolved.",
+            "body_list_evidence": {
+              "feature_object_id": 1720,
+              "feature_record_offset": 39376,
+              "body_list_start_offset": 153,
+              "body_list_end_offset": 191,
+              "stored_body_list_hex": "000000000100000001e8060000000000000000000000000100000001bc060000000000000000",
+              "new_result_anchor_object_ids": [
+                1768
+              ],
+              "new_result_body_anchors": [
+                {
+                  "object_id": 1768,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "native_body_object_id": 1764,
+                  "source_owner_object_id": 1720,
+                  "native_uuid_text": "3b309afd-3964-4b9e-a867-eb51600b8210",
+                  "stored_flags": [
+                    0,
+                    1
+                  ],
+                  "native_body_reference_offset": 45359,
+                  "body_properties": {},
+                  "association": "Typed anchor contains an explicit reference to the native body record",
+                  "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                }
+              ],
+              "new_result_native_body_object_ids": [
+                1764
+              ],
+              "target_body_selection_object_ids": [
+                1724
+              ],
+              "target_body_selection_proxy": {
+                "selection_record_object_id": 1724,
+                "owner_object_id": 1720,
+                "attributes": {},
+                "descriptor_object_ids": [
+                  1727
+                ],
+                "native_body_object_ids": [
+                  311
+                ],
+                "association": "Explicit counted proxy list with matching descriptor owners"
+              },
+              "target_body_descriptor": {
+                "object_id": 1727,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 1720,
+                "body_anchor_object_id": 317,
+                "native_body_object_id": 311,
+                "body_properties": {},
+                "source_owner_object_id": 279,
+                "recipe_record_object_id": 1730,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "87808eab-985c-430e-964d-f373ae8b0e79",
+                "entity_uuid_text": "9a342ec5-864e-4888-966b-edbda863efe8",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 5.454199999999987e-05,
+                "helper_record_object_id": 1729,
+                "support_record_object_id": 1728,
+                "support_reference_object_ids": [
+                  279
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "target_native_body_object_ids": [
+                311
+              ],
+              "target_seed_anchor_object_ids": [
+                317
+              ],
+              "target_seed_owner_object_ids": [
+                279
+              ],
+              "native_current_body_collection": {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  311,
+                  1764
+                ],
+                "stored_field_at_3": 2,
+                "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+              },
+              "native_current_body_object_ids": [
+                311,
+                1764
+              ],
+              "stored_history_filename": "BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh",
+              "native_history_mapping": {
+                "mapping_record_object_id": 8,
+                "owner_object_id": 7,
+                "body_count": 2,
+                "bindings": [
+                  {
+                    "stored_handle": 102,
+                    "native_body_object_id": 311
+                  },
+                  {
+                    "stored_handle": 103,
+                    "native_body_object_id": 1764
+                  }
+                ]
+              },
+              "layout": {
+                "collection_record_offset": 2042,
+                "stored_collection_payload_hex": "0000000200000002000000013701000000000000000001e406000000000000000001013c01000000000000000001080000000000000000000101120000000000000000000002000000013701000000000000000001e40600000000000000000103000000000000000000",
+                "mapping_record_offset": 2167,
+                "stored_mapping_payload_hex": "000002000000660000000000000037010000000000006700000000000000e4060000000000000107000000000000000000002e00000042005200450050002e00630037003400380038006100320036002d0035006300620033002d0034003600640065002d0039003200390032002d003000370061003000320033003900350031006400620033002e0073006d0062006800",
+                "exact_body_list_and_mapping_replay": true
+              },
+              "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+              "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid one-sided untapered distance Thin Extrude Join/Cut/Intersect, Side1 wall with owned positive thickness and one closed four-Line sketch profile. Historical target selection, newly owned BODY anchors and current native collection facts remain distinct; topology/lifecycle and regeneration unresolved."
+      },
+      "expected_legacy_thin_summary": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 1720,
+            "reason": "Only observed solid NewBody untapered distance Thin Extrude family supported"
+          }
+        ],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "expected_common_extrusion_controls": [
+        {
+          "feature_object_id": 279,
+          "controls": {
+            "operation": {
+              "stored_code": 4,
+              "kind": "NewBody"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 1.5
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                1.5
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 288,
+              "opaque": 293,
+              "second_descriptor": null,
+              "taper": 291,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0
+          },
+          "unresolved": []
+        },
+        {
+          "feature_object_id": 1720,
+          "controls": {
+            "operation": {
+              "stored_code": 2,
+              "kind": "Cut"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 2.5
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                2.5
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 1739,
+              "opaque": 1744,
+              "second_descriptor": null,
+              "taper": 1742,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0
+          },
+          "unresolved": []
+        }
+      ],
+      "actual_API_operation": 1,
+      "actual_API_isThinExtrude": true,
+      "actual_API_wall_thickness_cm": 0.12,
+      "actual_API_side_one_distance_cm": 2.5,
+      "actual_API_current_BRep_count": 2,
+      "actual_API_participant_getter_called": true,
+      "historical_target_native_body_ids": [
+        311
+      ],
+      "new_owned_native_body_ids": [
+        1764
+      ],
+      "exact_thin_block_and_body_list_byte_replays": true,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "thinextrudeoperations-edb76642a509/intersect.f3d",
+      "archive_sha256": "50eadbdf8c699aaefd6cbdca7a63cae0a965fb1021bf568135ea3850dcb642bc",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 1720,
+            "is_thin_extrude": true,
+            "thin_metadata": {
+              "is_thin_extrude": true,
+              "side_one": {
+                "stored_wall_location_code": 0,
+                "wall_location": "Side1",
+                "binding_object_id": 1722,
+                "parameter_object_id": 1721,
+                "parameter_role": "Side1WallThickness",
+                "parameter_name": "d3",
+                "thickness_cm": 0.12,
+                "display_units": "mm",
+                "location_code_offset": 118,
+                "binding_reference_offset": 122
+              },
+              "side_two": {
+                "applicable": false,
+                "stored_inactive_location_code": 0,
+                "binding_object_id": null,
+                "scope": "Inactive second wall has no actual getter comparison; no active Side1 semantic assigned"
+              },
+              "wall_side_scope": "One/two extrusion extent sides, not asymmetric offsets about a single profile",
+              "stored_flag_offset": 117,
+              "block_start_offset": 113,
+              "block_end_offset": 138,
+              "block_hex": "00000000010000000001ba0600000000000000000000000000",
+              "offset_scope": "Thin block/location/binding-reference offsets are relative to the native Extrude feature body"
+            },
+            "common_extrusion_controls": {
+              "operation": {
+                "stored_code": 3,
+                "kind": "Intersect"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.5
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.5
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 1739,
+                "opaque": 1744,
+                "second_descriptor": null,
+                "taper": 1742,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 1731,
+              "descriptor_object_id": 1734,
+              "loop_definition_object_id": 1737,
+              "sketch_object_id": 1242,
+              "sketch_name": "OwnedThinOperationRingProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 1278,
+                      "entity_kind": "Line",
+                      "entity_tag": 117,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1276,
+                      "entity_kind": "Line",
+                      "entity_tag": 115,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1277,
+                      "entity_kind": "Line",
+                      "entity_tag": 116,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    },
+                    {
+                      "entity_id": 1275,
+                      "entity_kind": "Line",
+                      "entity_tag": 114,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "profile_proxy_object_id": 1731,
+            "body_scope": "Explicit typed target selections and separately owned new-body anchors; current membership facts do not infer general lifecycle or persistent topology",
+            "geometry_status": "Thin Boolean wall controls, closed source profile and typed target/new-anchor/current body-list provenance; geometric regeneration and persistent topology unresolved",
+            "scope": "Observed solid one-sided untapered distance Thin Extrude Join/Cut/Intersect, Side1 wall with owned positive thickness and one closed four-Line sketch profile. Historical target selection, newly owned BODY anchors and current native collection facts remain distinct; topology/lifecycle and regeneration unresolved.",
+            "body_list_evidence": {
+              "feature_object_id": 1720,
+              "feature_record_offset": 39184,
+              "body_list_start_offset": 153,
+              "body_list_end_offset": 180,
+              "stored_body_list_hex": "0000000000000000000000000100000001bc060000000000000000",
+              "new_result_anchor_object_ids": [],
+              "new_result_body_anchors": [],
+              "new_result_native_body_object_ids": [],
+              "target_body_selection_object_ids": [
+                1724
+              ],
+              "target_body_selection_proxy": {
+                "selection_record_object_id": 1724,
+                "owner_object_id": 1720,
+                "attributes": {},
+                "descriptor_object_ids": [
+                  1727
+                ],
+                "native_body_object_ids": [
+                  311
+                ],
+                "association": "Explicit counted proxy list with matching descriptor owners"
+              },
+              "target_body_descriptor": {
+                "object_id": 1727,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 1720,
+                "body_anchor_object_id": 317,
+                "native_body_object_id": 311,
+                "body_properties": {},
+                "source_owner_object_id": 279,
+                "recipe_record_object_id": 1730,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "33da30c1-6213-4d85-afd3-f6799e0c9fb4",
+                "entity_uuid_text": "95d14568-8a85-4397-b5fd-db990ece2c2a",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 5.541599999999997e-05,
+                "helper_record_object_id": 1729,
+                "support_record_object_id": 1728,
+                "support_reference_object_ids": [
+                  279
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "target_native_body_object_ids": [
+                311
+              ],
+              "target_seed_anchor_object_ids": [
+                317
+              ],
+              "target_seed_owner_object_ids": [
+                279
+              ],
+              "native_current_body_collection": {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  311
+                ],
+                "stored_field_at_3": 1,
+                "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+              },
+              "native_current_body_object_ids": [
+                311
+              ],
+              "stored_history_filename": "BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh",
+              "native_history_mapping": {
+                "mapping_record_object_id": 8,
+                "owner_object_id": 7,
+                "body_count": 1,
+                "bindings": [
+                  {
+                    "stored_handle": 102,
+                    "native_body_object_id": 311
+                  }
+                ]
+              },
+              "layout": {
+                "collection_record_offset": 2042,
+                "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+                "mapping_record_offset": 2145,
+                "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00300033003700340066006200620036002d0037003700650062002d0034003100340034002d0038003500640033002d003300320034003700660035003800650030003100390064002e0073006d0062006800",
+                "exact_body_list_and_mapping_replay": true
+              },
+              "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+              "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid one-sided untapered distance Thin Extrude Join/Cut/Intersect, Side1 wall with owned positive thickness and one closed four-Line sketch profile. Historical target selection, newly owned BODY anchors and current native collection facts remain distinct; topology/lifecycle and regeneration unresolved."
+      },
+      "expected_legacy_thin_summary": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 1720,
+            "reason": "Only observed solid NewBody untapered distance Thin Extrude family supported"
+          }
+        ],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "expected_common_extrusion_controls": [
+        {
+          "feature_object_id": 279,
+          "controls": {
+            "operation": {
+              "stored_code": 4,
+              "kind": "NewBody"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 1.5
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                1.5
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 288,
+              "opaque": 293,
+              "second_descriptor": null,
+              "taper": 291,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0
+          },
+          "unresolved": []
+        },
+        {
+          "feature_object_id": 1720,
+          "controls": {
+            "operation": {
+              "stored_code": 3,
+              "kind": "Intersect"
+            },
+            "extent": {
+              "stored_code": 1,
+              "mode": "OneSided",
+              "side_one": {
+                "stored_code": 1,
+                "condition": "Distance",
+                "uninterpreted_flags": 0,
+                "taper_angle_radians": 0.0,
+                "taper_angle_degrees": 0.0,
+                "distance_cm": 2.5
+              },
+              "side_one_condition": "Distance",
+              "stored_direction_vector": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+              "side_one_distance_cm": [
+                2.5
+              ]
+            },
+            "start": {
+              "stored_code": 0,
+              "kind": "ProfilePlane"
+            },
+            "extrusion_reference_fields": {
+              "start": null,
+              "against": null,
+              "along": 1739,
+              "opaque": 1744,
+              "second_descriptor": null,
+              "taper": 1742,
+              "target": null,
+              "offset": null,
+              "target_two": null,
+              "taper_two": null,
+              "offset_two": null
+            },
+            "stored_second_extent_enabled": 0
+          },
+          "unresolved": []
+        }
+      ],
+      "actual_API_operation": 2,
+      "actual_API_isThinExtrude": true,
+      "actual_API_wall_thickness_cm": 0.12,
+      "actual_API_side_one_distance_cm": 2.5,
+      "actual_API_current_BRep_count": 1,
+      "actual_API_participant_getter_called": true,
+      "historical_target_native_body_ids": [
+        311
+      ],
+      "new_owned_native_body_ids": [],
+      "exact_thin_block_and_body_list_byte_replays": true,
+      "owned_document_closed_true": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "native thin flag not boolean",
+      "absolute_mutation_offset": 39512,
+      "rejected": true,
+      "reason": "Unobserved native thin-extrude boolean"
+    },
+    {
+      "guard": "Center location outside captured Boolean family",
+      "absolute_mutation_offset": 39513,
+      "rejected": true,
+      "reason": "Unsupported Thin Boolean side/profile combination outside observed one-sided Side1 four-Line family"
+    },
+    {
+      "guard": "thickness reference points at valid AlongDistance binding",
+      "absolute_mutation_offset": 39517,
+      "rejected": true,
+      "reason": "Thin Extrude wall location/thickness role unresolved"
+    },
+    {
+      "guard": "wall binding owner footer differs",
+      "absolute_mutation_offset": 40196,
+      "rejected": true,
+      "reason": "Thin Extrude wall binding owner/parameter/value copies disagree"
+    },
+    {
+      "guard": "cached wall thickness differs from numeric parameter",
+      "absolute_mutation_offset": 40143,
+      "rejected": true,
+      "reason": "Thin Extrude wall binding owner/parameter/value copies disagree"
+    },
+    {
+      "guard": "zero thickness rejected with all matching copies",
+      "absolute_mutation_offset": 40143,
+      "rejected": true,
+      "reason": "Thin Extrude wall binding owner/parameter/value copies disagree"
+    },
+    {
+      "guard": "profile proxy owner differs",
+      "absolute_mutation_offset": 41282,
+      "rejected": true,
+      "reason": "Thin Extrude profile proxy count/owner unsupported"
+    },
+    {
+      "guard": "target body proxy owner differs",
+      "absolute_mutation_offset": 40408,
+      "rejected": true,
+      "reason": "Thin owned target proxy/descriptor ambiguous"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_side1.f3d",
+      "full_prior_thin_summary_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_center.f3d",
+      "full_prior_thin_summary_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_side2.f3d",
+      "full_prior_thin_summary_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d",
+      "full_prior_thin_summary_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_two_sides_center.f3d",
+      "full_prior_thin_summary_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "thinextrudes-f758eff14202/open_line_side1.f3d",
+      "full_prior_thin_summary_exact": true,
+      "new_wrapper_no_candidate": true
+    }
+  ],
+  "ordinary_control": {
+    "archive": "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+    "full_prior_False_inspection_exact": true,
+    "no_new_runtime_sidecar": true
+  },
+  "limitations": [
+    "Supported family is solid one-sided untapered positive distance, Side1 positive finite owned thickness, one closed four-Line profile. Other Boolean thin combinations remain unsupported.",
+    "Wall side denotes extrusion extent side; no universal inward/outward wall direction or thin-wall geometry regeneration claimed.",
+    "Native historical targetBODY311 remains separate from genuinely owned newBODY1764. Current collection facts are not generic lifetime, hidden/deleted state or persistent topology.",
+    "Cut has two actual current/result BRep bodies but only one new owned anchor; result count is not inferred from new-anchor count.",
+    "Join participantBodies SDK getter/setter not invoked because the property applies to Cut/Intersect. Typed target provenance is separate from actual participant getter semantics.",
+    "Input DistanceExtentDefinition.distance returns None before add in these captures; configured request and rolled feature ModelParameter value are kept distinct.",
+    "Shared common extrusion dictionaries and old Thin summaries remain exactly unchanged. New wrapper does not mutate feature dictionaries or clear warnings itself.",
+    "No API entity token or temporary topology identifier becomes a native object ID. Source/member routes precede numerical corroboration; general traversal/topology/regeneration unresolved."
+  ],
+  "summary": {
+    "actual_archives": 3,
+    "decoded_thin_Boolean_features": 3,
+    "actual_owned_wall_getter_checks": 6,
+    "actual_owned_extent_getter_checks": 3,
+    "exact_common_callback_default_controls": 6,
+    "bounded_thin_and_body_list_byte_replays": 3,
+    "malformed_guards": 8,
+    "exact_prior_Thin_full_summaries": 6,
+    "exact_ordinary_False_control": 1,
+    "ordinary_common_parser_edits": 0,
+    "main_runs": 0,
+    "live_calls": 0
+  },
+  "runtime_source_sha256": {
+    "decode_thin_extrudes.py": "f68854eee07c182c5d6aeec87a456cb53d97391892394474735ae06c3866dbc4",
+    "decode_thin_extrude_operations.py": "e9fd21aca691120939a13715daed05378ed51bd5f7477a1cff93f5d18edf62c1",
+    "validate_thin_extrude_operations.py": "ef7e275602f37992587b071ffd40b992077e9f840cfe1c0d64e4c3c2d1eec120",
+    "decode_thin_extrude_body_routes.py": "deaac05da5c9edece4c177fef1d3260b09849ae86a63782aeaffa6448238b050",
+    "decode_extrude.py": "031a652bfb45f630663cbc2182c5002d6f32ff720fcea74f71fd2f61c83f717d",
+    "decode_parameters.py": "eb1df73c03dd015cf067015ceb84fc4f2330c8983ec78ca95b4efe4d6e271d0b"
+  }
+}

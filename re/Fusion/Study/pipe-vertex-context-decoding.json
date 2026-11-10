@@ -1,0 +1,408 @@
+{
+  "scope": "Typed auxiliary vertex descriptor/context cache with reciprocal support and shared historical path body; Pipe role, edge geometry, closure and persistent vertex identity unresolved",
+  "interface": "inspect_pipe_auxiliary_vertex_context(data,records,body,feature,features,*,source_evidence=None)",
+  "integration": "Attach only successful additional result to existing partial Pipe auxiliary_point_selection; never clear full Pipe tool failures or set closure/distanceTwo from this result. Optional source_evidence reuses inspect_pipe_edge_controls output from identical inputs.",
+  "framing": {
+    "vertex_context": "Typed994C record: zero16, three float64 cache coordinates, markers0100; exactly28 bytes.",
+    "joins": "The69EE selector, vertex descriptor and path descriptor all own the same Pipe feature. Vertex/path descriptors repeat the same namespace/entity UUID pair and historical body anchor. Typed6CCF support references that vertex descriptor and the historical anchor source owner.",
+    "recipe_scope": "Existing guarded vertex_recipe_data source identity reused; its integers are not promoted to native design/ASM identities."
+  },
+  "samples": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "sha256": "c0dc2d006081c9891f3d9b4a5086e0e32f158746724d78b1780029bda85c6626",
+      "API_observation": {
+        "is_closed": false,
+        "natural_source_geometry_type": "adsk::core::Line3D",
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "native_observation": {
+        "descriptor_flag_byte3": 0,
+        "has_auxiliary_point_selector": true,
+        "stored_against_fraction": 1.0,
+        "stored_along_fraction": 1.0
+      },
+      "expected_auxiliary_vertex_context": {
+        "feature_object_id": 330,
+        "selection_object_id": 346,
+        "descriptor_object_id": 341,
+        "vertex_recipe_object_id": 344,
+        "context_object_id": 370,
+        "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+        "cached_position_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "context_payload_hex": "00000000000000000000000000000000000000000000000000000100",
+        "namespace_text": "6ae43388-50e0-4168-ad5f-faac945dfc1c",
+        "entity_guid_text": "f363a9dd-4274-4b5e-a82f-79ae0fbe6936",
+        "body_anchor_object_id": 281,
+        "native_body_object_id": 275,
+        "source_owner_object_id": 243,
+        "helper_object_id": 343,
+        "support_object_id": 342,
+        "support_payload_hex": "00000000000001010100000001f30000000000000000005b05dc154d5e06000155010000000000000000476fdc154d5e06000000000000000000",
+        "association": "Owned Pipe selector -> owned vertex descriptor -> typed point-cache context; path and vertex share UUID pair and historical anchor; support reciprocates descriptor and historical source owner",
+        "coordinate_scope": "Stored cache copies in captured root-component coordinates; source recipe not evaluated",
+        "tool_settings_status": "Unresolved; this vertex-context join establishes neither edge closedness nor distanceTwo availability",
+        "scope": "Typed auxiliary vertex descriptor/context cache with reciprocal support and shared historical path body; Pipe role, edge geometry, closure and persistent vertex identity unresolved"
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "sha256": "5178062038e89784de3642fffaef5d816e5bf157cbdd636efaacbbf9e32a0f50",
+      "API_observation": {
+        "is_closed": false,
+        "natural_source_geometry_type": "adsk::core::Line3D",
+        "distance_one": 0.4,
+        "distance_two": null
+      },
+      "native_observation": {
+        "descriptor_flag_byte3": 0,
+        "has_auxiliary_point_selector": true,
+        "stored_against_fraction": 0.4,
+        "stored_along_fraction": 0.4
+      },
+      "expected_auxiliary_vertex_context": {
+        "feature_object_id": 330,
+        "selection_object_id": 346,
+        "descriptor_object_id": 341,
+        "vertex_recipe_object_id": 344,
+        "context_object_id": 370,
+        "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+        "cached_position_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "context_payload_hex": "00000000000000000000000000000000000000000000000000000100",
+        "namespace_text": "75a8ffd5-8b22-4d5a-aee8-3dd3be1fab2b",
+        "entity_guid_text": "a0c47818-d743-49b8-aa42-c8039ef6eab8",
+        "body_anchor_object_id": 281,
+        "native_body_object_id": 275,
+        "source_owner_object_id": 243,
+        "helper_object_id": 343,
+        "support_object_id": 342,
+        "support_payload_hex": "00000000000001010100000001f30000000000000000007609e2154d5e06000155010000000000000000ee1be2154d5e06000000000000000000",
+        "association": "Owned Pipe selector -> owned vertex descriptor -> typed point-cache context; path and vertex share UUID pair and historical anchor; support reciprocates descriptor and historical source owner",
+        "coordinate_scope": "Stored cache copies in captured root-component coordinates; source recipe not evaluated",
+        "tool_settings_status": "Unresolved; this vertex-context join establishes neither edge closedness nor distanceTwo availability",
+        "scope": "Typed auxiliary vertex descriptor/context cache with reciprocal support and shared historical path body; Pipe role, edge geometry, closure and persistent vertex identity unresolved"
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "sha256": "961de909e9881a36cf5de9dd494a01d976bb9f3017645c618f4798d76747e9ee",
+      "API_observation": {
+        "is_closed": false,
+        "natural_source_geometry_type": "adsk::core::Line3D",
+        "distance_one": 0.4,
+        "distance_two": null
+      },
+      "native_observation": {
+        "descriptor_flag_byte3": 1,
+        "has_auxiliary_point_selector": true,
+        "stored_against_fraction": 0.4,
+        "stored_along_fraction": 0.4
+      },
+      "expected_auxiliary_vertex_context": {
+        "feature_object_id": 330,
+        "selection_object_id": 346,
+        "descriptor_object_id": 341,
+        "vertex_recipe_object_id": 344,
+        "context_object_id": 370,
+        "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+        "cached_position_cm": [
+          2.0,
+          -1.0,
+          0.0
+        ],
+        "context_payload_hex": "00000000000000000040000000000000f0bf00000000000000000100",
+        "namespace_text": "97f5a4f0-92fa-488c-babf-5cf97bfdf279",
+        "entity_guid_text": "8074a71c-619b-4459-b1c2-7a9cbc9ca16c",
+        "body_anchor_object_id": 281,
+        "native_body_object_id": 275,
+        "source_owner_object_id": 243,
+        "helper_object_id": 343,
+        "support_object_id": 342,
+        "support_payload_hex": "00000000000001010100000001f3000000000000000000d5a1e7154d5e06000155010000000000000000c3b2e7154d5e06000000000000000000",
+        "association": "Owned Pipe selector -> owned vertex descriptor -> typed point-cache context; path and vertex share UUID pair and historical anchor; support reciprocates descriptor and historical source owner",
+        "coordinate_scope": "Stored cache copies in captured root-component coordinates; source recipe not evaluated",
+        "tool_settings_status": "Unresolved; this vertex-context join establishes neither edge closedness nor distanceTwo availability",
+        "scope": "Typed auxiliary vertex descriptor/context cache with reciprocal support and shared historical path body; Pipe role, edge geometry, closure and persistent vertex identity unresolved"
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "sha256": "df1a5d22f382c5ffee15d8acc528b8368a3de8e5f197c65933dfc507f5764802",
+      "API_observation": {
+        "is_closed": true,
+        "natural_source_geometry_type": "adsk::core::Circle3D",
+        "distance_one": 1.0,
+        "distance_two": 0.0
+      },
+      "native_observation": {
+        "descriptor_flag_byte3": 1,
+        "has_auxiliary_point_selector": false,
+        "stored_against_fraction": 1.0,
+        "stored_along_fraction": 0.0
+      },
+      "expected_no_populated_auxiliary_reason": "No captured populated Pipe auxiliary vertex selector"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "sha256": "5c1ec92a2423ad4ce3aebf8dda62b03ff8d4d441ea4cf64e40f9132eb338ee09",
+      "API_observation": {
+        "is_closed": true,
+        "natural_source_geometry_type": "adsk::core::Circle3D",
+        "distance_one": 0.35,
+        "distance_two": 0.2
+      },
+      "native_observation": {
+        "descriptor_flag_byte3": 1,
+        "has_auxiliary_point_selector": false,
+        "stored_against_fraction": 0.35,
+        "stored_along_fraction": 0.2
+      },
+      "expected_no_populated_auxiliary_reason": "No captured populated Pipe auxiliary vertex selector"
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "sha256": "f3aff579649e9ded729e3256534dc3a95889e5e5104fea1f5b468bf4a8fe40d5",
+      "API_observation": {
+        "is_closed": false,
+        "natural_source_geometry_type": "adsk::core::Line3D",
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "native_observation": {
+        "descriptor_flag_byte3": 0,
+        "has_auxiliary_point_selector": true,
+        "stored_against_fraction": 1.0,
+        "stored_along_fraction": 1.0
+      },
+      "expected_auxiliary_vertex_context": {
+        "feature_object_id": 306,
+        "selection_object_id": 322,
+        "descriptor_object_id": 317,
+        "vertex_recipe_object_id": 320,
+        "context_object_id": 346,
+        "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+        "cached_position_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "context_payload_hex": "00000000000000000000000000000000000000000000000000000100",
+        "namespace_text": "46491eeb-a3ea-4026-a78f-5297d24d027d",
+        "entity_guid_text": "29fc18a2-f355-46a4-83bc-a6224e2188f1",
+        "body_anchor_object_id": 281,
+        "native_body_object_id": 275,
+        "source_owner_object_id": 243,
+        "helper_object_id": 319,
+        "support_object_id": 318,
+        "support_payload_hex": "00000000000001010100000001f3000000000000000000c1ea73db4c5e0600013d010000000000000000840874db4c5e06000000000000000000",
+        "association": "Owned Pipe selector -> owned vertex descriptor -> typed point-cache context; path and vertex share UUID pair and historical anchor; support reciprocates descriptor and historical source owner",
+        "coordinate_scope": "Stored cache copies in captured root-component coordinates; source recipe not evaluated",
+        "tool_settings_status": "Unresolved; this vertex-context join establishes neither edge closedness nor distanceTwo availability",
+        "scope": "Typed auxiliary vertex descriptor/context cache with reciprocal support and shared historical path body; Pipe role, edge geometry, closure and persistent vertex identity unresolved"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d source closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d distanceTwo remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d point cache matches independently captured source start vertex",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d API actual source is open",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d source closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d distanceTwo remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d point cache matches independently captured source start vertex",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d API actual source is open",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d source closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d distanceTwo remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d point cache matches independently captured source start vertex",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d API actual source is open",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d source closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d distanceTwo remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d source closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d distanceTwo remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d source closure remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d distanceTwo remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d point cache matches independently captured source start vertex",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d API actual source is open",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "Descriptor flag counterexample equal flags",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "Descriptor flag counterexample distinct API closedness",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Context coordinate copy mismatch",
+      "rejected": true,
+      "reason": "Pipe vertex-context and auxiliary selector coordinate copies disagree"
+    },
+    {
+      "label": "Wrong typed context leaf",
+      "rejected": true,
+      "reason": "Pipe vertex-context typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "label": "Historical anchor disagreement",
+      "rejected": true,
+      "reason": "Pipe vertex-context typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "label": "Nonreciprocal support descriptor",
+      "rejected": true,
+      "reason": "Pipe vertex-context reciprocal source/descriptor support disagrees"
+    }
+  ],
+  "closure_status": "No new explicit source edge closure or natural curve geometry established; all six full Pipe settings failures remain unresolved.",
+  "next_discriminating_controls": [
+    {
+      "case": "Open semicircular BRep edge from an extruded sector",
+      "purpose": "Contrast curved/open geometry against closed circular edges; separates line-vs-circle payload structure from actual topological closure. Capture natural and trimmed evaluator, Path.isClosed, start/end vertex identity, both Pipe distance getters and every owned context."
+    },
+    {
+      "case": "Closed ellipse BRep edge from an extruded ellipse",
+      "purpose": "Contrast closed non-circular geometry with current closed circle and open arc; seek a closure field independent of primitive geometry family."
+    },
+    {
+      "case": "Two adjacent BRep line edges forming an open path, and an ordered four-edge closed rectangle",
+      "purpose": "Contrast path-level closure with per-edge closure and optional selector presence. Capture ordered members/actual direction and returned vertex identities; do not infer closure from selector absence."
+    },
+    {
+      "case": "Same open curved edge with reversed Path member direction, varied positive distanceOne",
+      "purpose": "Distinguish source start vertex from Pipe start selection and path orientation; source-point cache matching current natural start vertex is insufficient to establish its general role."
+    }
+  ],
+  "limitations": [
+    "No source edge was identified inside ASM. Existing body/blob mapping remains distinct from recipe-to-edge identity.",
+    "Descriptor flag1 occurs on both the negative open line and closed circle. Optional selector presence correlates with closure only in this small corpus and is not decoded as closure.",
+    "Source context C46D181 stores namespaces and an edge-recipe route, not independently decoded natural edge geometry. Distinct edge recipe payload shapes are preserved without assigning closure semantics.",
+    "The original fixture filename brep_edge_circular.f3d uses a circular Pipe section on an actual open Line3D source, as confirmed by API truth. Filename is not a geometry discriminator."
+  ],
+  "closure_flag_counterexample": {
+    "open": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+    "closed": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+    "same_native_descriptor_flag": 1
+  },
+  "validation": {
+    "actual_files": 6,
+    "new_auxiliary_vertex_context_joins": 4,
+    "full_Pipe_failures_cleared": 0,
+    "comparisons_passed": 22,
+    "malformed_guards_passed": 4,
+    "new_API_calls": 0
+  }
+}

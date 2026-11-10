@@ -1,0 +1,498 @@
+{
+  "fusion_version": "2705.1.30",
+  "coordinate_units": "cm",
+  "sketches": [
+    {
+      "name": "Parallel",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            6.0,
+            3.0,
+            0.0
+          ],
+          "end": [
+            8.0,
+            3.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "ParallelConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Perpendicular",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            6.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            6.0,
+            4.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "PerpendicularConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Equal",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            6.0,
+            3.0,
+            0.0
+          ],
+          "end": [
+            9.0,
+            3.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "EqualConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Collinear",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            6.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            8.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "CollinearConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Concentric",
+      "curves": [
+        {
+          "kind": "SketchCircle",
+          "construction": false,
+          "fixed": false,
+          "center": [
+            3.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.0
+        },
+        {
+          "kind": "SketchCircle",
+          "construction": false,
+          "fixed": false,
+          "center": [
+            3.0,
+            3.0,
+            0.0
+          ],
+          "radius": 2.0
+        }
+      ],
+      "constraints": [
+        "ConcentricConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Tangent",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "end": [
+            6.0,
+            5.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchCircle",
+          "construction": false,
+          "fixed": false,
+          "center": [
+            4.0,
+            4.0,
+            0.0
+          ],
+          "radius": 1.0
+        }
+      ],
+      "constraints": [
+        "TangentConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "MidPoint",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "end": [
+            5.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "MidPointConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "HorizontalPoints",
+      "curves": [],
+      "constraints": [
+        "HorizontalPointsConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "VerticalPoints",
+      "curves": [],
+      "constraints": [
+        "VerticalPointsConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Symmetry",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            0.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "SymmetryConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "Primitives",
+      "curves": [
+        {
+          "kind": "SketchArc",
+          "construction": false,
+          "fixed": false,
+          "center": [
+            2.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.5,
+          "start": [
+            3.5,
+            3.0,
+            0.0
+          ],
+          "end": [
+            2.5435366317150105,
+            4.39805862895084,
+            0.0
+          ],
+          "start_angle": 0.0,
+          "end_angle": 1.2
+        },
+        {
+          "kind": "SketchEllipse",
+          "construction": false,
+          "fixed": false,
+          "center": [
+            8.0,
+            3.0,
+            0.0
+          ],
+          "major_radius": 2.5,
+          "minor_radius": 1.25
+        },
+        {
+          "kind": "SketchLine",
+          "construction": true,
+          "fixed": false,
+          "start": [
+            5.5,
+            3.0,
+            0.0
+          ],
+          "end": [
+            10.5,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchLine",
+          "construction": true,
+          "fixed": false,
+          "start": [
+            8.0,
+            4.25,
+            0.0
+          ],
+          "end": [
+            8.0,
+            1.75,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [
+        "CoincidentConstraint",
+        "CoincidentConstraint",
+        "CoincidentConstraint",
+        "CoincidentConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "ConstructionAndFixed",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": true,
+          "fixed": false,
+          "start": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "end": [
+            2.0,
+            3.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchCircle",
+          "construction": false,
+          "fixed": true,
+          "center": [
+            5.0,
+            3.0,
+            0.0
+          ],
+          "radius": 0.75
+        }
+      ],
+      "constraints": [],
+      "dimensions": []
+    },
+    {
+      "name": "LinearDimension",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            2.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [],
+      "dimensions": [
+        {
+          "kind": "SketchLinearDimension",
+          "parameter": "d1",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "name": "DiameterDimension",
+      "curves": [
+        {
+          "kind": "SketchCircle",
+          "construction": false,
+          "fixed": false,
+          "center": [
+            4.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.75
+        }
+      ],
+      "constraints": [],
+      "dimensions": [
+        {
+          "kind": "SketchDiameterDimension",
+          "parameter": "d2",
+          "value": 3.5
+        }
+      ]
+    },
+    {
+      "name": "AngularDimension",
+      "curves": [
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "kind": "SketchLine",
+          "construction": false,
+          "fixed": false,
+          "start": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end": [
+            2.0,
+            3.0,
+            0.0
+          ]
+        }
+      ],
+      "constraints": [],
+      "dimensions": [
+        {
+          "kind": "SketchAngularDimension",
+          "parameter": "d3",
+          "value": 0.9827937232469762
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

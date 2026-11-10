@@ -1,0 +1,194 @@
+"""Prepared read-only inspection of one exact Rule witness/recovery quarantine.
+
+No quarantine mutation, GC, document close, feature creation, timeline movement,
+recompute, export, application/document enumeration or opaque-token comparison.
+Root reviews and dispatches this entrypoint separately.
+"""
+from datetime import datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import uuid
+
+import adsk.core
+import adsk.fusion
+
+WITNESS = '_fusion_study_rule_surface_witness_halted_native_handles'
+DOCUMENTS = '_fusion_study_rule_surface_halted_documents'
+RECOVERY = '_fusion_study_rule_surface_recovery_halted_native_handles'
+CAPTURE = 'rulefilletsurfaces-9dd46198ca8a'
+RECOVERY_CAPTURE = 'recoverrulesurfacewitness-b0a35766ba60'
+EXECUTED_SOURCE_SHA256 = '6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305'
+EXECUTED_RECOVERY_SHA256 = '6d8b0963db1caa7ac2050152b1ebd27528ed82b40a5201b3964ae7216491272a'
+ARCHIVE_SHA256 = 'e4920ced5f952f99fe0bed8eda71ead47098afa4d26308fdd53dc3141f35fd52'
+HANDLE_KEYS = frozenset(('design', 'root', 'offsets', 'source_face', 'source_body', 'entities',
+    'distance', 'inputs', 'input_entities', 'input_face', 'input_distance', 'parameter',
+    'previous', 'feature', 'looked_up_feature'))
+RECOVERY_HANDLE_KEYS = frozenset(('design', 'root', 'offsets', 'resolved', 'input_faces',
+    'quarantine_rows', 'quarantine_entry', 'native_handles'))
+
+
+def inspect_known_quarantine(root):
+    """Return JSON observations; all temporary SDK wrappers die with this frame."""
+    errors = []
+
+    def read(label, getter):
+        try:
+            return getter()
+        except Exception as error:
+            errors.append(dict(field=label, error_type=type(error).__name__, error=str(error)))
+            return None
+
+    def primitive(value):
+        if value is None or type(value) in (str, bool, int):
+            return value
+        return dict(unexpected_python_type=type(value).__module__+'.'+type(value).__name__)
+
+    def describe(value):
+        if value is None:
+            return dict(is_none=True)
+        return dict(python_type=type(value).__module__+'.'+type(value).__name__,
+            object_type=primitive(read('description.objectType', lambda: value.objectType)),
+            is_valid=primitive(read('description.isValid', lambda: value.isValid)))
+
+    def compare(label, left, right, cls):
+        row = dict(label=label, left=describe(left), right=describe(right),
+            dispatch_class=cls.__module__+'.'+cls.__name__)
+        try:
+            result = cls.__eq__(left, right)
+            if result is NotImplemented:
+                row.update(result_kind='NotImplemented', boolean_value=None)
+            elif type(result) is bool:
+                row.update(result_kind='bool', boolean_value=result)
+            else:
+                row.update(result_kind='NonBoolean', result_python_type=
+                    type(result).__module__+'.'+type(result).__name__, boolean_value=None)
+        except Exception as error:
+            row.update(result_kind='Exception', error_type=type(error).__name__, error=str(error))
+        comparisons.append(row)
+
+    saved = root / RECOVERY_CAPTURE / 'recovery.json'
+    recovery_truth = json.loads(saved.read_text())
+    original = root / CAPTURE
+    truth = json.loads((original/'ground_truth.json').read_text())
+    if (recovery_truth.get('status') != 'HaltedRetained'
+            or recovery_truth.get('executed_recovery_sha256') != EXECUTED_RECOVERY_SHA256
+            or recovery_truth.get('release') != dict(status='HaltedRetained',
+                phase='release_known_handles', error_type='RuntimeError',
+                error='Concrete native wrappers refer to different objects')
+            or any(e.get('phase') == 'release_frame_returned_JSON' for e in recovery_truth['events'])
+            or hashlib.sha256((root/RECOVERY_CAPTURE/'executed-recovery-source.txt').read_bytes()).hexdigest()
+                != EXECUTED_RECOVERY_SHA256
+            or hashlib.sha256((original/'executed-generator-source.txt').read_bytes()).hexdigest()
+                != EXECUTED_SOURCE_SHA256
+            or truth.get('executed_generator_sha256') != EXECUTED_SOURCE_SHA256
+            or hashlib.sha256((original/'offsets_one_two.f3d').read_bytes()).hexdigest() != ARCHIVE_SHA256):
+        raise RuntimeError('Exact saved original/recovery evidence differs; no SDK inspection attempted')
+    if len(truth['samples']) != 1 or len(truth['errors']) != 1:
+        raise RuntimeError('Exact saved original sample/error count differs')
+    requests = [face['entity_token'] for body in truth['samples'][0]['result_bodies']
+        for face in body['faces'] if face['temp_id'] in body['deep_face_temp_ids']]
+    if len(requests) != 8 or not all(type(token) is str and token for token in requests):
+        raise RuntimeError('Exact original source token request list unavailable')
+
+    witness = getattr(adsk.fusion, WITNESS, None)
+    documents = getattr(adsk.fusion, DOCUMENTS, None)
+    recovery = getattr(adsk.fusion, RECOVERY, None)
+    counts = {name: len(value) if isinstance(value, list) else None
+        for name, value in (('witness', witness), ('documents', documents), ('recovery', recovery))}
+    if counts != dict(witness=1, documents=1, recovery=1):
+        raise RuntimeError('Inspection requires exactly the known one/one/one quarantines')
+    entry, recovery_entry = witness[0], recovery[0]
+    if (type(entry) is not dict or set(entry) != {'phase', 'document', 'native_handles'}
+            or entry['phase'] != 'create_witness'
+            or type(entry['native_handles']) is not dict or set(entry['native_handles']) != HANDLE_KEYS
+            or type(recovery_entry) is not dict
+            or set(recovery_entry) != {'phase', 'document', 'native_handles'}
+            or recovery_entry['phase'] != 'release_known_handles'
+            or type(recovery_entry['native_handles']) is not dict
+            or set(recovery_entry['native_handles']) != RECOVERY_HANDLE_KEYS):
+        raise RuntimeError('Inspection quarantine phase/key schema differs')
+    doc = documents[0]
+    handles = entry['native_handles']
+    comparisons = []
+    report = dict(counts=counts, witness_phase=entry['phase'], recovery_phase=recovery_entry['phase'],
+        witness_handle_keys=sorted(handles),
+        witness_non_none_handles={key: describe(value) for key, value in handles.items() if value is not None},
+        recovery_handle_keys=sorted(recovery_entry['native_handles']),
+        recovery_non_none_handle_types={key: type(value).__module__+'.'+type(value).__name__
+            for key, value in recovery_entry['native_handles'].items() if value is not None},
+        document=describe(doc), comparisons=comparisons, read_errors=errors,
+        saved_evidence=dict(capture=CAPTURE, recovery_capture=RECOVERY_CAPTURE,
+            original_archive_sha256=ARCHIVE_SHA256,
+            original_executed_generator_sha256=EXECUTED_SOURCE_SHA256,
+            executed_recovery_sha256=EXECUTED_RECOVERY_SHA256,
+            recovery_report_sha256=hashlib.sha256(saved.read_bytes()).hexdigest()),
+        quarantine_mutation_attempted=False)
+    for label, other in (('document_vs_outer', documents[0]), ('document_vs_witness', entry['document']),
+            ('document_vs_recovery', recovery_entry['document'])):
+        compare(label+'.concrete_type', doc, other, type(doc))
+        compare(label+'.core_Document', doc, other, adsk.core.Document)
+    design = read('fresh_owned_design', lambda: adsk.fusion.Design.cast(
+        doc.products.itemByProductType('DesignProductType')))
+    if design is not None:
+        compare('fresh_vs_retained_Design', design, handles['design'], adsk.fusion.Design)
+        parent = read('fresh_design.parentDocument', lambda: design.parentDocument)
+        report['fresh_design_parent_document'] = describe(parent)
+        if parent is not None:
+            compare('document_vs_fresh_parent.concrete_type', doc, parent, type(doc))
+            compare('document_vs_fresh_parent.core_Document', doc, parent, adsk.core.Document)
+            compare('fresh_parent_vs_document.concrete_type', parent, doc, type(parent))
+            compare('fresh_parent_vs_document.core_Document', parent, doc, adsk.core.Document)
+        component = read('fresh_design.rootComponent', lambda: design.rootComponent)
+        if component is not None:
+            compare('fresh_vs_retained_rootComponent', component, handles['root'], adsk.fusion.Component)
+            offsets = read('fresh_root.offsetFeatures', lambda: component.features.offsetFeatures)
+            if offsets is not None:
+                report['fresh_offset_count'] = primitive(read('fresh_offsets.count', lambda: offsets.count))
+                compare('fresh_vs_retained_OffsetFeatures', offsets, handles['offsets'], adsk.fusion.OffsetFeatures)
+        if handles['offsets'] is not None:
+            report['retained_offset_count'] = primitive(read('retained_offsets.count', lambda: handles['offsets'].count))
+        resolved = read('same_document_first_source_lookup', lambda: design.findEntityByToken(requests[0]))
+        report['fresh_source_resolution_count'] = len(resolved) if resolved is not None else None
+        if resolved is not None and len(resolved) == 1:
+            compare('resolved_vs_retained_source', resolved[0], handles['source_face'], adsk.fusion.BRepFace)
+            source_body = read('resolved_source_face.body', lambda: resolved[0].body)
+            if source_body is not None:
+                compare('resolved_source_body_vs_retained_sourceBody', source_body,
+                    handles['source_body'], adsk.fusion.BRepBody)
+                source_component = read('resolved_source_body.parentComponent', lambda: source_body.parentComponent)
+                if source_component is not None and component is not None:
+                    compare('resolved_source_body_component_vs_fresh_root', source_component,
+                        component, adsk.fusion.Component)
+    inputs = handles['inputs']
+    if inputs is not None:
+        entities = read('retained_input.entities', lambda: inputs.entities)
+        if entities is not None:
+            count = read('retained_input.entities.count', lambda: entities.count)
+            report['fresh_input_entity_count'] = primitive(count)
+            if type(count) is int and count == 1:
+                face = read('retained_input.entities.item0', lambda: entities.item(0))
+                if face is not None:
+                    compare('input_collection_vs_retained_input_face', face, handles['input_face'], adsk.fusion.BRepFace)
+                    compare('input_collection_vs_retained_source', face, handles['source_face'], adsk.fusion.BRepFace)
+    compare('retained_input_face_vs_retained_source', handles['input_face'], handles['source_face'], adsk.fusion.BRepFace)
+    return report
+
+
+def run(context):
+    root = Path(__file__).resolve().parent
+    folder = root / ('inspectrulewitnessquarantine-'+uuid.uuid4().hex[:12])
+    folder.mkdir()
+    source = Path(__file__).read_bytes()
+    (folder/'executed-inspection-source.txt').write_bytes(source)
+    report = dict(status='Started', time_utc=datetime.now(timezone.utc).isoformat(),
+        executed_inspection_sha256=hashlib.sha256(source).hexdigest(),
+        scope='Read-only exact original and failed recovery quarantines; comparison outcomes are observations, not approval to release or close',
+        prohibited_actions='No quarantine edits/clears, GC, close, feature/timeline/compute/export operations, unrelated documents or opaque token equality')
+    try:
+        report['inspection'] = inspect_known_quarantine(root)
+        report['status'] = 'InspectionComplete'
+    except Exception as error:
+        report.update(status='InspectionStopped', error_type=type(error).__name__, error=str(error))
+    (folder/'inspection.json').write_text(json.dumps(report, indent=2, allow_nan=False)+'\n')
+    (folder/'complete.txt').write_text(report['status']+'; read-only inspection only.\n')

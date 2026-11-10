@@ -1,0 +1,277 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "Fillet.f3d",
+      "feature": {
+        "name": "ProbeFillet",
+        "kind": "FilletFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeFillet"
+        },
+        {
+          "name": "d4",
+          "role": "Radius",
+          "value": 0.2,
+          "unit": "mm",
+          "expression": "2 mm",
+          "created_by": "ProbeFillet"
+        }
+      ]
+    },
+    {
+      "file": "Chamfer.f3d",
+      "feature": {
+        "name": "ProbeChamfer",
+        "kind": "ChamferFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "Distance",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "expression": "1.5 mm",
+          "created_by": "ProbeChamfer"
+        }
+      ]
+    },
+    {
+      "file": "Shell.f3d",
+      "feature": {
+        "name": "ProbeShell",
+        "kind": "ShellFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "innerThickness",
+          "value": 0.2,
+          "unit": "mm",
+          "expression": "2 mm",
+          "created_by": "ProbeShell"
+        }
+      ]
+    },
+    {
+      "file": "Hole.f3d",
+      "feature": {
+        "name": "ProbeHole",
+        "kind": "HoleFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "HoleDepth",
+          "value": 1.2000000000000002,
+          "unit": "mm",
+          "expression": "12 mm",
+          "created_by": "ProbeHole"
+        },
+        {
+          "name": "d4",
+          "role": "HoleDiameter",
+          "value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6 mm",
+          "created_by": "ProbeHole"
+        },
+        {
+          "name": "d5",
+          "role": "TipAngle",
+          "value": 2.059488517353309,
+          "unit": "deg",
+          "expression": "118.0 deg",
+          "created_by": "ProbeHole"
+        }
+      ]
+    },
+    {
+      "file": "RectangularPattern.f3d",
+      "feature": {
+        "name": "ProbeRectangularPattern",
+        "kind": "RectangularPatternFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "countU",
+          "value": 3.0,
+          "unit": "",
+          "expression": "3",
+          "created_by": "ProbeRectangularPattern"
+        },
+        {
+          "name": "d4",
+          "role": "CountV",
+          "value": 3.0,
+          "unit": "",
+          "expression": "3",
+          "created_by": "ProbeRectangularPattern"
+        },
+        {
+          "name": "d5",
+          "role": "uSpaceDistance",
+          "value": 6.0,
+          "unit": "mm",
+          "expression": "60 mm",
+          "created_by": "ProbeRectangularPattern"
+        },
+        {
+          "name": "d6",
+          "role": "vSpaceDistance",
+          "value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbeRectangularPattern"
+        }
+      ]
+    },
+    {
+      "file": "Mirror.f3d",
+      "feature": {
+        "name": "ProbeMirror",
+        "kind": "MirrorFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "Scale.f3d",
+      "feature": {
+        "name": "ProbeScale",
+        "kind": "ScaleFeature"
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "expression": "20 mm",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "BaseExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "ScaleFactor",
+          "value": 1.25,
+          "unit": "",
+          "expression": "1.25",
+          "created_by": "ProbeScale"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

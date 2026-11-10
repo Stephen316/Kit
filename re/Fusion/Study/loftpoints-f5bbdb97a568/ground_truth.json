@@ -1,0 +1,565 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "sharp_end.f3d",
+      "case": "sharp_end",
+      "getter_errors": [],
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U3C809P357an7YS02W7xJ39cAYobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMDIzM001sEjRTTRJNtI1MUlO1k1KTLbUNU81tDCyNDe1TElOgdnMgAbA9hkogK0zMjCB2AeFYNcYgNkGAFFfyU6+AAAA",
+          "sketch_name": "LoftPointSection1",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbB3IeiMDIwDSb5miiAAAAA==",
+          "profile_loop_count": 1,
+          "profile_loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwDDDc8XkgAAAA==",
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbJ2RqRmUNDQwAQD4zUH6jgAAAA==",
+          "sketch_name": "LoftPointSection2",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbB3IeiNTMwCOX4PYiAAAAA==",
+          "sketch_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_point_cm": [
+            0.0,
+            0.0,
+            3.0
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointSharp",
+        "section_index": 1
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbB3IemNTIwCg8SzeiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 3.1415926535901963,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U3C809P357an7YS02W7xJ39cAYobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMDIzM001sEjRTTRJNtI1MUlO1k1KTLbUNU81tDCyNDe1TElOgdnMgAbA9hkogK0zMjCB2AeFYNcYgNkGAFFfyU6+AAAA",
+            "sketch_name": "LoftPointSection1",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbB3IeiMDIwDSb5miiAAAAA==",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwDDDc8XkgAAAA==",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0
+                  }
+                ]
+              }
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbJ2RqRmUNDQwAQD4zUH6jgAAAA==",
+            "sketch_name": "LoftPointSection2",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbB3IeiNTMwCOX4PYiAAAAA==",
+            "sketch_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "world_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "sharp_start.f3d",
+      "case": "sharp_start",
+      "getter_errors": [],
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHVGpmYg0gCo0MAQAGWJF6eOAAAA",
+          "sketch_name": "LoftPointSection1",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHUg640MjACSfVjWiAAAAA==",
+          "sketch_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5j8/saEcz9c7CY5zz17Q1HHGihuqGCsYGRqCmYB1QBpIMvIAsgyVDDBqctIwdhMwTQxLdUo2SxN1ywl2UDXxNw0TTfRyMRC19w8KS051czSICnVHGYzAxoA22egALbOyMAEYh8UGphAXAFSAQBW++ZwvgAAAA==",
+          "sketch_name": "LoftPointSection2",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHUg641MTQF0HEs1iAAAAA==",
+          "profile_loop_count": 1,
+          "profile_loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHWmhkZg2sjUVMHQwETBAABdn6IskgAAAA==",
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointSharp",
+        "section_index": 0
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHUg641NjQDg4+2qiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 3.1415926535901963,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHVGpmYg0gCo0MAQAGWJF6eOAAAA",
+            "sketch_name": "LoftPointSection1",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHUg640MjACSfVjWiAAAAA==",
+            "sketch_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "world_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5j8/saEcz9c7CY5zz17Q1HHGihuqGCsYGRqCmYB1QBpIMvIAsgyVDDBqctIwdhMwTQxLdUo2SxN1ywl2UDXxNw0TTfRyMRC19w8KS051czSICnVHGYzAxoA22egALbOyMAEYh8UGphAXAFSAQBW++ZwvgAAAA==",
+            "sketch_name": "LoftPointSection2",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHUg641MTQF0HEs1iAAAAA==",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHWmhkZg2sjUVMHQwETBAABdn6IskgAAAA==",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      3.0
+                    ],
+                    "radius_cm": 1.0
+                  }
+                ]
+              }
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "tangent_end_weight1.f3d",
+      "case": "tangent_end_weight1",
+      "getter_errors": [],
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uzh8K9H4a7HfxGYOr7ccm3bOAIobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTME0yNzBKNEnTNU+0MNA1MTJO1U1MMbHUTTZLTUxLMzM0Mk80hNnMgAbA9hkogK0zMjCB2AeFYNcYgNkGACsXa32+AAAA",
+          "sketch_name": "LoftPointSection1",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbB3IeiMDIwDI8pK6iAAAAA==",
+          "profile_loop_count": 1,
+          "profile_loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwB0d8IVkgAAAA==",
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbJ2RqRmUNDQwAQBteq60jgAAAA==",
+          "sketch_name": "LoftPointSection2",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbB3IeiNTMwCUwojAiAAAAA==",
+          "sketch_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_point_cm": [
+            0.0,
+            0.0,
+            3.0
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointTangent",
+        "section_index": 1,
+        "weight": 1.0
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbB3IemNTUwAZ+UNYiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 4.712477266404322,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uzh8K9H4a7HfxGYOr7ccm3bOAIobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTME0yNzBKNEnTNU+0MNA1MTJO1U1MMbHUTTZLTUxLMzM0Mk80hNnMgAbA9hkogK0zMjCB2AeFYNcYgNkGACsXa32+AAAA",
+            "sketch_name": "LoftPointSection1",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbB3IeiMDIwDI8pK6iAAAAA==",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwB0d8IVkgAAAA==",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0
+                  }
+                ]
+              }
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbJ2RqRmUNDQwAQBteq60jgAAAA==",
+            "sketch_name": "LoftPointSection2",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbB3IeiNTMwCUwojAiAAAAA==",
+            "sketch_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "world_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftPointTangentEndCondition",
+            "weight": 1.0
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "End Weight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeLoftPoint"
+        }
+      ]
+    },
+    {
+      "file": "tangent_end_weight2.f3d",
+      "case": "tangent_end_weight2",
+      "getter_errors": [],
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U3hon7pgw1PXZSuOtDyTnGj+FihuqGCsYGRgBGYB1QBpIMvIAsgyVDDBqctIwdhMwcLQNM3MwDhR19TSPEXXxCLVTNfCPMlE18zQwCDJ2NjQMsXUAGYzAxoA22egALbOyMAEYh8Ugl1jAGYbAAAySV/FvgAAAA==",
+          "sketch_name": "LoftPointSection1",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHUg640MjAB7BVtViAAAAA==",
+          "profile_loop_count": 1,
+          "profile_loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHWmhkZg2sgAqBSIDQD/Y5USkgAAAA==",
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHVGpmZQ0tDABADqoR97jgAAAA==",
+          "sketch_name": "LoftPointSection2",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHUg641MzQAnNUEviAAAAA==",
+          "sketch_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_point_cm": [
+            0.0,
+            0.0,
+            3.0
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointTangent",
+        "section_index": 1,
+        "weight": 2.0
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHUg641NTQGqDoq3iAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.911251594065401,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U3hon7pgw1PXZSuOtDyTnGj+FihuqGCsYGRgBGYB1QBpIMvIAsgyVDDBqctIwdhMwcLQNM3MwDhR19TSPEXXxCLVTNfCPMlE18zQwCDJ2NjQMsXUAGYzAxoA22egALbOyMAEYh8Ugl1jAGYbAAAySV/FvgAAAA==",
+            "sketch_name": "LoftPointSection1",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHUg640MjAB7BVtViAAAAA==",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHWmhkZg2sgAqBSIDQD/Y5USkgAAAA==",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "radius_cm": 1.0
+                  }
+                ]
+              }
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHVGpmZQ0tDABADqoR97jgAAAA==",
+            "sketch_name": "LoftPointSection2",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHUg641MzQAnNUEviAAAAA==",
+            "sketch_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "world_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftPointTangentEndCondition",
+            "weight": 2.0
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "End Weight",
+          "value": 2.0,
+          "unit": "",
+          "created_by": "ProbeLoftPoint"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "identity_scope": "API entity tokens are opaque evidence, not decoded native sketch IDs. Parent sketch name/token and actual entity types identify API selections."
+}

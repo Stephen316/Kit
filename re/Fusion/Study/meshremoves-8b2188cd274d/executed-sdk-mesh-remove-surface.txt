@@ -1,0 +1,556 @@
+class MeshRemoveFeatureInput(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    This class defines the methods and properties that pertain to the definition of a mesh remove
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshRemoveFeatureInput *":
+        return _fusion.MeshRemoveFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "MeshRemoveFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshRemoveFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshRemoveFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshRemoveFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshRemoveFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshRemoveFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_MeshRemoveFeatureInput
+
+    def _get_inputBodies(self) -> "list[adsk.fusion.MeshBody]":
+        r"""Gets and sets the input meshes."""
+        return _fusion.MeshRemoveFeatureInput__get_inputBodies(self)
+
+    def _set_inputBodies(self, value: "list[MeshBody]") -> "bool":
+        r"""Gets and sets the input meshes."""
+        return _fusion.MeshRemoveFeatureInput__set_inputBodies(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshRemoveFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshRemoveFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshRemoveFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshRemoveFeatureInput__get_isValid(self)
+
+# Register MeshRemoveFeatureInput in _fusion:
+_fusion.MeshRemoveFeatureInput_swigregister(MeshRemoveFeatureInput)
+
+def MeshRemoveFeatureInput_classType() -> "str":
+    return _fusion.MeshRemoveFeatureInput_classType()
+
+
+MeshRemoveFeatureInput.inputBodies = property(MeshRemoveFeatureInput._get_inputBodies, MeshRemoveFeatureInput._set_inputBodies, doc="Gets and sets the input meshes.")
+
+
+MeshRemoveFeatureInput.targetBaseFeature = property(MeshRemoveFeatureInput._get_targetBaseFeature, MeshRemoveFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+MeshRemoveFeatureInput.cast = lambda arg: arg if isinstance(arg, MeshRemoveFeatureInput) else None
+
+
+class MeshRemoveFeatures(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Collection that provides access to all of the existing mesh remove features in a component
+    and supports the ability to create new mesh remove features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshRemoveFeatures *":
+        return _fusion.MeshRemoveFeatures___deref__(self)
+
+    def __eq__(self, rhs: "MeshRemoveFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshRemoveFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshRemoveFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshRemoveFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshRemoveFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.MeshRemoveFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.MeshRemoveFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.MeshRemoveFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshRemoveFeatures_classType()
+    __swig_destroy__ = _fusion.delete_MeshRemoveFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.MeshRemoveFeature":
+        r"""
+        Function that returns the specified mesh remove feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.MeshRemoveFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of mesh remove features in the collection."""
+        return _fusion.MeshRemoveFeatures__get_count(self)
+
+    def createInput(self, inputBodies: "list[MeshBody]") -> "adsk.fusion.MeshRemoveFeatureInput":
+        r"""
+        Creates a MeshRemoveFeatureInput object. Use properties and methods on this object
+        to define the mesh remove feature you want to create and then use the add method, passing in
+        the MeshRemoveFeatureInput object.
+        inputBodies : An array with mesh bodies in a parametric design.
+        Returns the newly created MeshRemoveFeatureInput object or null if the creation failed.
+        """
+        return _fusion.MeshRemoveFeatures_createInput(self, inputBodies)
+
+    def add(self, input: "MeshRemoveFeatureInput") -> "list[adsk.fusion.MeshRemoveFeature]":
+        r"""
+        Creates a mesh remove feature. Works only in parametric mode.
+        input : A MeshRemoveFeatureInput object that defines the desired mesh remove feature. Use the createInput
+        method to create a new MeshRemoveFeatureInput object and then use methods on it
+        (the MeshRemoveFeatureInput object) to define the removal.
+        When successful, a MeshRemoveFeature is created for each MeshBody that was input.
+        An array of the created MeshRemoveFeature objects is returned.
+        """
+        return _fusion.MeshRemoveFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.MeshRemoveFeature":
+        r"""
+        Function that returns the specified mesh remove feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.MeshRemoveFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshRemoveFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshRemoveFeatures__get_isValid(self)
+
+# Register MeshRemoveFeatures in _fusion:
+_fusion.MeshRemoveFeatures_swigregister(MeshRemoveFeatures)
+
+def MeshRemoveFeatures_classType() -> "str":
+    return _fusion.MeshRemoveFeatures_classType()
+
+
+MeshRemoveFeatures.count = property(MeshRemoveFeatures._get_count, doc="The number of mesh remove features in the collection.")
+
+
+MeshRemoveFeatures.cast = lambda arg: arg if isinstance(arg, MeshRemoveFeatures) else None
+
+
+class MeshRemoveFeature(MeshFeature):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Object that represents an existing mesh remove feature in a design.
+    To change the properties of this feature, you need to position the timeline marker to immediately before this feature.
+    This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshRemoveFeature *":
+        return _fusion.MeshRemoveFeature___deref__(self)
+
+    def __eq__(self, rhs: "MeshRemoveFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshRemoveFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshRemoveFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshRemoveFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshRemoveFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshRemoveFeature_classType()
+    __swig_destroy__ = _fusion.delete_MeshRemoveFeature
+
+    def _get_inputBodies(self) -> "list[adsk.fusion.MeshBody]":
+        r"""Gets the input meshes."""
+        return _fusion.MeshRemoveFeature__get_inputBodies(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.MeshRemoveFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.MeshRemoveFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.MeshRemoveFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.MeshRemoveFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshRemoveFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshRemoveFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.MeshRemoveFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.MeshRemoveFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshRemoveFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshRemoveFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.MeshRemoveFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.MeshRemoveFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.MeshRemoveFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.MeshRemoveFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.MeshRemoveFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.MeshRemoveFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.MeshRemoveFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.MeshRemoveFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.MeshRemoveFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.MeshRemoveFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.MeshRemoveFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.MeshRemoveFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshRemoveFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshRemoveFeature__get_isValid(self)
+
+# Register MeshRemoveFeature in _fusion:
+_fusion.MeshRemoveFeature_swigregister(MeshRemoveFeature)
+
+def MeshRemoveFeature_classType() -> "str":
+    return _fusion.MeshRemoveFeature_classType()
+
+
+MeshRemoveFeature.inputBodies = property(MeshRemoveFeature._get_inputBodies, doc="Gets the input meshes.")
+
+
+MeshRemoveFeature.nativeObject = property(MeshRemoveFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+MeshRemoveFeature.cast = lambda arg: arg if isinstance(arg, MeshRemoveFeature) else None
+
+
+class MeshRemoveFeatureVector(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self) -> "swig::SwigPyIterator *":
+        return _fusion.MeshRemoveFeatureVector_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self) -> "bool":
+        return _fusion.MeshRemoveFeatureVector___nonzero__(self)
+
+    def __bool__(self) -> "bool":
+        return _fusion.MeshRemoveFeatureVector___bool__(self)
+
+    def __len__(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::size_type":
+        return _fusion.MeshRemoveFeatureVector___len__(self)
+
+    def __getslice__(self, i: "std::vector< adsk::core::Ptr< adsk::fusion::MeshRemoveFeature > >::difference_type", j: "std::vector< adsk::core::Ptr< adsk::fusion::MeshRemoveFeature > >::difference_type") -> "list[adsk.fusion.MeshRemoveFeature] *":
+        return _fusion.MeshRemoveFeatureVector___getslice__(self, i, j)
+
+    def __setslice__(self, *args) -> "void":
+        return _fusion.MeshRemoveFeatureVector___setslice__(self, *args)
+
+    def __delslice__(self, i: "std::vector< adsk::core::Ptr< adsk::fusion::MeshRemoveFeature > >::difference_type", j: "std::vector< adsk::core::Ptr< adsk::fusion::MeshRemoveFeature > >::difference_type") -> "void":
+        return _fusion.MeshRemoveFeatureVector___delslice__(self, i, j)
+
+    def __delitem__(self, *args) -> "void":
+        return _fusion.MeshRemoveFeatureVector___delitem__(self, *args)
+
+    def __getitem__(self, *args) -> "std::vector< adsk.fusion.MeshRemoveFeature >::value_type":
+        return _fusion.MeshRemoveFeatureVector___getitem__(self, *args)
+
+    def __setitem__(self, *args) -> "void":
+        return _fusion.MeshRemoveFeatureVector___setitem__(self, *args)
+
+    def pop(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::value_type":
+        return _fusion.MeshRemoveFeatureVector_pop(self)
+
+    def append(self, x: "MeshRemoveFeature") -> "void":
+        return _fusion.MeshRemoveFeatureVector_append(self, x)
+
+    def empty(self) -> "bool":
+        return _fusion.MeshRemoveFeatureVector_empty(self)
+
+    def size(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::size_type":
+        return _fusion.MeshRemoveFeatureVector_size(self)
+
+    def swap(self, v: "list[MeshRemoveFeature]") -> "void":
+        return _fusion.MeshRemoveFeatureVector_swap(self, v)
+
+    def begin(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::iterator":
+        return _fusion.MeshRemoveFeatureVector_begin(self)
+
+    def end(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::iterator":
+        return _fusion.MeshRemoveFeatureVector_end(self)
+
+    def rbegin(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::reverse_iterator":
+        return _fusion.MeshRemoveFeatureVector_rbegin(self)
+
+    def rend(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::reverse_iterator":
+        return _fusion.MeshRemoveFeatureVector_rend(self)
+
+    def clear(self) -> "void":
+        return _fusion.MeshRemoveFeatureVector_clear(self)
+
+    def get_allocator(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::allocator_type":
+        return _fusion.MeshRemoveFeatureVector_get_allocator(self)
+
+    def pop_back(self) -> "void":
+        return _fusion.MeshRemoveFeatureVector_pop_back(self)
+
+    def erase(self, *args) -> "std::vector< adsk.fusion.MeshRemoveFeature >::iterator":
+        return _fusion.MeshRemoveFeatureVector_erase(self, *args)
+
+    def __init__(self, *args):
+        _fusion.MeshRemoveFeatureVector_swiginit(self, _fusion.new_MeshRemoveFeatureVector(*args))
+
+    def push_back(self, x: "MeshRemoveFeature") -> "void":
+        return _fusion.MeshRemoveFeatureVector_push_back(self, x)
+
+    def front(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::value_type":
+        return _fusion.MeshRemoveFeatureVector_front(self)
+
+    def back(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::value_type":
+        return _fusion.MeshRemoveFeatureVector_back(self)
+
+    def assign(self, n: "std::vector< adsk::core::Ptr< adsk::fusion::MeshRemoveFeature > >::size_type", x: "MeshRemoveFeature") -> "void":
+        return _fusion.MeshRemoveFeatureVector_assign(self, n, x)
+
+    def resize(self, *args) -> "void":
+        return _fusion.MeshRemoveFeatureVector_resize(self, *args)
+
+    def insert(self, *args) -> "void":
+        return _fusion.MeshRemoveFeatureVector_insert(self, *args)
+
+    def reserve(self, n: "std::vector< adsk::core::Ptr< adsk::fusion::MeshRemoveFeature > >::size_type") -> "void":
+        return _fusion.MeshRemoveFeatureVector_reserve(self, n)
+
+    def capacity(self) -> "std::vector< adsk.fusion.MeshRemoveFeature >::size_type":
+        return _fusion.MeshRemoveFeatureVector_capacity(self)
+    __swig_destroy__ = _fusion.delete_MeshRemoveFeatureVector
+
+# Register MeshRemoveFeatureVector in _fusion:
+_fusion.MeshRemoveFeatureVector_swigregister(MeshRemoveFeatureVector)

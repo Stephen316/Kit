@@ -1,0 +1,913 @@
+{
+  "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateSilhouetteDirectionModes.py",
+  "capture_folder": "silhouettedirections-805c2eaa2411",
+  "integration": {
+    "function": "decode_silhouette_directions(data, records, features, body_selections=None)",
+    "merge": "Merge successful feature_object_id entries with original silhouette_splits. Remove failure entries only for successfully decoded IDs; retain unknown variants. New reader owns extended source shapes; existing origin-axis/plane outputs stay with original reader.",
+    "shared_hook": "Root-authorized direction_resolver(data,records,features,direction_id,descriptor_id,owner_id,body_selections,known) callback in shared reader; common control/repeated-reference/owner framing remains shared; defaults unchanged.",
+    "expected_outputs": "samples[].expected_summary complete extended helper summary for root/main equality; main stream merged scope may differ, compare decoded items by feature ID."
+  },
+  "layout": {
+    "BRep_sources": "Existing202-byte F2A control method8 -> owned5662 edge_recipe_data descriptor; method5 -> face_recipe_data. Explicit historical body anchor plus reciprocal descriptor support/source-owner refs. Edge context50AEE55 bytes retained raw; Face C46D171 namespace/entity correspondence validated.",
+    "custom_axis": "F2A method7/5A1B descriptor/90055 native leaf selects native axis282 (19031004). Native source geometry has attributes EntityGenesis0, origin@58 and unnormalized line vector@82, named geometry and reciprocal WorkAxis owner. WorkAxis definition header4/typed inner F2A method8 references an owned edge recipe/body. Shared generic selection resolver independently confirms native axis ID.",
+    "axis_normalization": "Native source vector[2,0,0] produces unit direction[1,0,0], matching actual custom-axis geometry getter. Raw vector and opaque source suffix are retained; this is separate from F2A preview cache.",
+    "control_caches": "F2A origin3double@6/vector3double@30 retained under stored_control_cache. BRepFace cache origin[6,-1.5,1] equals captured face centroid but differs from actual Plane.origin[6,-1,0]. Custom-axis outer cache origin[5.8,-2,0]/vector[2.4,0,0] differ from actual axis origin[6,-2,0]/unitX. These are not substituted for source geometry or edge evaluator outputs."
+  },
+  "limitations": [
+    "BRepEdge/BRepFace source_geometry staysnull behind owned recipes and historical body anchors. Native exact face/edge-to-ASM identity, source evaluator, silhouette curves and result topology unresolved.",
+    "Only actual FacesOnly operation0 with one independent support body distinct from target; other operation/source combinations unsupported.",
+    "One edge-defined custom axis holdout. Other axis definitions, occurrence contexts, changed definition headers and other source families remain unsupported.",
+    "Control-cache coordinates are retained without claiming source evaluation, plane parameterization or axis line bounds. Context coordinate transforms and arbitrary regeneration/replay remain unresolved."
+  ],
+  "samples": [
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d",
+      "sha256": "2e0f43fee6e2120b38f3efa9d108832e662b348b321f2d68a3370b19d68cc17f",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 362,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "BRepEdge",
+                "descriptor_object_id": 366,
+                "recipe": {
+                  "object_id": 369,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 42869,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "1",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "edge_recipe_data",
+                  "payload_relative_offset": 138,
+                  "payload_length": 116,
+                  "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                },
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "body_name": "SilhouetteDirectionSupportBody",
+                "namespace_text": "4015d304-5df5-4b96-bd78-bd487d662259",
+                "entity_guid_text": "8599aa6d-f80e-4b41-953e-4ea766a5986d",
+                "context_evidence": {
+                  "object_id": 406,
+                  "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                  "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                  "status": "Stored context retained without geometry interpretation"
+                },
+                "source_geometry": null,
+                "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+              },
+              "selection_object_id": 363,
+              "descriptor_object_id": 366,
+              "recipe_record_object_id": 369,
+              "stored_direction_method_code": 8,
+              "stored_control_cache": {
+                "origin_cm": [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                "vector": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              },
+              "association": "Owned direction control -> owned typed topology descriptor -> recipe and explicit historical body"
+            },
+            "stored_direction_method_code": 8,
+            "direction_control_object_id": 363,
+            "target": {
+              "selection_record_object_id": 371,
+              "descriptor_object_id": 374,
+              "native_body_object_id": 351,
+              "body_anchor_object_id": 355,
+              "source_owner_object_id": 325
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "API_comparisons": {
+        "actual_operation": true,
+        "actual_source_type": true,
+        "actual_direction_support_body_name": true,
+        "source_owner_feature_name": true,
+        "target_body_name": true,
+        "target_owner_feature_name": true
+      },
+      "native_structure_checks": {
+        "native_source_body_differs_from_target": true,
+        "no_additional_body_anchors": true,
+        "BRep_source_geometry_not_inferred_from_preview_cache": true
+      },
+      "cache_diagnostics": {
+        "stored_control_origin_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "stored_control_vector": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "actual_source_geometry_getters": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OPWpDMRCEU/gK6Rf3gpVWUqQuTYzBvcFFMPv0Y9yZ4MJNruHb+BQ+S/qsZAfyJAQ7mv2YEYIBDeSBpspkg1ZuSlHZHJNiTkXVYHNJRieqDlDYxmNTJojSYJvj4f31vvj82Vxvl9v6uy53QpiWG1yMzD5LEBZlJ6tVdCSq8Jv37GLwubOS8TKc3ofQ6ywQGPQgw4rbi9uaUPfZ/zIYNBrun4FQ8qHsv0o6nso+85nhAwIo/bwGVvLEJpt4etsHQvOlmVEte8bR3xpH7hfbn8c8fwEAAA==",
+          "geometry_type": "adsk::core::Line3D",
+          "temp_id": 33,
+          "body": {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmZsCABKVUnyIAAAA",
+            "name": "SilhouetteDirectionSupportBody",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "volume_cm3": 4.0,
+            "bounding_box_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -1.0,
+                2.0
+              ]
+            ]
+          },
+          "start_vertex_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "end_vertex_cm": [
+            8.0,
+            -2.0,
+            0.0
+          ],
+          "line_start_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "line_end_cm": [
+            8.0,
+            -2.0,
+            0.0
+          ],
+          "line_origin_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "line_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "actual_trimmed_edge_evaluator": {
+            "parameter_extents": [
+              0.0,
+              2.0
+            ],
+            "parameters": [
+              0.0,
+              1.0,
+              2.0
+            ],
+            "points_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                7.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -2.0,
+                0.0
+              ]
+            ]
+          }
+        },
+        "meaning": "Side-by-side evidence only; cache coordinates are not source geometry decoding"
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmxoCAL5Zy0iIAAAA",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_brep_face_yz.f3d",
+      "sha256": "0cd9bdcee63f3de7db6bf9abe2ab71a8e7ed19fa72d445401670977c6fcc788e",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 362,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "BRepFace",
+                "descriptor_object_id": 366,
+                "recipe": {
+                  "object_id": 369,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 42885,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36047,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "face_recipe_data",
+                  "payload_relative_offset": 63,
+                  "payload_length": 8,
+                  "payload_hex": "00000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "body_name": "SilhouetteDirectionSupportBody",
+                "namespace_text": "a49cb230-4cc1-41e2-87d5-df7d7c643800",
+                "entity_guid_text": "a1d226e3-8740-4b5b-b192-1be7d8cc238e",
+                "context_evidence": {
+                  "object_id": 423,
+                  "class_guid": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+                  "raw_hex": "0000100000000000000024000000610034003900630062003200330030002d0034006300630031002d0034003100650032002d0038003700640035002d0064006600370064003700630036003400330038003000300024000000610031006400320032003600650033002d0038003700340030002d0034006200350062002d0062003100390032002d00310062006500370064003800630063003200330038006500020000000000000000",
+                  "status": "Stored context retained without geometry interpretation"
+                },
+                "source_geometry": null,
+                "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+              },
+              "selection_object_id": 363,
+              "descriptor_object_id": 366,
+              "recipe_record_object_id": 369,
+              "stored_direction_method_code": 5,
+              "stored_control_cache": {
+                "origin_cm": [
+                  6.0,
+                  -1.5,
+                  1.0
+                ],
+                "vector": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000500000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              },
+              "association": "Owned direction control -> owned typed topology descriptor -> recipe and explicit historical body"
+            },
+            "stored_direction_method_code": 5,
+            "direction_control_object_id": 363,
+            "target": {
+              "selection_record_object_id": 371,
+              "descriptor_object_id": 374,
+              "native_body_object_id": 351,
+              "body_anchor_object_id": 355,
+              "source_owner_object_id": 325
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "API_comparisons": {
+        "actual_operation": true,
+        "actual_source_type": true,
+        "actual_direction_support_body_name": true,
+        "source_owner_feature_name": true,
+        "target_body_name": true,
+        "target_owner_feature_name": true
+      },
+      "native_structure_checks": {
+        "native_source_body_differs_from_target": true,
+        "no_additional_body_anchors": true,
+        "BRep_source_geometry_not_inferred_from_preview_cache": true
+      },
+      "cache_diagnostics": {
+        "stored_control_origin_cm": [
+          6.0,
+          -1.5,
+          1.0
+        ],
+        "stored_control_vector": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "actual_source_geometry_getters": {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/62QPU4EMQyF9yi+gKXE8WQyJUhsRU07yo9X2gYQgg5qLkHJCbgBh6BG4iTEWbQww+40EEXK0/MXPycGCCw4DxvpPHNmpMKM3EXGSGVA6a0vnBz7PoKprPJGFYWqLLA6Hp6fXsz568nH49v7w30Jq0qQ9o22EHlxGHo2yKlLmOxAaJP0JeRMLkhja4/VbLU8Ay2OwUE3WNCjujp0Kztj29lmmRl+bvDcoB+GgXR1d1mkjJuYZbyRvL2WscTbCKdrgDWEiqA2Oauyit2m74qKL+9ih7jm0aS4xzVywrlJeX9BuaVIdyByodVhjn+NthTJS6+cUv8VSX/42OOjfQLpbT7bAAMAAA==",
+          "geometry_type": "adsk::core::Plane",
+          "temp_id": 38,
+          "body": {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvZG5KQAWZcNiiAAAAA==",
+            "name": "SilhouetteDirectionSupportBody",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "volume_cm3": 4.0,
+            "bounding_box_cm": [
+              [
+                6.0,
+                -2.0,
+                0.0
+              ],
+              [
+                8.0,
+                -1.0,
+                2.0
+              ]
+            ]
+          },
+          "origin_cm": [
+            6.0,
+            -1.0,
+            0.0
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "area_cm2": 2.0,
+          "centroid_cm": [
+            6.0,
+            -1.5,
+            1.0
+          ],
+          "is_param_reversed": false
+        },
+        "meaning": "Side-by-side evidence only; cache coordinates are not source geometry decoding",
+        "cache_origin_differs_from_actual_Plane_origin": true,
+        "cache_origin_matches_actual_face_centroid": true
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpI5mwx8Djo+ar96v7YmxYIBqMJIwdhMIdEwxcjILNVY18LcxEDXJMk0STfJ0NJI1zAp1TzFIjnZyNgiFawWaAYDGgDbZ6AAtg5kvbGpIQC6qVpWiAAAAA==",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_custom_axis_x.f3d",
+      "sha256": "a6d95dd32bc559863bdaef032fa5cf9a73561602b8d68ba8b3012b479bcbd9e2",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 383,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "object_id": 282,
+                "feature_object_id": 283,
+                "name": "SilhouetteCustomSupportAxisX",
+                "origin_cm": [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                "stored_line_vector": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "direction_status": "Normalized finite native axis line vector; agrees with actual axis getter in captured edge-defined holdout",
+                "definition_kind": "ConstructionAxisEdgeDefinition",
+                "definition_edge": {
+                  "kind": "BRepEdge",
+                  "descriptor_object_id": 287,
+                  "recipe": {
+                    "object_id": 290,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 36751,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "4",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 2,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 3,
+                        "terms": [
+                          {
+                            "name": "5",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "edge_recipe_data",
+                    "payload_relative_offset": 138,
+                    "payload_length": 116,
+                    "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                  },
+                  "body_anchor_object_id": 281,
+                  "native_body_object_id": 275,
+                  "source_owner_object_id": 243,
+                  "body_name": "SilhouetteDirectionSupportBody",
+                  "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+                  "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+                  "context_evidence": {
+                    "object_id": 428,
+                    "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                    "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                    "status": "Stored context retained without geometry interpretation"
+                  },
+                  "source_geometry": null,
+                  "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+                },
+                "native_geometry_suffix_hex": "00000000010000000000000000000000000000803f6666a63f0000000000010a000000000000000000",
+                "definition_control_cache": {
+                  "origin_cm": [
+                    6.0,
+                    -2.0,
+                    0.0
+                  ],
+                  "vector": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                  "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+                }
+              },
+              "selection_object_id": 384,
+              "descriptor_object_id": 387,
+              "terminal_object_id": 390,
+              "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+              "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+              "association": "Explicit native-axis identity leaf; reciprocal named axis geometry/feature and owned edge-definition source",
+              "stored_direction_method_code": 7,
+              "stored_control_cache": {
+                "origin_cm": [
+                  5.8,
+                  -2.0,
+                  0.0
+                ],
+                "vector": [
+                  2.3999999999999995,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000700000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              }
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 384,
+            "target": {
+              "selection_record_object_id": 391,
+              "descriptor_object_id": 394,
+              "native_body_object_id": 372,
+              "body_anchor_object_id": 376,
+              "source_owner_object_id": 346
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "API_comparisons": {
+        "actual_operation": true,
+        "actual_source_type": true,
+        "actual_direction_support_body_name": true,
+        "source_owner_feature_name": true,
+        "target_body_name": true,
+        "target_owner_feature_name": true,
+        "actual_axis_name": true,
+        "actual_axis_origin": true,
+        "actual_axis_unit_direction": true,
+        "actual_axis_definition": true,
+        "definition_input_type": true,
+        "native_axis_line_vector_matches_actual_definition_edge_delta": true
+      },
+      "native_structure_checks": {
+        "native_source_body_differs_from_target": true,
+        "no_additional_body_anchors": true,
+        "control_cache_origin_differs_from_actual_source_origin": true
+      },
+      "cache_diagnostics": {
+        "stored_control_origin_cm": [
+          5.8,
+          -2.0,
+          0.0
+        ],
+        "stored_control_vector": [
+          2.3999999999999995,
+          0.0,
+          0.0
+        ],
+        "actual_source_geometry_getters": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZGFEQDo/BpkiAAAAA==",
+          "geometry_type": "adsk::core::InfiniteLine3D",
+          "name": "SilhouetteCustomSupportAxisX",
+          "origin_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "definition_type": "adsk::fusion::ConstructionAxisEdgeDefinition",
+          "definition_edge": {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OzWkDMRCFXUCKGHIfmL/VSgXEV9+CL2GRVkrIzYRtyWBcgvtIB7mliUiKA9kVgnl68/GeCAQY1IENiX2ZFZMFQyuUMEQnKHFmZR5TdgpU2cZTU+KrYrDmOLi8fB3Pj4fb9fj9sHzqVAlpuWUOyY/FMDnLaGoBA7uI3gYbSbJ/zdbZmrHbnN5H0OsMFIQc1GHV7cVtrcR99r9sDN0awz+DoOS3Mn2U+f1UphyXCE/gAfl+Bfb1SU02cfeefxFdL2VFtewVp39r2nI/4raQxX8BAAA=",
+            "geometry_type": "adsk::core::Line3D",
+            "temp_id": 33,
+            "body": {
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvZG5KQCEdeZ9iAAAAA==",
+              "name": "SilhouetteDirectionSupportBody",
+              "is_solid": true,
+              "face_count": 6,
+              "edge_count": 12,
+              "volume_cm3": 4.0,
+              "bounding_box_cm": [
+                [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                [
+                  8.0,
+                  -1.0,
+                  2.0
+                ]
+              ]
+            },
+            "start_vertex_cm": [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            "end_vertex_cm": [
+              8.0,
+              -2.0,
+              0.0
+            ],
+            "line_start_cm": [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            "line_end_cm": [
+              8.0,
+              -2.0,
+              0.0
+            ],
+            "line_origin_cm": [
+              6.0,
+              -2.0,
+              0.0
+            ],
+            "line_direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "actual_trimmed_edge_evaluator": {
+              "parameter_extents": [
+                0.0,
+                2.0
+              ],
+              "parameters": [
+                0.0,
+                1.0,
+                2.0
+              ],
+              "points_cm": [
+                [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  -2.0,
+                  0.0
+                ],
+                [
+                  8.0,
+                  -2.0,
+                  0.0
+                ]
+              ]
+            }
+          }
+        },
+        "meaning": "Side-by-side evidence only; cache coordinates are not source geometry decoding"
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZworYJxFLlfx3rYp4zVNy1TgeqMJIwdhMITXZMsnCPNVEN8nMJEXXxNjEUtfS0CxR18LE1MTcwCjFIi3FBKwWaAYDGgDbZ6AAtg5kvbG5EQAQikDiiAAAAA==",
+        "name": "SilhouetteDirectionTargetBody",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "getter_errors": []
+    }
+  ],
+  "prior_exact_controls": [
+    {
+      "file": "silhouettesplits-7d78a686cdbb/faces_axis_x.f3d",
+      "complete_original_main_output_unchanged": true
+    },
+    {
+      "file": "silhouettesplits-7d78a686cdbb/faces_axis_y.f3d",
+      "complete_original_main_output_unchanged": true
+    },
+    {
+      "file": "silhouettesplits-7d78a686cdbb/solid_axis_x.f3d",
+      "complete_original_main_output_unchanged": true
+    },
+    {
+      "file": "silhouettesplits-7d78a686cdbb/faces_plane_yz.f3d",
+      "complete_original_main_output_unchanged": true
+    },
+    {
+      "file": "silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+      "complete_original_main_output_unchanged": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "name": "unknown extended direction method6",
+      "rejected": true,
+      "reason": "Unobserved extended Silhouette source direction method"
+    },
+    {
+      "name": "BRep source descriptor feature owner mismatch",
+      "rejected": true,
+      "reason": "Unobserved Silhouette BRep source descriptor framing/owner"
+    },
+    {
+      "name": "BRep descriptor support source-owner mismatch",
+      "rejected": true,
+      "reason": "Silhouette topology descriptor/source support is not reciprocal"
+    },
+    {
+      "name": "custom-axis native identity leaf replaced by support body",
+      "rejected": true,
+      "reason": "Silhouette direction typed reference missing, ambiguous or wrong class"
+    }
+  ],
+  "cache_separation_controls": [
+    {
+      "name": "Alter outer F2A cache origin without altering native source axis",
+      "decoded": true,
+      "axis_source_origin_and_direction_unchanged": true,
+      "altered_preview_cache_retained": true
+    }
+  ],
+  "capture_errors": [],
+  "summary": {
+    "successful_archives": 3,
+    "case_errors": 0,
+    "getter_errors": 0,
+    "API_comparisons": 24,
+    "native_structure_checks": 9,
+    "prior_exact_main_outputs": 5,
+    "malformed_checks": 4,
+    "cache_separation_controls": 1,
+    "all_passed": true
+  }
+}

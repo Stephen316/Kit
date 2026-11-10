@@ -1,0 +1,164 @@
+{
+  "scope": "Three actual saved additional assets with one raw LZMA payload byte changed in memory; native records/current assets unchanged, no main decoder or live API calls",
+  "samples": [
+    {
+      "archive": "meshreduces-780954a23308/adaptive_count_six.f3d",
+      "archive_sha256": "19b5699bec19450695c61a35ba9ad570c15082e09db511e598f61be781e839d8",
+      "feature_object_id": 256,
+      "kind": "MeshReduce",
+      "additional_asset_object_id": 211,
+      "additional_asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.f41b3c8d-5c25-4d1a-a16d-35db8481f2f6.paramesh",
+      "original_asset_sha256": "ad20746121227687f2271a43320e1e63bbece20179e5dce00a1963f00902d1e6",
+      "altered_asset_sha256": "f7c91df3650f5d69939e4d8088553f7da2bc0ffa31f2922b5358bf6e638195c8",
+      "mutation": {
+        "asset_offset": 335,
+        "original_byte_hex": "00",
+        "altered_byte_hex": "ff",
+        "preceding_LZMA_properties_hex": "5d14",
+        "buffer_ordinal": 0,
+        "framed_buffer_asset_offset": 308
+      },
+      "exact_unchanged_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2432383032353162612d303734652d346233642d393766332d3331656433353762353332332a0b0805120272301a037230692a322a0608071202723232280800122464363639613733382d356335392d343039322d626538642d6433313831643466623062643a042202723142330a0b667573696f6e5f757569641a2438613035333962622d313166342d346438302d626239322d6464363938653031623365304801622436633233306464612d326533352d346434642d613837642d623835623962663565666236aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+      "raw_exception_type": "LZMAError",
+      "typed_exception_type": "ValueError",
+      "exception_reason": "Corrupt input data",
+      "typed_exception_cause": "LZMAError",
+      "expected_corrupt_decoded": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 256,
+            "class_guid": "BE693D4C-741E-4794-A93E-5BFED71E9E13",
+            "reason": "Corrupt input data"
+          }
+        ],
+        "scope": "Observed Adaptive/Uniform FaceCount6 and Adaptive Proportion real50 unitless native controls, owned input mesh selection and typed current/additional asset references; counts/coordinates are stored caches, no physical reduction, historical state or mesh regeneration claim"
+      },
+      "expected_valid_summary_sha256": "d1203497a7d27762fbf43f2ca9a04f249e6e21840b3e1e7526af8aaeb0f1e1e4",
+      "expected_current_mesh_summary_sha256": "6bc3c5e9df2055bcc5f78f7f2fd1c80492806a653fc37c4f9c7062eebce02067",
+      "checks": {
+        "single_byte_change_only": true,
+        "native_records_UUIDs_frame_headers_unchanged": true,
+        "typed_error_reason_and_cause_preserved": true,
+        "operation_returns_unresolved_not_exception": true,
+        "current_mesh_full_dictionary_unchanged": true,
+        "input_features_and_valid_controls_unchanged": true,
+        "original_clean_decode_unchanged": true
+      }
+    },
+    {
+      "archive": "meshremeshes-f07f97514069/adaptive_edge_two.f3d",
+      "archive_sha256": "0d6cb349a02f3adba5ddde32bc2ab6a06bf1c648f0386fbd58acf87c5cca375d",
+      "feature_object_id": 256,
+      "kind": "MeshRemesh",
+      "additional_asset_object_id": 211,
+      "additional_asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.dafbeb4e-84db-4407-890a-b77700784547.paramesh",
+      "original_asset_sha256": "7052bdb25f474ba492797a396ab9409ef4c909e0073870c715dcdcc8f04e32df",
+      "altered_asset_sha256": "9d35ec1e40c2250a84221b241b3b62d25c8f99ab55d6a24879a7ebe4b272a353",
+      "mutation": {
+        "asset_offset": 335,
+        "original_byte_hex": "00",
+        "altered_byte_hex": "ff",
+        "preceding_LZMA_properties_hex": "5d14",
+        "buffer_ordinal": 0,
+        "framed_buffer_asset_offset": 308
+      },
+      "exact_unchanged_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2463393365343131352d323737382d343632332d383938342d3030326634326332366461362a0b0805120272301a037230692a322a0608071202723232280800122439303265396362372d306165392d343830392d383232662d3036663765643430363463383a042202723142330a0b667573696f6e5f757569641a2436623435306137382d633962392d343764642d383366362d6337663539363431363338644801622465353334346337312d343335362d343232642d616361642d353065623431393665333466aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+      "raw_exception_type": "LZMAError",
+      "typed_exception_type": "ValueError",
+      "exception_reason": "Corrupt input data",
+      "typed_exception_cause": "LZMAError",
+      "expected_corrupt_decoded": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 256,
+            "class_guid": "828DDA62-2750-447D-8728-06C9B7C2B117",
+            "reason": "Corrupt input data"
+          }
+        ],
+        "scope": "Observed Adaptive EdgeLength2/1.5cm and Uniform EdgeLength2cm controls, optional Adaptive Shape Preservation0.5, owned mesh selection and typed current/additional asset references. Preservation flags, additional asset lifecycle, general target attainment and procedural remeshing remain unresolved"
+      },
+      "expected_valid_summary_sha256": "0766e5baa8dfddced2e5a845e445f619a276ef3e93ef7ffb2b03d078ddaaa5c7",
+      "expected_current_mesh_summary_sha256": "2b4ebb20064b1d21ec2146d462e1c3b504e82f53d8240a50cd91167d4aac21bc",
+      "checks": {
+        "single_byte_change_only": true,
+        "native_records_UUIDs_frame_headers_unchanged": true,
+        "typed_error_reason_and_cause_preserved": true,
+        "operation_returns_unresolved_not_exception": true,
+        "current_mesh_full_dictionary_unchanged": true,
+        "input_features_and_valid_controls_unchanged": true,
+        "original_clean_decode_unchanged": true
+      }
+    },
+    {
+      "archive": "meshsmooths-56f38f13430a/smooth_point_one.f3d",
+      "archive_sha256": "77416c5093b5170ee65dad12ba43fa275e2c12958749dccf305f935b7c3c8109",
+      "feature_object_id": 256,
+      "kind": "MeshSmooth",
+      "additional_asset_object_id": 211,
+      "additional_asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.a32437be-69cc-47e1-86f4-bf68d007d2e7.paramesh",
+      "original_asset_sha256": "3f8460c87e35225e54e1f3e76211bfba9fb58e181de06f7fa8859cba4224796a",
+      "altered_asset_sha256": "2d2d49759797c6b6155561923889cd9a7c8547839fceab922883eab8440b8aee",
+      "mutation": {
+        "asset_offset": 335,
+        "original_byte_hex": "00",
+        "altered_byte_hex": "ff",
+        "preceding_LZMA_properties_hex": "5d14",
+        "buffer_ordinal": 0,
+        "framed_buffer_asset_offset": 308
+      },
+      "exact_unchanged_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2437643038633137352d663465662d343335362d623931632d3566613639323165336439612a0b0805120272301a037230692a322a0608071202723232280800122462323434366234302d316136652d343534322d623832352d3666366436656262383730613a042202723142330a0b667573696f6e5f757569641a2463383539613261392d623862312d343661362d626133392d3461353162643962356162334801622461393764336365312d663766342d343035302d613832622d373732613563646531616537aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+      "raw_exception_type": "LZMAError",
+      "typed_exception_type": "ValueError",
+      "exception_reason": "Corrupt input data",
+      "typed_exception_cause": "LZMAError",
+      "expected_corrupt_decoded": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 256,
+            "class_guid": "F84CD988-9696-458D-8AF3-795D12E6B9EF",
+            "reason": "Corrupt input data"
+          }
+        ],
+        "scope": "Observed Smoothness0.02/0.1/0.25 owned unitless parameter, typed input mesh and current/additional asset routes. Stored arrays/counts are cache evidence; smoothing algorithm, general values, additional asset lifecycle and regeneration remain unresolved"
+      },
+      "expected_valid_summary_sha256": "50d37ed6b82e96f6d8eb23904d6b18d57729b86cfbcd18675b4907684f993db4",
+      "expected_current_mesh_summary_sha256": "1b259f3da137ab73a715858615947aae6cceaa66febcf3b72ad778788e08a45d",
+      "checks": {
+        "single_byte_change_only": true,
+        "native_records_UUIDs_frame_headers_unchanged": true,
+        "typed_error_reason_and_cause_preserved": true,
+        "operation_returns_unresolved_not_exception": true,
+        "current_mesh_full_dictionary_unchanged": true,
+        "input_features_and_valid_controls_unchanged": true,
+        "original_clean_decode_unchanged": true
+      }
+    }
+  ],
+  "source_sha256": {
+    "validate_mesh_asset_errors.py": "c292a05479408a2da823f761d6fd6ce00685046c1403dac1b8828dbf23067bd6",
+    "decode_mesh_contents.py": "f08052f42942f8c3b90836bd1d92342600d70106e5f315c0b4836d3470d774bd",
+    "decode_mesh_geometry_variants.py": "87de639f7d7df2bc9e9d2b96eb68af2f5b4d8c65e96b0459afae8fb60062e47c",
+    "decode_mesh_reduce.py": "60213817551d734547423e3d034ec9ef397977b8e7dd9f9adb1c80dc45e75219",
+    "decode_mesh_remesh.py": "2fbc5f7e83165673d65fa4f82fd191633e6b51c3faf85659a2aa8815f54efced",
+    "decode_mesh_smooth.py": "ed326f871c6867e01a2836a35a752a85667e68e7885e3d80eab5d00fe0544c29",
+    "validate_mesh_remesh.py": "715b487f3ff5e83e7eafd81958708e85908ac75c3e560005e2f99d1f253adf42"
+  },
+  "counts": {
+    "actual_saved_archives": 3,
+    "additional_asset_LZMA_corruptions": 3,
+    "raw_LZMAErrors": 3,
+    "typed_ValueErrors": 3,
+    "structured_operation_failures": 3,
+    "current_mesh_dictionaries_unchanged": 3,
+    "valid_control_summaries_unchanged": 3,
+    "full_main_runs": 0,
+    "live_API_calls": 0
+  },
+  "limits": [
+    "One deliberate compressed-payload corruption per captured operation family; does not establish universal malformed-archive handling.",
+    "Typed source/current/additional asset provenance and geometry semantics remain unchanged; no recovery of corrupted geometry or mutation of saved captures."
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "name": "OffsetLinePositive",
+      "kind": "OffsetConstraint",
+      "settings": {
+        "distance_cm": 0.30000000000000004,
+        "topology_matched": true,
+        "parent_curves": [
+          {
+            "kind": "SketchLine",
+            "start": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              1.0,
+              0.0
+            ]
+          }
+        ],
+        "child_curves": [
+          {
+            "kind": "SketchLine",
+            "start": [
+              1.0,
+              0.7,
+              0.0
+            ],
+            "end": [
+              4.0,
+              0.7,
+              0.0
+            ]
+          }
+        ],
+        "dimension_kind": "SketchOffsetCurvesDimension",
+        "parameter_name": "d1",
+        "parameter_value": 0.30000000000000004
+      }
+    },
+    {
+      "name": "OffsetLineNegative",
+      "kind": "OffsetConstraint",
+      "settings": {
+        "distance_cm": -0.30000000000000004,
+        "topology_matched": true,
+        "parent_curves": [
+          {
+            "kind": "SketchLine",
+            "start": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              1.0,
+              0.0
+            ]
+          }
+        ],
+        "child_curves": [
+          {
+            "kind": "SketchLine",
+            "start": [
+              1.0,
+              1.3,
+              0.0
+            ],
+            "end": [
+              4.0,
+              1.3,
+              0.0
+            ]
+          }
+        ],
+        "dimension_kind": "SketchOffsetCurvesDimension",
+        "parameter_name": "d2",
+        "parameter_value": -0.30000000000000004
+      }
+    },
+    {
+      "name": "OffsetRectangle",
+      "kind": "OffsetConstraint",
+      "settings": {
+        "distance_cm": 0.30000000000000004,
+        "topology_matched": true,
+        "parent_curves": [
+          {
+            "kind": "SketchLine",
+            "start": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "kind": "SketchLine",
+            "start": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              3.0,
+              0.0
+            ]
+          },
+          {
+            "kind": "SketchLine",
+            "start": [
+              4.0,
+              3.0,
+              0.0
+            ],
+            "end": [
+              1.0,
+              3.0,
+              0.0
+            ]
+          },
+          {
+            "kind": "SketchLine",
+            "start": [
+              1.0,
+              3.0,
+              0.0
+            ],
+            "end": [
+              1.0,
+              1.0,
+              0.0
+            ]
+          }
+        ],
+        "child_curves": [
+          {
+            "kind": "SketchLine",
+            "start": [
+              0.7,
+              0.7,
+              0.0
+            ],
+            "end": [
+              4.3,
+              0.7,
+              0.0
+            ]
+          },
+          {
+            "kind": "SketchLine",
+            "start": [
+              4.3,
+              0.7,
+              0.0
+            ],
+            "end": [
+              4.3,
+              3.3,
+              0.0
+            ]
+          },
+          {
+            "kind": "SketchLine",
+            "start": [
+              4.3,
+              3.3,
+              0.0
+            ],
+            "end": [
+              0.7000000000000002,
+              3.3,
+              0.0
+            ]
+          },
+          {
+            "kind": "SketchLine",
+            "start": [
+              0.7000000000000002,
+              3.3,
+              0.0
+            ],
+            "end": [
+              0.7,
+              0.7,
+              0.0
+            ]
+          }
+        ],
+        "dimension_kind": "SketchOffsetCurvesDimension",
+        "parameter_name": "d3",
+        "parameter_value": 0.30000000000000004
+      }
+    },
+    {
+      "name": "OffsetCircle",
+      "kind": "OffsetConstraint",
+      "settings": {
+        "distance_cm": 0.30000000000000004,
+        "topology_matched": true,
+        "parent_curves": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius": 1.0
+          }
+        ],
+        "child_curves": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius": 1.3
+          }
+        ],
+        "dimension_kind": "SketchOffsetCurvesDimension",
+        "parameter_name": "d4",
+        "parameter_value": 0.30000000000000004
+      }
+    },
+    {
+      "name": "CircularPartial",
+      "kind": "CircularPatternConstraint",
+      "settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "entities": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          }
+        ],
+        "created_entities": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          },
+          {
+            "kind": "SketchCircle",
+            "center": [
+              -1.8660254037844384,
+              1.2320508075688779,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          },
+          {
+            "kind": "SketchCircle",
+            "center": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          }
+        ],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "CircularFull",
+      "kind": "CircularPatternConstraint",
+      "settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 6.283185307179586,
+        "is_symmetric": false,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "entities": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          }
+        ],
+        "created_entities": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              -0.9999999999999996,
+              2.0,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          },
+          {
+            "kind": "SketchCircle",
+            "center": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          },
+          {
+            "kind": "SketchCircle",
+            "center": [
+              0.9999999999999996,
+              -2.0,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          }
+        ],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "CircularSymmetric",
+      "kind": "CircularPatternConstraint",
+      "settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": true,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "entities": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          }
+        ],
+        "created_entities": [
+          {
+            "kind": "SketchCircle",
+            "center": [
+              -0.13397459621556074,
+              -2.2320508075688776,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          },
+          {
+            "kind": "SketchCircle",
+            "center": [
+              1.8660254037844388,
+              -1.2320508075688772,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          },
+          {
+            "kind": "SketchCircle",
+            "center": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius": 0.2999999999999998
+          }
+        ],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "case": "RectangularSpacing",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchToolModes.py\", line 63, in run\n    inputs.setDirectionOne(None, value(\"3\"), value(\"20 mm\"))\n    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 61012, in setDirectionOne\n    return _fusion.RectangularPatternConstraintInput_setDirectionOne(self, directionOneEntity, quantityOne, distanceOne)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 3 : invalid argument directionOneEntity\n"
+    },
+    {
+      "case": "RectangularExtent",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchToolModes.py\", line 63, in run\n    inputs.setDirectionOne(None, value(\"3\"), value(\"20 mm\"))\n    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 61012, in setDirectionOne\n    return _fusion.RectangularPatternConstraintInput_setDirectionOne(self, directionOneEntity, quantityOne, distanceOne)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 3 : invalid argument directionOneEntity\n"
+    },
+    {
+      "case": "RectangularSymmetric",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchToolModes.py\", line 63, in run\n    inputs.setDirectionOne(None, value(\"3\"), value(\"20 mm\"))\n    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 61012, in setDirectionOne\n    return _fusion.RectangularPatternConstraintInput_setDirectionOne(self, directionOneEntity, quantityOne, distanceOne)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 3 : invalid argument directionOneEntity\n"
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "scope": "Three actual owned SplitBody Profile-input attempts in Fusion2705.1.30; createInput accepted, add rejected, unchanged input body counts and absence of native SplitBody records. Negative evidence only, not universal Profile support/absence.",
+  "runtime_coverage_added": false,
+  "capture_provenance": {
+    "ground_truth": "splitbodyprofiles-be9787c7a7d8/ground_truth.json",
+    "ground_truth_sha256": "bb6fca073056486af47e708a2012b6c555d48ff82b4f1875c28a2428cc650f21",
+    "executed_generator_sha256": "fb08f00bc51a0ffd9af7197e70756751d9c30f4fed5d6dfd28462267fb6cdf03",
+    "executed_sdk_surface_sha256": "d5eb2150620fddb107035cf892bcc40bc783d7297b24c94d2ab9519d13a86671",
+    "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+    "fusion_version": "2705.1.30"
+  },
+  "documented_API": {
+    "source_snapshot": "executed-sdk-surface.txt",
+    "method": "SplitBodyFeatures.createInput",
+    "allowed_tool_excerpt": "construction plane, profile, or a face.",
+    "scope": "Installed Python SDK documentation explicitly lists Profile, while actual add rejects these three valid-looking Profile inputs."
+  },
+  "samples": [
+    {
+      "archive": "splitbodyprofiles-be9787c7a7d8/full_profile_one_body.f3d",
+      "archive_sha256": "d7522d28136b7df9d65d68ca05a93789aaaf535def0e02a4e28146c32daf3284",
+      "case": "full_profile_one_body",
+      "actual_requested": {
+        "splitting_tool_argument_type": "Profile",
+        "isSplittingToolExtended": false,
+        "small_profile": false,
+        "split_body_count": 1,
+        "split_body_role": "Owned block BRepBody or ObjectCollection",
+        "tool_role": "Independent owned sketch Profile",
+        "targetBaseFeature_set": false
+      },
+      "actual_createInput_arguments": {
+        "split_body_argument_type": "adsk::fusion::BRepBody",
+        "splitting_tool_argument_type": "adsk::fusion::Profile",
+        "isSplittingToolExtended": false
+      },
+      "actual_input_valid": true,
+      "actual_input_tool_type": "Profile",
+      "actual_profile_valid": true,
+      "actual_profile_isOnSketchPlane": true,
+      "actual_profile_outer_loop_count": 1,
+      "actual_profile_line_count": 4,
+      "actual_profile_getter_errors": [],
+      "actual_profile_local_plane": {
+        "objectType": "adsk::core::Plane",
+        "isValid": true,
+        "getter_errors": [],
+        "origin": [
+          5.0,
+          1.5,
+          0.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "surfaceType": 0
+      },
+      "actual_parent_sketch_world_origin_cm": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "actual_add_error": {
+        "case": "full_profile_one_body",
+        "phase": "split_attempt",
+        "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 334, in run\n    feature = root.features.splitBodyFeatures.add(inp)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 73541, in add\n    return _fusion.SplitBodyFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Invalid splitting tool\n",
+        "policy": "Preserve actual independent body/tool collections and export; no success inferred from name or requested geometry"
+      },
+      "actual_split_status": "AttemptError",
+      "actual_SplitBody_collection_count_before": 0,
+      "actual_SplitBody_collection_count_after": 0,
+      "actual_BRep_count_before": 1,
+      "actual_BRep_count_after": 1,
+      "primary_native_SplitBody_record_ids": [],
+      "native_setup_Extrude_record_ids": [
+        243
+      ],
+      "nested_input_getter_errors": [
+        {
+          "path": "/splitBodies/value",
+          "errors": [
+            {
+              "getter": "tempId",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 124, in <lambda>\n    row[prop] = observe(prop,lambda prop=prop:getattr(body,prop),errors)\n                                              ~~~~~~~^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'tempId'\n"
+            },
+            {
+              "getter": "baseOrFormFeature",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 126, in <lambda>\n    row['baseOrFormFeature'] = observe('baseOrFormFeature',lambda:identity(body.baseOrFormFeature),errors)\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'baseOrFormFeature'\n"
+            }
+          ]
+        }
+      ],
+      "export_completed": true,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "splitbodyprofiles-be9787c7a7d8/small_profile_extended.f3d",
+      "archive_sha256": "d995f53300eb5a62e1ccf8ab8c29c3a344d808aa80b5d922f0de1e9acb4ae204",
+      "case": "small_profile_extended",
+      "actual_requested": {
+        "splitting_tool_argument_type": "Profile",
+        "isSplittingToolExtended": true,
+        "small_profile": true,
+        "split_body_count": 1,
+        "split_body_role": "Owned block BRepBody or ObjectCollection",
+        "tool_role": "Independent owned sketch Profile",
+        "targetBaseFeature_set": false
+      },
+      "actual_createInput_arguments": {
+        "split_body_argument_type": "adsk::fusion::BRepBody",
+        "splitting_tool_argument_type": "adsk::fusion::Profile",
+        "isSplittingToolExtended": true
+      },
+      "actual_input_valid": true,
+      "actual_input_tool_type": "Profile",
+      "actual_profile_valid": true,
+      "actual_profile_isOnSketchPlane": true,
+      "actual_profile_outer_loop_count": 1,
+      "actual_profile_line_count": 4,
+      "actual_profile_getter_errors": [],
+      "actual_profile_local_plane": {
+        "objectType": "adsk::core::Plane",
+        "isValid": true,
+        "getter_errors": [],
+        "origin": [
+          2.0,
+          1.5,
+          0.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "surfaceType": 0
+      },
+      "actual_parent_sketch_world_origin_cm": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "actual_add_error": {
+        "case": "small_profile_extended",
+        "phase": "split_attempt",
+        "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 334, in run\n    feature = root.features.splitBodyFeatures.add(inp)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 73541, in add\n    return _fusion.SplitBodyFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Invalid splitting tool\n",
+        "policy": "Preserve actual independent body/tool collections and export; no success inferred from name or requested geometry"
+      },
+      "actual_split_status": "AttemptError",
+      "actual_SplitBody_collection_count_before": 0,
+      "actual_SplitBody_collection_count_after": 0,
+      "actual_BRep_count_before": 1,
+      "actual_BRep_count_after": 1,
+      "primary_native_SplitBody_record_ids": [],
+      "native_setup_Extrude_record_ids": [
+        243
+      ],
+      "nested_input_getter_errors": [
+        {
+          "path": "/splitBodies/value",
+          "errors": [
+            {
+              "getter": "tempId",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 124, in <lambda>\n    row[prop] = observe(prop,lambda prop=prop:getattr(body,prop),errors)\n                                              ~~~~~~~^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'tempId'\n"
+            },
+            {
+              "getter": "baseOrFormFeature",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 126, in <lambda>\n    row['baseOrFormFeature'] = observe('baseOrFormFeature',lambda:identity(body.baseOrFormFeature),errors)\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'baseOrFormFeature'\n"
+            }
+          ]
+        }
+      ],
+      "export_completed": true,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "splitbodyprofiles-be9787c7a7d8/full_profile_two_bodies.f3d",
+      "archive_sha256": "94ba18670beb54fb5735ac4209ce05865157ed49de7f7fe7baaf8376accc35a7",
+      "case": "full_profile_two_bodies",
+      "actual_requested": {
+        "splitting_tool_argument_type": "Profile",
+        "isSplittingToolExtended": false,
+        "small_profile": false,
+        "split_body_count": 2,
+        "split_body_role": "Owned block BRepBody or ObjectCollection",
+        "tool_role": "Independent owned sketch Profile",
+        "targetBaseFeature_set": false
+      },
+      "actual_createInput_arguments": {
+        "split_body_argument_type": "adsk::core::ObjectCollection",
+        "splitting_tool_argument_type": "adsk::fusion::Profile",
+        "isSplittingToolExtended": false
+      },
+      "actual_input_valid": true,
+      "actual_input_tool_type": "Profile",
+      "actual_profile_valid": true,
+      "actual_profile_isOnSketchPlane": true,
+      "actual_profile_outer_loop_count": 1,
+      "actual_profile_line_count": 4,
+      "actual_profile_getter_errors": [],
+      "actual_profile_local_plane": {
+        "objectType": "adsk::core::Plane",
+        "isValid": true,
+        "getter_errors": [],
+        "origin": [
+          5.0,
+          1.5,
+          0.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "surfaceType": 0
+      },
+      "actual_parent_sketch_world_origin_cm": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "actual_add_error": {
+        "case": "full_profile_two_bodies",
+        "phase": "split_attempt",
+        "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 334, in run\n    feature = root.features.splitBodyFeatures.add(inp)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 73541, in add\n    return _fusion.SplitBodyFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Invalid splitting tool\n",
+        "policy": "Preserve actual independent body/tool collections and export; no success inferred from name or requested geometry"
+      },
+      "actual_split_status": "AttemptError",
+      "actual_SplitBody_collection_count_before": 0,
+      "actual_SplitBody_collection_count_after": 0,
+      "actual_BRep_count_before": 2,
+      "actual_BRep_count_after": 2,
+      "primary_native_SplitBody_record_ids": [],
+      "native_setup_Extrude_record_ids": [
+        243,
+        322
+      ],
+      "nested_input_getter_errors": [
+        {
+          "path": "/splitBodies/items/0/value",
+          "errors": [
+            {
+              "getter": "tempId",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 124, in <lambda>\n    row[prop] = observe(prop,lambda prop=prop:getattr(body,prop),errors)\n                                              ~~~~~~~^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'tempId'\n"
+            },
+            {
+              "getter": "baseOrFormFeature",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 126, in <lambda>\n    row['baseOrFormFeature'] = observe('baseOrFormFeature',lambda:identity(body.baseOrFormFeature),errors)\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'baseOrFormFeature'\n"
+            }
+          ]
+        },
+        {
+          "path": "/splitBodies/items/1/value",
+          "errors": [
+            {
+              "getter": "tempId",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 124, in <lambda>\n    row[prop] = observe(prop,lambda prop=prop:getattr(body,prop),errors)\n                                              ~~~~~~~^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'tempId'\n"
+            },
+            {
+              "getter": "baseOrFormFeature",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 68, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSplitBodyProfileContrasts.py\", line 126, in <lambda>\n    row['baseOrFormFeature'] = observe('baseOrFormFeature',lambda:identity(body.baseOrFormFeature),errors)\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBody' object has no attribute 'baseOrFormFeature'\n"
+            }
+          ]
+        }
+      ],
+      "export_completed": true,
+      "owned_document_closed_true": true
+    }
+  ],
+  "findings": [
+    "All three input Profile objects are valid and on the sketch plane, with one outer four-line loop and no captured Profile subtree getter errors.",
+    "createInput returns a valid SplitBodyFeatureInput retaining the actual Profile tool and requested extension flag; acceptance is not feature creation.",
+    "All three add calls raise RuntimeError3 Invalid splitting tool. SplitBody API collection remains empty and full primary native metadata contains no SplitBody definition records.",
+    "The successful exports contain the owned setup geometry only. Actual source body counts remain1/1/2, and every owned document close returns true.",
+    "Profile.plane and ProfileCurve.geometry are in local sketch coordinates at z0; sketch worldGeometry and origin are at z1cm. No failure cause is assigned from that normal coordinate distinction."
+  ],
+  "decision": "No decoder or native Profile-tool coverage can be claimed from these failed creations. Retain exact captured failures; use separately captured valid sheet tools for the multi-target study.",
+  "limitations": [
+    "These outcomes are scoped to the three saved inputs, SDK/build, and captured document setup. They do not prove Profile is universally unsupported or contradict all documented uses.",
+    "No confirmed corrective input change is evidenced. The exact engine restriction/failure cause is unresolved; no repeated capture or undocumented workaround is proposed.",
+    "Optional body.tempId/baseOrFormFeature getters fail in nested input body truth; these recorded failures are retained separately from Profile/input top-level validity and do not create topology identity.",
+    "API collections and native absence are independently checked. Geometry, names, array order and opaque entity tokens are not used to invent a missing feature or source/result identity."
+  ],
+  "validation": {
+    "attempts": 3,
+    "valid_Profile_inputs": 3,
+    "createInput_accepted": 3,
+    "add_failures": 3,
+    "actual_exports": 3,
+    "owned_closes_true": 3,
+    "native_SplitBody_records": 0,
+    "unchanged_body_counts": [
+      1,
+      1,
+      2
+    ],
+    "no_runtime_changes": true,
+    "no_main_calls": true
+  },
+  "validator_sha256": "eb375f5a741b468b28ceac811001567c5672d7a7480f7837a5a05100f7afa50f"
+}

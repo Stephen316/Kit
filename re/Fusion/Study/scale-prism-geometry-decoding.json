@@ -1,0 +1,4871 @@
+{
+  "scope": "Analytic independent rectangular-solid equations and topology adversaries for pure mathematical construction; no native/API or history claims",
+  "source_sha256": {
+    "decode_scale_prism_geometry.py": "4a17d115d2d6dace311901c1bf113b8ea611c706f0375d3f2d195adbdc9b54eb",
+    "validate_scale_prism_geometry.py": "10a5899a3d4ec2a40ba4924fe7896581a12885268fb91b2ad96d0068f0ebe5a4"
+  },
+  "checks": [
+    "Uniform about origin: independent volume, bounds and all six whole plane carriers",
+    "Nonuniform about displaced point: independent volume, bounds and all six whole plane carriers",
+    "Contraction about an outside point: independent volume, bounds and all six whole plane carriers",
+    "Permuted identities, enumeration, EDGE endpoints and FACE cycle sense preserve the independently defined solid"
+  ],
+  "guards": [
+    {
+      "case": "Duplicate source vertex identity",
+      "reason": "Prism source vertex/point/layer identities are ambiguous"
+    },
+    {
+      "case": "Missing layer point partner",
+      "reason": "Prism layers do not contain the same four native Sketch points"
+    },
+    {
+      "case": "Nonuniform extrusion vector",
+      "reason": "Source positions do not form a single nonzero Extrude translation"
+    },
+    {
+      "case": "Repeated EDGE endpoint pair",
+      "reason": "Prism EDGE identities/endpoints repeat"
+    },
+    {
+      "case": "FACE diagonal instead of boundary EDGE",
+      "reason": "Prism FACE boundary leaves fixed EDGE incidence"
+    },
+    {
+      "case": "Open solid from repeated FACE",
+      "reason": "Prism FACE identities/membership repeat"
+    },
+    {
+      "case": "Unsupported zero Scale factor",
+      "reason": "Only positive diagonal Scale factors are qualified"
+    },
+    {
+      "case": "Unsupported negative Scale factor",
+      "reason": "Only positive diagonal Scale factors are qualified"
+    },
+    {
+      "case": "Nonfinite source coordinate",
+      "reason": "Prism construction requires finite numeric operands"
+    },
+    {
+      "case": "Nonfinite Scale centre",
+      "reason": "Prism construction requires finite numeric operands"
+    }
+  ],
+  "samples": [
+    {
+      "case": "Uniform about origin",
+      "analytical_volume_cm3": 128.625,
+      "analytical_bounds_cm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          7.0,
+          5.25,
+          3.5
+        ]
+      ],
+      "derived": {
+        "vertices": [
+          {
+            "vertex_index": 0,
+            "native_sketch_point_object_id": 101,
+            "layer": 0,
+            "source_position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 1,
+            "native_sketch_point_object_id": 102,
+            "layer": 0,
+            "source_position_cm": [
+              4.0,
+              0.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              7.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 2,
+            "native_sketch_point_object_id": 103,
+            "layer": 0,
+            "source_position_cm": [
+              4.0,
+              3.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              7.0,
+              5.25,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 3,
+            "native_sketch_point_object_id": 104,
+            "layer": 0,
+            "source_position_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              0.0,
+              5.25,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 4,
+            "native_sketch_point_object_id": 101,
+            "layer": 1,
+            "source_position_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              0.0,
+              0.0,
+              3.5
+            ]
+          },
+          {
+            "vertex_index": 5,
+            "native_sketch_point_object_id": 102,
+            "layer": 1,
+            "source_position_cm": [
+              4.0,
+              0.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              7.0,
+              0.0,
+              3.5
+            ]
+          },
+          {
+            "vertex_index": 6,
+            "native_sketch_point_object_id": 103,
+            "layer": 1,
+            "source_position_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              7.0,
+              5.25,
+              3.5
+            ]
+          },
+          {
+            "vertex_index": 7,
+            "native_sketch_point_object_id": 104,
+            "layer": 1,
+            "source_position_cm": [
+              0.0,
+              3.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              0.0,
+              5.25,
+              3.5
+            ]
+          }
+        ],
+        "source_prism": {
+          "centroid_cm": [
+            2.0,
+            1.5,
+            1.0
+          ],
+          "segments": [
+            {
+              "edge_index": 200,
+              "vertex_indices": [
+                0,
+                1
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 201,
+              "vertex_indices": [
+                1,
+                2
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 202,
+              "vertex_indices": [
+                2,
+                3
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "direction_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 203,
+              "vertex_indices": [
+                3,
+                0
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 204,
+              "vertex_indices": [
+                4,
+                5
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 205,
+              "vertex_indices": [
+                5,
+                6
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 206,
+              "vertex_indices": [
+                6,
+                7
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 207,
+              "vertex_indices": [
+                7,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 208,
+              "vertex_indices": [
+                0,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 209,
+              "vertex_indices": [
+                1,
+                5
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 210,
+              "vertex_indices": [
+                2,
+                6
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 211,
+              "vertex_indices": [
+                3,
+                7
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            }
+          ],
+          "planar_quadrilateral_boundaries": [
+            {
+              "face_index": 300,
+              "vertex_cycle": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 301,
+              "vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 2.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 302,
+              "vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "outward_mathematical_vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 303,
+              "vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "outward_mathematical_vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "corner_positions_cm": [
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 4.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 304,
+              "vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "outward_mathematical_vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "corner_positions_cm": [
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 3.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 305,
+              "vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            }
+          ],
+          "volume_cm3": 24.0,
+          "axis_aligned_bounds_cm": {
+            "minimum": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "maximum": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        },
+        "scaled_prism": {
+          "centroid_cm": [
+            3.5,
+            2.625,
+            1.75
+          ],
+          "segments": [
+            {
+              "edge_index": 200,
+              "vertex_indices": [
+                0,
+                1
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 201,
+              "vertex_indices": [
+                1,
+                2
+              ],
+              "start_position_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                7.0,
+                5.25,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 202,
+              "vertex_indices": [
+                2,
+                3
+              ],
+              "start_position_cm": [
+                7.0,
+                5.25,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "direction_cm": [
+                -7.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 203,
+              "vertex_indices": [
+                3,
+                0
+              ],
+              "start_position_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                -5.25,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 204,
+              "vertex_indices": [
+                4,
+                5
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "end_position_cm": [
+                7.0,
+                0.0,
+                3.5
+              ],
+              "direction_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 205,
+              "vertex_indices": [
+                5,
+                6
+              ],
+              "start_position_cm": [
+                7.0,
+                0.0,
+                3.5
+              ],
+              "end_position_cm": [
+                7.0,
+                5.25,
+                3.5
+              ],
+              "direction_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 206,
+              "vertex_indices": [
+                6,
+                7
+              ],
+              "start_position_cm": [
+                7.0,
+                5.25,
+                3.5
+              ],
+              "end_position_cm": [
+                0.0,
+                5.25,
+                3.5
+              ],
+              "direction_cm": [
+                -7.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 207,
+              "vertex_indices": [
+                7,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                5.25,
+                3.5
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "direction_cm": [
+                0.0,
+                -5.25,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 208,
+              "vertex_indices": [
+                0,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 209,
+              "vertex_indices": [
+                1,
+                5
+              ],
+              "start_position_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                7.0,
+                0.0,
+                3.5
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 210,
+              "vertex_indices": [
+                2,
+                6
+              ],
+              "start_position_cm": [
+                7.0,
+                5.25,
+                0.0
+              ],
+              "end_position_cm": [
+                7.0,
+                5.25,
+                3.5
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 211,
+              "vertex_indices": [
+                3,
+                7
+              ],
+              "start_position_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                5.25,
+                3.5
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            }
+          ],
+          "planar_quadrilateral_boundaries": [
+            {
+              "face_index": 300,
+              "vertex_cycle": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  5.25,
+                  0.0
+                ],
+                [
+                  0.0,
+                  5.25,
+                  0.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 301,
+              "vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  3.5
+                ],
+                [
+                  7.0,
+                  0.0,
+                  3.5
+                ],
+                [
+                  7.0,
+                  5.25,
+                  3.5
+                ],
+                [
+                  0.0,
+                  5.25,
+                  3.5
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "carrier_u_vector_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 3.5,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 302,
+              "vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "outward_mathematical_vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  0.0,
+                  3.5
+                ],
+                [
+                  0.0,
+                  0.0,
+                  3.5
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 303,
+              "vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "outward_mathematical_vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "corner_positions_cm": [
+                [
+                  7.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  5.25,
+                  0.0
+                ],
+                [
+                  7.0,
+                  5.25,
+                  3.5
+                ],
+                [
+                  7.0,
+                  0.0,
+                  3.5
+                ]
+              ],
+              "carrier_origin_cm": [
+                7.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "outward_mathematical_unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 7.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 304,
+              "vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "outward_mathematical_vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "corner_positions_cm": [
+                [
+                  7.0,
+                  5.25,
+                  0.0
+                ],
+                [
+                  0.0,
+                  5.25,
+                  0.0
+                ],
+                [
+                  0.0,
+                  5.25,
+                  3.5
+                ],
+                [
+                  7.0,
+                  5.25,
+                  3.5
+                ]
+              ],
+              "carrier_origin_cm": [
+                7.0,
+                5.25,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                -7.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 5.25,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 305,
+              "vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  5.25,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  3.5
+                ],
+                [
+                  0.0,
+                  5.25,
+                  3.5
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                5.25,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                -5.25,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.5
+              ],
+              "outward_mathematical_unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            }
+          ],
+          "volume_cm3": 128.625,
+          "axis_aligned_bounds_cm": {
+            "minimum": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "maximum": [
+              7.0,
+              5.25,
+              3.5
+            ]
+          }
+        },
+        "source_extrude_translation_cm": [
+          0.0,
+          0.0,
+          2.0
+        ],
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "factors": [
+          1.75,
+          1.75,
+          1.75
+        ],
+        "affine_matrix_4x4": [
+          [
+            1.75,
+            0.0,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            1.75,
+            0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.75,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 5.359375,
+        "expected_scaled_volume_cm3": 128.625,
+        "volume_residual_cm3": 0.0,
+        "position_definition": "scaled = center + diag(factors) * (source - center)",
+        "scope": "Derived convex four-Line prism with eight native-Sketch/Extrude vertices, twelve straight segments and six planar quadrilateral boundaries, followed by positive component-frame diagonal Scale; mathematical carrier frames and outward normals only, no native UV, cache lifecycle or native writing"
+      }
+    },
+    {
+      "case": "Nonuniform about displaced point",
+      "analytical_volume_cm3": 36.864,
+      "analytical_bounds_cm": [
+        [
+          -0.4,
+          -0.2,
+          0.0
+        ],
+        [
+          4.4,
+          2.2,
+          3.2
+        ]
+      ],
+      "derived": {
+        "vertices": [
+          {
+            "vertex_index": 0,
+            "native_sketch_point_object_id": 101,
+            "layer": 0,
+            "source_position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              -0.3999999999999999,
+              -0.19999999999999996,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 1,
+            "native_sketch_point_object_id": 102,
+            "layer": 0,
+            "source_position_cm": [
+              4.0,
+              0.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              4.4,
+              -0.19999999999999996,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 2,
+            "native_sketch_point_object_id": 103,
+            "layer": 0,
+            "source_position_cm": [
+              4.0,
+              3.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              4.4,
+              2.2,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 3,
+            "native_sketch_point_object_id": 104,
+            "layer": 0,
+            "source_position_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              -0.3999999999999999,
+              2.2,
+              0.0
+            ]
+          },
+          {
+            "vertex_index": 4,
+            "native_sketch_point_object_id": 101,
+            "layer": 1,
+            "source_position_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              -0.3999999999999999,
+              -0.19999999999999996,
+              3.2
+            ]
+          },
+          {
+            "vertex_index": 5,
+            "native_sketch_point_object_id": 102,
+            "layer": 1,
+            "source_position_cm": [
+              4.0,
+              0.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              4.4,
+              -0.19999999999999996,
+              3.2
+            ]
+          },
+          {
+            "vertex_index": 6,
+            "native_sketch_point_object_id": 103,
+            "layer": 1,
+            "source_position_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              4.4,
+              2.2,
+              3.2
+            ]
+          },
+          {
+            "vertex_index": 7,
+            "native_sketch_point_object_id": 104,
+            "layer": 1,
+            "source_position_cm": [
+              0.0,
+              3.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              -0.3999999999999999,
+              2.2,
+              3.2
+            ]
+          }
+        ],
+        "source_prism": {
+          "centroid_cm": [
+            2.0,
+            1.5,
+            1.0
+          ],
+          "segments": [
+            {
+              "edge_index": 200,
+              "vertex_indices": [
+                0,
+                1
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 201,
+              "vertex_indices": [
+                1,
+                2
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 202,
+              "vertex_indices": [
+                2,
+                3
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "direction_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 203,
+              "vertex_indices": [
+                3,
+                0
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 204,
+              "vertex_indices": [
+                4,
+                5
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 205,
+              "vertex_indices": [
+                5,
+                6
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 206,
+              "vertex_indices": [
+                6,
+                7
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 207,
+              "vertex_indices": [
+                7,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 208,
+              "vertex_indices": [
+                0,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 209,
+              "vertex_indices": [
+                1,
+                5
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 210,
+              "vertex_indices": [
+                2,
+                6
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 211,
+              "vertex_indices": [
+                3,
+                7
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            }
+          ],
+          "planar_quadrilateral_boundaries": [
+            {
+              "face_index": 300,
+              "vertex_cycle": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 301,
+              "vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 2.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 302,
+              "vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "outward_mathematical_vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 303,
+              "vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "outward_mathematical_vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "corner_positions_cm": [
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 4.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 304,
+              "vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "outward_mathematical_vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "corner_positions_cm": [
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 3.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 305,
+              "vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            }
+          ],
+          "volume_cm3": 24.0,
+          "axis_aligned_bounds_cm": {
+            "minimum": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "maximum": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        },
+        "scaled_prism": {
+          "centroid_cm": [
+            1.9999999999999998,
+            1.0,
+            1.6
+          ],
+          "segments": [
+            {
+              "edge_index": 200,
+              "vertex_indices": [
+                0,
+                1
+              ],
+              "start_position_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                0.0
+              ],
+              "end_position_cm": [
+                4.4,
+                -0.19999999999999996,
+                0.0
+              ],
+              "direction_cm": [
+                4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 201,
+              "vertex_indices": [
+                1,
+                2
+              ],
+              "start_position_cm": [
+                4.4,
+                -0.19999999999999996,
+                0.0
+              ],
+              "end_position_cm": [
+                4.4,
+                2.2,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                2.4000000000000004,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 202,
+              "vertex_indices": [
+                2,
+                3
+              ],
+              "start_position_cm": [
+                4.4,
+                2.2,
+                0.0
+              ],
+              "end_position_cm": [
+                -0.3999999999999999,
+                2.2,
+                0.0
+              ],
+              "direction_cm": [
+                -4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 203,
+              "vertex_indices": [
+                3,
+                0
+              ],
+              "start_position_cm": [
+                -0.3999999999999999,
+                2.2,
+                0.0
+              ],
+              "end_position_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                -2.4000000000000004,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 204,
+              "vertex_indices": [
+                4,
+                5
+              ],
+              "start_position_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                3.2
+              ],
+              "end_position_cm": [
+                4.4,
+                -0.19999999999999996,
+                3.2
+              ],
+              "direction_cm": [
+                4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 205,
+              "vertex_indices": [
+                5,
+                6
+              ],
+              "start_position_cm": [
+                4.4,
+                -0.19999999999999996,
+                3.2
+              ],
+              "end_position_cm": [
+                4.4,
+                2.2,
+                3.2
+              ],
+              "direction_cm": [
+                0.0,
+                2.4000000000000004,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 206,
+              "vertex_indices": [
+                6,
+                7
+              ],
+              "start_position_cm": [
+                4.4,
+                2.2,
+                3.2
+              ],
+              "end_position_cm": [
+                -0.3999999999999999,
+                2.2,
+                3.2
+              ],
+              "direction_cm": [
+                -4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 207,
+              "vertex_indices": [
+                7,
+                4
+              ],
+              "start_position_cm": [
+                -0.3999999999999999,
+                2.2,
+                3.2
+              ],
+              "end_position_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                3.2
+              ],
+              "direction_cm": [
+                0.0,
+                -2.4000000000000004,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 208,
+              "vertex_indices": [
+                0,
+                4
+              ],
+              "start_position_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                0.0
+              ],
+              "end_position_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                3.2
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 209,
+              "vertex_indices": [
+                1,
+                5
+              ],
+              "start_position_cm": [
+                4.4,
+                -0.19999999999999996,
+                0.0
+              ],
+              "end_position_cm": [
+                4.4,
+                -0.19999999999999996,
+                3.2
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 210,
+              "vertex_indices": [
+                2,
+                6
+              ],
+              "start_position_cm": [
+                4.4,
+                2.2,
+                0.0
+              ],
+              "end_position_cm": [
+                4.4,
+                2.2,
+                3.2
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 211,
+              "vertex_indices": [
+                3,
+                7
+              ],
+              "start_position_cm": [
+                -0.3999999999999999,
+                2.2,
+                0.0
+              ],
+              "end_position_cm": [
+                -0.3999999999999999,
+                2.2,
+                3.2
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            }
+          ],
+          "planar_quadrilateral_boundaries": [
+            {
+              "face_index": 300,
+              "vertex_cycle": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.3999999999999999,
+                  -0.19999999999999996,
+                  0.0
+                ],
+                [
+                  4.4,
+                  -0.19999999999999996,
+                  0.0
+                ],
+                [
+                  4.4,
+                  2.2,
+                  0.0
+                ],
+                [
+                  -0.3999999999999999,
+                  2.2,
+                  0.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                2.4000000000000004,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 301,
+              "vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.3999999999999999,
+                  -0.19999999999999996,
+                  3.2
+                ],
+                [
+                  4.4,
+                  -0.19999999999999996,
+                  3.2
+                ],
+                [
+                  4.4,
+                  2.2,
+                  3.2
+                ],
+                [
+                  -0.3999999999999999,
+                  2.2,
+                  3.2
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                3.2
+              ],
+              "carrier_u_vector_cm": [
+                4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                2.4000000000000004,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 3.2,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 302,
+              "vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "outward_mathematical_vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.3999999999999999,
+                  -0.19999999999999996,
+                  0.0
+                ],
+                [
+                  4.4,
+                  -0.19999999999999996,
+                  0.0
+                ],
+                [
+                  4.4,
+                  -0.19999999999999996,
+                  3.2
+                ],
+                [
+                  -0.3999999999999999,
+                  -0.19999999999999996,
+                  3.2
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.3999999999999999,
+                -0.19999999999999996,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.19999999999999996,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 303,
+              "vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "outward_mathematical_vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "corner_positions_cm": [
+                [
+                  4.4,
+                  -0.19999999999999996,
+                  0.0
+                ],
+                [
+                  4.4,
+                  2.2,
+                  0.0
+                ],
+                [
+                  4.4,
+                  2.2,
+                  3.2
+                ],
+                [
+                  4.4,
+                  -0.19999999999999996,
+                  3.2
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.4,
+                -0.19999999999999996,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                2.4000000000000004,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "outward_mathematical_unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 4.4,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 304,
+              "vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "outward_mathematical_vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "corner_positions_cm": [
+                [
+                  4.4,
+                  2.2,
+                  0.0
+                ],
+                [
+                  -0.3999999999999999,
+                  2.2,
+                  0.0
+                ],
+                [
+                  -0.3999999999999999,
+                  2.2,
+                  3.2
+                ],
+                [
+                  4.4,
+                  2.2,
+                  3.2
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.4,
+                2.2,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                -4.800000000000001,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 2.2,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 305,
+              "vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.3999999999999999,
+                  2.2,
+                  0.0
+                ],
+                [
+                  -0.3999999999999999,
+                  -0.19999999999999996,
+                  0.0
+                ],
+                [
+                  -0.3999999999999999,
+                  -0.19999999999999996,
+                  3.2
+                ],
+                [
+                  -0.3999999999999999,
+                  2.2,
+                  3.2
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.3999999999999999,
+                2.2,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                -2.4000000000000004,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                3.2
+              ],
+              "outward_mathematical_unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.3999999999999999,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            }
+          ],
+          "volume_cm3": 36.864000000000004,
+          "axis_aligned_bounds_cm": {
+            "minimum": [
+              -0.3999999999999999,
+              -0.19999999999999996,
+              0.0
+            ],
+            "maximum": [
+              4.4,
+              2.2,
+              3.2
+            ]
+          }
+        },
+        "source_extrude_translation_cm": [
+          0.0,
+          0.0,
+          2.0
+        ],
+        "center_cm": [
+          2.0,
+          -1.0,
+          0.0
+        ],
+        "factors": [
+          1.2,
+          0.8,
+          1.6
+        ],
+        "affine_matrix_4x4": [
+          [
+            1.2,
+            0.0,
+            0.0,
+            -0.3999999999999999
+          ],
+          [
+            0.0,
+            0.8,
+            0.0,
+            -0.19999999999999996
+          ],
+          [
+            0.0,
+            0.0,
+            1.6,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 1.536,
+        "expected_scaled_volume_cm3": 36.864000000000004,
+        "volume_residual_cm3": 0.0,
+        "position_definition": "scaled = center + diag(factors) * (source - center)",
+        "scope": "Derived convex four-Line prism with eight native-Sketch/Extrude vertices, twelve straight segments and six planar quadrilateral boundaries, followed by positive component-frame diagonal Scale; mathematical carrier frames and outward normals only, no native UV, cache lifecycle or native writing"
+      }
+    },
+    {
+      "case": "Contraction about an outside point",
+      "analytical_volume_cm3": 6.591,
+      "analytical_bounds_cm": [
+        [
+          -0.7,
+          1.75,
+          0.35
+        ],
+        [
+          1.9,
+          3.7,
+          1.65
+        ]
+      ],
+      "derived": {
+        "vertices": [
+          {
+            "vertex_index": 0,
+            "native_sketch_point_object_id": 101,
+            "layer": 0,
+            "source_position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              -0.7,
+              1.75,
+              0.35
+            ]
+          },
+          {
+            "vertex_index": 1,
+            "native_sketch_point_object_id": 102,
+            "layer": 0,
+            "source_position_cm": [
+              4.0,
+              0.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              1.9000000000000004,
+              1.75,
+              0.35
+            ]
+          },
+          {
+            "vertex_index": 2,
+            "native_sketch_point_object_id": 103,
+            "layer": 0,
+            "source_position_cm": [
+              4.0,
+              3.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              1.9000000000000004,
+              3.7,
+              0.35
+            ]
+          },
+          {
+            "vertex_index": 3,
+            "native_sketch_point_object_id": 104,
+            "layer": 0,
+            "source_position_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "scaled_position_cm": [
+              -0.7,
+              3.7,
+              0.35
+            ]
+          },
+          {
+            "vertex_index": 4,
+            "native_sketch_point_object_id": 101,
+            "layer": 1,
+            "source_position_cm": [
+              0.0,
+              0.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              -0.7,
+              1.75,
+              1.65
+            ]
+          },
+          {
+            "vertex_index": 5,
+            "native_sketch_point_object_id": 102,
+            "layer": 1,
+            "source_position_cm": [
+              4.0,
+              0.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              1.9000000000000004,
+              1.75,
+              1.65
+            ]
+          },
+          {
+            "vertex_index": 6,
+            "native_sketch_point_object_id": 103,
+            "layer": 1,
+            "source_position_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              1.9000000000000004,
+              3.7,
+              1.65
+            ]
+          },
+          {
+            "vertex_index": 7,
+            "native_sketch_point_object_id": 104,
+            "layer": 1,
+            "source_position_cm": [
+              0.0,
+              3.0,
+              2.0
+            ],
+            "scaled_position_cm": [
+              -0.7,
+              3.7,
+              1.65
+            ]
+          }
+        ],
+        "source_prism": {
+          "centroid_cm": [
+            2.0,
+            1.5,
+            1.0
+          ],
+          "segments": [
+            {
+              "edge_index": 200,
+              "vertex_indices": [
+                0,
+                1
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 201,
+              "vertex_indices": [
+                1,
+                2
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 202,
+              "vertex_indices": [
+                2,
+                3
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "direction_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 203,
+              "vertex_indices": [
+                3,
+                0
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 204,
+              "vertex_indices": [
+                4,
+                5
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 205,
+              "vertex_indices": [
+                5,
+                6
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 206,
+              "vertex_indices": [
+                6,
+                7
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 207,
+              "vertex_indices": [
+                7,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 208,
+              "vertex_indices": [
+                0,
+                4
+              ],
+              "start_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 209,
+              "vertex_indices": [
+                1,
+                5
+              ],
+              "start_position_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                0.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 210,
+              "vertex_indices": [
+                2,
+                6
+              ],
+              "start_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 211,
+              "vertex_indices": [
+                3,
+                7
+              ],
+              "start_position_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_position_cm": [
+                0.0,
+                3.0,
+                2.0
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            }
+          ],
+          "planar_quadrilateral_boundaries": [
+            {
+              "face_index": 300,
+              "vertex_cycle": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 301,
+              "vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 2.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 302,
+              "vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "outward_mathematical_vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 303,
+              "vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "outward_mathematical_vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "corner_positions_cm": [
+                [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  0.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 4.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 304,
+              "vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "outward_mathematical_vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "corner_positions_cm": [
+                [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ],
+                [
+                  4.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                -4.0,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 3.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 305,
+              "vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  2.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  2.0
+                ]
+              ],
+              "carrier_origin_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                -3.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                2.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            }
+          ],
+          "volume_cm3": 24.0,
+          "axis_aligned_bounds_cm": {
+            "minimum": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "maximum": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        },
+        "scaled_prism": {
+          "centroid_cm": [
+            0.6000000000000001,
+            2.725,
+            1.0
+          ],
+          "segments": [
+            {
+              "edge_index": 200,
+              "vertex_indices": [
+                0,
+                1
+              ],
+              "start_position_cm": [
+                -0.7,
+                1.75,
+                0.35
+              ],
+              "end_position_cm": [
+                1.9000000000000004,
+                1.75,
+                0.35
+              ],
+              "direction_cm": [
+                2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 201,
+              "vertex_indices": [
+                1,
+                2
+              ],
+              "start_position_cm": [
+                1.9000000000000004,
+                1.75,
+                0.35
+              ],
+              "end_position_cm": [
+                1.9000000000000004,
+                3.7,
+                0.35
+              ],
+              "direction_cm": [
+                0.0,
+                1.9500000000000002,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 202,
+              "vertex_indices": [
+                2,
+                3
+              ],
+              "start_position_cm": [
+                1.9000000000000004,
+                3.7,
+                0.35
+              ],
+              "end_position_cm": [
+                -0.7,
+                3.7,
+                0.35
+              ],
+              "direction_cm": [
+                -2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 203,
+              "vertex_indices": [
+                3,
+                0
+              ],
+              "start_position_cm": [
+                -0.7,
+                3.7,
+                0.35
+              ],
+              "end_position_cm": [
+                -0.7,
+                1.75,
+                0.35
+              ],
+              "direction_cm": [
+                0.0,
+                -1.9500000000000002,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 204,
+              "vertex_indices": [
+                4,
+                5
+              ],
+              "start_position_cm": [
+                -0.7,
+                1.75,
+                1.65
+              ],
+              "end_position_cm": [
+                1.9000000000000004,
+                1.75,
+                1.65
+              ],
+              "direction_cm": [
+                2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 205,
+              "vertex_indices": [
+                5,
+                6
+              ],
+              "start_position_cm": [
+                1.9000000000000004,
+                1.75,
+                1.65
+              ],
+              "end_position_cm": [
+                1.9000000000000004,
+                3.7,
+                1.65
+              ],
+              "direction_cm": [
+                0.0,
+                1.9500000000000002,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 206,
+              "vertex_indices": [
+                6,
+                7
+              ],
+              "start_position_cm": [
+                1.9000000000000004,
+                3.7,
+                1.65
+              ],
+              "end_position_cm": [
+                -0.7,
+                3.7,
+                1.65
+              ],
+              "direction_cm": [
+                -2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 207,
+              "vertex_indices": [
+                7,
+                4
+              ],
+              "start_position_cm": [
+                -0.7,
+                3.7,
+                1.65
+              ],
+              "end_position_cm": [
+                -0.7,
+                1.75,
+                1.65
+              ],
+              "direction_cm": [
+                0.0,
+                -1.9500000000000002,
+                0.0
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 208,
+              "vertex_indices": [
+                0,
+                4
+              ],
+              "start_position_cm": [
+                -0.7,
+                1.75,
+                0.35
+              ],
+              "end_position_cm": [
+                -0.7,
+                1.75,
+                1.65
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 209,
+              "vertex_indices": [
+                1,
+                5
+              ],
+              "start_position_cm": [
+                1.9000000000000004,
+                1.75,
+                0.35
+              ],
+              "end_position_cm": [
+                1.9000000000000004,
+                1.75,
+                1.65
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 210,
+              "vertex_indices": [
+                2,
+                6
+              ],
+              "start_position_cm": [
+                1.9000000000000004,
+                3.7,
+                0.35
+              ],
+              "end_position_cm": [
+                1.9000000000000004,
+                3.7,
+                1.65
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            },
+            {
+              "edge_index": 211,
+              "vertex_indices": [
+                3,
+                7
+              ],
+              "start_position_cm": [
+                -0.7,
+                3.7,
+                0.35
+              ],
+              "end_position_cm": [
+                -0.7,
+                3.7,
+                1.65
+              ],
+              "direction_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "mathematical_parameter_domain": [
+                0.0,
+                1.0
+              ],
+              "definition": "P(t)=start+t*(end-start), 0<=t<=1; native EDGE parameterization remains separate"
+            }
+          ],
+          "planar_quadrilateral_boundaries": [
+            {
+              "face_index": 300,
+              "vertex_cycle": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.7,
+                  1.75,
+                  0.35
+                ],
+                [
+                  1.9000000000000004,
+                  1.75,
+                  0.35
+                ],
+                [
+                  1.9000000000000004,
+                  3.7,
+                  0.35
+                ],
+                [
+                  -0.7,
+                  3.7,
+                  0.35
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.7,
+                1.75,
+                0.35
+              ],
+              "carrier_u_vector_cm": [
+                2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                1.9500000000000002,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                -0.0,
+                -0.0,
+                -1.0
+              ],
+              "plane_constant_cm": -0.35,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 301,
+              "vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.7,
+                  1.75,
+                  1.65
+                ],
+                [
+                  1.9000000000000004,
+                  1.75,
+                  1.65
+                ],
+                [
+                  1.9000000000000004,
+                  3.7,
+                  1.65
+                ],
+                [
+                  -0.7,
+                  3.7,
+                  1.65
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.7,
+                1.75,
+                1.65
+              ],
+              "carrier_u_vector_cm": [
+                2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                1.9500000000000002,
+                0.0
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 1.65,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 302,
+              "vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "outward_mathematical_vertex_cycle": [
+                0,
+                1,
+                5,
+                4
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.7,
+                  1.75,
+                  0.35
+                ],
+                [
+                  1.9000000000000004,
+                  1.75,
+                  0.35
+                ],
+                [
+                  1.9000000000000004,
+                  1.75,
+                  1.65
+                ],
+                [
+                  -0.7,
+                  1.75,
+                  1.65
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.7,
+                1.75,
+                0.35
+              ],
+              "carrier_u_vector_cm": [
+                2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": -1.75,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 303,
+              "vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "outward_mathematical_vertex_cycle": [
+                1,
+                2,
+                6,
+                5
+              ],
+              "corner_positions_cm": [
+                [
+                  1.9000000000000004,
+                  1.75,
+                  0.35
+                ],
+                [
+                  1.9000000000000004,
+                  3.7,
+                  0.35
+                ],
+                [
+                  1.9000000000000004,
+                  3.7,
+                  1.65
+                ],
+                [
+                  1.9000000000000004,
+                  1.75,
+                  1.65
+                ]
+              ],
+              "carrier_origin_cm": [
+                1.9000000000000004,
+                1.75,
+                0.35
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                1.9500000000000002,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "outward_mathematical_unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 1.9000000000000004,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 304,
+              "vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "outward_mathematical_vertex_cycle": [
+                2,
+                3,
+                7,
+                6
+              ],
+              "corner_positions_cm": [
+                [
+                  1.9000000000000004,
+                  3.7,
+                  0.35
+                ],
+                [
+                  -0.7,
+                  3.7,
+                  0.35
+                ],
+                [
+                  -0.7,
+                  3.7,
+                  1.65
+                ],
+                [
+                  1.9000000000000004,
+                  3.7,
+                  1.65
+                ]
+              ],
+              "carrier_origin_cm": [
+                1.9000000000000004,
+                3.7,
+                0.35
+              ],
+              "carrier_u_vector_cm": [
+                -2.6000000000000005,
+                0.0,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "outward_mathematical_unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 3.7,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            },
+            {
+              "face_index": 305,
+              "vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "outward_mathematical_vertex_cycle": [
+                3,
+                0,
+                4,
+                7
+              ],
+              "corner_positions_cm": [
+                [
+                  -0.7,
+                  3.7,
+                  0.35
+                ],
+                [
+                  -0.7,
+                  1.75,
+                  0.35
+                ],
+                [
+                  -0.7,
+                  1.75,
+                  1.65
+                ],
+                [
+                  -0.7,
+                  3.7,
+                  1.65
+                ]
+              ],
+              "carrier_origin_cm": [
+                -0.7,
+                3.7,
+                0.35
+              ],
+              "carrier_u_vector_cm": [
+                0.0,
+                -1.9500000000000002,
+                0.0
+              ],
+              "carrier_v_vector_cm": [
+                0.0,
+                0.0,
+                1.2999999999999998
+              ],
+              "outward_mathematical_unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.7,
+              "carrier_definition": "P(u,v)=origin+u*U+v*V for all real u,v; bounded region is the explicit quadrilateral, not a claimed native parameter rectangle",
+              "normal_scope": "Chosen outward mathematical normal from derived solid centroid; native FACE sense and UV conventions are not inferred"
+            }
+          ],
+          "volume_cm3": 6.591,
+          "axis_aligned_bounds_cm": {
+            "minimum": [
+              -0.7,
+              1.75,
+              0.35
+            ],
+            "maximum": [
+              1.9000000000000004,
+              3.7,
+              1.65
+            ]
+          }
+        },
+        "source_extrude_translation_cm": [
+          0.0,
+          0.0,
+          2.0
+        ],
+        "center_cm": [
+          -2.0,
+          5.0,
+          1.0
+        ],
+        "factors": [
+          0.65,
+          0.65,
+          0.65
+        ],
+        "affine_matrix_4x4": [
+          [
+            0.65,
+            0.0,
+            0.0,
+            -0.7
+          ],
+          [
+            0.0,
+            0.65,
+            0.0,
+            1.75
+          ],
+          [
+            0.0,
+            0.0,
+            0.65,
+            0.35
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "determinant": 0.27462500000000006,
+        "expected_scaled_volume_cm3": 6.591000000000001,
+        "volume_residual_cm3": 8.881784197001252e-16,
+        "position_definition": "scaled = center + diag(factors) * (source - center)",
+        "scope": "Derived convex four-Line prism with eight native-Sketch/Extrude vertices, twelve straight segments and six planar quadrilateral boundaries, followed by positive component-frame diagonal Scale; mathematical carrier frames and outward normals only, no native UV, cache lifecycle or native writing"
+      }
+    }
+  ],
+  "summary": {
+    "analytic_solids": 3,
+    "whole_plane_equations": 18,
+    "identity_permutation_controls": 1,
+    "malformed_guards": 10,
+    "main_reader_runs": 0,
+    "live_calls": 0
+  }
+}

@@ -1,0 +1,4637 @@
+{
+  "scope": "Exactly46 saved baseline target records across23 explicit archives; tensor caches only, not complete procedural surface interpretation or a full corpus audit",
+  "integration": {
+    "reader": "decode_surface_cache_variants.decode_surface_cache_variants(record)",
+    "dispatch": "Existing base-first decode_bspline fallback; all46 targets match the helper result exactly",
+    "validator": "/usr/bin/python3 validate_surface_cache_variants.py",
+    "reader_changes_by_this_task": false
+  },
+  "method": "Independently read raw U-fast controls/weights and compact knots from exact saved record headers; independently expand knots; evaluate Cox-de Boor tensor basis and compare with normalized-grid de Boor evaluator at three interior U/V pairs.",
+  "files_inspected": [
+    "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+    "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+    "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+    "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+    "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+    "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d",
+    "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+    "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
+    "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
+    "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+    "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+    "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+    "loftguides-265bcb9af34a/closure_closed_four.f3d",
+    "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+    "loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+    "loftpointholdouts-bb91509a13e4/tangent_start_weight1.f3d",
+    "loftpoints-f5bbdb97a568/tangent_end_weight1.f3d",
+    "loftpoints-f5bbdb97a568/tangent_end_weight2.f3d",
+    "lofts-03b4a6f1ce2f/centerline.f3d",
+    "lofts-838ea6e83e97/both_direction.f3d",
+    "lofts-838ea6e83e97/end_direction.f3d",
+    "lofts-838ea6e83e97/start_direction.f3d",
+    "solidsweeps-7d2677669e3d/solid_twist.f3d"
+  ],
+  "records": [
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.3242f52d-d38a-4e17-b850-75852f4b371f.smbh",
+      "record_index": 40,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 180,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 173,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2957771201908981,
+            0.9158694953747389,
+            2.444978060860099
+          ],
+          "reader_raw_point": [
+            -0.29577712019089814,
+            0.915869495374739,
+            2.4449780608600986
+          ],
+          "error_raw": 4.611102534756203e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.8999999999999999,
+            0.0,
+            3.072455946281617
+          ],
+          "reader_raw_point": [
+            0.9,
+            0.0,
+            3.0724559462816163
+          ],
+          "error_raw": 4.577566798522237e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.24368364815587615,
+            -0.7629906576333435,
+            3.5167479288930172
+          ],
+          "reader_raw_point": [
+            -0.24368364815587612,
+            -0.7629906576333434,
+            3.5167479288930172
+          ],
+          "error_raw": 1.1443916996305594e-16
+        }
+      ]
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce2494d9-53e9-48b7-a07e-864c45db24c6.smb",
+      "record_index": 82,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 180,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 173,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2957771201908981,
+            0.9158694953747389,
+            2.444978060860099
+          ],
+          "reader_raw_point": [
+            -0.29577712019089814,
+            0.915869495374739,
+            2.4449780608600986
+          ],
+          "error_raw": 4.611102534756203e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.8999999999999999,
+            0.0,
+            3.072455946281617
+          ],
+          "reader_raw_point": [
+            0.9,
+            0.0,
+            3.0724559462816163
+          ],
+          "error_raw": 4.577566798522237e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.24368364815587615,
+            -0.7629906576333435,
+            3.5167479288930172
+          ],
+          "reader_raw_point": [
+            -0.24368364815587612,
+            -0.7629906576333434,
+            3.5167479288930172
+          ],
+          "error_raw": 1.1443916996305594e-16
+        }
+      ]
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e99864a3-8092-4726-9203-714c612875f1.smb",
+      "record_index": 82,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 180,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 173,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2957771201908981,
+            0.9158694953747389,
+            1.9039027309423933
+          ],
+          "reader_raw_point": [
+            -0.29577712019089814,
+            0.915869495374739,
+            1.9039027309423937
+          ],
+          "error_raw": 4.611102534756203e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.8999999999999999,
+            0.0,
+            2.503318648760539
+          ],
+          "reader_raw_point": [
+            0.9,
+            0.0,
+            2.503318648760539
+          ],
+          "error_raw": 1.1102230246251565e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.24368364815587615,
+            -0.7629906576333435,
+            3.101672598975312
+          ],
+          "reader_raw_point": [
+            -0.24368364815587612,
+            -0.7629906576333434,
+            3.1016725989753113
+          ],
+          "error_raw": 4.585973723508303e-16
+        }
+      ]
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1dd5bd82-a356-40f5-b16e-1022bb0b37a6.smbh",
+      "record_index": 40,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 180,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 173,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2957771201908981,
+            0.9158694953747389,
+            1.9039027309423933
+          ],
+          "reader_raw_point": [
+            -0.29577712019089814,
+            0.915869495374739,
+            1.9039027309423937
+          ],
+          "error_raw": 4.611102534756203e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.8999999999999999,
+            0.0,
+            2.503318648760539
+          ],
+          "reader_raw_point": [
+            0.9,
+            0.0,
+            2.503318648760539
+          ],
+          "error_raw": 1.1102230246251565e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.24368364815587615,
+            -0.7629906576333435,
+            3.101672598975312
+          ],
+          "reader_raw_point": [
+            -0.24368364815587612,
+            -0.7629906576333434,
+            3.1016725989753113
+          ],
+          "error_raw": 4.585973723508303e-16
+        }
+      ]
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.10044360-fa95-4241-ba20-395972bdb7fa.smb",
+      "record_index": 82,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 420,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        49,
+        10
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 413,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.30005093867759985,
+            0.9284863692925275,
+            1.903902730942394
+          ],
+          "reader_raw_point": [
+            -0.30005093867759997,
+            0.9284863692925274,
+            1.903902730942394
+          ],
+          "error_raw": 1.5700924586837752e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.9121977700583456,
+            -3.4130126941459634e-16,
+            2.503318648760539
+          ],
+          "reader_raw_point": [
+            0.9121977700583458,
+            -3.413012694145964e-16,
+            2.503318648760539
+          ],
+          "error_raw": 2.220446049250313e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.24428080189895873,
+            -0.7699146628455669,
+            3.1016725989753104
+          ],
+          "reader_raw_point": [
+            -0.24428080189895868,
+            -0.7699146628455669,
+            3.101672598975311
+          ],
+          "error_raw": 4.47545209131181e-16
+        }
+      ]
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9b4d8d65-d32d-41ab-8034-b6da2c2d900a.smbh",
+      "record_index": 40,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 420,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        49,
+        10
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 413,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.30005093867759985,
+            0.9284863692925275,
+            1.903902730942394
+          ],
+          "reader_raw_point": [
+            -0.30005093867759997,
+            0.9284863692925274,
+            1.903902730942394
+          ],
+          "error_raw": 1.5700924586837752e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.9121977700583456,
+            -3.4130126941459634e-16,
+            2.503318648760539
+          ],
+          "reader_raw_point": [
+            0.9121977700583458,
+            -3.413012694145964e-16,
+            2.503318648760539
+          ],
+          "error_raw": 2.220446049250313e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.24428080189895873,
+            -0.7699146628455669,
+            3.1016725989753104
+          ],
+          "reader_raw_point": [
+            -0.24428080189895868,
+            -0.7699146628455669,
+            3.101672598975311
+          ],
+          "error_raw": 4.47545209131181e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.21ce2a1b-db1c-4536-8ebe-f8e58a175b7c.smbh",
+      "record_index": 13,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.1575373030453957,
+            -0.48487875474676567,
+            0.26999999999999996
+          ],
+          "reader_raw_point": [
+            -0.1575373030453957,
+            -0.4848787547467658,
+            0.27
+          ],
+          "error_raw": 1.2412670766236366e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.75,
+            0.0,
+            0.75
+          ],
+          "reader_raw_point": [
+            0.75,
+            0.0,
+            0.75
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.2811919310786767,
+            0.8654250061730786,
+            1.47
+          ],
+          "reader_raw_point": [
+            -0.28119193107867657,
+            0.8654250061730785,
+            1.4699999999999995
+          ],
+          "error_raw": 4.710277376051325e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.077fa8eb-edaf-42b2-9eda-12fb6c24871b.smb",
+      "record_index": 24,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.1575373030453957,
+            -0.48487875474676567,
+            0.26999999999999996
+          ],
+          "reader_raw_point": [
+            -0.1575373030453957,
+            -0.4848787547467658,
+            0.27
+          ],
+          "error_raw": 1.2412670766236366e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.75,
+            0.0,
+            0.75
+          ],
+          "reader_raw_point": [
+            0.75,
+            0.0,
+            0.75
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.2811919310786767,
+            0.8654250061730786,
+            1.47
+          ],
+          "reader_raw_point": [
+            -0.28119193107867657,
+            0.8654250061730785,
+            1.4699999999999995
+          ],
+          "error_raw": 4.710277376051325e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.34f2b055-35c0-41df-8190-679502aaa921.smbh",
+      "record_index": 18,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 232,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        10
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 225,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            0.7476960895466863,
+            0.8481586399645348,
+            0.9152775377702853
+          ],
+          "reader_raw_point": [
+            0.7476960895466864,
+            0.8481586399645351,
+            0.9152775377702856
+          ],
+          "error_raw": 4.839349969133126e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -0.2095620205647958,
+            6.825942320329971e-08,
+            1.5787578707496381
+          ],
+          "reader_raw_point": [
+            -0.20956202056479578,
+            6.825942320436762e-08,
+            1.5787578707496375
+          ],
+          "error_raw": 6.667126604440564e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            0.7313738868106037,
+            -0.6730415680094838,
+            2.215965922123909
+          ],
+          "reader_raw_point": [
+            0.7313738868106037,
+            -0.673041568009484,
+            2.2159659221239085
+          ],
+          "error_raw": 4.965068306494546e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.95e73f51-3670-40ec-b728-a0e997e50ece.smb",
+      "record_index": 45,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 232,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        10
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 225,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            0.7476960895466863,
+            0.8481586399645348,
+            0.9152775377702853
+          ],
+          "reader_raw_point": [
+            0.7476960895466864,
+            0.8481586399645351,
+            0.9152775377702856
+          ],
+          "error_raw": 4.839349969133126e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -0.2095620205647958,
+            6.825942320329971e-08,
+            1.5787578707496381
+          ],
+          "reader_raw_point": [
+            -0.20956202056479578,
+            6.825942320436762e-08,
+            1.5787578707496375
+          ],
+          "error_raw": 6.667126604440564e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            0.7313738868106037,
+            -0.6730415680094838,
+            2.215965922123909
+          ],
+          "reader_raw_point": [
+            0.7313738868106037,
+            -0.673041568009484,
+            2.2159659221239085
+          ],
+          "error_raw": 4.965068306494546e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2e5141dd-e82e-4393-8b60-8016e015825a.smbh",
+      "record_index": 18,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        31,
+        13
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 94,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            3.7015610389137383,
+            0.4752681287290115,
+            1.8860363977597736
+          ],
+          "reader_raw_point": [
+            3.7015610389137366,
+            0.47526812872901136,
+            1.886036397759773
+          ],
+          "error_raw": 1.900395703982448e-15
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            2.4747928318878367,
+            2.1412460565854995e-08,
+            2.474772953276747
+          ],
+          "reader_raw_point": [
+            2.4747928318878376,
+            2.141246056587634e-08,
+            2.4747729532767475
+          ],
+          "error_raw": 9.930136615283072e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            1.886077099117968,
+            -0.47551886677855776,
+            3.7016497610109105
+          ],
+          "reader_raw_point": [
+            1.8860770991179678,
+            -0.4755188667785577,
+            3.70164976101091
+          ],
+          "error_raw": 4.996003610813204e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.062efdaa-c5f2-4199-b4be-00effcba8ec7.smb",
+      "record_index": 45,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        31,
+        13
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 94,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            3.7015610389137383,
+            0.4752681287290115,
+            1.8860363977597736
+          ],
+          "reader_raw_point": [
+            3.7015610389137366,
+            0.47526812872901136,
+            1.886036397759773
+          ],
+          "error_raw": 1.900395703982448e-15
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            2.4747928318878367,
+            2.1412460565854995e-08,
+            2.474772953276747
+          ],
+          "reader_raw_point": [
+            2.4747928318878376,
+            2.141246056587634e-08,
+            2.4747729532767475
+          ],
+          "error_raw": 9.930136615283072e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            1.886077099117968,
+            -0.47551886677855776,
+            3.7016497610109105
+          ],
+          "reader_raw_point": [
+            1.8860770991179678,
+            -0.4755188667785577,
+            3.70164976101091
+          ],
+          "error_raw": 4.996003610813204e-16
+        }
+      ]
+    },
+    {
+      "file": "solidsweeps-7d2677669e3d/solid_twist.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dd4e60ad-b3a3-4f7d-a558-0afa7b5b531f.smb",
+      "record_index": 142,
+      "procedural_subtype": "exact_spl_sur",
+      "axis_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        4,
+        9
+      ],
+      "rational": false,
+      "domain_u": [
+        -0.2,
+        0.2
+      ],
+      "domain_v": [
+        -0.2998520289547677,
+        5.299852028954768
+      ],
+      "outer_flags": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "stored_outer_u_bounds": [
+        -0.2,
+        0.2
+      ],
+      "stored_outer_v_bounds": [
+        -0.1999013425516804,
+        5.199901343307624
+      ],
+      "stored_inner_flags": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "stored_inner_values": [
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": -0.12,
+          "v": 1.380059188418093,
+          "independent_raw_point": [
+            1.380000010638225,
+            -0.12468374066078547,
+            -0.17161397748816762
+          ],
+          "reader_raw_point": [
+            1.3800000106382255,
+            -0.12468374066078555,
+            -0.17161397748816765
+          ],
+          "error_raw": 4.526797389797801e-16
+        },
+        {
+          "u": 0.0,
+          "v": 2.5,
+          "independent_raw_point": [
+            2.4999999994546043,
+            -0.10606786915695836,
+            -0.18371473712849695
+          ],
+          "reader_raw_point": [
+            2.499999999454604,
+            -0.10606786915695834,
+            -0.18371473712849695
+          ],
+          "error_raw": 4.443059973708341e-16
+        },
+        {
+          "u": 0.12000000000000005,
+          "v": 3.619940811581907,
+          "independent_raw_point": [
+            3.6199999936155565,
+            -0.08628028146524526,
+            -0.19378784719950054
+          ],
+          "reader_raw_point": [
+            3.619999993615557,
+            -0.08628028146524525,
+            -0.1937878471995005
+          ],
+          "error_raw": 4.451720917549152e-16
+        }
+      ]
+    },
+    {
+      "file": "solidsweeps-7d2677669e3d/solid_twist.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.eb60ba60-41c6-457e-90d9-abbbf3544872.smbh",
+      "record_index": 110,
+      "procedural_subtype": "exact_spl_sur",
+      "axis_flags": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        4,
+        9
+      ],
+      "rational": false,
+      "domain_u": [
+        -0.2,
+        0.2
+      ],
+      "domain_v": [
+        -0.2998520289547677,
+        5.299852028954768
+      ],
+      "outer_flags": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "stored_outer_u_bounds": [
+        -0.2,
+        0.2
+      ],
+      "stored_outer_v_bounds": [
+        -0.1999013425516804,
+        5.199901343307624
+      ],
+      "stored_inner_flags": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "stored_inner_values": [
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": -0.12,
+          "v": 1.380059188418093,
+          "independent_raw_point": [
+            1.380000010638225,
+            -0.12468374066078547,
+            -0.17161397748816762
+          ],
+          "reader_raw_point": [
+            1.3800000106382255,
+            -0.12468374066078555,
+            -0.17161397748816765
+          ],
+          "error_raw": 4.526797389797801e-16
+        },
+        {
+          "u": 0.0,
+          "v": 2.5,
+          "independent_raw_point": [
+            2.4999999994546043,
+            -0.10606786915695836,
+            -0.18371473712849695
+          ],
+          "reader_raw_point": [
+            2.499999999454604,
+            -0.10606786915695834,
+            -0.18371473712849695
+          ],
+          "error_raw": 4.443059973708341e-16
+        },
+        {
+          "u": 0.12000000000000005,
+          "v": 3.619940811581907,
+          "independent_raw_point": [
+            3.6199999936155565,
+            -0.08628028146524526,
+            -0.19378784719950054
+          ],
+          "reader_raw_point": [
+            3.619999993615557,
+            -0.08628028146524525,
+            -0.1937878471995005
+          ],
+          "error_raw": 4.451720917549152e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpointholdouts-bb91509a13e4/tangent_start_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.5ffb5051-cea2-4bb0-b434-e6a0020292a7.smbh",
+      "record_index": 13,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.09267493939962325,
+            -0.2852294699630108,
+            0.26999999999999996
+          ],
+          "reader_raw_point": [
+            -0.09267493939962326,
+            -0.2852294699630109,
+            0.27
+          ],
+          "error_raw": 1.249000902703301e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.5,
+            0.0,
+            0.75
+          ],
+          "reader_raw_point": [
+            0.5,
+            0.0,
+            0.75
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.21631167016714745,
+            0.6657232094035523,
+            1.47
+          ],
+          "reader_raw_point": [
+            -0.2163116701671474,
+            0.6657232094035521,
+            1.4699999999999995
+          ],
+          "error_raw": 4.996003610813204e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpointholdouts-bb91509a13e4/tangent_start_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9b05fd42-bef6-4239-b3e5-079942b16f8c.smb",
+      "record_index": 24,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.09267493939962325,
+            -0.2852294699630108,
+            0.26999999999999996
+          ],
+          "reader_raw_point": [
+            -0.09267493939962326,
+            -0.2852294699630109,
+            0.27
+          ],
+          "error_raw": 1.249000902703301e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.5,
+            0.0,
+            0.75
+          ],
+          "reader_raw_point": [
+            0.5,
+            0.0,
+            0.75
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.21631167016714745,
+            0.6657232094035523,
+            1.47
+          ],
+          "reader_raw_point": [
+            -0.2163116701671474,
+            0.6657232094035521,
+            1.4699999999999995
+          ],
+          "error_raw": 4.996003610813204e-16
+        }
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.80cb298d-8ed8-4cf0-944c-0156a247260c.smbh",
+      "record_index": 41,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 420,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        49,
+        13
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 413,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.24418792543773468,
+            -0.7697706663585867,
+            0.8276335685452619
+          ],
+          "reader_raw_point": [
+            -0.2441879254377346,
+            -0.7697706663585866,
+            0.827633568545262
+          ],
+          "error_raw": 1.7772239894833365e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.9123839074817004,
+            3.7066558477369373e-16,
+            1.3825220268591913
+          ],
+          "reader_raw_point": [
+            0.9123839074817006,
+            3.7066558477369373e-16,
+            1.3825220268591916
+          ],
+          "error_raw": 3.1401849173675503e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.3000644273661824,
+            0.9285143492068257,
+            1.9750034365781797
+          ],
+          "reader_raw_point": [
+            -0.30006442736618244,
+            0.928514349206826,
+            1.97500343657818
+          ],
+          "error_raw": 3.188872858294072e-16
+        }
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ac252160-149a-43db-a358-680b534e2a37.smb",
+      "record_index": 83,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 420,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        49,
+        13
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 413,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.24418792543773468,
+            -0.7697706663585867,
+            0.8276335685452619
+          ],
+          "reader_raw_point": [
+            -0.2441879254377346,
+            -0.7697706663585866,
+            0.827633568545262
+          ],
+          "error_raw": 1.7772239894833365e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.9123839074817004,
+            3.7066558477369373e-16,
+            1.3825220268591913
+          ],
+          "reader_raw_point": [
+            0.9123839074817006,
+            3.7066558477369373e-16,
+            1.3825220268591916
+          ],
+          "error_raw": 3.1401849173675503e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.3000644273661824,
+            0.9285143492068257,
+            1.9750034365781797
+          ],
+          "reader_raw_point": [
+            -0.30006442736618244,
+            0.928514349206826,
+            1.97500343657818
+          ],
+          "error_raw": 3.188872858294072e-16
+        }
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e006f0f6-0574-4be8-bc64-55e9a22e2c25.smbh",
+      "record_index": 41,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 180,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 173,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2436323333319433,
+            -0.7628262573702698,
+            0.7275397360658357
+          ],
+          "reader_raw_point": [
+            -0.24363233333194334,
+            -0.76282625737027,
+            0.7275397360658356
+          ],
+          "error_raw": 2.498001805406602e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.9,
+            6.938893903907228e-18,
+            1.243362702478922
+          ],
+          "reader_raw_point": [
+            0.9,
+            6.938893903907228e-18,
+            1.2433627024789222
+          ],
+          "error_raw": 2.220446049250313e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.29584542034116773,
+            0.9160883125081072,
+            1.8413096040987538
+          ],
+          "reader_raw_point": [
+            -0.2958454203411676,
+            0.9160883125081072,
+            1.8413096040987533
+          ],
+          "error_raw": 4.577566798522237e-16
+        }
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c2deb29b-10fc-4229-8db8-9f3ef40b20b1.smb",
+      "record_index": 83,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 180,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 173,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2436323333319433,
+            -0.7628262573702698,
+            0.7275397360658357
+          ],
+          "reader_raw_point": [
+            -0.24363233333194334,
+            -0.76282625737027,
+            0.7275397360658356
+          ],
+          "error_raw": 2.498001805406602e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.9,
+            6.938893903907228e-18,
+            1.243362702478922
+          ],
+          "reader_raw_point": [
+            0.9,
+            6.938893903907228e-18,
+            1.2433627024789222
+          ],
+          "error_raw": 2.220446049250313e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.29584542034116773,
+            0.9160883125081072,
+            1.8413096040987538
+          ],
+          "reader_raw_point": [
+            -0.2958454203411676,
+            0.9160883125081072,
+            1.8413096040987533
+          ],
+          "error_raw": 4.577566798522237e-16
+        }
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+      "record_index": 63,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 194,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 187,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.28212336702524027,
+            0.8684256824913734,
+            1.9022301319670814
+          ],
+          "reader_raw_point": [
+            -0.2821233670252402,
+            0.8684256824913734,
+            1.902230131967082
+          ],
+          "error_raw": 6.684427777288334e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.7999995661915482,
+            6.825942313972042e-08,
+            2.3486725404957847
+          ],
+          "reader_raw_point": [
+            0.7999995661915483,
+            6.825942313974914e-08,
+            2.3486725404957842
+          ],
+          "error_raw": 4.577566807531629e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.21210107176389265,
+            -0.6527745254826455,
+            2.8435397360658357
+          ],
+          "reader_raw_point": [
+            -0.2121010717638927,
+            -0.6527745254826456,
+            2.843539736065836
+          ],
+          "error_raw": 4.611102534756203e-16
+        }
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7a6b2b33-65bb-445c-a3a7-a09d8d107412.smb",
+      "record_index": 120,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 194,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 187,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.28212336702524027,
+            0.8684256824913734,
+            1.9022301319670814
+          ],
+          "reader_raw_point": [
+            -0.2821233670252402,
+            0.8684256824913734,
+            1.902230131967082
+          ],
+          "error_raw": 6.684427777288334e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.7999995661915482,
+            6.825942313972042e-08,
+            2.3486725404957847
+          ],
+          "reader_raw_point": [
+            0.7999995661915483,
+            6.825942313974914e-08,
+            2.3486725404957842
+          ],
+          "error_raw": 4.577566807531629e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.21210107176389265,
+            -0.6527745254826455,
+            2.8435397360658357
+          ],
+          "reader_raw_point": [
+            -0.2121010717638927,
+            -0.6527745254826456,
+            2.843539736065836
+          ],
+          "error_raw": 4.611102534756203e-16
+        }
+      ]
+    },
+    {
+      "file": "lofts-838ea6e83e97/both_direction.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.492cf2b2-c8cb-4db1-afdd-2025f403d468.smbh",
+      "record_index": 18,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 166,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 159,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.3112549600262305,
+            -0.9586291272857818,
+            1.0735133710903675
+          ],
+          "reader_raw_point": [
+            -0.31125496002623054,
+            -0.9586291272857821,
+            1.0735133710903675
+          ],
+          "error_raw": 3.376611507232129e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.8584570157012021,
+            0.0,
+            1.6056667469280814
+          ],
+          "reader_raw_point": [
+            0.8584570157012021,
+            0.0,
+            1.6056667469280816
+          ],
+          "error_raw": 2.220446049250313e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.21305206305163124,
+            0.6557233635539496,
+            2.1040067637488096
+          ],
+          "reader_raw_point": [
+            -0.21305206305163116,
+            0.6557233635539494,
+            2.1040067637488096
+          ],
+          "error_raw": 1.3877787807814457e-16
+        }
+      ]
+    },
+    {
+      "file": "lofts-838ea6e83e97/both_direction.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46cdd2fa-63f3-45e7-a81e-206aa3411857.smb",
+      "record_index": 45,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 166,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 159,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.3112549600262305,
+            -0.9586291272857818,
+            1.0735133710903675
+          ],
+          "reader_raw_point": [
+            -0.31125496002623054,
+            -0.9586291272857821,
+            1.0735133710903675
+          ],
+          "error_raw": 3.376611507232129e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.8584570157012021,
+            0.0,
+            1.6056667469280814
+          ],
+          "reader_raw_point": [
+            0.8584570157012021,
+            0.0,
+            1.6056667469280816
+          ],
+          "error_raw": 2.220446049250313e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.21305206305163124,
+            0.6557233635539496,
+            2.1040067637488096
+          ],
+          "reader_raw_point": [
+            -0.21305206305163116,
+            0.6557233635539494,
+            2.1040067637488096
+          ],
+          "error_raw": 1.3877787807814457e-16
+        }
+      ]
+    },
+    {
+      "file": "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.33aa6335-937f-44ff-a677-65a3ea2c9740.smbh",
+      "record_index": 9,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "grid_start_token": 159,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        31,
+        37
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 152,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -1.0382622058651314,
+            4.153048823460524,
+            0.15440108989384332
+          ],
+          "reader_raw_point": [
+            -1.0382622058651307,
+            4.153048823460522,
+            0.15440108989384327
+          ],
+          "error_raw": 1.897961898453677e-15
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -3.9999953565558757,
+            -0.0001628846679898302,
+            -0.4999999354076974
+          ],
+          "reader_raw_point": [
+            -3.9999953565558757,
+            -0.00016288466798983214,
+            -0.4999999354076974
+          ],
+          "error_raw": 1.951563910473908e-18
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.8176796229073741,
+            -3.270718491629499,
+            0.15450278905259693
+          ],
+          "reader_raw_point": [
+            -0.817679622907374,
+            -3.2707184916294985,
+            0.1545027890525969
+          ],
+          "error_raw": 4.585973723508303e-16
+        }
+      ]
+    },
+    {
+      "file": "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.cc0e173c-4b68-42d3-b62a-448a58dad988.smb",
+      "record_index": 43,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "grid_start_token": 159,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        31,
+        37
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 152,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -1.0382622058651314,
+            4.153048823460524,
+            0.15440108989384332
+          ],
+          "reader_raw_point": [
+            -1.0382622058651307,
+            4.153048823460522,
+            0.15440108989384327
+          ],
+          "error_raw": 1.897961898453677e-15
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -3.9999953565558757,
+            -0.0001628846679898302,
+            -0.4999999354076974
+          ],
+          "reader_raw_point": [
+            -3.9999953565558757,
+            -0.00016288466798983214,
+            -0.4999999354076974
+          ],
+          "error_raw": 1.951563910473908e-18
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.8176796229073741,
+            -3.270718491629499,
+            0.15450278905259693
+          ],
+          "reader_raw_point": [
+            -0.817679622907374,
+            -3.2707184916294985,
+            0.1545027890525969
+          ],
+          "error_raw": 4.585973723508303e-16
+        }
+      ]
+    },
+    {
+      "file": "lofts-838ea6e83e97/start_direction.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2394c3ef-74a0-4582-b800-9ce6fd29d7e5.smbh",
+      "record_index": 18,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 166,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 159,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.33948337467784667,
+            -1.0592226478931996,
+            1.1332511563723868
+          ],
+          "reader_raw_point": [
+            -0.33948337467784667,
+            -1.0592226478931999,
+            1.1332511563723866
+          ],
+          "error_raw": 3.1401849173675503e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            1.0717767040439172,
+            0.0,
+            1.7241940986781195
+          ],
+          "reader_raw_point": [
+            1.0717767040439172,
+            0.0,
+            1.7241940986781195
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.27891836390540237,
+            0.8904415783045909,
+            2.243394929406854
+          ],
+          "reader_raw_point": [
+            -0.27891836390540237,
+            0.8904415783045909,
+            2.243394929406854
+          ],
+          "error_raw": 0.0
+        }
+      ]
+    },
+    {
+      "file": "lofts-838ea6e83e97/start_direction.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.37994eeb-d006-457b-a3cf-9daf10f86479.smb",
+      "record_index": 45,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 166,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 159,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.33948337467784667,
+            -1.0592226478931996,
+            1.1332511563723868
+          ],
+          "reader_raw_point": [
+            -0.33948337467784667,
+            -1.0592226478931999,
+            1.1332511563723866
+          ],
+          "error_raw": 3.1401849173675503e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            1.0717767040439172,
+            0.0,
+            1.7241940986781195
+          ],
+          "reader_raw_point": [
+            1.0717767040439172,
+            0.0,
+            1.7241940986781195
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.27891836390540237,
+            0.8904415783045909,
+            2.243394929406854
+          ],
+          "reader_raw_point": [
+            -0.27891836390540237,
+            0.8904415783045909,
+            2.243394929406854
+          ],
+          "error_raw": 0.0
+        }
+      ]
+    },
+    {
+      "file": "lofts-838ea6e83e97/end_direction.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7850f30c-499c-41f6-bdaf-22d00cb6ed40.smb",
+      "record_index": 45,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 166,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 159,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.23554826455163372,
+            -0.7033843663441877,
+            0.856442584731571
+          ],
+          "reader_raw_point": [
+            -0.23554826455163375,
+            -0.7033843663441878,
+            0.8564425847315711
+          ],
+          "error_raw": 1.594436429147036e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.6274791371796746,
+            0.0,
+            1.421082744922302
+          ],
+          "reader_raw_point": [
+            0.6274791371796746,
+            0.0,
+            1.421082744922302
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.18060633641966115,
+            0.5463327517218377,
+            2.010976426737897
+          ],
+          "reader_raw_point": [
+            -0.1806063364196611,
+            0.5463327517218375,
+            2.010976426737896
+          ],
+          "error_raw": 9.171947447016606e-16
+        }
+      ]
+    },
+    {
+      "file": "lofts-838ea6e83e97/end_direction.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c056323-51a9-4496-a31c-a436de835092.smbh",
+      "record_index": 18,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 166,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 159,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.23554826455163372,
+            -0.7033843663441877,
+            0.856442584731571
+          ],
+          "reader_raw_point": [
+            -0.23554826455163375,
+            -0.7033843663441878,
+            0.8564425847315711
+          ],
+          "error_raw": 1.594436429147036e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.6274791371796746,
+            0.0,
+            1.421082744922302
+          ],
+          "reader_raw_point": [
+            0.6274791371796746,
+            0.0,
+            1.421082744922302
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.18060633641966115,
+            0.5463327517218377,
+            2.010976426737897
+          ],
+          "reader_raw_point": [
+            -0.1806063364196611,
+            0.5463327517218375,
+            2.010976426737896
+          ],
+          "error_raw": 9.171947447016606e-16
+        }
+      ]
+    },
+    {
+      "file": "loftguides-265bcb9af34a/closure_closed_four.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dcbf4aea-1380-43ad-98ba-73fb133aac46.smb",
+      "record_index": 43,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "grid_start_token": 159,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        31,
+        37
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 152,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -1.0382622058651314,
+            4.153048823460524,
+            0.15440108989384332
+          ],
+          "reader_raw_point": [
+            -1.0382622058651307,
+            4.153048823460522,
+            0.15440108989384327
+          ],
+          "error_raw": 1.897961898453677e-15
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -3.9999953565558757,
+            -0.0001628846679898302,
+            -0.4999999354076974
+          ],
+          "reader_raw_point": [
+            -3.9999953565558757,
+            -0.00016288466798983214,
+            -0.4999999354076974
+          ],
+          "error_raw": 1.951563910473908e-18
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.8176796229073741,
+            -3.270718491629499,
+            0.15450278905259693
+          ],
+          "reader_raw_point": [
+            -0.817679622907374,
+            -3.2707184916294985,
+            0.1545027890525969
+          ],
+          "error_raw": 4.585973723508303e-16
+        }
+      ]
+    },
+    {
+      "file": "loftguides-265bcb9af34a/closure_closed_four.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.47c60f73-5616-4c29-a53f-f0aef09585ef.smbh",
+      "record_index": 9,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "grid_start_token": 159,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        31,
+        37
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 152,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -1.0382622058651314,
+            4.153048823460524,
+            0.15440108989384332
+          ],
+          "reader_raw_point": [
+            -1.0382622058651307,
+            4.153048823460522,
+            0.15440108989384327
+          ],
+          "error_raw": 1.897961898453677e-15
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -3.9999953565558757,
+            -0.0001628846679898302,
+            -0.4999999354076974
+          ],
+          "reader_raw_point": [
+            -3.9999953565558757,
+            -0.00016288466798983214,
+            -0.4999999354076974
+          ],
+          "error_raw": 1.951563910473908e-18
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.8176796229073741,
+            -3.270718491629499,
+            0.15450278905259693
+          ],
+          "reader_raw_point": [
+            -0.817679622907374,
+            -3.2707184916294985,
+            0.1545027890525969
+          ],
+          "error_raw": 4.585973723508303e-16
+        }
+      ]
+    },
+    {
+      "file": "lofts-03b4a6f1ce2f/centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2ec8122-563c-47cf-968b-14496c44119c.smbh",
+      "record_index": 18,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 92,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2717475514253628,
+            -0.8364870847114805,
+            0.8999999999999995
+          ],
+          "reader_raw_point": [
+            -0.2717475514253627,
+            -0.8364870847114805,
+            0.8999999999999995
+          ],
+          "error_raw": 5.551115123125783e-17
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.7999995661915486,
+            -6.825942314004568e-08,
+            1.4999999999999991
+          ],
+          "reader_raw_point": [
+            0.7999995661915482,
+            -6.825942313934256e-08,
+            1.4999999999999991
+          ],
+          "error_raw": 3.330676495396644e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.22248364171037688,
+            0.6847285232335442,
+            2.0999999999999988
+          ],
+          "reader_raw_point": [
+            -0.22248364171037693,
+            0.6847285232335443,
+            2.0999999999999988
+          ],
+          "error_raw": 1.2412670766236366e-16
+        }
+      ]
+    },
+    {
+      "file": "lofts-03b4a6f1ce2f/centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.22eccd34-b570-4a79-90eb-0023728adc78.smb",
+      "record_index": 45,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 92,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.2717475514253628,
+            -0.8364870847114805,
+            0.8999999999999995
+          ],
+          "reader_raw_point": [
+            -0.2717475514253627,
+            -0.8364870847114805,
+            0.8999999999999995
+          ],
+          "error_raw": 5.551115123125783e-17
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.7999995661915486,
+            -6.825942314004568e-08,
+            1.4999999999999991
+          ],
+          "reader_raw_point": [
+            0.7999995661915482,
+            -6.825942313934256e-08,
+            1.4999999999999991
+          ],
+          "error_raw": 3.330676495396644e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.22248364171037688,
+            0.6847285232335442,
+            2.0999999999999988
+          ],
+          "reader_raw_point": [
+            -0.22248364171037693,
+            0.6847285232335443,
+            2.0999999999999988
+          ],
+          "error_raw": 1.2412670766236366e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/tangent_end_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.aa1fd46b-8b79-460f-a30c-ee035a2b4b44.smbh",
+      "record_index": 13,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        2
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.21626021773609092,
+            -0.6655564376736044,
+            1.5299999999999998
+          ],
+          "reader_raw_point": [
+            -0.21626021773609103,
+            -0.6655564376736044,
+            1.5299999999999998
+          ],
+          "error_raw": 1.1102230246251565e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.5,
+            0.0,
+            2.25
+          ],
+          "reader_raw_point": [
+            0.5,
+            0.0,
+            2.25
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.09269824632744329,
+            0.28530220910583914,
+            2.73
+          ],
+          "reader_raw_point": [
+            -0.09269824632744325,
+            0.28530220910583914,
+            2.7299999999999995
+          ],
+          "error_raw": 4.460365043975677e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/tangent_end_weight1.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2db7b6a7-7683-4809-94cf-7431c9b46c05.smb",
+      "record_index": 23,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        2
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.21626021773609092,
+            -0.6655564376736044,
+            1.5299999999999998
+          ],
+          "reader_raw_point": [
+            -0.21626021773609103,
+            -0.6655564376736044,
+            1.5299999999999998
+          ],
+          "error_raw": 1.1102230246251565e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.5,
+            0.0,
+            2.25
+          ],
+          "reader_raw_point": [
+            0.5,
+            0.0,
+            2.25
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.09269824632744329,
+            0.28530220910583914,
+            2.73
+          ],
+          "reader_raw_point": [
+            -0.09269824632744325,
+            0.28530220910583914,
+            2.7299999999999995
+          ],
+          "error_raw": 4.460365043975677e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/tangent_end_weight2.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.eed66366-3d26-4b7b-819f-0bbede421953.smbh",
+      "record_index": 13,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        2
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.28112258138186336,
+            -0.865205722457359,
+            1.5299999999999998
+          ],
+          "reader_raw_point": [
+            -0.2811225813818634,
+            -0.8652057224573593,
+            1.5299999999999998
+          ],
+          "error_raw": 2.2887833992611187e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.75,
+            0.0,
+            2.25
+          ],
+          "reader_raw_point": [
+            0.75,
+            0.0,
+            2.25
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.15757850723897251,
+            0.4850040058753655,
+            2.73
+          ],
+          "reader_raw_point": [
+            -0.15757850723897246,
+            0.48500400587536546,
+            2.7299999999999995
+          ],
+          "error_raw": 4.509747244882934e-16
+        }
+      ]
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/tangent_end_weight2.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8c7b62ca-9c6b-4852-8db3-7f7f1ec6d10c.smb",
+      "record_index": 23,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        2
+      ],
+      "grid_start_token": 214,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        4
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 207,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 2,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            -0.28112258138186336,
+            -0.865205722457359,
+            1.5299999999999998
+          ],
+          "reader_raw_point": [
+            -0.2811225813818634,
+            -0.8652057224573593,
+            1.5299999999999998
+          ],
+          "error_raw": 2.2887833992611187e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            0.75,
+            0.0,
+            2.25
+          ],
+          "reader_raw_point": [
+            0.75,
+            0.0,
+            2.25
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            -0.15757850723897251,
+            0.4850040058753655,
+            2.73
+          ],
+          "reader_raw_point": [
+            -0.15757850723897246,
+            0.48500400587536546,
+            2.7299999999999995
+          ],
+          "error_raw": 4.509747244882934e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.878357e8-9d52-4397-ad94-ea625a55a6b9.smb",
+      "record_index": 46,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        28,
+        25
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 238,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 1,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "reader_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            3.096012178195868,
+            1.712996845279992e-08,
+            1.8369173103773415
+          ],
+          "reader_raw_point": [
+            3.0960121781958683,
+            1.7129968452748922e-08,
+            1.8369173103773415
+          ],
+          "error_raw": 4.440892127782227e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            2.399875179087174,
+            -0.3798400238965384,
+            3.3528299700506063
+          ],
+          "reader_raw_point": [
+            2.399875179087174,
+            -0.3798400238965383,
+            3.352829970050607
+          ],
+          "error_raw": 4.577566798522237e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9f2e4887-6d0e-46e3-93eb-4dc837383fe5.smbh",
+      "record_index": 18,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        28,
+        25
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 238,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 1,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "reader_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            3.096012178195868,
+            1.712996845279992e-08,
+            1.8369173103773415
+          ],
+          "reader_raw_point": [
+            3.0960121781958683,
+            1.7129968452748922e-08,
+            1.8369173103773415
+          ],
+          "error_raw": 4.440892127782227e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            2.399875179087174,
+            -0.3798400238965384,
+            3.3528299700506063
+          ],
+          "reader_raw_point": [
+            2.399875179087174,
+            -0.3798400238965383,
+            3.352829970050607
+          ],
+          "error_raw": 4.577566798522237e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8365b2b2-ff79-40a3-a63c-83757a8de310.smbh",
+      "record_index": 18,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        28,
+        28
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 259,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            4.382124233419796,
+            -0.12352087191507467,
+            -0.09455515467357585
+          ],
+          "reader_raw_point": [
+            4.3821242334197965,
+            -0.12352087191507466,
+            -0.09455515467357589
+          ],
+          "error_raw": 8.892619609346838e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            3.5728566407476032,
+            0.39999994832615793,
+            1.513116601112985
+          ],
+          "reader_raw_point": [
+            3.572856640747603,
+            0.3999999483261579,
+            1.513116601112985
+          ],
+          "error_raw": 4.47545209131181e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            2.1307766856007238,
+            -0.1234392657255042,
+            2.5779044733824863
+          ],
+          "reader_raw_point": [
+            2.1307766856007238,
+            -0.1234392657255042,
+            2.5779044733824863
+          ],
+          "error_raw": 0.0
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f8b4ba04-eaad-4f8f-af5f-00d6e1dcb45b.smb",
+      "record_index": 46,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        28,
+        28
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 259,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 0,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            4.382124233419796,
+            -0.12352087191507467,
+            -0.09455515467357585
+          ],
+          "reader_raw_point": [
+            4.3821242334197965,
+            -0.12352087191507466,
+            -0.09455515467357589
+          ],
+          "error_raw": 8.892619609346838e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            3.5728566407476032,
+            0.39999994832615793,
+            1.513116601112985
+          ],
+          "reader_raw_point": [
+            3.572856640747603,
+            0.3999999483261579,
+            1.513116601112985
+          ],
+          "error_raw": 4.47545209131181e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            2.1307766856007238,
+            -0.1234392657255042,
+            2.5779044733824863
+          ],
+          "reader_raw_point": [
+            2.1307766856007238,
+            -0.1234392657255042,
+            2.5779044733824863
+          ],
+          "error_raw": 0.0
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.aa2b7205-c25d-4838-9a74-4471f3574047.smb",
+      "record_index": 46,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        28,
+        25
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 238,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 1,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "reader_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            3.096012178195868,
+            1.712996845279992e-08,
+            1.8369173103773415
+          ],
+          "reader_raw_point": [
+            3.0960121781958683,
+            1.7129968452748922e-08,
+            1.8369173103773415
+          ],
+          "error_raw": 4.440892127782227e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            2.399875179087174,
+            -0.3798400238965384,
+            3.3528299700506063
+          ],
+          "reader_raw_point": [
+            2.399875179087174,
+            -0.3798400238965383,
+            3.352829970050607
+          ],
+          "error_raw": 4.577566798522237e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0c158dea-ab35-465e-8663-1711f71f27a8.smbh",
+      "record_index": 18,
+      "procedural_subtype": "cl_loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 8,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        28,
+        25
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 1,
+      "opaque_post_cache_token_count": 238,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 1,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "reader_raw_point": [
+            4.092713559411356,
+            0.38021450298320936,
+            0.5013378451485473
+          ],
+          "error_raw": 0.0
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            3.096012178195868,
+            1.712996845279992e-08,
+            1.8369173103773415
+          ],
+          "reader_raw_point": [
+            3.0960121781958683,
+            1.7129968452748922e-08,
+            1.8369173103773415
+          ],
+          "error_raw": 4.440892127782227e-16
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            2.399875179087174,
+            -0.3798400238965384,
+            3.3528299700506063
+          ],
+          "reader_raw_point": [
+            2.399875179087174,
+            -0.3798400238965383,
+            3.352829970050607
+          ],
+          "error_raw": 4.577566798522237e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d7e7e11f-de01-4f69-bc3d-dd55b2e4beca.smbh",
+      "record_index": 18,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 392,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        10
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 385,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            0.36847082667206604,
+            0.8481586399645349,
+            0.9158922628208507
+          ],
+          "reader_raw_point": [
+            0.3684708266720661,
+            0.848158639964535,
+            0.9158922628208509
+          ],
+          "error_raw": 2.5438405243138006e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -0.6266443847148134,
+            6.825942325355844e-08,
+            1.525554280873392
+          ],
+          "reader_raw_point": [
+            -0.6266443847148133,
+            6.82594232542292e-08,
+            1.5255542808733906
+          ],
+          "error_raw": 1.3368857237276907e-15
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            0.40173769828916034,
+            -0.6730415680094838,
+            2.1279666837008953
+          ],
+          "reader_raw_point": [
+            0.4017376982891604,
+            -0.6730415680094839,
+            2.127966683700895
+          ],
+          "error_raw": 4.611102534756203e-16
+        }
+      ]
+    },
+    {
+      "file": "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ec1ca2e2-b546-4123-9ebd-e858ac7946cd.smb",
+      "record_index": 45,
+      "procedural_subtype": "loft_spl_sur",
+      "axis_flags": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "grid_start_token": 392,
+      "grid_degrees": [
+        3,
+        3
+      ],
+      "grid_counts": [
+        37,
+        10
+      ],
+      "rational": false,
+      "domain_u": [
+        0.0,
+        1.0
+      ],
+      "domain_v": [
+        0.0,
+        1.0
+      ],
+      "outer_flags": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "stored_outer_u_bounds": [
+        null,
+        null
+      ],
+      "stored_outer_v_bounds": [
+        null,
+        null
+      ],
+      "stored_inner_flags": [],
+      "stored_inner_values": [],
+      "opaque_prefix_token_count": 385,
+      "opaque_post_cache_token_count": 0,
+      "opaque_status": "Counted tensor grid decoded; procedural prefix/centerline-tail fields retained without complete construction semantics",
+      "root_level_one_dimensional_headers_kept_separate": 4,
+      "independent_tensor_checks": [
+        {
+          "u": 0.2,
+          "v": 0.3,
+          "independent_raw_point": [
+            0.36847082667206604,
+            0.8481586399645349,
+            0.9158922628208507
+          ],
+          "reader_raw_point": [
+            0.3684708266720661,
+            0.848158639964535,
+            0.9158922628208509
+          ],
+          "error_raw": 2.5438405243138006e-16
+        },
+        {
+          "u": 0.5,
+          "v": 0.5,
+          "independent_raw_point": [
+            -0.6266443847148134,
+            6.825942325355844e-08,
+            1.525554280873392
+          ],
+          "reader_raw_point": [
+            -0.6266443847148133,
+            6.82594232542292e-08,
+            1.5255542808733906
+          ],
+          "error_raw": 1.3368857237276907e-15
+        },
+        {
+          "u": 0.8,
+          "v": 0.7,
+          "independent_raw_point": [
+            0.40173769828916034,
+            -0.6730415680094838,
+            2.1279666837008953
+          ],
+          "reader_raw_point": [
+            0.4017376982891604,
+            -0.6730415680094839,
+            2.127966683700895
+          ],
+          "error_raw": 4.611102534756203e-16
+        }
+      ]
+    }
+  ],
+  "closed_surface_seams": [
+    {
+      "file": "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.33aa6335-937f-44ff-a677-65a3ea2c9740.smbh",
+      "record_index": 9,
+      "actual_api_is_closed": true,
+      "actual_api_is_solid": false,
+      "three_u_boundary_seam_errors_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "three_v_boundary_seam_errors_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scope": "Stored domain boundary coincidence corroborates this closed capture; no periodic extension or API evaluator identity inferred"
+    },
+    {
+      "file": "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.cc0e173c-4b68-42d3-b62a-448a58dad988.smb",
+      "record_index": 43,
+      "actual_api_is_closed": true,
+      "actual_api_is_solid": false,
+      "three_u_boundary_seam_errors_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "three_v_boundary_seam_errors_raw": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scope": "Stored domain boundary coincidence corroborates this closed capture; no periodic extension or API evaluator identity inferred"
+    }
+  ],
+  "old_output_controls": [
+    {
+      "file": "moretools-380212ab6368/LoftThreeSections.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6c02db9b-cfd5-447b-b1a3-d82b5aa7b12d.smbh",
+      "index": 18,
+      "sha256": "7990268eedf02ff8e50431366dfbcb00038a19feb8cb553179572eb4cbf03f64",
+      "exact_previous_dictionary_unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+      "index": 11,
+      "sha256": "77d79818f1a04079e17d7796f6005032d3b74d88b946b4690acf74144bf48682",
+      "exact_previous_dictionary_unchanged": true
+    },
+    {
+      "file": "splines-9a18bae21127/splines.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+      "index": 18,
+      "sha256": "af399015765251db012aed77367c4d9f844c8f1ad59204fd8bc3a9b3963e755f",
+      "exact_previous_dictionary_unchanged": true
+    }
+  ],
+  "guards": [
+    {
+      "case": "Ambiguous second root-level tensor header",
+      "rejected": true,
+      "reason": "Surface wrapper lacks one unambiguous root-level tensor-grid header"
+    },
+    {
+      "case": "Compact knot multiplicity exceeds degree",
+      "rejected": true,
+      "reason": "Unsupported compact knot multiplicity"
+    },
+    {
+      "case": "Non-increasing compact knots",
+      "rejected": true,
+      "reason": "Compact knot values are not strictly increasing"
+    },
+    {
+      "case": "Nonfinite grid coordinate",
+      "rejected": true,
+      "reason": "Nonfinite procedural spline cache scalar"
+    },
+    {
+      "case": "Missing final outer bound field",
+      "rejected": true,
+      "reason": "list index out of range"
+    },
+    {
+      "case": "Unsupported axis-flag combination",
+      "rejected": true,
+      "reason": "Unobserved surface-grid variant axis flags"
+    }
+  ],
+  "limitations": [
+    "Procedural loft prefix and centerline-loft post-cache fields remain explicitly opaque, bounded source tokens. Passing grid validation does not decode their construction semantics.",
+    "All evaluations remain inside each stored clamped U/V domain. Literal axis flags are not interpreted as periodic extension or parameter remapping rules.",
+    "Independent evaluator agreement validates the explicit tensor cache; no exact loft geometry or global approximation-error bound is claimed.",
+    "The API isClosed getter corroborates one closed-loft capture. Seam coincidence is stored-cache evidence, not an API surface-evaluator comparison.",
+    "Finite exact-surface optional bounds remain literal stored fields; trim topology and active/final lifecycle are not inferred.",
+    "Body/component placement, assembly solving, exact procedural regeneration and a native writer remain outside this report."
+  ],
+  "summary": {
+    "target_records": 46,
+    "saved_archives": 23,
+    "loft_spl_sur": 34,
+    "cl_loft_spl_sur": 10,
+    "finite_bound_exact_spl_sur": 2,
+    "independent_tensor_evaluations": 138,
+    "maximum_independent_tensor_error_raw": 1.900395703982448e-15,
+    "closed_capture_cache_records": 2,
+    "seam_checks": 12,
+    "maximum_sampled_seam_error_raw": 0.0,
+    "opaque_prefix_records": 46,
+    "opaque_centerline_tail_records": 10,
+    "one_dimensional_headers_disambiguated": 80,
+    "old_outputs_unchanged": 3,
+    "malformed_guards": 6
+  }
+}

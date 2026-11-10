@@ -1,0 +1,152 @@
+{
+  "scope": "Actual repaired lifecycle captures and external process observations; not a claim that all Fusion crashes are fixed.",
+  "user_authorization": "Can you fix the crashes, and continue onusing fusion",
+  "observed_utc": "2026-10-21T16:59:26.911100+00:00",
+  "runs": [
+    {
+      "capture_directory": "surfacetrimtools-560510587441",
+      "terminal_status": "Complete",
+      "errors": [],
+      "samples": [
+        {
+          "case": "sheet_face",
+          "archive": "surfacetrimtools-560510587441/sheet_face.f3d",
+          "archive_sha256": "1b7772d7eadfd5736bde1f70d8662b13e7295a5ab63a32aac5b6b5982c927ef9",
+          "health_state": 0,
+          "rolled_bRepCells_read": true,
+          "rolled_cell_count": 3,
+          "trim_wrappers_released_before_move_to_end": true,
+          "post_release_compute_returned": true,
+          "owned_close_returned": true,
+          "verified_cleanup_order": [
+            "trim_wrapper_release_begin",
+            "trim_wrapper_release_returned",
+            "owned_case_capture_frame_returned",
+            "owned_case_frame_gc_returned",
+            "post_wrapper_release_compute_begin",
+            "local_export_complete",
+            "finalize_frame_gc_returned",
+            "owned_document_close_begin",
+            "owned_document_close_returned"
+          ],
+          "lifecycle_release_marker_before": 4,
+          "lifecycle_release_marker_after": 4
+        }
+      ],
+      "source_evidence_sha256": {
+        "surfacetrimtools-560510587441/ground_truth.json": "cb7d465417ab08c1ea03ad8e2e41bf3c5b14faf7ccfc5c328433a037a9afd736",
+        "surfacetrimtools-560510587441/journal.jsonl": "e0bd4d51d5f83c6c2caa5589bcb6157b06d37a927ba13686a75e1c2ccb61980f",
+        "surfacetrimtools-560510587441/progress.json": "9df008033d35fa86e2ef89d3319b7e2f79e335e7bd1f1d2651bffd872a6e03ff",
+        "surfacetrimtools-560510587441/complete.txt": "925b8de1eb26ca3efd0e0615fa62ddee072035148fa274c965f59c5bc26299b4",
+        "surfacetrimtools-560510587441/executed-generator-source.txt": "f5e0eb09a4295e3f2bf0d9c086638f315992941e5e7a71d07cb6e74f026f90dc",
+        "surfacetrimtools-560510587441/executed-entrypoint-source.txt": "a5782ad1cee6ef81aa1f13cf48e3afea27725dd937499bd3d03ae7f7cc694553",
+        "surfacetrimtools-560510587441/executed-sdk-surface.txt": "2a889ec27dea5b23493204e3101efd26c35942a56611d2fce91e7a6ffa09a11d"
+      }
+    },
+    {
+      "capture_directory": "surfacetrimtools-ca26d21e7ad9",
+      "terminal_status": "Complete",
+      "errors": [],
+      "samples": [
+        {
+          "case": "sheet_body",
+          "archive": "surfacetrimtools-ca26d21e7ad9/sheet_body.f3d",
+          "archive_sha256": "5bd68fdb492db06c40db01f0024fd9b7c4eb814b929bb0f6d70bb754e8037d11",
+          "health_state": 0,
+          "rolled_bRepCells_read": true,
+          "rolled_cell_count": 2,
+          "trim_wrappers_released_before_move_to_end": true,
+          "post_release_compute_returned": true,
+          "owned_close_returned": true,
+          "verified_cleanup_order": [
+            "trim_wrapper_release_begin",
+            "trim_wrapper_release_returned",
+            "owned_case_capture_frame_returned",
+            "owned_case_frame_gc_returned",
+            "post_wrapper_release_compute_begin",
+            "local_export_complete",
+            "finalize_frame_gc_returned",
+            "owned_document_close_begin",
+            "owned_document_close_returned"
+          ],
+          "lifecycle_release_marker_before": 4,
+          "lifecycle_release_marker_after": 4
+        },
+        {
+          "case": "sketch_line",
+          "archive": "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d",
+          "archive_sha256": "9733447bc1fdde13f80a22a89d9a50e009a7ff1a2a8064a8f58d11040d917c32",
+          "health_state": 0,
+          "rolled_bRepCells_read": true,
+          "rolled_cell_count": 2,
+          "trim_wrappers_released_before_move_to_end": true,
+          "post_release_compute_returned": true,
+          "owned_close_returned": true,
+          "verified_cleanup_order": [
+            "trim_wrapper_release_begin",
+            "trim_wrapper_release_returned",
+            "owned_case_capture_frame_returned",
+            "owned_case_frame_gc_returned",
+            "post_wrapper_release_compute_begin",
+            "local_export_complete",
+            "finalize_frame_gc_returned",
+            "owned_document_close_begin",
+            "owned_document_close_returned"
+          ],
+          "lifecycle_release_marker_before": 3,
+          "lifecycle_release_marker_after": 3
+        }
+      ],
+      "source_evidence_sha256": {
+        "surfacetrimtools-ca26d21e7ad9/ground_truth.json": "2f2386d8858f0ecee5e1140f6c25cd2f753246afad170fdd1aba1b811610053f",
+        "surfacetrimtools-ca26d21e7ad9/journal.jsonl": "85b31246d5d3662ca393060d25c289f305f9326d57071af9c66d96c9e2d94695",
+        "surfacetrimtools-ca26d21e7ad9/progress.json": "09399cdf71eaa1b1dcf6794d3851598c508729dcf33b775a11e7227b2a01800c",
+        "surfacetrimtools-ca26d21e7ad9/complete.txt": "925b8de1eb26ca3efd0e0615fa62ddee072035148fa274c965f59c5bc26299b4",
+        "surfacetrimtools-ca26d21e7ad9/executed-generator-source.txt": "f5e0eb09a4295e3f2bf0d9c086638f315992941e5e7a71d07cb6e74f026f90dc",
+        "surfacetrimtools-ca26d21e7ad9/executed-entrypoint-source.txt": "032493682831598f112ebef768c61878109ac9a81cf2ca8349e99303058cbca8",
+        "surfacetrimtools-ca26d21e7ad9/executed-sdk-surface.txt": "2a889ec27dea5b23493204e3101efd26c35942a56611d2fce91e7a6ffa09a11d"
+      }
+    }
+  ],
+  "summary": {
+    "completed_batches": 2,
+    "healthy_exports": 3,
+    "successful_owned_closes": 3,
+    "rolled_cell_reads": 3,
+    "case_errors": 0
+  },
+  "external_observations": {
+    "dispatch_process_id": 5619,
+    "process_alive_after_single_case": true,
+    "process_alive_after_multi_case": true,
+    "same_process_alive_after_all_captures": true,
+    "accessible_main_window_count": 1,
+    "new_local_CER_crash_archives_after_validation_start": [],
+    "automatic_restart_or_forced_termination": false
+  },
+  "source_sha256": {
+    "GenerateSurfaceTrimToolContrasts.py": "f5e0eb09a4295e3f2bf0d9c086638f315992941e5e7a71d07cb6e74f026f90dc",
+    "GenerateSurfaceTrimLifecycleValidation.py": "a5782ad1cee6ef81aa1f13cf48e3afea27725dd937499bd3d03ae7f7cc694553",
+    "GenerateSurfaceTrimRemainingContrasts.py": "032493682831598f112ebef768c61878109ac9a81cf2ca8349e99303058cbca8",
+    "dispatch_fusion_script.py": "b2c71f8ce20bde76cba6c8ffe1ba6796bd81e7f0484c848eb0bdb3ba670e4496"
+  },
+  "offline_dispatcher_checks": {
+    "checks": [
+      "broad capture denied",
+      "exact reviewed validation admitted",
+      "missing user authorization denied",
+      "changed generator denied",
+      "wrong generator denied",
+      "changed helper denied",
+      "unbounded dependencies denied",
+      "parent dependency denied"
+    ],
+    "actual_native_UI_or_event_calls": 0,
+    "dispatcher_sha256": "b2c71f8ce20bde76cba6c8ffe1ba6796bd81e7f0484c848eb0bdb3ba670e4496"
+  },
+  "limitations": [
+    "Three actual cases on Fusion2705.1.30 validate this capture cleanup path; unrelated application crashes are not ruled out.",
+    "Mock resource-lifetime checks are independent from the native capture proof.",
+    "The new SketchLine export is evidence for later decoding work, not a runtime support claim."
+  ]
+}

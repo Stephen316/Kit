@@ -1,0 +1,111 @@
+"""Owned circular symmetric suppression ID contrasts, without ordinal guesses.
+
+API element IDs are captured before the setter and read back independently.
+Transforms are literal getter evidence; prior circular getter discrepancies are
+not corrected or used to identify elements by geometry.
+"""
+import hashlib
+import json
+import math
+from pathlib import Path
+import traceback
+import uuid
+
+import adsk.core
+import adsk.fusion
+
+CONFIGS={
+    'quantity5_suppress_id1':{'quantity':5,'suppressed_ids':[1]},
+    'quantity5_suppress_id3':{'quantity':5,'suppressed_ids':[3]},
+    'quantity4_suppress_id2':{'quantity':4,'suppressed_ids':[2]},
+}
+CASES=tuple(CONFIGS)
+
+
+def run(context):
+    app=adsk.core.Application.get();root=Path(__file__).resolve().parent
+    output=root/('circularsymsuppression-'+uuid.uuid4().hex[:12]);output.mkdir()
+    source=Path(__file__).read_bytes();(output/'executed-generator-source.txt').write_bytes(source)
+    cases=context.get('cases',CASES) if isinstance(context,dict) else CASES
+    if not isinstance(cases,(tuple,list)) or any(c not in CONFIGS for c in cases):raise ValueError('Unknown symmetric circular suppression case')
+    truth={'status':'running','fusion_version':app.version,'samples':[],'errors':[],
+        'executed_generator_sha256':hashlib.sha256(source).hexdigest(),
+        'SDK_scope':'CircularPatternFeature.suppressedElementsIds setter requires rollback immediately before feature; PatternElement.id/isSuppressed/parentFeature are actual getters.',
+        'identity_scope':'No native element ordinal/API ID mapping or circular placement sign assumed. API transforms retained literally; geometry is not used to choose IDs.'}
+    def save(event):
+        (output/'ground_truth.json').write_text(json.dumps(truth,indent=2)+'\n')
+        (output/'progress.json').write_text(json.dumps({'status':truth['status'],'samples':[{'case':s['case'],'status':s['status']} for s in truth['samples']],'errors':len(truth['errors'])},indent=2)+'\n')
+        with (output/'journal.jsonl').open('a') as handle:handle.write(json.dumps(event)+'\n')
+    save({'event':'started','cases':list(cases)})
+    for case in cases:
+        sample={'case':case,'file':case+'.f3d','requested':{**CONFIGS[case],'is_symmetric':True,'total_angle_radians':math.pi},'getter_errors':[],'status':'creating_document'}
+        truth['samples'].append(sample);document=None;design=None;save({'event':'case_started','case':case})
+        try:
+            document=app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+            design=adsk.fusion.Design.cast(document.products.itemByProductType('DesignProductType'))
+            design.designType=adsk.fusion.DesignTypes.ParametricDesignType;component=design.rootComponent
+            point=adsk.core.Point3D.create;value=adsk.core.ValueInput.createByReal
+            def read(label,callback):
+                try:return callback()
+                except Exception:
+                    sample['getter_errors'].append({'field':label,'error':traceback.format_exc()});return {'getter_failed':True}
+            def body_truth(body):
+                return {'entity_type':body.objectType,'name':body.name,'entity_token':read('body.entityToken',lambda:body.entityToken),
+                    'face_count':body.faces.count,'edge_count':body.edges.count,'vertex_count':body.vertices.count,'volume_cm3':body.volume,
+                    'bounds_min_cm':list(body.boundingBox.minPoint.asArray()),'bounds_max_cm':list(body.boundingBox.maxPoint.asArray())}
+            def parameter(p):
+                return {'entity_type':p.objectType,'name':p.name,'role':p.role,'raw_value':p.value,'unit':p.unit,'expression':p.expression,
+                    'created_by':read('parameter.createdBy',lambda:getattr(p.createdBy,'name',None))}
+            def elements(feature,label):
+                result=[]
+                for index in range(feature.patternElements.count):
+                    item=feature.patternElements.item(index)
+                    result.append({'collection_index':index,'entity_type':item.objectType,'id':item.id,'name':item.name,
+                        'is_suppressed':item.isSuppressed,'parent_feature_name':item.parentFeature.name,
+                        'transform':read(label+'.element.transform',lambda:list(item.transform.asArray())),
+                        'generated_face_count':read(label+'.element.faces',lambda:len(item.faces))})
+                return result
+            sketch=component.sketches.add(component.xYConstructionPlane);sketch.name='CircularSymmetricSeedSketch'
+            sketch.sketchCurves.sketchLines.addTwoPointRectangle(point(3.,0.,0.),point(4.,1.,0.))
+            seed=component.features.extrudeFeatures.addSimple(sketch.profiles.item(0),value(1.),adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
+            seed.name='CircularSymmetricSeedExtrude';body=seed.bodies.item(0);body.name='CircularSymmetricSeedBody'
+            sample['source_body_before_pattern']=body_truth(body)
+            entities=adsk.core.ObjectCollection.create();entities.add(body);axis=component.zConstructionAxis
+            inputs=component.features.circularPatternFeatures.createInput(entities,axis)
+            inputs.quantity=value(sample['requested']['quantity']);inputs.totalAngle=value(math.pi);inputs.isSymmetric=True
+            feature=component.features.circularPatternFeatures.add(inputs)
+            if feature is None:raise RuntimeError('Circular pattern add returned null')
+            feature.name='ProbeCircularSymmetricSuppression';design.computeAll()
+            sample['before_suppression']={'suppressed_element_ids':list(feature.suppressedElementsIds),'elements':elements(feature,'before'),
+                'root_bodies':[body_truth(b) for b in component.bRepBodies]}
+            ids=[e['id'] for e in sample['before_suppression']['elements']]
+            if any(i not in ids for i in sample['requested']['suppressed_ids']):raise RuntimeError('Requested ID absent from actual before-set element IDs')
+            feature.timelineObject.rollTo(True)
+            sample['actual_inputs_under_rollback']=[{'entity_type':e.objectType,'name':e.name,'entity_token':read('input.entityToken',lambda entity=e:entity.entityToken)} for e in feature.inputEntities]
+            feature.suppressedElementsIds=sample['requested']['suppressed_ids']
+            sample['setter_readback_under_rollback']=list(feature.suppressedElementsIds)
+            design.timeline.moveToEnd();sample['compute_all_after_suppression_returned']=design.computeAll()
+            sample['settings']={'quantity':feature.quantity.value,'total_angle_radians':feature.totalAngle.value,'is_symmetric':feature.isSymmetric,
+                'suppressed_element_ids':list(feature.suppressedElementsIds),'pattern_entity_type':int(feature.patternEntityType),
+                'pattern_compute_option':int(feature.patternComputeOption),'axis_name':axis.name,
+                'axis_origin_cm':list(axis.geometry.origin.asArray()),'axis_direction':list(axis.geometry.direction.asArray()),
+                'health_state':feature.healthState,'warning':feature.errorOrWarningMessage,
+                'root_body_count':component.bRepBodies.count}
+            sample['after_suppression_elements']=elements(feature,'after')
+            sample['root_bodies_after']=[body_truth(b) for b in component.bRepBodies]
+            sample['parameters']=[parameter(p) for p in component.modelParameters]
+            sample['status']='exporting';save({'event':'exporting','case':case})
+            options=design.exportManager.createFusionArchiveExportOptions(str(output/sample['file']))
+            if not design.exportManager.execute(options):raise RuntimeError('Symmetric circular suppression export failed')
+            sample['status']='exported';save({'event':'exported','case':case})
+        except Exception:
+            sample['status']='error';truth['errors'].append({'case':case,'error':traceback.format_exc()});save({'event':'case_error','case':case})
+        finally:
+            if document is not None:
+                try:
+                    if design is not None:design.timeline.moveToEnd()
+                    sample['close_owned_document_result']=document.close(False)
+                except Exception:sample['getter_errors'].append({'field':'close_owned_document','error':traceback.format_exc()})
+            save({'event':'case_finished','case':case,'status':sample['status']})
+    truth['status']='complete';save({'event':'complete'})
+    (output/'complete.txt').write_text('Symmetric circular suppression contrasts finished; inspect actual evidence/errors.\n')

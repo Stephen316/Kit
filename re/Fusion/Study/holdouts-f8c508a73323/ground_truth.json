@@ -1,0 +1,75 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "independent_depth.f3d",
+      "extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 17.375,
+          "radius_mm": 6.25,
+          "draft_degrees": 0,
+          "reverse": false,
+          "parameter_name": "d1",
+          "api_depth_cm": 1.7375,
+          "expression": "17.375 mm"
+        }
+      ]
+    },
+    {
+      "file": "expression_depth.f3d",
+      "extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 19.25,
+          "radius_mm": 12,
+          "draft_degrees": 0,
+          "reverse": false,
+          "parameter_name": "d2",
+          "api_depth_cm": 1.9250000000000003,
+          "expression": "probeDepth * 2 + 1 mm"
+        }
+      ]
+    },
+    {
+      "file": "two_extrusions.f3d",
+      "extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 43.125,
+          "radius_mm": 4,
+          "draft_degrees": 0,
+          "reverse": false,
+          "parameter_name": "d1",
+          "api_depth_cm": 4.3125,
+          "expression": "43.125 mm"
+        },
+        {
+          "name": "BlindProbe_1",
+          "depth_mm": 5.875,
+          "radius_mm": 3,
+          "draft_degrees": 0,
+          "reverse": true,
+          "parameter_name": "d3",
+          "api_depth_cm": -0.5875,
+          "expression": "-( 5.875 mm )"
+        }
+      ]
+    },
+    {
+      "file": "drafted_extrusion.f3d",
+      "extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 21.25,
+          "radius_mm": 10,
+          "draft_degrees": 5,
+          "reverse": false,
+          "parameter_name": "d1",
+          "api_depth_cm": 2.125,
+          "expression": "21.25 mm"
+        }
+      ]
+    }
+  ]
+}

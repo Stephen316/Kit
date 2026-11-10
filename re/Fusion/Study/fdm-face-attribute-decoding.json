@@ -1,0 +1,2243 @@
+{
+  "scope": "Nineteen observed initial FACE-owned FDM attributes in twelve saved thread/tapped-hole archives; payload framing and independent owner/BODY/axis-cache evidence only",
+  "integration": {
+    "payload_function": "decode_fdm_face_attributes.decode_fdm_face_attribute(record)",
+    "expected_payload_field": "records[].expected_payload",
+    "owner_callsite": "Root generic-tag reader may recognize this other definition only after its strict initial FACE owner and reciprocal chain checks; payload helper itself performs no ownership or feature-ID lookup.",
+    "validation_command": "/usr/bin/python3 validate_fdm_face_attributes.py",
+    "shared_edits_by_this_task": false
+  },
+  "records": [
+    {
+      "file": "tappedholes-409e96788503/cosmetic_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1891a4a3-5dad-4510-9839-21b53403cd7c.smbh",
+      "record_index": 11,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            2.0,
+            1.5,
+            2.0
+          ],
+          [
+            2.0,
+            1.5,
+            0.7999999999999998
+          ],
+          [
+            2.0,
+            1.5,
+            2.0
+          ]
+        ],
+        "stored_terminal_flag": 1,
+        "payload_offset": 1346,
+        "payload_end_offset": 1535,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000043001000000000000040000200000000000040600000000000000046d07000000000000130000000000000040000000000000f83f0000000000000040130000000000000040000000000000f83f989999999999e93f130000000000000040000000000000f83f0000000000000040040100000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 8,
+      "reciprocal_owner_attribute_chain": [
+        11,
+        17
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 8,
+        "owner_attribute_chain": [
+          11,
+          17
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 14,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 1.2000000000000002,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 23,
+            "edge_index": 33,
+            "curve_index": 48,
+            "raw_center": [
+              2.0,
+              1.5,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 31,
+            "edge_index": 34,
+            "curve_index": 50,
+            "raw_center": [
+              2.0,
+              1.5,
+              0.7999999999999999
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          1.1102230246251565e-16
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "tappedholes-409e96788503/cosmetic_partial.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f430a677-d121-497e-b11b-792eee686f60.smbh",
+      "record_index": 11,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            2.0,
+            1.5,
+            2.0
+          ],
+          [
+            2.0,
+            1.5,
+            0.7999999999999998
+          ],
+          [
+            2.0,
+            1.5,
+            2.0
+          ]
+        ],
+        "stored_terminal_flag": 1,
+        "payload_offset": 1346,
+        "payload_end_offset": 1535,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000043001000000000000040000200000000000040600000000000000046d07000000000000130000000000000040000000000000f83f0000000000000040130000000000000040000000000000f83f989999999999e93f130000000000000040000000000000f83f0000000000000040040100000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 8,
+      "reciprocal_owner_attribute_chain": [
+        11,
+        17
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 8,
+        "owner_attribute_chain": [
+          11,
+          17
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 0.7000000000000001,
+        "thread_offset_cm": 0.1
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 14,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 1.2000000000000002,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 23,
+            "edge_index": 33,
+            "curve_index": 48,
+            "raw_center": [
+              2.0,
+              1.5,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 31,
+            "edge_index": 34,
+            "curve_index": 50,
+            "raw_center": [
+              2.0,
+              1.5,
+              0.7999999999999999
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          1.1102230246251565e-16
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6df07f-81b0-495a-ba58-9dd21c84b060.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 841,
+        "payload_end_offset": 942,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000043001000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0
+      }
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6df07f-81b0-495a-ba58-9dd21c84b060.smbh",
+      "record_index": 12,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 1481,
+        "payload_end_offset": 1582,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000043001000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 8,
+      "reciprocal_owner_attribute_chain": [
+        12,
+        17
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 8,
+        "owner_attribute_chain": [
+          12,
+          17
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0
+      }
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6df07f-81b0-495a-ba58-9dd21c84b060.smbh",
+      "record_index": 18,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 2265,
+        "payload_end_offset": 2366,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000043001000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 13,
+      "reciprocal_owner_attribute_chain": [
+        18,
+        27
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 13,
+        "owner_attribute_chain": [
+          18,
+          27
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0
+      }
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6df07f-81b0-495a-ba58-9dd21c84b060.smbh",
+      "record_index": 28,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 3662,
+        "payload_end_offset": 3763,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000043001000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 19,
+      "reciprocal_owner_attribute_chain": [
+        28,
+        46
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 19,
+        "owner_attribute_chain": [
+          28,
+          46
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0
+      }
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6df07f-81b0-495a-ba58-9dd21c84b060.smbh",
+      "record_index": 70,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 304,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            2.0,
+            1.5,
+            2.0
+          ],
+          [
+            2.0,
+            1.5,
+            0.7999999999999998
+          ],
+          [
+            2.0,
+            1.5,
+            2.0
+          ]
+        ],
+        "stored_terminal_flag": 1,
+        "payload_offset": 10550,
+        "payload_end_offset": 10739,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000043001000000000000040000200000000000040600000000000000046d07000000000000130000000000000040000000000000f83f0000000000000040130000000000000040000000000000f83f989999999999e93f130000000000000040000000000000f83f0000000000000040040100000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 29,
+      "reciprocal_owner_attribute_chain": [
+        47,
+        70
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 275,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 29,
+        "owner_attribute_chain": [
+          47,
+          70
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 304,
+        "actual_native_thread_object_ids": [
+          321
+        ],
+        "actual_native_hole_object_ids": [
+          282
+        ],
+        "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": false,
+        "is_internal": true,
+        "is_right_handed": null,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 50,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 1.2000000000000002,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 25,
+            "edge_index": 26,
+            "curve_index": 45,
+            "raw_center": [
+              2.0,
+              1.5,
+              1.0
+            ]
+          },
+          {
+            "coedge_index": 65,
+            "edge_index": 91,
+            "curve_index": 114,
+            "raw_center": [
+              2.0,
+              1.5,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 75,
+            "edge_index": 103,
+            "curve_index": 124,
+            "raw_center": [
+              2.0,
+              1.5,
+              0.7999999999999999
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          1.1102230246251565e-16
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-6b6a0a9b4a69/partial_high.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6ba43899-473c-4e7e-932a-832f35cdbec9.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": false,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": 0.7000000000000001,
+        "stored_offset_cm": 0.2,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-6b6a0a9b4a69/partial_low.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6efa38b9-99cb-4f23-b62c-e3c2d74aac81.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": false,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": 0.7000000000000001,
+        "stored_offset_cm": 0.2,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-9574579d310b/left_handed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.69129bb4-f8c4-446c-b720-0b89fb586cd3.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": false,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/cosmetic_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.471a01b0-df17-4d63-9a20-153feae4d235.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/internal.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.00b29012-222f-44de-ba11-10f208adc1a9.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 268,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          275
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": true,
+        "is_internal": true,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 26,
+            "curve_index": 38,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 24,
+            "edge_index": 36,
+            "curve_index": 47,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/left_handed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b569d3e5-19e9-47f6-8ab0-f258edefafa1.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7369d28b-2150-4279-8aaa-bcfbde1e1a33.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 841,
+        "payload_end_offset": 942,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000042f01000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7369d28b-2150-4279-8aaa-bcfbde1e1a33.smbh",
+      "record_index": 12,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 1740,
+        "payload_end_offset": 1841,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000042f01000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 8,
+      "reciprocal_owner_attribute_chain": [
+        12,
+        17
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 8,
+        "owner_attribute_chain": [
+          12,
+          17
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7369d28b-2150-4279-8aaa-bcfbde1e1a33.smbh",
+      "record_index": 18,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "feature_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 2,
+        "stored_kind_literal": 1902,
+        "stored_position_vectors": [],
+        "stored_terminal_flag": null,
+        "payload_offset": 2524,
+        "payload_end_offset": 2625,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f646566040200000000000000040200000000000000070c666561747572655f64617461040300000000000000042f01000000000000040000200000000000040200000000000000046e07000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 13,
+      "reciprocal_owner_attribute_chain": [
+        18,
+        28
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 13,
+        "owner_attribute_chain": [
+          18,
+          28
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7369d28b-2150-4279-8aaa-bcfbde1e1a33.smbh",
+      "record_index": 48,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 7387,
+        "payload_end_offset": 7576,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 30,
+      "reciprocal_owner_attribute_chain": [
+        48,
+        73
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 30,
+        "owner_attribute_chain": [
+          48,
+          73
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": true,
+        "is_full_length": true,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 51,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 64,
+            "edge_index": 70,
+            "curve_index": 96,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 65,
+            "edge_index": 92,
+            "curve_index": 107,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/partial_high.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.a42cbeb2-efc2-4837-a51f-1707e4b6e118.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": false,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": 0.7000000000000001,
+        "stored_offset_cm": 0.2,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/partial_low.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2159196-cd6a-46ef-a8f1-c7d4e2203c1d.smbh",
+      "record_index": 7,
+      "expected_payload": {
+        "definition_name": "FDM_feature_attrib_def",
+        "stored_schema_fields": [
+          2,
+          2
+        ],
+        "stored_payload_name": "thread_face_data",
+        "stored_layout_code": 3,
+        "stored_feature_literal": 303,
+        "stored_flags_literal": 2097152,
+        "stored_count_field": 6,
+        "stored_kind_literal": 1901,
+        "stored_position_vectors": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "stored_terminal_flag": 0,
+        "payload_offset": 841,
+        "payload_end_offset": 1030,
+        "payload_hex": "071646444d5f666561747572655f6174747269625f64656604020000000000000004020000000000000007107468726561645f666163655f64617461040300000000000000042f01000000000000040000200000000000040600000000000000046d07000000000000130000000000000000000000000000000000000000000000001300000000000000000000000000000000000000000000004013000000000000000000000000000000000000000000000000040000000000000000",
+        "identity_scope": "Literal feature field only; not a typed native feature object reference",
+        "position_scope": "Literal cache positions; thread limits and selected-face parameter roles unresolved",
+        "ownership_scope": "Payload only; caller must prove initial FACE owner and reciprocal attribute chain"
+      },
+      "owner_face_index": 6,
+      "reciprocal_owner_attribute_chain": [
+        7,
+        11
+      ],
+      "asm_body_index": 1,
+      "asm_body_stored_entity_id": 1,
+      "native_body_object_id": 260,
+      "native_body_mapping_object_id": 8,
+      "identity_status": "Exact FACE/typed BODY/native-body provenance; FDM feature identity remains unresolved",
+      "production_shared_reader": {
+        "recognized_other_definition": true,
+        "all_expected_payload_keys_equal": true,
+        "owner_kind": "face",
+        "owner_record_index": 6,
+        "owner_attribute_chain": [
+          7,
+          11
+        ]
+      },
+      "native_feature_literal_control": {
+        "stored_literal": 303,
+        "actual_native_thread_object_ids": [
+          267
+        ],
+        "actual_native_hole_object_ids": [],
+        "same_number_primary_record_class": null,
+        "numeric_literal_is_actual_thread_or_hole_id": false
+      },
+      "saved_API_context": {
+        "is_modeled": false,
+        "is_full_length": false,
+        "is_internal": false,
+        "is_right_handed": true,
+        "stored_length_cm": 0.7000000000000001,
+        "stored_offset_cm": 0.2,
+        "thread_length_cm": null,
+        "thread_offset_cm": null
+      },
+      "position_cache_geometry": {
+        "owner_surface_index": 10,
+        "surface_kind": "Cylinder",
+        "raw_surface_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "three_axis_alignment_errors_raw": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "first_third_position_equal": true,
+        "first_second_axis_span_raw": 2.0,
+        "explicit_boundary_circle_centers": [
+          {
+            "coedge_index": 17,
+            "edge_index": 23,
+            "curve_index": 29,
+            "raw_center": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          },
+          {
+            "coedge_index": 22,
+            "edge_index": 26,
+            "curve_index": 33,
+            "raw_center": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "endpoint_center_errors_raw": [
+          0.0,
+          0.0
+        ],
+        "both_positions_match_typed_boundary_circle_centers": true,
+        "scope": "Axis/cylinder cache corroboration; native thread limits not inferred"
+      }
+    }
+  ],
+  "feature_id_counterexamples": [
+    {
+      "file": "tappedholes-409e96788503/cosmetic_full.f3d",
+      "stored_literal": 304,
+      "actual_native_thread_object_ids": [
+        321
+      ],
+      "actual_native_hole_object_ids": [
+        282
+      ],
+      "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "tappedholes-409e96788503/cosmetic_partial.f3d",
+      "stored_literal": 304,
+      "actual_native_thread_object_ids": [
+        321
+      ],
+      "actual_native_hole_object_ids": [
+        282
+      ],
+      "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "stored_literal": 304,
+      "actual_native_thread_object_ids": [
+        321
+      ],
+      "actual_native_hole_object_ids": [
+        282
+      ],
+      "same_number_primary_record_class": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-6b6a0a9b4a69/partial_high.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-6b6a0a9b4a69/partial_low.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-9574579d310b/left_handed.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/cosmetic_full.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/internal.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        275
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/left_handed.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/modeled_full.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/partial_high.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/partial_low.f3d",
+      "stored_literal": 303,
+      "actual_native_thread_object_ids": [
+        267
+      ],
+      "actual_native_hole_object_ids": [],
+      "same_number_primary_record_class": null,
+      "numeric_literal_is_actual_thread_or_hole_id": false
+    }
+  ],
+  "partial_thread_extent_counterexamples": [
+    {
+      "file": "tappedholes-409e96788503/cosmetic_full.f3d",
+      "record_index": 11,
+      "stored_axis_position_span_raw": 1.2000000000000002,
+      "saved_API_active_thread_length_cm": 1.0,
+      "saved_API_active_thread_offset_cm": 0.0,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    },
+    {
+      "file": "tappedholes-409e96788503/cosmetic_partial.f3d",
+      "record_index": 11,
+      "stored_axis_position_span_raw": 1.2000000000000002,
+      "saved_API_active_thread_length_cm": 0.7000000000000001,
+      "saved_API_active_thread_offset_cm": 0.1,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    },
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "record_index": 70,
+      "stored_axis_position_span_raw": 1.2000000000000002,
+      "saved_API_active_thread_length_cm": 1.0,
+      "saved_API_active_thread_offset_cm": 0.0,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    },
+    {
+      "file": "threadmodes-6b6a0a9b4a69/partial_high.f3d",
+      "record_index": 7,
+      "stored_axis_position_span_raw": 2.0,
+      "saved_API_active_thread_length_cm": 0.7000000000000001,
+      "saved_API_active_thread_offset_cm": 0.2,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    },
+    {
+      "file": "threadmodes-6b6a0a9b4a69/partial_low.f3d",
+      "record_index": 7,
+      "stored_axis_position_span_raw": 2.0,
+      "saved_API_active_thread_length_cm": 0.7000000000000001,
+      "saved_API_active_thread_offset_cm": 0.2,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/partial_high.f3d",
+      "record_index": 7,
+      "stored_axis_position_span_raw": 2.0,
+      "saved_API_active_thread_length_cm": 0.7000000000000001,
+      "saved_API_active_thread_offset_cm": 0.2,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/partial_low.f3d",
+      "record_index": 7,
+      "stored_axis_position_span_raw": 2.0,
+      "saved_API_active_thread_length_cm": 0.7000000000000001,
+      "saved_API_active_thread_offset_cm": 0.2,
+      "typed_full_cylinder_boundary_center_agreement": true,
+      "consequence": "Position span is not the active thread length; payload positions are not labelled thread limits"
+    }
+  ],
+  "guards": [
+    {
+      "case": "Schema version literal changed",
+      "rejected": true,
+      "reason": "Unsupported FDM payload field6"
+    },
+    {
+      "case": "Payload name/count pairing changed",
+      "rejected": true,
+      "reason": "Unsupported FDM payload field12"
+    },
+    {
+      "case": "Nonfinite cached position",
+      "rejected": true,
+      "reason": "FDM position field is not a finite typed vector"
+    },
+    {
+      "case": "Unobserved terminal flag",
+      "rejected": true,
+      "reason": "Unobserved FDM terminal flag"
+    },
+    {
+      "case": "Unexpected extra field",
+      "rejected": true,
+      "reason": "Unsupported FDM custom-attribute payload length/class"
+    },
+    {
+      "case": "Production caller rejects valid payload with nonreciprocal FACE owner",
+      "rejected": true,
+      "reason": "ASM generic tag is absent from its claimed owner attribute chain",
+      "pure_payload_unchanged": true,
+      "enforcing_reader": "decode_asm_generic_tags"
+    }
+  ],
+  "limitations": [
+    "FDM feature literal303/304 is not a typed native object reference. Actual Thread/Hole object IDs differ; coincident helper/recipe numbers are not feature associations.",
+    "The terminal0/1 flag is preserved without assigning handedness, internal/external state or a parent-hole semantic. Standalone internal and external threads both store0.",
+    "Three position vectors are literal face-cache fields. Their axis alignment and full-cylinder boundary-center agreement do not establish active thread offset/length or native face parameter roles.",
+    "Modeled feature_data has no position triples; its kind/count fields are preserved without reconstructing helical geometry.",
+    "Independent typed owner/body routes give cache provenance only. Native selected input-face and FDM-to-feature persistent identity remain unresolved.",
+    "No new API capture, solver, current/final lifecycle inference or geometry regeneration is performed."
+  ],
+  "summary": {
+    "saved_files": 12,
+    "fdm_payloads_replayed": 19,
+    "thread_face_data_payloads": 12,
+    "feature_data_payloads": 7,
+    "reciprocal_FACE_owner_chains": 19,
+    "typed_BODY_native_body_joins": 19,
+    "position_axis_corroborations": 12,
+    "two_boundary_circle_center_corroborations": 12,
+    "feature_literal_not_native_ID_counterexamples": 12,
+    "partial_thread_span_counterexamples": 7,
+    "malformed_guards": 6,
+    "native_feature_identity_associations_claimed": 0,
+    "production_shared_reader_payload_matches": 19,
+    "production_shared_reader_owner_chain_matches": 19,
+    "production_owner_chain_guard_rejections": 1
+  }
+}

@@ -1,0 +1,647 @@
+{
+  "scope": "Observed initial ASM shell-owned single-line WIRE topology; unnumbered auxiliary BODY identity remains unresolved",
+  "integration": {
+    "parser": "decode_brep.decode_topology(parsed)",
+    "shared_hook_changes": "None; existing native BODY stored-ID reader now accepts the decoded auxiliary BODY graph",
+    "new_graph_fields": [
+      "counts.wire",
+      "wire_indices",
+      "wire_coedge_rings",
+      "topology_kind",
+      "wire_scope"
+    ],
+    "compatibility": "Wire-specific fields are emitted only for the observed wire variant; existing complete solid graphs remain exact",
+    "validation_command": "/usr/bin/python3 validate_auxiliary_wires.py"
+  },
+  "native_layout": {
+    "wire": "Observed8tokens: attribute pointer,storedID,pattern pointer,nextWire,firstCoedge,shell,uninterpreted pointer6,boolean flag7. Shell.firstWire and wire.shell reciprocate; pointer6 null and flag7false required.",
+    "coedge_owner": "Field8 is typed LOOP for face loops or typed WIRE for this observed shell-owned wire. Wire coedge self-next/self-previous, partner/pcurve null.",
+    "body_chain": "BODY2 ->lump5 ->shell8 ->wire10 ->coedge15 ->edge21 ->vertices32/33 ->points57/58, with each supported owner link reciprocal",
+    "line": "edge21 references decoded straightcurve34. Distinct endpoint vertex identities form an open line despite the circular coedge traversal container."
+  },
+  "samples": [
+    {
+      "file": "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+      "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c69b3cdc-6962-4034-89d7-ad69c19c15cb.smbh",
+      "native_body_associations": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c69b3cdc-6962-4034-89d7-ad69c19c15cb.smbh",
+            "body_count": 1,
+            "bindings": [
+              {
+                "native_body_object_id": 275,
+                "stored_handle": 1,
+                "asm_body_index": 1,
+                "asm_stored_entity_id": 1,
+                "asm_body_record_offset": 186,
+                "asm_identifier_token_offset": 201,
+                "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                "previous_ordinal_candidate": null,
+                "ordinal_candidate_conflict": false
+              }
+            ],
+            "auxiliary_declared_roots": [
+              {
+                "asm_record_index": 2,
+                "kind": "body",
+                "stored_entity_id": -1,
+                "body_graph_index": 2,
+                "topology_counts": {
+                  "lump": 1,
+                  "shell": 1,
+                  "face": 0,
+                  "loop": 0,
+                  "coedge": 1,
+                  "edge": 1,
+                  "vertex": 2,
+                  "wire": 1
+                },
+                "transform_index": null,
+                "body_transform_is_identity": true,
+                "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+              }
+            ],
+            "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+          }
+        ],
+        "unresolved": [],
+        "invalidate_ordinal_candidates_for_mapping_ids": [
+          8
+        ],
+        "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+      },
+      "wire_body_graph": {
+        "body_index": 2,
+        "counts": {
+          "lump": 1,
+          "shell": 1,
+          "face": 0,
+          "loop": 0,
+          "coedge": 1,
+          "edge": 1,
+          "vertex": 2,
+          "wire": 1
+        },
+        "lump_indices": [
+          5
+        ],
+        "shell_indices": [
+          8
+        ],
+        "face_indices": [],
+        "loop_indices": [],
+        "coedge_indices": [
+          15
+        ],
+        "edge_indices": [
+          21
+        ],
+        "vertex_indices": [
+          32,
+          33
+        ],
+        "pcurve_indices": [],
+        "pcurve_status": "Observed single-span degree-one/cubic UV caches decoded; other pcurve layouts remain unsupported",
+        "face_trim_loops": [],
+        "raw_vertex_positions": [
+          [
+            1.2,
+            -1.0,
+            2.0
+          ],
+          [
+            1.2,
+            3.0,
+            2.0
+          ]
+        ],
+        "transform_index": null,
+        "body_transform_is_identity": true,
+        "body_transform_status": "No transform reference or observed identity",
+        "surface_record_types": {},
+        "analytic_surfaces": [],
+        "spline_surfaces": [],
+        "spline_curves": [],
+        "all_coedges_have_partners": false,
+        "identity_status": "Stored body graph; final visible body mapping unresolved",
+        "coordinate_scope": "Raw ASM points; body transform and units/context not applied",
+        "wire_indices": [
+          10
+        ],
+        "wire_coedge_rings": [
+          {
+            "wire_index": 10,
+            "shell_index": 8,
+            "coedge_indices": [
+              15
+            ],
+            "edge_indices": [
+              21
+            ],
+            "endpoint_vertex_indices": [
+              32,
+              33
+            ],
+            "curve_index": 34,
+            "scope": "Observed shell-owned open single-line wire; self-linked coedge list does not imply geometric closure"
+          }
+        ],
+        "topology_kind": "Observed shell-owned open single-line wire",
+        "wire_scope": "Explicit initial ASM links only; native body/source identity and final lifecycle are not inferred"
+      },
+      "wire_and_coedge_nodes": [
+        {
+          "index": 10,
+          "kind": "wire",
+          "offset": 975,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_wire_index": null,
+          "first_coedge_index": 15,
+          "shell_index": 8,
+          "uninterpreted_reference_6_index": null,
+          "stored_flag_7": false
+        },
+        {
+          "index": 15,
+          "kind": "coedge",
+          "offset": 1565,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_coedge_index": 15,
+          "previous_coedge_index": 15,
+          "partner_index": null,
+          "edge_index": 21,
+          "loop_index": null,
+          "wire_index": 10,
+          "pcurve_index": null,
+          "is_reversed": false,
+          "uninterpreted_field_9": 0
+        }
+      ],
+      "API_checks": {
+        "mapped_native_body_name_matches_actual_API": true,
+        "mapped_solid_face_count_matches_actual_API": true,
+        "mapped_body_count_matches_actual_API_result_count": true,
+        "auxiliary_wire_endpoint_and_curve_cache_match_API_tool_line": true
+      },
+      "actual_API_tool_line": {
+        "kind": "SketchLine",
+        "sketch_name": "SplitToolSketch",
+        "start_cm": [
+          1.2,
+          -1.0,
+          2.0
+        ],
+        "end_cm": [
+          1.2,
+          3.0,
+          2.0
+        ]
+      },
+      "raw_wire_endpoint_points_cm": [
+        [
+          1.2,
+          -1.0,
+          2.0
+        ],
+        [
+          1.2,
+          3.0,
+          2.0
+        ]
+      ],
+      "curve_parameter_endpoint_points_cm": [
+        [
+          1.2,
+          -1.0,
+          2.0
+        ],
+        [
+          1.2,
+          3.0,
+          2.0
+        ]
+      ],
+      "persistent_source_identity": "Unresolved; no native SketchLine-to-auxiliary-BODY link inferred from matching coordinates"
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+      "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.04a3c405-b857-4add-a7f1-9cd57ed40008.smbh",
+      "native_body_associations": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.04a3c405-b857-4add-a7f1-9cd57ed40008.smbh",
+            "body_count": 1,
+            "bindings": [
+              {
+                "native_body_object_id": 275,
+                "stored_handle": 1,
+                "asm_body_index": 1,
+                "asm_stored_entity_id": 1,
+                "asm_body_record_offset": 186,
+                "asm_identifier_token_offset": 201,
+                "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                "previous_ordinal_candidate": null,
+                "ordinal_candidate_conflict": false
+              }
+            ],
+            "auxiliary_declared_roots": [
+              {
+                "asm_record_index": 2,
+                "kind": "body",
+                "stored_entity_id": -1,
+                "body_graph_index": 2,
+                "topology_counts": {
+                  "lump": 1,
+                  "shell": 1,
+                  "face": 0,
+                  "loop": 0,
+                  "coedge": 1,
+                  "edge": 1,
+                  "vertex": 2,
+                  "wire": 1
+                },
+                "transform_index": null,
+                "body_transform_is_identity": true,
+                "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+              }
+            ],
+            "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+          }
+        ],
+        "unresolved": [],
+        "invalidate_ordinal_candidates_for_mapping_ids": [
+          8
+        ],
+        "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+      },
+      "wire_body_graph": {
+        "body_index": 2,
+        "counts": {
+          "lump": 1,
+          "shell": 1,
+          "face": 0,
+          "loop": 0,
+          "coedge": 1,
+          "edge": 1,
+          "vertex": 2,
+          "wire": 1
+        },
+        "lump_indices": [
+          5
+        ],
+        "shell_indices": [
+          8
+        ],
+        "face_indices": [],
+        "loop_indices": [],
+        "coedge_indices": [
+          15
+        ],
+        "edge_indices": [
+          21
+        ],
+        "vertex_indices": [
+          32,
+          33
+        ],
+        "pcurve_indices": [],
+        "pcurve_status": "Observed single-span degree-one/cubic UV caches decoded; other pcurve layouts remain unsupported",
+        "face_trim_loops": [],
+        "raw_vertex_positions": [
+          [
+            1.2,
+            -1.0,
+            2.0
+          ],
+          [
+            1.2,
+            3.0,
+            2.0
+          ]
+        ],
+        "transform_index": null,
+        "body_transform_is_identity": true,
+        "body_transform_status": "No transform reference or observed identity",
+        "surface_record_types": {},
+        "analytic_surfaces": [],
+        "spline_surfaces": [],
+        "spline_curves": [],
+        "all_coedges_have_partners": false,
+        "identity_status": "Stored body graph; final visible body mapping unresolved",
+        "coordinate_scope": "Raw ASM points; body transform and units/context not applied",
+        "wire_indices": [
+          10
+        ],
+        "wire_coedge_rings": [
+          {
+            "wire_index": 10,
+            "shell_index": 8,
+            "coedge_indices": [
+              15
+            ],
+            "edge_indices": [
+              21
+            ],
+            "endpoint_vertex_indices": [
+              32,
+              33
+            ],
+            "curve_index": 34,
+            "scope": "Observed shell-owned open single-line wire; self-linked coedge list does not imply geometric closure"
+          }
+        ],
+        "topology_kind": "Observed shell-owned open single-line wire",
+        "wire_scope": "Explicit initial ASM links only; native body/source identity and final lifecycle are not inferred"
+      },
+      "wire_and_coedge_nodes": [
+        {
+          "index": 10,
+          "kind": "wire",
+          "offset": 975,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_wire_index": null,
+          "first_coedge_index": 15,
+          "shell_index": 8,
+          "uninterpreted_reference_6_index": null,
+          "stored_flag_7": false
+        },
+        {
+          "index": 15,
+          "kind": "coedge",
+          "offset": 1565,
+          "attribute_index": null,
+          "stored_entity_id": -1,
+          "pattern_index": null,
+          "next_coedge_index": 15,
+          "previous_coedge_index": 15,
+          "partner_index": null,
+          "edge_index": 21,
+          "loop_index": null,
+          "wire_index": 10,
+          "pcurve_index": null,
+          "is_reversed": false,
+          "uninterpreted_field_9": 0
+        }
+      ],
+      "API_checks": {
+        "mapped_native_body_name_matches_actual_API": true,
+        "mapped_solid_face_count_matches_actual_API": true,
+        "mapped_body_count_matches_actual_API_result_count": true,
+        "auxiliary_wire_endpoint_and_curve_cache_match_API_tool_line": true
+      },
+      "actual_API_tool_line": {
+        "kind": "SketchLine",
+        "sketch_name": "SplitToolSketch",
+        "start_cm": [
+          1.2,
+          -1.0,
+          2.0
+        ],
+        "end_cm": [
+          1.2,
+          3.0,
+          2.0
+        ]
+      },
+      "raw_wire_endpoint_points_cm": [
+        [
+          1.2,
+          -1.0,
+          2.0
+        ],
+        [
+          1.2,
+          3.0,
+          2.0
+        ]
+      ],
+      "curve_parameter_endpoint_points_cm": [
+        [
+          1.2,
+          -1.0,
+          2.0
+        ],
+        [
+          1.2,
+          3.0,
+          2.0
+        ]
+      ],
+      "persistent_source_identity": "Unresolved; no native SketchLine-to-auxiliary-BODY link inferred from matching coordinates"
+    }
+  ],
+  "solid_topology_preservation": [
+    {
+      "file": "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c69b3cdc-6962-4034-89d7-ad69c19c15cb.smbh",
+      "body_graph_indices": [
+        1
+      ],
+      "body_graphs_sha256": "f6ea56db3bcd3cfdf741d841b0abb98bebc4673beac8dceb7f88dd22c50f6528",
+      "current_body_graphs_sha256": "f6ea56db3bcd3cfdf741d841b0abb98bebc4673beac8dceb7f88dd22c50f6528",
+      "complete_prior_graph_outputs_exact": true
+    },
+    {
+      "file": "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.04a3c405-b857-4add-a7f1-9cd57ed40008.smbh",
+      "body_graph_indices": [
+        1
+      ],
+      "body_graphs_sha256": "74591c809786996eaab515d5d4f2980228fad901d6d0f26425245a321f420942",
+      "current_body_graphs_sha256": "74591c809786996eaab515d5d4f2980228fad901d6d0f26425245a321f420942",
+      "complete_prior_graph_outputs_exact": true
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7b997e0d-2793-43b5-8582-f7fcf71bb137.smbh",
+      "body_graph_indices": [
+        1
+      ],
+      "body_graphs_sha256": "6137cc50d8901b73b334a1c63ecc3bf3f45f58b7d59767d1ecfd756458a14e89",
+      "current_body_graphs_sha256": "6137cc50d8901b73b334a1c63ecc3bf3f45f58b7d59767d1ecfd756458a14e89",
+      "complete_prior_graph_outputs_exact": true
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.361461b0-e464-4894-9a19-e7ca2e0f1b57.smbh",
+      "body_graph_indices": [
+        1,
+        2
+      ],
+      "body_graphs_sha256": "109a61730c1d238ee5788cad415592c82e6e88ad0a09c31543e216d93c662088",
+      "current_body_graphs_sha256": "109a61730c1d238ee5788cad415592c82e6e88ad0a09c31543e216d93c662088",
+      "complete_prior_graph_outputs_exact": true
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9a02998f-0c92-4e84-94e2-4b64ecccc9b7.smbh",
+      "body_graph_indices": [
+        1
+      ],
+      "body_graphs_sha256": "93836b375aa8edea39703ab53612b42ce3cfe9da046cac375ccdac33cbb5d849",
+      "current_body_graphs_sha256": "93836b375aa8edea39703ab53612b42ce3cfe9da046cac375ccdac33cbb5d849",
+      "complete_prior_graph_outputs_exact": true
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.fec0bed1-646d-4264-90c4-5835146f5a6c.smbh",
+      "body_graph_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "body_graphs_sha256": "d9a198471336d07c9b65dbabb954e585e62e3226552a8fc3c54cf66c8c86f0bd",
+      "current_body_graphs_sha256": "d9a198471336d07c9b65dbabb954e585e62e3226552a8fc3c54cf66c8c86f0bd",
+      "complete_prior_graph_outputs_exact": true
+    },
+    {
+      "file": "bodymodes-405fbd002680/shell_both.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f04ed0b3-365c-43ec-9c2b-c90857a8440d.smbh",
+      "body_graph_indices": [
+        1
+      ],
+      "body_graphs_sha256": "027ea5c91160ebc97e28ca94da458691f4c1e6465aa8ea83a517acb01d6ef210",
+      "current_body_graphs_sha256": "027ea5c91160ebc97e28ca94da458691f4c1e6465aa8ea83a517acb01d6ef210",
+      "complete_prior_graph_outputs_exact": true
+    }
+  ],
+  "guards": [
+    {
+      "guard": "Wire shell reference must reciprocate the containing auxiliary shell",
+      "rejected": true,
+      "solid_body_graph_preserved": true,
+      "topology_diagnostics": [
+        {
+          "index": 2,
+          "kind": "body_graph",
+          "reason": "Wire/shell ownership or observed wire flags disagree"
+        }
+      ],
+      "native_mapping_rejection": "Auxiliary unnumbered BODY lacks a decoded initial geometry body graph: 2"
+    },
+    {
+      "guard": "Wire coedge container must be the explicit WIRE, not another typed entity",
+      "rejected": true,
+      "solid_body_graph_preserved": true,
+      "topology_diagnostics": [
+        {
+          "index": 15,
+          "kind": "coedge",
+          "reason": "ASM pointer target has unexpected type: face"
+        },
+        {
+          "index": 2,
+          "kind": "body_graph",
+          "reason": "Required topology node unresolved: 15"
+        }
+      ],
+      "native_mapping_rejection": "Auxiliary unnumbered BODY lacks a decoded initial geometry body graph: 2"
+    },
+    {
+      "guard": "Wire edge must point back to its own coedge",
+      "rejected": true,
+      "solid_body_graph_preserved": true,
+      "topology_diagnostics": [
+        {
+          "index": 21,
+          "kind": "edge",
+          "reason": "ASM pointer target has unexpected type: ATTRIB_CUSTOM-attrib"
+        },
+        {
+          "index": 2,
+          "kind": "body_graph",
+          "reason": "Required topology node unresolved: 21"
+        }
+      ],
+      "native_mapping_rejection": "Auxiliary unnumbered BODY lacks a decoded initial geometry body graph: 2"
+    },
+    {
+      "guard": "Wire endpoint vertex must point back to its edge",
+      "rejected": true,
+      "solid_body_graph_preserved": true,
+      "topology_diagnostics": [
+        {
+          "index": 32,
+          "kind": "vertex",
+          "reason": "ASM pointer target has unexpected type: ATTRIB_CUSTOM-attrib"
+        },
+        {
+          "index": 2,
+          "kind": "body_graph",
+          "reason": "Required topology node unresolved: 32"
+        }
+      ],
+      "native_mapping_rejection": "Auxiliary unnumbered BODY lacks a decoded initial geometry body graph: 2"
+    },
+    {
+      "guard": "Wire first-coedge reference cannot leave the initial geometry table",
+      "rejected": true,
+      "solid_body_graph_preserved": true,
+      "topology_diagnostics": [
+        {
+          "index": 10,
+          "kind": "wire",
+          "reason": "ASM pointer outside initial geometry entity table"
+        },
+        {
+          "index": 2,
+          "kind": "body_graph",
+          "reason": "Required topology node unresolved: 10"
+        }
+      ],
+      "native_mapping_rejection": "Auxiliary unnumbered BODY lacks a decoded initial geometry body graph: 2"
+    },
+    {
+      "guard": "Unobserved true wire flag7 variant remains unsupported",
+      "rejected": true,
+      "solid_body_graph_preserved": true,
+      "topology_diagnostics": [
+        {
+          "index": 2,
+          "kind": "body_graph",
+          "reason": "Wire/shell ownership or observed wire flags disagree"
+        }
+      ],
+      "native_mapping_rejection": "Auxiliary unnumbered BODY lacks a decoded initial geometry body graph: 2"
+    }
+  ],
+  "limitations": [
+    "Only a standalone one-lump/one-shell/one-wire/single-straight-edge variant is supported.",
+    "Direct BODY-owned wires, mixed face/wire shells, multiple wires, general polylines, closed wires and other curve kinds remain unsupported.",
+    "Opaque wire pointer6 and flag7 are preserved without assigning additional meaning; unobserved populated/true variants are rejected.",
+    "BODY storedID=-1 remains unassociated; source SketchLine equality is geometric corroboration, not persistent native source identity.",
+    "Current visibility, final body lifecycle, coordinate solving and regeneration remain unresolved."
+  ],
+  "summary": {
+    "wire_files": 2,
+    "new_auxiliary_wire_body_graphs": 2,
+    "native_mappings_recovered": 2,
+    "unassociated_BODY_minus_one_roots_retained": 2,
+    "actual_API_line_geometry_controls": 2,
+    "prior_complete_body_graphs_preserved_exact": 15,
+    "prior_control_streams": 7,
+    "malformed_guards": 6
+  }
+}

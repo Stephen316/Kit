@@ -1,0 +1,300 @@
+{
+  "status": "Observed native incidence mapping; offset style and secondary-tag semantics unresolved",
+  "integration": {
+    "module": "decode_offset_details.py",
+    "call": "decode_offset_details(data, records, features)",
+    "order": "After decode_sketches, which supplies decoded geometry and OffsetCurves constraints",
+    "mutation": "Attaches offset_details only after successful reference and incidence checks to each OffsetCurves constraint",
+    "returns": [
+      "decoded",
+      "unresolved",
+      "scope"
+    ]
+  },
+  "evidence": {
+    "fusion_version": "2705.1.30",
+    "archive": "sketchtools-85066e723410/sketchtools.f3d",
+    "api_ground_truth": "sketchtools-85066e723410/ground_truth.json",
+    "generator": "GenerateSketchToolModes.py",
+    "corpus_search": {
+      "archives_scanned": 358,
+      "pattern": "*/*.f3d",
+      "method": "MetaStream-indexed primary records in FusionDesignSegmentType1 BulkStream members",
+      "matching_archives": 1,
+      "controller_class": "afc07c10-99ac-5304-ae1b-dbee335b0e43",
+      "controller_object_ids": [
+        236,
+        289,
+        349,
+        412
+      ]
+    },
+    "api_observations": {
+      "all_four_isTopologyMatched": true,
+      "is_fixed_captured": false,
+      "is_construction_captured": false,
+      "topology_false_or_changed_curve_count_captured": false
+    }
+  },
+  "native_reference_structure": {
+    "controller_body_bytes": 176,
+    "controller_parent_side_reference_offset": 146,
+    "controller_child_side_reference_offset": 102,
+    "controller_association_reference_offset": 113,
+    "controller_sketch_owner_reference_offset": 135,
+    "side_list_class": "04e598ff-2979-5e41-8bc0-5c435c810909",
+    "side_list": "u32 count at 1; references at 5+15*i; reciprocal side reference at 6+15*count; u32 role at 17+15*count (parent=1, child=2)",
+    "association_class": "D3BD153B-EB8A-405E-9D29-69EE0C3D227C",
+    "association": "Existing constraint_prefix, EntityGenesis=32; owner reference then u64=0x2000000000 and counted interleaved parent/child references; copies agree with dependencies and side lists",
+    "offset_line_residual_bytes_after_attributes": 182,
+    "offset_circle_residual_bytes_after_attributes": 173,
+    "line_point_references_after_attributes": {
+      "end": 96,
+      "start": 107
+    },
+    "circle_center_reference_after_attributes": 96,
+    "curve_side_reference_offset_from_body_end": -48,
+    "curve_owner_reference_offset_from_body_end": -11,
+    "point_geometry": "Already decoded native Point records in the same sketch; coordinate copies verified against Line endpoints or Circle center"
+  },
+  "cases": [
+    {
+      "name": "OffsetLinePositive",
+      "controller_object_id": 236,
+      "distance_cm": 0.30000000000000004,
+      "curve_pairs": [
+        [
+          232,
+          244
+        ]
+      ],
+      "endpoint_correspondence": [
+        [
+          228,
+          240
+        ],
+        [
+          230,
+          242
+        ]
+      ],
+      "parent_graph": {
+        "vertices": 2,
+        "edges": 1,
+        "components": 1,
+        "open_endpoint_ids": [
+          228,
+          230
+        ]
+      },
+      "child_graph": {
+        "vertices": 2,
+        "edges": 1,
+        "components": 1,
+        "open_endpoint_ids": [
+          240,
+          242
+        ]
+      }
+    },
+    {
+      "name": "OffsetLineNegative",
+      "controller_object_id": 289,
+      "distance_cm": -0.30000000000000004,
+      "curve_pairs": [
+        [
+          285,
+          297
+        ]
+      ],
+      "endpoint_correspondence": [
+        [
+          281,
+          293
+        ],
+        [
+          283,
+          295
+        ]
+      ],
+      "parent_graph": {
+        "vertices": 2,
+        "edges": 1,
+        "components": 1,
+        "open_endpoint_ids": [
+          281,
+          283
+        ]
+      },
+      "child_graph": {
+        "vertices": 2,
+        "edges": 1,
+        "components": 1,
+        "open_endpoint_ids": [
+          293,
+          295
+        ]
+      }
+    },
+    {
+      "name": "OffsetRectangle",
+      "controller_object_id": 349,
+      "distance_cm": 0.30000000000000004,
+      "curve_pairs": [
+        [
+          342,
+          357
+        ],
+        [
+          343,
+          360
+        ],
+        [
+          344,
+          363
+        ],
+        [
+          345,
+          364
+        ]
+      ],
+      "endpoint_correspondence": [
+        [
+          334,
+          353
+        ],
+        [
+          336,
+          355
+        ],
+        [
+          338,
+          358
+        ],
+        [
+          340,
+          361
+        ]
+      ],
+      "parent_graph": {
+        "vertices": 4,
+        "edges": 4,
+        "components": 1,
+        "all_vertex_degrees": 2,
+        "closed_by_shared_references": true
+      },
+      "child_graph": {
+        "vertices": 4,
+        "edges": 4,
+        "components": 1,
+        "all_vertex_degrees": 2,
+        "closed_by_shared_references": true
+      },
+      "proof": "Each shared parent endpoint receives the same child point from its two incident stored curve pairs; this bijection preserves each endpoint's paired edge incidence"
+    },
+    {
+      "name": "OffsetCircle",
+      "controller_object_id": 412,
+      "distance_cm": 0.30000000000000004,
+      "curve_pairs": [
+        [
+          408,
+          418
+        ]
+      ],
+      "center_correspondence": [
+        [
+          406,
+          416
+        ]
+      ],
+      "same_cached_center_cm": [
+        2.0,
+        1.0,
+        0.0
+      ],
+      "parent_radius_cm": 1.0,
+      "child_radius_cm": 1.3,
+      "topology": "Closed Circle primitives; no endpoint graph"
+    }
+  ],
+  "uninterpreted_fields": {
+    "secondary_tags": [
+      {
+        "curve_object_id": 244,
+        "primary": 107,
+        "secondary": 106
+      },
+      {
+        "curve_object_id": 297,
+        "primary": 115,
+        "secondary": 114
+      },
+      {
+        "curve_object_id": 357,
+        "primary": 136,
+        "secondary": 127
+      },
+      {
+        "curve_object_id": 360,
+        "primary": 134,
+        "secondary": 129
+      },
+      {
+        "curve_object_id": 363,
+        "primary": 135,
+        "secondary": 131
+      },
+      {
+        "curve_object_id": 364,
+        "primary": 133,
+        "secondary": 132
+      },
+      {
+        "curve_object_id": 418,
+        "primary": 142,
+        "secondary": 141
+      }
+    ],
+    "secondary_tag_evidence": "Parent secondary tags are zero; these nonzero child tags were not found as another primary curve or point tag in this archive. No selected-profile reference establishes their use",
+    "u32_offsets_from_curve_body_end": [
+      -62,
+      -57
+    ],
+    "u32_observed_values": [
+      0,
+      0
+    ],
+    "u32_status": "Raw candidate fields retained without assigning fixed/construction semantics. All observations are invariant and actual API flags were not captured",
+    "normal_curve_suffix_warning": "Normal-curve state offsets -51/-46 overlap the inserted offset-side reference. Their values cannot be interpreted as offset-curve booleans"
+  },
+  "focused_validation": {
+    "decoded_controllers": 4,
+    "unresolved_controllers": 0,
+    "native_curve_pairs": 7,
+    "endpoint_correspondences": 8,
+    "center_correspondences": 1,
+    "api_geometry": "Every stored parent/child curve matched actual API ground-truth endpoints or center/radius; four pair counts matched",
+    "rectangle": "Both explicit four-edge graphs close; point bijection and paired-edge incidence verified",
+    "state_preservation": "All offset curves retain absent is_fixed/is_construction fields",
+    "corruption_rejected": [
+      "Native side reciprocity",
+      "Native curve endpoint reference",
+      "Decoded stored-pair copy disagreement"
+    ]
+  },
+  "limits": [
+    "Mapping uses the observed stored start-to-start/end-to-end orientation of paired Lines; does not infer a general traversal or offset solver rule",
+    "Unknown mixed curves, branched graphs, self-loop Lines, nonbijective or inconsistently oriented endpoint maps, and multiple-Circle pairs remain unresolved",
+    "Computed incidence does not decode the native isTopologyMatched flag",
+    "Fixed/construction state, secondary-tag semantics and opaque dependency-slot fields remain unknown",
+    "Further evidence requires captured API fixed/construction contrasts, topology-false or changed-count cases, and explicit secondary-tag consumers",
+    "No UI captures or writer support added in this stage"
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "offset_controllers": 4,
+    "feature_attachments_match": true,
+    "stream_key": "offset_details"
+  }
+}

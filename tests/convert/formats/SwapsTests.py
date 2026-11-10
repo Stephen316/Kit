@@ -498,7 +498,17 @@ def MatrixDocument(Source: PathValue) -> CadDocument:
 def TestSFMRADK() -> None:
     Supported = KReadme.read_text(encoding="utf-8").split("## Supported formats", 1)[1]
     Supported = Supported.split("\n## ", 1)[0]
-    ReadmeSuffixes = set(RegexLib.findall(r"`(\.[A-Za-z0-9]+)`", Supported))
+    WriteRows = (
+        LineValue
+        for LineValue in Supported.splitlines()
+        if LineValue.startswith("|")
+        and LineValue.split("|")[-2].strip() == "Reader and writer"
+    )
+    ReadmeSuffixes = {
+        SuffixName
+        for LineValue in WriteRows
+        for SuffixName in RegexLib.findall(r"`(\.[A-Za-z0-9]+)`", LineValue)
+    }
     assert ReadmeSuffixes == set(KFormatBySuffix)
     assert set(KPartSuffixes) | set(KAssemblySuffixes) == ReadmeSuffixes
     assert set(KPartSuffixes) & set(KAssemblySuffixes) == {".FCStd"}

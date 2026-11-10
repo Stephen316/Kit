@@ -1,0 +1,166 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "linked_line.f3d",
+      "settings": {
+        "source_type": "adsk::fusion::SketchLine",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchLine",
+            "referenced_sketch_name": "ProjectionSource",
+            "start_world_cm": [
+              0.5,
+              0.7,
+              0.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "linked_circle.f3d",
+      "settings": {
+        "source_type": "adsk::fusion::SketchCircle",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchCircle",
+            "referenced_sketch_name": "ProjectionSource",
+            "center_world_cm": [
+              0.8,
+              1.2,
+              0.0
+            ],
+            "radius_cm": 0.5999999999999999
+          }
+        ]
+      }
+    },
+    {
+      "file": "linked_point.f3d",
+      "settings": {
+        "source_type": "adsk::fusion::SketchPoint",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchPoint",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchPoint",
+            "referenced_sketch_name": "ProjectionSource",
+            "position_world_cm": [
+              0.8,
+              1.2,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "included_line.f3d",
+      "settings": {
+        "source_type": "adsk::fusion::SketchLine",
+        "source_sketch_name": "ProjectionSource",
+        "target_sketch_name": "ProjectionTarget",
+        "method": "include",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::SketchLine",
+            "referenced_sketch_name": "ProjectionSource",
+            "start_world_cm": [
+              0.5,
+              0.7,
+              1.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              1.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "body_edge.f3d",
+      "settings": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_sketch_name": null,
+        "target_sketch_name": "ProjectionTarget",
+        "method": "project2",
+        "requested_is_linked": true,
+        "broken_after_projection": false,
+        "output_count": 1,
+        "outputs": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_type": "adsk::fusion::BRepEdge",
+            "referenced_sketch_name": null,
+            "start_world_cm": [
+              -1.0,
+              1.0,
+              0.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "case": "unlinked_line",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 79, in run\n    \"outputs\": [entity_summary(entity) for entity in projected]}}\n                ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 25, in entity_summary\n    reference = entity.referencedEntity\n                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 71078, in _get_referencedEntity\n    return _fusion.SketchEntity__get_referencedEntity(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+    },
+    {
+      "case": "broken_line",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 79, in run\n    \"outputs\": [entity_summary(entity) for entity in projected]}}\n                ~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSketchProjections.py\", line 25, in entity_summary\n    reference = entity.referencedEntity\n                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 71078, in _get_referencedEntity\n    return _fusion.SketchEntity__get_referencedEntity(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+    }
+  ]
+}

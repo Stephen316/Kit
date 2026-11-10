@@ -1,0 +1,728 @@
+class NurbsCurve3D(Curve3D):
+    r"""
+    Transient 3D NURBS curve. A transient NURBS curve is not displayed or saved in a document.
+    Transient 3D NURBS curves are used as a wrapper to work with raw 3D NURBS curve information.
+    They are created statically using one of the create methods of the NurbsCurve3D class.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.core.NurbsCurve3D *":
+        return _core.NurbsCurve3D___deref__(self)
+
+    def __eq__(self, rhs: "NurbsCurve3D") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _core.NurbsCurve3D___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "NurbsCurve3D") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _core.NurbsCurve3D___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.core.NurbsCurve3D'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _core.NurbsCurve3D_classType()
+
+    @staticmethod
+    def createNonRational(controlPoints: "list[Point3D]", degree: "int", knots: "list[float]", isPeriodic: "bool") -> "list[adsk.core.Point3D], list[float]":
+        r"""
+        Creates a transient 3D NURBS non-rational b-spline object.
+        controlPoints : An array of control points that define the path of the spline.
+        degree : The degree of curvature of the spline.
+        knots : An array of numbers that define the knot vector of the spline. The knots is an array of (>=degree + N + 1) numbers, where N is the number of control points.
+        isPeriodic : A bool specifying if the spline is to be Periodic. A periodic spline has a start point and
+        end point that meet forming a closed loop.
+        Returns the new NurbsCurve3D object or null if the creation failed.
+        """
+        return _core.NurbsCurve3D_createNonRational(controlPoints, degree, knots, isPeriodic)
+
+    @staticmethod
+    def createRational(controlPoints: "list[Point3D]", degree: "int", knots: "list[float]", weights: "list[float]", isPeriodic: "bool") -> "list[adsk.core.Point3D], list[float], list[float]":
+        r"""
+        Creates a transient 3D NURBS rational b-spline object.
+        controlPoints : An array of control points that define the path of the spline.
+        degree : The degree of curvature of the spline.
+        knots : An array of numbers that define the knot vector of the spline. The knots is an array of (>=degree + N + 1) numbers, where N is the number of control points.
+        weights : An array of numbers that define the weight at each control point.
+        isPeriodic : A bool specifying if the spline is to be Periodic. A periodic curve has a start point and
+        end point that meet (with curvature continuity) forming a closed loop.
+        Returns the new NurbsCurve3D object or null if the creation failed.
+        """
+        return _core.NurbsCurve3D_createRational(controlPoints, degree, knots, weights, isPeriodic)
+    __swig_destroy__ = _core.delete_NurbsCurve3D
+
+    def _get_controlPointCount(self) -> "int":
+        r"""Gets the number of control points that define the curve."""
+        return _core.NurbsCurve3D__get_controlPointCount(self)
+
+    def _get_degree(self) -> "int":
+        r"""Returns the degree of the curve."""
+        return _core.NurbsCurve3D__get_degree(self)
+
+    def _get_knotCount(self) -> "int":
+        r"""Returns the knot count of the curve."""
+        return _core.NurbsCurve3D__get_knotCount(self)
+
+    def _get_isRational(self) -> "bool":
+        r"""Gets if the curve is rational or non-rational type."""
+        return _core.NurbsCurve3D__get_isRational(self)
+
+    def _get_isClosed(self) -> "bool":
+        r"""Gets if the curve is closed."""
+        return _core.NurbsCurve3D__get_isClosed(self)
+
+    def _get_isPeriodic(self) -> "bool":
+        r"""Gets if the curve is periodic."""
+        return _core.NurbsCurve3D__get_isPeriodic(self)
+
+    def _get_controlPoints(self) -> "list[adsk.core.Point3D]":
+        r"""Returns an array of Point3D objects that define the control points of the curve."""
+        return _core.NurbsCurve3D__get_controlPoints(self)
+
+    def _get_knots(self) -> "list[float]":
+        r"""Returns an array of numbers that define the knot vector of the curve."""
+        return _core.NurbsCurve3D__get_knots(self)
+
+    def getData(self) -> "bool":
+        r"""
+        Gets the data that defines a transient 3D NURBS rational b-spline object.
+        controlPoints : The output array of control points that define the path of the spline.
+        degree : The output degree of curvature of the spline.
+        knots : The output array of numbers that define the knot vector of the spline.
+        isRational : The output value indicating if the spline is rational. A rational spline will have a weight value
+        for each control point.
+        weights : The output array of numbers that define the weights for the spline.
+        isPeriodic : The output value indicating if the spline is Periodic. A periodic curve has a start point and
+        end point that meet (with curvature continuity) forming a closed loop.
+        Returns true if successful.
+        """
+        return _core.NurbsCurve3D_getData(self)
+
+    def set(self, controlPoints: "list[Point3D]", degree: "int", knots: "list[float]", isRational: "bool", weights: "list[float]", isPeriodic: "bool") -> "bool":
+        r"""
+        Sets the data that defines a transient 3D NURBS rational b-spline object.
+        controlPoints : The array of control points that define the path of the spline.
+        degree : The degree of curvature of the spline.
+        knots : An array of numbers that define the knot vector of the spline.
+        isRational : A bool value indicating if the spline is rational. A rational spline must have a weight value
+        for each control point.
+        weights : An array of numbers that define the weights for the spline.
+        isPeriodic : A bool indicating if the spline is Periodic. A periodic curve has a start point and
+        end point that meet (with curvature continuity) forming a closed loop.
+        Returns true if successful.
+        """
+        return _core.NurbsCurve3D_set(self, controlPoints, degree, knots, isRational, weights, isPeriodic)
+
+    def extract(self, startParam: "float", endParam: "float") -> "adsk.core.NurbsCurve3D":
+        r"""
+        Defines a new NURBS curve that is the subset of this NURBS curve in the parameter
+        range of [startParam, endParam]
+        startParam : The parameter position that defines the start of the subset.
+        endParam : The parameter position that defines the end of the subset.
+        Returns a new NurbsCurve3D object.
+        """
+        return _core.NurbsCurve3D_extract(self, startParam, endParam)
+
+    def merge(self, nurbsCurve: "NurbsCurve3D") -> "adsk.core.NurbsCurve3D":
+        r"""
+        Define a new NURBS curve that is the result of combining this NURBS curve with
+        another NURBS curve.
+        nurbsCurve : The NURBS curve to combine with.
+        Returns a new NurbsCurve3D object.
+        """
+        return _core.NurbsCurve3D_merge(self, nurbsCurve)
+
+    def copy(self) -> "adsk.core.NurbsCurve3D":
+        r"""
+        Creates and returns an independent copy of this NurbsCurve3D object.
+        Returns an independent copy of this NurbsCurve3D.
+        """
+        return _core.NurbsCurve3D_copy(self)
+
+    def reverse(self) -> "bool":
+        r"""
+        Reverses the orientation of the curve so the start and end points
+        are swapped. The shape of the curve remains unchanged. This is
+        especially useful to prepare the curves to use with the merge
+        method.
+        """
+        return _core.NurbsCurve3D_reverse(self)
+
+    def _get_curveType(self) -> "adsk.core.Curve3DTypes":
+        r"""Returns the type of geometry this curve represents."""
+        return _core.NurbsCurve3D__get_curveType(self)
+
+    def _get_evaluator(self) -> "adsk.core.CurveEvaluator3D":
+        r"""Returns an evaluator object that lets you perform additional evaluations on the curve."""
+        return _core.NurbsCurve3D__get_evaluator(self)
+
+    def transformBy(self, matrix: "Matrix3D") -> "bool":
+        r"""
+        Transforms this curve in 3D space.
+        matrix : A 3D matrix that defines the transform to apply to the curve.
+        Returns true if the transform was successful.
+        """
+        return _core.NurbsCurve3D_transformBy(self, matrix)
+
+    def _get_objectType(self) -> "str":
+        return _core.NurbsCurve3D__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _core.NurbsCurve3D__get_isValid(self)
+
+# Register NurbsCurve3D in _core:
+_core.NurbsCurve3D_swigregister(NurbsCurve3D)
+
+def NurbsCurve3D_classType() -> "str":
+    return _core.NurbsCurve3D_classType()
+
+def NurbsCurve3D_createNonRational(controlPoints: "list[Point3D]", degree: "int", knots: "list[float]", isPeriodic: "bool") -> "list[adsk.core.Point3D], list[float]":
+    r"""
+    Creates a transient 3D NURBS non-rational b-spline object.
+    controlPoints : An array of control points that define the path of the spline.
+    degree : The degree of curvature of the spline.
+    knots : An array of numbers that define the knot vector of the spline. The knots is an array of (>=degree + N + 1) numbers, where N is the number of control points.
+    isPeriodic : A bool specifying if the spline is to be Periodic. A periodic spline has a start point and
+    end point that meet forming a closed loop.
+    Returns the new NurbsCurve3D object or null if the creation failed.
+    """
+    return _core.NurbsCurve3D_createNonRational(controlPoints, degree, knots, isPeriodic)
+
+def NurbsCurve3D_createRational(controlPoints: "list[Point3D]", degree: "int", knots: "list[float]", weights: "list[float]", isPeriodic: "bool") -> "list[adsk.core.Point3D], list[float], list[float]":
+    r"""
+    Creates a transient 3D NURBS rational b-spline object.
+    controlPoints : An array of control points that define the path of the spline.
+    degree : The degree of curvature of the spline.
+    knots : An array of numbers that define the knot vector of the spline. The knots is an array of (>=degree + N + 1) numbers, where N is the number of control points.
+    weights : An array of numbers that define the weight at each control point.
+    isPeriodic : A bool specifying if the spline is to be Periodic. A periodic curve has a start point and
+    end point that meet (with curvature continuity) forming a closed loop.
+    Returns the new NurbsCurve3D object or null if the creation failed.
+    """
+    return _core.NurbsCurve3D_createRational(controlPoints, degree, knots, weights, isPeriodic)
+
+
+NurbsCurve3D.controlPointCount = property(NurbsCurve3D._get_controlPointCount, doc="Gets the number of control points that define the curve.")
+
+
+NurbsCurve3D.degree = property(NurbsCurve3D._get_degree, doc="Returns the degree of the curve.")
+
+
+NurbsCurve3D.knotCount = property(NurbsCurve3D._get_knotCount, doc="Returns the knot count of the curve.")
+
+
+NurbsCurve3D.isRational = property(NurbsCurve3D._get_isRational, doc="Gets if the curve is rational or non-rational type.")
+
+
+NurbsCurve3D.isClosed = property(NurbsCurve3D._get_isClosed, doc="Gets if the curve is closed.")
+
+
+NurbsCurve3D.isPeriodic = property(NurbsCurve3D._get_isPeriodic, doc="Gets if the curve is periodic.")
+
+
+NurbsCurve3D.controlPoints = property(NurbsCurve3D._get_controlPoints, doc="Returns an array of Point3D objects that define the control points of the curve.")
+
+
+NurbsCurve3D.knots = property(NurbsCurve3D._get_knots, doc="Returns an array of numbers that define the knot vector of the curve.")
+
+
+NurbsCurve3D.cast = lambda arg: arg if isinstance(arg, NurbsCurve3D) else None
+
+class CurveEvaluator3D(Base):
+    r"""
+    3D curve evaluator that is obtained from a transient curve and allows you to perform
+    evaluations on the curve, such as getting points, tangents, curvatures, and derivatives at parameter positions.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.core.CurveEvaluator3D *":
+        return _core.CurveEvaluator3D___deref__(self)
+
+    def __eq__(self, rhs: "CurveEvaluator3D") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _core.CurveEvaluator3D___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "CurveEvaluator3D") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _core.CurveEvaluator3D___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.core.CurveEvaluator3D'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _core.CurveEvaluator3D_classType()
+    __swig_destroy__ = _core.delete_CurveEvaluator3D
+
+    def getCurvatures(self, parameters: "list[float]") -> "bool":
+        r"""
+        Get the curvature values at a number of parameter positions on the curve.
+        parameters : The array of parameter positions to return curvature information at.
+        Each parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        directions : The output array of the direction of the curvature at each position on the curve.
+        The length of this array will be the same as the length of the parameters array provided.
+        curvatures : The output array of the magnitude of the curvature at the position on the curve.
+        The length of this array will be the same as the length of the parameters array provided.
+        Returns true if the curvatures were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getCurvatures(self, parameters)
+
+    def getCurvature(self, parameter: "float") -> "bool":
+        r"""
+        Get the curvature value at a parameter position on the curve.
+        parameter : The parameter position to return the curvature information at.
+        This value must be within the range of the parameter extents as provided by getParameterExtents.
+        direction : The output direction of the curvature at the position on the curve.
+        curvature : The output magnitude of the curvature at the position on the curve.
+        Returns true if the curvature was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getCurvature(self, parameter)
+
+    def getEndPoints(self) -> "bool":
+        r"""
+        Get the end points of the curve.
+        startPoint : The output start point of the curve. If the curve is unbounded at the start, this value will be null.
+        endPoint : The output end point of the curve. If the curve is unbounded at the end, this value will be null.
+        Returns true if the end points were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getEndPoints(self)
+
+    def getLengthAtParameter(self, fromParameter: "float", toParameter: "float") -> "bool":
+        r"""
+        Get the length of the curve between two parameter positions on the curve.
+        fromParameter : The parameter position to measure the curve length from.
+        This value must be within the range of the parameter extents as provided by getParameterExtents.
+        toParameter : The parameter position to measure the curve length to.
+        This value must be within the range of the parameter extents as provided by getParameterExtents.
+        length : The output curve length between the from and to parameter positions on the curve.
+        Returns true if the length was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getLengthAtParameter(self, fromParameter, toParameter)
+
+    def getParameterAtLength(self, fromParameter: "float", length: "float") -> "bool":
+        r"""
+        Get the parameter position on the curve that is the specified curve length from the specified starting parameter position.
+        fromParameter : The parameter position to start measuring the curve length from.
+        This value must be within the range of the parameter extents as provided by getParameterExtents.
+        length : The curve length to offset the from parameter by.
+        A negative length value will offset in the negative parameter direction.
+        parameter : The output parameter value that is the specified curve length from the starting parameter position.
+        Returns true if the parameter was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getParameterAtLength(self, fromParameter, length)
+
+    def getParametersAtPoints(self, points: "list[Point3D]") -> "bool":
+        r"""
+        Get the parameter positions that correspond to a set of points on the curve.
+        For reliable results, the points should lie on the curve within model tolerance.
+        If the points do not lie on the curve, the parameter of the nearest point on the curve will generally be returned.
+        points : An array of points to get the curve parameter values at.
+        parameters : The output array of parameter positions corresponding to the set of points.
+        The length of this array will be equal to the length of the points array specified.
+        Returns true if the parameters were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getParametersAtPoints(self, points)
+
+    def getParameterAtPoint(self, point: "Point3D") -> "bool":
+        r"""
+        Get the parameter position that correspond to a point on the curve.
+        For reliable results, the point should lie on the curve within model tolerance.
+        If the point does not lie on the curve, the parameter of the nearest point on the curve will generally be returned.
+        point : The point to get the curve parameter value at.
+        parameter : The output parameter position corresponding to the point.
+        Returns true if the parameter was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getParameterAtPoint(self, point)
+
+    def getParameterExtents(self) -> "bool":
+        r"""
+        Get the parametric range of the curve.
+        startParameter : The output lower bound of the parameter range.
+        endParameter : The output upper bound of the parameter range.
+        Returns true if the curve is bounded and the parameter extents were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getParameterExtents(self)
+
+    def getPointsAtParameters(self, parameters: "list[float]") -> "bool":
+        r"""
+        Get the points on the curve that correspond to evaluating a set of parameter positions on the curve.
+        parameters : The array of parameter positions to evaluate the curve position at.
+        Each parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        points : The output array of curve positions corresponding to evaluating the curve at that parameter position.
+        The length of this array will be equal to the length of the parameters array specified.
+        Returns true if the points were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getPointsAtParameters(self, parameters)
+
+    def getPointAtParameter(self, parameter: "float") -> "bool":
+        r"""
+        Get the point on the curve that corresponds to evaluating a parameter position on the curve.
+        parameter : The parameter position to evaluate the curve position at.
+        The parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        point : The output curve position corresponding to evaluating the curve at that parameter position.
+        Returns true if the point was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getPointAtParameter(self, parameter)
+
+    def getFirstDerivatives(self, parameters: "list[float]") -> "bool":
+        r"""
+        Get the first derivatives of the curve at the specified parameter positions.
+        parameters : The array of parameter positions to get the curve first derivative at.
+        Each parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        firstDerivatives : The output array of first derivative vectors at each parameter position specified.
+        The length of this array is equal to the length of the parameters array specified.
+        Returns true if the first derivatives were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getFirstDerivatives(self, parameters)
+
+    def getFirstDerivative(self, parameter: "float") -> "bool":
+        r"""
+        Get the first derivative of the curve at the specified parameter position.
+        parameter : The parameter position to get the curve first derivative at.
+        The parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        firstDerivative : The output first derivative vector at the parameter position specified.
+        Returns true if the first derivative was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getFirstDerivative(self, parameter)
+
+    def getSecondDerivatives(self, parameters: "list[float]") -> "bool":
+        r"""
+        Get the second derivatives of the curve at the specified parameter positions.
+        parameters : The array of parameter positions to get the curve second derivative at.
+        Each parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        secondDerivatives : The output array of second derivative vectors at each parameter position specified.
+        The length of this array is equal to the length of the parameters array specified.
+        Returns true if the second derivatives were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getSecondDerivatives(self, parameters)
+
+    def getSecondDerivative(self, parameter: "float") -> "bool":
+        r"""
+        Get the second derivative of the curve at the specified parameter position.
+        parameter : The parameter position to get the curve second derivative at.
+        The parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        secondDerivative : The output second derivative vector at the parameter position specified.
+        Returns true if the second derivative was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getSecondDerivative(self, parameter)
+
+    def getThirdDerivatives(self, parameters: "list[float]") -> "bool":
+        r"""
+        Get the third derivatives of the curve at the specified parameter positions.
+        parameters : The array of parameter positions to get the curve third derivative at.
+        Each parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        thirdDerivatives : The output array of third derivative vectors at each parameter position specified.
+        The length of this array is equal to the length of the parameters array specified.
+        Returns true if the third derivatives were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getThirdDerivatives(self, parameters)
+
+    def getThirdDerivative(self, parameter: "float") -> "bool":
+        r"""
+        Get the third derivative of the curve at the specified parameter position.
+        parameter : The parameter position to get the curve third derivative at.
+        The parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        thirdDerivative : The output third derivative vector at the parameter position specified.
+        Returns true if the third derivative was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getThirdDerivative(self, parameter)
+
+    def getStrokes(self, fromParameter: "float", toParameter: "float", tolerance: "float") -> "bool":
+        r"""
+        Get a sequence of points between two curve parameter positions.
+        The points will be a linear interpolation along the curve between these two
+        parameter positions where the maximum deviation between the curve and each line
+        segment will not exceed the specified tolerance value.
+        fromParameter : The starting parameter position to interpolate points from.
+        The parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        toParameter : The ending parameter position to interpolate points to.
+        The parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        tolerance : The maximum distance tolerance between the curve and the linear interpolation.
+        vertexCoordinates : The output array of linear interpolation points.
+        Returns true if the interpolation points were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getStrokes(self, fromParameter, toParameter, tolerance)
+
+    def getTangents(self, parameters: "list[float]") -> "bool":
+        r"""
+        Get the tangent to the curve at a number of parameter positions on the curve.
+        parameters : The array of parameter positions to return the tangent at.
+        Each parameter value must be within the range of the parameter extents as provided by getParameterExtents.
+        tangents : The output array of tangent vectors for each position on the curve.
+        The length of this array will be the same as the length of the parameters array provided.
+        Returns true if the tangents were successfully returned.
+        """
+        return _core.CurveEvaluator3D_getTangents(self, parameters)
+
+    def getTangent(self, parameter: "float") -> "bool":
+        r"""
+        Get the tangent to the curve at a parameter position on the curve.
+        parameter : The parameter position to return the tangent at.
+        This value must be within the range of the parameter extents as provided by getParameterExtents.
+        tangent : The output tangent vector at the curve position.
+        Returns true if the tangent was successfully returned.
+        """
+        return _core.CurveEvaluator3D_getTangent(self, parameter)
+
+    def _get_objectType(self) -> "str":
+        return _core.CurveEvaluator3D__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _core.CurveEvaluator3D__get_isValid(self)
+
+# Register CurveEvaluator3D in _core:
+_core.CurveEvaluator3D_swigregister(CurveEvaluator3D)
+
+def CurveEvaluator3D_classType() -> "str":
+    return _core.CurveEvaluator3D_classType()
+
+
+CurveEvaluator3D.cast = lambda arg: arg if isinstance(arg, CurveEvaluator3D) else None
+
+class ValueInput(Base):
+    r"""
+    A ValueInput provides a flexible way of specifying a string, a double, a boolean, or object reference.
+    No semantics are associated with a ValueInput (e.g. is the string valid, can the string
+    be converted to a double) - it is merely a way of supplying information in
+    either string, double, boolean or object reference form as a function parameter.
+    ValueInput objects are typically used to specify things like an extrude depth, or hole diameter, etc.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.core.ValueInput *":
+        return _core.ValueInput___deref__(self)
+
+    def __eq__(self, rhs: "ValueInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _core.ValueInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ValueInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _core.ValueInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.core.ValueInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _core.ValueInput_classType()
+
+    @staticmethod
+    def createByReal(realValue: "float") -> "adsk.core.ValueInput":
+        r"""
+        Creates a new ValueInput object using a double. For example, if you create a value using
+        the double value 2 and use it as input for a length, it will be interpreted as 2 cm because
+        centimeters are the internal unit for length. Values defined by a real are always
+        interpreted to be in the appropriate internal unit.
+        For example, if the value 2 is used to define the depth of an extrusion (a length value),
+        it will be 2 cm because cm is the internal unit for lengths. If the value 2 is used
+        to define the angle of the extrude, it will be 2 radians because radians are the internal
+        unit for angles.
+        realValue : a double value
+        Returns the newly created ValueInput object or null if the creation failed.
+        """
+        return _core.ValueInput_createByReal(realValue)
+
+    @staticmethod
+    def createByString(stringValue: "str") -> "adsk.core.ValueInput":
+        r"""
+        When a string is used to create a value it needs to be evaluated as an expression so
+        its value can be determined using the UnitsManager class.
+        The units of an expression can be explicitly defined or will default to the current default
+        units.
+        For example, if you create an expression with the string '6' and specify it as a length,
+        it will use the current active units. If the current active units are defined as inches
+        the expression will be interpreted as 6 inches.
+        You can specify the units as part of the string (i.e. '6 mm').
+        You can also use equations in the string (i.e. '6 + 5mm')
+        In order for an expression to be valid, its units must be compatible with the value it
+        represents. For example if you specify '5 in + 3 cm' as an expression to supply the value
+        of an angle, it will fail because the units of the expression define a length.
+        stringValue : The expression string
+        Returns the newly created ValueInput object or null if the creation failed.
+        """
+        return _core.ValueInput_createByString(stringValue)
+
+    @staticmethod
+    def createByObject(objectReference: "Base") -> "adsk.core.ValueInput":
+        r"""
+        Creates a new ValueInput object that contains a reference to any Fusion object.
+        objectReference : The Fusion object that you want to create the ValueInput for.
+        Returns the newly created ValueInput object or null if the creation failed.
+        """
+        return _core.ValueInput_createByObject(objectReference)
+
+    @staticmethod
+    def createByBoolean(booleanValue: "bool") -> "adsk.core.ValueInput":
+        r"""
+        Creates a new ValueInput object that contains a boolean value.
+        booleanValue : Boolean value.
+        Returns the newly created ValueInput object or null if the creation failed.
+        """
+        return _core.ValueInput_createByBoolean(booleanValue)
+    __swig_destroy__ = _core.delete_ValueInput
+
+    def _get_realValue(self) -> "float":
+        r"""
+        Gets the real value, if there is one.
+        Returns -1 AND GetLastError returns ValueNotOfType if there is no real value.
+        You can use the valueType property to determine which value type is currently used.
+        """
+        return _core.ValueInput__get_realValue(self)
+
+    def _get_stringValue(self) -> "str":
+        r"""
+        Gets the string value, if there is one.
+        Returns an empty string AND GetLastError returns ValueNotOfType if there is no string value.
+        You can use the valueType property to determine which value type is currently used.
+        """
+        return _core.ValueInput__get_stringValue(self)
+
+    def _get_objectReference(self) -> "adsk.core.Base":
+        r"""
+        Gets the object being referenced, if there is one.
+        Returns null AND GetLastError returns ValueNotOfType if there is no object reference.
+        You can use the valueType property to determine which value type is currently used.
+        """
+        return _core.ValueInput__get_objectReference(self)
+
+    def _get_valueType(self) -> "adsk.core.ValueTypes":
+        r"""Returns the type of value this ValueInput currently represents."""
+        return _core.ValueInput__get_valueType(self)
+
+    def _get_booleanValue(self) -> "bool":
+        r"""
+        Gets the boolean value, if there is one.
+        Returns false AND GetLastError returns ValueNotOfType if there is no boolean value.
+        You can use the valueType property to determine which value type is currently used.
+        """
+        return _core.ValueInput__get_booleanValue(self)
+
+    def _get_objectType(self) -> "str":
+        return _core.ValueInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _core.ValueInput__get_isValid(self)
+
+# Register ValueInput in _core:
+_core.ValueInput_swigregister(ValueInput)
+
+def ValueInput_classType() -> "str":
+    return _core.ValueInput_classType()
+
+def ValueInput_createByReal(realValue: "float") -> "adsk.core.ValueInput":
+    r"""
+    Creates a new ValueInput object using a double. For example, if you create a value using
+    the double value 2 and use it as input for a length, it will be interpreted as 2 cm because
+    centimeters are the internal unit for length. Values defined by a real are always
+    interpreted to be in the appropriate internal unit.
+    For example, if the value 2 is used to define the depth of an extrusion (a length value),
+    it will be 2 cm because cm is the internal unit for lengths. If the value 2 is used
+    to define the angle of the extrude, it will be 2 radians because radians are the internal
+    unit for angles.
+    realValue : a double value
+    Returns the newly created ValueInput object or null if the creation failed.
+    """
+    return _core.ValueInput_createByReal(realValue)
+
+def ValueInput_createByString(stringValue: "str") -> "adsk.core.ValueInput":
+    r"""
+    When a string is used to create a value it needs to be evaluated as an expression so
+    its value can be determined using the UnitsManager class.
+    The units of an expression can be explicitly defined or will default to the current default
+    units.
+    For example, if you create an expression with the string '6' and specify it as a length,
+    it will use the current active units. If the current active units are defined as inches
+    the expression will be interpreted as 6 inches.
+    You can specify the units as part of the string (i.e. '6 mm').
+    You can also use equations in the string (i.e. '6 + 5mm')
+    In order for an expression to be valid, its units must be compatible with the value it
+    represents. For example if you specify '5 in + 3 cm' as an expression to supply the value
+    of an angle, it will fail because the units of the expression define a length.
+    stringValue : The expression string
+    Returns the newly created ValueInput object or null if the creation failed.
+    """
+    return _core.ValueInput_createByString(stringValue)
+
+def ValueInput_createByObject(objectReference: "Base") -> "adsk.core.ValueInput":
+    r"""
+    Creates a new ValueInput object that contains a reference to any Fusion object.
+    objectReference : The Fusion object that you want to create the ValueInput for.
+    Returns the newly created ValueInput object or null if the creation failed.
+    """
+    return _core.ValueInput_createByObject(objectReference)
+
+def ValueInput_createByBoolean(booleanValue: "bool") -> "adsk.core.ValueInput":
+    r"""
+    Creates a new ValueInput object that contains a boolean value.
+    booleanValue : Boolean value.
+    Returns the newly created ValueInput object or null if the creation failed.
+    """
+    return _core.ValueInput_createByBoolean(booleanValue)
+
+
+ValueInput.realValue = property(ValueInput._get_realValue, doc="Gets the real value, if there is one.\nReturns -1 AND GetLastError returns ValueNotOfType if there is no real value.\nYou can use the valueType property to determine which value type is currently used.")
+
+
+ValueInput.stringValue = property(ValueInput._get_stringValue, doc="Gets the string value, if there is one.\nReturns an empty string AND GetLastError returns ValueNotOfType if there is no string value.\nYou can use the valueType property to determine which value type is currently used.")
+
+
+ValueInput.objectReference = property(ValueInput._get_objectReference, doc="Gets the object being referenced, if there is one.\nReturns null AND GetLastError returns ValueNotOfType if there is no object reference.\nYou can use the valueType property to determine which value type is currently used.")
+
+
+ValueInput.valueType = property(ValueInput._get_valueType, doc="Returns the type of value this ValueInput currently represents.")
+
+
+ValueInput.booleanValue = property(ValueInput._get_booleanValue, doc="Gets the boolean value, if there is one.\nReturns false AND GetLastError returns ValueNotOfType if there is no boolean value.\nYou can use the valueType property to determine which value type is currently used.")
+
+
+ValueInput.cast = lambda arg: arg if isinstance(arg, ValueInput) else None

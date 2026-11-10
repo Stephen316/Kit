@@ -1,0 +1,52 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "revolve_partial.f3d",
+      "features": [
+        {
+          "name": "ProbeRevolve",
+          "kind": "RevolveFeature",
+          "operation": 3,
+          "extent_type": null,
+          "extent_one": "AngleExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "expression": "65 deg",
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "revolve_full.f3d",
+      "features": [
+        {
+          "name": "ProbeRevolve",
+          "kind": "RevolveFeature",
+          "operation": 3,
+          "extent_type": null,
+          "extent_one": "AngleExtentDefinition",
+          "is_solid": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 6.283185307179586,
+          "expression": "360 deg",
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

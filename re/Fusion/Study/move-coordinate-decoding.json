@@ -1,0 +1,263 @@
+{
+  "status": "pass",
+  "scope": "Point-to-position component/design coordinate flag, optional frame and existing cached transform",
+  "samples": [
+    {
+      "file": "movemodes-34cba3ced135/point_to_position.f3d",
+      "api_is_design_space": true,
+      "checks": {
+        "coordinate_space": true,
+        "point_name": true,
+        "x_distance_cm": true,
+        "y_distance_cm": true,
+        "z_distance_cm": true,
+        "transformed_box_bounds": true
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.7000000000000001,
+          0.0,
+          1.0,
+          0.0,
+          -1.3,
+          0.0,
+          0.0,
+          1.0,
+          0.7000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 336,
+        "stored_definition_code": 6,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 338,
+        "support_record_object_id": 337,
+        "uninterpreted_cached_scalar": 9.5e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "PointToPosition",
+        "point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "MoveOrigin",
+            "object_id": 312,
+            "feature_object_id": 313,
+            "position_cm": [
+              0.4,
+              0.8,
+              0.0
+            ]
+          },
+          "selection_object_id": 346,
+          "descriptor_object_id": 342,
+          "terminal_object_id": 345,
+          "namespace_text": "702e5517-442c-43e6-8cf5-826f6d695aba",
+          "entity_guid_text": "20f59a37-4999-48c9-bbc6-bee567836524",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "is_design_space": true,
+        "coordinate_status": "Observed point-to-position coordinate flag and optional frame presence agree with paired API controls",
+        "stored_header_reference_slots": [
+          358,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "file": "movemodes-0dd2f72dd9a7/point_to_position_component.f3d",
+      "api_is_design_space": false,
+      "checks": {
+        "coordinate_space": true,
+        "point_name": true,
+        "x_distance_cm": true,
+        "y_distance_cm": true,
+        "z_distance_cm": true,
+        "transformed_box_bounds": true
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.7000000000000001,
+          0.0,
+          1.0,
+          0.0,
+          -1.3,
+          0.0,
+          0.0,
+          1.0,
+          0.7000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 336,
+        "stored_definition_code": 6,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 338,
+        "support_record_object_id": 337,
+        "uninterpreted_cached_scalar": 6.375000000000006e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "PointToPosition",
+        "point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "MoveOrigin",
+            "object_id": 312,
+            "feature_object_id": 313,
+            "position_cm": [
+              0.4,
+              0.8,
+              0.0
+            ]
+          },
+          "selection_object_id": 346,
+          "descriptor_object_id": 342,
+          "terminal_object_id": 345,
+          "namespace_text": "3d1d51fc-9639-4be8-8a80-73f157f43778",
+          "entity_guid_text": "6e2723c2-56cc-4eb2-92ec-34a3f0efc0aa",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "is_design_space": false,
+        "coordinate_status": "Observed point-to-position coordinate flag and optional frame presence agree with paired API controls",
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "file": "movemodes-0dd2f72dd9a7/point_to_position_nested_design.f3d",
+      "api_is_design_space": true,
+      "checks": {
+        "coordinate_space": true,
+        "point_name": true,
+        "x_distance_cm": true,
+        "y_distance_cm": true,
+        "z_distance_cm": true,
+        "transformed_box_bounds": true
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          -1.389949493661166,
+          0.0,
+          1.0,
+          0.0,
+          2.311269837220809,
+          0.0,
+          0.0,
+          1.0,
+          -0.29999999999999993,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 399,
+        "stored_definition_code": 6,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 401,
+        "support_record_object_id": 400,
+        "uninterpreted_cached_scalar": 1.2416000000000011e-05,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "PointToPosition",
+        "point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "MoveOrigin",
+            "object_id": 375,
+            "feature_object_id": 376,
+            "position_cm": [
+              0.3999999999999999,
+              0.8000000000000007,
+              0.0
+            ]
+          },
+          "selection_object_id": 409,
+          "descriptor_object_id": 405,
+          "terminal_object_id": 408,
+          "namespace_text": "885155dd-3a90-4e04-b054-0023eb8565aa",
+          "entity_guid_text": "5f61110e-54f3-45f4-be18-adc588cf9777",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "is_design_space": true,
+        "coordinate_status": "Observed point-to-position coordinate flag and optional frame presence agree with paired API controls",
+        "stored_header_reference_slots": [
+          421,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  ],
+  "malformed_cases": [
+    {
+      "file": "movemodes-0dd2f72dd9a7/point_to_position_component.f3d",
+      "case": "coordinate_flag_frame_disagreement",
+      "rejected": true,
+      "reason": "Unobserved point-to-position context header"
+    },
+    {
+      "file": "movemodes-0dd2f72dd9a7/point_to_position_component.f3d",
+      "case": "invalid_coordinate_flag",
+      "rejected": true,
+      "reason": "Unsupported Move matrix suffix"
+    },
+    {
+      "file": "movemodes-0dd2f72dd9a7/point_to_position_nested_design.f3d",
+      "case": "coordinate_flag_frame_disagreement",
+      "rejected": true,
+      "reason": "Unobserved point-to-position context header"
+    }
+  ],
+  "native_encoding": "For definition code6 only, byte2 of the six-byte post-matrix suffix is0(component)or1(design). Design mode requires header frame slot0; component mode requires it absent. Remaining header slots stay empty. Other Move definitions retain their prior fixed suffix guard.",
+  "limitations": [
+    "Context-frame fields and general occurrence replay remain partial.",
+    "Stored body caches already include moves; this transform must not be applied to them again.",
+    "No feature regeneration or BRep vertex selection decoder."
+  ]
+}

@@ -1,0 +1,3193 @@
+{
+  "interface": "decode_base_mesh_feature_definitions(data,records,features)->partial/unresolved/scope; single decode_base_mesh_feature_definition(data,records,feature)",
+  "integration": {
+    "stream": "base_mesh_feature_definitions",
+    "feature_attachment": "base_mesh_feature_definition",
+    "classification_or_warning_changes": false
+  },
+  "samples": [
+    {
+      "archive": "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+      "archive_sha256": "d8a5be48df8421ff8c674a3a41c8490ff16ef969b9b89854a8656d9de69cc99e",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24441,
+                "body_offset": 24460,
+                "end_offset": 25353
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26289,
+              "feature_backlink_offsets": [
+                26322,
+                26368
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26409,
+              "bookkeeping_backlink_offset": 26440,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de000000000000000000e2a81a9e595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "e2a81a9e595e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26107,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000a7a71a9e595e060001da000000000000000000e0a81a9e595e060001da000000000000000000e0a81a9e595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff01010000f5e0e182dbf6273f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3466,
+              "feature_owner_fragment_offset": 26096,
+              "controller_owner_fragment_offset": 26398,
+              "membership_fragment_offset": 3506,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                268,
+                273,
+                276
+              ],
+              "membership_payload_hex": "08000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000010c01000000000000000001110100000000000000000114010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3414
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4590,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3381,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                268
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da000000000000000000010c010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25814,
+              "end_offset": 26077,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff01010000f5e0e182dbf6273f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshconverts-4b42d39fb1d5/faceted_open.f3d",
+      "archive_sha256": "b645d6e125bab477c1ffd0f3f33051fb4dfdbb4e511c1165d227357323a97e7d",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24437,
+                "body_offset": 24456,
+                "end_offset": 25345
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26281,
+              "feature_backlink_offsets": [
+                26314,
+                26360
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26401,
+              "bookkeeping_backlink_offset": 26432,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de0000000000000000000e91269e595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "0e91269e595e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26099,
+              "feature_bookkeeping_payload_hex": "00000000000001010200000001210000000000000000000990269e595e060001da0000000000000000000c91269e595e060001da0000000000000000000c91269e595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff010100007c3c13eb6b95243f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3466,
+              "feature_owner_fragment_offset": 26088,
+              "controller_owner_fragment_offset": 26390,
+              "membership_fragment_offset": 3506,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                268,
+                273,
+                276
+              ],
+              "membership_payload_hex": "08000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000010c01000000000000000001110100000000000000000114010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3414
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4590,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3381,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                268
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da000000000000000000010c010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25806,
+              "end_offset": 26069,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff010100007c3c13eb6b95243f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshcombines-541ebb6cc93f/cut.f3d",
+      "archive_sha256": "a778c30d1e9c5526f736b2b804b7912514fa17fa6cb205f84e4c4934a7aa76a0",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24672,
+                "body_offset": 24691,
+                "end_offset": 25566
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26502,
+              "feature_backlink_offsets": [
+                26535,
+                26581
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26622,
+              "bookkeeping_backlink_offset": 26653,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de000000000000000000098f4ea1595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "098f4ea1595e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26320,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000698d4ea1595e060001da000000000000000000078f4ea1595e060001da000000000000000000078f4ea1595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff010100005cd40d65bf262f3f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 26309,
+              "controller_owner_fragment_offset": 26611,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                308,
+                311,
+                315,
+                318,
+                307
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb00000000000000000001340100000000000000000137010000000000000000013b010000000000000000013e0100000000000000000133010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4811,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                307
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e70000000000000000000133010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 26027,
+              "end_offset": 26290,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff010100005cd40d65bf262f3f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          },
+          {
+            "feature_object_id": 231,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              226
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 226,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 26927,
+                "body_offset": 26946,
+                "end_offset": 27817
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 235,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 28753,
+              "feature_backlink_offsets": [
+                28786,
+                28832
+              ],
+              "bookkeeping_object_id": 236,
+              "bookkeeping_record_offset": 28873,
+              "bookkeeping_backlink_offset": 28904,
+              "payload_hex": "000000000000000000000000000001e7000000000000000000000000000000000000000000000000000000000001000001ec0000000000000000000001e7000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001eb000000000000000000978f4ea1595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "978f4ea1595e0600"
+            },
+            "footer": {
+              "state_object_id": 234,
+              "property_object_id": 233,
+              "feature_bookkeeping_object_id": 232,
+              "feature_bookkeeping_record_offset": 28571,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000698d4ea1595e060001e7000000000000000000958f4ea1595e060001e7000000000000000000958f4ea1595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001ea00000000000000000000ffffffff010100003cf2142dd13d213f0101000001e900000000000000000001000001e80000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 28560,
+              "controller_owner_fragment_offset": 28862,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                308,
+                311,
+                315,
+                318,
+                307
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb00000000000000000001340100000000000000000137010000000000000000013b010000000000000000013e0100000000000000000133010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4811,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                307
+              ],
+              "native_entry_index": 2,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e70000000000000000000133010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 28278,
+              "end_offset": 28541,
+              "hex": "00000100000001e2000000000000000000000000000001eb0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001eb000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000200000000000000000000000000000000000001ea00000000000000000000ffffffff010100003cf2142dd13d213f0101000001e900000000000000000001000001e80000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature",
+        "231": "UnsupportedFeature"
+      },
+      "native_definition_count": 2,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshcombines-541ebb6cc93f/intersect.f3d",
+      "archive_sha256": "efdf998990fd3cc2d73f7aa7340b5eff353fd3c4b496c140213bd68349830f57",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24684,
+                "body_offset": 24703,
+                "end_offset": 25590
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26526,
+              "feature_backlink_offsets": [
+                26559,
+                26605
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26646,
+              "bookkeeping_backlink_offset": 26677,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de000000000000000000ddb258a1595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "ddb258a1595e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26344,
+              "feature_bookkeeping_payload_hex": "000000000000010102000000012100000000000000000075b158a1595e060001da000000000000000000dbb258a1595e060001da000000000000000000dbb258a1595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff0101000029779fe3a3c5293f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 26333,
+              "controller_owner_fragment_offset": 26635,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                308,
+                311,
+                315,
+                318,
+                307
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb00000000000000000001340100000000000000000137010000000000000000013b010000000000000000013e0100000000000000000133010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4811,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                307
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e70000000000000000000133010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 26051,
+              "end_offset": 26314,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff0101000029779fe3a3c5293f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          },
+          {
+            "feature_object_id": 231,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              226
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 226,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 26951,
+                "body_offset": 26970,
+                "end_offset": 27853
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 235,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 28789,
+              "feature_backlink_offsets": [
+                28822,
+                28868
+              ],
+              "bookkeeping_object_id": 236,
+              "bookkeeping_record_offset": 28909,
+              "bookkeeping_backlink_offset": 28940,
+              "payload_hex": "000000000000000000000000000001e7000000000000000000000000000000000000000000000000000000000001000001ec0000000000000000000001e7000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001eb0000000000000000005fb358a1595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "5fb358a1595e0600"
+            },
+            "footer": {
+              "state_object_id": 234,
+              "property_object_id": 233,
+              "feature_bookkeeping_object_id": 232,
+              "feature_bookkeeping_record_offset": 28607,
+              "feature_bookkeeping_payload_hex": "000000000000010102000000012100000000000000000075b158a1595e060001e70000000000000000005db358a1595e060001e70000000000000000005db358a1595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001ea00000000000000000000ffffffff01010000f8bc01b705831f3f0101000001e900000000000000000001000001e80000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 28596,
+              "controller_owner_fragment_offset": 28898,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                308,
+                311,
+                315,
+                318,
+                307
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb00000000000000000001340100000000000000000137010000000000000000013b010000000000000000013e0100000000000000000133010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4811,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                307
+              ],
+              "native_entry_index": 2,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e70000000000000000000133010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 28314,
+              "end_offset": 28577,
+              "hex": "00000100000001e2000000000000000000000000000001eb0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001eb000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000200000000000000000000000000000000000001ea00000000000000000000ffffffff01010000f8bc01b705831f3f0101000001e900000000000000000001000001e80000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature",
+        "231": "UnsupportedFeature"
+      },
+      "native_definition_count": 2,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshcombines-541ebb6cc93f/join.f3d",
+      "archive_sha256": "fd4cb1cd17c095383d524bb146996a47e257237eaa593922bec72a4f4ddfdab8",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24674,
+                "body_offset": 24693,
+                "end_offset": 25570
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26506,
+              "feature_backlink_offsets": [
+                26539,
+                26585
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26626,
+              "bookkeeping_backlink_offset": 26657,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de0000000000000000004e7442a1595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "4e7442a1595e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26324,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000e07242a1595e060001da0000000000000000004c7442a1595e060001da0000000000000000004c7442a1595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff01010000d5d7e60bc9e5293f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 26313,
+              "controller_owner_fragment_offset": 26615,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                308,
+                311,
+                315,
+                318,
+                307
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb00000000000000000001340100000000000000000137010000000000000000013b010000000000000000013e0100000000000000000133010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4811,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                307
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e70000000000000000000133010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 26031,
+              "end_offset": 26294,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff01010000d5d7e60bc9e5293f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          },
+          {
+            "feature_object_id": 231,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              226
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 226,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 26931,
+                "body_offset": 26950,
+                "end_offset": 27823
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 235,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 28759,
+              "feature_backlink_offsets": [
+                28792,
+                28838
+              ],
+              "bookkeeping_object_id": 236,
+              "bookkeeping_record_offset": 28879,
+              "bookkeeping_backlink_offset": 28910,
+              "payload_hex": "000000000000000000000000000001e7000000000000000000000000000000000000000000000000000000000001000001ec0000000000000000000001e7000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001eb000000000000000000c67442a1595e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "c67442a1595e0600"
+            },
+            "footer": {
+              "state_object_id": 234,
+              "property_object_id": 233,
+              "feature_bookkeeping_object_id": 232,
+              "feature_bookkeeping_record_offset": 28577,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000e07242a1595e060001e7000000000000000000c47442a1595e060001e7000000000000000000c47442a1595e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001ea00000000000000000000ffffffff01010000261c7a8b87f71c3f0101000001e900000000000000000001000001e80000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 28566,
+              "controller_owner_fragment_offset": 28868,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                308,
+                311,
+                315,
+                318,
+                307
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb00000000000000000001340100000000000000000137010000000000000000013b010000000000000000013e0100000000000000000133010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4811,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                307
+              ],
+              "native_entry_index": 2,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e70000000000000000000133010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 28284,
+              "end_offset": 28547,
+              "hex": "00000100000001e2000000000000000000000000000001eb0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001eb000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000200000000000000000000000000000000000001ea00000000000000000000ffffffff01010000261c7a8b87f71c3f0101000001e900000000000000000001000001e80000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature",
+        "231": "UnsupportedFeature"
+      },
+      "native_definition_count": 2,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshseparates-41126250c03f/connected_shell_control.f3d",
+      "archive_sha256": "6deb8f679f359909cb90405fa11b52c2970bdb089eb6b00f4c44f0751c59485d",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24307,
+                "body_offset": 24326,
+                "end_offset": 25243
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26179,
+              "feature_backlink_offsets": [
+                26212,
+                26258
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26299,
+              "bookkeeping_backlink_offset": 26330,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de0000000000000000002d88500a5a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "2d88500a5a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 25997,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000fd86500a5a5e060001da0000000000000000002b88500a5a5e060001da0000000000000000002b88500a5a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff01010000d0874db52d02273f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3327,
+              "feature_owner_fragment_offset": 25986,
+              "controller_owner_fragment_offset": 26288,
+              "membership_fragment_offset": 3367,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                353,
+                356,
+                352
+              ],
+              "membership_payload_hex": "08000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000016101000000000000000001640100000000000000000160010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3275
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4421,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3242,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                352
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000160010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25704,
+              "end_offset": 25967,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff01010000d0874db52d02273f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshseparates-41126250c03f/two_face_groups.f3d",
+      "archive_sha256": "bad9ba4734d29e38b382b390c59c25682ca1d9b817e3dce350ab6c271613f109",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24291,
+                "body_offset": 24310,
+                "end_offset": 25211
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26147,
+              "feature_backlink_offsets": [
+                26180,
+                26226
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26267,
+              "bookkeeping_backlink_offset": 26298,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de00000000000000000039764b0a5a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "39764b0a5a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 25965,
+              "feature_bookkeeping_payload_hex": "000000000000010102000000012100000000000000000053754b0a5a5e060001da00000000000000000037764b0a5a5e060001da00000000000000000037764b0a5a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff0101000047a47a268c4a203f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3327,
+              "feature_owner_fragment_offset": 25954,
+              "controller_owner_fragment_offset": 26256,
+              "membership_fragment_offset": 3367,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                353,
+                356,
+                352
+              ],
+              "membership_payload_hex": "08000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000016101000000000000000001640100000000000000000160010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3275
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4421,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3242,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                352
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000160010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25672,
+              "end_offset": 25935,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff0101000047a47a268c4a203f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshseparates-41126250c03f/two_shells.f3d",
+      "archive_sha256": "de4cfab56392bbf8f6e22361d02bb594ae3df56d12b2c2a9291dab5829665e16",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24303,
+                "body_offset": 24322,
+                "end_offset": 25213
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26149,
+              "feature_backlink_offsets": [
+                26182,
+                26228
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26269,
+              "bookkeeping_backlink_offset": 26300,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de00000000000000000079d2450a5a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "79d2450a5a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 25967,
+              "feature_bookkeeping_payload_hex": "000000000000010102000000012100000000000000000097d1450a5a5e060001da00000000000000000078d2450a5a5e060001da00000000000000000078d2450a5a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff01010000d435791bb2b91e3f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3338,
+              "feature_owner_fragment_offset": 25956,
+              "controller_owner_fragment_offset": 26258,
+              "membership_fragment_offset": 3378,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                353,
+                356,
+                352
+              ],
+              "membership_payload_hex": "08000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000016101000000000000000001640100000000000000000160010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3286
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4432,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3253,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                352
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000160010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25674,
+              "end_offset": 25937,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff01010000d435791bb2b91e3f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshremoves-8b2188cd274d/one_remove_one.f3d",
+      "archive_sha256": "90d9e64d638f98a1f3abea7e5086789eeebbef9037812da0a0960deb1b1c1bca",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24262,
+                "body_offset": 24281,
+                "end_offset": 25206
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26142,
+              "feature_backlink_offsets": [
+                26175,
+                26221
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26262,
+              "bookkeeping_backlink_offset": 26293,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de000000000000000000065f12475a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "065f12475a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 25960,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000185d12475a5e060001da000000000000000000045f12475a5e060001da000000000000000000045f12475a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff01010000766b990cc7f3293f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3315,
+              "feature_owner_fragment_offset": 25949,
+              "controller_owner_fragment_offset": 26251,
+              "membership_fragment_offset": 3355,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                341,
+                344,
+                340
+              ],
+              "membership_payload_hex": "08000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000015501000000000000000001580100000000000000000154010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3263
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4409,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3230,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                340
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000154010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25667,
+              "end_offset": 25930,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff01010000766b990cc7f3293f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshremoves-8b2188cd274d/two_remove_both.f3d",
+      "archive_sha256": "f69fe8672987ace43f7a4c3fc88d20a216ec9f8515e932b80610ef51d87d6efd",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24779,
+                "body_offset": 24798,
+                "end_offset": 25725
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26661,
+              "feature_backlink_offsets": [
+                26694,
+                26740
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26781,
+              "bookkeeping_backlink_offset": 26812,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de00000000000000000028c41e475a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "28c41e475a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26479,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000dfc21e475a5e060001da00000000000000000027c41e475a5e060001da00000000000000000027c41e475a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff0101000071218fe046ca263f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3326,
+              "feature_owner_fragment_offset": 26468,
+              "controller_owner_fragment_offset": 26770,
+              "membership_fragment_offset": 3366,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                251,
+                255,
+                464,
+                467,
+                463,
+                476,
+                479,
+                475
+              ],
+              "membership_payload_hex": "0d000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001fb00000000000000000001ff00000000000000000001d001000000000000000001d301000000000000000001cf01000000000000000001dc01000000000000000001df01000000000000000001db010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3274
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4902,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3241,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                251,
+                463,
+                475
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000500000001cc00000000000000000001da00000000000000000001fb00000000000000000001cf01000000000000000001db010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 26186,
+              "end_offset": 26449,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff0101000071218fe046ca263f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          },
+          {
+            "feature_object_id": 251,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              246
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 246,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 27086,
+                "body_offset": 27105,
+                "end_offset": 28032
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 255,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 28968,
+              "feature_backlink_offsets": [
+                29001,
+                29047
+              ],
+              "bookkeeping_object_id": 256,
+              "bookkeeping_record_offset": 29088,
+              "bookkeeping_backlink_offset": 29119,
+              "payload_hex": "000000000000000000000000000001fb000000000000000000000000000000000000000000000000000000000001000001000100000000000000000001fb000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001ff0000000000000000009ac41e475a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "9ac41e475a5e0600"
+            },
+            "footer": {
+              "state_object_id": 254,
+              "property_object_id": 253,
+              "feature_bookkeeping_object_id": 252,
+              "feature_bookkeeping_record_offset": 28786,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000dfc21e475a5e060001fb00000000000000000098c41e475a5e060001fb00000000000000000098c41e475a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001fe00000000000000000000ffffffff010100006608e639397b1b3f0101000001fd00000000000000000001000001fc0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3326,
+              "feature_owner_fragment_offset": 28775,
+              "controller_owner_fragment_offset": 29077,
+              "membership_fragment_offset": 3366,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                251,
+                255,
+                464,
+                467,
+                463,
+                476,
+                479,
+                475
+              ],
+              "membership_payload_hex": "0d000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001fb00000000000000000001ff00000000000000000001d001000000000000000001d301000000000000000001cf01000000000000000001dc01000000000000000001df01000000000000000001db010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3274
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4902,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3241,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                251,
+                463,
+                475
+              ],
+              "native_entry_index": 2,
+              "payload_hex": "0000011a0000000000000000000500000001cc00000000000000000001da00000000000000000001fb00000000000000000001cf01000000000000000001db010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 28493,
+              "end_offset": 28756,
+              "hex": "00000100000001f6000000000000000000000000000001ff0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001ff000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000200000000000000000000000000000000000001fe00000000000000000000ffffffff010100006608e639397b1b3f0101000001fd00000000000000000001000001fc0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature",
+        "251": "UnsupportedFeature"
+      },
+      "native_definition_count": 2,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshremoves-8b2188cd274d/two_remove_first.f3d",
+      "archive_sha256": "f8fc1aaff309873738501d68a3fdb6e10a031bcbfc9ca7e077faea6735ab7356",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24495,
+                "body_offset": 24514,
+                "end_offset": 25443
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26379,
+              "feature_backlink_offsets": [
+                26412,
+                26458
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26499,
+              "bookkeeping_backlink_offset": 26530,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de0000000000000000001f5519475a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "1f5519475a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26197,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000065419475a5e060001da0000000000000000001d5519475a5e060001da0000000000000000001d5519475a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff0101000097033dd4b661243f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3337,
+              "feature_owner_fragment_offset": 26186,
+              "controller_owner_fragment_offset": 26488,
+              "membership_fragment_offset": 3377,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                251,
+                255,
+                410,
+                413,
+                409
+              ],
+              "membership_payload_hex": "0a000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001fb00000000000000000001ff000000000000000000019a010000000000000000019d0100000000000000000199010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3285
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4616,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3252,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                251,
+                409
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001fb0000000000000000000199010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25904,
+              "end_offset": 26167,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff0101000097033dd4b661243f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          },
+          {
+            "feature_object_id": 251,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              246
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 246,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 26804,
+                "body_offset": 26823,
+                "end_offset": 27752
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 255,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 28688,
+              "feature_backlink_offsets": [
+                28721,
+                28767
+              ],
+              "bookkeeping_object_id": 256,
+              "bookkeeping_record_offset": 28808,
+              "bookkeeping_backlink_offset": 28839,
+              "payload_hex": "000000000000000000000000000001fb000000000000000000000000000000000000000000000000000000000001000001000100000000000000000001fb000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001ff000000000000000000915519475a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "915519475a5e0600"
+            },
+            "footer": {
+              "state_object_id": 254,
+              "property_object_id": 253,
+              "feature_bookkeeping_object_id": 252,
+              "feature_bookkeeping_record_offset": 28506,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000065419475a5e060001fb0000000000000000008f5519475a5e060001fb0000000000000000008f5519475a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001fe00000000000000000000ffffffff010100009c96390ccf131b3f0101000001fd00000000000000000001000001fc0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3337,
+              "feature_owner_fragment_offset": 28495,
+              "controller_owner_fragment_offset": 28797,
+              "membership_fragment_offset": 3377,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                251,
+                255,
+                410,
+                413,
+                409
+              ],
+              "membership_payload_hex": "0a000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001fb00000000000000000001ff000000000000000000019a010000000000000000019d0100000000000000000199010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3285
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4616,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3252,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                251,
+                409
+              ],
+              "native_entry_index": 2,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001fb0000000000000000000199010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 28213,
+              "end_offset": 28476,
+              "hex": "00000100000001f6000000000000000000000000000001ff0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001ff000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000200000000000000000000000000000000000001fe00000000000000000000ffffffff010100009c96390ccf131b3f0101000001fd00000000000000000001000001fc0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature",
+        "251": "UnsupportedFeature"
+      },
+      "native_definition_count": 2,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d",
+      "archive_sha256": "f59d79e81057a96b5a9a593cf463ae8db2a43f02674a85e1becd48602e2cde73",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 218,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              213
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 213,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 24901,
+                "body_offset": 24920,
+                "end_offset": 25823
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 222,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 26759,
+              "feature_backlink_offsets": [
+                26792,
+                26838
+              ],
+              "bookkeeping_object_id": 223,
+              "bookkeeping_record_offset": 26879,
+              "bookkeeping_backlink_offset": 26910,
+              "payload_hex": "000000000000000000000000000001da000000000000000000000000000000000000000000000000000000000001000001df0000000000000000000001da000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001de000000000000000000c1f762a35a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "c1f762a35a5e0600"
+            },
+            "footer": {
+              "state_object_id": 221,
+              "property_object_id": 220,
+              "feature_bookkeeping_object_id": 219,
+              "feature_bookkeeping_record_offset": 26577,
+              "feature_bookkeeping_payload_hex": "000000000000010102000000012100000000000000000052f662a35a5e060001da000000000000000000bff762a35a5e060001da000000000000000000bff762a35a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001dd00000000000000000000ffffffff0101000054e41071732a293f0101000001dc00000000000000000001000001db0000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3526,
+              "feature_owner_fragment_offset": 26566,
+              "controller_owner_fragment_offset": 26868,
+              "membership_fragment_offset": 3566,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                349,
+                354,
+                357,
+                362,
+                365
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb000000000000000000015d01000000000000000001620100000000000000000165010000000000000000016a010000000000000000016d010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3474
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 5029,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3441,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                349
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e7000000000000000000015d010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 26284,
+              "end_offset": 26547,
+              "hex": "00000100000001d5000000000000000000000000000001de0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001de000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001dd00000000000000000000ffffffff0101000054e41071732a293f0101000001dc00000000000000000001000001db0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          },
+          {
+            "feature_object_id": 231,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 2,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              226
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 226,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 27184,
+                "body_offset": 27203,
+                "end_offset": 28106
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 235,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 29042,
+              "feature_backlink_offsets": [
+                29075,
+                29121
+              ],
+              "bookkeeping_object_id": 236,
+              "bookkeeping_record_offset": 29162,
+              "bookkeeping_backlink_offset": 29193,
+              "payload_hex": "000000000000000000000000000001e7000000000000000000000000000000000000000000000000000000000001000001ec0000000000000000000001e7000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001eb00000000000000000044f862a35a5e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "44f862a35a5e0600"
+            },
+            "footer": {
+              "state_object_id": 234,
+              "property_object_id": 233,
+              "feature_bookkeeping_object_id": 232,
+              "feature_bookkeeping_record_offset": 28860,
+              "feature_bookkeeping_payload_hex": "000000000000010102000000012100000000000000000052f662a35a5e060001e700000000000000000043f862a35a5e060001e700000000000000000043f862a35a5e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001ea00000000000000000000ffffffff01010000a4ef541185ce1f3f0101000001e900000000000000000001000001e80000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3526,
+              "feature_owner_fragment_offset": 28849,
+              "controller_owner_fragment_offset": 29151,
+              "membership_fragment_offset": 3566,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                231,
+                235,
+                349,
+                354,
+                357,
+                362,
+                365
+              ],
+              "membership_payload_hex": "0c000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de00000000000000000001e700000000000000000001eb000000000000000000015d01000000000000000001620100000000000000000165010000000000000000016a010000000000000000016d010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3474
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 5029,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3441,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                231,
+                349
+              ],
+              "native_entry_index": 2,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001e7000000000000000000015d010000000000000000"
+            },
+            "stored_payload": {
+              "offset": 28567,
+              "end_offset": 28830,
+              "hex": "00000100000001e2000000000000000000000000000001eb0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001eb000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000200000000000000000000000000000000000001ea00000000000000000000ffffffff01010000a4ef541185ce1f3f0101000001e900000000000000000001000001e80000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "218": "UnsupportedFeature",
+        "231": "UnsupportedFeature"
+      },
+      "native_definition_count": 2,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+      "archive_sha256": "af92be84cad999ab8b363e93aefb3b6c9be54138fcc321f843aff498dc387ac3",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 224,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              219
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 219,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 23934,
+                "body_offset": 23953,
+                "end_offset": 24834
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 228,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 25770,
+              "feature_backlink_offsets": [
+                25803,
+                25849
+              ],
+              "bookkeeping_object_id": 229,
+              "bookkeeping_record_offset": 25890,
+              "bookkeeping_backlink_offset": 25921,
+              "payload_hex": "000000000000000000000000000001e0000000000000000000000000000000000000000000000000000000000001000001e50000000000000000000001e0000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001e4000000000000000000d8aa833f585e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "d8aa833f585e0600"
+            },
+            "footer": {
+              "state_object_id": 227,
+              "property_object_id": 226,
+              "feature_bookkeeping_object_id": 225,
+              "feature_bookkeeping_record_offset": 25588,
+              "feature_bookkeeping_payload_hex": "0000000000000101020000000121000000000000000000f1a9833f585e060001e0000000000000000000d6aa833f585e060001e0000000000000000000d6aa833f585e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001e300000000000000000000ffffffff01010000dc2413ab97c3243f0101000001e200000000000000000001000001e10000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3290,
+              "feature_owner_fragment_offset": 25577,
+              "controller_owner_fragment_offset": 25879,
+              "membership_fragment_offset": 3330,
+              "counted_member_object_ids": [
+                33,
+                202,
+                206,
+                224,
+                228
+              ],
+              "membership_payload_hex": "05000000012100000000000000000001ca00000000000000000001ce00000000000000000001e000000000000000000001e4000000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3238
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4087,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3205,
+              "ordered_native_entry_object_ids": [
+                202,
+                224
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000200000001ca00000000000000000001e0000000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25295,
+              "end_offset": 25558,
+              "hex": "00000100000001db000000000000000000000000000001e40000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001e4000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001e300000000000000000000ffffffff01010000dc2413ab97c3243f0101000001e200000000000000000001000001e10000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "224": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+      "archive_sha256": "e4576022f6b38dae4cb4aae1230d091f6ad6b21dc4d1223525e1870a656051d8",
+      "expected_partial": {
+        "partial": [
+          {
+            "feature_object_id": 224,
+            "name": null,
+            "stored_name": "",
+            "stored_index": 1,
+            "definition_status": "PartialObservedSingletonForwardMeshDefinition",
+            "stored_native_kind_label": "Base Mesh Feature",
+            "stored_mesh_object_ids": [
+              219
+            ],
+            "stored_mesh_records": [
+              {
+                "object_id": 219,
+                "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+                "record_offset": 23934,
+                "body_offset": 23953,
+                "end_offset": 24834
+              }
+            ],
+            "mesh_membership_scope": "Explicit feature-owned counted forward typed mesh reference only; mesh owner backlink requires independent source framing",
+            "mesh_owner_backlink_qualified": false,
+            "current_mesh_membership": null,
+            "mesh_assets": null,
+            "API_BaseFeature_owner": null,
+            "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+            "stored_table_metadata": -1,
+            "table_metadata_semantics": "Literal signed -1 retained; no enum/flag meaning assigned",
+            "stored_shared_feature_state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "controller": {
+              "object_id": 228,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 25770,
+              "feature_backlink_offsets": [
+                25803,
+                25849
+              ],
+              "bookkeeping_object_id": 229,
+              "bookkeeping_record_offset": 25890,
+              "bookkeeping_backlink_offset": 25921,
+              "payload_hex": "000000000000000000000000000001e0000000000000000000000000000000000000000000000000000000000001000001e50000000000000000000001e0000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001e400000000000000000004de8a3f585e06000000000000000000",
+              "opaque_bookkeeping_8byte_hex": "04de8a3f585e0600"
+            },
+            "footer": {
+              "state_object_id": 227,
+              "property_object_id": 226,
+              "feature_bookkeeping_object_id": 225,
+              "feature_bookkeeping_record_offset": 25588,
+              "feature_bookkeeping_payload_hex": "00000000000001010200000001210000000000000000003edd8a3f585e060001e000000000000000000003de8a3f585e060001e000000000000000000003de8a3f585e06000000000000000000",
+              "stored_related_object_id": 33,
+              "stored_related_object_class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+              "related_object_semantics": null,
+              "raw_footer_hex": "0000000000000001e300000000000000000000ffffffff0101000059db148f8b6a213f0101000001e200000000000000000001000001e10000000000000000000000"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_record_offset": 3290,
+              "feature_owner_fragment_offset": 25577,
+              "controller_owner_fragment_offset": 25879,
+              "membership_fragment_offset": 3330,
+              "counted_member_object_ids": [
+                33,
+                202,
+                206,
+                224,
+                228
+              ],
+              "membership_payload_hex": "05000000012100000000000000000001ca00000000000000000001ce00000000000000000001e000000000000000000001e4000000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "container_collection_backlink_offset": 3238
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4087,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3205,
+              "ordered_native_entry_object_ids": [
+                202,
+                224
+              ],
+              "native_entry_index": 1,
+              "payload_hex": "0000011a0000000000000000000200000001ca00000000000000000001e0000000000000000000"
+            },
+            "stored_payload": {
+              "offset": 25295,
+              "end_offset": 25558,
+              "hex": "00000100000001db000000000000000000000000000001e40000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001e4000000000000000000ffffffff11000000420061007300650020004d00650073006800200046006500610074007500720065000100000000000000000000000000000000000001e300000000000000000000ffffffff0101000059db148f8b6a213f0101000001e200000000000000000001000001e10000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {
+        "224": "UnsupportedFeature"
+      },
+      "native_definition_count": 1,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
+      "archive_sha256": "c15badb77434bc38e1940076ac22f2a3f43855198b550b4c8dd0ddec68f10efa",
+      "expected_partial": {
+        "partial": [],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {},
+      "native_definition_count": 0,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "expected_partial": {
+        "partial": [],
+        "unresolved": [],
+        "scope": "Partial captured singleton263-byte empty-name BaseMeshFeature definition with typed forward mesh membership and reciprocal controller/bookkeeping/feature-collection/native-history links. Mesh owner backlink, current membership, assets, API BaseFeature ownership, lifecycle and geometry are not qualified; existing feature classification and diagnostics unchanged."
+      },
+      "existing_discovered_kinds": {},
+      "native_definition_count": 0,
+      "no_asset_decoding": true,
+      "no_feature_mutation": true
+    }
+  ],
+  "actual_API_negative_ownership_evidence": [
+    {
+      "archive": "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+      "ground_truth_sha256": "189fd260fe87528aa72a8f6a091f7a78e2e9594d19ba9e5d6cca244f5ff349a1",
+      "phases": [
+        {
+          "phase": "base_after_edit",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        },
+        {
+          "phase": "base_after_convert",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        }
+      ],
+      "native_BaseMesh_to_API_BaseFeature_assignment": null
+    },
+    {
+      "archive": "meshconverts-4b42d39fb1d5/faceted_open.f3d",
+      "ground_truth_sha256": "189fd260fe87528aa72a8f6a091f7a78e2e9594d19ba9e5d6cca244f5ff349a1",
+      "phases": [
+        {
+          "phase": "base_after_edit",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        },
+        {
+          "phase": "base_after_convert",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        }
+      ],
+      "native_BaseMesh_to_API_BaseFeature_assignment": null
+    },
+    {
+      "archive": "meshremoves-8b2188cd274d/one_remove_one.f3d",
+      "ground_truth_sha256": "94c84a32f95774e5d17616b30f3e2af9ded2638807a9b69854cea8127aad5274",
+      "phases": [
+        {
+          "phase": "base_after_edit",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        },
+        {
+          "phase": "base_after_remove",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        }
+      ],
+      "native_BaseMesh_to_API_BaseFeature_assignment": null
+    },
+    {
+      "archive": "meshremoves-8b2188cd274d/two_remove_first.f3d",
+      "ground_truth_sha256": "94c84a32f95774e5d17616b30f3e2af9ded2638807a9b69854cea8127aad5274",
+      "phases": [
+        {
+          "phase": "base_after_edit",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        },
+        {
+          "phase": "base_after_remove",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        }
+      ],
+      "native_BaseMesh_to_API_BaseFeature_assignment": null
+    },
+    {
+      "archive": "meshremoves-8b2188cd274d/two_remove_both.f3d",
+      "ground_truth_sha256": "94c84a32f95774e5d17616b30f3e2af9ded2638807a9b69854cea8127aad5274",
+      "phases": [
+        {
+          "phase": "base_after_edit",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        },
+        {
+          "phase": "base_after_remove",
+          "actual_type": "adsk::fusion::BaseFeature",
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": []
+        }
+      ],
+      "native_BaseMesh_to_API_BaseFeature_assignment": null
+    }
+  ],
+  "checks": [
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 complete263 byte replay"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 native label/name/index exact"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 typed forward mesh only"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 explicit typed native history position"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/cut.f3d feature231 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 complete263 byte replay"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 native label/name/index exact"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 typed forward mesh only"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 explicit typed native history position"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/intersect.f3d feature231 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 complete263 byte replay"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 native label/name/index exact"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 typed forward mesh only"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 explicit typed native history position"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d feature231 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshseparates-41126250c03f/connected_shell_control.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_face_groups.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshseparates-41126250c03f/two_shells.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 exact single/direct helper equality"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 complete263 byte replay"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 native label/name/index exact"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 typed forward mesh only"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 explicit typed native history position"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d feature251 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 exact single/direct helper equality"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 complete263 byte replay"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 native label/name/index exact"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 typed forward mesh only"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 explicit typed native history position"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d feature251 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 exact single/direct helper equality"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 complete263 byte replay"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 native label/name/index exact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 typed forward mesh only"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 explicit typed native history position"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature218 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 exact single/direct helper equality"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 complete263 byte replay"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 native label/name/index exact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 typed forward mesh only"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 explicit typed native history position"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d feature231 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 complete263 byte replay"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 native label/name/index exact"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 typed forward mesh only"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 explicit typed native history position"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d feature224 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 exact single/direct helper equality"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 complete263 byte replay"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 native label/name/index exact"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 typed forward mesh only"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 reciprocal controller/native copies"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 typed controller bookkeeping backlink"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 unique collection feature/controller membership"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 explicit typed native history position"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d feature224 existing kind and warnings not promoted"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "patchcontinuity-b9b0be85a281/brep_tangent.f3d no asset access or feature mutation"
+    },
+    {
+      "check": "patchcontinuity-b9b0be85a281/brep_tangent.f3d every native BaseMesh definition qualified"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d base_after_edit APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d base_after_convert APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d base_after_edit APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d base_after_convert APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d base_after_edit APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/one_remove_one.f3d base_after_remove APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d base_after_edit APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_first.f3d base_after_remove APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d base_after_edit APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "meshremoves-8b2188cd274d/two_remove_both.f3d base_after_remove APIBaseFeature does not supply mesh ownership"
+    },
+    {
+      "check": "Reject unsupported count2 definition"
+    },
+    {
+      "check": "Reject nonmesh typed source reference"
+    },
+    {
+      "check": "Reject controller feature backlink mismatch"
+    },
+    {
+      "check": "Reject controller bookkeeping backlink mismatch"
+    },
+    {
+      "check": "Reject repeated controller reference mismatch"
+    },
+    {
+      "check": "Reject controller inherited collection mismatch"
+    },
+    {
+      "check": "Reject missing feature in counted collection"
+    },
+    {
+      "check": "Reject native history reference alias"
+    },
+    {
+      "check": "Reject stale discovered stored index"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject unsupported count2 definition",
+      "absolute_mutation_offset": 25906,
+      "reason": "Unobserved BaseMesh singleton263-byte definition framing"
+    },
+    {
+      "guard": "Reject nonmesh typed source reference",
+      "absolute_mutation_offset": 25910,
+      "reason": "BaseMesh definition typed identity missing, ambiguous or wrong class"
+    },
+    {
+      "guard": "Reject controller feature backlink mismatch",
+      "absolute_mutation_offset": 26412,
+      "reason": "BaseMesh definition controller framing/feature backlinks disagree"
+    },
+    {
+      "guard": "Reject controller bookkeeping backlink mismatch",
+      "absolute_mutation_offset": 26530,
+      "reason": "BaseMesh definition controller bookkeeping backlink disagrees"
+    },
+    {
+      "guard": "Reject repeated controller reference mismatch",
+      "absolute_mutation_offset": 26036,
+      "reason": "BaseMesh definition nil UUID/repeated controller/metadata framing disagrees"
+    },
+    {
+      "guard": "Reject controller inherited collection mismatch",
+      "absolute_mutation_offset": 26488,
+      "reason": "BaseMesh definition feature/controller inherited collections disagree"
+    },
+    {
+      "guard": "Reject missing feature in counted collection",
+      "absolute_mutation_offset": 3414,
+      "reason": "BaseMesh definition feature/controller collection membership absent or repeated"
+    },
+    {
+      "guard": "Reject native history reference alias",
+      "absolute_mutation_offset": 4663,
+      "reason": "BaseMesh definition unique native history membership disagrees"
+    },
+    {
+      "guard": "Reject stale discovered stored index",
+      "absolute_mutation_offset": null,
+      "reason": "BaseMesh definition empty-name/label/index/footer extent disagrees"
+    }
+  ],
+  "validation": {
+    "saved_archives": 16,
+    "partial_native_definitions": 20,
+    "full_definition_bytes_replayed": 5260,
+    "check_count": 231,
+    "malformed_guards": 9,
+    "no_asset_decoding": true,
+    "no_classification_changes": true,
+    "no_live_calls": true,
+    "no_main_calls": true
+  },
+  "source_sha256": {
+    "decode_base_mesh_feature_definitions.py": "18ddf6a1e7e75304e974a7eb8da085567e82581db75bfb13a254cbf7172317d8",
+    "validate_base_mesh_feature_definitions.py": "a002149dedc06dec6adf462f7b5839c6c1fe2a77952bed0e06d52ee4698d3093",
+    "decode_base_feature_empty_lists.py": "1f4013a0ca41e4f5a1151b838f103b240e0eae497b551ff744f1b00cf95c7b1b",
+    "decode_mesh_contents.py": "5a6efbe8963159ff35cad743c194fcd1291dc434690b765611e3cae8ed2a2be2",
+    "decode_timeline.py": "3a08f6294017f2ec8aeab360d4f4cc7925d1e341e1715af87f1c31755d4fc1fd",
+    "decode_parameters.py": "eb1df73c03dd015cf067015ceb84fc4f2330c8983ec78ca95b4efe4d6e271d0b"
+  },
+  "limitations": [
+    "The singleton stored feature\u2192mesh pointer is typed, not evidence of current membership or a reciprocal mesh owner. Separate current/retained source readers qualify backlinks and assets.",
+    "These remain partial native definitions; no new feature kind/tool settings, geometry, asset or current state is assigned by this reader.",
+    "Public API BaseFeature mesh/BRep collections are observed empty and do not identify native BaseMesh owners. No API BaseFeature parent is inferred.",
+    "Controller and native feature/history collection references are reciprocal; explicit sequence position is not general lifecycle replay.",
+    "Opaque bookkeeping bytes, related-object semantics and literal signed table metadata -1 remain unassigned; exact bytes are preserved."
+  ]
+}

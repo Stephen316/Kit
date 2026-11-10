@@ -1,0 +1,1836 @@
+{
+  "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved",
+  "interfaces": {
+    "inspector": "inspect_pipe_recipe_incidence(data,records,body,feature,features,member,members,body_identifier_summary,*,source_evidence=None,tag_evidence=None)",
+    "operand_parser": "decode_pipe_edge_recipe_operands(recipe)",
+    "exact_replay": "encode_pipe_edge_recipe_operands(operands)",
+    "validator": "validate_fixtures(root,zstd_library=None)",
+    "expected_outputs": "samples[].expected_summary contains the entire per-feature inspector output for exact main integration comparisons",
+    "integration": "Separate pipe_recipe_incidence summary and cached-source annotation only. Retain every full Pipe settings failure and leave Path direction/partial limits unresolved."
+  },
+  "grammar": {
+    "common_prefix": "int32 direct-edge name index (-1 or observed0), int32 secondary -1, uint32 face_count2, two pairs (int32 name-table index,int32 -1). Exact framed native names match complete generic-tag term groups.",
+    "line116": "After28-byte prefix: uint32 endpoint_count2; two40-byte vertex operands, each int32 directvertex -1,uint32 face_count3, three name-index/-1 pairs,two stored zero int32; final stored zero int32. Face triples uniquely select ordered endpoint vertices through reciprocal topology.",
+    "circle120": "Common28-byte prefix plus exactly92 retained bytes beginning int32 1. Direct-edge name may match detached and owning edges. Two explicit face operands disambiguate by reciprocal incidence; remaining circular qualifiers are not interpreted.",
+    "association": "Unique exact named-face matches, validated BODY/lump/shell/face/loop/coedge rings and edge references, exactly one edge incident to the two named faces. Source BODY membership checked only after incidence uniqueness. No coordinates, ordinal matching or name-duplicate filtering by source-body membership.",
+    "closure": "Cached source topology only: distinct endpoint identities on positive-domain straight curve means open; identical endpoint identity on ratio-one ellipse with full2pi edge domain means closed. Pipe direction and partial-limit semantics remain separate."
+  },
+  "limitations": [
+    "The circular92-byte operation tail is retained exactly and not evaluated. No complete native recipe operation, universal naming engine, persistent topology identity or regeneration is claimed.",
+    "Only the observed root-component identity-transform initial geometry and116/120-byte edge operand layouts are admitted. Reversed edges, arcs, transforms, other term counts and unresolved BODY topology are rejected.",
+    "Raw ASM coordinates are preserved. Saved cm getters independently corroborate these fixtures; no general ASM header-unit or occurrence conversion is inferred.",
+    "Source edge parameter domain differs from normalized natural Line/Circle evaluators and Pipe distanceOne/distanceTwo fractions. Actual Path opposition and final partial Path shape are not decoded.",
+    "The older brep_edge_circular filename refers to Pipe section shape; the actual source getter and decoded source are an open Line."
+  ],
+  "samples": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "expected_summary": {
+        "feature_object_id": 330,
+        "source_recipe_object_id": 337,
+        "source_descriptor_object_id": 334,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6e54ac-a55e-4352-9610-0e846d97cc10.smbh",
+        "explicit_asm_source_body_index": 1,
+        "operation_operands": {
+          "recipe_object_id": 337,
+          "payload_length": 116,
+          "stored_direct_edge_name_index": -1,
+          "stored_secondary_index": -1,
+          "face_name_references": [
+            {
+              "name_table_index": 0,
+              "stored_secondary_index": -1
+            },
+            {
+              "name_table_index": 1,
+              "stored_secondary_index": -1
+            }
+          ],
+          "prefix_bytes_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff",
+          "uninterpreted_remaining_payload_hex": "02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+          "operand_layout": "TwoFaceEdgeWithTwoThreeFaceVertexOperands",
+          "vertex_face_operands": [
+            {
+              "operand_ordinal": 0,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 2,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000"
+            },
+            {
+              "operand_ordinal": 1,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 3,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000"
+            }
+          ],
+          "stored_edge_tail_field_int32": 0
+        },
+        "face_operands": [
+          {
+            "name_table_index": 0,
+            "attribute_record_index": 54,
+            "face_record_index": 39
+          },
+          {
+            "name_table_index": 1,
+            "attribute_record_index": 38,
+            "face_record_index": 28
+          }
+        ],
+        "source_edge_record_index": 115,
+        "source_edge_incidence_routes": [
+          {
+            "body_index": 1,
+            "face_index": 28,
+            "loop_index": 40,
+            "coedge_index": 86,
+            "edge_index": 115
+          },
+          {
+            "body_index": 1,
+            "face_index": 39,
+            "loop_index": 56,
+            "coedge_index": 113,
+            "edge_index": 115
+          }
+        ],
+        "line_vertex_operand_associations": [
+          {
+            "operand_ordinal": 0,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 38,
+                "face_record_index": 28
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              },
+              {
+                "name_table_index": 2,
+                "attribute_record_index": 109,
+                "face_record_index": 80
+              }
+            ],
+            "vertex_record_index": 117
+          },
+          {
+            "operand_ordinal": 1,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 38,
+                "face_record_index": 28
+              },
+              {
+                "name_table_index": 3,
+                "attribute_record_index": 79,
+                "face_record_index": 55
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              }
+            ],
+            "vertex_record_index": 132
+          }
+        ],
+        "direct_edge_name_disambiguation": null,
+        "cached_source_curve_record_index": 133,
+        "cached_source_geometry": {
+          "kind": "Line",
+          "raw_origin": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "natural_parameter_interval": [
+            null,
+            null
+          ]
+        },
+        "cached_endpoint_points": [
+          {
+            "vertex_record_index": 117,
+            "point_record_index": 134,
+            "raw_point": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "vertex_record_index": 132,
+            "point_record_index": 139,
+            "raw_point": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "cached_source_edge_is_closed": false,
+        "closure_basis": "Same stored endpoint vertex identity plus full circular parameter span, or distinct typed endpoint identities on a nondegenerate Line; never optional selector/descriptor flag",
+        "cached_source_edge_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "Pipe_path_partial_limit_status": "Source edge parameter domain is separate from Pipe distanceOne/distanceTwo fractions and resulting Pipe path limits",
+        "path_is_opposed_to_entity": null,
+        "coordinate_scope": "Raw ASM initial cache coordinates; agree with cm in captured identity-transform root-component cases, no header-unit conversion or occurrence transform inferred",
+        "tool_settings_status": "Unresolved; bounded cached source association and closure only, complete native recipe operation and full Pipe tool semantics not claimed",
+        "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "natural_parameter_domain": [
+          0.0,
+          1.0
+        ],
+        "distance_one": 1.0,
+        "distance_two": null,
+        "is_opposed_to_entity": false
+      },
+      "API_evidence_status": "Independent getters used only after serialized naming/incidence resolves source identity; no getter injected into decoder inputs"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "expected_summary": {
+        "feature_object_id": 330,
+        "source_recipe_object_id": 337,
+        "source_descriptor_object_id": 334,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6be85fa6-4695-4089-a1a1-409537f8835f.smbh",
+        "explicit_asm_source_body_index": 1,
+        "operation_operands": {
+          "recipe_object_id": 337,
+          "payload_length": 116,
+          "stored_direct_edge_name_index": -1,
+          "stored_secondary_index": -1,
+          "face_name_references": [
+            {
+              "name_table_index": 0,
+              "stored_secondary_index": -1
+            },
+            {
+              "name_table_index": 1,
+              "stored_secondary_index": -1
+            }
+          ],
+          "prefix_bytes_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff",
+          "uninterpreted_remaining_payload_hex": "02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+          "operand_layout": "TwoFaceEdgeWithTwoThreeFaceVertexOperands",
+          "vertex_face_operands": [
+            {
+              "operand_ordinal": 0,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 2,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000"
+            },
+            {
+              "operand_ordinal": 1,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 3,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000"
+            }
+          ],
+          "stored_edge_tail_field_int32": 0
+        },
+        "face_operands": [
+          {
+            "name_table_index": 0,
+            "attribute_record_index": 54,
+            "face_record_index": 39
+          },
+          {
+            "name_table_index": 1,
+            "attribute_record_index": 38,
+            "face_record_index": 28
+          }
+        ],
+        "source_edge_record_index": 115,
+        "source_edge_incidence_routes": [
+          {
+            "body_index": 1,
+            "face_index": 28,
+            "loop_index": 40,
+            "coedge_index": 86,
+            "edge_index": 115
+          },
+          {
+            "body_index": 1,
+            "face_index": 39,
+            "loop_index": 56,
+            "coedge_index": 113,
+            "edge_index": 115
+          }
+        ],
+        "line_vertex_operand_associations": [
+          {
+            "operand_ordinal": 0,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 38,
+                "face_record_index": 28
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              },
+              {
+                "name_table_index": 2,
+                "attribute_record_index": 109,
+                "face_record_index": 80
+              }
+            ],
+            "vertex_record_index": 117
+          },
+          {
+            "operand_ordinal": 1,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 38,
+                "face_record_index": 28
+              },
+              {
+                "name_table_index": 3,
+                "attribute_record_index": 79,
+                "face_record_index": 55
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              }
+            ],
+            "vertex_record_index": 132
+          }
+        ],
+        "direct_edge_name_disambiguation": null,
+        "cached_source_curve_record_index": 133,
+        "cached_source_geometry": {
+          "kind": "Line",
+          "raw_origin": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "natural_parameter_interval": [
+            null,
+            null
+          ]
+        },
+        "cached_endpoint_points": [
+          {
+            "vertex_record_index": 117,
+            "point_record_index": 134,
+            "raw_point": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "vertex_record_index": 132,
+            "point_record_index": 139,
+            "raw_point": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "cached_source_edge_is_closed": false,
+        "closure_basis": "Same stored endpoint vertex identity plus full circular parameter span, or distinct typed endpoint identities on a nondegenerate Line; never optional selector/descriptor flag",
+        "cached_source_edge_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "Pipe_path_partial_limit_status": "Source edge parameter domain is separate from Pipe distanceOne/distanceTwo fractions and resulting Pipe path limits",
+        "path_is_opposed_to_entity": null,
+        "coordinate_scope": "Raw ASM initial cache coordinates; agree with cm in captured identity-transform root-component cases, no header-unit conversion or occurrence transform inferred",
+        "tool_settings_status": "Unresolved; bounded cached source association and closure only, complete native recipe operation and full Pipe tool semantics not claimed",
+        "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "natural_parameter_domain": [
+          0.0,
+          1.0
+        ],
+        "distance_one": 0.4,
+        "distance_two": null,
+        "is_opposed_to_entity": false
+      },
+      "API_evidence_status": "Independent getters used only after serialized naming/incidence resolves source identity; no getter injected into decoder inputs"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "expected_summary": {
+        "feature_object_id": 330,
+        "source_recipe_object_id": 337,
+        "source_descriptor_object_id": 334,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.450ca4e7-360a-45c1-aa4c-a78ed6be53c3.smbh",
+        "explicit_asm_source_body_index": 1,
+        "operation_operands": {
+          "recipe_object_id": 337,
+          "payload_length": 116,
+          "stored_direct_edge_name_index": -1,
+          "stored_secondary_index": -1,
+          "face_name_references": [
+            {
+              "name_table_index": 0,
+              "stored_secondary_index": -1
+            },
+            {
+              "name_table_index": 1,
+              "stored_secondary_index": -1
+            }
+          ],
+          "prefix_bytes_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff",
+          "uninterpreted_remaining_payload_hex": "02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff000000000000000000000000",
+          "operand_layout": "TwoFaceEdgeWithTwoThreeFaceVertexOperands",
+          "vertex_face_operands": [
+            {
+              "operand_ordinal": 0,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 2,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000"
+            },
+            {
+              "operand_ordinal": 1,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 3,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff0000000000000000"
+            }
+          ],
+          "stored_edge_tail_field_int32": 0
+        },
+        "face_operands": [
+          {
+            "name_table_index": 0,
+            "attribute_record_index": 54,
+            "face_record_index": 39
+          },
+          {
+            "name_table_index": 1,
+            "attribute_record_index": 19,
+            "face_record_index": 17
+          }
+        ],
+        "source_edge_record_index": 66,
+        "source_edge_incidence_routes": [
+          {
+            "body_index": 1,
+            "face_index": 17,
+            "loop_index": 21,
+            "coedge_index": 44,
+            "edge_index": 66
+          },
+          {
+            "body_index": 1,
+            "face_index": 39,
+            "loop_index": 56,
+            "coedge_index": 65,
+            "edge_index": 66
+          }
+        ],
+        "line_vertex_operand_associations": [
+          {
+            "operand_ordinal": 0,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 19,
+                "face_record_index": 17
+              },
+              {
+                "name_table_index": 2,
+                "attribute_record_index": 79,
+                "face_record_index": 55
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              }
+            ],
+            "vertex_record_index": 71
+          },
+          {
+            "operand_ordinal": 1,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 19,
+                "face_record_index": 17
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              },
+              {
+                "name_table_index": 3,
+                "attribute_record_index": 108,
+                "face_record_index": 80
+              }
+            ],
+            "vertex_record_index": 96
+          }
+        ],
+        "direct_edge_name_disambiguation": null,
+        "cached_source_curve_record_index": 97,
+        "cached_source_geometry": {
+          "kind": "Line",
+          "raw_origin": [
+            2.0,
+            -1.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "natural_parameter_interval": [
+            null,
+            null
+          ]
+        },
+        "cached_endpoint_points": [
+          {
+            "vertex_record_index": 71,
+            "point_record_index": 102,
+            "raw_point": [
+              2.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "vertex_record_index": 96,
+            "point_record_index": 126,
+            "raw_point": [
+              2.0,
+              -1.0,
+              -3.0
+            ]
+          }
+        ],
+        "cached_source_edge_is_closed": false,
+        "closure_basis": "Same stored endpoint vertex identity plus full circular parameter span, or distinct typed endpoint identities on a nondegenerate Line; never optional selector/descriptor flag",
+        "cached_source_edge_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "Pipe_path_partial_limit_status": "Source edge parameter domain is separate from Pipe distanceOne/distanceTwo fractions and resulting Pipe path limits",
+        "path_is_opposed_to_entity": null,
+        "coordinate_scope": "Raw ASM initial cache coordinates; agree with cm in captured identity-transform root-component cases, no header-unit conversion or occurrence transform inferred",
+        "tool_settings_status": "Unresolved; bounded cached source association and closure only, complete native recipe operation and full Pipe tool semantics not claimed",
+        "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "natural_parameter_domain": [
+          0.0,
+          1.0
+        ],
+        "distance_one": 0.4,
+        "distance_two": null,
+        "is_opposed_to_entity": false
+      },
+      "API_evidence_status": "Independent getters used only after serialized naming/incidence resolves source identity; no getter injected into decoder inputs"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "expected_summary": {
+        "feature_object_id": 315,
+        "source_recipe_object_id": 322,
+        "source_descriptor_object_id": 319,
+        "source_body_anchor_object_id": 266,
+        "native_source_body_object_id": 260,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+        "explicit_asm_source_body_index": 1,
+        "operation_operands": {
+          "recipe_object_id": 322,
+          "payload_length": 120,
+          "stored_direct_edge_name_index": 0,
+          "stored_secondary_index": -1,
+          "face_name_references": [
+            {
+              "name_table_index": 1,
+              "stored_secondary_index": -1
+            },
+            {
+              "name_table_index": 2,
+              "stored_secondary_index": -1
+            }
+          ],
+          "prefix_bytes_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff",
+          "uninterpreted_remaining_payload_hex": "01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+          "operand_layout": "NamedEdgeWithTwoFaceOperandsAndOpaque92ByteTail",
+          "vertex_face_operands": null,
+          "stored_tail_first_int32": 1,
+          "tail_status": "Exactly92 stored bytes retained; internal vertex/operation qualifiers unresolved"
+        },
+        "face_operands": [
+          {
+            "name_table_index": 1,
+            "attribute_record_index": 18,
+            "face_record_index": 16
+          },
+          {
+            "name_table_index": 2,
+            "attribute_record_index": 24,
+            "face_record_index": 19
+          }
+        ],
+        "source_edge_record_index": 35,
+        "source_edge_incidence_routes": [
+          {
+            "body_index": 1,
+            "face_index": 16,
+            "loop_index": 20,
+            "coedge_index": 29,
+            "edge_index": 35
+          },
+          {
+            "body_index": 1,
+            "face_index": 19,
+            "loop_index": 26,
+            "coedge_index": 33,
+            "edge_index": 35
+          }
+        ],
+        "line_vertex_operand_associations": [],
+        "direct_edge_name_disambiguation": {
+          "name_table_index": 0,
+          "original_candidates": [
+            {
+              "attribute_record_index": 6,
+              "owner_record_index": 2,
+              "owner_kind": "edge",
+              "body_graph_membership": [],
+              "curve_index": 8,
+              "curve_kind": "ellipse-curve",
+              "endpoint_vertex_indices": [
+                7,
+                7
+              ],
+              "cached_endpoint_identity_same": true
+            },
+            {
+              "attribute_record_index": 39,
+              "owner_record_index": 35,
+              "owner_kind": "edge",
+              "body_graph_membership": [
+                1
+              ],
+              "curve_index": 41,
+              "curve_kind": "ellipse-curve",
+              "endpoint_vertex_indices": [
+                40,
+                40
+              ],
+              "cached_endpoint_identity_same": true
+            }
+          ],
+          "surviving_edge_record_index": 35,
+          "rejected_owner_record_indices": [
+            2
+          ],
+          "basis": "Serialized face operands require reciprocal incidence; detached copies have no face incidence. No coordinate/root-order choice."
+        },
+        "cached_source_curve_record_index": 41,
+        "cached_source_geometry": {
+          "kind": "Circle",
+          "raw_center": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "raw_reference_axis": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "raw_radius": 2.0,
+          "stored_axis_ratio": 1.0,
+          "natural_parameter_interval": [
+            null,
+            null
+          ]
+        },
+        "cached_endpoint_points": [
+          {
+            "vertex_record_index": 40,
+            "point_record_index": 46,
+            "raw_point": [
+              -2.0,
+              -2.4492935982947064e-16,
+              3.0
+            ]
+          },
+          {
+            "vertex_record_index": 40,
+            "point_record_index": 46,
+            "raw_point": [
+              -2.0,
+              -2.4492935982947064e-16,
+              3.0
+            ]
+          }
+        ],
+        "cached_source_edge_is_closed": true,
+        "closure_basis": "Same stored endpoint vertex identity plus full circular parameter span, or distinct typed endpoint identities on a nondegenerate Line; never optional selector/descriptor flag",
+        "cached_source_edge_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "Pipe_path_partial_limit_status": "Source edge parameter domain is separate from Pipe distanceOne/distanceTwo fractions and resulting Pipe path limits",
+        "path_is_opposed_to_entity": null,
+        "coordinate_scope": "Raw ASM initial cache coordinates; agree with cm in captured identity-transform root-component cases, no header-unit conversion or occurrence transform inferred",
+        "tool_settings_status": "Unresolved; bounded cached source association and closure only, complete native recipe operation and full Pipe tool semantics not claimed",
+        "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Circle3D",
+        "path_is_closed": true,
+        "source_trimmed_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "natural_parameter_domain": [
+          0.0,
+          6.283185307179586
+        ],
+        "distance_one": 1.0,
+        "distance_two": 0.0,
+        "is_opposed_to_entity": false
+      },
+      "API_evidence_status": "Independent getters used only after serialized naming/incidence resolves source identity; no getter injected into decoder inputs"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "expected_summary": {
+        "feature_object_id": 315,
+        "source_recipe_object_id": 322,
+        "source_descriptor_object_id": 319,
+        "source_body_anchor_object_id": 266,
+        "native_source_body_object_id": 260,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9567852f-6f54-4a8f-a8d8-88009da4deb9.smbh",
+        "explicit_asm_source_body_index": 1,
+        "operation_operands": {
+          "recipe_object_id": 322,
+          "payload_length": 120,
+          "stored_direct_edge_name_index": 0,
+          "stored_secondary_index": -1,
+          "face_name_references": [
+            {
+              "name_table_index": 1,
+              "stored_secondary_index": -1
+            },
+            {
+              "name_table_index": 2,
+              "stored_secondary_index": -1
+            }
+          ],
+          "prefix_bytes_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff",
+          "uninterpreted_remaining_payload_hex": "01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+          "operand_layout": "NamedEdgeWithTwoFaceOperandsAndOpaque92ByteTail",
+          "vertex_face_operands": null,
+          "stored_tail_first_int32": 1,
+          "tail_status": "Exactly92 stored bytes retained; internal vertex/operation qualifiers unresolved"
+        },
+        "face_operands": [
+          {
+            "name_table_index": 1,
+            "attribute_record_index": 18,
+            "face_record_index": 16
+          },
+          {
+            "name_table_index": 2,
+            "attribute_record_index": 26,
+            "face_record_index": 19
+          }
+        ],
+        "source_edge_record_index": 42,
+        "source_edge_incidence_routes": [
+          {
+            "body_index": 1,
+            "face_index": 16,
+            "loop_index": 20,
+            "coedge_index": 31,
+            "edge_index": 42
+          },
+          {
+            "body_index": 1,
+            "face_index": 19,
+            "loop_index": 28,
+            "coedge_index": 40,
+            "edge_index": 42
+          }
+        ],
+        "line_vertex_operand_associations": [],
+        "direct_edge_name_disambiguation": {
+          "name_table_index": 0,
+          "original_candidates": [
+            {
+              "attribute_record_index": 6,
+              "owner_record_index": 2,
+              "owner_kind": "edge",
+              "body_graph_membership": [],
+              "curve_index": 8,
+              "curve_kind": "ellipse-curve",
+              "endpoint_vertex_indices": [
+                7,
+                7
+              ],
+              "cached_endpoint_identity_same": true
+            },
+            {
+              "attribute_record_index": 52,
+              "owner_record_index": 42,
+              "owner_kind": "edge",
+              "body_graph_membership": [
+                1
+              ],
+              "curve_index": 54,
+              "curve_kind": "ellipse-curve",
+              "endpoint_vertex_indices": [
+                53,
+                53
+              ],
+              "cached_endpoint_identity_same": true
+            }
+          ],
+          "surviving_edge_record_index": 42,
+          "rejected_owner_record_indices": [
+            2
+          ],
+          "basis": "Serialized face operands require reciprocal incidence; detached copies have no face incidence. No coordinate/root-order choice."
+        },
+        "cached_source_curve_record_index": 54,
+        "cached_source_geometry": {
+          "kind": "Circle",
+          "raw_center": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "raw_reference_axis": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "raw_radius": 2.0,
+          "stored_axis_ratio": 1.0,
+          "natural_parameter_interval": [
+            null,
+            null
+          ]
+        },
+        "cached_endpoint_points": [
+          {
+            "vertex_record_index": 53,
+            "point_record_index": 64,
+            "raw_point": [
+              -2.0,
+              -2.4492935982947064e-16,
+              3.0
+            ]
+          },
+          {
+            "vertex_record_index": 53,
+            "point_record_index": 64,
+            "raw_point": [
+              -2.0,
+              -2.4492935982947064e-16,
+              3.0
+            ]
+          }
+        ],
+        "cached_source_edge_is_closed": true,
+        "closure_basis": "Same stored endpoint vertex identity plus full circular parameter span, or distinct typed endpoint identities on a nondegenerate Line; never optional selector/descriptor flag",
+        "cached_source_edge_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "Pipe_path_partial_limit_status": "Source edge parameter domain is separate from Pipe distanceOne/distanceTwo fractions and resulting Pipe path limits",
+        "path_is_opposed_to_entity": null,
+        "coordinate_scope": "Raw ASM initial cache coordinates; agree with cm in captured identity-transform root-component cases, no header-unit conversion or occurrence transform inferred",
+        "tool_settings_status": "Unresolved; bounded cached source association and closure only, complete native recipe operation and full Pipe tool semantics not claimed",
+        "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Circle3D",
+        "path_is_closed": true,
+        "source_trimmed_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "natural_parameter_domain": [
+          0.0,
+          6.283185307179586
+        ],
+        "distance_one": 0.35,
+        "distance_two": 0.2,
+        "is_opposed_to_entity": false
+      },
+      "API_evidence_status": "Independent getters used only after serialized naming/incidence resolves source identity; no getter injected into decoder inputs"
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "expected_summary": {
+        "feature_object_id": 306,
+        "source_recipe_object_id": 313,
+        "source_descriptor_object_id": 310,
+        "source_body_anchor_object_id": 281,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b6eb5dba-03d3-4fc1-8c9e-ff9446a6e261.smbh",
+        "explicit_asm_source_body_index": 1,
+        "operation_operands": {
+          "recipe_object_id": 313,
+          "payload_length": 116,
+          "stored_direct_edge_name_index": -1,
+          "stored_secondary_index": -1,
+          "face_name_references": [
+            {
+              "name_table_index": 0,
+              "stored_secondary_index": -1
+            },
+            {
+              "name_table_index": 1,
+              "stored_secondary_index": -1
+            }
+          ],
+          "prefix_bytes_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff",
+          "uninterpreted_remaining_payload_hex": "02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+          "operand_layout": "TwoFaceEdgeWithTwoThreeFaceVertexOperands",
+          "vertex_face_operands": [
+            {
+              "operand_ordinal": 0,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 2,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000"
+            },
+            {
+              "operand_ordinal": 1,
+              "stored_direct_vertex_name_index": -1,
+              "face_name_references": [
+                {
+                  "name_table_index": 1,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 3,
+                  "stored_secondary_index": -1
+                },
+                {
+                  "name_table_index": 0,
+                  "stored_secondary_index": -1
+                }
+              ],
+              "stored_tail_fields_int32": [
+                0,
+                0
+              ],
+              "subrecipe_bytes_hex": "ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000"
+            }
+          ],
+          "stored_edge_tail_field_int32": 0
+        },
+        "face_operands": [
+          {
+            "name_table_index": 0,
+            "attribute_record_index": 54,
+            "face_record_index": 39
+          },
+          {
+            "name_table_index": 1,
+            "attribute_record_index": 38,
+            "face_record_index": 28
+          }
+        ],
+        "source_edge_record_index": 115,
+        "source_edge_incidence_routes": [
+          {
+            "body_index": 1,
+            "face_index": 28,
+            "loop_index": 40,
+            "coedge_index": 86,
+            "edge_index": 115
+          },
+          {
+            "body_index": 1,
+            "face_index": 39,
+            "loop_index": 56,
+            "coedge_index": 113,
+            "edge_index": 115
+          }
+        ],
+        "line_vertex_operand_associations": [
+          {
+            "operand_ordinal": 0,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 38,
+                "face_record_index": 28
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              },
+              {
+                "name_table_index": 2,
+                "attribute_record_index": 109,
+                "face_record_index": 80
+              }
+            ],
+            "vertex_record_index": 117
+          },
+          {
+            "operand_ordinal": 1,
+            "face_operands": [
+              {
+                "name_table_index": 1,
+                "attribute_record_index": 38,
+                "face_record_index": 28
+              },
+              {
+                "name_table_index": 3,
+                "attribute_record_index": 79,
+                "face_record_index": 55
+              },
+              {
+                "name_table_index": 0,
+                "attribute_record_index": 54,
+                "face_record_index": 39
+              }
+            ],
+            "vertex_record_index": 132
+          }
+        ],
+        "direct_edge_name_disambiguation": null,
+        "cached_source_curve_record_index": 133,
+        "cached_source_geometry": {
+          "kind": "Line",
+          "raw_origin": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "natural_parameter_interval": [
+            null,
+            null
+          ]
+        },
+        "cached_endpoint_points": [
+          {
+            "vertex_record_index": 117,
+            "point_record_index": 134,
+            "raw_point": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "vertex_record_index": 132,
+            "point_record_index": 139,
+            "raw_point": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "cached_source_edge_is_closed": false,
+        "closure_basis": "Same stored endpoint vertex identity plus full circular parameter span, or distinct typed endpoint identities on a nondegenerate Line; never optional selector/descriptor flag",
+        "cached_source_edge_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "Pipe_path_partial_limit_status": "Source edge parameter domain is separate from Pipe distanceOne/distanceTwo fractions and resulting Pipe path limits",
+        "path_is_opposed_to_entity": null,
+        "coordinate_scope": "Raw ASM initial cache coordinates; agree with cm in captured identity-transform root-component cases, no header-unit conversion or occurrence transform inferred",
+        "tool_settings_status": "Unresolved; bounded cached source association and closure only, complete native recipe operation and full Pipe tool semantics not claimed",
+        "scope": "Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved"
+      },
+      "API_observation": {
+        "source_type": "adsk::fusion::BRepEdge",
+        "source_geometry_type": "adsk::core::Line3D",
+        "path_is_closed": false,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "natural_parameter_domain": [
+          0.0,
+          1.0
+        ],
+        "distance_one": 1.0,
+        "distance_two": null,
+        "is_opposed_to_entity": false
+      },
+      "API_evidence_status": "Independent getters used only after serialized naming/incidence resolves source identity; no getter injected into decoder inputs"
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d native operand replay",
+      "actual": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+      "expected": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d actual single source member",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d cached source closure vs actual Path getter",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d typed primitive vs natural source getter",
+      "actual": "adsk::core::Line3D",
+      "expected": "adsk::core::Line3D",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d stored source edge domain vs trimmed source evaluator",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d endpoint caches vs source vertex getters",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d selected primitive vs independent trimmed source points and tangents",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d explicit native body name vs source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d Path direction remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d full tool settings remain unresolved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d selected edge has exactly named incident faces",
+      "actual": [
+        28,
+        39
+      ],
+      "expected": [
+        28,
+        39
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d both ordered endpoint IDs independently resolved by face triples",
+      "actual": [
+        117,
+        132
+      ],
+      "expected": [
+        117,
+        132
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d native operand replay",
+      "actual": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+      "expected": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d actual single source member",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d cached source closure vs actual Path getter",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d typed primitive vs natural source getter",
+      "actual": "adsk::core::Line3D",
+      "expected": "adsk::core::Line3D",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d stored source edge domain vs trimmed source evaluator",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d endpoint caches vs source vertex getters",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d selected primitive vs independent trimmed source points and tangents",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d explicit native body name vs source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d Path direction remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d full tool settings remain unresolved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d selected edge has exactly named incident faces",
+      "actual": [
+        28,
+        39
+      ],
+      "expected": [
+        28,
+        39
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d both ordered endpoint IDs independently resolved by face triples",
+      "actual": [
+        117,
+        132
+      ],
+      "expected": [
+        117,
+        132
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d native operand replay",
+      "actual": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff000000000000000000000000",
+      "expected": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff000000000000000000000000",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d actual single source member",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d cached source closure vs actual Path getter",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d typed primitive vs natural source getter",
+      "actual": "adsk::core::Line3D",
+      "expected": "adsk::core::Line3D",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d stored source edge domain vs trimmed source evaluator",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d endpoint caches vs source vertex getters",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d selected primitive vs independent trimmed source points and tangents",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d explicit native body name vs source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d Path direction remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d full tool settings remain unresolved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d selected edge has exactly named incident faces",
+      "actual": [
+        17,
+        39
+      ],
+      "expected": [
+        17,
+        39
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d both ordered endpoint IDs independently resolved by face triples",
+      "actual": [
+        71,
+        96
+      ],
+      "expected": [
+        71,
+        96
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d native operand replay",
+      "actual": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+      "expected": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d actual single source member",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d cached source closure vs actual Path getter",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d typed primitive vs natural source getter",
+      "actual": "adsk::core::Circle3D",
+      "expected": "adsk::core::Circle3D",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d stored source edge domain vs trimmed source evaluator",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d endpoint caches vs source vertex getters",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d selected primitive vs independent trimmed source points and tangents",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d explicit native body name vs source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d Path direction remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d full tool settings remain unresolved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d selected edge has exactly named incident faces",
+      "actual": [
+        16,
+        19
+      ],
+      "expected": [
+        16,
+        19
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d original edge-name ambiguity retained",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d detached same-named edge rejected by face incidence",
+      "actual": [
+        2
+      ],
+      "expected": [
+        2
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d opaque circular tail retained exact length",
+      "actual": 92,
+      "expected": 92,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d native operand replay",
+      "actual": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+      "expected": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d actual single source member",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d cached source closure vs actual Path getter",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d typed primitive vs natural source getter",
+      "actual": "adsk::core::Circle3D",
+      "expected": "adsk::core::Circle3D",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d stored source edge domain vs trimmed source evaluator",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d endpoint caches vs source vertex getters",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d selected primitive vs independent trimmed source points and tangents",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d explicit native body name vs source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d Path direction remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d full tool settings remain unresolved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d selected edge has exactly named incident faces",
+      "actual": [
+        16,
+        19
+      ],
+      "expected": [
+        16,
+        19
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d original edge-name ambiguity retained",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d detached same-named edge rejected by face incidence",
+      "actual": [
+        2
+      ],
+      "expected": [
+        2
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d opaque circular tail retained exact length",
+      "actual": 92,
+      "expected": 92,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d native operand replay",
+      "actual": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+      "expected": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d actual single source member",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d cached source closure vs actual Path getter",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d typed primitive vs natural source getter",
+      "actual": "adsk::core::Line3D",
+      "expected": "adsk::core::Line3D",
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d stored source edge domain vs trimmed source evaluator",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d endpoint caches vs source vertex getters",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d selected primitive vs independent trimmed source points and tangents",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d explicit native body name vs source getter",
+      "actual": "PipePathSupportBody",
+      "expected": "PipePathSupportBody",
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d Path direction remains unknown",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d full tool settings remain unresolved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d selected edge has exactly named incident faces",
+      "actual": [
+        28,
+        39
+      ],
+      "expected": [
+        28,
+        39
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d both ordered endpoint IDs independently resolved by face triples",
+      "actual": [
+        117,
+        132
+      ],
+      "expected": [
+        117,
+        132
+      ],
+      "passed": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Wrong face operand count",
+      "rejected": true,
+      "reason": "Unobserved Pipe named-edge/two-face operation prefix"
+    },
+    {
+      "label": "Out-of-range face name index",
+      "rejected": true,
+      "reason": "Pipe operation name reference index/sentinel unsupported"
+    },
+    {
+      "label": "Duplicate face name operands",
+      "rejected": true,
+      "reason": "Pipe two-face selector requires distinct serialized face operands"
+    },
+    {
+      "label": "Non-minus-one face sentinel",
+      "rejected": true,
+      "reason": "Pipe operation name reference index/sentinel unsupported"
+    },
+    {
+      "label": "Truncated circular tail",
+      "rejected": true,
+      "reason": "Only captured116/120-byte Pipe edge operation payloads supported"
+    },
+    {
+      "label": "Edge-name reused as face violates distinct operand coverage",
+      "rejected": true,
+      "reason": "Unobserved circular Pipe named-edge/tail framing"
+    },
+    {
+      "label": "Broken reciprocal coedge-loop source route",
+      "rejected": true,
+      "reason": "Mixed-root keyed BODY lacks a decoded initial geometry body graph: 1"
+    },
+    {
+      "label": "Swapped endpoint face subrecipes fail ordered vertex identity guard",
+      "rejected": true,
+      "reason": "Pipe stored endpoint operands disagree with ordered source edge vertex identities"
+    }
+  ],
+  "validation": {
+    "saved_files": 6,
+    "source_edges_resolved": 6,
+    "open_line_sources": 4,
+    "closed_circle_sources": 2,
+    "exact_operand_payload_replays": 6,
+    "comparisons_passed": 76,
+    "malformed_guards_passed": 8,
+    "full_Pipe_settings_failures_cleared": 0,
+    "new_API_calls": 0
+  }
+}

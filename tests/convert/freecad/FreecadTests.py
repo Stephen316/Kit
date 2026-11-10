@@ -1747,7 +1747,7 @@ def VerifyTransfers(Result: WriteResult) -> None:
     assert Transfers[Capability.MATERIALS] is TransferMode.NATIVE
     assert Transfers[Capability.CONFIGURATIONS] is TransferMode.NATIVE
     assert Transfers[Capability.BREP] is TransferMode.NATIVE
-    assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.MIXED
+    assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.CARRIER
 
 
 # this definition exists because neutral xml objects must retain every native relationship

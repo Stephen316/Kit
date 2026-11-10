@@ -1,0 +1,1475 @@
+{
+  "stage": "Second editable Text parameter binding and bounded literal dependencies",
+  "status": "Strict standalone helpers ready for canonical integration",
+  "root_cause": "No registry/display-name alias exists: registry d8 -> native parameter369 agrees with API d8/Text2-Text. Canonical binding fixed slot1 rejects second-Text slot3, omitting parameter369; registry reader reports the resulting missing record as a name mismatch.",
+  "native_binding_evidence": {
+    "slot_field_offset": 16,
+    "captured_height_text_slot_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "scope": "Only second Text2 with explicit four-binding owner list accepted; no blanket arbitrary odd-slot support",
+    "parameter_object_id": 369,
+    "binding_object_id": 370,
+    "source_text_object_id": 352,
+    "source_sketch_object_id": 304,
+    "owner_sketch_feature_object_id": 308,
+    "height_parameter_object_id": 366,
+    "height_binding_object_id": 367,
+    "registry_entry": "d8 ->369",
+    "unknown": "txt_tag_base retained raw; no font/glyph semantics"
+  },
+  "validation": {
+    "checks": 179,
+    "literal_parameters": 27,
+    "literal_files": 26,
+    "native_guards": [
+      {
+        "mutation": "text_slot",
+        "rejected": true,
+        "reason": "Only captured second-Text numbered binding slot3 is supported"
+      },
+      {
+        "mutation": "height_slot",
+        "rejected": true,
+        "reason": "Numbered Text binding slot/owner/prefix disagrees"
+      },
+      {
+        "mutation": "owner_binding_list",
+        "rejected": true,
+        "reason": "Second Text binding does not occupy explicit sketch binding slot3"
+      },
+      {
+        "mutation": "bookkeeping_backlink",
+        "rejected": true,
+        "reason": "Numbered Text binding bookkeeping backlink disagrees"
+      }
+    ],
+    "literal_guards": [
+      {
+        "mutation": "unquoted_name",
+        "rejected": true,
+        "reason": "Text expression is outside the observed complete single-quoted literal subset"
+      },
+      {
+        "mutation": "concatenation",
+        "rejected": true,
+        "reason": "Text quote/escape/control syntax is outside the observed literal subset"
+      },
+      {
+        "mutation": "escape",
+        "rejected": true,
+        "reason": "Text quote/escape/control syntax is outside the observed literal subset"
+      },
+      {
+        "mutation": "cached_mismatch",
+        "rejected": true,
+        "reason": "Text literal spelling does not equal cached Text value"
+      }
+    ],
+    "independent_API_literal_with_parameter_name": {
+      "name": "probeResult",
+      "unit": "Text",
+      "expression": "'probeWidth literal'",
+      "value_type": 1,
+      "dependency_names": [],
+      "dependent_names": [],
+      "text_value": "probeWidth literal"
+    },
+    "unchanged_prior_parameters": true
+  },
+  "integration": {
+    "canonical_hook": "decode_parameters._bound_text_binding: after typed binding lookup, if u32 at16 is3 call validate_numbered_text_binding(data,records,binding_id,parameter_id,text,stored_index); retain slot1 branch exact. Helper calls no decode_stream, so no recursion.",
+    "parameter_tables": "No name alias or shared registry changes. Existing reciprocal registry parser accepts recovered canonical d8.",
+    "attach_parameters": "No change; returned binding_owner_object_id uses existing Text/Sketch attachment branch.",
+    "literal_helper": "derive_text_literal_dependencies(parameters,parameter_tables), returns Text-only derived/unresolved; merge successful derived entries into canonical derived_expression_dependencies by parameter ID and remove only successful IDs from old Text exclusions. Preserve unknown Text syntax unresolved.",
+    "canonical_validation_adapter": "Isolated validation-process _bound_text_binding wrapper emulates tiny proposed fallback without any source or archive modification."
+  },
+  "sdk": {
+    "file": "/Users/stephenh/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Python/defs/adsk/fusion.py",
+    "expression_documentation_line": 26442,
+    "quote_requirement": "Text literal expressions must be enclosed in single quotes; unquoted tokens are symbols. Concatenation/conditional examples exist but are not decoded without captures.",
+    "textValue_line": 26584,
+    "dependency_getter_evidence": "parameterexpressions-3ddbef2b20bd/text_name_literal.f3d API dependency_names=[] while probeWidth exists in the same parameter collection"
+  },
+  "second_text_case": {
+    "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+    "sha256": "9a18f943b1819a248b60cc5c3fe83f031b34ad50f4829122eb87820cf7425f9f",
+    "parameter": {
+      "role": "Text2-Text",
+      "parameter_name": "d8",
+      "display_units": "Text",
+      "role_offset": 52858,
+      "value_offset": 52914,
+      "expression_candidates": [
+        "'UCAD'"
+      ],
+      "parameter_object_id": 369,
+      "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+      "declared_binding_object_id": 370,
+      "expression_metadata_hex": "01000000000000000000",
+      "comment": "",
+      "is_favorite": false,
+      "favorite_status": "Observed native favorite flag",
+      "layout": "observed SketchText model parameter with reciprocal UTF16LE text binding",
+      "text_value": "UCAD",
+      "value_type": "Text",
+      "internal_units": "Text",
+      "binding_owner_object_id": 308,
+      "binding_offset": 52934,
+      "binding_bookkeeping_object_id": 371,
+      "binding_value_representation": "UTF16LE",
+      "binding_status": "Captured second editable Text: explicit source, ordered sketch slots2/3 and reciprocal Text2 height/text parameters",
+      "binding_slot": 3,
+      "binding_text_source_object_id": 352,
+      "binding_height_parameter_object_id": 366,
+      "binding_height_object_id": 367,
+      "binding_source_sketch_object_id": 304,
+      "opaque_text_tag_base": 338,
+      "opaque_text_tag_base_status": "Retained only; glyph and font index semantics unresolved",
+      "parameter_kind": "ModelParameter",
+      "stored_parameter_index": 8
+    },
+    "actual_API": {
+      "name": "d8",
+      "role": "Text2-Text",
+      "expression": "'UCAD'",
+      "unit": "Text",
+      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5sbAABR3ZdZiAAAAA==",
+      "created_by": "EmbossTextInputs",
+      "text_value": "UCAD"
+    },
+    "parameter_tables": {
+      "decoded": [
+        {
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "stored_header_counter": 12,
+          "member_object_ids": [
+            251,
+            254,
+            284,
+            297,
+            343,
+            346,
+            366,
+            369,
+            502,
+            505,
+            508,
+            511
+          ],
+          "named_members": [
+            {
+              "parameter_name": "d12",
+              "parameter_object_id": 511,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 512
+            },
+            {
+              "parameter_name": "d7",
+              "parameter_object_id": 366,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 367
+            },
+            {
+              "parameter_name": "d11",
+              "parameter_object_id": 508,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 509
+            },
+            {
+              "parameter_name": "d10",
+              "parameter_object_id": 505,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 506
+            },
+            {
+              "parameter_name": "d9",
+              "parameter_object_id": 502,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 503
+            },
+            {
+              "parameter_name": "d6",
+              "parameter_object_id": 346,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 347
+            },
+            {
+              "parameter_name": "d8",
+              "parameter_object_id": 369,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 370
+            },
+            {
+              "parameter_name": "d3",
+              "parameter_object_id": 284,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 285
+            },
+            {
+              "parameter_name": "d4",
+              "parameter_object_id": 297,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 298
+            },
+            {
+              "parameter_name": "d5",
+              "parameter_object_id": 343,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 344
+            },
+            {
+              "parameter_name": "d2",
+              "parameter_object_id": 254,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 255
+            },
+            {
+              "parameter_name": "d1",
+              "parameter_object_id": 251,
+              "parameter_kind": "ModelParameter",
+              "binding_object_id": 252
+            }
+          ]
+        }
+      ],
+      "user_parameters": [],
+      "unresolved": [],
+      "scope": "Observed parameter collection membership, names and reciprocal ownership; numeric/Text model and user variants",
+      "limitations": [
+        "Expression evaluation and explicit expression dependency edges are unresolved",
+        "Other parameter types, name variants, other control characters and unobserved favorite flags are unverified"
+      ]
+    },
+    "numeric_dependencies": {
+      "derived": [
+        {
+          "parameter_object_id": 251,
+          "parameter_name": "d1",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "20 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "20",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 254,
+          "parameter_name": "d2",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "0.0 deg",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "0.0",
+            "unit_spelling": "deg"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 284,
+          "parameter_name": "d3",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "25 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "25",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 297,
+          "parameter_name": "d4",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "0.00 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "0.00",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 343,
+          "parameter_name": "d5",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "5 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "5",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 366,
+          "parameter_name": "d7",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "5 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "5",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 502,
+          "parameter_name": "d9",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 505,
+          "parameter_name": "d10",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "0.00 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "0.00",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 508,
+          "parameter_name": "d11",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "0.00 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "0.00",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 511,
+          "parameter_name": "d12",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "0.00 rad",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "0.00",
+            "unit_spelling": "rad"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [
+        {
+          "parameter_object_id": 346,
+          "parameter_name": "d6",
+          "stored_expressions": [
+            "'KIT'"
+          ],
+          "reason": "Text expression analysis is outside the numeric arithmetic subset"
+        },
+        {
+          "parameter_object_id": 369,
+          "parameter_name": "d8",
+          "stored_expressions": [
+            "'UCAD'"
+          ],
+          "reason": "Text expression analysis is outside the numeric arithmetic subset"
+        }
+      ],
+      "scope": "Derived numeric arithmetic references only; + - * /, unary signs, parentheses, observed unary sqrt/abs calls and bounded numeric unit spellings",
+      "limitations": [
+        "No expression evaluation, dimensional validation, native dependency-edge interpretation or dependency ordering is implemented.",
+        "Other functions, comparisons, Text, exponentiation, compound units and external/scoped names remain unresolved."
+      ]
+    },
+    "text_literal_dependencies": {
+      "derived": [
+        {
+          "parameter_object_id": 346,
+          "parameter_name": "d6",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "'KIT'",
+          "syntax_tree": {
+            "kind": "TextLiteral",
+            "spelling": "'KIT'",
+            "value": "KIT"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+        },
+        {
+          "parameter_object_id": 369,
+          "parameter_name": "d8",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "'UCAD'",
+          "syntax_tree": {
+            "kind": "TextLiteral",
+            "spelling": "'UCAD'",
+            "value": "UCAD"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+      "limitations": [
+        "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+        "Numeric arithmetic dependencies remain with the existing reader."
+      ]
+    }
+  },
+  "literal_cases": [
+    {
+      "file": "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 346,
+          "parameter_name": "d6",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 346,
+            "parameter_name": "d6",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_deboss.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 346,
+          "parameter_name": "d6",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 346,
+            "parameter_name": "d6",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_emboss.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 346,
+          "parameter_name": "d6",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 346,
+            "parameter_name": "d6",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 346,
+          "parameter_name": "d6",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        },
+        {
+          "parameter_object_id": 369,
+          "parameter_name": "d8",
+          "expression": "'UCAD'",
+          "text_value": "UCAD"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 346,
+            "parameter_name": "d6",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          },
+          {
+            "parameter_object_id": 369,
+            "parameter_name": "d8",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'UCAD'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'UCAD'",
+              "value": "UCAD"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/center.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/middle.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/right_bottom.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/spacing.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/underline.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/vertical_flip.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/arc_along_above.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 267,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 267,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/arc_fit_above.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 267,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 267,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_along_above.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 265,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 265,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_along_below.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 265,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 265,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_along_center_spacing.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 265,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 265,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_fit_above.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 265,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 265,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/bold.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/content_height.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'UCAD'",
+          "text_value": "UCAD"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'UCAD'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'UCAD'",
+              "value": "UCAD"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/italic.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/multiline.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT\nUCAD'",
+          "text_value": "KIT\nUCAD"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT\nUCAD'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT\nUCAD'",
+              "value": "KIT\nUCAD"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/plain.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 245,
+          "parameter_name": "d2",
+          "expression": "'KIT'",
+          "text_value": "KIT"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 245,
+            "parameter_name": "d2",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'KIT'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'KIT'",
+              "value": "KIT"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/text_name_literal.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "expression": "'probeWidth literal'",
+          "text_value": "probeWidth literal"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 205,
+            "parameter_name": "probeResult",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'probeWidth literal'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'probeWidth literal'",
+              "value": "probeWidth literal"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "parametertexts-d16f951482fc/text_multiline_value.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeLabel",
+          "expression": "'First \u00d8 line\nSecond\tcolumn\r\nThird line'",
+          "text_value": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 202,
+            "parameter_name": "probeLabel",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'First \u00d8 line\nSecond\tcolumn\r\nThird line'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'First \u00d8 line\nSecond\tcolumn\r\nThird line'",
+              "value": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/text.f3d",
+      "Text_parameters": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeLabel",
+          "expression": "'Steel \u00d8'",
+          "text_value": "Steel \u00d8"
+        }
+      ],
+      "output": {
+        "derived": [
+          {
+            "parameter_object_id": 202,
+            "parameter_name": "probeLabel",
+            "collection_object_id": 16,
+            "name_registry_object_id": 17,
+            "stored_expression": "'Steel \u00d8'",
+            "syntax_tree": {
+              "kind": "TextLiteral",
+              "spelling": "'Steel \u00d8'",
+              "value": "Steel \u00d8"
+            },
+            "reference_occurrences": [],
+            "referenced_parameter_object_ids": [],
+            "referenced_parameter_names": [],
+            "source": "Syntactically derived from a completely parsed SDK-documented Text literal, cached-value agreement and reciprocal owned name table; not a native dependency table"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete single-quoted Text literals have no parameter references; multiline/Unicode literals retained",
+        "limitations": [
+          "No Text expression evaluation, concatenation, references, conditions, quote escaping or general language grammar.",
+          "Numeric arithmetic dependencies remain with the existing reader."
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Only captured second consumed editable Text layout/roles/slots extended; ordinary canonical first-Text outputs remain exact.",
+    "Literal grammar accepts one complete single-quoted string, no interior quote/backslash, exact cached-value agreement and reciprocal table. Multiline/Unicode content preserved.",
+    "No Text concatenation, reference expressions, conditional syntax, escaping, arithmetic evaluation, native dependency edges or regeneration.",
+    "No Fusion calls, captures, shared source edits or Git mutations."
+  ]
+}

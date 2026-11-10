@@ -1,0 +1,1448 @@
+{
+  "status": "Observed additional native construction-axis and construction-point definition modes",
+  "fixture_directories": [
+    "constructionmodes-e355ad6031c0",
+    "constructionmodes-521ce7cdfdbe"
+  ],
+  "checks": {
+    "definition_class_matches_actual_api": 8,
+    "cached_geometry_matches_actual_api": 8,
+    "ordered_support_roles_match_actual_api": 8,
+    "support_entity_types_match_actual_api": 13,
+    "explicit_support_geometry_matches_actual_api": 10,
+    "face_native_body_matches_actual_api": 3
+  },
+  "samples": [
+    {
+      "file": "constructionmodes-e355ad6031c0/axis_two_points.f3d",
+      "definition": {
+        "feature_object_id": 239,
+        "kind": "ConstructionAxis",
+        "name": "ProbeAxis",
+        "definition_kind": "TwoPoints",
+        "api_definition_class": "ConstructionAxisTwoPointDefinition",
+        "backend_object_id": 240,
+        "stored_feature_variant_code": 3,
+        "stored_backend_method_code": 12,
+        "support_inputs": [
+          {
+            "role": "pointEntityOne",
+            "descriptor_object_id": 243,
+            "terminal_object_id": 246,
+            "point_provider_object_id": 247,
+            "namespace_text": "a066f559-d2af-4b41-ae89-fc1b0665f0fe",
+            "entity_guid_text": "ca1c7ed5-e20c-4a1e-a2f5-bac79671b614",
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportSketch",
+              "geometry_object_id": 228,
+              "entity_tag": 101,
+              "component_position_cm": [
+                1.0,
+                2.0,
+                0.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          },
+          {
+            "role": "pointEntityTwo",
+            "descriptor_object_id": 250,
+            "terminal_object_id": 253,
+            "point_provider_object_id": 254,
+            "namespace_text": "a066f559-d2af-4b41-ae89-fc1b0665f0fe",
+            "entity_guid_text": "ca1c7ed5-e20c-4a1e-a2f5-bac79671b614",
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportSketch",
+              "geometry_object_id": 233,
+              "entity_tag": 102,
+              "component_position_cm": [
+                4.0,
+                6.0,
+                0.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbeAxis",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "axis_object_id": 238,
+          "origin_cm": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "direction": [
+            0.6,
+            0.8,
+            0.0
+          ],
+          "stored_raw_direction": [
+            3.0,
+            4.0,
+            0.0
+          ],
+          "direction_encoding": "Native direction vector normalized to API unit direction; original vector retained"
+        },
+        "support_consistency": {
+          "matches": true,
+          "point_to_cached_axis_distances_cm": [
+            0.0,
+            4.440892098500626e-16
+          ],
+          "scope": "Cached axis contains both explicit noncoincident defining points"
+        },
+        "backend_geometry_values": [
+          1.0,
+          2.0,
+          0.0,
+          3.0,
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "axis_two_points.f3d",
+        "requested_method": "setByTwoPoints",
+        "name": "ProbeAxis",
+        "definition_type": "ConstructionAxisTwoPointDefinition",
+        "support_inputs": [
+          {
+            "role": "pointEntityOne",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                1.0,
+                2.0,
+                0.0
+              ],
+              "sketch_name": "SupportSketch"
+            }
+          },
+          {
+            "role": "pointEntityTwo",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                4.0,
+                6.0,
+                0.0
+              ],
+              "sketch_name": "SupportSketch"
+            }
+          }
+        ],
+        "geometry": {
+          "origin_cm": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "direction": [
+            0.6000000000000001,
+            0.8,
+            0.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "constructionmodes-e355ad6031c0/axis_normal_to_face.f3d",
+      "definition": {
+        "feature_object_id": 313,
+        "kind": "ConstructionAxis",
+        "name": "ProbeAxis",
+        "definition_kind": "NormalToFaceAtPoint",
+        "api_definition_class": "ConstructionAxisNormalToFaceAtPointDefinition",
+        "backend_object_id": 314,
+        "stored_feature_variant_code": 1,
+        "stored_backend_method_code": 18,
+        "support_inputs": [
+          {
+            "role": "face",
+            "descriptor_object_id": 317,
+            "terminal_object_id": null,
+            "point_provider_object_id": null,
+            "namespace_text": "673c2227-c110-4c99-a1ca-11c1c60603f0",
+            "entity_guid_text": "ac1a9fda-9ad0-446e-984e-048a18942b90",
+            "entity": {
+              "kind": "Face",
+              "body_anchor_object_id": 281,
+              "native_body_object_id": 275,
+              "source_owner_object_id": 243,
+              "recipe": {
+                "object_id": 320,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 38126,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "face_recipe_data",
+                "payload_relative_offset": 63,
+                "payload_length": 8,
+                "payload_hex": "00000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1
+                ]
+              },
+              "context_record_object_ids": [
+                329
+              ],
+              "geometry_status": "Explicit native body and persistent face recipe; exact face geometry unresolved"
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          },
+          {
+            "role": "pointEntity",
+            "descriptor_object_id": 322,
+            "terminal_object_id": 325,
+            "point_provider_object_id": null,
+            "namespace_text": "673c2227-c110-4c99-a1ca-11c1c60603f0",
+            "entity_guid_text": "ac1a9fda-9ad0-446e-984e-048a18942b90",
+            "entity": {
+              "kind": "SketchPoint",
+              "sketch_object_id": 282,
+              "sketch_name": "AxisPoint",
+              "geometry_object_id": 307,
+              "entity_tag": 110,
+              "component_position_cm": [
+                0.5,
+                0.7,
+                0.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbeAxis",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "axis_object_id": 312,
+          "origin_cm": [
+            0.5,
+            0.7,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "stored_raw_direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction_encoding": "Native direction vector normalized to API unit direction; original vector retained"
+        },
+        "support_consistency": {
+          "matches": null,
+          "point_to_axis_distance_cm": 0.0,
+          "scope": "Axis contains its explicit point; face-normal constraint remains unresolved"
+        },
+        "backend_geometry_values": [
+          0.5,
+          0.7,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "axis_normal_to_face.f3d",
+        "requested_method": "setByNormalToFaceAtPoint",
+        "name": "ProbeAxis",
+        "definition_type": "ConstructionAxisNormalToFaceAtPointDefinition",
+        "support_inputs": [
+          {
+            "role": "face",
+            "entity": {
+              "kind": "BRepFace",
+              "body_name": "SupportBody",
+              "geometry_type": "Plane",
+              "point_on_face_cm": [
+                1.5,
+                1.0,
+                2.0
+              ],
+              "area_cm2": 6.0,
+              "origin_cm": [
+                1.5,
+                1.0,
+                2.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "role": "pointEntity",
+            "entity": {
+              "kind": "SketchPoint",
+              "world_position_cm": [
+                0.5,
+                0.7,
+                0.0
+              ],
+              "sketch_name": "AxisPoint"
+            }
+          }
+        ],
+        "geometry": {
+          "origin_cm": [
+            0.5,
+            0.7,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          }
+        ]
+      }
+    },
+    {
+      "file": "constructionmodes-e355ad6031c0/axis_circular_face.f3d",
+      "definition": {
+        "feature_object_id": 268,
+        "kind": "ConstructionAxis",
+        "name": "ProbeAxis",
+        "definition_kind": "CircularFace",
+        "api_definition_class": "ConstructionAxisCircularFaceDefinition",
+        "backend_object_id": 269,
+        "stored_feature_variant_code": 0,
+        "stored_backend_method_code": 6,
+        "support_inputs": [
+          {
+            "role": "circularFace",
+            "descriptor_object_id": 272,
+            "terminal_object_id": null,
+            "point_provider_object_id": null,
+            "namespace_text": "202b3789-9602-4b7d-9522-3abb36fd5ff1",
+            "entity_guid_text": "65ad15d8-47d1-47ab-bcd0-adabeddf4fdc",
+            "entity": {
+              "kind": "Face",
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "recipe": {
+                "object_id": 275,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 32673,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "face_recipe_data",
+                "payload_relative_offset": 63,
+                "payload_length": 8,
+                "payload_hex": "00000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1
+                ]
+              },
+              "context_record_object_ids": [
+                280
+              ],
+              "geometry_status": "Explicit native body and persistent face recipe; exact face geometry unresolved"
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbeAxis",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "axis_object_id": 267,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "stored_raw_direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction_encoding": "Native direction vector normalized to API unit direction; original vector retained"
+        },
+        "support_consistency": {
+          "matches": null,
+          "scope": "Owned face recipe/body links retained; face normal/axis geometry is not independently reconstructed"
+        },
+        "backend_geometry_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "axis_circular_face.f3d",
+        "requested_method": "setByCircularFace",
+        "name": "ProbeAxis",
+        "definition_type": "ConstructionAxisCircularFaceDefinition",
+        "support_inputs": [
+          {
+            "role": "circularFace",
+            "entity": {
+              "kind": "BRepFace",
+              "body_name": "SupportBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172,
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          }
+        ],
+        "geometry": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          }
+        ]
+      }
+    },
+    {
+      "file": "constructionmodes-e355ad6031c0/axis_edge.f3d",
+      "definition": {
+        "feature_object_id": 237,
+        "kind": "ConstructionAxis",
+        "name": "ProbeAxis",
+        "definition_kind": "Edge",
+        "api_definition_class": "ConstructionAxisEdgeDefinition",
+        "backend_object_id": 238,
+        "stored_feature_variant_code": 4,
+        "stored_backend_method_code": 10,
+        "support_inputs": [
+          {
+            "role": "edgeEntity",
+            "descriptor_object_id": 241,
+            "terminal_object_id": 244,
+            "point_provider_object_id": null,
+            "namespace_text": "e1f496f5-1c45-4c8e-a20d-b0af1d6ed262",
+            "entity_guid_text": "d3bae6eb-d169-4bfe-b83e-5d53f0f5b22d",
+            "entity": {
+              "kind": "SketchLine",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportSketch",
+              "geometry_object_id": 232,
+              "entity_tag": 103,
+              "component_start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_end_cm": [
+                3.0,
+                4.0,
+                0.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbeAxis",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "axis_object_id": 236,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.6000000000000001,
+            0.8,
+            0.0
+          ],
+          "stored_raw_direction": [
+            0.6000000000000001,
+            0.8,
+            0.0
+          ],
+          "direction_encoding": "Native direction vector normalized to API unit direction; original vector retained"
+        },
+        "support_consistency": {
+          "matches": true,
+          "support_endpoint_to_axis_distances_cm": [
+            0.0,
+            0.0
+          ]
+        },
+        "backend_geometry_values": [
+          0.0,
+          0.0,
+          0.0,
+          3.0,
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "axis_edge.f3d",
+        "requested_method": "setByEdge",
+        "name": "ProbeAxis",
+        "definition_type": "ConstructionAxisEdgeDefinition",
+        "support_inputs": [
+          {
+            "role": "edgeEntity",
+            "entity": {
+              "kind": "SketchLine",
+              "sketch_name": "SupportSketch",
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                3.0,
+                4.0,
+                0.0
+              ]
+            }
+          }
+        ],
+        "geometry": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.6000000000000001,
+            0.8,
+            0.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "constructionmodes-e355ad6031c0/point_edge_plane.f3d",
+      "definition": {
+        "feature_object_id": 251,
+        "kind": "ConstructionPoint",
+        "name": "ProbePoint",
+        "definition_kind": "EdgePlane",
+        "api_definition_class": "ConstructionPointEdgePlaneDefinition",
+        "backend_object_id": 252,
+        "stored_feature_variant_code": 4,
+        "stored_backend_method_code": 14,
+        "support_inputs": [
+          {
+            "role": "edge",
+            "descriptor_object_id": 255,
+            "terminal_object_id": 258,
+            "point_provider_object_id": null,
+            "namespace_text": "bff250f3-d205-4330-9a37-42ab01b926cf",
+            "entity_guid_text": "4f162c6f-1f52-4e3e-a75c-b5af09b1a923",
+            "entity": {
+              "kind": "ConstructionAxis",
+              "name": "Z",
+              "object_id": 41,
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "origin_container_object_id": 37,
+              "scope": "Native component origin axis; occurrence transforms unresolved"
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          },
+          {
+            "role": "plane",
+            "descriptor_object_id": 259,
+            "terminal_object_id": 262,
+            "point_provider_object_id": null,
+            "namespace_text": "bff250f3-d205-4330-9a37-42ab01b926cf",
+            "entity_guid_text": "4f162c6f-1f52-4e3e-a75c-b5af09b1a923",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "PointSupportPlane",
+              "object_id": 228,
+              "feature_object_id": 229,
+              "origin_cm": [
+                0.0,
+                0.0,
+                1.3
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbePoint",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "point_object_id": 250,
+          "position_cm": [
+            0.0,
+            0.0,
+            1.3
+          ]
+        },
+        "support_consistency": {
+          "matches": true,
+          "point_to_axis_distance_cm": 0.0,
+          "plane_residual_cm": 0.0
+        },
+        "backend_geometry_values": [
+          0.0,
+          0.0,
+          1.3
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "point_edge_plane.f3d",
+        "requested_method": "setByEdgePlane",
+        "name": "ProbePoint",
+        "definition_type": "ConstructionPointEdgePlaneDefinition",
+        "support_inputs": [
+          {
+            "role": "edge",
+            "entity": {
+              "kind": "ConstructionAxis",
+              "name": "Z",
+              "origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "direction": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "role": "plane",
+            "entity": {
+              "kind": "ConstructionPlane",
+              "name": "PointSupportPlane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                1.3
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "geometry": {
+          "position_cm": [
+            0.0,
+            0.0,
+            1.3
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.3,
+            "unit": "mm",
+            "created_by": "PointSupportPlane"
+          }
+        ]
+      }
+    },
+    {
+      "file": "constructionmodes-e355ad6031c0/point_two_edges.f3d",
+      "definition": {
+        "feature_object_id": 245,
+        "kind": "ConstructionPoint",
+        "name": "ProbePoint",
+        "definition_kind": "TwoEdges",
+        "api_definition_class": "ConstructionPointTwoEdgesDefinition",
+        "backend_object_id": 246,
+        "stored_feature_variant_code": 1,
+        "stored_backend_method_code": 7,
+        "support_inputs": [
+          {
+            "role": "edgeOne",
+            "descriptor_object_id": 249,
+            "terminal_object_id": 252,
+            "point_provider_object_id": null,
+            "namespace_text": "72aaa0c1-02fc-403d-918b-a888834089f6",
+            "entity_guid_text": "216060de-69b0-42c7-87af-46e743f9e2f3",
+            "entity": {
+              "kind": "SketchLine",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportSketch",
+              "geometry_object_id": 232,
+              "entity_tag": 103,
+              "component_start_cm": [
+                0.0,
+                2.0,
+                0.0
+              ],
+              "component_end_cm": [
+                3.0,
+                2.0,
+                0.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          },
+          {
+            "role": "edgeTwo",
+            "descriptor_object_id": 253,
+            "terminal_object_id": 256,
+            "point_provider_object_id": null,
+            "namespace_text": "72aaa0c1-02fc-403d-918b-a888834089f6",
+            "entity_guid_text": "216060de-69b0-42c7-87af-46e743f9e2f3",
+            "entity": {
+              "kind": "SketchLine",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportSketch",
+              "geometry_object_id": 240,
+              "entity_tag": 106,
+              "component_start_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "component_end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbePoint",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "point_object_id": 244,
+          "position_cm": [
+            1.0,
+            2.0,
+            0.0
+          ]
+        },
+        "support_consistency": {
+          "matches": true,
+          "point_to_support_line_distances_cm": [
+            0.0,
+            0.0
+          ]
+        },
+        "backend_geometry_values": [
+          1.0,
+          2.0,
+          0.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "point_two_edges.f3d",
+        "requested_method": "setByTwoEdges",
+        "name": "ProbePoint",
+        "definition_type": "ConstructionPointTwoEdgesDefinition",
+        "support_inputs": [
+          {
+            "role": "edgeOne",
+            "entity": {
+              "kind": "SketchLine",
+              "sketch_name": "SupportSketch",
+              "start_cm": [
+                0.0,
+                2.0,
+                0.0
+              ],
+              "end_cm": [
+                3.0,
+                2.0,
+                0.0
+              ]
+            }
+          },
+          {
+            "role": "edgeTwo",
+            "entity": {
+              "kind": "SketchLine",
+              "sketch_name": "SupportSketch",
+              "start_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                4.0,
+                0.0
+              ]
+            }
+          }
+        ],
+        "geometry": {
+          "position_cm": [
+            1.0,
+            2.0,
+            0.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "constructionmodes-e355ad6031c0/point_center.f3d",
+      "definition": {
+        "feature_object_id": 235,
+        "kind": "ConstructionPoint",
+        "name": "ProbePoint",
+        "definition_kind": "Center",
+        "api_definition_class": "ConstructionPointCenterDefinition",
+        "backend_object_id": 240,
+        "stored_feature_variant_code": 3,
+        "stored_backend_method_code": 15,
+        "support_inputs": [
+          {
+            "role": "circularEntity",
+            "descriptor_object_id": 236,
+            "terminal_object_id": 239,
+            "point_provider_object_id": null,
+            "namespace_text": "e8d67540-a827-40a3-99b4-55f41ff8202a",
+            "entity_guid_text": "116c3c55-2a97-4860-9e03-fb9a75ab3291",
+            "entity": {
+              "kind": "SketchCircle",
+              "sketch_object_id": 202,
+              "sketch_name": "SupportSketch",
+              "geometry_object_id": 230,
+              "entity_tag": 102,
+              "component_center_cm": [
+                1.2,
+                -0.5,
+                0.0
+              ],
+              "radius_cm": 0.8
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbePoint",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "point_object_id": 234,
+          "position_cm": [
+            1.2,
+            -0.5,
+            0.0
+          ]
+        },
+        "support_consistency": {
+          "matches": true,
+          "scope": "Cached point matches the explicit sketch-circle center"
+        },
+        "backend_geometry_values": [
+          1.2,
+          -0.5,
+          0.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "point_center.f3d",
+        "requested_method": "setByCenter",
+        "name": "ProbePoint",
+        "definition_type": "ConstructionPointCenterDefinition",
+        "support_inputs": [
+          {
+            "role": "circularEntity",
+            "entity": {
+              "kind": "SketchCircle",
+              "sketch_name": "SupportSketch",
+              "center_cm": [
+                1.2,
+                -0.5,
+                0.0
+              ],
+              "radius_cm": 0.8
+            }
+          }
+        ],
+        "geometry": {
+          "position_cm": [
+            1.2,
+            -0.5,
+            0.0
+          ]
+        },
+        "parameters": []
+      }
+    },
+    {
+      "file": "constructionmodes-521ce7cdfdbe/axis_perpendicular_at_point.f3d",
+      "definition": {
+        "feature_object_id": 344,
+        "kind": "ConstructionAxis",
+        "name": "ProbeAxis",
+        "definition_kind": "PerpendicularAtPoint",
+        "api_definition_class": "ConstructionAxisPerpendicularAtPointDefinition",
+        "backend_object_id": 345,
+        "stored_feature_variant_code": 6,
+        "stored_backend_method_code": 19,
+        "support_inputs": [
+          {
+            "role": "face",
+            "descriptor_object_id": 348,
+            "terminal_object_id": null,
+            "point_provider_object_id": null,
+            "namespace_text": "025304ea-0f53-43aa-9470-2413871d1001",
+            "entity_guid_text": "eb4fe264-70d3-47fb-9e4c-1d2815175c88",
+            "entity": {
+              "kind": "Face",
+              "body_anchor_object_id": 281,
+              "native_body_object_id": 275,
+              "source_owner_object_id": 243,
+              "recipe": {
+                "object_id": 351,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 45716,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 37503,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 37503,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "6",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 37503,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 37503,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 4,
+                    "terms": [
+                      {
+                        "name": "5",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 37503,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "bounded_face_recipe_data",
+                "payload_relative_offset": 171,
+                "payload_length": 476,
+                "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1,
+                  4,
+                  -1,
+                  -1,
+                  2,
+                  1,
+                  -1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  3,
+                  2,
+                  -1,
+                  1,
+                  -1,
+                  0,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  3,
+                  3,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  3,
+                  -1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  3,
+                  3,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  3,
+                  4,
+                  -1,
+                  0,
+                  -1,
+                  3,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  4,
+                  -1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  3,
+                  4,
+                  -1,
+                  0,
+                  -1,
+                  3,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  3,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  4,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  3,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  4,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  3,
+                  2,
+                  -1,
+                  1,
+                  -1,
+                  0,
+                  -1,
+                  0,
+                  0,
+                  -1
+                ]
+              },
+              "context_record_object_ids": [
+                356
+              ],
+              "geometry_status": "Explicit native body and persistent face recipe; exact face geometry unresolved"
+            },
+            "coordinate_scope": "Native component support geometry; occurrence context remains unverified"
+          },
+          {
+            "role": "point",
+            "entity": {
+              "kind": "Point3D",
+              "position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ]
+            },
+            "association": "Inline native backend position agrees with actual API Point3D getter",
+            "reference_scope": "Stored point value; no sketch-point dependency is inferred"
+          }
+        ],
+        "cached_geometry": {
+          "name": "ProbeAxis",
+          "coordinate_units": "cm",
+          "coordinate_scope": "Native component; occurrence transforms are not inferred",
+          "axis_object_id": 343,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "stored_raw_direction": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction_encoding": "Native direction vector normalized to API unit direction; original vector retained"
+        },
+        "support_consistency": {
+          "matches": null,
+          "inline_point_lies_on_cached_axis": true,
+          "scope": "Inline point value lies on the cached axis; perpendicular face geometry remains unresolved"
+        },
+        "backend_geometry_values": [
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          1.0,
+          -1.5,
+          -1.0
+        ],
+        "backend_geometry_scope": "Stored values retained; API normalized axis direction and anchor point may differ",
+        "geometry_status": "Observed cached geometry and explicit defining supports decoded; exact face topology and general regeneration remain unsupported"
+      },
+      "api_evidence": {
+        "file": "axis_perpendicular_at_point.f3d",
+        "requested_method": "setByPerpendicularAtPoint",
+        "name": "ProbeAxis",
+        "definition_type": "ConstructionAxisPerpendicularAtPointDefinition",
+        "support_inputs": [
+          {
+            "role": "face",
+            "entity": {
+              "kind": "BRepFace",
+              "body_name": "SupportBody",
+              "geometry_type": "Plane",
+              "point_on_face_cm": [
+                1.5,
+                1.0,
+                2.0
+              ],
+              "area_cm2": 6.0,
+              "origin_cm": [
+                1.5,
+                1.0,
+                2.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "role": "point",
+            "entity": {
+              "kind": "Point3D",
+              "position_cm": [
+                0.0,
+                0.0,
+                2.0
+              ]
+            }
+          }
+        ],
+        "geometry": {
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_capture_errors": {
+    "directory": "constructionmodes-e355ad6031c0",
+    "case": "axis_perpendicular_at_point",
+    "reason": "Actual definition.point getter returns Point3D; initial entity snapshot supported only sketch/construction points. Generator corrected and this case retried successfully."
+  },
+  "limitations": [
+    "Only the eight sampled feature/backend method combinations are accepted; other native construction layouts remain unsupported.",
+    "TwoPoints native cache contains direction[3,4,0]; normalized API-compatible direction[0.6,0.8,0] is exposed while preserving the original vector.",
+    "PerpendicularAtPoint exposes an inline Point3D value matching the actual API getter; no sketch-point dependency is inferred for that value.",
+    "The perpendicular sample reference point[0,0,2] and cached/API axis origin[0,0,0] are distinct points on the same axis; they are preserved separately.",
+    "Face support ownership, persistent recipes and native body identities are decoded; exact face normal/circular-axis geometry is not independently reconstructed.",
+    "Sketch line/circle/point supports resolve explicit sketchID/entitytag terminals and native component placement; occurrence transforms are not inferred.",
+    "General backend auxiliary values, snap selections, other curve/face variants and parametric regeneration remain unsupported."
+  ],
+  "guard_rejections": [
+    {
+      "case": "Unknown axis backend method",
+      "reason": "Unobserved construction feature/backend mode combination"
+    },
+    {
+      "case": "Point-provider owner disagrees",
+      "reason": "Unsupported construction-mode point provider"
+    },
+    {
+      "case": "Unknown sketch-line entity tag",
+      "reason": "Construction-mode sketch/tag association unresolved"
+    },
+    {
+      "case": "Perpendicular inline point is outside its axis",
+      "reason": "Construction result/support point is outside its defining line"
+    }
+  ],
+  "prior_method_compatibility": {
+    "prior_feature_instances_preserved_and_skipped": 5,
+    "scope": "Legacy TwoPlanes/ThreePlanes/ByPoint definitions remain owned by their existing reader"
+  },
+  "integration": {
+    "call": "decode_construction_modes(data, records, features)",
+    "order": "After existing cached construction/plane-definition and legacy axis-point definition readers; before selections/tools.",
+    "fields": "Updates native geometry/name when needed and attaches feature.construction_definition.",
+    "unresolved_merging": "Remove earlier cached-construction and legacy-definition unresolved entries only for feature IDs successfully decoded by this reader."
+  },
+  "main_reader_integration": {
+    "status": "pass",
+    "new_archives": 8,
+    "definitions_matching_report": 8,
+    "feature_attachments_match": true,
+    "legacy_unresolved_entries_removed_only_for_successful_ids": true,
+    "stream_key": "construction_modes"
+  }
+}

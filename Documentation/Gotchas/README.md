@@ -5,6 +5,8 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Gotchas
 
+- **Fusion research availability differs from public discovery:** Expected the packaged Fusion reader to be advertised as a supported production adapter; discovery deliberately excludes it because coverage is partial. Instantiate the research reader explicitly and do not infer lossless translation from a successful partial read. See [the import entry](../Changes/FusionResearchImport.md).
+
 Read this log before working in an affected area. Keep entries short, searchable, and specific. Add a source or verification link when available. Move a growing topic into a focused PascalCase page in this folder and link it here; keep the bullet format.
 
 - **Header remediation can leave dependency CI awaiting approval:** Expected the automated SPDX commit to complete PR validation; its current-head workflows can await maintainer approval while the aggregate remains on an older head. Approve the exact current-head runs and restart validation from a maintainer-authored commit when the aggregate did not start. See [PR 61's blocked run](https://github.com/TryUniCAD/Kit/actions/runs/42783888706).

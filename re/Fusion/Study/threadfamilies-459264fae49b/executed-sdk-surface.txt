@@ -1,0 +1,1382 @@
+class ThreadFeatures(Base):
+    r"""
+    Collection that provides access to all of the existing thread features in a component
+    and supports the ability to create new thread features.
+    The creation of a tapped hole also results in the creation of a thread feature. These
+    thread features are also returned by this collection, even though they aren't present
+    in the timeline and are represented by the hole feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ThreadFeatures *":
+        return _fusion.ThreadFeatures___deref__(self)
+
+    def __eq__(self, rhs: "ThreadFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ThreadFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ThreadFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ThreadFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ThreadFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.ThreadFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.ThreadFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.ThreadFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ThreadFeatures_classType()
+    __swig_destroy__ = _fusion.delete_ThreadFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.ThreadFeature":
+        r"""
+        Function that returns the specified thread feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.ThreadFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of thread features in the collection."""
+        return _fusion.ThreadFeatures__get_count(self)
+
+    def _get_threadDataQuery(self) -> "adsk.fusion.ThreadDataQuery":
+        r"""
+        ** This property is retired. **
+
+        This method has been replaced by the ThreadDataQuery.create method.
+        Property that returns the ThreadDataQuery object. When creating a thread, the type and size of the thread
+        is specified by referencing thread information defined in one of the XML files in the ThreadData folder.
+        The ThreadDataQuery is an object that supports methods to query the existing threads defined in these files.
+        """
+        return _fusion.ThreadFeatures__get_threadDataQuery(self)
+
+    def createInput(self, inputCylindricalFaces: "Base", threadInfo: "ThreadInfo") -> "adsk.fusion.ThreadFeatureInput":
+        r"""
+        Creates a ThreadFeatureInput object. This object is the API equivalent of the Thread feature dialog. It collects
+        the required input and once fully defined you can pass this object to the ThreadFeatures.add method to create
+        the thread feature.
+        inputCylindricalFaces : A single cylindrical BRep face or a collection of cylindrical BRep faces to thread.
+        A collection of faces must all be from either holes (for internal threading) or all from cylinders (for external threading).
+        Both internal and external threads cannot be created in the same feature.
+        The faces in a collection can come from different bodies or components.
+        threadInfo : The ThreadInfo object that defines the type and size of the thread to create. When creating a thread, the type and size
+        of the thread is specified by referencing thread information defined in one of the XML files in the ThreadData folder within
+        the Fusion install folder. You can use the ThreadDataQuery object to query these XML files to find the specific thread you
+        want to create. The ThreadDataQuery object can be obtained by using the ThreadFeatures.threadDataQuery property. You then use
+        this information to create a ThreadInfo object using the ThreadFeatures.createThreadInfo method.
+        Returns the newly created ThreadFeatureInput object or null/None if the creation failed.
+        """
+        return _fusion.ThreadFeatures_createInput(self, inputCylindricalFaces, threadInfo)
+
+    def createThreadInfo(self, isInternal: "bool", threadType: "str", threadDesignation: "str", threadClass: "str") -> "adsk.fusion.ThreadInfo":
+        r"""
+        ** This method is retired. **
+
+        This method has been replaced by the ThreadInfo.create method.
+        Method that creates a new ThreadInfo object that can be used in creating thread features.
+        The ThreadInfo object that defines the type and size of the thread to create. When creating a thread, the type and size
+        of the thread is specified by referencing thread information defined in one of the XML files in the ThreadData folder within
+        the Fusion install folder. You can use the ThreadDataQuery object to query these XML files to find the specific thread you
+        want to create. The ThreadDataQuery object can be obtained by using the ThreadFeatures.threadDataQuery property.
+        isInternal : Input Boolean that indicates if the thread is an internal or external thread. A value of true indicates an internal thread.
+        threadType : Input string that defines the thread type.
+        threadDesignation : Input string that contains the thread designation.
+        This is input as the full thread designation that will be used in a drawing for the thread call-out.
+        The nominal size and pitch information are extracted from the designation.
+        threadClass : Input string that defines the thread class.
+        Returns the newly created ThreadInfo object or null if the creation failed.
+        """
+        return _fusion.ThreadFeatures_createThreadInfo(self, isInternal, threadType, threadDesignation, threadClass)
+
+    def add(self, input: "ThreadFeatureInput") -> "adsk.fusion.ThreadFeature":
+        r"""
+        Creates a new thread feature.
+        input : A ThreadFeatureInput object that defines the desired thread. Use the createInput
+        method to create a new ThreadFeatureInput object and then use methods on it
+        (the ThreadFeatureInput object) to define the thread.
+        Returns the newly created ThreadFeature object or null if the creation failed.
+        """
+        return _fusion.ThreadFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.ThreadFeature":
+        r"""
+        Function that returns the specified thread feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.ThreadFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ThreadFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ThreadFeatures__get_isValid(self)
+
+# Register ThreadFeatures in _fusion:
+_fusion.ThreadFeatures_swigregister(ThreadFeatures)
+
+def ThreadFeatures_classType() -> "str":
+    return _fusion.ThreadFeatures_classType()
+
+
+ThreadFeatures.count = property(ThreadFeatures._get_count, doc="The number of thread features in the collection.")
+
+
+ThreadFeatures.threadDataQuery = property(ThreadFeatures._get_threadDataQuery, doc="** This property is retired. **\n\nThis method has been replaced by the ThreadDataQuery.create method.\nProperty that returns the ThreadDataQuery object. When creating a thread, the type and size of the thread\nis specified by referencing thread information defined in one of the XML files in the ThreadData folder.\nThe ThreadDataQuery is an object that supports methods to query the existing threads defined in these files.")
+
+
+ThreadFeatures.cast = lambda arg: arg if isinstance(arg, ThreadFeatures) else None
+
+class ThreadFeatureInput(Base):
+    r"""
+    This class defines the methods and properties that pertain to the definition of a thread
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ThreadFeatureInput *":
+        return _fusion.ThreadFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "ThreadFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ThreadFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ThreadFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ThreadFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ThreadFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ThreadFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_ThreadFeatureInput
+
+    def _get_inputCylindricalFace(self) -> "adsk.fusion.BRepFace":
+        r"""
+        Gets and sets the threaded face. In the case where there are multiple faces, only the first one is returned.
+        Setting this results in a thread being applied to only a single face.
+        It is recommended that you use the inputCylindricalfaces property in order to have full access to the collection of faces
+        to be threaded.
+        """
+        return _fusion.ThreadFeatureInput__get_inputCylindricalFace(self)
+
+    def _set_inputCylindricalFace(self, value: "BRepFace") -> "bool":
+        r"""
+        Gets and sets the threaded face. In the case where there are multiple faces, only the first one is returned.
+        Setting this results in a thread being applied to only a single face.
+        It is recommended that you use the inputCylindricalfaces property in order to have full access to the collection of faces
+        to be threaded.
+        """
+        return _fusion.ThreadFeatureInput__set_inputCylindricalFace(self, value)
+
+    def _get_isModeled(self) -> "bool":
+        r"""
+        Gets and sets if the thread is physical or cosmetic thread. A value of true indicates a physical thread.
+        It defaults to false.
+        """
+        return _fusion.ThreadFeatureInput__get_isModeled(self)
+
+    def _set_isModeled(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the thread is physical or cosmetic thread. A value of true indicates a physical thread.
+        It defaults to false.
+        """
+        return _fusion.ThreadFeatureInput__set_isModeled(self, value)
+
+    def _get_isFullLength(self) -> "bool":
+        r"""
+        Gets and sets if this thread is the full length of the cylinder.
+        It defaults to true.
+        """
+        return _fusion.ThreadFeatureInput__get_isFullLength(self)
+
+    def _set_isFullLength(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this thread is the full length of the cylinder.
+        It defaults to true.
+        """
+        return _fusion.ThreadFeatureInput__set_isFullLength(self, value)
+
+    def _get_threadLength(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the thread length.
+        It is only used in the case where the isFullLength property is false.
+        """
+        return _fusion.ThreadFeatureInput__get_threadLength(self)
+
+    def _set_threadLength(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the thread length.
+        It is only used in the case where the isFullLength property is false.
+        """
+        return _fusion.ThreadFeatureInput__set_threadLength(self, value)
+
+    def _get_threadOffset(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the thread offset.
+        The offset is the distance along the axis of the cylinder from the edge to the start of the thread.
+        It is only used in the case where the isFullLength property is false.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.ThreadFeatureInput__get_threadOffset(self)
+
+    def _set_threadOffset(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the thread offset.
+        The offset is the distance along the axis of the cylinder from the edge to the start of the thread.
+        It is only used in the case where the isFullLength property is false.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.ThreadFeatureInput__set_threadOffset(self, value)
+
+    def _get_threadLocation(self) -> "adsk.fusion.ThreadLocations":
+        r"""
+        Gets and sets which end of the cylinder the thread is measured from when it's not full
+        length. The thread position and length can be measured from either the 'low' or 'high' end.
+        You can determine the low and high end by using the Cylinder associated with the cylindrical
+        BRepFace the thread is being added to. The BRepFace.geometry which will return a Cylinder object.
+        The axis property of the Cylinder is a vector and the high end of the cylinder is at the far end
+        of the cylinder with respect to the axis vector.
+        This property is only used in the case where the isFullLength property is false and is otherwise ignored.
+        It defaults to creating a thread at the high end.
+        """
+        return _fusion.ThreadFeatureInput__get_threadLocation(self)
+
+    def _set_threadLocation(self, value: "ThreadLocations") -> "bool":
+        r"""
+        Gets and sets which end of the cylinder the thread is measured from when it's not full
+        length. The thread position and length can be measured from either the 'low' or 'high' end.
+        You can determine the low and high end by using the Cylinder associated with the cylindrical
+        BRepFace the thread is being added to. The BRepFace.geometry which will return a Cylinder object.
+        The axis property of the Cylinder is a vector and the high end of the cylinder is at the far end
+        of the cylinder with respect to the axis vector.
+        This property is only used in the case where the isFullLength property is false and is otherwise ignored.
+        It defaults to creating a thread at the high end.
+        """
+        return _fusion.ThreadFeatureInput__set_threadLocation(self, value)
+
+    def _get_threadInfo(self) -> "adsk.fusion.ThreadInfo":
+        r"""Gets and sets the information that defines the thread."""
+        return _fusion.ThreadFeatureInput__get_threadInfo(self)
+
+    def _set_threadInfo(self, value: "ThreadInfo") -> "bool":
+        r"""Gets and sets the information that defines the thread."""
+        return _fusion.ThreadFeatureInput__set_threadInfo(self, value)
+
+    def _get_isRightHanded(self) -> "bool":
+        r"""
+        ** This property is retired. **
+
+        The direction of the thread is now controlled through the isRightHanded property of the ThreadInfo object.
+        Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.
+        It defaults to true.
+        """
+        return _fusion.ThreadFeatureInput__get_isRightHanded(self)
+
+    def _set_isRightHanded(self, value: "bool") -> "bool":
+        r"""
+        ** This property is retired. **
+
+        The direction of the thread is now controlled through the isRightHanded property of the ThreadInfo object.
+        Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.
+        It defaults to true.
+        """
+        return _fusion.ThreadFeatureInput__set_isRightHanded(self, value)
+
+    def _get_inputCylindricalFaces(self) -> "adsk.core.ObjectCollection":
+        r"""Gets and sets the cylindrical input faces."""
+        return _fusion.ThreadFeatureInput__get_inputCylindricalFaces(self)
+
+    def _set_inputCylindricalFaces(self, value: "ObjectCollection") -> "bool":
+        r"""Gets and sets the cylindrical input faces."""
+        return _fusion.ThreadFeatureInput__set_inputCylindricalFaces(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.ThreadFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.ThreadFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ThreadFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ThreadFeatureInput__get_isValid(self)
+
+# Register ThreadFeatureInput in _fusion:
+_fusion.ThreadFeatureInput_swigregister(ThreadFeatureInput)
+
+def ThreadFeatureInput_classType() -> "str":
+    return _fusion.ThreadFeatureInput_classType()
+
+
+ThreadFeatureInput.inputCylindricalFace = property(ThreadFeatureInput._get_inputCylindricalFace, ThreadFeatureInput._set_inputCylindricalFace, doc="Gets and sets the threaded face. In the case where there are multiple faces, only the first one is returned.\nSetting this results in a thread being applied to only a single face.\nIt is recommended that you use the inputCylindricalfaces property in order to have full access to the collection of faces\nto be threaded.")
+
+
+ThreadFeatureInput.isModeled = property(ThreadFeatureInput._get_isModeled, ThreadFeatureInput._set_isModeled, doc="Gets and sets if the thread is physical or cosmetic thread. A value of true indicates a physical thread.\nIt defaults to false.")
+
+
+ThreadFeatureInput.isFullLength = property(ThreadFeatureInput._get_isFullLength, ThreadFeatureInput._set_isFullLength, doc="Gets and sets if this thread is the full length of the cylinder.\nIt defaults to true.")
+
+
+ThreadFeatureInput.threadLength = property(ThreadFeatureInput._get_threadLength, ThreadFeatureInput._set_threadLength, doc="Gets and sets the thread length.\nIt is only used in the case where the isFullLength property is false.")
+
+
+ThreadFeatureInput.threadOffset = property(ThreadFeatureInput._get_threadOffset, ThreadFeatureInput._set_threadOffset, doc="Gets and sets the thread offset.\nThe offset is the distance along the axis of the cylinder from the edge to the start of the thread.\nIt is only used in the case where the isFullLength property is false.\nReturns nothing in the case where the feature is non-parametric.")
+
+
+ThreadFeatureInput.threadLocation = property(ThreadFeatureInput._get_threadLocation, ThreadFeatureInput._set_threadLocation, doc="Gets and sets which end of the cylinder the thread is measured from when it's not full\nlength. The thread position and length can be measured from either the 'low' or 'high' end.\nYou can determine the low and high end by using the Cylinder associated with the cylindrical\nBRepFace the thread is being added to. The BRepFace.geometry which will return a Cylinder object.\nThe axis property of the Cylinder is a vector and the high end of the cylinder is at the far end\nof the cylinder with respect to the axis vector.\nThis property is only used in the case where the isFullLength property is false and is otherwise ignored.\nIt defaults to creating a thread at the high end.")
+
+
+ThreadFeatureInput.threadInfo = property(ThreadFeatureInput._get_threadInfo, ThreadFeatureInput._set_threadInfo, doc="Gets and sets the information that defines the thread.")
+
+
+ThreadFeatureInput.isRightHanded = property(ThreadFeatureInput._get_isRightHanded, ThreadFeatureInput._set_isRightHanded, doc="** This property is retired. **\n\nThe direction of the thread is now controlled through the isRightHanded property of the ThreadInfo object.\nGets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.\nIt defaults to true.")
+
+
+ThreadFeatureInput.inputCylindricalFaces = property(ThreadFeatureInput._get_inputCylindricalFaces, ThreadFeatureInput._set_inputCylindricalFaces, doc="Gets and sets the cylindrical input faces.")
+
+
+ThreadFeatureInput.targetBaseFeature = property(ThreadFeatureInput._get_targetBaseFeature, ThreadFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+ThreadFeatureInput.cast = lambda arg: arg if isinstance(arg, ThreadFeatureInput) else None
+
+class ThreadFeature(Feature):
+    r"""
+    Object that represents an existing thread feature in a design. The creation of a tapped
+    hole also results in the creation of a thread feature. There are some limitation when the
+    thread feature is associated with a hole, which are described in the documentation for the
+    property or method where the limitation exists.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ThreadFeature *":
+        return _fusion.ThreadFeature___deref__(self)
+
+    def __eq__(self, rhs: "ThreadFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ThreadFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ThreadFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ThreadFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ThreadFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ThreadFeature_classType()
+    __swig_destroy__ = _fusion.delete_ThreadFeature
+
+    def _get_inputCylindricalFace(self) -> "adsk.fusion.BRepFace":
+        r"""
+        Gets and sets the threaded face. In the case where there are multiple faces, only the first one is returned.
+        Setting this results in a thread being applied to only a single face.
+        It is recommended that you use the inputCylindricalfaces property in order to have full access to the collection of faces
+        to be threaded.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        If the thread feature is associated with a hole (the hole property is not null), this property will
+        always return null and will fail if set.
+        """
+        return _fusion.ThreadFeature__get_inputCylindricalFace(self)
+
+    def _set_inputCylindricalFace(self, value: "BRepFace") -> "bool":
+        r"""
+        Gets and sets the threaded face. In the case where there are multiple faces, only the first one is returned.
+        Setting this results in a thread being applied to only a single face.
+        It is recommended that you use the inputCylindricalfaces property in order to have full access to the collection of faces
+        to be threaded.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        If the thread feature is associated with a hole (the hole property is not null), this property will
+        always return null and will fail if set.
+        """
+        return _fusion.ThreadFeature__set_inputCylindricalFace(self, value)
+
+    def _get_isModeled(self) -> "bool":
+        r"""
+        Gets and sets if the thread is physical or cosmetic thread. A value of true indicates a physical thread.
+        It defaults to false.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__get_isModeled(self)
+
+    def _set_isModeled(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the thread is physical or cosmetic thread. A value of true indicates a physical thread.
+        It defaults to false.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__set_isModeled(self, value)
+
+    def _get_isFullLength(self) -> "bool":
+        r"""
+        Gets and sets if this thread is the full length of the cylinder.
+        It only can be set to true.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__get_isFullLength(self)
+
+    def _set_isFullLength(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this thread is the full length of the cylinder.
+        It only can be set to true.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__set_isFullLength(self, value)
+
+    def setThreadOffsetLength(self, threadOffset: "ValueInput", threadLength: "ValueInput", threadLocation: "ThreadLocations") -> "bool":
+        r"""
+        Sets the thread offset, length and location.
+        Calling this method will cause the isFullLength property to be set to false.
+        To use this method, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        threadOffset : A ValueInput object that defines the thread offset.
+        threadLength : A ValueInput object that defines the thread length.
+        threadLocation : Indicates where the thread length is measured from.
+        Returns true if successful.
+        """
+        return _fusion.ThreadFeature_setThreadOffsetLength(self, threadOffset, threadLength, threadLocation)
+
+    def _get_threadLength(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the parameter that controls the depth of the thread.
+        Even though the parameter for the thread depth is always created and accessible through this property,
+        it is only used in the case where the isFullLength property is false.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.ThreadFeature__get_threadLength(self)
+
+    def _get_threadOffset(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the parameter that controls the offset value of the thread.
+        The offset is the distance along the axis of the cylinder from the edge to the start of the thread,
+        it is only used in the case where the isFullLength property is false.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.ThreadFeature__get_threadOffset(self)
+
+    def _get_threadLocation(self) -> "adsk.fusion.ThreadLocations":
+        r"""
+        Gets and sets where the thread length is measured from.
+        This property is only used in the case where the isFullLength property is false.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        If the thread feature is associated with a hole (the hole property is not null), this property will
+        always return null and will always return LowEndThreadLocation and will fail if set.
+        """
+        return _fusion.ThreadFeature__get_threadLocation(self)
+
+    def _set_threadLocation(self, value: "ThreadLocations") -> "bool":
+        r"""
+        Gets and sets where the thread length is measured from.
+        This property is only used in the case where the isFullLength property is false.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        If the thread feature is associated with a hole (the hole property is not null), this property will
+        always return null and will always return LowEndThreadLocation and will fail if set.
+        """
+        return _fusion.ThreadFeature__set_threadLocation(self, value)
+
+    def _get_threadInfo(self) -> "adsk.fusion.ThreadInfo":
+        r"""
+        Gets and sets the thread data.
+        Also can edit the thread through the properties and methods on the ThreadInfo object.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__get_threadInfo(self)
+
+    def _set_threadInfo(self, value: "ThreadInfo") -> "bool":
+        r"""
+        Gets and sets the thread data.
+        Also can edit the thread through the properties and methods on the ThreadInfo object.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__set_threadInfo(self, value)
+
+    def _get_isRightHanded(self) -> "bool":
+        r"""
+        Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.
+        It defaults to true.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__get_isRightHanded(self)
+
+    def _set_isRightHanded(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.
+        It defaults to true.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ThreadFeature__set_isRightHanded(self, value)
+
+    def _get_nativeObject(self) -> "adsk.fusion.ThreadFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.ThreadFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.ThreadFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.ThreadFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_inputCylindricalFaces(self) -> "adsk.core.ObjectCollection":
+        r"""
+        Gets and sets the cylindrical input faces.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        If the thread feature is associated with a hole (the hole property is not null), this property will
+        always return null and will fail if set.
+        """
+        return _fusion.ThreadFeature__get_inputCylindricalFaces(self)
+
+    def _set_inputCylindricalFaces(self, value: "ObjectCollection") -> "bool":
+        r"""
+        Gets and sets the cylindrical input faces.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        If the thread feature is associated with a hole (the hole property is not null), this property will
+        always return null and will fail if set.
+        """
+        return _fusion.ThreadFeature__set_inputCylindricalFaces(self, value)
+
+    def _get_hole(self) -> "adsk.fusion.HoleFeature":
+        r"""
+        If this thread feature is was created as the result of creating a tapped hole, this
+        property will return the associated hole feature. If this is a standard thread feature,
+        this property will return null.
+        """
+        return _fusion.ThreadFeature__get_hole(self)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.ThreadFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.ThreadFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.ThreadFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.ThreadFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.ThreadFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.ThreadFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.ThreadFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.ThreadFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.ThreadFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.ThreadFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.ThreadFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.ThreadFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.ThreadFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.ThreadFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.ThreadFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.ThreadFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.ThreadFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.ThreadFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ThreadFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ThreadFeature__get_isValid(self)
+
+# Register ThreadFeature in _fusion:
+_fusion.ThreadFeature_swigregister(ThreadFeature)
+
+def ThreadFeature_classType() -> "str":
+    return _fusion.ThreadFeature_classType()
+
+
+ThreadFeature.inputCylindricalFace = property(ThreadFeature._get_inputCylindricalFace, ThreadFeature._set_inputCylindricalFace, doc="Gets and sets the threaded face. In the case where there are multiple faces, only the first one is returned.\nSetting this results in a thread being applied to only a single face.\nIt is recommended that you use the inputCylindricalfaces property in order to have full access to the collection of faces\nto be threaded.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)\nIf the thread feature is associated with a hole (the hole property is not null), this property will\nalways return null and will fail if set.")
+
+
+ThreadFeature.isModeled = property(ThreadFeature._get_isModeled, ThreadFeature._set_isModeled, doc="Gets and sets if the thread is physical or cosmetic thread. A value of true indicates a physical thread.\nIt defaults to false.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ThreadFeature.isFullLength = property(ThreadFeature._get_isFullLength, ThreadFeature._set_isFullLength, doc="Gets and sets if this thread is the full length of the cylinder.\nIt only can be set to true.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ThreadFeature.threadLength = property(ThreadFeature._get_threadLength, doc="Gets the parameter that controls the depth of the thread.\nEven though the parameter for the thread depth is always created and accessible through this property,\nit is only used in the case where the isFullLength property is false.\nReturns nothing in the case where the feature is non-parametric.")
+
+
+ThreadFeature.threadOffset = property(ThreadFeature._get_threadOffset, doc="Gets the parameter that controls the offset value of the thread.\nThe offset is the distance along the axis of the cylinder from the edge to the start of the thread,\nit is only used in the case where the isFullLength property is false.\nReturns nothing in the case where the feature is non-parametric.")
+
+
+ThreadFeature.threadLocation = property(ThreadFeature._get_threadLocation, ThreadFeature._set_threadLocation, doc="Gets and sets where the thread length is measured from.\nThis property is only used in the case where the isFullLength property is false.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)\nIf the thread feature is associated with a hole (the hole property is not null), this property will\nalways return null and will always return LowEndThreadLocation and will fail if set.")
+
+
+ThreadFeature.threadInfo = property(ThreadFeature._get_threadInfo, ThreadFeature._set_threadInfo, doc="Gets and sets the thread data.\nAlso can edit the thread through the properties and methods on the ThreadInfo object.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ThreadFeature.isRightHanded = property(ThreadFeature._get_isRightHanded, ThreadFeature._set_isRightHanded, doc="Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.\nIt defaults to true.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ThreadFeature.nativeObject = property(ThreadFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+ThreadFeature.inputCylindricalFaces = property(ThreadFeature._get_inputCylindricalFaces, ThreadFeature._set_inputCylindricalFaces, doc="Gets and sets the cylindrical input faces.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)\nIf the thread feature is associated with a hole (the hole property is not null), this property will\nalways return null and will fail if set.")
+
+
+ThreadFeature.hole = property(ThreadFeature._get_hole, doc="If this thread feature is was created as the result of creating a tapped hole, this\nproperty will return the associated hole feature. If this is a standard thread feature,\nthis property will return null.")
+
+
+ThreadFeature.cast = lambda arg: arg if isinstance(arg, ThreadFeature) else None
+
+class ThreadInfo(Base):
+    r"""
+    This class defines the methods and properties that define the type and size of a thread. This object is used
+    to create and query thread and tapped (straight and tapered) hole features. A new ThreadInfo object is
+    created by using the ThreadInfo.create method. If the ThreadInfo object is obtained from
+    an existing thread or hole feature, modifying the ThreadInfo object will modify the feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ThreadInfo *":
+        return _fusion.ThreadInfo___deref__(self)
+
+    def __eq__(self, rhs: "ThreadInfo") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ThreadInfo___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ThreadInfo") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ThreadInfo___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ThreadInfo'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ThreadInfo_classType()
+
+    @staticmethod
+    def create(isTapered: "bool", isInternal: "bool", threadType: "str", threadDesignation: "str", threadClass: "str", isRightHanded: "bool") -> "adsk.fusion.ThreadInfo":
+        r"""
+        This method creates a new ThreadInfo object that can be used to create a thread or tapped-hole feature.
+        The ThreadInfo object defines the type and size of the thread to create. When creating a thread, the
+        type and size of the thread are defined by specifying the thread type, designation, and class. Fusion
+        uses this information to look up the full details of the thread in tables delivered with Fusion.
+        The ThreadDataQuery object can be used to determine valid input for this information.
+        The thread type implicitly defines if the thread is standard or tapered. Tapered threads can only be used
+        when creating tapped holes and are not supported for thread features.
+        isTapered : Input Boolean that indicates if the thread is straight or tapered.
+        isInternal : Input Boolean that indicates if the thread is internal or external. A value of true indicates an internal thread.
+        When the ThreadInfo is used to create a tapped hole, this value is ignored since it is always an internal thread.
+        threadType : Input string that defines the thread type.
+        threadDesignation : Input string that contains the thread designation.
+        threadClass : Input string that defines the thread class. This argument is ignored for tapered threads, so an empty string can be used.
+        isRightHanded : Input boolean that defines if the thread is right or left-handed.
+        Returns the newly created ThreadInfo object or null if the creation failed.
+        """
+        return _fusion.ThreadInfo_create(isTapered, isInternal, threadType, threadDesignation, threadClass, isRightHanded)
+    __swig_destroy__ = _fusion.delete_ThreadInfo
+
+    def _get_threadType(self) -> "str":
+        r"""Returns and sets the string that defines the thread type."""
+        return _fusion.ThreadInfo__get_threadType(self)
+
+    def _set_threadType(self, value: "str") -> "bool":
+        r"""Returns and sets the string that defines the thread type."""
+        return _fusion.ThreadInfo__set_threadType(self, value)
+
+    def _get_threadSize(self) -> "str":
+        r"""Returns the string that defines the thread size."""
+        return _fusion.ThreadInfo__get_threadSize(self)
+
+    def _get_threadDesignation(self) -> "str":
+        r"""Returns and sets the string that defines the thread designation."""
+        return _fusion.ThreadInfo__get_threadDesignation(self)
+
+    def _set_threadDesignation(self, value: "str") -> "bool":
+        r"""Returns and sets the string that defines the thread designation."""
+        return _fusion.ThreadInfo__set_threadDesignation(self, value)
+
+    def _get_threadClass(self) -> "str":
+        r"""Returns and sets the string that defines the thread class."""
+        return _fusion.ThreadInfo__get_threadClass(self)
+
+    def _set_threadClass(self, value: "str") -> "bool":
+        r"""Returns and sets the string that defines the thread class."""
+        return _fusion.ThreadInfo__set_threadClass(self, value)
+
+    def _get_isInternal(self) -> "bool":
+        r"""
+        Returns and sets if the thread is an internal or external thread. A value of true indicates an internal thread.
+        It defaults to true.
+        """
+        return _fusion.ThreadInfo__get_isInternal(self)
+
+    def _set_isInternal(self, value: "bool") -> "bool":
+        r"""
+        Returns and sets if the thread is an internal or external thread. A value of true indicates an internal thread.
+        It defaults to true.
+        """
+        return _fusion.ThreadInfo__set_isInternal(self, value)
+
+    def _get_threadAngle(self) -> "float":
+        r"""Returns the value that defines the thread angle. The units are degrees."""
+        return _fusion.ThreadInfo__get_threadAngle(self)
+
+    def _get_threadPitch(self) -> "float":
+        r"""Returns the value that defines the thread pitch. The units are centimeters."""
+        return _fusion.ThreadInfo__get_threadPitch(self)
+
+    def _get_majorDiameter(self) -> "float":
+        r"""Returns the value that defines the major diameter. The units are centimeters."""
+        return _fusion.ThreadInfo__get_majorDiameter(self)
+
+    def _get_minorDiameter(self) -> "float":
+        r"""Returns the value that defines the minor diameter. The units are centimeters."""
+        return _fusion.ThreadInfo__get_minorDiameter(self)
+
+    def _get_pitchDiameter(self) -> "float":
+        r"""Returns the value that defines the pitch diameter. The units are centimeters."""
+        return _fusion.ThreadInfo__get_pitchDiameter(self)
+
+    def _get_isRightHanded(self) -> "bool":
+        r"""
+        Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.
+        It defaults to true.
+        """
+        return _fusion.ThreadInfo__get_isRightHanded(self)
+
+    def _set_isRightHanded(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.
+        It defaults to true.
+        """
+        return _fusion.ThreadInfo__set_isRightHanded(self, value)
+
+    def _get_isTapered(self) -> "bool":
+        r"""Indicates if this ThreadInfo object defines a standard or tapered thread."""
+        return _fusion.ThreadInfo__get_isTapered(self)
+
+    def _get_taperAngle(self) -> "float":
+        r"""
+        Returns the angle of the tapered thread in centimeters.
+        This is only valid when isTapered is true.
+        """
+        return _fusion.ThreadInfo__get_taperAngle(self)
+
+    def _get_taperTapDrillDiameter(self) -> "float":
+        r"""
+        Returns the Diameter of the tap drill required to create this tap.
+        This is only valid when isTapered is true.
+        """
+        return _fusion.ThreadInfo__get_taperTapDrillDiameter(self)
+
+    def _get_taperUsefulThreadLength(self) -> "float":
+        r"""
+        Returns the useful length of threads for a tapered thread in centimeters.
+        This is only valid when isTapered is true.
+        """
+        return _fusion.ThreadInfo__get_taperUsefulThreadLength(self)
+
+    def _get_taperWrenchMakeupInternalDiameter(self) -> "float":
+        r"""
+        The wrench makeup internal diameter for a taper pipe thread, also known as the effective thread diameter,
+        is the diameter at the point where the thread engagement occurs when the pipe is tightened with a wrench.
+        This is only valid when isTapered is true.
+        """
+        return _fusion.ThreadInfo__get_taperWrenchMakeupInternalDiameter(self)
+
+    def _get_taperThreadHeight(self) -> "float":
+        r"""
+        Returns the height of a tapered thread in centimeters.
+        This is only valid when isTapered is true.
+        """
+        return _fusion.ThreadInfo__get_taperThreadHeight(self)
+
+    def redefine(self, isTapered: "bool", isInternal: "bool", threadType: "str", threadDesignation: "str", threadClass: "str", isRightHanded: "bool") -> "bool":
+        r"""
+        Method that redefines an existing ThreadInfo object. This is typically used to change the thread of an existing
+        thread or tapped hole.
+        The ThreadInfo object defines the type and size of a thread by specifying the thread type, designation, and class.
+        Fusion uses this information to look up the full details of the thread in tables delivered with Fusion. The
+        ThreadDataQuery object can be used to determine valid input for this information.
+        Tapered threads can only be used when creating or editing tapped holes and are not supported for thread features.
+        isTapered : Input Boolean that indicates if the thread is straight or tapered.
+        isInternal : Input Boolean that indicates if the thread is internal or external. A value of true indicates an internal thread.
+        This value is ignored when the ThreadInfo is used for a tapped hole since they are always internal.
+        threadType : Input string that defines the thread type.
+        threadDesignation : Input string that defines the thread designation.
+        threadClass : Input string that defines the thread class. This argument is ignored for tapered threads.
+        isRightHanded : Input Boolean that specifies if the thread is straight or tapered.
+        Returns true if the redefinition was successful.
+        """
+        return _fusion.ThreadInfo_redefine(self, isTapered, isInternal, threadType, threadDesignation, threadClass, isRightHanded)
+
+    def _get_isHubLibraryThread(self) -> "bool":
+        r"""Returns true if this thread is from a hub library, false for built-in public threads."""
+        return _fusion.ThreadInfo__get_isHubLibraryThread(self)
+
+    def _get_hubLibraryId(self) -> "str":
+        r"""
+        Returns the hub library ID for hub library threads, or an empty string for public threads.
+        Use ThreadDataQuery.availableHubLibraryIds to enumerate available hub libraries.
+        """
+        return _fusion.ThreadInfo__get_hubLibraryId(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ThreadInfo__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ThreadInfo__get_isValid(self)
+
+# Register ThreadInfo in _fusion:
+_fusion.ThreadInfo_swigregister(ThreadInfo)
+
+def ThreadInfo_classType() -> "str":
+    return _fusion.ThreadInfo_classType()
+
+def ThreadInfo_create(isTapered: "bool", isInternal: "bool", threadType: "str", threadDesignation: "str", threadClass: "str", isRightHanded: "bool") -> "adsk.fusion.ThreadInfo":
+    r"""
+    This method creates a new ThreadInfo object that can be used to create a thread or tapped-hole feature.
+    The ThreadInfo object defines the type and size of the thread to create. When creating a thread, the
+    type and size of the thread are defined by specifying the thread type, designation, and class. Fusion
+    uses this information to look up the full details of the thread in tables delivered with Fusion.
+    The ThreadDataQuery object can be used to determine valid input for this information.
+    The thread type implicitly defines if the thread is standard or tapered. Tapered threads can only be used
+    when creating tapped holes and are not supported for thread features.
+    isTapered : Input Boolean that indicates if the thread is straight or tapered.
+    isInternal : Input Boolean that indicates if the thread is internal or external. A value of true indicates an internal thread.
+    When the ThreadInfo is used to create a tapped hole, this value is ignored since it is always an internal thread.
+    threadType : Input string that defines the thread type.
+    threadDesignation : Input string that contains the thread designation.
+    threadClass : Input string that defines the thread class. This argument is ignored for tapered threads, so an empty string can be used.
+    isRightHanded : Input boolean that defines if the thread is right or left-handed.
+    Returns the newly created ThreadInfo object or null if the creation failed.
+    """
+    return _fusion.ThreadInfo_create(isTapered, isInternal, threadType, threadDesignation, threadClass, isRightHanded)
+
+
+ThreadInfo.threadType = property(ThreadInfo._get_threadType, ThreadInfo._set_threadType, doc="Returns and sets the string that defines the thread type.")
+
+
+ThreadInfo.threadSize = property(ThreadInfo._get_threadSize, doc="Returns the string that defines the thread size.")
+
+
+ThreadInfo.threadDesignation = property(ThreadInfo._get_threadDesignation, ThreadInfo._set_threadDesignation, doc="Returns and sets the string that defines the thread designation.")
+
+
+ThreadInfo.threadClass = property(ThreadInfo._get_threadClass, ThreadInfo._set_threadClass, doc="Returns and sets the string that defines the thread class.")
+
+
+ThreadInfo.isInternal = property(ThreadInfo._get_isInternal, ThreadInfo._set_isInternal, doc="Returns and sets if the thread is an internal or external thread. A value of true indicates an internal thread.\nIt defaults to true.")
+
+
+ThreadInfo.threadAngle = property(ThreadInfo._get_threadAngle, doc="Returns the value that defines the thread angle. The units are degrees.")
+
+
+ThreadInfo.threadPitch = property(ThreadInfo._get_threadPitch, doc="Returns the value that defines the thread pitch. The units are centimeters.")
+
+
+ThreadInfo.majorDiameter = property(ThreadInfo._get_majorDiameter, doc="Returns the value that defines the major diameter. The units are centimeters.")
+
+
+ThreadInfo.minorDiameter = property(ThreadInfo._get_minorDiameter, doc="Returns the value that defines the minor diameter. The units are centimeters.")
+
+
+ThreadInfo.pitchDiameter = property(ThreadInfo._get_pitchDiameter, doc="Returns the value that defines the pitch diameter. The units are centimeters.")
+
+
+ThreadInfo.isRightHanded = property(ThreadInfo._get_isRightHanded, ThreadInfo._set_isRightHanded, doc="Gets and sets if the thread is right or left-handed thread. A value of true indicates a right-handed thread.\nIt defaults to true.")
+
+
+ThreadInfo.isTapered = property(ThreadInfo._get_isTapered, doc="Indicates if this ThreadInfo object defines a standard or tapered thread.")
+
+
+ThreadInfo.taperAngle = property(ThreadInfo._get_taperAngle, doc="Returns the angle of the tapered thread in centimeters.\nThis is only valid when isTapered is true.")
+
+
+ThreadInfo.taperTapDrillDiameter = property(ThreadInfo._get_taperTapDrillDiameter, doc="Returns the Diameter of the tap drill required to create this tap.\nThis is only valid when isTapered is true.")
+
+
+ThreadInfo.taperUsefulThreadLength = property(ThreadInfo._get_taperUsefulThreadLength, doc="Returns the useful length of threads for a tapered thread in centimeters.\nThis is only valid when isTapered is true.")
+
+
+ThreadInfo.taperWrenchMakeupInternalDiameter = property(ThreadInfo._get_taperWrenchMakeupInternalDiameter, doc="The wrench makeup internal diameter for a taper pipe thread, also known as the effective thread diameter,\nis the diameter at the point where the thread engagement occurs when the pipe is tightened with a wrench.\nThis is only valid when isTapered is true.")
+
+
+ThreadInfo.taperThreadHeight = property(ThreadInfo._get_taperThreadHeight, doc="Returns the height of a tapered thread in centimeters.\nThis is only valid when isTapered is true.")
+
+
+ThreadInfo.isHubLibraryThread = property(ThreadInfo._get_isHubLibraryThread, doc="Returns true if this thread is from a hub library, false for built-in public threads.")
+
+
+ThreadInfo.hubLibraryId = property(ThreadInfo._get_hubLibraryId, doc="Returns the hub library ID for hub library threads, or an empty string for public threads.\nUse ThreadDataQuery.availableHubLibraryIds to enumerate available hub libraries.")
+
+
+ThreadInfo.cast = lambda arg: arg if isinstance(arg, ThreadInfo) else None
+
+class ThreadDataQuery(Base):
+    r"""
+    This object provides methods to query the thread data contained in the XML files in ThreadData folder within the
+    Fusion install folder. You can use the queried values to create a ThreadInfo object that is then used to
+    create a thread feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ThreadDataQuery *":
+        return _fusion.ThreadDataQuery___deref__(self)
+
+    def __eq__(self, rhs: "ThreadDataQuery") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ThreadDataQuery___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ThreadDataQuery") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ThreadDataQuery___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ThreadDataQuery'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ThreadDataQuery_classType()
+
+    @staticmethod
+    def create(isTapered: "bool"=False) -> "adsk.fusion.ThreadDataQuery":
+        r"""
+        Static method to create a new ThreadDataQuery object. The ThreadDataQuery object is a utility object that
+        provides methods to query for the valid thread definitions defined in Fusion. This object provides similar
+        functionality as the Thread and Hole command dialogs to find valid thread types, designations and classes which can
+        be used to create thread and tapped hole features.
+        isTapered : Specifies if you want to query for standard or tapered holes.
+        Returns a ThreadDataQuery object.
+        """
+        return _fusion.ThreadDataQuery_create(isTapered)
+    __swig_destroy__ = _fusion.delete_ThreadDataQuery
+
+    def _get_allThreadTypes(self) -> "list[str]":
+        r"""
+        This method returns an array of all the available thread types (families). The type names are always
+        English. This English name should be used in the other methods that take the type as an input argument.
+        If you need to display the type name to the user, you can use the threadTypeCustomName method To get
+        the localized name.
+        """
+        return _fusion.ThreadDataQuery__get_allThreadTypes(self)
+
+    def allSizes(self, threadType: "str") -> "list[str]":
+        r"""
+        Returns an array/list of all the available thread sizes for a given thread type. You can
+        use the allThreadTypes property to get the available thread types.
+        threadType : Specify the thread type.
+        Returns the specified thread sizes or an empty array/list if an invalid thread type was specified.
+        """
+        return _fusion.ThreadDataQuery_allSizes(self, threadType)
+
+    def allDesignations(self, threadType: "str", size: "str") -> "list[str]":
+        r"""
+        returns an array/list of all the available thread designations for a thread type of a given size. Valid
+        thread types and sizes and be obtained by using the allThreadTypes and allSizes functions.
+        threadType : The thread type of the designation you want.
+        size : The thread size of the designation you want.
+        Returns the specified thread designations or empty array/list if an invalid thread type or size was specified.
+        """
+        return _fusion.ThreadDataQuery_allDesignations(self, threadType, size)
+
+    def allClasses(self, isInternal: "bool", threadType: "str", designation: "str") -> "list[str]":
+        r"""
+        Returns and array/list of all the available classes for a thread type of a given thread designation.
+        isInternal : Indicates if the thread is an internal or external thread.
+        threadType : The thread type of the thread class you want.
+        designation : The thread designation of the thread class you want.
+        Returns the specified thread classes or empty array/list if an invalid thread type or designation was specified.
+        """
+        return _fusion.ThreadDataQuery_allClasses(self, isInternal, threadType, designation)
+
+    def threadTypeCustomName(self, threadType: "str") -> "str":
+        r"""
+        Method that returns the custom name for a given thread type. The custom name is the localized name
+        of the thread type using the current language specified for Fusion.
+        threadType : The thread type you want to get the custom name for.
+        Returns the specified custom name or an empty string if an invalid thread type was specified.
+        """
+        return _fusion.ThreadDataQuery_threadTypeCustomName(self, threadType)
+
+    def threadTypeUnit(self, threadType: "str") -> "str":
+        r"""
+        Method that returns the unit for a given thread type.
+        threadType : The thread type you want to get the thread unit type for.
+        Returns the specified unit or an empty string if an invalid thread type was specified.
+        """
+        return _fusion.ThreadDataQuery_threadTypeUnit(self, threadType)
+
+    def recommendThreadData(self, modelDiameter: "float", isInternal: "bool", threadType: "str") -> "bool":
+        r"""
+        Method that gets the recommended thread data for a given cylinder diameter. This method
+        is only valid for straight threads and will fail for tapered threads.
+        modelDiameter : The diameter of the cylinder the thread will be placed on. The units are centimeters.
+        isInternal : Indicates if the thread is an internal or external thread.
+        threadType : Specifies the thread type to query the thread data.
+        designation : The output thread designation.
+        threadClass : The output thread class.
+        Returns true if successful.
+        """
+        return _fusion.ThreadDataQuery_recommendThreadData(self, modelDiameter, isInternal, threadType)
+
+    def _get_defaultInchThreadType(self) -> "str":
+        r"""Gets the default thread type for inch threads."""
+        return _fusion.ThreadDataQuery__get_defaultInchThreadType(self)
+
+    def _get_defaultMetricThreadType(self) -> "str":
+        r"""Gets the default thread type for metric threads."""
+        return _fusion.ThreadDataQuery__get_defaultMetricThreadType(self)
+
+    def _get_isTapered(self) -> "bool":
+        r"""Returns if this ThreadDataQuery was created to query for standard or tapered threads."""
+        return _fusion.ThreadDataQuery__get_isTapered(self)
+
+    def _get_publicThreadTypes(self) -> "list[str]":
+        r"""Returns thread types from the built-in public library only, excluding any hub library threads."""
+        return _fusion.ThreadDataQuery__get_publicThreadTypes(self)
+
+    def _get_availableHubLibraryIds(self) -> "list[str]":
+        r"""
+        Returns an array of available hub library IDs. An empty result means only built-in public
+        thread types are available. The returned IDs can be passed to hubLibraryThreadTypes
+        to filter thread types by library, or to hubLibraryDisplayName to get the display label.
+        Hub libraries are only available for users with paid subscription.
+        """
+        return _fusion.ThreadDataQuery__get_availableHubLibraryIds(self)
+
+    def getHubLibraryDisplayName(self, hubLibraryId: "str") -> "str":
+        r"""
+        Returns the display name for a given hub library.
+        hubLibraryId : The hub library ID, as returned by availableHubLibraryIds.
+        The display name of the hub library, or an empty string if the ID is not recognized.
+        """
+        return _fusion.ThreadDataQuery_getHubLibraryDisplayName(self, hubLibraryId)
+
+    def getHubLibraryThreadTypes(self, hubLibraryId: "str") -> "list[str]":
+        r"""
+        Returns thread types filtered by hub library. Pass an empty string to return all thread
+        types from all sources, equivalent to allThreadTypes. Pass a hub library ID from
+        availableHubLibraryIds to return only that library's thread types.
+        hubLibraryId : The hub library ID to filter by, or an empty string for all sources.
+        Returns the matching thread types, or an empty array if the ID is not recognized.
+        """
+        return _fusion.ThreadDataQuery_getHubLibraryThreadTypes(self, hubLibraryId)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ThreadDataQuery__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ThreadDataQuery__get_isValid(self)
+
+# Register ThreadDataQuery in _fusion:
+_fusion.ThreadDataQuery_swigregister(ThreadDataQuery)
+
+def ThreadDataQuery_classType() -> "str":
+    return _fusion.ThreadDataQuery_classType()
+
+def ThreadDataQuery_create(isTapered: "bool"=False) -> "adsk.fusion.ThreadDataQuery":
+    r"""
+    Static method to create a new ThreadDataQuery object. The ThreadDataQuery object is a utility object that
+    provides methods to query for the valid thread definitions defined in Fusion. This object provides similar
+    functionality as the Thread and Hole command dialogs to find valid thread types, designations and classes which can
+    be used to create thread and tapped hole features.
+    isTapered : Specifies if you want to query for standard or tapered holes.
+    Returns a ThreadDataQuery object.
+    """
+    return _fusion.ThreadDataQuery_create(isTapered)
+
+
+ThreadDataQuery.allThreadTypes = property(ThreadDataQuery._get_allThreadTypes, doc="This method returns an array of all the available thread types (families). The type names are always\nEnglish. This English name should be used in the other methods that take the type as an input argument.\nIf you need to display the type name to the user, you can use the threadTypeCustomName method To get\nthe localized name.")
+
+
+ThreadDataQuery.defaultInchThreadType = property(ThreadDataQuery._get_defaultInchThreadType, doc="Gets the default thread type for inch threads.")
+
+
+ThreadDataQuery.defaultMetricThreadType = property(ThreadDataQuery._get_defaultMetricThreadType, doc="Gets the default thread type for metric threads.")
+
+
+ThreadDataQuery.isTapered = property(ThreadDataQuery._get_isTapered, doc="Returns if this ThreadDataQuery was created to query for standard or tapered threads.")
+
+
+ThreadDataQuery.publicThreadTypes = property(ThreadDataQuery._get_publicThreadTypes, doc="Returns thread types from the built-in public library only, excluding any hub library threads.")
+
+
+ThreadDataQuery.availableHubLibraryIds = property(ThreadDataQuery._get_availableHubLibraryIds, doc="Returns an array of available hub library IDs. An empty result means only built-in public\nthread types are available. The returned IDs can be passed to hubLibraryThreadTypes\nto filter thread types by library, or to hubLibraryDisplayName to get the display label.\nHub libraries are only available for users with paid subscription.")
+
+
+ThreadDataQuery.cast = lambda arg: arg if isinstance(arg, ThreadDataQuery) else None
+
+class ThreadLocations(object):
+    r"""
+    List of the positions of a thread feature when it is not full length.
+
+    Attributes:
+        HighEndThreadLocation: Position thread at the high end of the cylinder. You can determine the high end in the model by using the geometry
+            property of the cylindrical BRepFace object, which will return a Cylinder object. The axis property of the Cylinder
+            is a vector and the high end of the cylinder is at the far end of the cylinder with respect to the axis vector.
+        LowEndThreadLocation: Position thread at the low end of the cylinder. You can determine the low end in the model by using the geometry
+            property of the cylindrical BRepFace object, which will return a Cylinder object. The axis property of the Cylinder
+            is a vector and the low end of the cylinder is at the near end of the cylinder with respect to the axis vector.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    HighEndThreadLocation = _fusion.ThreadLocations_HighEndThreadLocation
+    LowEndThreadLocation = _fusion.ThreadLocations_LowEndThreadLocation
+
+    def __init__(self):
+        _fusion.ThreadLocations_swiginit(self, _fusion.new_ThreadLocations())
+    __swig_destroy__ = _fusion.delete_ThreadLocations
+
+# Register ThreadLocations in _fusion:
+_fusion.ThreadLocations_swigregister(ThreadLocations)

@@ -26,7 +26,7 @@ new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
 
 ## _Planned_ (in-order)
 
-1. Fusion360
+1. Fusion (full translation)
 2. CATIA
 3. NX
 4. Rhino
@@ -35,13 +35,14 @@ new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
 
 ## Supported formats
 
-| CAD        | suffixes                  |
-| ---------- | ------------------------- |
-| SOLIDWORKS | `.SLDPRT`, `.SLDASM`      |
-| FreeCAD    | `.FCStd`                  |
-| CATIA      | `.CATPart`, `.CATProduct` |
+| CAD        | Suffixes                  | Registered adapters |
+| ---------- | ------------------------- | ------------------- |
+| SOLIDWORKS | `.SLDPRT`, `.SLDASM`      | Reader and writer   |
+| FreeCAD    | `.FCStd`                  | Reader and writer   |
+| CATIA      | `.CATPart`, `.CATProduct` | Reader and writer   |
 
-Kit reads and writes these formats natively, without requiring CAD software to be installed.
+Kit adapters run without requiring CAD software. The partial Fusion reader is
+available for [format research](re/Fusion/README.md#research-reader).
 
 ## Architecture
 

@@ -1,0 +1,3017 @@
+{
+  "scope": "Read-only tag23 framing investigation; production tokenizer unchanged in this stage",
+  "method": "An isolated AsmReader subclass retains tag23 as eight opaque bytes instead of forcing a finite double; the normal entity framing state machine is unchanged. No geometry/history semantics are inferred from token-stream completeness.",
+  "external_reference": {
+    "url": "https://github.com/mozman/ezdxf/blob/master/src/ezdxf/acis/const.py",
+    "limitation": "The reference labels tag 0x17 unknown/double for other ACIS binary versions; Fusion BinaryFile8 contextual evidence differs."
+  },
+  "summary": {
+    "saved_archives_inspected": 559,
+    "ASM_blobs_inspected": 959,
+    "tag23_occurrences": 297,
+    "archives_with_tag23": 9,
+    "opaque_framing_failures": 0,
+    "observed_signed_values": [
+      -282,
+      275,
+      282,
+      354
+    ],
+    "attribute_names": {
+      "SCULPT_TOOL_BODY": 292,
+      "SCULPT_WORKPLANE_TOOL": 5
+    }
+  },
+  "observed_token_tags": [
+    12,
+    4,
+    12,
+    12,
+    12,
+    21,
+    21,
+    21,
+    21,
+    7,
+    23
+  ],
+  "candidate_contextual_rule": "Only int64_attrib-name_attrib-gen-attrib field 10 after the complete observed 11-token schema may be interpreted as a signed 64-bit integer. Unknown tag 23 uses must not inherit this meaning.",
+  "observations": [
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 220,
+      "section": "trailing_states",
+      "token_offset": 62867,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 226,
+      "section": "trailing_states",
+      "token_offset": 63629,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 235,
+      "section": "trailing_states",
+      "token_offset": 64715,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 245,
+      "section": "trailing_states",
+      "token_offset": 65799,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 269,
+      "section": "trailing_states",
+      "token_offset": 68408,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 324,
+      "section": "trailing_states",
+      "token_offset": 73819,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 360,
+      "section": "trailing_states",
+      "token_offset": 77248,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 395,
+      "section": "trailing_states",
+      "token_offset": 80557,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 422,
+      "section": "trailing_states",
+      "token_offset": 83378,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 435,
+      "section": "trailing_states",
+      "token_offset": 84637,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 438,
+      "section": "trailing_states",
+      "token_offset": 84992,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 450,
+      "section": "trailing_states",
+      "token_offset": 86161,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 483,
+      "section": "trailing_states",
+      "token_offset": 89616,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 487,
+      "section": "trailing_states",
+      "token_offset": 90173,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 509,
+      "section": "trailing_states",
+      "token_offset": 92434,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 519,
+      "section": "trailing_states",
+      "token_offset": 93507,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 553,
+      "section": "trailing_states",
+      "token_offset": 96718,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 557,
+      "section": "trailing_states",
+      "token_offset": 97274,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 561,
+      "section": "trailing_states",
+      "token_offset": 97689,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 567,
+      "section": "trailing_states",
+      "token_offset": 98406,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 581,
+      "section": "trailing_states",
+      "token_offset": 100026,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 607,
+      "section": "trailing_states",
+      "token_offset": 102661,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 656,
+      "section": "trailing_states",
+      "token_offset": 107127,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 661,
+      "section": "trailing_states",
+      "token_offset": 107933,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 666,
+      "section": "trailing_states",
+      "token_offset": 108598,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 672,
+      "section": "trailing_states",
+      "token_offset": 109243,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 683,
+      "section": "trailing_states",
+      "token_offset": 110503,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 705,
+      "section": "trailing_states",
+      "token_offset": 112746,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 761,
+      "section": "trailing_states",
+      "token_offset": 118113,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 765,
+      "section": "trailing_states",
+      "token_offset": 118669,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 769,
+      "section": "trailing_states",
+      "token_offset": 119084,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 775,
+      "section": "trailing_states",
+      "token_offset": 119801,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 786,
+      "section": "trailing_states",
+      "token_offset": 121013,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "record_index": 810,
+      "section": "trailing_states",
+      "token_offset": 123352,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 285,
+      "section": "trailing_states",
+      "token_offset": 72385,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 291,
+      "section": "trailing_states",
+      "token_offset": 73147,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 299,
+      "section": "trailing_states",
+      "token_offset": 74031,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 310,
+      "section": "trailing_states",
+      "token_offset": 75317,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 332,
+      "section": "trailing_states",
+      "token_offset": 77648,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 383,
+      "section": "trailing_states",
+      "token_offset": 82521,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 422,
+      "section": "trailing_states",
+      "token_offset": 86412,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 460,
+      "section": "trailing_states",
+      "token_offset": 89935,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 485,
+      "section": "trailing_states",
+      "token_offset": 92582,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 508,
+      "section": "trailing_states",
+      "token_offset": 94581,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 527,
+      "section": "trailing_states",
+      "token_offset": 96625,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 534,
+      "section": "trailing_states",
+      "token_offset": 97536,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 543,
+      "section": "trailing_states",
+      "token_offset": 98494,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 558,
+      "section": "trailing_states",
+      "token_offset": 100090,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 565,
+      "section": "trailing_states",
+      "token_offset": 101020,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 585,
+      "section": "trailing_states",
+      "token_offset": 103087,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 618,
+      "section": "trailing_states",
+      "token_offset": 106236,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 622,
+      "section": "trailing_states",
+      "token_offset": 106792,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 626,
+      "section": "trailing_states",
+      "token_offset": 107207,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 632,
+      "section": "trailing_states",
+      "token_offset": 107924,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 644,
+      "section": "trailing_states",
+      "token_offset": 109266,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 670,
+      "section": "trailing_states",
+      "token_offset": 111883,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 722,
+      "section": "trailing_states",
+      "token_offset": 116829,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 726,
+      "section": "trailing_states",
+      "token_offset": 117385,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 731,
+      "section": "trailing_states",
+      "token_offset": 118002,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 736,
+      "section": "trailing_states",
+      "token_offset": 118517,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 748,
+      "section": "trailing_states",
+      "token_offset": 119859,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 773,
+      "section": "trailing_states",
+      "token_offset": 122346,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 825,
+      "section": "trailing_states",
+      "token_offset": 127238,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 830,
+      "section": "trailing_states",
+      "token_offset": 128044,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 835,
+      "section": "trailing_states",
+      "token_offset": 128709,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 841,
+      "section": "trailing_states",
+      "token_offset": 129354,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 852,
+      "section": "trailing_states",
+      "token_offset": 130614,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "record_index": 877,
+      "section": "trailing_states",
+      "token_offset": 133083,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 291,
+      "section": "trailing_states",
+      "token_offset": 73617,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 297,
+      "section": "trailing_states",
+      "token_offset": 74379,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 306,
+      "section": "trailing_states",
+      "token_offset": 75465,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 316,
+      "section": "trailing_states",
+      "token_offset": 76549,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 340,
+      "section": "trailing_states",
+      "token_offset": 79158,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 395,
+      "section": "trailing_states",
+      "token_offset": 84569,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 431,
+      "section": "trailing_states",
+      "token_offset": 87998,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 466,
+      "section": "trailing_states",
+      "token_offset": 91307,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 493,
+      "section": "trailing_states",
+      "token_offset": 94128,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 506,
+      "section": "trailing_states",
+      "token_offset": 95387,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 509,
+      "section": "trailing_states",
+      "token_offset": 95742,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 521,
+      "section": "trailing_states",
+      "token_offset": 96911,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 554,
+      "section": "trailing_states",
+      "token_offset": 100366,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 558,
+      "section": "trailing_states",
+      "token_offset": 100923,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 580,
+      "section": "trailing_states",
+      "token_offset": 103184,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 590,
+      "section": "trailing_states",
+      "token_offset": 104257,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 624,
+      "section": "trailing_states",
+      "token_offset": 107468,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 628,
+      "section": "trailing_states",
+      "token_offset": 108024,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 632,
+      "section": "trailing_states",
+      "token_offset": 108439,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 638,
+      "section": "trailing_states",
+      "token_offset": 109156,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 652,
+      "section": "trailing_states",
+      "token_offset": 110776,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 678,
+      "section": "trailing_states",
+      "token_offset": 113411,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 728,
+      "section": "trailing_states",
+      "token_offset": 118079,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 732,
+      "section": "trailing_states",
+      "token_offset": 118635,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 736,
+      "section": "trailing_states",
+      "token_offset": 119050,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 742,
+      "section": "trailing_states",
+      "token_offset": 119767,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 753,
+      "section": "trailing_states",
+      "token_offset": 120979,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 777,
+      "section": "trailing_states",
+      "token_offset": 123318,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 831,
+      "section": "trailing_states",
+      "token_offset": 128470,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 836,
+      "section": "trailing_states",
+      "token_offset": 129276,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 841,
+      "section": "trailing_states",
+      "token_offset": 129941,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 847,
+      "section": "trailing_states",
+      "token_offset": 130586,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 858,
+      "section": "trailing_states",
+      "token_offset": 131846,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "record_index": 880,
+      "section": "trailing_states",
+      "token_offset": 134089,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 270,
+      "section": "trailing_states",
+      "token_offset": 70690,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 276,
+      "section": "trailing_states",
+      "token_offset": 71452,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 285,
+      "section": "trailing_states",
+      "token_offset": 72538,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 295,
+      "section": "trailing_states",
+      "token_offset": 73622,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 319,
+      "section": "trailing_states",
+      "token_offset": 76231,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 374,
+      "section": "trailing_states",
+      "token_offset": 81642,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 410,
+      "section": "trailing_states",
+      "token_offset": 85071,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 445,
+      "section": "trailing_states",
+      "token_offset": 88380,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 472,
+      "section": "trailing_states",
+      "token_offset": 91201,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 485,
+      "section": "trailing_states",
+      "token_offset": 92460,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 488,
+      "section": "trailing_states",
+      "token_offset": 92815,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 500,
+      "section": "trailing_states",
+      "token_offset": 93984,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 533,
+      "section": "trailing_states",
+      "token_offset": 97439,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 537,
+      "section": "trailing_states",
+      "token_offset": 97996,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 559,
+      "section": "trailing_states",
+      "token_offset": 100257,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 569,
+      "section": "trailing_states",
+      "token_offset": 101330,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 603,
+      "section": "trailing_states",
+      "token_offset": 104541,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 607,
+      "section": "trailing_states",
+      "token_offset": 105097,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 611,
+      "section": "trailing_states",
+      "token_offset": 105512,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 617,
+      "section": "trailing_states",
+      "token_offset": 106229,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 628,
+      "section": "trailing_states",
+      "token_offset": 107441,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 652,
+      "section": "trailing_states",
+      "token_offset": 109780,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 707,
+      "section": "trailing_states",
+      "token_offset": 115134,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 711,
+      "section": "trailing_states",
+      "token_offset": 115690,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 715,
+      "section": "trailing_states",
+      "token_offset": 116105,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 721,
+      "section": "trailing_states",
+      "token_offset": 116822,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 735,
+      "section": "trailing_states",
+      "token_offset": 118442,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 761,
+      "section": "trailing_states",
+      "token_offset": 121077,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 810,
+      "section": "trailing_states",
+      "token_offset": 125543,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 815,
+      "section": "trailing_states",
+      "token_offset": 126349,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 820,
+      "section": "trailing_states",
+      "token_offset": 127014,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 826,
+      "section": "trailing_states",
+      "token_offset": 127659,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 837,
+      "section": "trailing_states",
+      "token_offset": 128919,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "record_index": 859,
+      "section": "trailing_states",
+      "token_offset": 131162,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 321,
+      "section": "trailing_states",
+      "token_offset": 75765,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 327,
+      "section": "trailing_states",
+      "token_offset": 76527,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 336,
+      "section": "trailing_states",
+      "token_offset": 77613,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 346,
+      "section": "trailing_states",
+      "token_offset": 78697,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 370,
+      "section": "trailing_states",
+      "token_offset": 81306,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 425,
+      "section": "trailing_states",
+      "token_offset": 86717,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 461,
+      "section": "trailing_states",
+      "token_offset": 90146,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 496,
+      "section": "trailing_states",
+      "token_offset": 93455,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 523,
+      "section": "trailing_states",
+      "token_offset": 96276,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 536,
+      "section": "trailing_states",
+      "token_offset": 97535,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 539,
+      "section": "trailing_states",
+      "token_offset": 97890,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 551,
+      "section": "trailing_states",
+      "token_offset": 99059,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 584,
+      "section": "trailing_states",
+      "token_offset": 102514,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 588,
+      "section": "trailing_states",
+      "token_offset": 103071,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 610,
+      "section": "trailing_states",
+      "token_offset": 105332,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 620,
+      "section": "trailing_states",
+      "token_offset": 106405,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 654,
+      "section": "trailing_states",
+      "token_offset": 109616,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 658,
+      "section": "trailing_states",
+      "token_offset": 110172,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 662,
+      "section": "trailing_states",
+      "token_offset": 110587,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 668,
+      "section": "trailing_states",
+      "token_offset": 111304,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 682,
+      "section": "trailing_states",
+      "token_offset": 112924,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 708,
+      "section": "trailing_states",
+      "token_offset": 115559,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 758,
+      "section": "trailing_states",
+      "token_offset": 120227,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 762,
+      "section": "trailing_states",
+      "token_offset": 120783,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 766,
+      "section": "trailing_states",
+      "token_offset": 121198,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 772,
+      "section": "trailing_states",
+      "token_offset": 121915,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 783,
+      "section": "trailing_states",
+      "token_offset": 123127,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 807,
+      "section": "trailing_states",
+      "token_offset": 125466,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 861,
+      "section": "trailing_states",
+      "token_offset": 130618,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 866,
+      "section": "trailing_states",
+      "token_offset": 131424,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 871,
+      "section": "trailing_states",
+      "token_offset": 132089,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 877,
+      "section": "trailing_states",
+      "token_offset": 132734,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 888,
+      "section": "trailing_states",
+      "token_offset": 133994,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "record_index": 910,
+      "section": "trailing_states",
+      "token_offset": 136237,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 321,
+      "section": "trailing_states",
+      "token_offset": 75992,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 327,
+      "section": "trailing_states",
+      "token_offset": 76754,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 336,
+      "section": "trailing_states",
+      "token_offset": 77840,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 346,
+      "section": "trailing_states",
+      "token_offset": 78924,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 370,
+      "section": "trailing_states",
+      "token_offset": 81533,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 425,
+      "section": "trailing_states",
+      "token_offset": 86944,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 461,
+      "section": "trailing_states",
+      "token_offset": 90373,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 496,
+      "section": "trailing_states",
+      "token_offset": 93682,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 523,
+      "section": "trailing_states",
+      "token_offset": 96503,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 536,
+      "section": "trailing_states",
+      "token_offset": 97762,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 539,
+      "section": "trailing_states",
+      "token_offset": 98117,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 551,
+      "section": "trailing_states",
+      "token_offset": 99286,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 584,
+      "section": "trailing_states",
+      "token_offset": 102741,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 588,
+      "section": "trailing_states",
+      "token_offset": 103298,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 610,
+      "section": "trailing_states",
+      "token_offset": 105559,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 620,
+      "section": "trailing_states",
+      "token_offset": 106632,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 654,
+      "section": "trailing_states",
+      "token_offset": 109843,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 658,
+      "section": "trailing_states",
+      "token_offset": 110399,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 662,
+      "section": "trailing_states",
+      "token_offset": 110814,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 668,
+      "section": "trailing_states",
+      "token_offset": 111531,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 682,
+      "section": "trailing_states",
+      "token_offset": 113151,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 708,
+      "section": "trailing_states",
+      "token_offset": 115786,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 757,
+      "section": "trailing_states",
+      "token_offset": 120252,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 762,
+      "section": "trailing_states",
+      "token_offset": 121058,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 767,
+      "section": "trailing_states",
+      "token_offset": 121723,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 773,
+      "section": "trailing_states",
+      "token_offset": 122368,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 784,
+      "section": "trailing_states",
+      "token_offset": 123628,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 806,
+      "section": "trailing_states",
+      "token_offset": 125871,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 862,
+      "section": "trailing_states",
+      "token_offset": 131238,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 866,
+      "section": "trailing_states",
+      "token_offset": 131794,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 870,
+      "section": "trailing_states",
+      "token_offset": 132209,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 876,
+      "section": "trailing_states",
+      "token_offset": 132926,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 887,
+      "section": "trailing_states",
+      "token_offset": 134138,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "record_index": 911,
+      "section": "trailing_states",
+      "token_offset": 136477,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 327,
+      "section": "trailing_states",
+      "token_offset": 76507,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 333,
+      "section": "trailing_states",
+      "token_offset": 77269,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 341,
+      "section": "trailing_states",
+      "token_offset": 78153,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 352,
+      "section": "trailing_states",
+      "token_offset": 79439,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 374,
+      "section": "trailing_states",
+      "token_offset": 81770,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 425,
+      "section": "trailing_states",
+      "token_offset": 86643,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 464,
+      "section": "trailing_states",
+      "token_offset": 90534,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 502,
+      "section": "trailing_states",
+      "token_offset": 94057,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 527,
+      "section": "trailing_states",
+      "token_offset": 96704,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 550,
+      "section": "trailing_states",
+      "token_offset": 98703,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 569,
+      "section": "trailing_states",
+      "token_offset": 100747,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 576,
+      "section": "trailing_states",
+      "token_offset": 101658,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 585,
+      "section": "trailing_states",
+      "token_offset": 102616,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 600,
+      "section": "trailing_states",
+      "token_offset": 104212,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 607,
+      "section": "trailing_states",
+      "token_offset": 105142,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 627,
+      "section": "trailing_states",
+      "token_offset": 107209,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 660,
+      "section": "trailing_states",
+      "token_offset": 110358,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 664,
+      "section": "trailing_states",
+      "token_offset": 110914,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 668,
+      "section": "trailing_states",
+      "token_offset": 111329,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 674,
+      "section": "trailing_states",
+      "token_offset": 112046,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 686,
+      "section": "trailing_states",
+      "token_offset": 113388,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 712,
+      "section": "trailing_states",
+      "token_offset": 116005,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 764,
+      "section": "trailing_states",
+      "token_offset": 120951,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 768,
+      "section": "trailing_states",
+      "token_offset": 121507,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 773,
+      "section": "trailing_states",
+      "token_offset": 122124,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 778,
+      "section": "trailing_states",
+      "token_offset": 122639,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 790,
+      "section": "trailing_states",
+      "token_offset": 123981,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 815,
+      "section": "trailing_states",
+      "token_offset": 126468,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 867,
+      "section": "trailing_states",
+      "token_offset": 131360,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 872,
+      "section": "trailing_states",
+      "token_offset": 132166,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 877,
+      "section": "trailing_states",
+      "token_offset": 132831,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 883,
+      "section": "trailing_states",
+      "token_offset": 133476,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 894,
+      "section": "trailing_states",
+      "token_offset": 134736,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "record_index": 919,
+      "section": "trailing_states",
+      "token_offset": 137205,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 325,
+      "section": "trailing_states",
+      "token_offset": 76620,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 331,
+      "section": "trailing_states",
+      "token_offset": 77382,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 340,
+      "section": "trailing_states",
+      "token_offset": 78468,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 350,
+      "section": "trailing_states",
+      "token_offset": 79552,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 374,
+      "section": "trailing_states",
+      "token_offset": 82161,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 429,
+      "section": "trailing_states",
+      "token_offset": 87572,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 465,
+      "section": "trailing_states",
+      "token_offset": 91001,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 500,
+      "section": "trailing_states",
+      "token_offset": 94310,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 527,
+      "section": "trailing_states",
+      "token_offset": 97131,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 540,
+      "section": "trailing_states",
+      "token_offset": 98390,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 543,
+      "section": "trailing_states",
+      "token_offset": 98745,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 555,
+      "section": "trailing_states",
+      "token_offset": 99914,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 588,
+      "section": "trailing_states",
+      "token_offset": 103369,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 592,
+      "section": "trailing_states",
+      "token_offset": 103926,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 614,
+      "section": "trailing_states",
+      "token_offset": 106187,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 624,
+      "section": "trailing_states",
+      "token_offset": 107260,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 657,
+      "section": "trailing_states",
+      "token_offset": 110269,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 662,
+      "section": "trailing_states",
+      "token_offset": 111075,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 667,
+      "section": "trailing_states",
+      "token_offset": 111740,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 673,
+      "section": "trailing_states",
+      "token_offset": 112385,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 684,
+      "section": "trailing_states",
+      "token_offset": 113645,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 706,
+      "section": "trailing_states",
+      "token_offset": 115888,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 762,
+      "section": "trailing_states",
+      "token_offset": 121255,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 766,
+      "section": "trailing_states",
+      "token_offset": 121811,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 770,
+      "section": "trailing_states",
+      "token_offset": 122226,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 776,
+      "section": "trailing_states",
+      "token_offset": 122943,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 790,
+      "section": "trailing_states",
+      "token_offset": 124563,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 816,
+      "section": "trailing_states",
+      "token_offset": 127198,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 866,
+      "section": "trailing_states",
+      "token_offset": 131866,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 870,
+      "section": "trailing_states",
+      "token_offset": 132422,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 874,
+      "section": "trailing_states",
+      "token_offset": 132837,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 880,
+      "section": "trailing_states",
+      "token_offset": 133554,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 891,
+      "section": "trailing_states",
+      "token_offset": 134766,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "6201000000000000",
+      "signed_int64": 354
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "record_index": 915,
+      "section": "trailing_states",
+      "token_offset": 137105,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 21,
+      "section": "geometry",
+      "token_offset": 2255,
+      "attribute_name": "SCULPT_WORKPLANE_TOOL",
+      "raw_64bit_hex": "1a01000000000000",
+      "signed_int64": 282
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 229,
+      "section": "trailing_states",
+      "token_offset": 54746,
+      "attribute_name": "SCULPT_WORKPLANE_TOOL",
+      "raw_64bit_hex": "1a01000000000000",
+      "signed_int64": 282
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 234,
+      "section": "trailing_states",
+      "token_offset": 55311,
+      "attribute_name": "SCULPT_WORKPLANE_TOOL",
+      "raw_64bit_hex": "1a01000000000000",
+      "signed_int64": 282
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 240,
+      "section": "trailing_states",
+      "token_offset": 55869,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 250,
+      "section": "trailing_states",
+      "token_offset": 56890,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 267,
+      "section": "trailing_states",
+      "token_offset": 58673,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 305,
+      "section": "trailing_states",
+      "token_offset": 62243,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 369,
+      "section": "trailing_states",
+      "token_offset": 68369,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 403,
+      "section": "trailing_states",
+      "token_offset": 71977,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 424,
+      "section": "trailing_states",
+      "token_offset": 74049,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 446,
+      "section": "trailing_states",
+      "token_offset": 76343,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 461,
+      "section": "trailing_states",
+      "token_offset": 77859,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 467,
+      "section": "trailing_states",
+      "token_offset": 78616,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 503,
+      "section": "trailing_states",
+      "token_offset": 81906,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 507,
+      "section": "trailing_states",
+      "token_offset": 82462,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 511,
+      "section": "trailing_states",
+      "token_offset": 82877,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 517,
+      "section": "trailing_states",
+      "token_offset": 83594,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 529,
+      "section": "trailing_states",
+      "token_offset": 84936,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 554,
+      "section": "trailing_states",
+      "token_offset": 87428,
+      "attribute_name": "SCULPT_WORKPLANE_TOOL",
+      "raw_64bit_hex": "e6feffffffffffff",
+      "signed_int64": -282
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 604,
+      "section": "trailing_states",
+      "token_offset": 91974,
+      "attribute_name": "SCULPT_WORKPLANE_TOOL",
+      "raw_64bit_hex": "1a01000000000000",
+      "signed_int64": 282
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 608,
+      "section": "trailing_states",
+      "token_offset": 92530,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 613,
+      "section": "trailing_states",
+      "token_offset": 93147,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 618,
+      "section": "trailing_states",
+      "token_offset": 93662,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 629,
+      "section": "trailing_states",
+      "token_offset": 94874,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "record_index": 651,
+      "section": "trailing_states",
+      "token_offset": 97117,
+      "attribute_name": "SCULPT_TOOL_BODY",
+      "raw_64bit_hex": "1301000000000000",
+      "signed_int64": 275
+    }
+  ],
+  "next_required_evidence": [
+    "Implement exact context schema gating and byte replay for signed integer values.",
+    "Reject truncation, wrong record context, mutated schema and genuinely nonfinite double tokens.",
+    "Preserve topology exclusion of history/trailing states; do not promote SCULPT attribute numbers to global identities.",
+    "Revalidate initial-prefix fallback using an intentionally unsupported history suffix after the real file becomes token-complete."
+  ]
+}

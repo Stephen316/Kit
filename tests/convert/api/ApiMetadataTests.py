@@ -29,7 +29,10 @@ def CheckMetadata() -> None:
     assert "scripts" not in ProjectData
     assert "gui-scripts" not in ProjectData
     assert ProjectData["license"] == "MIT"
-    assert ProjectData["license-files"] == ["LICENSE"]
+    assert ProjectData["license-files"] == [
+        "LICENSE",
+        "src/convert/adapters/solidworks/container/OpenSwxLicense.md",
+    ]
     assert {"Odin Glynn-Martin", "Stephen Harcourt"} <= {
         AuthorData["name"] for AuthorData in ProjectData["authors"]
     }

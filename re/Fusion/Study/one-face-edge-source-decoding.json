@@ -1,0 +1,1066 @@
+{
+  "interface": "decode_one_face_edge_sources(data,records,features,member,members,body_identifier_summary,body_selections=None)->associations/unresolved/scope",
+  "integration": {
+    "stream": "one_face_edge_sources",
+    "feature_list": "one_face_edge_sources",
+    "feature_owner_key": "owner_object_id",
+    "descriptor_key": "descriptor_object_id",
+    "old_warning_clearances": 0,
+    "feature_classification_changes": 0
+  },
+  "scope": "One direct named circular edge/one named face in an explicitly mapped saved Patch source BODY; opaque operation qualifier and context retained, no persistent/current/API identity",
+  "baseline": {
+    "commit": "4780e22",
+    "path": "/private/tmp/fusion-one-face-edge-baseline.json",
+    "sha256": "cc1e6529f4b8a83b4b531fedd1a5d76376be5b74ba5fbe7199ed0d070b7491d5",
+    "used_for_prior_outputs_only": true
+  },
+  "source_API_truth_sha256": "7f3f4a9b4de15bb1fab2727e26d3d170700d059f82258c02b860c631c6980c0b",
+  "samples": [
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_free.f3d",
+      "archive_sha256": "96a9d009201a36ffed05b20934e594dc1181739fb3182cfa6b5f766a6dd190e4",
+      "descriptor_ids": [
+        332
+      ],
+      "expected_summary": {
+        "associations": [
+          {
+            "descriptor_object_id": 332,
+            "owner_object_id": 328,
+            "historical_source_owner_object_id": 240,
+            "body_anchor_object_id": 273,
+            "native_body_object_id": 267,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c829c4ae-3a51-4428-abfa-1b62e1ca2c9d.smbh",
+            "explicit_asm_body_index": 3,
+            "recipe_object_id": 335,
+            "recipe_payload_kind": "edge_recipe_data",
+            "recipe": {
+              "object_id": 335,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 32189,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 88,
+              "payload_length": 28,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "exact_full_recipe_payload_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_operand_count": 1,
+              "stored_face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_penultimate_int32": 0,
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "exact_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 335,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 60,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 62,
+                      "curve_kind": "ellipse-curve",
+                      "endpoint_vertex_indices": [
+                        61,
+                        61
+                      ],
+                      "cached_endpoint_identity_same": true
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "coedge_record_index": 36,
+              "loop_record_index": 26,
+              "curve_record_index": 62,
+              "vertex_record_index": 61,
+              "point_record_index": 77,
+              "raw_endpoint_point": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "parameter_domain": [
+                -3.141592653589793,
+                3.141592653589793
+              ],
+              "is_closed": true,
+              "stored_edge_reversal": false,
+              "stored_coedge_reversal": false,
+              "geometry": {
+                "kind": "Circle",
+                "raw_center": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  -0.0,
+                  -0.0,
+                  -1.0
+                ],
+                "raw_reference_axis": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "raw_radius": 0.7
+              }
+            },
+            "context_object_id": 377,
+            "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+            "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+            "context_status": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+            "helper_object_id": 334,
+            "support_object_id": 333,
+            "support_payload_hex": "00000000000001010100000001f0000000000000000000e279d540585e0600014c010000000000000000697ad540585e06000000000000000000",
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "API_handle_identity": null,
+            "qualified_historical_state": null,
+            "traversal_parameter_mapping": null,
+            "coordinate_scope": "Raw mapped initial ASM cache; identity BODY transform only; no general assembly/header-unit inference",
+            "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 332,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_summary_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "API_corroboration": {
+        "source_body_name": "PatchAnnularSupport",
+        "selected_source_geometry_type": "adsk::core::Circle3D",
+        "selected_source_radius_cm": 0.7,
+        "single_incident_face_count": 1,
+        "natural_cache_evaluator_checks": [
+          {
+            "parameter": -3.141592653589793,
+            "API_point_cm": [
+              -0.7,
+              8.572527594031472e-17,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              -0.7,
+              8.572527594031472e-17,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": -1.5707963267948966,
+            "API_point_cm": [
+              4.286263797015736e-17,
+              0.7,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              4.286263797015736e-17,
+              0.7,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 0.0,
+            "API_point_cm": [
+              0.7,
+              0.0,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              0.7,
+              0.0,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 1.5707963267948966,
+            "API_point_cm": [
+              4.286263797015736e-17,
+              -0.7,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              4.286263797015736e-17,
+              -0.7,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 3.141592653589793,
+            "API_point_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          }
+        ],
+        "selected_edge_API_handle_identity": null,
+        "scope": "Numeric corroboration after exact native naming/incidence; no API token mapping or general edge traversal parameter map inferred"
+      }
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "descriptor_ids": [
+        332
+      ],
+      "expected_summary": {
+        "associations": [
+          {
+            "descriptor_object_id": 332,
+            "owner_object_id": 328,
+            "historical_source_owner_object_id": 240,
+            "body_anchor_object_id": 273,
+            "native_body_object_id": 267,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh",
+            "explicit_asm_body_index": 3,
+            "recipe_object_id": 335,
+            "recipe_payload_kind": "edge_recipe_data",
+            "recipe": {
+              "object_id": 335,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 32195,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 88,
+              "payload_length": 28,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "exact_full_recipe_payload_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_operand_count": 1,
+              "stored_face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_penultimate_int32": 0,
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "exact_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 335,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 61,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 63,
+                      "curve_kind": "ellipse-curve",
+                      "endpoint_vertex_indices": [
+                        62,
+                        62
+                      ],
+                      "cached_endpoint_identity_same": true
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "coedge_record_index": 36,
+              "loop_record_index": 26,
+              "curve_record_index": 63,
+              "vertex_record_index": 62,
+              "point_record_index": 78,
+              "raw_endpoint_point": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "parameter_domain": [
+                -3.141592653589793,
+                3.141592653589793
+              ],
+              "is_closed": true,
+              "stored_edge_reversal": false,
+              "stored_coedge_reversal": false,
+              "geometry": {
+                "kind": "Circle",
+                "raw_center": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  -0.0,
+                  -0.0,
+                  -1.0
+                ],
+                "raw_reference_axis": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "raw_radius": 0.7
+              }
+            },
+            "context_object_id": 377,
+            "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+            "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+            "context_status": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+            "helper_object_id": 334,
+            "support_object_id": 333,
+            "support_payload_hex": "00000000000001010100000001f0000000000000000000700cdb40585e0600014c010000000000000000470ddb40585e06000000000000000000",
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "API_handle_identity": null,
+            "qualified_historical_state": null,
+            "traversal_parameter_mapping": null,
+            "coordinate_scope": "Raw mapped initial ASM cache; identity BODY transform only; no general assembly/header-unit inference",
+            "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 332,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_summary_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "API_corroboration": {
+        "source_body_name": "PatchAnnularSupport",
+        "selected_source_geometry_type": "adsk::core::Circle3D",
+        "selected_source_radius_cm": 0.7,
+        "single_incident_face_count": 1,
+        "natural_cache_evaluator_checks": [
+          {
+            "parameter": -3.141592653589793,
+            "API_point_cm": [
+              -0.7,
+              8.572527594031472e-17,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              -0.7,
+              8.572527594031472e-17,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": -1.5707963267948966,
+            "API_point_cm": [
+              4.286263797015736e-17,
+              0.7,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              4.286263797015736e-17,
+              0.7,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 0.0,
+            "API_point_cm": [
+              0.7,
+              0.0,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              0.7,
+              0.0,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 1.5707963267948966,
+            "API_point_cm": [
+              4.286263797015736e-17,
+              -0.7,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              4.286263797015736e-17,
+              -0.7,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 3.141592653589793,
+            "API_point_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          }
+        ],
+        "selected_edge_API_handle_identity": null,
+        "scope": "Numeric corroboration after exact native naming/incidence; no API token mapping or general edge traversal parameter map inferred"
+      }
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+      "archive_sha256": "4e6c85c63ff82fbcee77e02571287701e46f3f55a55d499fe65668768ef3fe0d",
+      "descriptor_ids": [
+        332
+      ],
+      "expected_summary": {
+        "associations": [
+          {
+            "descriptor_object_id": 332,
+            "owner_object_id": 328,
+            "historical_source_owner_object_id": 240,
+            "body_anchor_object_id": 273,
+            "native_body_object_id": 267,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4530a523-0a85-4518-af28-62157a3e6e56.smbh",
+            "explicit_asm_body_index": 3,
+            "recipe_object_id": 335,
+            "recipe_payload_kind": "edge_recipe_data",
+            "recipe": {
+              "object_id": 335,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 32199,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 88,
+              "payload_length": 28,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "exact_full_recipe_payload_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_operand_count": 1,
+              "stored_face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_penultimate_int32": 0,
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+              "exact_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 335,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 61,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 63,
+                      "curve_kind": "ellipse-curve",
+                      "endpoint_vertex_indices": [
+                        62,
+                        62
+                      ],
+                      "cached_endpoint_identity_same": true
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "coedge_record_index": 36,
+              "loop_record_index": 26,
+              "curve_record_index": 63,
+              "vertex_record_index": 62,
+              "point_record_index": 78,
+              "raw_endpoint_point": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "parameter_domain": [
+                -3.141592653589793,
+                3.141592653589793
+              ],
+              "is_closed": true,
+              "stored_edge_reversal": false,
+              "stored_coedge_reversal": false,
+              "geometry": {
+                "kind": "Circle",
+                "raw_center": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  -0.0,
+                  -0.0,
+                  -1.0
+                ],
+                "raw_reference_axis": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "raw_radius": 0.7
+              }
+            },
+            "context_object_id": 377,
+            "context_class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+            "context_payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f0bf000000000000f03f00000000000000000000000000000000666666666666e63f0000000000000000182d4454fb2119400000000100",
+            "context_status": "Referenced typed103-byte cache retained literally; geometry, native closure and parameter/traversal meanings not inferred",
+            "helper_object_id": 334,
+            "support_object_id": 333,
+            "support_payload_hex": "00000000000001010100000001f000000000000000000093bce040585e0600014c01000000000000000024bde040585e06000000000000000000",
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "API_handle_identity": null,
+            "qualified_historical_state": null,
+            "traversal_parameter_mapping": null,
+            "coordinate_scope": "Raw mapped initial ASM cache; identity BODY transform only; no general assembly/header-unit inference",
+            "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 332,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_summary_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "API_corroboration": {
+        "source_body_name": "PatchAnnularSupport",
+        "selected_source_geometry_type": "adsk::core::Circle3D",
+        "selected_source_radius_cm": 0.7,
+        "single_incident_face_count": 1,
+        "natural_cache_evaluator_checks": [
+          {
+            "parameter": -3.141592653589793,
+            "API_point_cm": [
+              -0.7,
+              8.572527594031472e-17,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              -0.7,
+              8.572527594031472e-17,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": -1.5707963267948966,
+            "API_point_cm": [
+              4.286263797015736e-17,
+              0.7,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              4.286263797015736e-17,
+              0.7,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 0.0,
+            "API_point_cm": [
+              0.7,
+              0.0,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              0.7,
+              0.0,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 1.5707963267948966,
+            "API_point_cm": [
+              4.286263797015736e-17,
+              -0.7,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              4.286263797015736e-17,
+              -0.7,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          },
+          {
+            "parameter": 3.141592653589793,
+            "API_point_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "derived_natural_circle_cache_point": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "maximum_coordinate_error": 0.0
+          }
+        ],
+        "selected_edge_API_handle_identity": null,
+        "scope": "Numeric corroboration after exact native naming/incidence; no API token mapping or general edge traversal parameter map inferred"
+      }
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_manual.f3d",
+      "archive_sha256": "2c5f63f80e7e87fb9a6e364bb4a3eb9739b07854eb2513f156d0d3278c3e3de3",
+      "descriptor_ids": [],
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_summary_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Manual Untrim28-byte qualifier/owner stays outside Patch scope"
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_natural.f3d",
+      "archive_sha256": "38efa6ec0238e3a9bb6d2f0bc714df159ab5a8e012a2ee8175b862da01e83d98",
+      "descriptor_ids": [],
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 292,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_summary_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Extend156-byte operation remains unsupported by this decoder"
+    },
+    {
+      "archive": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "archive_sha256": "c868160a0e516a560733acf0b41fbb7dcdefe9a8a650e0d5cf62e3972d8c58e1",
+      "descriptor_ids": [],
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed28-byte BRep Patch direct-edge/one-face named operands through reciprocal source anchor, same-asset BODY identifier and circular boundary incidence. Secondary context, opaque final qualifier, current/API/persistent identity and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_summary_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Unrelated named BODY control; no candidate or ASM work"
+    }
+  ],
+  "guards": [
+    {
+      "label": "Descriptor trailer marker rejected",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge descriptor trailer markers differ"
+        }
+      ]
+    },
+    {
+      "label": "Opaque final qualifier mutation remains unobserved",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge operation fields/opaque qualifier outside captured28-byte framing"
+        }
+      ]
+    },
+    {
+      "label": "Complete edge-name numeric tuple mismatch rejected",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge named operands are not typed members of the mapped source BODY"
+        }
+      ]
+    },
+    {
+      "label": "Source support redirects to receiving Patch",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge helper/source-support reciprocal frame differs"
+        }
+      ]
+    },
+    {
+      "label": "Duplicate primary descriptor",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge typed identity missing, ambiguous or wrong class"
+        },
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge typed identity missing, ambiguous or wrong class"
+        }
+      ]
+    },
+    {
+      "label": "Duplicate receiving Patch",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge typed identity missing, ambiguous or wrong class"
+        }
+      ]
+    },
+    {
+      "label": "Duplicate native mapping identity",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge source BODY has no unique validated same-asset ASM mapping"
+        }
+      ]
+    },
+    {
+      "label": "Forged supplied source BODY record index",
+      "associations_absent": true,
+      "diagnostics": [
+        {
+          "descriptor_object_id": 332,
+          "reason": "One-face edge supplied source BODY cache association differs"
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "decode_one_face_edge_sources.py": "19d85b1a81243f3f9505898ae5a241328505c0ee54f4ea27b260ff049886b92b",
+    "validate_one_face_edge_sources.py": "83ec7e17e9d5426d9758a3959a5e8b74863a8f1db1c47c722c95d88d33431bcd",
+    "decode_patch_continuity.py": "b0497296f97580c204d65bc69e3a7554d4f8427021c995e4e9801fe82ba712f5",
+    "decode_surface_tools.py": "93094acafaa29f85256c0f6a7e2f1efa63f9c3d8c344a9acb104c5259735f73f",
+    "decode_recipe_components.py": "ce539083f61d3ef5fc2ae8c1c0aeaa9799a26b969854e2bf4717cae80755bd3d",
+    "decode_brep_recipes.py": "9c3a501eebc04cd43620b5215360752c8254c99610c1e11e9a6384c050e0141b",
+    "decode_body_selections.py": "8b9b8047009257f7cdba791e3610b6995c481950cf5087224a0190874475544a",
+    "decode_body_asm_identifiers.py": "3c80d7cb4658b49c2429ccdb4da561bb803ba77eef17d32cad0e7d2fa2283a2a",
+    "decode_asm_recipe_tags.py": "6b5570617fd92d99c44722d502198b18eaf81b0040d59ea73d6db1999638dde0",
+    "decode_asm_subtypes.py": "7724e91cd0e083be871784b38b81fa7dacf251f8219391352429100d2e488503",
+    "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0"
+  },
+  "summary": {
+    "focused_archives": 6,
+    "admitted_patch_sources": 3,
+    "empty_controls": 3,
+    "prior_selection_recipe_summaries_exact": 6,
+    "full_recipe_and_operation_replays": 3,
+    "independent_API_circle_samples": 15,
+    "malformed_guards": 8,
+    "maximum_API_sample_error": 0.0,
+    "main_runs": 0,
+    "live_calls": 0,
+    "old_warning_clearances": 0
+  }
+}

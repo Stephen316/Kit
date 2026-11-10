@@ -1,0 +1,157 @@
+{
+  "scope": "Offline v2 actual-source resource lifetime checks with synthetic SDK wrappers; recovery is prepared/unexecuted and native cleanup success is not claimed",
+  "saved_failure_evidence": {
+    "capture": "rulefilletsurfaces-9dd46198ca8a",
+    "executed_generator_sha256": "6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305",
+    "original_archive_sha256": "e4920ced5f952f99fe0bed8eda71ead47098afa4d26308fdd53dc3141f35fd52",
+    "source_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/72TS07EMAyGOQVrsydSHk7aLkGaERcAiVWV5iHNBhCCo3CBOQVchYOwJnFmQildFAnaVI3r/vb/NWk5SBCgDNjY6S6iZTEYxZB7zgapIzPCYKebGB1a4Emb9TxHsk2RAMwZA+f7q7fb04uP1/3L9dnm3SeFzH21cKFxg2TOD5GhbThrrQ6MY2ytaz2GDkmbepxMDvLjQHYIKlliA2luUjpVyMIBijc0E0xJ6JLIrO13TU6ZaZn+WYZTjRxpOAz3z3c++D5aF/rH4HYPoff2ycLlFmBLpiwbbVKYgnJKekJhlUi4KRL1lcuBPAYk52SfVjNxaXr1wqjyIh+u832qmxr3yZ0M1eftQ1pmcbifQVaLkKsKx1YFztBYERlXRa5uetyn7NNxz7DCZ54ZZL0IuarM2ErQUDRENSlr9I/IZlXk6ibHfQpi6bbgw5CLkP/q9/s18icR+2wtkQUAAA==",
+    "journal_sha256": "75fc2be64e084e80e9dd62577541c5da7648842c8b2822ce64e3f1d9395893c4",
+    "truth_sha256": "4f12bfdb0d52834236cb43f046d38ad0ac5efe5ffcc4a459f15f37628efd3b21",
+    "observed_error": {
+      "case": "offsets_one_two",
+      "error_type": "TypeError",
+      "error": "NotImplemented should not be used in a boolean context",
+      "owned_document_retained": true,
+      "automatic_retry": false,
+      "pre_witness_archive_preserved": true,
+      "native_witness_handles_quarantined": true
+    },
+    "observed_final_journal": {
+      "time_utc": "2026-10-21T20:41:33.672496+00:00",
+      "phase": "batch_halted",
+      "case": "offsets_one_two",
+      "sample_count": 1,
+      "error_count": 1
+    },
+    "previous_recovery_capture": "recoverrulesurfacewitness-b0a35766ba60",
+    "previous_recovery_source_sha256": "6d8b0963db1caa7ac2050152b1ebd27528ed82b40a5201b3964ae7216491272a",
+    "previous_recovery_report_sha256": "df282bfea4fc22061c24ea77fb1ae8b77d7a83c45d5e56d18967969657bf0dc9",
+    "read_only_inspection": "inspectrulewitnessquarantine-151086054fb5",
+    "read_only_inspection_sha256": "6ae9f013c5b410200aa4ca7d3ae173e4b179375514121065a8f19c10c07e8899",
+    "ownership_inspection": "inspectrulewitnessquarantine-2a852f50f1a0",
+    "ownership_inspection_sha256": "0e76bb722ce8223726f24b9cf9ea1f36cb9931d7208abda6e58fc5f76743dc78",
+    "collection_equality_observation": {
+      "label": "fresh_vs_retained_OffsetFeatures",
+      "left": {
+        "python_type": "adsk.fusion.OffsetFeatures",
+        "object_type": "adsk::fusion::OffsetFeatures",
+        "is_valid": true
+      },
+      "right": {
+        "python_type": "adsk.fusion.OffsetFeatures",
+        "object_type": "adsk::fusion::OffsetFeatures",
+        "is_valid": true
+      },
+      "dispatch_class": "adsk.fusion.OffsetFeatures",
+      "result_kind": "bool",
+      "boolean_value": false
+    },
+    "collection_equality_is_not_entity_identity": true
+  },
+  "source_sha256": {
+    "GenerateRecoverRuleSurfaceWitness.py": "9ae0631641f850da47b7e7cc7781d975cbfd0b69b71bc57a5b88b1aaad7f8b2f",
+    "validate_rule_surface_witness_recovery.py": "40e4e9813f6856edba3a115b8abdb4f07efd0b0857a8f297b2db623283553776"
+  },
+  "scenarios": [
+    {
+      "scenario": "known_pre_add_success",
+      "status": "RecoveredClosed",
+      "close_calls": 1,
+      "native_wrapper_release_before_close_verified": true,
+      "uncertain_state_retained": false,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "wrong_phase",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "added_witness",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "different_document",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "input_face_mismatch",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "concrete_equality_NotImplemented",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "broken_recovery_alias",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "different_recovery_root",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "different_source_body",
+      "status": "HaltedRetained",
+      "close_calls": 0,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    },
+    {
+      "scenario": "close_false",
+      "status": "HaltedRetained",
+      "close_calls": 1,
+      "native_wrapper_release_before_close_verified": false,
+      "uncertain_state_retained": true,
+      "abstract_Base_equality_calls": 0,
+      "feature_timeline_compute_export_calls": 0
+    }
+  ],
+  "summary": {
+    "synthetic_scenarios": 10,
+    "live_API_calls": 0,
+    "native_recovery_verified": false
+  },
+  "limitations": [
+    "Synthetic wrappers prove orchestration and failure gates only, not native destructor safety.",
+    "Concrete equality NotImplemented is rejected without truth conversion.",
+    "No feature add/cancel, timeline movement, recompute/export or unrelated-document operations are allowed."
+  ]
+}

@@ -1,0 +1,1763 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "closed_side1",
+      "file": "closed_side1.f3d",
+      "requested": {
+        "profile": "rectangle",
+        "one": "Side1",
+        "thickness_one": 0.12,
+        "length_one": 2.5,
+        "thin": true
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5iRtWby08MO3xpvHtw+q/vkIaC4oYKxgpGBEZgFVAOkgSwjCyDLUMEEpy4jBWMzBRNjUwMTsxRD3eQkSzNdE0MLY93EFBMj3eRU80Tz5BTDlGTzVJjNDGgAbJ+BAtg6IwMTiH0QOw0NTCGuAEEDMyS2ORLbAs42AAA19Cbo4gAAAA==",
+        "sketch_name": "ThinProbeSource",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaBrDcyMAIAUdDbtogAAAA=",
+        "loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDoGMAFkieeJIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDUwUDAEXbRnCSAAAA",
+                "start_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDMwUDABxlAHKSAAAA",
+                "start_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDcwUDACsPwnOSAAAA",
+                "start_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "set_extent_returned": true,
+      "set_thin_returned": true,
+      "actual_input": {
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": false,
+        "wall_one": {
+          "location": 0,
+          "thickness_value_input_real": 0.12
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 10,
+          "edge_count": 24,
+          "vertex_count": 16,
+          "volume_cm3": 4.0560000000000045,
+          "bounds_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            4.0,
+            3.0,
+            2.5
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeThinExtrude",
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 0,
+        "has_two_extents": false,
+        "profile": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5iRtWby08MO3xpvHtw+q/vkIaC4oYKxgpGBEZgFVAOkgSwjCyDLUMEEpy4jBWMzBRNjUwMTsxRD3eQkSzNdE0MLY93EFBMj3eRU80Tz5BTDlGTzVJjNDGgAbJ+BAtg6IwMTiH0QOw0NTCGuAEEDcyS2BRLbDM42AABzE84D4gAAAA==",
+          "sketch_name": "ThinProbeSource",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaBrDcyMAIAUdDbtogAAAA=",
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDoGMAFkieeJIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDUwUDAEXbRnCSAAAA",
+                  "start_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDMwUDABxlAHKSAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwoysNZOfHnb41njz4PZZ3ScPAVUYKRibKZgYmxqYmKUY6iYnWZrpmhhaGOsmppgY6SanmieaJ6cYpiSbp4LVAs1gQANg+wwUwNaZGhqBaSMDoFIDcwUDACsPwnOSAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d2",
+            "role": "AlongDistance",
+            "raw_value": 2.5,
+            "unit": "mm",
+            "expression": "25.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "wall_one": {
+          "location": 0,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "Side1WallThickness",
+            "raw_value": 0.12,
+            "unit": "mm",
+            "expression": "1.20 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "AlongDistance",
+          "raw_value": 2.5,
+          "unit": "mm",
+          "expression": "25.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "closed_center",
+      "file": "closed_center.f3d",
+      "requested": {
+        "profile": "rectangle",
+        "one": "Center",
+        "thickness_one": 0.2,
+        "length_one": 2.5,
+        "thin": true
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOsQ0CMQxFGeUvEMmxjS/ZgIaGCQgkDMAqiK1gBUp2oDuTCHRCwi78ZNl6nyAMAiMa7HHWypvtdb+73F+3p+8jBEzcyW98OnFyitC/XwwxlDpVroVDVklB5dRCzmJBjpliaeXQyD7m1U91H6HrmHT4hjPSeqR4N6UF24KnL9MMDl3AReIAAAA=",
+        "sketch_name": "ThinProbeSource",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAtg5kvZGBEQDwgnEmiAAAAA==",
+        "loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlRoAHQMAcc3ltpIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKhgAACJePb6SAAAA",
+                "start_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlYK0AAB74Hu8kgAAAA==",
+                "start_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKxgAAEyKub2SAAAA",
+                "start_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "set_extent_returned": true,
+      "set_thin_returned": true,
+      "actual_input": {
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": false,
+        "wall_one": {
+          "location": 1,
+          "thickness_value_input_real": 0.2
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 10,
+          "edge_count": 24,
+          "vertex_count": 16,
+          "volume_cm3": 7.0000000000000036,
+          "bounds_min_cm": [
+            -0.0999999999999999,
+            -0.10000000000000003,
+            0.0
+          ],
+          "bounds_max_cm": [
+            4.1,
+            3.1,
+            2.5
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeThinExtrude",
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 0,
+        "has_two_extents": false,
+        "profile": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOwQ1CMQiGHeVfoAkF5LUbePHiBFZbB3AV41a6gkd38PawzTPGRDjwhQAfBGEQGNFgj7NW3myv+93l/ro9vR8hYOJOPuPViZNThP7dYoih1KlyLRyySgoqpxZyFgtyzBRLK4dGtphXP9F9hK5j0uEbzkjT+OKd/cLC6y9OH6YZSV29dOIAAAA=",
+          "sketch_name": "ThinProbeSource",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAtg5kvZGBEQDwgnEmiAAAAA==",
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlRoAHQMAcc3ltpIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKhgAACJePb6SAAAA",
+                  "start_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlYK0AAB74Hu8kgAAAA==",
+                  "start_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtm9IpMUIw/fqQlBk8/+PPMMqMJIwdhMITHFPMUoJdFI19LE2ELXxDgtVdfS0thM1zjZ0sAwMTUxKdXADKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKxgAAEyKub2SAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d2",
+            "role": "AlongDistance",
+            "raw_value": 2.5,
+            "unit": "mm",
+            "expression": "25.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "wall_one": {
+          "location": 1,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "Side1WallThickness",
+            "raw_value": 0.2,
+            "unit": "mm",
+            "expression": "2.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.2,
+          "unit": "mm",
+          "expression": "2.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "AlongDistance",
+          "raw_value": 2.5,
+          "unit": "mm",
+          "expression": "25.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "closed_side2",
+      "file": "closed_side2.f3d",
+      "requested": {
+        "profile": "rectangle",
+        "one": "Side2",
+        "thickness_one": 0.15,
+        "length_one": 2.5,
+        "thin": true
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uyi+laKrLe/0alXX3tMHO0rPAsUNFYwVjAyMwCygGiANZBlZAFmGCiY4dRkpGJsppJikJCYnpproppoYJuqaGFim6SYamCfrJppYphmam6SaWSJsZkADYPsMFMDWGRmYQOyD2GloYApxBQgamCGxzZHYFnC2AQAnJ5Xp4gAAAA==",
+        "sketch_name": "ThinProbeSource",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAtg5kvZGBEQAjqLKViAAAAA==",
+        "loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRoAHQMA7+So8JIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKhgAALx3cPiSAAAA",
+                "start_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKRgAAOXJNvqSAAAA",
+                "start_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKxgAANKj9PuSAAAA",
+                "start_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "set_extent_returned": true,
+      "set_thin_returned": true,
+      "actual_input": {
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": false,
+        "wall_one": {
+          "location": 2,
+          "thickness_value_input_real": 0.15
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 10,
+          "edge_count": 24,
+          "vertex_count": 16,
+          "volume_cm3": 5.474999999999998,
+          "bounds_min_cm": [
+            -0.15000000000000008,
+            -0.14999999999999997,
+            0.0
+          ],
+          "bounds_max_cm": [
+            4.15,
+            3.1499999999999995,
+            2.5
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeThinExtrude",
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 0,
+        "has_two_extents": false,
+        "profile": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uyi+laKrLe/0alXX3tMHO0rPAsUNFYwVjAyMwCygGiANZBlZAFmGCiY4dRkpGJsppJikJCYnpproppoYJuqaGFim6SYamCfrJppYphmam6SaWSJsZkADYPsMFMDWGRmYQOyD2GloYAFxBQgamCGxTZHY5nC2AQASdz194gAAAA==",
+          "sketch_name": "ThinProbeSource",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAtg5kvZGBEQAjqLKViAAAAA==",
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRoAHQMA7+So8JIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKhgAALx3cPiSAAAA",
+                  "start_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKRgAAOXJNvqSAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvGtFF1teadXq7r2nj7YUXoWqMJIwdhMIcUkJTE5MdVEN9XEMFHXxMAyTTfRwDxZN9HEMs3Q3CTVzNLYCKwWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKxgAANKj9PuSAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d2",
+            "role": "AlongDistance",
+            "raw_value": 2.5,
+            "unit": "mm",
+            "expression": "25.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "wall_one": {
+          "location": 2,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "Side1WallThickness",
+            "raw_value": 0.15000000000000002,
+            "unit": "mm",
+            "expression": "1.50 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "wall_two": {
+          "applicable": false,
+          "getter_status": "Inactive side two not read"
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.15000000000000002,
+          "unit": "mm",
+          "expression": "1.50 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "AlongDistance",
+          "raw_value": 2.5,
+          "unit": "mm",
+          "expression": "25.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "closed_two_sides_mixed",
+      "file": "closed_two_sides_mixed.f3d",
+      "requested": {
+        "profile": "rectangle",
+        "one": "Side1",
+        "thickness_one": 0.12,
+        "length_one": 2.5,
+        "two": "Side2",
+        "thickness_two": 0.22,
+        "length_two": 1.3,
+        "thin": true
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOzQ3CMAxGEVtw+xYIsp04PwNw7BClATEA4s4OrNA12IGNMImKKiTsg58sW+8jeAFBwBHzY7zPl8PruU+763a42Z7hISSN7MamkWQjRvj7JfARpJprPrLjkrILY5pciXp2U+WqsSZ/krKYNz/VfISmEwrd151Mqaf4NMUV5xXrl+kNakCUmOIAAAA=",
+        "sketch_name": "ThinProbeSource",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArQNZb2RgBADICOuJiAAAAA==",
+        "loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQZAxwAA0o4ZMZIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQamCgYAgR3BOZIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQZAcwHYo4c7kgAAAA==",
+                "start_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQbmCgYA78lFOpIAAAA=",
+                "start_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "set_extent_returned": true,
+      "set_thin_returned": true,
+      "actual_input": {
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": true,
+        "wall_one": {
+          "location": 0,
+          "thickness_value_input_real": 0.12
+        },
+        "wall_two": {
+          "applicable": true,
+          "location": 2,
+          "thickness_value_input_real": 0.22
+        }
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 20,
+          "edge_count": 44,
+          "vertex_count": 28,
+          "volume_cm3": 8.311679999999999,
+          "bounds_min_cm": [
+            -0.21999999999999997,
+            -0.22,
+            -1.3
+          ],
+          "bounds_max_cm": [
+            4.22,
+            3.2199999999999998,
+            2.5
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeThinExtrude",
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 1,
+        "has_two_extents": true,
+        "profile": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOzQ3CMAxGEVtw+xYIsp04PwNw7BClATEA4s4OrNA12IGNMImKKiTsg58sW+8jeAFBwBHzY7zPl8PruU+763a42Z7hISSN7MamkWQjRvj7JfARpJprPrLjkrILY5pciXp2U+WqsSZ/krKYNz/VfISmEwrd151Mqaf4NMUV64rzl+kNDAWWyOIAAAA=",
+          "sketch_name": "ThinProbeSource",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArQNZb2RgBADICOuJiAAAAA==",
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQZAxwAA0o4ZMZIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQamCgYAgR3BOZIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQZAcwHYo4c7kgAAAA==",
+                  "start_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtIpiY1LM1wv7tMzlyxh8i0DqjBSMDZTMDA1tUixSDLUNbQ0t9A1STRP1rU0M03TTU4xTDE1SzE3TjWyBKsFmsGABsD2GSiArTM1NALTRgZApQbmCgYA78lFOpIAAAA=",
+                  "start_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d3",
+            "role": "AlongDistance",
+            "raw_value": 2.5,
+            "unit": "mm",
+            "expression": "25.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "extent_two": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d5",
+            "role": "AgainstDistance",
+            "raw_value": 1.3,
+            "unit": "mm",
+            "expression": "13.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_two": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "Side2TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "wall_one": {
+          "location": 0,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "Side1WallThickness",
+            "raw_value": 0.12,
+            "unit": "mm",
+            "expression": "1.20 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "wall_two": {
+          "applicable": true,
+          "location": 2,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d2",
+            "role": "Side2WallThickness",
+            "raw_value": 0.22000000000000003,
+            "unit": "mm",
+            "expression": "2.20 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "Side2WallThickness",
+          "raw_value": 0.22000000000000003,
+          "unit": "mm",
+          "expression": "2.20 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "AlongDistance",
+          "raw_value": 2.5,
+          "unit": "mm",
+          "expression": "25.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "AgainstDistance",
+          "raw_value": 1.3,
+          "unit": "mm",
+          "expression": "13.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "Side2TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "closed_two_sides_center",
+      "file": "closed_two_sides_center.f3d",
+      "requested": {
+        "profile": "rectangle",
+        "one": "Center",
+        "thickness_one": 0.25,
+        "length_one": 1.7,
+        "two": "Center",
+        "thickness_two": 0.1,
+        "length_two": 0.8,
+        "thin": true
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0UzjTV/3l+x/Hoq1MOXVtRyccB4obKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMDNISklKNrTQTTVKTtU1MTWx0E1KMbfUNTYzSzNLMbRIMUszhdnMgAbA9hkogK0zMjCB2Aex09DAHOIKEDSwQGKbIbFN4WwDAOWxnn3iAAAA",
+        "sketch_name": "ThinProbeSource",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbB3IeiMDIwAMyE+NiAAAAA==",
+        "loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAOgYAJO7CIpIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEAd30aKpIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAAC7DXCiSAAAA",
+                "start_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwVzAAABmpnimSAAAA",
+                "start_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "set_extent_returned": true,
+      "set_thin_returned": true,
+      "actual_input": {
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": true,
+        "wall_one": {
+          "location": 1,
+          "thickness_value_input_real": 0.25
+        },
+        "wall_two": {
+          "applicable": true,
+          "location": 1,
+          "thickness_value_input_real": 0.1
+        }
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 20,
+          "edge_count": 48,
+          "vertex_count": 32,
+          "volume_cm3": 7.069999999999995,
+          "bounds_min_cm": [
+            -0.125,
+            -0.125,
+            -0.8
+          ],
+          "bounds_max_cm": [
+            4.125,
+            3.125,
+            1.7
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeThinExtrude",
+        "is_thin_extrude": true,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 1,
+        "has_two_extents": true,
+        "profile": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0UzjTV/3l+x/Hoq1MOXVtRyccB4obKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTMDNISklKNrTQTTVKTtU1MTWx0E1KMbfUNTYzSzNLMbRIMUszhdnMgAbA9hkogK0zMjCB2Aex09DADOIKEDQwRWKbI7Et4GwDADz4QcniAAAA",
+          "sketch_name": "ThinProbeSource",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbB3IeiMDIwAMyE+NiAAAAA==",
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAOgYAJO7CIpIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAagEAd30aKpIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAAC7DXCiSAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpm+6i/f/zgWbWXKqWs7OuE4UIWRgrGZgplBUkpSsqGFbqpRcqquiamJhW5SirmlrrGZWZpZiqFFilmaKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwVzAAABmpnimSAAAA",
+                  "start_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d3",
+            "role": "AlongDistance",
+            "raw_value": 1.7000000000000002,
+            "unit": "mm",
+            "expression": "17.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "extent_two": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d5",
+            "role": "AgainstDistance",
+            "raw_value": 0.8,
+            "unit": "mm",
+            "expression": "8.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "taper_two": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "Side2TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        "wall_one": {
+          "location": 1,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "Side1WallThickness",
+            "raw_value": 0.25,
+            "unit": "mm",
+            "expression": "2.50 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        },
+        "wall_two": {
+          "applicable": true,
+          "location": 1,
+          "thickness": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d2",
+            "role": "Side2WallThickness",
+            "raw_value": 0.1,
+            "unit": "mm",
+            "expression": "1.00 mm",
+            "created_by": "ProbeThinExtrude"
+          }
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "Side1WallThickness",
+          "raw_value": 0.25,
+          "unit": "mm",
+          "expression": "2.50 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "Side2WallThickness",
+          "raw_value": 0.1,
+          "unit": "mm",
+          "expression": "1.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "AlongDistance",
+          "raw_value": 1.7000000000000002,
+          "unit": "mm",
+          "expression": "17.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "AgainstDistance",
+          "raw_value": 0.8,
+          "unit": "mm",
+          "expression": "8.00 mm",
+          "created_by": "ProbeThinExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "Side2TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeThinExtrude"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "open_line_side1",
+      "file": "open_line_side1.f3d",
+      "requested": {
+        "profile": "open_line",
+        "one": "Side1",
+        "thickness_one": 0.12,
+        "length_one": 2.5,
+        "thin": true
+      },
+      "getter_errors": [
+        {
+          "field": "source_profile.token",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 62, in read\n    try: return callback()\n                ~~~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 75, in <lambda>\n    'entity_token':read(label+'.token',lambda:entity.entityToken)}\n                                              ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60328, in _get_entityToken\n    return _fusion.Profile__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : Xl::Utils::referenceKey(this, referenceKey)\n"
+        }
+      ],
+      "status": "error",
+      "open_profile_input": {
+        "chain_curves": false,
+        "selected_curve_type": "adsk::fusion::SketchLine",
+        "selected_curve_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrvVyXNdem7aS1mYq0KaxO4BVRgpGJspWCSbpKaaGJjrJhmYJeqaGKea61qYGSbqWlgkJ1mkJCclJZmngdUCzWBAA2D7DBTA1pkaGoFpIwOgUgNjBQMAm8WAxZIAAAA=",
+        "start_world_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "end_world_cm": [
+          4.0,
+          0.0,
+          0.0
+        ]
+      },
+      "close_owned_document_result": true
+    },
+    {
+      "case": "ordinary_rectangle_control",
+      "file": "ordinary_rectangle_control.f3d",
+      "requested": {
+        "profile": "rectangle",
+        "thin": false,
+        "length_one": 2.5
+      },
+      "getter_errors": [],
+      "status": "exported",
+      "source_profile_before_feature": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5itbRRx8piHykSJgkktCY/TgOKGCsYKRgZGYBZQDZAGsowsgCxDBROcuowUjM0UEpOMUwwNzI11U9LMTHRNLMxSdC1Tk411U40s0yzMzVKTjRKTYDYzoAGwfQYKYOuMDEwg9kHsBBoJcQUIGpghsS2Q2KZwtgEA+pzEXuIAAAA=",
+        "sketch_name": "ThinProbeSource",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAWwey3sjACAA4n7fjiAAAAA==",
+        "loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg2AjgEAntjuopIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg1MFQwAzUs2qpIAAAA=",
+                "start_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg3MFAwAlPVwqJIAAAA=",
+                "start_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ]
+              },
+              {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg3MFQwAo5+yqZIAAAA=",
+                "start_world_cm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "set_extent_returned": true,
+      "actual_input": {
+        "is_thin_extrude": false,
+        "is_solid": true,
+        "profile_type": "adsk::fusion::Profile",
+        "has_two_extents": false
+      },
+      "compute_all_returned": true,
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "Body1",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 30.0,
+          "bounds_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            4.0,
+            3.0,
+            2.5
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "feature_type": "adsk::fusion::ExtrudeFeature",
+        "feature_name": "ProbeOrdinaryExtrudeControl",
+        "is_thin_extrude": false,
+        "is_solid": true,
+        "operation": 3,
+        "extent_type": 0,
+        "has_two_extents": false,
+        "profile": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WOsQ0CMQxFGYPyF3QokmMHJ7cBI1Byd0lqhmABaNkHiTlYBJMIdELCLvxk2XqfIAwCwytuWz487vvNZX26no/PansPARM3shubRpyMPMLfL4YoxkmypyguVw0uJM1uKLO4wkNNUcvM4/Qxr36q+QhNxxS6rzs9pZ7i3aQL3i04fpleikwKpeIAAAA=",
+          "sketch_name": "ThinProbeSource",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAWwey3sjACAA4n7fjiAAAAA==",
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg2AjgEAntjuopIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg1MFQwAzUs2qpIAAAA=",
+                  "start_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg3MFAwAlPVwqJIAAAA=",
+                  "start_world_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "entity_type": "adsk::fusion::SketchLine",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmxto4iTxzxUJkoUTGpJeJwGVGGkYGymkJhknGJoYG6sm5JmZqJrYmGWomuZmmysm2pkmWZhbpaabJSYBFYLNIMBDYDtM1AAW2dqaASmjQyASg3MFQwAo5+yqZIAAAA=",
+                  "start_world_cm": [
+                    4.0,
+                    3.0,
+                    0.0
+                  ],
+                  "end_world_cm": [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "start_extent_type": "adsk::fusion::ProfilePlaneStartDefinition",
+        "extent_one": {
+          "entity_type": "adsk::fusion::DistanceExtentDefinition",
+          "distance": {
+            "entity_type": "adsk::fusion::ModelParameter",
+            "name": "d1",
+            "role": "AlongDistance",
+            "raw_value": 2.5,
+            "unit": "mm",
+            "expression": "25.00 mm",
+            "created_by": "ProbeOrdinaryExtrudeControl"
+          }
+        },
+        "taper_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeOrdinaryExtrudeControl"
+        }
+      },
+      "actual_is_thin_matches_request": true,
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.5,
+          "unit": "mm",
+          "expression": "25.00 mm",
+          "created_by": "ProbeOrdinaryExtrudeControl"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "ProbeOrdinaryExtrudeControl"
+        }
+      ],
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [
+    {
+      "case": "open_line_side1",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 119, in run\n    sample['source_profile_before_feature'] = profile_truth(profile,'source_profile')\n                                              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateThinExtrudeContrasts.py\", line 78, in profile_truth\n    result['sketch_name'] = profile.parentSketch.name\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'name'\n"
+    }
+  ],
+  "status": "complete",
+  "enum_values": {
+    "Side1": 0,
+    "Center": 1,
+    "Side2": 2
+  },
+  "scope": "Actual thin/ordinary Extrude getters and owned source profiles; no native writer or regeneration claim",
+  "SDK_notes": [
+    "setThinExtrude(sideOneLocation,sideOneThickness[,sideTwoLocation,sideTwoThickness]) uses extrusion extent sides, not independently asymmetric offsets around one profile.",
+    "Component.createOpenProfile accepts one SketchCurve; whether the thin-solid operation accepts that open profile is captured as success/error, not assumed.",
+    "Inactive side-two getters are not read in one-sided cases."
+  ]
+}

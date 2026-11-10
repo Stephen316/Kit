@@ -1,0 +1,1554 @@
+{
+  "sample_count": 3,
+  "check_count": 77,
+  "malformed_guard_count": 7,
+  "samples": [
+    {
+      "archive": "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d",
+      "feature_object_id": 672,
+      "expected_source_row": {
+        "feature_object_id": 672,
+        "native_source_evidence": {
+          "feature_object_id": 672,
+          "tool_selection_record_object_id": 680,
+          "source_kind": "SketchLine",
+          "selection": {
+            "selection_record_object_id": 680,
+            "descriptor_object_id": 683,
+            "terminal_object_id": 686,
+            "sketch_object_id": 291,
+            "curve_object_id": 320,
+            "curve_entity_tag": 112,
+            "kind": "Line",
+            "is_closed": false
+          },
+          "source_endpoints": [
+            {
+              "role": "start",
+              "point_object_id": 316,
+              "native_record_offset": 35357,
+              "entity_tag": 110,
+              "point_sketch_local_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "role": "end",
+              "point_object_id": 318,
+              "native_record_offset": 35626,
+              "entity_tag": 111,
+              "point_sketch_local_cm": [
+                3.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "source_start_sketch_local_cm": [
+            -3.0,
+            0.0,
+            0.0
+          ],
+          "source_end_sketch_local_cm": [
+            3.0,
+            0.0,
+            0.0
+          ],
+          "natural_displacement_sketch_local_cm": [
+            6.0,
+            0.0,
+            0.0
+          ],
+          "natural_displacement_component_cm": [
+            6.0,
+            0.0,
+            0.0
+          ],
+          "natural_derived_samples": [
+            {
+              "natural_segment_fraction": 0.0,
+              "point_sketch_local_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "point_component_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.25,
+              "point_sketch_local_cm": [
+                -1.5,
+                0.0,
+                0.0
+              ],
+              "point_component_cm": [
+                -1.5,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.5,
+              "point_sketch_local_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_component_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.75,
+              "point_sketch_local_cm": [
+                1.5,
+                0.0,
+                0.0
+              ],
+              "point_component_cm": [
+                1.5,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 1.0,
+              "point_sketch_local_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "point_component_cm": [
+                3.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "native_curve_primary_record_offset": 35895,
+          "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000008c000000000000000000000000000000000000000000000184000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+          "native_feature_record_offset": 36251,
+          "stored_tool_operand_hex": "01a8020000000000000000",
+          "source_sketch_base_record_offset": 33601,
+          "source_sketch_collection_object_id": 9,
+          "native_transform_object_id": 292,
+          "native_transform_record_offset": 33762,
+          "stored_transform_payload_hex": "000001000103000000000000000000",
+          "canonical_placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 292,
+            "record_offset": 33762,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "source_component_object_id": 3,
+          "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+          "native_API_source_assignment": null,
+          "selected_asm_face_id": null,
+          "native_trim_cell_assignment": null,
+          "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+          "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+          "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+        },
+        "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+      },
+      "expected_source_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 672,
+            "native_source_evidence": {
+              "feature_object_id": 672,
+              "tool_selection_record_object_id": 680,
+              "source_kind": "SketchLine",
+              "selection": {
+                "selection_record_object_id": 680,
+                "descriptor_object_id": 683,
+                "terminal_object_id": 686,
+                "sketch_object_id": 291,
+                "curve_object_id": 320,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "source_endpoints": [
+                {
+                  "role": "start",
+                  "point_object_id": 316,
+                  "native_record_offset": 35357,
+                  "entity_tag": 110,
+                  "point_sketch_local_cm": [
+                    -3.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "role": "end",
+                  "point_object_id": 318,
+                  "native_record_offset": 35626,
+                  "entity_tag": 111,
+                  "point_sketch_local_cm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ],
+              "source_start_sketch_local_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_end_sketch_local_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "natural_displacement_sketch_local_cm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "natural_displacement_component_cm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "natural_derived_samples": [
+                {
+                  "natural_segment_fraction": 0.0,
+                  "point_sketch_local_cm": [
+                    -3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    -3.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.25,
+                  "point_sketch_local_cm": [
+                    -1.5,
+                    0.0,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    -1.5,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.5,
+                  "point_sketch_local_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.75,
+                  "point_sketch_local_cm": [
+                    1.5,
+                    0.0,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    1.5,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 1.0,
+                  "point_sketch_local_cm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ],
+              "native_curve_primary_record_offset": 35895,
+              "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000008c000000000000000000000000000000000000000000000184000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+              "native_feature_record_offset": 36251,
+              "stored_tool_operand_hex": "01a8020000000000000000",
+              "source_sketch_base_record_offset": 33601,
+              "source_sketch_collection_object_id": 9,
+              "native_transform_object_id": 292,
+              "native_transform_record_offset": 33762,
+              "stored_transform_payload_hex": "000001000103000000000000000000",
+              "canonical_placement": {
+                "sketch_to_component_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "matrix_order": "row-major; column-vector multiplication",
+                "translation_units": "cm",
+                "encoding": "ImplicitIdentity",
+                "transform_object_id": 292,
+                "record_offset": 33762,
+                "scope": "Parent component; assembly occurrences unresolved"
+              },
+              "source_component_object_id": 3,
+              "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+              "native_API_source_assignment": null,
+              "selected_asm_face_id": null,
+              "native_trim_cell_assignment": null,
+              "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+              "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+              "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+            },
+            "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+      },
+      "actual_source_geometry_stages": [
+        {
+          "stage": "input_argument",
+          "actual_API_local_endpoints_cm": [
+            [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "stage": "input_actual",
+          "actual_API_local_endpoints_cm": [
+            [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "stage": "rolled_feature",
+          "actual_API_local_endpoints_cm": [
+            [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "actual_requested": {
+        "trim_tool_argument_type": "SketchLine",
+        "remove_target_positive_y_half": true,
+        "targetBaseFeature_set": false
+      },
+      "actual_selected_input_cell_indices": [
+        0
+      ],
+      "native_trim_cell_assignment": null,
+      "actual_API_interior_evaluator_samples": null,
+      "derived_interior_sample_status": "Derived linear interpolation only; API truth records ordered local/component endpoints, not curve evaluator parameters or interior samples",
+      "executed_generator_sha256": "f5e0eb09a4295e3f2bf0d9c086638f315992941e5e7a71d07cb6e74f026f90dc",
+      "entrypoint_provenance": {
+        "source_path": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceTrimRemainingContrasts.py",
+        "sha256": "032493682831598f112ebef768c61878109ac9a81cf2ca8349e99303058cbca8",
+        "executed_snapshot": "executed-entrypoint-source.txt",
+        "invocation": "Absolute runpy of GenerateSurfaceTrimToolContrasts.py; explicitly selected owned cases",
+        "selected_cases": [
+          "sheet_body",
+          "sketch_line"
+        ]
+      },
+      "capture_status": "Complete"
+    },
+    {
+      "archive": "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d",
+      "feature_object_id": 672,
+      "expected_source_row": {
+        "feature_object_id": 672,
+        "native_source_evidence": {
+          "feature_object_id": 672,
+          "tool_selection_record_object_id": 680,
+          "source_kind": "SketchLine",
+          "selection": {
+            "selection_record_object_id": 680,
+            "descriptor_object_id": 683,
+            "terminal_object_id": 686,
+            "sketch_object_id": 291,
+            "curve_object_id": 320,
+            "curve_entity_tag": 112,
+            "kind": "Line",
+            "is_closed": false
+          },
+          "source_endpoints": [
+            {
+              "role": "start",
+              "point_object_id": 316,
+              "native_record_offset": 35485,
+              "entity_tag": 110,
+              "point_sketch_local_cm": [
+                -3.0,
+                0.25,
+                0.0
+              ]
+            },
+            {
+              "role": "end",
+              "point_object_id": 318,
+              "native_record_offset": 35754,
+              "entity_tag": 111,
+              "point_sketch_local_cm": [
+                3.0,
+                0.25,
+                0.0
+              ]
+            }
+          ],
+          "source_start_sketch_local_cm": [
+            -3.0,
+            0.25,
+            0.0
+          ],
+          "source_end_sketch_local_cm": [
+            3.0,
+            0.25,
+            0.0
+          ],
+          "natural_displacement_sketch_local_cm": [
+            6.0,
+            0.0,
+            0.0
+          ],
+          "natural_displacement_component_cm": [
+            6.0,
+            0.0,
+            0.0
+          ],
+          "natural_derived_samples": [
+            {
+              "natural_segment_fraction": 0.0,
+              "point_sketch_local_cm": [
+                -3.0,
+                0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                -3.0,
+                0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.25,
+              "point_sketch_local_cm": [
+                -1.5,
+                0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                -1.5,
+                0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.5,
+              "point_sketch_local_cm": [
+                0.0,
+                0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                0.0,
+                0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.75,
+              "point_sketch_local_cm": [
+                1.5,
+                0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                1.5,
+                0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 1.0,
+              "point_sketch_local_cm": [
+                3.0,
+                0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                3.0,
+                0.25,
+                0.0
+              ]
+            }
+          ],
+          "native_curve_primary_record_offset": 36023,
+          "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000008c0000000000000d03f0000000000000000000000000000184000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+          "native_feature_record_offset": 36379,
+          "stored_tool_operand_hex": "01a8020000000000000000",
+          "source_sketch_base_record_offset": 33697,
+          "source_sketch_collection_object_id": 9,
+          "native_transform_object_id": 292,
+          "native_transform_record_offset": 33890,
+          "stored_transform_payload_hex": "000001000103000000000000000000",
+          "canonical_placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 292,
+            "record_offset": 33890,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "source_component_object_id": 3,
+          "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+          "native_API_source_assignment": null,
+          "selected_asm_face_id": null,
+          "native_trim_cell_assignment": null,
+          "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+          "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+          "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+        },
+        "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+      },
+      "expected_source_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 672,
+            "native_source_evidence": {
+              "feature_object_id": 672,
+              "tool_selection_record_object_id": 680,
+              "source_kind": "SketchLine",
+              "selection": {
+                "selection_record_object_id": 680,
+                "descriptor_object_id": 683,
+                "terminal_object_id": 686,
+                "sketch_object_id": 291,
+                "curve_object_id": 320,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "source_endpoints": [
+                {
+                  "role": "start",
+                  "point_object_id": 316,
+                  "native_record_offset": 35485,
+                  "entity_tag": 110,
+                  "point_sketch_local_cm": [
+                    -3.0,
+                    0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "role": "end",
+                  "point_object_id": 318,
+                  "native_record_offset": 35754,
+                  "entity_tag": 111,
+                  "point_sketch_local_cm": [
+                    3.0,
+                    0.25,
+                    0.0
+                  ]
+                }
+              ],
+              "source_start_sketch_local_cm": [
+                -3.0,
+                0.25,
+                0.0
+              ],
+              "source_end_sketch_local_cm": [
+                3.0,
+                0.25,
+                0.0
+              ],
+              "natural_displacement_sketch_local_cm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "natural_displacement_component_cm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "natural_derived_samples": [
+                {
+                  "natural_segment_fraction": 0.0,
+                  "point_sketch_local_cm": [
+                    -3.0,
+                    0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    -3.0,
+                    0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.25,
+                  "point_sketch_local_cm": [
+                    -1.5,
+                    0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    -1.5,
+                    0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.5,
+                  "point_sketch_local_cm": [
+                    0.0,
+                    0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    0.0,
+                    0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.75,
+                  "point_sketch_local_cm": [
+                    1.5,
+                    0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    1.5,
+                    0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 1.0,
+                  "point_sketch_local_cm": [
+                    3.0,
+                    0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    3.0,
+                    0.25,
+                    0.0
+                  ]
+                }
+              ],
+              "native_curve_primary_record_offset": 36023,
+              "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000008c0000000000000d03f0000000000000000000000000000184000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+              "native_feature_record_offset": 36379,
+              "stored_tool_operand_hex": "01a8020000000000000000",
+              "source_sketch_base_record_offset": 33697,
+              "source_sketch_collection_object_id": 9,
+              "native_transform_object_id": 292,
+              "native_transform_record_offset": 33890,
+              "stored_transform_payload_hex": "000001000103000000000000000000",
+              "canonical_placement": {
+                "sketch_to_component_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "matrix_order": "row-major; column-vector multiplication",
+                "translation_units": "cm",
+                "encoding": "ImplicitIdentity",
+                "transform_object_id": 292,
+                "record_offset": 33890,
+                "scope": "Parent component; assembly occurrences unresolved"
+              },
+              "source_component_object_id": 3,
+              "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+              "native_API_source_assignment": null,
+              "selected_asm_face_id": null,
+              "native_trim_cell_assignment": null,
+              "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+              "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+              "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+            },
+            "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+      },
+      "actual_source_geometry_stages": [
+        {
+          "stage": "input_argument",
+          "actual_API_local_endpoints_cm": [
+            [
+              -3.0,
+              0.25,
+              0.0
+            ],
+            [
+              3.0,
+              0.25,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              -3.0,
+              0.25,
+              0.0
+            ],
+            [
+              3.0,
+              0.25,
+              0.0
+            ]
+          ]
+        },
+        {
+          "stage": "input_actual",
+          "actual_API_local_endpoints_cm": [
+            [
+              -3.0,
+              0.25,
+              0.0
+            ],
+            [
+              3.0,
+              0.25,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              -3.0,
+              0.25,
+              0.0
+            ],
+            [
+              3.0,
+              0.25,
+              0.0
+            ]
+          ]
+        },
+        {
+          "stage": "rolled_feature",
+          "actual_API_local_endpoints_cm": [
+            [
+              -3.0,
+              0.25,
+              0.0
+            ],
+            [
+              3.0,
+              0.25,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              -3.0,
+              0.25,
+              0.0
+            ],
+            [
+              3.0,
+              0.25,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "actual_requested": {
+        "trim_tool_argument_type": "SketchLine",
+        "remove_target_positive_y_half": true,
+        "targetBaseFeature_set": false,
+        "line_endpoints_cm": [
+          [
+            -3.0,
+            0.25,
+            0.0
+          ],
+          [
+            3.0,
+            0.25,
+            0.0
+          ]
+        ]
+      },
+      "actual_selected_input_cell_indices": [
+        0
+      ],
+      "native_trim_cell_assignment": null,
+      "actual_API_interior_evaluator_samples": null,
+      "derived_interior_sample_status": "Derived linear interpolation only; API truth records ordered local/component endpoints, not curve evaluator parameters or interior samples",
+      "executed_generator_sha256": "b0e7530fda80da9b961ff55271d5ec9487a665838ef5feb6dca4f4cfc283f2b3",
+      "entrypoint_provenance": {
+        "source_path": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceTrimLineContrasts.py",
+        "sha256": "c6250ed49ce80851f6eabee406a6a2c6b101b075f20ad1cdd7fae3c2994a00c0",
+        "executed_snapshot": "executed-entrypoint-source.txt",
+        "invocation": "Absolute runpy of GenerateSurfaceTrimToolContrasts.py; explicitly selected owned cases",
+        "selected_cases": [
+          "sketch_line_offset_positive",
+          "sketch_line_reversed_negative"
+        ]
+      },
+      "capture_status": "Complete"
+    },
+    {
+      "archive": "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d",
+      "feature_object_id": 672,
+      "expected_source_row": {
+        "feature_object_id": 672,
+        "native_source_evidence": {
+          "feature_object_id": 672,
+          "tool_selection_record_object_id": 680,
+          "source_kind": "SketchLine",
+          "selection": {
+            "selection_record_object_id": 680,
+            "descriptor_object_id": 683,
+            "terminal_object_id": 686,
+            "sketch_object_id": 291,
+            "curve_object_id": 320,
+            "curve_entity_tag": 112,
+            "kind": "Line",
+            "is_closed": false
+          },
+          "source_endpoints": [
+            {
+              "role": "start",
+              "point_object_id": 316,
+              "native_record_offset": 35501,
+              "entity_tag": 110,
+              "point_sketch_local_cm": [
+                3.0,
+                -0.25,
+                0.0
+              ]
+            },
+            {
+              "role": "end",
+              "point_object_id": 318,
+              "native_record_offset": 35770,
+              "entity_tag": 111,
+              "point_sketch_local_cm": [
+                -3.0,
+                -0.25,
+                0.0
+              ]
+            }
+          ],
+          "source_start_sketch_local_cm": [
+            3.0,
+            -0.25,
+            0.0
+          ],
+          "source_end_sketch_local_cm": [
+            -3.0,
+            -0.25,
+            0.0
+          ],
+          "natural_displacement_sketch_local_cm": [
+            -6.0,
+            0.0,
+            0.0
+          ],
+          "natural_displacement_component_cm": [
+            -6.0,
+            0.0,
+            0.0
+          ],
+          "natural_derived_samples": [
+            {
+              "natural_segment_fraction": 0.0,
+              "point_sketch_local_cm": [
+                3.0,
+                -0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                3.0,
+                -0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.25,
+              "point_sketch_local_cm": [
+                1.5,
+                -0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                1.5,
+                -0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.5,
+              "point_sketch_local_cm": [
+                0.0,
+                -0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                0.0,
+                -0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 0.75,
+              "point_sketch_local_cm": [
+                -1.5,
+                -0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                -1.5,
+                -0.25,
+                0.0
+              ]
+            },
+            {
+              "natural_segment_fraction": 1.0,
+              "point_sketch_local_cm": [
+                -3.0,
+                -0.25,
+                0.0
+              ],
+              "point_component_cm": [
+                -3.0,
+                -0.25,
+                0.0
+              ]
+            }
+          ],
+          "native_curve_primary_record_offset": 36039,
+          "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e74363400000000000000000000000000000840000000000000d0bf000000000000000000000000000018c000000000000000000000000000000000000000000000f0bf0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+          "native_feature_record_offset": 36395,
+          "stored_tool_operand_hex": "01a8020000000000000000",
+          "source_sketch_base_record_offset": 33709,
+          "source_sketch_collection_object_id": 9,
+          "native_transform_object_id": 292,
+          "native_transform_record_offset": 33906,
+          "stored_transform_payload_hex": "000001000103000000000000000000",
+          "canonical_placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 292,
+            "record_offset": 33906,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "source_component_object_id": 3,
+          "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+          "native_API_source_assignment": null,
+          "selected_asm_face_id": null,
+          "native_trim_cell_assignment": null,
+          "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+          "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+          "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+        },
+        "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+      },
+      "expected_source_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 672,
+            "native_source_evidence": {
+              "feature_object_id": 672,
+              "tool_selection_record_object_id": 680,
+              "source_kind": "SketchLine",
+              "selection": {
+                "selection_record_object_id": 680,
+                "descriptor_object_id": 683,
+                "terminal_object_id": 686,
+                "sketch_object_id": 291,
+                "curve_object_id": 320,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "source_endpoints": [
+                {
+                  "role": "start",
+                  "point_object_id": 316,
+                  "native_record_offset": 35501,
+                  "entity_tag": 110,
+                  "point_sketch_local_cm": [
+                    3.0,
+                    -0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "role": "end",
+                  "point_object_id": 318,
+                  "native_record_offset": 35770,
+                  "entity_tag": 111,
+                  "point_sketch_local_cm": [
+                    -3.0,
+                    -0.25,
+                    0.0
+                  ]
+                }
+              ],
+              "source_start_sketch_local_cm": [
+                3.0,
+                -0.25,
+                0.0
+              ],
+              "source_end_sketch_local_cm": [
+                -3.0,
+                -0.25,
+                0.0
+              ],
+              "natural_displacement_sketch_local_cm": [
+                -6.0,
+                0.0,
+                0.0
+              ],
+              "natural_displacement_component_cm": [
+                -6.0,
+                0.0,
+                0.0
+              ],
+              "natural_derived_samples": [
+                {
+                  "natural_segment_fraction": 0.0,
+                  "point_sketch_local_cm": [
+                    3.0,
+                    -0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    3.0,
+                    -0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.25,
+                  "point_sketch_local_cm": [
+                    1.5,
+                    -0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    1.5,
+                    -0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.5,
+                  "point_sketch_local_cm": [
+                    0.0,
+                    -0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    0.0,
+                    -0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 0.75,
+                  "point_sketch_local_cm": [
+                    -1.5,
+                    -0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    -1.5,
+                    -0.25,
+                    0.0
+                  ]
+                },
+                {
+                  "natural_segment_fraction": 1.0,
+                  "point_sketch_local_cm": [
+                    -3.0,
+                    -0.25,
+                    0.0
+                  ],
+                  "point_component_cm": [
+                    -3.0,
+                    -0.25,
+                    0.0
+                  ]
+                }
+              ],
+              "native_curve_primary_record_offset": 36039,
+              "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e74363400000000000000000000000000000840000000000000d0bf000000000000000000000000000018c000000000000000000000000000000000000000000000f0bf0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+              "native_feature_record_offset": 36395,
+              "stored_tool_operand_hex": "01a8020000000000000000",
+              "source_sketch_base_record_offset": 33709,
+              "source_sketch_collection_object_id": 9,
+              "native_transform_object_id": 292,
+              "native_transform_record_offset": 33906,
+              "stored_transform_payload_hex": "000001000103000000000000000000",
+              "canonical_placement": {
+                "sketch_to_component_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "matrix_order": "row-major; column-vector multiplication",
+                "translation_units": "cm",
+                "encoding": "ImplicitIdentity",
+                "transform_object_id": 292,
+                "record_offset": 33906,
+                "scope": "Parent component; assembly occurrences unresolved"
+              },
+              "source_component_object_id": 3,
+              "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+              "native_API_source_assignment": null,
+              "selected_asm_face_id": null,
+              "native_trim_cell_assignment": null,
+              "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+              "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+              "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+            },
+            "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+      },
+      "actual_source_geometry_stages": [
+        {
+          "stage": "input_argument",
+          "actual_API_local_endpoints_cm": [
+            [
+              3.0,
+              -0.25,
+              0.0
+            ],
+            [
+              -3.0,
+              -0.25,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              3.0,
+              -0.25,
+              0.0
+            ],
+            [
+              -3.0,
+              -0.25,
+              0.0
+            ]
+          ]
+        },
+        {
+          "stage": "input_actual",
+          "actual_API_local_endpoints_cm": [
+            [
+              3.0,
+              -0.25,
+              0.0
+            ],
+            [
+              -3.0,
+              -0.25,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              3.0,
+              -0.25,
+              0.0
+            ],
+            [
+              -3.0,
+              -0.25,
+              0.0
+            ]
+          ]
+        },
+        {
+          "stage": "rolled_feature",
+          "actual_API_local_endpoints_cm": [
+            [
+              3.0,
+              -0.25,
+              0.0
+            ],
+            [
+              -3.0,
+              -0.25,
+              0.0
+            ]
+          ],
+          "actual_API_component_endpoints_cm": [
+            [
+              3.0,
+              -0.25,
+              0.0
+            ],
+            [
+              -3.0,
+              -0.25,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "actual_requested": {
+        "trim_tool_argument_type": "SketchLine",
+        "remove_target_positive_y_half": true,
+        "targetBaseFeature_set": false,
+        "line_endpoints_cm": [
+          [
+            3.0,
+            -0.25,
+            0.0
+          ],
+          [
+            -3.0,
+            -0.25,
+            0.0
+          ]
+        ]
+      },
+      "actual_selected_input_cell_indices": [
+        1
+      ],
+      "native_trim_cell_assignment": null,
+      "actual_API_interior_evaluator_samples": null,
+      "derived_interior_sample_status": "Derived linear interpolation only; API truth records ordered local/component endpoints, not curve evaluator parameters or interior samples",
+      "executed_generator_sha256": "b0e7530fda80da9b961ff55271d5ec9487a665838ef5feb6dca4f4cfc283f2b3",
+      "entrypoint_provenance": {
+        "source_path": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceTrimLineContrasts.py",
+        "sha256": "c6250ed49ce80851f6eabee406a6a2c6b101b075f20ad1cdd7fae3c2994a00c0",
+        "executed_snapshot": "executed-entrypoint-source.txt",
+        "invocation": "Absolute runpy of GenerateSurfaceTrimToolContrasts.py; explicitly selected owned cases",
+        "selected_cases": [
+          "sketch_line_offset_positive",
+          "sketch_line_reversed_negative"
+        ]
+      },
+      "capture_status": "Complete"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "surfacetrimtools-c507461585b5/sheet_face.f3d",
+      "old_face_body_full_tool_exact": true,
+      "line_family_no_false_match": true
+    },
+    {
+      "archive": "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d",
+      "old_face_body_full_tool_exact": true,
+      "line_family_no_false_match": true
+    }
+  ],
+  "checks": [
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d actual completed batch/errors empty",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d executed source snapshot matches hash",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d executed entrypoint hash",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d owned export and close succeed/hash exact",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d before-node wrapper release and latercompute recorded",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d one source-qualified common Trim",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d owned common/source IDs agree",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_argument actual SketchLine",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_argument canonical local endpoint order agrees",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_argument component endpoint order independently agrees",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_argument canonical matrix corroborates APIbasis",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_actual actual SketchLine",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_actual canonical local endpoint order agrees",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_actual component endpoint order independently agrees",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d input_actual canonical matrix corroborates APIbasis",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d rolled_feature actual SketchLine",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d rolled_feature canonical local endpoint order agrees",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d rolled_feature component endpoint order independently agrees",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d rolled_feature canonical matrix corroborates APIbasis",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d native source/endpoints fixed by tags before geometry",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d cellside/APIidentity remain unknown",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d callback no feature mutation",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d actual completed batch/errors empty",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d executed source snapshot matches hash",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d executed entrypoint hash",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d owned export and close succeed/hash exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d before-node wrapper release and latercompute recorded",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d one source-qualified common Trim",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d owned common/source IDs agree",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_argument actual SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_argument canonical local endpoint order agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_argument component endpoint order independently agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_argument canonical matrix corroborates APIbasis",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_actual actual SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_actual canonical local endpoint order agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_actual component endpoint order independently agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d input_actual canonical matrix corroborates APIbasis",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d rolled_feature actual SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d rolled_feature canonical local endpoint order agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d rolled_feature component endpoint order independently agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d rolled_feature canonical matrix corroborates APIbasis",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d native source/endpoints fixed by tags before geometry",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d cellside/APIidentity remain unknown",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d callback no feature mutation",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d actual completed batch/errors empty",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d executed source snapshot matches hash",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d executed entrypoint hash",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d owned export and close succeed/hash exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d before-node wrapper release and latercompute recorded",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d one source-qualified common Trim",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d owned common/source IDs agree",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_argument actual SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_argument canonical local endpoint order agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_argument component endpoint order independently agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_argument canonical matrix corroborates APIbasis",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_actual actual SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_actual canonical local endpoint order agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_actual component endpoint order independently agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d input_actual canonical matrix corroborates APIbasis",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d rolled_feature actual SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d rolled_feature canonical local endpoint order agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d rolled_feature component endpoint order independently agrees",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d rolled_feature canonical matrix corroborates APIbasis",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d native source/endpoints fixed by tags before geometry",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d cellside/APIidentity remain unknown",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d callback no feature mutation",
+    "surfacetrimtools-c507461585b5/sheet_face.f3d old FaceBody fulltool exact",
+    "surfacetrimtools-c507461585b5/sheet_face.f3d Line wrapper no falsematch",
+    "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d old FaceBody fulltool exact",
+    "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d Line wrapper no falsematch",
+    "Reject target proxy substituted as Line source",
+    "Reject source proxy owner mismatch",
+    "Reject native source tag mismatch",
+    "Reject native endpoint source aliased to opposite point",
+    "Reject endpoint other-Sketch ownership",
+    "Reject canonical frame differing from stored transform",
+    "Reject transform component reference alias"
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject target proxy substituted as Line source",
+      "reason": "SurfaceTrim Line source operand differs from native feature field"
+    },
+    {
+      "guard": "Reject source proxy owner mismatch",
+      "reason": "SurfaceTrim Line owned singleton proxy differs"
+    },
+    {
+      "guard": "Reject native source tag mismatch",
+      "reason": "Sketch/curve tag missing, unsupported or ambiguous"
+    },
+    {
+      "guard": "Reject native endpoint source aliased to opposite point",
+      "reason": "SurfaceTrim Line native primary/endpoints/owner framing differs"
+    },
+    {
+      "guard": "Reject endpoint other-Sketch ownership",
+      "reason": "SurfaceTrim Line typed endpoint/cache/Sketch ownership differs"
+    },
+    {
+      "guard": "Reject canonical frame differing from stored transform",
+      "reason": "SurfaceTrim Line implicit transform framing differs"
+    },
+    {
+      "guard": "Reject transform component reference alias",
+      "reason": "SurfaceTrim Line typed identity missing/ambiguous/wrong class"
+    }
+  ],
+  "source_sha256": {
+    "decode_surface_trim_line_sources.py": "793be0a321d0da958a45a1ecd4bba0c9f684c9f52f0dd86393b75a6689029307",
+    "validate_surface_trim_line_sources.py": "c6693e3af1a8488ccd95b29095dccf54a85ad22e96337aa12a5a2b4746d9d718",
+    "decode_surface_trim_lines.py": "074edd7ec024dfb9f771e28d5ea16b300b35ac2222326995b83f2ca047a5b66f",
+    "decode_surface_tools.py": "93094acafaa29f85256c0f6a7e2f1efa63f9c3d8c344a9acb104c5259735f73f",
+    "decode_selection.py": "241b08558add4bd028dfb151a594c7e1a44211d0fccd3d75ba6f65aac14f59cd",
+    "decode_sketch.py": "6190194bfd1e5a39388f48ceecea5eb5f20ccc83f745d11b56b7829f58dcee5c",
+    "decode_placement.py": "e7ec273791462faade3eaa6f60ee301f57ffe3dc75dff6ba60d8d487da5b6743",
+    "decode_assembly.py": "aa12c1822e5b4c5fed868738b1e8af487e3a3a61ffffdf492a2dd478c587db34"
+  },
+  "limitations": [
+    "Production output identifies the selected native source line and component frame only; no selected-cell/side or persistent face identity",
+    "API endpoint geometry numerically corroborates source after explicit native tag/ownership joins; entityToken/temporaryIDs never choose native identity",
+    "Interior samples are derived segment fractions, not serialized Trim intervals or independently measured API evaluator samples",
+    "No resultBODY/ASM changes, live Fusion calls, UI, solver or regeneration"
+  ]
+}

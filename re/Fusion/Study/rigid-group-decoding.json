@@ -1,0 +1,2079 @@
+{
+  "scope": "Three actual native type11 RigidGroups: root membership plus explicit two-level nested membership; independent API contrasts and stored matrix copies, no solved assembly state",
+  "interface": "decode_rigid_groups(data, records, assembly, features) -> decoded/unresolved/scope/placement_limitation",
+  "shared_factory": "make_asbuilt_context_readers(data, records, assembly, *, allow_nested=False); mode2 requires explicit opt-in and typed parent/child collection proof",
+  "provenance": {
+    "capture_directory": "rigidgroups-0784a68632cd",
+    "ground_truth_sha256": "abfa2d9cc99d9d98c26d121e9d9836b23375b180d390d7645ec9f7f321ec7e2a",
+    "journal_sha256": "66d3c66cdca38a8a9ec1c707c6c00f508a76e47ed91a7f14fffae44d5998dc2b",
+    "actual_executed_generator_sha256": "2ba18c7f04063704e6078876603980d57e57e21e9e0de90f7e511c11a74fed16",
+    "executed_source_snapshot_verified": true,
+    "source_sha256": {
+      "GenerateRigidGroupContrasts.py": "2ba18c7f04063704e6078876603980d57e57e21e9e0de90f7e511c11a74fed16",
+      "decode_rigid_groups.py": "ed1ade25ff8bdcdb4862f74fc4113b1628ff98faad0a00f8b597af917cd689f0",
+      "validate_rigid_groups.py": "68341811e4d92400ab557f08851e9284c851f9141da877b01f93ab1065fc3bec",
+      "decode_asbuilt_joints.py": "b8b5ad3e7f2ab4414c8561f3fd88dccb55513e0f5a5c3d5d46cdaab61f9f0c2f",
+      "decode_assembly.py": "aa12c1822e5b4c5fed868738b1e8af487e3a3a61ffffdf492a2dd478c587db34",
+      "decode_dependencies.py": "ef10c19427f61e7a69c001276dfee3f056e0ab0a39ff6ab3ca62f5311d2c59e7"
+    }
+  },
+  "integration": "Publish rigid_groups separately; qualify successful feature_object_id as RigidGroup and matching object_id as native group JOINT. Preserve old strict AsBuilt diagnostics and all solved-placement warnings. No new feature GUID is inferred: actual AA8B As-built feature +7F5A common JOINT type11 establishes the subtype.",
+  "samples": [
+    {
+      "file": "rigidgroups-0784a68632cd/root_active.f3d",
+      "archive_sha256": "acdafcd39d58f897c7bb860091e34c3990ac575c1c293a183e9caed0fa74b5a8",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 571,
+            "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+            "object_id": 570,
+            "name": "ProbeRigidGroupRootActive",
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "component_scope_object_id": 33,
+            "stored_constraint_type_code": 11,
+            "occurrence_count": 2,
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              2,
+              2
+            ],
+            "ordered_occurrence_contexts": [
+              {
+                "object_id": 572,
+                "frame_link_object_id": 264,
+                "route_wrapper_object_id": 574,
+                "route_object_id": 573,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "80e85f8f-bcf0-40e0-8f69-40cb3b580c80",
+                "context_namespace_text": "cd7a4669-adba-46f1-82e1-252b55be4136",
+                "context_entity_guid_text": "5cdfe66c-6bc2-4f48-9e49-30a0c61ba241",
+                "terminal_namespace_text": "cd7a4669-adba-46f1-82e1-252b55be4136",
+                "terminal_entity_guid_text": "364cfbdf-051e-4dbd-ad8b-dc2159469994",
+                "native_occurrence_object_id": 253,
+                "component_object_id": 202,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 575,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 577,
+                "route_object_id": 576,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "cc085973-e505-4f4c-9e67-8f343c0f0fce",
+                "context_namespace_text": "cd7a4669-adba-46f1-82e1-252b55be4136",
+                "context_entity_guid_text": "e8f16d48-0377-4284-9b18-458f14f375df",
+                "terminal_namespace_text": "cd7a4669-adba-46f1-82e1-252b55be4136",
+                "terminal_entity_guid_text": "364cfbdf-051e-4dbd-ad8b-dc2159469994",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              }
+            ],
+            "root_context": {
+              "object_id": 578,
+              "frame_link_object_id": 55,
+              "route_wrapper_object_id": 580,
+              "route_object_id": 579,
+              "stored_route_mode": 0,
+              "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+              "context_namespace_text": null,
+              "context_entity_guid_text": null,
+              "terminal_namespace_text": "cd7a4669-adba-46f1-82e1-252b55be4136",
+              "terminal_entity_guid_text": "364cfbdf-051e-4dbd-ad8b-dc2159469994",
+              "native_occurrence_object_id": 57,
+              "component_object_id": 3,
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_footer_mode": 0,
+              "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+            },
+            "stored_relative_matrices": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                1.0,
+                0.0,
+                -3.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "stored_matrix_trailers_hex": [
+              "00000000030100000001000000010200000000000000000101000000010300000000000000000001"
+            ],
+            "stored_terminal_matrix_table_hex": "000000000301000000020000000102000000000000000001010000000103000000000000000000",
+            "stored_terminal_matrix_table_count": 1,
+            "stored_terminal_matrix_table_values": [
+              2
+            ],
+            "matrix_scope": "Exact copied group/context matrices; terminal table literals retained without claiming historical state, solved placement or general basis semantics",
+            "include_children": null,
+            "include_children_status": "Expanded membership is explicit; add includeChildren request has no public getter and its native control encoding is not identified",
+            "is_suppressed": null,
+            "suppression_status": "Requested True capture still returns actualFalse; no true/false native suppression contrast established",
+            "opaque_feature_state_footer_hex": "0000000000000001470200000000000000000138000000000000000000ffffffff010100000024456458c52b3f01010000014602000000000000000001000001450200000000000000000000",
+            "scope": "Observed native type11 RigidGroup expanded occurrence membership, typed parent/child routes and copied relative matrix caches; includeChildren/suppression encoding and assembly solve unresolved",
+            "placement_limitation": "Stored occurrence/group context matrices are not joint-solved world placements; no kinematic solve applied"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed native type11 RigidGroup expanded occurrence membership, typed parent/child routes and copied relative matrix caches; includeChildren/suppression encoding and assembly solve unresolved",
+        "placement_limitation": "Stored occurrence/group context matrices are not joint-solved world placements; no kinematic solve applied"
+      },
+      "actual_requested_include_children": false,
+      "actual_include_children_getter": null,
+      "actual_selected_occurrences": [
+        {
+          "name": "RigidGroupFirst:1",
+          "full_path_name": "RigidGroupFirst:1",
+          "component_name": "RigidGroupFirst",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CQQxb5RoqFCl3n4uSkuY3+AE+uYvECpTswwIUbMAQjMAGRNAju7AsyzYWKq3UgonaJFX9OVyel/V8u6/v6+tw3B4nzkQrCyfJw0YA9jqBhg3YhxgMb7UrsapStmRScEoPCTAPBMKJIMGaym2xLuiC/7e6j5jMDmzegIIEdJLCgjs6V9sbfb9/AJUsDObHAAAA",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CQQxb5RoqFCl3n4uSkuY3+AE+uYvECpTswwIUbMAQjMAGRNAju7AsyzYWKq3UgonaJFX9OVyel/V8u6/v6+tw3B4nzkQrCyfJw0YA9jqBhg3YhxgMb7UrsapStmRScEoPCTAPBMKJIMGaym2xLuiC/7e6j5jMDmzegIIEdJLCgjs6V9sbfb9/AJUsDObHAAAA",
+          "native_object_transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "RigidGroupFirstBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFV0lDhSw5iWM5Jc1tcAOcnVhiBUr2YQEKNmAIRmADfNAjf0tP1pe/jUkSRuVUor9UJCgn2iecnpflfLsv7+vrcFwfJw5HSZVDZK7DAVueQEMHbEMUhpXcOnHvnWJLOAWnNBcHNUcgnAji3INMqzZBE/yf1Wz4ZDZgtQLkJNAndai4oXHWrdDv9v2XWuUDRtHhBtUAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "RigidGroupSecond:1",
+          "full_path_name": "RigidGroupSecond:1",
+          "component_name": "RigidGroupSecond",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMQxcJQ0VsuQkdmKXNL8BA5A4lliBkn1YgIINGIIR2AAjeuQrTnenO2OiVFJOGJeLBMs/paXnZTvf7tv7+trtj49Di0RJtQVo+jAH5LyAbBicTAbYLJmVmqpStERyThTWXmExMpDTBF2tg3ilOtHR5/q/tcRzMxLA2jtQEQIdWYA4DPLa2fz7+wfBxV/pxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMQxcJQ0VsuQkdmKXNL8BA5A4lliBkn1YgIINGIIR2AAjeuQrTnenO2OiVFJOGJeLBMs/paXnZTvf7tv7+trtj49Di0RJtQVo+jAH5LyAbBicTAbYLJmVmqpStERyThTWXmExMpDTBF2tg3ilOtHR5/q/tcRzMxLA2jtQEQIdWYA4DPLa2fz7+wfBxV/pxwAAAA==",
+          "native_object_transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "RigidGroupSecondBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PwQ0CQQhsZT++DAm7C7vw9HMdWIDHLokt+LQfG/BhBxZhCXYgdwUYhmTCTAbAJAmjcirROysSLCfaJi29b8v18Vy+98/heH6dWjhKqi1A5utwQM4TaKwDLkNWGFYyKzVVpUgJpxkKa68wGRnIyUBn6yBeqRo6us3/u6Z4boMEsPYOVIRA1yxAHAJ57Tx8v337hQR/SmWfodUAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_group_initial": {
+        "name": "ProbeRigidGroupRootActive",
+        "entity_type": "adsk::fusion::RigidGroup",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtkqt8y1u9w+Nj1U1Q7d52gGVGGkYGwGRCbJaUkpaboGpoapuiYpSSm6iSkWSbopyUaGppYmZpaWliZgtUAzGNAA2D4DBbB1IOtNzQ0AdycAkYgAAAA=",
+        "parent_component_name": "(Unsaved)",
+        "is_suppressed": false,
+        "timeline_index": 6,
+        "occurrences": [
+          {
+            "name": "RigidGroupFirst:1",
+            "full_path_name": "RigidGroupFirst:1",
+            "component_name": "RigidGroupFirst",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CQQxb5RoqFCl3n4uSkuY3+AE+uYvECpTswwIUbMAQjMAGRNAju7AsyzYWKq3UgonaJFX9OVyel/V8u6/v6+tw3B4nzkQrCyfJw0YA9jqBhg3YhxgMb7UrsapStmRScEoPCTAPBMKJIMGaym2xLuiC/7e6j5jMDmzegIIEdJLCgjs6V9sbfb9/AJUsDObHAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CQQxb5RoqFCl3n4uSkuY3+AE+uYvECpTswwIUbMAQjMAGRNAju7AsyzYWKq3UgonaJFX9OVyel/V8u6/v6+tw3B4nzkQrCyfJw0YA9jqBhg3YhxgMb7UrsapStmRScEoPCTAPBMKJIMGaym2xLuiC/7e6j5jMDmzegIIEdJLCgjs6V9sbfb9/AJUsDObHAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupFirstBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFV0lDhSw5iWM5Jc1tcAOcnVhiBUr2YQEKNmAIRmADfNAjf0tP1pe/jUkSRuVUor9UJCgn2iecnpflfLsv7+vrcFwfJw5HSZVDZK7DAVueQEMHbEMUhpXcOnHvnWJLOAWnNBcHNUcgnAji3INMqzZBE/yf1Wz4ZDZgtQLkJNAndai4oXHWrdDv9v2XWuUDRtHhBtUAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "RigidGroupSecond:1",
+            "full_path_name": "RigidGroupSecond:1",
+            "component_name": "RigidGroupSecond",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMQxcJQ0VsuQkdmKXNL8BA5A4lliBkn1YgIINGIIR2AAjeuQrTnenO2OiVFJOGJeLBMs/paXnZTvf7tv7+trtj49Di0RJtQVo+jAH5LyAbBicTAbYLJmVmqpStERyThTWXmExMpDTBF2tg3ilOtHR5/q/tcRzMxLA2jtQEQIdWYA4DPLa2fz7+wfBxV/pxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMQxcJQ0VsuQkdmKXNL8BA5A4lliBkn1YgIINGIIR2AAjeuQrTnenO2OiVFJOGJeLBMs/paXnZTvf7tv7+trtj49Di0RJtQVo+jAH5LyAbBicTAbYLJmVmqpStERyThTWXmExMpDTBF2tg3ilOtHR5/q/tcRzMxLA2jtQEQIdWYA4DPLa2fz7+wfBxV/pxwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupSecondBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PwQ0CQQhsZT++DAm7C7vw9HMdWIDHLokt+LQfG/BhBxZhCXYgdwUYhmTCTAbAJAmjcirROysSLCfaJi29b8v18Vy+98/heH6dWjhKqi1A5utwQM4TaKwDLkNWGFYyKzVVpUgJpxkKa68wGRnIyUBn6yBeqRo6us3/u6Z4boMEsPYOVIRA1yxAHAJ57Tx8v337hQR/SmWfodUAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    4.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    5.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "occurrence_count": 2,
+        "actual_include_children": null,
+        "include_children_status": "Unavailable getter; requested add argument retained separately"
+      },
+      "actual_group_final": {
+        "name": "ProbeRigidGroupRootActive",
+        "entity_type": "adsk::fusion::RigidGroup",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtkqt8y1u9w+Nj1U1Q7d52gGVGGkYGwGRCbJaUkpaboGpoapuiYpSSm6iSkWSbopyUaGppYmZpaWliZgtUAzGNAA2D4DBbB1IOtNzQ0AdycAkYgAAAA=",
+        "parent_component_name": "(Unsaved)",
+        "is_suppressed": false,
+        "timeline_index": 6,
+        "occurrences": [
+          {
+            "name": "RigidGroupFirst:1",
+            "full_path_name": "RigidGroupFirst:1",
+            "component_name": "RigidGroupFirst",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CQQxb5RoqFCl3n4uSkuY3+AE+uYvECpTswwIUbMAQjMAGRNAju7AsyzYWKq3UgonaJFX9OVyel/V8u6/v6+tw3B4nzkQrCyfJw0YA9jqBhg3YhxgMb7UrsapStmRScEoPCTAPBMKJIMGaym2xLuiC/7e6j5jMDmzegIIEdJLCgjs6V9sbfb9/AJUsDObHAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CQQxb5RoqFCl3n4uSkuY3+AE+uYvECpTswwIUbMAQjMAGRNAju7AsyzYWKq3UgonaJFX9OVyel/V8u6/v6+tw3B4nzkQrCyfJw0YA9jqBhg3YhxgMb7UrsapStmRScEoPCTAPBMKJIMGaym2xLuiC/7e6j5jMDmzegIIEdJLCgjs6V9sbfb9/AJUsDObHAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupFirstBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFV0lDhSw5iWM5Jc1tcAOcnVhiBUr2YQEKNmAIRmADfNAjf0tP1pe/jUkSRuVUor9UJCgn2iecnpflfLsv7+vrcFwfJw5HSZVDZK7DAVueQEMHbEMUhpXcOnHvnWJLOAWnNBcHNUcgnAji3INMqzZBE/yf1Wz4ZDZgtQLkJNAndai4oXHWrdDv9v2XWuUDRtHhBtUAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "RigidGroupSecond:1",
+            "full_path_name": "RigidGroupSecond:1",
+            "component_name": "RigidGroupSecond",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMQxcJQ0VsuQkdmKXNL8BA5A4lliBkn1YgIINGIIR2AAjeuQrTnenO2OiVFJOGJeLBMs/paXnZTvf7tv7+trtj49Di0RJtQVo+jAH5LyAbBicTAbYLJmVmqpStERyThTWXmExMpDTBF2tg3ilOtHR5/q/tcRzMxLA2jtQEQIdWYA4DPLa2fz7+wfBxV/pxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMQxcJQ0VsuQkdmKXNL8BA5A4lliBkn1YgIINGIIR2AAjeuQrTnenO2OiVFJOGJeLBMs/paXnZTvf7tv7+trtj49Di0RJtQVo+jAH5LyAbBicTAbYLJmVmqpStERyThTWXmExMpDTBF2tg3ilOtHR5/q/tcRzMxLA2jtQEQIdWYA4DPLa2fz7+wfBxV/pxwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupSecondBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PwQ0CQQhsZT++DAm7C7vw9HMdWIDHLokt+LQfG/BhBxZhCXYgdwUYhmTCTAbAJAmjcirROysSLCfaJi29b8v18Vy+98/heH6dWjhKqi1A5utwQM4TaKwDLkNWGFYyKzVVpUgJpxkKa68wGRnIyUBn6yBeqRo6us3/u6Z4boMEsPYOVIRA1yxAHAJ57Tx8v337hQR/SmWfodUAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    4.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    5.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "occurrence_count": 2,
+        "actual_include_children": null,
+        "include_children_status": "Unavailable getter; requested add argument retained separately"
+      },
+      "actual_getter_errors": [],
+      "actual_health_state": 0,
+      "actual_warning": "",
+      "exact_native_order_matches_actual_returned_members": true,
+      "before_immediate_after_final_placements_unchanged": true,
+      "stored_relative_matrix_context_copies_exact": true,
+      "decoder_input_unchanged": true,
+      "retained_strict_AsBuilt_diagnostics": [
+        {
+          "feature_object_id": 571,
+          "class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+          "reason": "Unobserved native joint motion type/trailer"
+        }
+      ]
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+      "archive_sha256": "2d17ccd91198c62b8d286062516c98b5816a4ba2ae1dca5e72385a70dc622c4a",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 571,
+            "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+            "object_id": 570,
+            "name": "ProbeRigidGroupRootSuppressed",
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "component_scope_object_id": 33,
+            "stored_constraint_type_code": 11,
+            "occurrence_count": 2,
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              2,
+              2
+            ],
+            "ordered_occurrence_contexts": [
+              {
+                "object_id": 572,
+                "frame_link_object_id": 264,
+                "route_wrapper_object_id": 574,
+                "route_object_id": 573,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "cabfba2b-d863-4f63-a080-3282b5fc2b07",
+                "context_namespace_text": "1e066280-a3c2-4c9c-9110-a7bbfcfaf1f6",
+                "context_entity_guid_text": "b7aa70d5-75cc-40e3-a1e2-9bf9f08919de",
+                "terminal_namespace_text": "1e066280-a3c2-4c9c-9110-a7bbfcfaf1f6",
+                "terminal_entity_guid_text": "8b34c8cf-3417-48b0-b146-c4cae1d3255e",
+                "native_occurrence_object_id": 253,
+                "component_object_id": 202,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 575,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 577,
+                "route_object_id": 576,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "fcb04f4e-593d-4fad-ad31-eb1d968487d9",
+                "context_namespace_text": "1e066280-a3c2-4c9c-9110-a7bbfcfaf1f6",
+                "context_entity_guid_text": "20caad96-4483-4da3-b6ad-a68536cf7f03",
+                "terminal_namespace_text": "1e066280-a3c2-4c9c-9110-a7bbfcfaf1f6",
+                "terminal_entity_guid_text": "8b34c8cf-3417-48b0-b146-c4cae1d3255e",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              }
+            ],
+            "root_context": {
+              "object_id": 578,
+              "frame_link_object_id": 55,
+              "route_wrapper_object_id": 580,
+              "route_object_id": 579,
+              "stored_route_mode": 0,
+              "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+              "context_namespace_text": null,
+              "context_entity_guid_text": null,
+              "terminal_namespace_text": "1e066280-a3c2-4c9c-9110-a7bbfcfaf1f6",
+              "terminal_entity_guid_text": "8b34c8cf-3417-48b0-b146-c4cae1d3255e",
+              "native_occurrence_object_id": 57,
+              "component_object_id": 3,
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_footer_mode": 0,
+              "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+            },
+            "stored_relative_matrices": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                1.0,
+                0.0,
+                -3.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "stored_matrix_trailers_hex": [
+              "00000000030100000001000000010200000000000000000101000000010300000000000000000001"
+            ],
+            "stored_terminal_matrix_table_hex": "000000000301000000020000000102000000000000000001010000000103000000000000000000",
+            "stored_terminal_matrix_table_count": 1,
+            "stored_terminal_matrix_table_values": [
+              2
+            ],
+            "matrix_scope": "Exact copied group/context matrices; terminal table literals retained without claiming historical state, solved placement or general basis semantics",
+            "include_children": null,
+            "include_children_status": "Expanded membership is explicit; add includeChildren request has no public getter and its native control encoding is not identified",
+            "is_suppressed": null,
+            "suppression_status": "Requested True capture still returns actualFalse; no true/false native suppression contrast established",
+            "opaque_feature_state_footer_hex": "0000000000000001470200000000000000000138000000000000000000ffffffff0101000020405a575d6b253f01010000014602000000000000000001000001450200000000000000000000",
+            "scope": "Observed native type11 RigidGroup expanded occurrence membership, typed parent/child routes and copied relative matrix caches; includeChildren/suppression encoding and assembly solve unresolved",
+            "placement_limitation": "Stored occurrence/group context matrices are not joint-solved world placements; no kinematic solve applied"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed native type11 RigidGroup expanded occurrence membership, typed parent/child routes and copied relative matrix caches; includeChildren/suppression encoding and assembly solve unresolved",
+        "placement_limitation": "Stored occurrence/group context matrices are not joint-solved world placements; no kinematic solve applied"
+      },
+      "actual_requested_include_children": false,
+      "actual_include_children_getter": null,
+      "actual_selected_occurrences": [
+        {
+          "name": "RigidGroupFirst:1",
+          "full_path_name": "RigidGroupFirst:1",
+          "component_name": "RigidGroupFirst",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMRDrqJkAZYGT7i6X5LLDL5G7JHOwAj0dBUPQsRENBaIgiB5ZsizLso1BAgcKuECsS9HPyeGws+Plvp1P++vt/Xo8V4JDzEEtiqtPiEIFRA3BSDK4eBvUI6c0VstKerNpjQ265ggyFzVUhMjKlqazYfm/ZaW1gj1BSe4gOFYDDYZqs07USrWP7/cP3orqFMcAAAA=",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMRDrqJkAZYGT7i6X5LLDL5G7JHOwAj0dBUPQsRENBaIgiB5ZsizLso1BAgcKuECsS9HPyeGws+Plvp1P++vt/Xo8V4JDzEEtiqtPiEIFRA3BSDK4eBvUI6c0VstKerNpjQ265ggyFzVUhMjKlqazYfm/ZaW1gj1BSe4gOFYDDYZqs07USrWP7/cP3orqFMcAAAA=",
+          "native_object_transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "RigidGroupFirstBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQzsqJkAZQFLju0kzg4sETvJHKxAT0fBEHRsREOBKMgzALLudLJOdzYGDbgmBlr4KdKlYpBtk8NhZ6fr43g572/3z/v5Wg4KnIMai6tPYIkFRA3BomRw8TZiZ0pprJTl9GbTGhl0zQwyFzVUBCYlS9PJsPzvstJawZ6gJHcQHCshDoJqs07UGmsfv9u3X5j1CwsShKTVAAAA",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "RigidGroupSecond:1",
+          "full_path_name": "RigidGroupSecond:1",
+          "component_name": "RigidGroupSecond",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEO2omQFnAUhw7/v47sERsJ3OwAj0dBUPQsRENBaIgX/TomtPp6e5y4lQSpjyFRafDXyLpsLPT9XG8nPe3++f9fE2iJJKkRuzqA4hxAVbLYMgCzt46BpVa+2yZ5HDLPLhDXSmARwtoQQjdMFZR1iXW/1sle2uTBWYl4GgEJluNaCXxsYxM2/cv+SdRXMcAAAA=",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEO2omQFnAUhw7/v47sERsJ3OwAj0dBUPQsRENBaIgX/TomtPp6e5y4lQSpjyFRafDXyLpsLPT9XG8nPe3++f9fE2iJJKkRuzqA4hxAVbLYMgCzt46BpVa+2yZ5HDLPLhDXSmARwtoQQjdMFZR1iXW/1sle2uTBWYl4GgEJluNaCXxsYxM2/cv+SdRXMcAAAA=",
+          "native_object_transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "RigidGroupSecondBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEO2omQF7AUhJf8vx2YIk4P3OwAj0dBUPQsRENBaLAjwGQZelkfbo7B1IKPpGS708ldRUJ26XQYWen6+N4Oe9v98/7+XIikRRSEzRtkwVxYagFtojCDa2O2CXlPNzFydksYGJwXqUzZu1cu0QeFvtaFLr09X9WCq1WZxlQYfQqbGWzKZqltLnMIL/u2y/Q8AWofKWB1QAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_group_initial": {
+        "name": "ProbeRigidGroupRootSuppressed",
+        "entity_type": "adsk::fusion::RigidGroup",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghxbUsPiQz5zJgos3/3n18dvQBVGCsZmChZJxibJFslpusYmhua6JhZJBrpJhiZmuskmyYmphinGRqamqWC1QDMY0ADYPgMFsHUg603NDQAOpqlbiAAAAA==",
+        "parent_component_name": "(Unsaved)",
+        "is_suppressed": false,
+        "timeline_index": 6,
+        "occurrences": [
+          {
+            "name": "RigidGroupFirst:1",
+            "full_path_name": "RigidGroupFirst:1",
+            "component_name": "RigidGroupFirst",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMRDrqJkAZYGT7i6X5LLDL5G7JHOwAj0dBUPQsRENBaIgiB5ZsizLso1BAgcKuECsS9HPyeGws+Plvp1P++vt/Xo8V4JDzEEtiqtPiEIFRA3BSDK4eBvUI6c0VstKerNpjQ265ggyFzVUhMjKlqazYfm/ZaW1gj1BSe4gOFYDDYZqs07USrWP7/cP3orqFMcAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMRDrqJkAZYGT7i6X5LLDL5G7JHOwAj0dBUPQsRENBaIgiB5ZsizLso1BAgcKuECsS9HPyeGws+Plvp1P++vt/Xo8V4JDzEEtiqtPiEIFRA3BSDK4eBvUI6c0VstKerNpjQ265ggyFzVUhMjKlqazYfm/ZaW1gj1BSe4gOFYDDYZqs07USrWP7/cP3orqFMcAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupFirstBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQzsqJkAZQFLju0kzg4sETvJHKxAT0fBEHRsREOBKMgzALLudLJOdzYGDbgmBlr4KdKlYpBtk8NhZ6fr43g572/3z/v5Wg4KnIMai6tPYIkFRA3BomRw8TZiZ0pprJTl9GbTGhl0zQwyFzVUBCYlS9PJsPzvstJawZ6gJHcQHCshDoJqs07UGmsfv9u3X5j1CwsShKTVAAAA",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "RigidGroupSecond:1",
+            "full_path_name": "RigidGroupSecond:1",
+            "component_name": "RigidGroupSecond",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEO2omQFnAUhw7/v47sERsJ3OwAj0dBUPQsRENBaIgX/TomtPp6e5y4lQSpjyFRafDXyLpsLPT9XG8nPe3++f9fE2iJJKkRuzqA4hxAVbLYMgCzt46BpVa+2yZ5HDLPLhDXSmARwtoQQjdMFZR1iXW/1sle2uTBWYl4GgEJluNaCXxsYxM2/cv+SdRXMcAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEO2omQFnAUhw7/v47sERsJ3OwAj0dBUPQsRENBaIgX/TomtPp6e5y4lQSpjyFRafDXyLpsLPT9XG8nPe3++f9fE2iJJKkRuzqA4hxAVbLYMgCzt46BpVa+2yZ5HDLPLhDXSmARwtoQQjdMFZR1iXW/1sle2uTBWYl4GgEJluNaCXxsYxM2/cv+SdRXMcAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupSecondBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEO2omQF7AUhJf8vx2YIk4P3OwAj0dBUPQsRENBaLAjwGQZelkfbo7B1IKPpGS708ldRUJ26XQYWen6+N4Oe9v98/7+XIikRRSEzRtkwVxYagFtojCDa2O2CXlPNzFydksYGJwXqUzZu1cu0QeFvtaFLr09X9WCq1WZxlQYfQqbGWzKZqltLnMIL/u2y/Q8AWofKWB1QAAAA==",
+                "bounding_box_cm": {
+                  "min": [
+                    4.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    5.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "occurrence_count": 2,
+        "actual_include_children": null,
+        "include_children_status": "Unavailable getter; requested add argument retained separately"
+      },
+      "actual_group_final": {
+        "name": "ProbeRigidGroupRootSuppressed",
+        "entity_type": "adsk::fusion::RigidGroup",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghxbUsPiQz5zJgos3/3n18dvQBVGCsZmChZJxibJFslpusYmhua6JhZJBrpJhiZmuskmyYmphinGRqamqWC1QDMY0ADYPgMFsHUg603NDQAOpqlbiAAAAA==",
+        "parent_component_name": "(Unsaved)",
+        "is_suppressed": false,
+        "timeline_index": 6,
+        "occurrences": [
+          {
+            "name": "RigidGroupFirst:1",
+            "full_path_name": "RigidGroupFirst:1",
+            "component_name": "RigidGroupFirst",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMRDrqJkAZYGT7i6X5LLDL5G7JHOwAj0dBUPQsRENBaIgiB5ZsizLso1BAgcKuECsS9HPyeGws+Plvp1P++vt/Xo8V4JDzEEtiqtPiEIFRA3BSDK4eBvUI6c0VstKerNpjQ265ggyFzVUhMjKlqazYfm/ZaW1gj1BSe4gOFYDDYZqs07USrWP7/cP3orqFMcAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OsQ0CMRDrqJkAZYGT7i6X5LLDL5G7JHOwAj0dBUPQsRENBaIgiB5ZsizLso1BAgcKuECsS9HPyeGws+Plvp1P++vt/Xo8V4JDzEEtiqtPiEIFRA3BSDK4eBvUI6c0VstKerNpjQ265ggyFzVUhMjKlqazYfm/ZaW1gj1BSe4gOFYDDYZqs07USrWP7/cP3orqFMcAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupFirstBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQzsqJkAZQFLju0kzg4sETvJHKxAT0fBEHRsREOBKMgzALLudLJOdzYGDbgmBlr4KdKlYpBtk8NhZ6fr43g572/3z/v5Wg4KnIMai6tPYIkFRA3BomRw8TZiZ0pprJTl9GbTGhl0zQwyFzVUBCYlS9PJsPzvstJawZ6gJHcQHCshDoJqs07UGmsfv9u3X5j1CwsShKTVAAAA",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "RigidGroupSecond:1",
+            "full_path_name": "RigidGroupSecond:1",
+            "component_name": "RigidGroupSecond",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEO2omQFnAUhw7/v47sERsJ3OwAj0dBUPQsRENBaIgX/TomtPp6e5y4lQSpjyFRafDXyLpsLPT9XG8nPe3++f9fE2iJJKkRuzqA4hxAVbLYMgCzt46BpVa+2yZ5HDLPLhDXSmARwtoQQjdMFZR1iXW/1sle2uTBWYl4GgEJluNaCXxsYxM2/cv+SdRXMcAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEO2omQFnAUhw7/v47sERsJ3OwAj0dBUPQsRENBaIgX/TomtPp6e5y4lQSpjyFRafDXyLpsLPT9XG8nPe3++f9fE2iJJKkRuzqA4hxAVbLYMgCzt46BpVa+2yZ5HDLPLhDXSmARwtoQQjdMFZR1iXW/1sle2uTBWYl4GgEJluNaCXxsYxM2/cv+SdRXMcAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupSecondBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEO2omQF7AUhJf8vx2YIk4P3OwAj0dBUPQsRENBaLAjwGQZelkfbo7B1IKPpGS708ldRUJ26XQYWen6+N4Oe9v98/7+XIikRRSEzRtkwVxYagFtojCDa2O2CXlPNzFydksYGJwXqUzZu1cu0QeFvtaFLr09X9WCq1WZxlQYfQqbGWzKZqltLnMIL/u2y/Q8AWofKWB1QAAAA==",
+                "bounding_box_cm": {
+                  "min": [
+                    4.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    5.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "occurrence_count": 2,
+        "actual_include_children": null,
+        "include_children_status": "Unavailable getter; requested add argument retained separately"
+      },
+      "actual_getter_errors": [],
+      "actual_health_state": 0,
+      "actual_warning": "",
+      "exact_native_order_matches_actual_returned_members": true,
+      "before_immediate_after_final_placements_unchanged": true,
+      "stored_relative_matrix_context_copies_exact": true,
+      "decoder_input_unchanged": true,
+      "retained_strict_AsBuilt_diagnostics": [
+        {
+          "feature_object_id": 571,
+          "class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+          "reason": "Unobserved native joint motion type/trailer"
+        }
+      ]
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/nested_include_children.f3d",
+      "archive_sha256": "118cb79c36803106ebb2eea81e0092e6b310a95290c53d3ae032747b7b4ef8b0",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 632,
+            "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+            "object_id": 631,
+            "name": "ProbeRigidGroupNestedIncludeChildren",
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "component_scope_object_id": 33,
+            "stored_constraint_type_code": 11,
+            "occurrence_count": 3,
+            "stored_occurrence_member_object_ids": [
+              253,
+              396,
+              459
+            ],
+            "stored_occurrence_member_fields": [
+              2,
+              2,
+              1
+            ],
+            "ordered_occurrence_contexts": [
+              {
+                "object_id": 633,
+                "frame_link_object_id": 264,
+                "route_wrapper_object_id": 635,
+                "route_object_id": 634,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "c9a6a1ea-5823-43ae-a826-2108ea842f9e",
+                "context_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+                "context_entity_guid_text": "04bb4670-9faa-4398-8727-687416aa822a",
+                "terminal_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+                "terminal_entity_guid_text": "55922467-24f0-43f1-b868-310fcba2fb29",
+                "native_occurrence_object_id": 253,
+                "component_object_id": 202,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  5.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 636,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 638,
+                "route_object_id": 637,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "6bc6787d-288f-478b-aae0-4cdbabbd2e7d",
+                "context_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+                "context_entity_guid_text": "1b17f120-5d02-427f-82ec-d2b3df84cb6e",
+                "terminal_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+                "terminal_entity_guid_text": "55922467-24f0-43f1-b868-310fcba2fb29",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 639,
+                "frame_link_object_id": 470,
+                "route_wrapper_object_id": 641,
+                "route_object_id": 640,
+                "stored_route_mode": 2,
+                "stored_occurrence_uuid_text": "6bc6787d-288f-478b-aae0-4cdbabbd2e7d",
+                "context_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+                "context_entity_guid_text": "9d2d97f8-7fd9-4541-83e3-3fa8267da093",
+                "terminal_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+                "terminal_entity_guid_text": "55922467-24f0-43f1-b868-310fcba2fb29",
+                "native_occurrence_object_id": 459,
+                "component_object_id": 408,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed two-level UUID route with independently framed parent/child occurrences and reciprocal child collection membership; other UUID fields remain literal",
+                "stored_occurrence_uuid_path": [
+                  "6bc6787d-288f-478b-aae0-4cdbabbd2e7d",
+                  "86991486-5740-4e20-b7ce-54d8d76d3cdb"
+                ],
+                "native_occurrence_object_id_path": [
+                  396,
+                  459
+                ],
+                "parent_occurrence_collection_object_id": 347
+              }
+            ],
+            "root_context": {
+              "object_id": 642,
+              "frame_link_object_id": 55,
+              "route_wrapper_object_id": 644,
+              "route_object_id": 643,
+              "stored_route_mode": 0,
+              "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+              "context_namespace_text": null,
+              "context_entity_guid_text": null,
+              "terminal_namespace_text": "c4d8a940-8f6f-4949-b4c4-379d69fca76a",
+              "terminal_entity_guid_text": "55922467-24f0-43f1-b868-310fcba2fb29",
+              "native_occurrence_object_id": 57,
+              "component_object_id": 3,
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_footer_mode": 0,
+              "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+            },
+            "stored_relative_matrices": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                5.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "stored_matrix_trailers_hex": [
+              "00000000030100000001000000010200000000000000000101000000010300000000000000000000",
+              "00000000030100000002000000010200000000000000000101000000010300000000000000000001"
+            ],
+            "stored_terminal_matrix_table_hex": "00000000030200000002000000030000000102000000000000000001010000000103000000000000000000",
+            "stored_terminal_matrix_table_count": 2,
+            "stored_terminal_matrix_table_values": [
+              2,
+              3
+            ],
+            "matrix_scope": "Exact copied group/context matrices; terminal table literals retained without claiming historical state, solved placement or general basis semantics",
+            "include_children": null,
+            "include_children_status": "Expanded membership is explicit; add includeChildren request has no public getter and its native control encoding is not identified",
+            "is_suppressed": null,
+            "suppression_status": "Requested True capture still returns actualFalse; no true/false native suppression contrast established",
+            "opaque_feature_state_footer_hex": "0000000000000001870200000000000000000138000000000000000000ffffffff01010000003a2174d0252c3f01010000018602000000000000000001000001850200000000000000000000",
+            "scope": "Observed native type11 RigidGroup expanded occurrence membership, typed parent/child routes and copied relative matrix caches; includeChildren/suppression encoding and assembly solve unresolved",
+            "placement_limitation": "Stored occurrence/group context matrices are not joint-solved world placements; no kinematic solve applied"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed native type11 RigidGroup expanded occurrence membership, typed parent/child routes and copied relative matrix caches; includeChildren/suppression encoding and assembly solve unresolved",
+        "placement_limitation": "Stored occurrence/group context matrices are not joint-solved world placements; no kinematic solve applied"
+      },
+      "actual_requested_include_children": true,
+      "actual_include_children_getter": null,
+      "actual_selected_occurrences": [
+        {
+          "name": "RigidGroupFirst:1",
+          "full_path_name": "RigidGroupFirst:1",
+          "component_name": "RigidGroupFirst",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ0CMQxFV/EClmzH5zgd7Y3hnBIJGkZhAmpEzwg3BMNQ4BM9+o1lPb3/CRQEGCjD4nnx72Owv5+n23VdX3u9nz+PSxICxWBZmohaRdFJqGUydjfHwjS3HjK7tLQkubWw4BG4uJQkY2C4GAqTj3CV2cb/LtLes4qwzYg0NEevUtG8KlukTeLY/gVzcJzIxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ0CMQxFV/EClmzH5zgd7Y3hnBIJGkZhAmpEzwg3BMNQ4BM9+o1lPb3/CRQEGCjD4nnx72Owv5+n23VdX3u9nz+PSxICxWBZmohaRdFJqGUydjfHwjS3HjK7tLQkubWw4BG4uJQkY2C4GAqTj3CV2cb/LtLes4qwzYg0NEevUtG8KlukTeLY/gVzcJzIxwAAAA==",
+          "native_object_transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "RigidGroupFirstBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PwQ0CQQhFW6EBEmBYhrl5tQxmM5PoxVKswLPxbglbhMV4kN0CDCH5IS//fwgcKIdBcg8lnopB94vB9nmd7rfz+b3Vx+X7vCYhUAyWpYmoVRSdhFomY3dzLExz7SGzS0uXJNcWFjwCF5eSZAwMF0Nh8hGuMtv4n0Xae0YRthmRDs3Rq1Q0r8oW6SZxdN9/KcV/Rfm8xNUAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "RigidGroupParent:1",
+          "full_path_name": "RigidGroupParent:1",
+          "component_name": "RigidGroupParent",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CMRBsxQ2s5B37vHsZ6ZXhtb0SJJRCBcSInBKuCIohOCNyNMloNF8MOSBwiBMMnYx/Sgn7+3m6Xbfttcv9/HlcpgMhlbAsK5CLELJHysmZTItS4ujNKtywzpbpLNaKqHSCqlMWNap1zEzrVs06hvT/W2wszoi09AjKECfFaNRhqbvmZmV8vx/OkQJUxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            2.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CMRBsxQ2s5B37vHsZ6ZXhtb0SJJRCBcSInBKuCIohOCNyNMloNF8MOSBwiBMMnYx/Sgn7+3m6Xbfttcv9/HlcpgMhlbAsK5CLELJHysmZTItS4ujNKtywzpbpLNaKqHSCqlMWNap1zEzrVs06hvT/W2wszoi09AjKECfFaNRhqbvmZmV8vx/OkQJUxwAAAA==",
+          "native_object_transform": [
+            1.0,
+            0.0,
+            0.0,
+            2.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "body_count": 0,
+          "bodies": []
+        }
+      ],
+      "actual_group_initial": {
+        "name": "ProbeRigidGroupNestedIncludeChildren",
+        "entity_type": "adsk::fusion::RigidGroup",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpEbKx368z09txwxn5v5Z3kWUIWRgrGZgqmppZGRiZm5rpFJmoGuiXGaoW6ShZmFrrGhQVpyUqJRWpKRJVgt0AwGNAC2z0ABbB3IejNjQwCdgQF7iAAAAA==",
+        "parent_component_name": "(Unsaved)",
+        "is_suppressed": false,
+        "timeline_index": 7,
+        "occurrences": [
+          {
+            "name": "RigidGroupFirst:1",
+            "full_path_name": "RigidGroupFirst:1",
+            "component_name": "RigidGroupFirst",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ0CMQxFV/EClmzH5zgd7Y3hnBIJGkZhAmpEzwg3BMNQ4BM9+o1lPb3/CRQEGCjD4nnx72Owv5+n23VdX3u9nz+PSxICxWBZmohaRdFJqGUydjfHwjS3HjK7tLQkubWw4BG4uJQkY2C4GAqTj3CV2cb/LtLes4qwzYg0NEevUtG8KlukTeLY/gVzcJzIxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ0CMQxFV/EClmzH5zgd7Y3hnBIJGkZhAmpEzwg3BMNQ4BM9+o1lPb3/CRQEGCjD4nnx72Owv5+n23VdX3u9nz+PSxICxWBZmohaRdFJqGUydjfHwjS3HjK7tLQkubWw4BG4uJQkY2C4GAqTj3CV2cb/LtLes4qwzYg0NEevUtG8KlukTeLY/gVzcJzIxwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupFirstBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PwQ0CQQhFW6EBEmBYhrl5tQxmM5PoxVKswLPxbglbhMV4kN0CDCH5IS//fwgcKIdBcg8lnopB94vB9nmd7rfz+b3Vx+X7vCYhUAyWpYmoVRSdhFomY3dzLExz7SGzS0uXJNcWFjwCF5eSZAwMF0Nh8hGuMtv4n0Xae0YRthmRDs3Rq1Q0r8oW6SZxdN9/KcV/Rfm8xNUAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "RigidGroupParent:1",
+            "full_path_name": "RigidGroupParent:1",
+            "component_name": "RigidGroupParent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CMRBsxQ2s5B37vHsZ6ZXhtb0SJJRCBcSInBKuCIohOCNyNMloNF8MOSBwiBMMnYx/Sgn7+3m6Xbfttcv9/HlcpgMhlbAsK5CLELJHysmZTItS4ujNKtywzpbpLNaKqHSCqlMWNap1zEzrVs06hvT/W2wszoi09AjKECfFaNRhqbvmZmV8vx/OkQJUxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CMRBsxQ2s5B37vHsZ6ZXhtb0SJJRCBcSInBKuCIohOCNyNMloNF8MOSBwiBMMnYx/Sgn7+3m6Xbfttcv9/HlcpgMhlbAsK5CLELJHysmZTItS4ujNKtywzpbpLNaKqHSCqlMWNap1zEzrVs06hvT/W2wszoi09AjKECfFaNRhqbvmZmV8vx/OkQJUxwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 0,
+            "bodies": []
+          },
+          {
+            "name": "RigidGroupChild:1",
+            "full_path_name": "RigidGroupParent:1+RigidGroupChild:1",
+            "component_name": "RigidGroupChild",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxEV8kClhLHsZ2O9o8Rx4kEDaMwATWiZwSGYBgK8vV7dM3J907yxUABQwpxKaEul44Lh/fnebpdt+31lvv5+7gsAkPmUEpFJBZAmhEozwSmrJBTnN0aTsN6kGydRcUBVSeQqEFrY3W6WzNzHOI7p1xrImUoQisdGMGkDyjk6sKeF///p+roVaaCTK9AhRJoHhnybIos3mLN+8Yf2OYnCO8AAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": "RigidGroupParent:1",
+            "native_object_token": null,
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupChildBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PwY1DMQhEW3EDSDZgwLdcU4b52FJySSmpIOfV3lNCithi9hD/n3uERhrBQ5rJyVJeUxIuHQ5tuZJ430h6/f2e7rfz+fnSx+X/57oITCSp1obIooA8MzDNAm5iQCXPzTtOx/YhxTdR0wA0m8BqDr2P9bOFd/fAobFzJq0VNoGqvK4DM7huAyqHhUrQ4r9naoHRdBrojAZcuYDRIKDZDUWj50ZHx71zZXoD8xZURf0AAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    2.0,
+                    3.0
+                  ],
+                  "max": [
+                    7.0,
+                    3.0,
+                    4.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "occurrence_count": 3,
+        "actual_include_children": null,
+        "include_children_status": "Unavailable getter; requested add argument retained separately"
+      },
+      "actual_group_final": {
+        "name": "ProbeRigidGroupNestedIncludeChildren",
+        "entity_type": "adsk::fusion::RigidGroup",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpEbKx368z09txwxn5v5Z3kWUIWRgrGZgqmppZGRiZm5rpFJmoGuiXGaoW6ShZmFrrGhQVpyUqJRWpKRJVgt0AwGNAC2z0ABbB3IejNjQwCdgQF7iAAAAA==",
+        "parent_component_name": "(Unsaved)",
+        "is_suppressed": false,
+        "timeline_index": 7,
+        "occurrences": [
+          {
+            "name": "RigidGroupFirst:1",
+            "full_path_name": "RigidGroupFirst:1",
+            "component_name": "RigidGroupFirst",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ0CMQxFV/EClmzH5zgd7Y3hnBIJGkZhAmpEzwg3BMNQ4BM9+o1lPb3/CRQEGCjD4nnx72Owv5+n23VdX3u9nz+PSxICxWBZmohaRdFJqGUydjfHwjS3HjK7tLQkubWw4BG4uJQkY2C4GAqTj3CV2cb/LtLes4qwzYg0NEevUtG8KlukTeLY/gVzcJzIxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ0CMQxFV/EClmzH5zgd7Y3hnBIJGkZhAmpEzwg3BMNQ4BM9+o1lPb3/CRQEGCjD4nnx72Owv5+n23VdX3u9nz+PSxICxWBZmohaRdFJqGUydjfHwjS3HjK7tLQkubWw4BG4uJQkY2C4GAqTj3CV2cb/LtLes4qwzYg0NEevUtG8KlukTeLY/gVzcJzIxwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupFirstBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PwQ0CQQhFW6EBEmBYhrl5tQxmM5PoxVKswLPxbglbhMV4kN0CDCH5IS//fwgcKIdBcg8lnopB94vB9nmd7rfz+b3Vx+X7vCYhUAyWpYmoVRSdhFomY3dzLExz7SGzS0uXJNcWFjwCF5eSZAwMF0Nh8hGuMtv4n0Xae0YRthmRDs3Rq1Q0r8oW6SZxdN9/KcV/Rfm8xNUAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "RigidGroupParent:1",
+            "full_path_name": "RigidGroupParent:1",
+            "component_name": "RigidGroupParent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CMRBsxQ2s5B37vHsZ6ZXhtb0SJJRCBcSInBKuCIohOCNyNMloNF8MOSBwiBMMnYx/Sgn7+3m6Xbfttcv9/HlcpgMhlbAsK5CLELJHysmZTItS4ujNKtywzpbpLNaKqHSCqlMWNap1zEzrVs06hvT/W2wszoi09AjKECfFaNRhqbvmZmV8vx/OkQJUxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CMRBsxQ2s5B37vHsZ6ZXhtb0SJJRCBcSInBKuCIohOCNyNMloNF8MOSBwiBMMnYx/Sgn7+3m6Xbfttcv9/HlcpgMhlbAsK5CLELJHysmZTItS4ujNKtywzpbpLNaKqHSCqlMWNap1zEzrVs06hvT/W2wszoi09AjKECfFaNRhqbvmZmV8vx/OkQJUxwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 0,
+            "bodies": []
+          },
+          {
+            "name": "RigidGroupChild:1",
+            "full_path_name": "RigidGroupParent:1+RigidGroupChild:1",
+            "component_name": "RigidGroupChild",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxEV8kClhLHsZ2O9o8Rx4kEDaMwATWiZwSGYBgK8vV7dM3J907yxUABQwpxKaEul44Lh/fnebpdt+31lvv5+7gsAkPmUEpFJBZAmhEozwSmrJBTnN0aTsN6kGydRcUBVSeQqEFrY3W6WzNzHOI7p1xrImUoQisdGMGkDyjk6sKeF///p+roVaaCTK9AhRJoHhnybIos3mLN+8Yf2OYnCO8AAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": "RigidGroupParent:1",
+            "native_object_token": null,
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "body_count": 1,
+            "bodies": [
+              {
+                "name": "RigidGroupChildBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PwY1DMQhEW3EDSDZgwLdcU4b52FJySSmpIOfV3lNCithi9hD/n3uERhrBQ5rJyVJeUxIuHQ5tuZJ430h6/f2e7rfz+fnSx+X/57oITCSp1obIooA8MzDNAm5iQCXPzTtOx/YhxTdR0wA0m8BqDr2P9bOFd/fAobFzJq0VNoGqvK4DM7huAyqHhUrQ4r9naoHRdBrojAZcuYDRIKDZDUWj50ZHx71zZXoD8xZURf0AAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    2.0,
+                    3.0
+                  ],
+                  "max": [
+                    7.0,
+                    3.0,
+                    4.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "occurrence_count": 3,
+        "actual_include_children": null,
+        "include_children_status": "Unavailable getter; requested add argument retained separately"
+      },
+      "actual_getter_errors": [
+        {
+          "field": "requested_child_native.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 62, in <lambda>\n    entity_token=observe(label+'.entityToken',lambda:occurrence.entityToken),\n                                                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_child_native.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 65, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_child_native.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 55, in <lambda>\n    entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                     ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "all_before[1].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 65, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "group_initial.occurrences[2].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 65, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "all_immediately_after[1].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 65, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "group_final.occurrences[2].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 65, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "all_after[1].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 48, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRigidGroupContrasts.py\", line 65, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        }
+      ],
+      "actual_health_state": 0,
+      "actual_warning": "",
+      "exact_native_order_matches_actual_returned_members": true,
+      "before_immediate_after_final_placements_unchanged": true,
+      "stored_relative_matrix_context_copies_exact": true,
+      "decoder_input_unchanged": true,
+      "retained_strict_AsBuilt_diagnostics": [
+        {
+          "feature_object_id": 632,
+          "class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+          "reason": "As-built requires exactly two ordered context frames"
+        }
+      ]
+    }
+  ],
+  "malformed_guards": [
+    {
+      "control": "Nested parent UUID selects another valid root occurrence",
+      "rejected": true,
+      "reason": "Nested As-built child does not belong to explicitly routed parent component"
+    },
+    {
+      "control": "Nested route count is unsupported",
+      "rejected": true,
+      "reason": "Unsupported As-built route mode/extent"
+    },
+    {
+      "control": "Member frame reciprocal owner differs",
+      "rejected": true,
+      "reason": "Unsupported reference encoding"
+    },
+    {
+      "control": "Repeated matrix-copy trailer differs",
+      "rejected": true,
+      "reason": "Unobserved RigidGroup matrix-copy trailer"
+    },
+    {
+      "control": "Expanded context/native member order differs",
+      "rejected": true,
+      "reason": "RigidGroup native members duplicate or nonempty motion slots"
+    },
+    {
+      "control": "Group terminal counted table value differs",
+      "rejected": true,
+      "reason": "Unobserved RigidGroup terminal counted matrix table"
+    },
+    {
+      "control": "Group joint collection no longer selects this native group",
+      "rejected": true,
+      "reason": "RigidGroup common joint collection membership differs"
+    }
+  ],
+  "old_AsBuilt_exact_controls": [
+    {
+      "file": "asbuiltjoints-790406c4498b/rigid.f3d",
+      "refactored_summary_exact_committed_golden": true,
+      "new_group_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/revolute.f3d",
+      "refactored_summary_exact_committed_golden": true,
+      "new_group_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/slider.f3d",
+      "refactored_summary_exact_committed_golden": true,
+      "new_group_helper_does_not_recover_or_reject": true
+    }
+  ],
+  "suppression_negative_control": {
+    "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+    "requested": true,
+    "setter_no_exception": true,
+    "actual_initial": false,
+    "actual_final": false,
+    "decoder_is_suppressed": null,
+    "native_true_false_contrast_established": false
+  },
+  "limitations": [
+    "Native expanded occurrence membership is explicit. The public API has no includeChildren getter; the true request and expanded child result do not map a native includeChildren flag.",
+    "The requested suppressionTrue setter completes without exception but actual getter remainsFalse; neither requestedTrue nor actualFalse alone qualifies native suppression bits.",
+    "Stored relative matrices equal owned context copies. These translated examples are not evidence of generalized basis semantics or a kinematic solve.",
+    "Nested API token getter failures are retained. Native membership uses typed UUID paths and reciprocal collection ownership; opaque token equality/absence and geometry coordinates do not choose native IDs.",
+    "Only two root members or two root members plus one explicitly routed child are admitted. Repeated component instances, deeper contexts, other group layouts/lifecycle/native writing remain unsupported.",
+    "The AsBuilt common-context factory default outputs and mode2 rejection remain exact; nested support is opt-in for this group stage."
+  ],
+  "default_nested_route_control": {
+    "rejected": true,
+    "reason": "Unsupported As-built route mode/extent"
+  },
+  "validation": {
+    "actual_RigidGroup_files": 3,
+    "decoded_native_groups": 3,
+    "expanded_member_associations": 7,
+    "stored_matrix_context_copy_comparisons": 4,
+    "nested_parent_child_relationships": 1,
+    "malformed_guards": 7,
+    "old_AsBuilt_exact_golden_controls": 3,
+    "default_nested_route_rejection_preserved": true,
+    "retained_API_token_getter_errors": 8,
+    "successful_suppression_contrasts": 0,
+    "live_Fusion_calls_by_validator": 0,
+    "solved_placement_claim": false,
+    "all_checks_passed": true
+  }
+}

@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
+
+from typing import cast as CastValue
+from math import isfinite as IsFinite
+from math import pi as CirclePi
+
+from convert.geometry.Revolve.TorusBounds import GetTorusBounds
+from convert.geometry.Revolve.WholeSweep import BuildWholeSolid
+from interchange.brep.surfaces.BrepSurfaces import TorusSurface
+from interchange.brep.topology.BrepMath import IsFiniteSpace
+from interchange.brep.topology.BrepModel import BrepModel
+from interchange.brep.validation.RingTorusValidate import IsRingTorus
+from interchange.geometry.models.BoundingBox import BoundingBox
+from interchange.geometry.models.VectorSpace import SpaceVector
+
+
+# a full circle sweep closes analytically without invented trims or seam entities
+def BuildTorusSweep(
+    BodyId: str,
+    Center: SpaceVector,
+    AxisDirection: SpaceVector,
+    Radial: SpaceVector,
+    MajorRadius: float,
+    MinorRadius: float,
+) -> tuple[BrepModel, float, float, BoundingBox]:
+    if not isinstance(CastValue(object, BodyId), str) or not BodyId.strip():
+        raise ValueError("Torus Revolve requires a design body identity")
+    Prefix = f"{BodyId}-sweep"
+    Surface = TorusSurface(
+        f"{Prefix}-surface", Center, AxisDirection, Radial, MajorRadius, MinorRadius
+    )
+    if not IsRingTorus(Surface):
+        raise ValueError("Torus Revolve requires a finite orthonormal ring torus")
+    SurfaceArea = 4.0 * CirclePi * CirclePi * (MajorRadius * MinorRadius)
+    Volume = SurfaceArea * (MinorRadius * 0.5)
+    Bounds = GetTorusBounds(Center, AxisDirection, MajorRadius, MinorRadius)
+    if not (
+        IsFinite(Volume)
+        and Volume > 0.0
+        and IsFinite(SurfaceArea)
+        and SurfaceArea > 0.0
+        and IsFiniteSpace(Bounds.minimum)
+        and IsFiniteSpace(Bounds.maximum)
+    ):
+        raise ValueError("Torus Revolve measures exceed finite geometry")
+    Model = BuildWholeSolid(BodyId, Surface)
+    return Model, Volume, SurfaceArea, Bounds

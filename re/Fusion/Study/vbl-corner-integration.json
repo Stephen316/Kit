@@ -1,0 +1,109 @@
+{
+  "scope": "Fixed four-file integration against a87431e; only exact independently qualified topology.vbl_boundary_corners publication admitted",
+  "baseline_commit": "a87431e",
+  "files": [
+    "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+    "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+    "edgemodes-87edbf67527b/fillet_chord.f3d",
+    "patchcontinuity-b9b0be85a281/brep_tangent.f3d"
+  ],
+  "summary": {
+    "published_boundary_summaries": 1,
+    "qualified_VBL_faces": 8,
+    "qualified_boundary_corners": 48,
+    "retained_VBL_interior_warnings": 8,
+    "saved_files": 4,
+    "whole_output_unchanged_controls": 3,
+    "unexpected_changes": 0,
+    "live_API_calls": 0,
+    "baseline_main_calls": 0,
+    "current_main_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+      "archive_sha256": "20b767dcbcb153c88bb931b196556830bf85c0ec8557fda32b4c56aea6d07ce8",
+      "published_boundary_summaries": 1,
+      "qualified_VBL_faces": 8,
+      "qualified_boundary_corners": 48,
+      "retained_VBL_interior_warnings": 8,
+      "whole_output_exact_after_removing_only_qualified_corner_summary": true,
+      "old_component_proofs_geometry_placement_and_warnings_exact": true,
+      "whole_output_unchanged": false,
+      "baseline_output_sha256": "8bdaa29544f1b77910b224b453e2bbc564861a85cef4975376fba7cfe74b5ac8",
+      "current_output_sha256": "101102c866574cf63c0b8dc925924ad53c1822df69387ce2116baf646765b485",
+      "qualified_difference_paths": [
+        "/asm_decoding/streams/1/topology/vbl_boundary_corners"
+      ]
+    },
+    {
+      "archive": "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+      "archive_sha256": "c02089b7dc09eb2efec101a27450ed5fcd169e6cbdd18c65661bad58a8c6235f",
+      "published_boundary_summaries": 0,
+      "qualified_VBL_faces": 0,
+      "qualified_boundary_corners": 0,
+      "retained_VBL_interior_warnings": 0,
+      "whole_output_exact_after_removing_only_qualified_corner_summary": true,
+      "old_component_proofs_geometry_placement_and_warnings_exact": true,
+      "whole_output_unchanged": true,
+      "baseline_output_sha256": "83961bc6a97455d960259bf05e5c1692ed7566f865b9c0d3ef5c82ed85b78d4e",
+      "current_output_sha256": "83961bc6a97455d960259bf05e5c1692ed7566f865b9c0d3ef5c82ed85b78d4e",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "archive_sha256": "73ac02f7a93462c6dc5e509c45c5b5e549ef9f3452e117a6dfb09e95f6493330",
+      "published_boundary_summaries": 0,
+      "qualified_VBL_faces": 0,
+      "qualified_boundary_corners": 0,
+      "retained_VBL_interior_warnings": 0,
+      "whole_output_exact_after_removing_only_qualified_corner_summary": true,
+      "old_component_proofs_geometry_placement_and_warnings_exact": true,
+      "whole_output_unchanged": true,
+      "baseline_output_sha256": "8878d594790d45683053afd8dc4216b0b4aeea8c7da743179828e914bbcb1886",
+      "current_output_sha256": "8878d594790d45683053afd8dc4216b0b4aeea8c7da743179828e914bbcb1886",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "published_boundary_summaries": 0,
+      "qualified_VBL_faces": 0,
+      "qualified_boundary_corners": 0,
+      "retained_VBL_interior_warnings": 0,
+      "whole_output_exact_after_removing_only_qualified_corner_summary": true,
+      "old_component_proofs_geometry_placement_and_warnings_exact": true,
+      "whole_output_unchanged": true,
+      "baseline_output_sha256": "19338d5c8ba9ad2fa1abcc9896de63cabbc46d1e77fbec016fcfc58c9761a12c",
+      "current_output_sha256": "19338d5c8ba9ad2fa1abcc9896de63cabbc46d1e77fbec016fcfc58c9761a12c",
+      "qualified_difference_paths": []
+    }
+  ],
+  "evidence_sha256": {
+    "vbl-boundary-corner-decoding.json": "b9b3522054be108eea9362dd91ef962f422d0af8c79c0beaa2474eba4f4c51f4"
+  },
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-vbl-corner-baseline.json",
+      "sha256": "b5bd96048f5af8d86095f5f68ac1178b805286d0a06118bbbbaa04660222cd79"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-vbl-corner-current.json",
+      "sha256": "c2fd34b417cb5ac708e93fe35c2afbe0d8c95ca854d08235836fa6ad89b1726a"
+    }
+  },
+  "source_sha256": {
+    "validate_vbl_corner_integration.py": "751f362c7f220a39670c38cceb48e811355c32eff73a89dfdc0b80c297e923cb",
+    "decode_vbl_boundary_corners.py": "671c5658bf5a453b58736eb611f2b8dbbf62e343104f174e60d479e0fa8bf6b7",
+    "decode_vbl_components.py": "fc5013b25327f0d82f576376f3e8e7cd4ea612aeaada4dd636fa87abcbffbac7",
+    "asm_records.py": "15ed6458f05377799e9a5d6e3885f518206d75006ebc83fa7f3bd67d8dc38094",
+    "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0",
+    "decode_basics.py": "31759fc4c1294d252c48420947f5a7fa7619e9eda29e638f29726b638cff3590"
+  },
+  "limitations": [
+    "Eight VBL interior warnings remain; topological boundary traversal is not UV orientation or native edge parameter correspondence",
+    "All existing geometry, component dictionaries, selection evidence, placement labels and unqualified diagnostics remain exact",
+    "No live Fusion calls, API capture, procedural surface fitting, native writer or regeneration",
+    "Cache paths are optional execution conveniences; omitting them reproduces the fixed baseline/current comparison from local Git and saved archives"
+  ]
+}

@@ -1,0 +1,698 @@
+{
+  "stage": "Imported root occurrence with typed stored attribute table",
+  "status": "Strict opt-in callback validated; assembly root and three body placements recovered offline",
+  "file": "timeline-expanded-2396e32f2574/expanded.f3d",
+  "sha256": "06ed3edfbe0b128657ebfd60494f765be0e23981f4dc6cf2a64a420adefa91e6",
+  "root_object_id": 57,
+  "source_file": "timeline-5867579925b5/grouped.f3d",
+  "source_sha256": "9593df203ee97e6333cc01c318195f3f5b88b6fe1b2302c2cdb8ed27a9ce06a3",
+  "old_error": "Invalid string extent",
+  "native_schema": {
+    "class_guid": "CE2913AA-CFE0-4F04-9102-24424ED3BCFA",
+    "raw_payload_ascii_name": "rootInstance",
+    "attribute_table_chunk_offset": 21,
+    "canonical_empty_table_length": 4,
+    "observed_attribute_table_length": 136,
+    "suffix_shift_bytes": 132,
+    "attributes": [
+      {
+        "name": "GatedByParent",
+        "stored_type": "IntrinsicMetaTypebool",
+        "stored_bool": false,
+        "empty_hstring_payload": null,
+        "raw_value_hex": "00",
+        "payload_relative_offset": 41
+      },
+      {
+        "name": "ResolutionTime",
+        "stored_type": "IntrinsicMetaTypeHString",
+        "stored_bool": null,
+        "empty_hstring_payload": true,
+        "raw_value_hex": "00000000",
+        "payload_relative_offset": 84
+      },
+      {
+        "name": "SelfGated",
+        "stored_type": "IntrinsicMetaTypebool",
+        "stored_bool": false,
+        "empty_hstring_payload": null,
+        "raw_value_hex": "00",
+        "payload_relative_offset": 134
+      }
+    ],
+    "new_scope": "Only exact three ordered false/empty/false fields on an identity parentless root. Nonempty HString encoding and active gate semantics unverified.",
+    "framing_proof": "Removing only the typed attribute entries and retaining an empty count yields the exact entire occurrence payload from the actual imported grouped source, not just a matching transform."
+  },
+  "root_occurrence": {
+    "object_id": 57,
+    "component_object_id": 3,
+    "instance_number": 0,
+    "explicit_name": "rootInstance",
+    "namespace_text": "4df3d1e6-91da-40ee-b021-b41f263c4440",
+    "instance_guid_text": "c8e203b0-bede-409c-93e4-6850b48c2e1f",
+    "parent_collection_object_id": null,
+    "local_transform": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "translation_units": "cm",
+    "matrix_order": "row-major; column-vector multiplication",
+    "stored_occurrence_attributes": [
+      {
+        "name": "GatedByParent",
+        "stored_type": "IntrinsicMetaTypebool",
+        "stored_bool": false,
+        "empty_hstring_payload": null,
+        "raw_value_hex": "00",
+        "payload_relative_offset": 41
+      },
+      {
+        "name": "ResolutionTime",
+        "stored_type": "IntrinsicMetaTypeHString",
+        "stored_bool": null,
+        "empty_hstring_payload": true,
+        "raw_value_hex": "00000000",
+        "payload_relative_offset": 84
+      },
+      {
+        "name": "SelfGated",
+        "stored_type": "IntrinsicMetaTypebool",
+        "stored_bool": false,
+        "empty_hstring_payload": null,
+        "raw_value_hex": "00",
+        "payload_relative_offset": 134
+      }
+    ],
+    "stored_attribute_table_payload_offset": 37,
+    "stored_attribute_table_length": 136,
+    "attribute_schema_status": "Typed literal names and false/empty values only; activation, gating, visibility and resolution semantics unresolved",
+    "occurrence_schema_status": "Captured imported identity root attribute table plus unchanged canonical occurrence suffix framing"
+  },
+  "validation": {
+    "checks": 37,
+    "raw_archives_unchanged": true,
+    "normalized_payload_matches_actual_import_source_byte_for_byte": true,
+    "component_root_backlink": {
+      "object_id": 3,
+      "name": "Untitled",
+      "native_guid_text": "062de824-f65f-4d08-bee5-95e256fcf183",
+      "root_occurrence_object_id": 57,
+      "name_scope": "Stored native label; root may contain only a document display suffix"
+    },
+    "restored_root_sketches": 3,
+    "restored_body_placements": 3,
+    "restored_body_ids": [
+      260,
+      324,
+      386
+    ],
+    "body_placement_matches_source": true,
+    "ordinary_controls": [
+      {
+        "file": "assembly-acc48a9dc05d/assembly.f3d",
+        "ordinary_occurrence_count": 5,
+        "exact_previous_outputs": true
+      },
+      {
+        "file": "timeline-5867579925b5/grouped.f3d",
+        "ordinary_occurrence_count": 1,
+        "exact_previous_outputs": true
+      }
+    ],
+    "malformed_guards": [
+      {
+        "mutation": "attribute_count",
+        "rejected": true,
+        "reason": "Only captured three-entry root attribute table supported"
+      },
+      {
+        "mutation": "unobserved_gate_true",
+        "rejected": true,
+        "reason": "Uncaptured nonzero root gate attribute value"
+      },
+      {
+        "mutation": "nonempty_HString",
+        "rejected": true,
+        "reason": "Only captured empty root HString payload supported"
+      },
+      {
+        "mutation": "component_copy",
+        "rejected": true,
+        "reason": "Occurrence component-reference copies disagree"
+      }
+    ]
+  },
+  "recovered_assembly": {
+    "components": [
+      {
+        "object_id": 3,
+        "name": "Untitled",
+        "native_guid_text": "062de824-f65f-4d08-bee5-95e256fcf183",
+        "root_occurrence_object_id": 57,
+        "name_scope": "Stored native label; root may contain only a document display suffix"
+      }
+    ],
+    "native_occurrences": [
+      {
+        "object_id": 57,
+        "component_object_id": 3,
+        "instance_number": 0,
+        "explicit_name": "rootInstance",
+        "namespace_text": "4df3d1e6-91da-40ee-b021-b41f263c4440",
+        "instance_guid_text": "c8e203b0-bede-409c-93e4-6850b48c2e1f",
+        "parent_collection_object_id": null,
+        "local_transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "translation_units": "cm",
+        "matrix_order": "row-major; column-vector multiplication",
+        "stored_occurrence_attributes": [
+          {
+            "name": "GatedByParent",
+            "stored_type": "IntrinsicMetaTypebool",
+            "stored_bool": false,
+            "empty_hstring_payload": null,
+            "raw_value_hex": "00",
+            "payload_relative_offset": 41
+          },
+          {
+            "name": "ResolutionTime",
+            "stored_type": "IntrinsicMetaTypeHString",
+            "stored_bool": null,
+            "empty_hstring_payload": true,
+            "raw_value_hex": "00000000",
+            "payload_relative_offset": 84
+          },
+          {
+            "name": "SelfGated",
+            "stored_type": "IntrinsicMetaTypebool",
+            "stored_bool": false,
+            "empty_hstring_payload": null,
+            "raw_value_hex": "00",
+            "payload_relative_offset": 134
+          }
+        ],
+        "stored_attribute_table_payload_offset": 37,
+        "stored_attribute_table_length": 136,
+        "attribute_schema_status": "Typed literal names and false/empty values only; activation, gating, visibility and resolution semantics unresolved",
+        "occurrence_schema_status": "Captured imported identity root attribute table plus unchanged canonical occurrence suffix framing"
+      }
+    ],
+    "occurrence_collections": [
+      {
+        "object_id": 6,
+        "component_object_id": 3,
+        "occurrence_object_ids": []
+      }
+    ],
+    "occurrence_paths": [],
+    "root_sketches": [
+      {
+        "sketch_object_id": 202,
+        "name": "ProfileA",
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "geometry": [
+          {
+            "object_id": 205,
+            "kind": "Point",
+            "position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "object_id": 228,
+            "kind": "Point",
+            "position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "object_id": 230,
+            "kind": "Circle",
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "radius_cm": 1.0
+          }
+        ],
+        "scope": "Root-component world coordinates through this occurrence path"
+      },
+      {
+        "sketch_object_id": 267,
+        "name": "ProfileB",
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "geometry": [
+          {
+            "object_id": 269,
+            "kind": "Point",
+            "position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "object_id": 292,
+            "kind": "Point",
+            "position_cm": [
+              4.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "object_id": 294,
+            "kind": "Circle",
+            "center_cm": [
+              4.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "radius_cm": 1.0
+          }
+        ],
+        "scope": "Root-component world coordinates through this occurrence path"
+      },
+      {
+        "sketch_object_id": 329,
+        "name": "ProfileC",
+        "sketch_to_world_matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "geometry": [
+          {
+            "object_id": 331,
+            "kind": "Point",
+            "position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "object_id": 354,
+            "kind": "Point",
+            "position_cm": [
+              8.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "object_id": 356,
+            "kind": "Circle",
+            "center_cm": [
+              8.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "radius_cm": 1.0
+          }
+        ],
+        "scope": "Root-component world coordinates through this occurrence path"
+      }
+    ],
+    "unresolved": [],
+    "scope": "Observed local definitions, repeated/nested instances and owned sketch coordinates",
+    "limitations": [
+      "No external component resolution, flexible assembly, joint solving or grounding semantics.",
+      "Source-sketch ownership does not establish general modeling-feature ownership."
+    ]
+  },
+  "recovered_body_placements": {
+    "bodies": [
+      {
+        "native_body_object_id": 260,
+        "name": null,
+        "component_object_id": 3,
+        "component_name": "Untitled",
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.878d250e-cda6-40b7-812f-7ca522311923.smbh",
+        "asm_body_index": 1,
+        "asm_stored_entity_id": 0,
+        "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+        "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+        "component_vertex_positions_cm": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            1.0
+          ],
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ]
+        ],
+        "placements": [
+          {
+            "path": "",
+            "component_to_world_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "world_vertex_positions_cm": [
+              [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              [
+                -1.0,
+                -1.2246467991473532e-16,
+                0.0
+              ]
+            ]
+          }
+        ],
+        "coordinate_scope": "Observed Fusion component-coordinate convention; ASM header scale not applied",
+        "geometry_scope": "Vertices only; curved extrema, full trimmed surfaces and body regeneration not covered"
+      },
+      {
+        "native_body_object_id": 324,
+        "name": null,
+        "component_object_id": 3,
+        "component_name": "Untitled",
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.878d250e-cda6-40b7-812f-7ca522311923.smbh",
+        "asm_body_index": 2,
+        "asm_stored_entity_id": 4,
+        "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+        "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+        "component_vertex_positions_cm": [
+          [
+            3.0,
+            -1.2246467991473532e-16,
+            2.0
+          ],
+          [
+            3.0,
+            -1.2246467991473532e-16,
+            0.0
+          ]
+        ],
+        "placements": [
+          {
+            "path": "",
+            "component_to_world_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "world_vertex_positions_cm": [
+              [
+                3.0,
+                -1.2246467991473532e-16,
+                2.0
+              ],
+              [
+                3.0,
+                -1.2246467991473532e-16,
+                0.0
+              ]
+            ]
+          }
+        ],
+        "coordinate_scope": "Observed Fusion component-coordinate convention; ASM header scale not applied",
+        "geometry_scope": "Vertices only; curved extrema, full trimmed surfaces and body regeneration not covered"
+      },
+      {
+        "native_body_object_id": 386,
+        "name": null,
+        "component_object_id": 3,
+        "component_name": "Untitled",
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.878d250e-cda6-40b7-812f-7ca522311923.smbh",
+        "asm_body_index": 3,
+        "asm_stored_entity_id": 5,
+        "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+        "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+        "component_vertex_positions_cm": [
+          [
+            7.0,
+            -1.2246467991473532e-16,
+            3.0
+          ],
+          [
+            7.0,
+            -1.2246467991473532e-16,
+            0.0
+          ]
+        ],
+        "placements": [
+          {
+            "path": "",
+            "component_to_world_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "world_vertex_positions_cm": [
+              [
+                7.0,
+                -1.2246467991473532e-16,
+                3.0
+              ],
+              [
+                7.0,
+                -1.2246467991473532e-16,
+                0.0
+              ]
+            ]
+          }
+        ],
+        "coordinate_scope": "Observed Fusion component-coordinate convention; ASM header scale not applied",
+        "geometry_scope": "Vertices only; curved extrema, full trimmed surfaces and body regeneration not covered"
+      }
+    ],
+    "unresolved": [],
+    "scope": "Typed same-blob BODY identifier joins composed through stored occurrence caches; current body lifecycle unresolved"
+  },
+  "API_evidence_limits": {
+    "actual_expanded_getters": {
+      "file": "expanded.f3d",
+      "group_name": "ProfileGroup",
+      "group_is_collapsed": false,
+      "marker_position": 6,
+      "timeline_count": 6,
+      "timeline": [
+        {
+          "name": "ProfileA",
+          "index": 0,
+          "is_suppressed": false,
+          "is_rolled_back": false,
+          "is_group": false,
+          "entity_kind": "Sketch"
+        },
+        {
+          "name": "ExtrusionA",
+          "index": 1,
+          "is_suppressed": false,
+          "is_rolled_back": false,
+          "is_group": false,
+          "entity_kind": "ExtrudeFeature"
+        },
+        {
+          "name": "ProfileB",
+          "index": 2,
+          "is_suppressed": false,
+          "is_rolled_back": false,
+          "is_group": false,
+          "entity_kind": "Sketch"
+        },
+        {
+          "name": "ProfileC",
+          "index": 3,
+          "is_suppressed": false,
+          "is_rolled_back": false,
+          "is_group": false,
+          "entity_kind": "Sketch"
+        },
+        {
+          "name": "ExtrusionB",
+          "index": 4,
+          "is_suppressed": false,
+          "is_rolled_back": false,
+          "is_group": false,
+          "entity_kind": "ExtrudeFeature"
+        },
+        {
+          "name": "ExtrusionC",
+          "index": 5,
+          "is_suppressed": false,
+          "is_rolled_back": false,
+          "is_group": false,
+          "entity_kind": "ExtrudeFeature"
+        }
+      ]
+    },
+    "important": "ExpandTimelineSample captures timeline/group getters only. It does not capture root occurrence names, paths or matrix getters. No missing API evidence is claimed. Occurrence identity/transform proof uses typed native component/backlink framing and byte-exact canonical payload equality to the recorded imported source.",
+    "generator_behavior": "Owned local archive imported; only timeline group expansion changed; moveToEnd before export."
+  },
+  "integration": {
+    "signature": "occurrence_with_gate_attributes(payload,identity)",
+    "hook": "decode_assembly(...,*,occurrence_decoder=None), callback(full raw payload,object_id); default existing parser untouched.",
+    "main_call": "decode_assembly(data,records,features,occurrence_decoder=occurrence_with_gate_attributes)",
+    "shared_files_edited_by_agent": false,
+    "ordinary_behavior": "Callback first invokes the unchanged ordinary occurrence parser; successful outputs are returned exactly.",
+    "extra_evidence": "stored_occurrence_attributes plus table offset/length and explicit semantics limits are returned separately from canonical component/name/transform fields.",
+    "follow_on": "Existing assembly walk/root sketch composition and body placement readers consume the recovered canonical root; no separate body placement override needed."
+  },
+  "limitations": [
+    "Named stored gate values are not decoded as activation, visibility, suppression or timeline rollback state.",
+    "Only false/empty/false table and identity parentless root are admitted; other attribute types/orders/nonempty strings remain unsupported.",
+    "No current solved assembly placement, joint solving, full-body regeneration or native writing.",
+    "No Fusion dispatch, new capture, shared edits or Git mutations."
+  ]
+}

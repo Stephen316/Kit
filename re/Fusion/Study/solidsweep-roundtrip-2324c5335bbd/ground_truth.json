@@ -1,0 +1,147 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "source": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/solidsweeps-7d2677669e3d/solid_perpendicular.f3d",
+      "sha256_before": "275a28c5bc3235862c3b89f023085dce79b20bbaf3df63715e1bfde89a07ffe1",
+      "getter_errors": [
+        {
+          "getter": "solidTwistAxis",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepRoundtrip.py\", line 60, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepRoundtrip.py\", line 73, in <lambda>\n    \"solid_twist_axis\": getter(\"solidTwistAxis\", lambda: axis_truth(feature.solidTwistAxis)),\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134967, in _get_solidTwistAxis\n    return _fusion.SweepFeature__get_solidTwistAxis(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : axisData.m_axis.size() == 1\n"
+        }
+      ],
+      "solid_orientation_at_end": 0,
+      "result_bodies_at_end": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IeiNzUwDcXu1YiAAAAA==",
+          "volume_cm3": 143.08159968694432,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+          "volume_cm3": 0.08000000000000002,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "solid_orientation": 0,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrLFdq9u83r5zLl01dLoZFAwUIWRgrGZgllaSnKysbm5rrFpirmuiWmypa6lpVmybqqJeapJonmiUZKRCVgt0AwGNAC2z0ABbB3IemMzAwAl8V4wiAAAAA==",
+          "volume_cm3": 0.08000000000000002,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "solid_aligned_axis": null,
+        "solid_twist_axis": null,
+        "twist_angle_radians": null
+      },
+      "sha256_after": "275a28c5bc3235862c3b89f023085dce79b20bbaf3df63715e1bfde89a07ffe1",
+      "original_unchanged": true
+    },
+    {
+      "source": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/solidsweeps-7d2677669e3d/solid_rigid.f3d",
+      "sha256_before": "e8ffbf6007acc016c28436ab2684a65b1e9fff7bed0339e79975ca382ef0c8c3",
+      "getter_errors": [
+        {
+          "getter": "solidTwistAxis",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepRoundtrip.py\", line 60, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSolidSweepRoundtrip.py\", line 73, in <lambda>\n    \"solid_twist_axis\": getter(\"solidTwistAxis\", lambda: axis_truth(feature.solidTwistAxis)),\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134967, in _get_solidTwistAxis\n    return _fusion.SweepFeature__get_solidTwistAxis(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : axisData.m_axis.size() == 1\n"
+        }
+      ],
+      "solid_orientation_at_end": 0,
+      "result_bodies_at_end": [
+        {
+          "kind": "BRepBody",
+          "name": "SolidSweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9UbmpgAZFqIUiAAAAA==",
+          "volume_cm3": 142.82717967697243,
+          "bounding_box_min_cm": [
+            -2.0,
+            -2.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            7.0,
+            6.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+          "volume_cm3": 0.08000000000000002,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "solid_orientation": 0,
+        "solid_body": {
+          "kind": "BRepBody",
+          "name": "AsymmetricSolidSweepTool",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtbHZytmhLh2L37w9kLSzTwtoAojBWMzBfPUFGPTVPNk3WRjU0Ndk8QUC11Lg5QkXROjpKREUwtTk0Qzc7BaoBkMaABsn4EC2DqQ9cZmBgDguRF8iAAAAA==",
+          "volume_cm3": 0.08000000000000002,
+          "bounding_box_min_cm": [
+            -0.2,
+            -0.15000000000000002,
+            -0.15000000000000002
+          ],
+          "bounding_box_max_cm": [
+            0.2,
+            0.25,
+            0.35
+          ]
+        },
+        "solid_aligned_axis": null,
+        "solid_twist_axis": null,
+        "twist_angle_radians": null
+      },
+      "sha256_after": "e8ffbf6007acc016c28436ab2684a65b1e9fff7bed0339e79975ca382ef0c8c3",
+      "original_unchanged": true
+    }
+  ],
+  "errors": [],
+  "scope": "Only import two existing owned archives; no save, export or original modification"
+}

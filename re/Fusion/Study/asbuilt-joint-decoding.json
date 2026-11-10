@@ -1,0 +1,1819 @@
+{
+  "scope": "Three actual owned root As-built rigid/revolute/slider captures; explicit occurrence/point geometry provenance and shared cached motion semantics, without assembly solving",
+  "interface": "decode_asbuilt_joints(data, records, assembly, features) -> decoded/unresolved/scope/placement_limitation",
+  "provenance": {
+    "capture_directory": "asbuiltjoints-790406c4498b",
+    "ground_truth_sha256": "bb911dee2ac0935cf8cc7601f761cfbbe71d16b17fa3c51ed8747bb834528a7f",
+    "journal_sha256": "a1b95a758864266abf626340057ffbd902a7e9f60c895358bc4b1a902f9a6ccd",
+    "actual_executed_generator_sha256": "2eacf662cacf751b4d163273ab36e2e8c34449e6bfff37ce47500c245a9df81e",
+    "executed_generator_snapshot_replayed": true,
+    "source_sha256": {
+      "GenerateAsBuiltJointContrasts.py": "2eacf662cacf751b4d163273ab36e2e8c34449e6bfff37ce47500c245a9df81e",
+      "decode_asbuilt_joints.py": "33547fea23841797332cfc8f7f0d10640cab7b2c88500d190adb380808acc9dc",
+      "validate_asbuilt_joints.py": "c5ea28be0b8d070a5651a3766beb6572c41e94f930ce3a137b2972843100a203",
+      "decode_joints.py": "652f9226ca9040c9ed463d631c2827d4b0371212360050ccd12d246836ef8a87",
+      "decode_assembly.py": "aa12c1822e5b4c5fed868738b1e8af487e3a3a61ffffdf492a2dd478c587db34",
+      "decode_dependencies.py": "ef10c19427f61e7a69c001276dfee3f056e0ab0a39ff6ab3ca62f5311d2c59e7",
+      "decode_selection.py": "241b08558add4bd028dfb151a594c7e1a44211d0fccd3d75ba6f65aac14f59cd"
+    }
+  },
+  "integration": {
+    "summary": "asbuilt_joints",
+    "feature_identity_key": "feature_object_id",
+    "native_joint_identity_key": "object_id",
+    "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+    "classification": "Classify only fully decoded AsBuilt feature identities. Clear only matching NativeJoint unresolved identity after qualified success. Preserve unrelated unsupported features and all solved-placement limitations.",
+    "placement_guard": "AsBuilt feature AA8B3D40... is assembly-unsolved even if its common JOINT reference is absent/corrupt; actual three captures additionally contain existing JOINT7F5A0426..."
+  },
+  "samples": [
+    {
+      "file": "asbuiltjoints-790406c4498b/rigid.f3d",
+      "archive_sha256": "8cc3ff2f04cd45248ebf0ae51328c59f7a74adff3217137df8090695854fd790",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 543,
+            "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+            "object_id": 542,
+            "name": "ProbeAsBuiltRigid",
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "component_scope_object_id": 33,
+            "joint_type": "Rigid",
+            "api_joint_type_code": 0,
+            "stored_joint_type_code": 0,
+            "motion_limits": [],
+            "direction_codes": {},
+            "enabled_limit_bindings": [],
+            "enabled_limit_binding_object_ids": [],
+            "ordered_occurrence_contexts": [
+              {
+                "object_id": 544,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 546,
+                "route_object_id": 545,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "74ab7039-b663-46ea-b30b-9dd852d02d0b",
+                "context_namespace_text": "03f93ee3-4284-42f4-9e6b-9c4b8e4a11f2",
+                "context_entity_guid_text": "5c50289a-891d-423c-ab3d-043df9e7504b",
+                "terminal_namespace_text": "03f93ee3-4284-42f4-9e6b-9c4b8e4a11f2",
+                "terminal_entity_guid_text": "9304d587-c01b-488d-a069-529bc312f674",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  -2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 547,
+                "frame_link_object_id": 264,
+                "route_wrapper_object_id": 549,
+                "route_object_id": 548,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "bb70e736-4c63-4ba2-a9fe-f00447848160",
+                "context_namespace_text": "03f93ee3-4284-42f4-9e6b-9c4b8e4a11f2",
+                "context_entity_guid_text": "42257b3b-747f-4c67-91e1-9a78f0ee97c0",
+                "terminal_namespace_text": "03f93ee3-4284-42f4-9e6b-9c4b8e4a11f2",
+                "terminal_entity_guid_text": "9304d587-c01b-488d-a069-529bc312f674",
+                "native_occurrence_object_id": 253,
+                "component_object_id": 202,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              }
+            ],
+            "root_context": {
+              "object_id": 550,
+              "frame_link_object_id": 55,
+              "route_wrapper_object_id": 552,
+              "route_object_id": 551,
+              "stored_route_mode": 0,
+              "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+              "context_namespace_text": null,
+              "context_entity_guid_text": null,
+              "terminal_namespace_text": "03f93ee3-4284-42f4-9e6b-9c4b8e4a11f2",
+              "terminal_entity_guid_text": "9304d587-c01b-488d-a069-529bc312f674",
+              "native_occurrence_object_id": 57,
+              "component_object_id": 3,
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_footer_mode": 0,
+              "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              2
+            ],
+            "stored_context_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              -2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_matrix_layout_details": null,
+            "stored_opaque_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "stored_repeated_input_object_ids": [],
+            "source_geometry": null,
+            "is_suppressed": null,
+            "suppression_scope": "Actual API captures are unsuppressed; native As-built suppression encoding is not qualified by this stage",
+            "opaque_feature_state_footer_hex": "00000000000000012b0200000000000000000138000000000000000000ffffffff01010000b003f4b62a6d373f01010000012a02000000000000000001000001290200000000000000000000",
+            "scope": "Observed same-root As-built rigid/revolute/slider occurrence associations, native motion/limit bindings and point-origin geometry caches; no joint solve or world-placement claim",
+            "placement_limitation": "Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed same-root As-built rigid/revolute/slider occurrence associations, native motion/limit bindings and point-origin geometry caches; no joint solve or world-placement claim",
+        "placement_limitation": "Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied"
+      },
+      "actual_motion": {
+        "entity_type": "adsk::fusion::RigidJointMotion",
+        "joint_type": 0,
+        "directions": {},
+        "vectors": {},
+        "current_values": {},
+        "limits": {}
+      },
+      "actual_requested_limits": {},
+      "actual_requested_geometry_source": {
+        "status": "not_used_for_rigid"
+      },
+      "actual_joint_geometry": {
+        "status": "returned_null"
+      },
+      "actual_joint_transform": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "actual_health_state": 0,
+      "actual_warning": "",
+      "native_ordered_context_names": [
+        "AsBuiltMoving:1",
+        "AsBuiltFixed:1"
+      ],
+      "raw_native_member_names": [
+        "AsBuiltFixed:1",
+        "AsBuiltMoving:1"
+      ],
+      "actual_occurrences_before": [
+        {
+          "name": "AsBuiltFixed:1",
+          "full_path_name": "AsBuiltFixed:1",
+          "component_name": "AsBuiltFixed",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxECyZggyxgyXb87bih+CVMEecnDWtQMwFiOTZANHQE0aNrTqenu8MkiRMlnCIu09Ev0bR7Hx7rZX3dz7fT9bh/ToJT1uQZZVuKQUMKkFI2qKgOC3u0TDzUZLZMMsKwW1aQphkkKkP10WEgiliRQor/t4R5scgBJja+NQZOncCrlYG9u7Xvc/wArokHa8cAAAA=",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": true,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltFixedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFCyZggyxgybGd2GkoroQp4lzSsAY1EyCWYwNEQ0fuBkDWl76+nr5tDBZwTgw0tTuy6WKQLcnh8D29ltvyeV4fl/v5+J4EBc6hMMqaTKFhdBCzFSrmAomKN440sspsmaS7YlfOIC0ziFeCWkaHgSiiJhYz/t8lREmdHVR0bDUKJfYIpaoN7L1ow/327Rdm+wFE5mTo1QAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AsBuiltMoving:1",
+          "full_path_name": "AsBuiltMoving:1",
+          "component_name": "AsBuiltMoving",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OMQ4CMQwbeAE/6AcipUnaJgvDjfCKprlb+AYzL0B8jh8gFjaK2JE9WJZlG5MkSjnhRCadKv+cmnbvw2O5LK/7+Xa6HvfPmaDENRmjRNEGA7ODqAZ0rAaFzAdn2mqT2TKTTbo3ZAOvlUHq2sEZHSxCCwVO+v+tMgqSWge1HCDEA7pzAArHZmsrKP79/gHekvMaxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": false,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltMovingBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQwsmIANsoAlx3YSu6H4EqaI3/8Na1AzAWI5NkA0dOR/AGSfdDqdzmdMmnBMTjSwM9LBcpJNqenwPb2m2/R5Xh+X+/n4Hg5KXJMxShRtMGN2ENWAjtWgkPnMmdbaZKQMZ5PuDdnAa2WQunRwRgeL0EKBY/3/rTIXJLUOajlAiGfozgEoHKstraD43n37RRR/7Go8g9UAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_occurrences_after": [
+        {
+          "name": "AsBuiltFixed:1",
+          "full_path_name": "AsBuiltFixed:1",
+          "component_name": "AsBuiltFixed",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxECyZggyxgyXb87bih+CVMEecnDWtQMwFiOTZANHQE0aNrTqenu8MkiRMlnCIu09Ev0bR7Hx7rZX3dz7fT9bh/ToJT1uQZZVuKQUMKkFI2qKgOC3u0TDzUZLZMMsKwW1aQphkkKkP10WEgiliRQor/t4R5scgBJja+NQZOncCrlYG9u7Xvc/wArokHa8cAAAA=",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": true,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltFixedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFCyZggyxgybGd2GkoroQp4lzSsAY1EyCWYwNEQ0fuBkDWl76+nr5tDBZwTgw0tTuy6WKQLcnh8D29ltvyeV4fl/v5+J4EBc6hMMqaTKFhdBCzFSrmAomKN440sspsmaS7YlfOIC0ziFeCWkaHgSiiJhYz/t8lREmdHVR0bDUKJfYIpaoN7L1ow/327Rdm+wFE5mTo1QAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AsBuiltMoving:1",
+          "full_path_name": "AsBuiltMoving:1",
+          "component_name": "AsBuiltMoving",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OMQ4CMQwbeAE/6AcipUnaJgvDjfCKprlb+AYzL0B8jh8gFjaK2JE9WJZlG5MkSjnhRCadKv+cmnbvw2O5LK/7+Xa6HvfPmaDENRmjRNEGA7ODqAZ0rAaFzAdn2mqT2TKTTbo3ZAOvlUHq2sEZHSxCCwVO+v+tMgqSWge1HCDEA7pzAArHZmsrKP79/gHekvMaxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": false,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltMovingBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQwsmIANsoAlx3YSu6H4EqaI3/8Na1AzAWI5NkA0dOR/AGSfdDqdzmdMmnBMTjSwM9LBcpJNqenwPb2m2/R5Xh+X+/n4Hg5KXJMxShRtMGN2ENWAjtWgkPnMmdbaZKQMZ5PuDdnAa2WQunRwRgeL0EKBY/3/rTIXJLUOajlAiGfozgEoHKstraD43n37RRR/7Go8g9UAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "captured_before_immediate_after_final_placements_unchanged": true,
+      "native_placements_match_actual_snapshots": true,
+      "native_motion_limits_match_actual_getters": true,
+      "enabled_limit_roles": [],
+      "point_geometry_API_corroborated": false,
+      "decoder_does_not_mutate_input": true
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/revolute.f3d",
+      "archive_sha256": "14767f529202e15de93760bc1f572775198612f8351d78e26d1535f672f2c8f0",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 567,
+            "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+            "object_id": 566,
+            "name": "ProbeAsBuiltRevolute",
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "component_scope_object_id": 33,
+            "joint_type": "Revolute",
+            "api_joint_type_code": 1,
+            "stored_joint_type_code": 1,
+            "motion_limits": [
+              {
+                "slot_index": 2,
+                "stored_axis_tag": 2,
+                "current_value": 0.0,
+                "maximum_value": 1.0995574287564276,
+                "minimum_value": -0.39968039870670147,
+                "rest_value": 0.2,
+                "maximum_enabled": true,
+                "minimum_enabled": true,
+                "rest_enabled": false,
+                "limit_kind": "rotationLimits",
+                "units": "rad"
+              }
+            ],
+            "direction_codes": {
+              "rotationAxis": 2
+            },
+            "enabled_limit_bindings": [
+              {
+                "binding_object_id": 630,
+                "role": "RotateMinimum",
+                "value": -0.39968039870670147
+              },
+              {
+                "binding_object_id": 633,
+                "role": "RotateMaximum",
+                "value": 1.0995574287564276
+              }
+            ],
+            "enabled_limit_binding_object_ids": [
+              630,
+              633
+            ],
+            "ordered_occurrence_contexts": [
+              {
+                "object_id": 568,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 570,
+                "route_object_id": 569,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "c9f4cbbe-2220-4484-a571-c3ba101f7720",
+                "context_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "context_entity_guid_text": "49007b87-8d3c-4289-b849-a0f6be4919a3",
+                "terminal_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "terminal_entity_guid_text": "10632f37-0c0d-4b94-b80a-f5b053720e86",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 571,
+                "frame_link_object_id": 264,
+                "route_wrapper_object_id": 573,
+                "route_object_id": 572,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "bcf8b432-896c-41e6-945b-4e3c4e7fe536",
+                "context_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "context_entity_guid_text": "4fe9024e-e0c8-4fa1-a4e5-d3d5d667ae9d",
+                "terminal_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "terminal_entity_guid_text": "10632f37-0c0d-4b94-b80a-f5b053720e86",
+                "native_occurrence_object_id": 253,
+                "component_object_id": 202,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              }
+            ],
+            "root_context": {
+              "object_id": 574,
+              "frame_link_object_id": 55,
+              "route_wrapper_object_id": 576,
+              "route_object_id": 575,
+              "stored_route_mode": 0,
+              "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+              "context_namespace_text": null,
+              "context_entity_guid_text": null,
+              "terminal_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+              "terminal_entity_guid_text": "10632f37-0c0d-4b94-b80a-f5b053720e86",
+              "native_occurrence_object_id": 57,
+              "component_object_id": 3,
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_footer_mode": 0,
+              "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              2
+            ],
+            "stored_context_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              1.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_matrix_layout_details": {
+              "stored_marker": 1,
+              "stored_opaque_prefix_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000000",
+              "stored_matrix_relative_offset": 166,
+              "stored_opaque_footer_byte_count": 39,
+              "prefix_scope": "Exact captured forty-byte prefix retained; no semantics assigned to embedded numeric coincidences"
+            },
+            "stored_opaque_joint_footer_hex": "000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "stored_repeated_input_object_ids": [
+              577,
+              579,
+              582,
+              630,
+              633
+            ],
+            "source_geometry": {
+              "backend_object_id": 577,
+              "method_object_id": 578,
+              "point_provider_object_id": 579,
+              "descriptor_object_id": 582,
+              "terminal_object_id": 585,
+              "native_origin_point": {
+                "kind": "ConstructionPoint",
+                "name": "O",
+                "position_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 379,
+                "origin_container_object_id": 378,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+              "entity_guid_text": "49007b87-8d3c-4289-b849-a0f6be4919a3",
+              "stored_geometry_transform": [
+                1.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_source_point_context": {
+                "object_id": 589,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 591,
+                "route_object_id": 590,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "c9f4cbbe-2220-4484-a571-c3ba101f7720",
+                "context_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "context_entity_guid_text": "49007b87-8d3c-4289-b849-a0f6be4919a3",
+                "terminal_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "terminal_entity_guid_text": "10632f37-0c0d-4b94-b80a-f5b053720e86",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 0,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              "stored_parent_point_context": {
+                "object_id": 586,
+                "frame_link_object_id": 55,
+                "route_wrapper_object_id": 588,
+                "route_object_id": 587,
+                "stored_route_mode": 0,
+                "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+                "context_namespace_text": null,
+                "context_entity_guid_text": null,
+                "terminal_namespace_text": "b71a2e83-9d99-4567-bb03-3f23af70798b",
+                "terminal_entity_guid_text": "10632f37-0c0d-4b94-b80a-f5b053720e86",
+                "native_occurrence_object_id": 57,
+                "component_object_id": 3,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 0,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              "cached_origin_from_source_point": [
+                4.0,
+                -1.0,
+                2.0
+              ],
+              "stored_point_provider_mode": 10,
+              "uninterpreted_point_provider_vector": [
+                -1.0,
+                -1.0,
+                -1.0
+              ],
+              "opaque_geometry_backend_tail_hex": "000001000000019b0200000000000000000000000004000000000000000000000000000101000000fa1cdb0fd1f83e010100000151020000000000000000010000015002000000000000000000",
+              "opaque_point_provider_tail_hex": "01000000019a020000000000000000000000000400000000000000000000000000010100000023e4001d8d033f010100000145020000000000000000010000014402000000000000000000",
+              "geometry_scope": "Typed native point source and owned context/backend transform cache; provider sentinel vector is not the source point position, API JointGeometry axis conventions and general origins are not inferred"
+            },
+            "is_suppressed": null,
+            "suppression_scope": "Actual API captures are unsuppressed; native As-built suppression encoding is not qualified by this stage",
+            "opaque_feature_state_footer_hex": "0000000000000001540200000000000000000138000000000000000000ffffffff0101000018349795d2a5423f01010000015302000000000000000001000001520200000000000000000000",
+            "scope": "Observed same-root As-built rigid/revolute/slider occurrence associations, native motion/limit bindings and point-origin geometry caches; no joint solve or world-placement claim",
+            "placement_limitation": "Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed same-root As-built rigid/revolute/slider occurrence associations, native motion/limit bindings and point-origin geometry caches; no joint solve or world-placement claim",
+        "placement_limitation": "Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied"
+      },
+      "actual_motion": {
+        "entity_type": "adsk::fusion::RevoluteJointMotion",
+        "joint_type": 1,
+        "directions": {
+          "rotationAxis": 2
+        },
+        "vectors": {
+          "rotationAxisVector": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "current_values": {
+          "rotationValue": 0.0
+        },
+        "limits": {
+          "rotationLimits": {
+            "minimumValue": -0.39968039870670147,
+            "maximumValue": 1.0995574287564276,
+            "restValue": 0.2,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": false
+          }
+        }
+      },
+      "actual_requested_limits": {
+        "minimumValue": -0.4,
+        "maximumValue": 1.1,
+        "restValue": 0.2,
+        "isMinimumValueEnabled": true,
+        "isMaximumValueEnabled": true,
+        "isRestValueEnabled": false
+      },
+      "actual_requested_geometry_source": {
+        "status": "returned_entity",
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "name": "O",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32POw4CMQxEC25BFYnayL9N7IqKg8TZDS0tNSUnoOAMlBRcjuweAI0sjUZPGg8mSzhEicdtjm04SromOX32x/vreb58d6fD+3p7DIKT5ESYhbsUwIYzaLhCGFboU+AkhXGxAa1k864tYgFmRlA1hToVgiZRCamXAf/vUkcsYQVslgbK5qNLHSr2HIs6eZXt93WLFP8BC8CA/NUAAAA=",
+        "component_name": "AsBuiltMoving",
+        "point_cm": [
+          4.0,
+          -1.0,
+          2.0
+        ],
+        "assembly_context_path": "AsBuiltMoving:1",
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnYpvea5M13TdzPbK68vqOwGqjBSMDZTMLE0MDBPsjDXtUgxTtY1MbKw1E2yMLHUTTRIM0tKNbE0tEw0BqsFmsGABsD2GSiArQNZb2xuCQA1tCEsiAAAAA=="
+      },
+      "actual_joint_geometry": {
+        "status": "returned_geometry",
+        "geometry_type": 0,
+        "key_point_type": 3,
+        "origin_cm": [
+          4.0,
+          -1.0,
+          2.0
+        ],
+        "primary_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "secondary_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "third_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "entity_one": {
+          "status": "returned_entity",
+          "entity_type": "adsk::fusion::ConstructionPoint",
+          "name": "O",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32POw4CMQxEC25BFYnayL9N7IqKg8TZDS0tNSUnoOAMlBRcjuweAI0sjUZPGg8mSzhEicdtjm04SromOX32x/vreb58d6fD+3p7DIKT5ESYhbsUwIYzaLhCGFboU+AkhXGxAa1k864tYgFmRlA1hToVgiZRCamXAf/vUkcsYQVslgbK5qNLHSr2HIs6eZXt93WLFP8BC8CA/NUAAAA=",
+          "component_name": "AsBuiltMoving",
+          "point_cm": [
+            4.0,
+            -1.0,
+            2.0
+          ],
+          "assembly_context_path": "AsBuiltMoving:1",
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnYpvea5M13TdzPbK68vqOwGqjBSMDZTMLE0MDBPsjDXtUgxTtY1MbKw1E2yMLHUTTRIM0tKNbE0tEw0BqsFmsGABsD2GSiArQNZb2xuCQA1tCEsiAAAAA=="
+        },
+        "entity_two": {
+          "status": "returned_null"
+        }
+      },
+      "actual_joint_transform": [
+        1.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "actual_health_state": 0,
+      "actual_warning": "",
+      "native_ordered_context_names": [
+        "AsBuiltMoving:1",
+        "AsBuiltFixed:1"
+      ],
+      "raw_native_member_names": [
+        "AsBuiltFixed:1",
+        "AsBuiltMoving:1"
+      ],
+      "actual_occurrences_before": [
+        {
+          "name": "AsBuiltFixed:1",
+          "full_path_name": "AsBuiltFixed:1",
+          "component_name": "AsBuiltFixed",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/33OLQ4CMAwFYMEtUE3QJV3bdZtCcZD9dFgsGskJEJwBieByjOBJzcvLl7wSKDAEoHWB80rh1xi8tvvr4348vTeH3fN8uS3BIAaBTHhKQuo0UFtRbJkqztgoSmLyvNBXtj5zU2HMxTpqcMOisaG6dPU0PS70d0unF2J1dOoZddaAVT3ikBGHWapexvf3D4GKVU/HAAAA",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": true,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltFixedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw1CMQxFC7agikRt5MSO41RUDJKPQ0tLTckEFMxAScFyJG8AZF3p6OpIttGpwznehZmNgk7yjlcj7rM/3l/P8+W7Ox3e19tjGsGROI9CYVACbNiBa2aoigVGrBgpBTSd0jJrG1qZAmiWBuxNIHOswEaNLQ2LU/q7i4dlDGxg2BR4FA+FLUKnHrtIKpb7dvv6hUh/G6zdjNUAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AsBuiltMoving:1",
+          "full_path_name": "AsBuiltMoving:1",
+          "component_name": "AsBuiltMoving",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OKw4CQRBEBbdATYJu0r+d6VYoDjI9u4PFopGcAMEZViK4HLPBkzKVykteYdLEiRKOENto9Ftyeu+P99fzfPnsTof1ensMgpPkRJiFuxTAhjNouEIYVuhT4CSFcbEBbWTzri1iAWZGUDWFOhWCJlEJqZcB/3epI5awAjZLA2Xz4VKHij3Hok5eZfv+Bcnil+bHAAAA",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": false,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltMovingBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PMQ4CMQwEC35BZYnayLF9iV1R8ZA4d6GlpabkBRS8gZKCz5G7B6CVpdVqpPUSGNBQAh63ObbhEuiaZPjsj/fX83z57k6H9/X2GASDZEiUhbsUpEYzarhiGFXsU9AkhWmxAa1k864tYkFmJlQ1xTqVhE2iJkq9DPh/lzpRCStoszRUNh9d6lip51jUk1fZfl+3qNEP5XKLB9UAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_occurrences_after": [
+        {
+          "name": "AsBuiltFixed:1",
+          "full_path_name": "AsBuiltFixed:1",
+          "component_name": "AsBuiltFixed",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/33OLQ4CMAwFYMEtUE3QJV3bdZtCcZD9dFgsGskJEJwBieByjOBJzcvLl7wSKDAEoHWB80rh1xi8tvvr4348vTeH3fN8uS3BIAaBTHhKQuo0UFtRbJkqztgoSmLyvNBXtj5zU2HMxTpqcMOisaG6dPU0PS70d0unF2J1dOoZddaAVT3ikBGHWapexvf3D4GKVU/HAAAA",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": true,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltFixedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw1CMQxFC7agikRt5MSO41RUDJKPQ0tLTckEFMxAScFyJG8AZF3p6OpIttGpwznehZmNgk7yjlcj7rM/3l/P8+W7Ox3e19tjGsGROI9CYVACbNiBa2aoigVGrBgpBTSd0jJrG1qZAmiWBuxNIHOswEaNLQ2LU/q7i4dlDGxg2BR4FA+FLUKnHrtIKpb7dvv6hUh/G6zdjNUAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AsBuiltMoving:1",
+          "full_path_name": "AsBuiltMoving:1",
+          "component_name": "AsBuiltMoving",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OKw4CQRBEBbdATYJu0r+d6VYoDjI9u4PFopGcAMEZViK4HLPBkzKVykteYdLEiRKOENto9Ftyeu+P99fzfPnsTof1ensMgpPkRJiFuxTAhjNouEIYVuhT4CSFcbEBbWTzri1iAWZGUDWFOhWCJlEJqZcB/3epI5awAjZLA2Xz4VKHij3Hok5eZfv+Bcnil+bHAAAA",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": false,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltMovingBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PMQ4CMQwEC35BZYnayLF9iV1R8ZA4d6GlpabkBRS8gZKCz5G7B6CVpdVqpPUSGNBQAh63ObbhEuiaZPjsj/fX83z57k6H9/X2GASDZEiUhbsUpEYzarhiGFXsU9AkhWmxAa1k864tYkFmJlQ1xTqVhE2iJkq9DPh/lzpRCStoszRUNh9d6lip51jUk1fZfl+3qNEP5XKLB9UAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "captured_before_immediate_after_final_placements_unchanged": true,
+      "native_placements_match_actual_snapshots": true,
+      "native_motion_limits_match_actual_getters": true,
+      "enabled_limit_roles": [
+        "RotateMaximum",
+        "RotateMinimum"
+      ],
+      "point_geometry_API_corroborated": true,
+      "decoder_does_not_mutate_input": true
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/slider.f3d",
+      "archive_sha256": "8dd29cf087ed1135a2195f8b81044fe9b7d4302ef58218d86dc21c3780de6d6d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 567,
+            "feature_class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+            "object_id": 566,
+            "name": "ProbeAsBuiltSlider",
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "component_scope_object_id": 33,
+            "joint_type": "Slider",
+            "api_joint_type_code": 2,
+            "stored_joint_type_code": 2,
+            "motion_limits": [
+              {
+                "slot_index": 3,
+                "stored_axis_tag": 6,
+                "current_value": 0.0,
+                "maximum_value": 1.8,
+                "minimum_value": -0.8,
+                "rest_value": 0.3,
+                "maximum_enabled": false,
+                "minimum_enabled": true,
+                "rest_enabled": false,
+                "limit_kind": "slideLimits",
+                "units": "cm"
+              }
+            ],
+            "direction_codes": {
+              "slideDirection": 0
+            },
+            "enabled_limit_bindings": [
+              {
+                "binding_object_id": 630,
+                "role": "SlideMinimum",
+                "value": -0.8
+              }
+            ],
+            "enabled_limit_binding_object_ids": [
+              630
+            ],
+            "ordered_occurrence_contexts": [
+              {
+                "object_id": 568,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 570,
+                "route_object_id": 569,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "cd707bf4-47e3-4518-b042-6b87288be48f",
+                "context_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "context_entity_guid_text": "42721db2-3ed5-468e-833f-4767956c3fde",
+                "terminal_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "terminal_entity_guid_text": "0826c25d-dd90-4eac-8234-c0985d0642a2",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              {
+                "object_id": 571,
+                "frame_link_object_id": 264,
+                "route_wrapper_object_id": 573,
+                "route_object_id": 572,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "c24e44f1-da44-4888-96af-5fc2ef0d7b1f",
+                "context_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "context_entity_guid_text": "79973264-467f-485b-a6f4-738a7e8c8c7c",
+                "terminal_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "terminal_entity_guid_text": "0826c25d-dd90-4eac-8234-c0985d0642a2",
+                "native_occurrence_object_id": 253,
+                "component_object_id": 202,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  3.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 2,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              }
+            ],
+            "root_context": {
+              "object_id": 574,
+              "frame_link_object_id": 55,
+              "route_wrapper_object_id": 576,
+              "route_object_id": 575,
+              "stored_route_mode": 0,
+              "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+              "context_namespace_text": null,
+              "context_entity_guid_text": null,
+              "terminal_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+              "terminal_entity_guid_text": "0826c25d-dd90-4eac-8234-c0985d0642a2",
+              "native_occurrence_object_id": 57,
+              "component_object_id": 3,
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_footer_mode": 0,
+              "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              2
+            ],
+            "stored_context_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              1.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_matrix_layout_details": {
+              "stored_marker": 1,
+              "stored_opaque_prefix_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000000",
+              "stored_matrix_relative_offset": 166,
+              "stored_opaque_footer_byte_count": 39,
+              "prefix_scope": "Exact captured forty-byte prefix retained; no semantics assigned to embedded numeric coincidences"
+            },
+            "stored_opaque_joint_footer_hex": "000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "stored_repeated_input_object_ids": [
+              577,
+              579,
+              582,
+              630
+            ],
+            "source_geometry": {
+              "backend_object_id": 577,
+              "method_object_id": 578,
+              "point_provider_object_id": 579,
+              "descriptor_object_id": 582,
+              "terminal_object_id": 585,
+              "native_origin_point": {
+                "kind": "ConstructionPoint",
+                "name": "O",
+                "position_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 379,
+                "origin_container_object_id": 378,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+              "entity_guid_text": "42721db2-3ed5-468e-833f-4767956c3fde",
+              "stored_geometry_transform": [
+                1.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "stored_source_point_context": {
+                "object_id": 589,
+                "frame_link_object_id": 407,
+                "route_wrapper_object_id": 591,
+                "route_object_id": 590,
+                "stored_route_mode": 1,
+                "stored_occurrence_uuid_text": "cd707bf4-47e3-4518-b042-6b87288be48f",
+                "context_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "context_entity_guid_text": "42721db2-3ed5-468e-833f-4767956c3fde",
+                "terminal_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "terminal_entity_guid_text": "0826c25d-dd90-4eac-8234-c0985d0642a2",
+                "native_occurrence_object_id": 396,
+                "component_object_id": 345,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 0,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              "stored_parent_point_context": {
+                "object_id": 586,
+                "frame_link_object_id": 55,
+                "route_wrapper_object_id": 588,
+                "route_object_id": 587,
+                "stored_route_mode": 0,
+                "stored_occurrence_uuid_text": "00000000-0000-0000-0000-000000000000",
+                "context_namespace_text": null,
+                "context_entity_guid_text": null,
+                "terminal_namespace_text": "15ece0b8-6ace-4733-9399-2d60c3fead07",
+                "terminal_entity_guid_text": "0826c25d-dd90-4eac-8234-c0985d0642a2",
+                "native_occurrence_object_id": 57,
+                "component_object_id": 3,
+                "stored_context_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "stored_footer_mode": 0,
+                "association": "Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal"
+              },
+              "cached_origin_from_source_point": [
+                4.0,
+                -1.0,
+                2.0
+              ],
+              "stored_point_provider_mode": 10,
+              "uninterpreted_point_provider_vector": [
+                -1.0,
+                -1.0,
+                -1.0
+              ],
+              "opaque_geometry_backend_tail_hex": "00000100000001980200000000000000000000000004000000000000000000000000000101000000bf53405b80f63e010100000151020000000000000000010000015002000000000000000000",
+              "opaque_point_provider_tail_hex": "0100000001970200000000000000000000000004000000000000000000000000000101000080e2bae5c7b8023f010100000145020000000000000000010000014402000000000000000000",
+              "geometry_scope": "Typed native point source and owned context/backend transform cache; provider sentinel vector is not the source point position, API JointGeometry axis conventions and general origins are not inferred"
+            },
+            "is_suppressed": null,
+            "suppression_scope": "Actual API captures are unsuppressed; native As-built suppression encoding is not qualified by this stage",
+            "opaque_feature_state_footer_hex": "0000000000000001540200000000000000000138000000000000000000ffffffff01010000a08573bceb342e3f01010000015302000000000000000001000001520200000000000000000000",
+            "scope": "Observed same-root As-built rigid/revolute/slider occurrence associations, native motion/limit bindings and point-origin geometry caches; no joint solve or world-placement claim",
+            "placement_limitation": "Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed same-root As-built rigid/revolute/slider occurrence associations, native motion/limit bindings and point-origin geometry caches; no joint solve or world-placement claim",
+        "placement_limitation": "Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied"
+      },
+      "actual_motion": {
+        "entity_type": "adsk::fusion::SliderJointMotion",
+        "joint_type": 2,
+        "directions": {
+          "slideDirection": 0
+        },
+        "vectors": {
+          "slideDirectionVector": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "current_values": {
+          "slideValue": 0.0
+        },
+        "limits": {
+          "slideLimits": {
+            "minimumValue": -0.8,
+            "maximumValue": 1.8,
+            "restValue": 0.3,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": false,
+            "isRestValueEnabled": false
+          }
+        }
+      },
+      "actual_requested_limits": {
+        "minimumValue": -0.8,
+        "maximumValue": 1.8,
+        "restValue": 0.3,
+        "isMinimumValueEnabled": true,
+        "isMaximumValueEnabled": false,
+        "isRestValueEnabled": false
+      },
+      "actual_requested_geometry_source": {
+        "status": "returned_entity",
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "name": "O",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxESyagzwKWHNtxnAlYg584KViHiiHo6emZgQGYAZH8AZB10un0dLYxWMA5MdDU7simi0FWouH4eT8urxNfb3B+fu+HSVBgDWikjZKDe0GQvjUwYoGGxZKjCm2rcZLNM+Y6BCR3BknRoKIQaLVMZrWLjf+7hDJFrwTcPYGodTDmMQs1l6SNh/f99vUL5/IDp+SuXNUAAAA=",
+        "component_name": "AsBuiltMoving",
+        "point_cm": [
+          4.0,
+          -1.0,
+          2.0
+        ],
+        "assembly_context_path": "AsBuiltMoving:1",
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguibBzuyzrkbT56pm3D431p2oAojBWMzBRMjcyPDlCQjXePUFFNdEzOLVF0LY+M0XRNzM3NLU7Nk47SUVLBaoBkMaABsn4EC2DqQ9cbmlgCA9SHYiAAAAA=="
+      },
+      "actual_joint_geometry": {
+        "status": "returned_geometry",
+        "geometry_type": 0,
+        "key_point_type": 3,
+        "origin_cm": [
+          4.0,
+          -1.0,
+          2.0
+        ],
+        "primary_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "secondary_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "third_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "entity_one": {
+          "status": "returned_entity",
+          "entity_type": "adsk::fusion::ConstructionPoint",
+          "name": "O",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxESyagzwKWHNtxnAlYg584KViHiiHo6emZgQGYAZH8AZB10un0dLYxWMA5MdDU7simi0FWouH4eT8urxNfb3B+fu+HSVBgDWikjZKDe0GQvjUwYoGGxZKjCm2rcZLNM+Y6BCR3BknRoKIQaLVMZrWLjf+7hDJFrwTcPYGodTDmMQs1l6SNh/f99vUL5/IDp+SuXNUAAAA=",
+          "component_name": "AsBuiltMoving",
+          "point_cm": [
+            4.0,
+            -1.0,
+            2.0
+          ],
+          "assembly_context_path": "AsBuiltMoving:1",
+          "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguibBzuyzrkbT56pm3D431p2oAojBWMzBRMjcyPDlCQjXePUFFNdEzOLVF0LY+M0XRNzM3NLU7Nk47SUVLBaoBkMaABsn4EC2DqQ9cbmlgCA9SHYiAAAAA=="
+        },
+        "entity_two": {
+          "status": "returned_null"
+        }
+      },
+      "actual_joint_transform": [
+        1.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        1.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "actual_health_state": 0,
+      "actual_warning": "",
+      "native_ordered_context_names": [
+        "AsBuiltMoving:1",
+        "AsBuiltFixed:1"
+      ],
+      "raw_native_member_names": [
+        "AsBuiltFixed:1",
+        "AsBuiltMoving:1"
+      ],
+      "actual_occurrences_before": [
+        {
+          "name": "AsBuiltFixed:1",
+          "full_path_name": "AsBuiltFixed:1",
+          "component_name": "AsBuiltFixed",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Ouw1CMQwsmYDeC1hyHMd2JmANgpMUrEPFEPT09MzAAMyAyBM9uuZ0uh+BAEMCWkjsi6WforB/v+7n5yFfrnh8fG675WDICuSswaVj75VQRgt0zoJB1UsnFW5b43IGyxCZCXsTQXF3rNomlhk8JnU7pfl/y2q1zLrCanM1lBM2nYKWvdnw8LDYvn8BLVyTaMcAAAA=",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": true,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltFixedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQwsmYA+C1hybMdxJmAN8k5SsA4VQ9DT0zMDAzADIvkBkHXSyTrfnTFYwDkx0MTOyCaLQdZGw/HzflxeJ77e4Pz83g9TQYE1oJE6pQatFQTp1cGIBRyLpYYqVJfjVDpJFxkRWhUBMTMoWgek4dQHtrzF8T8rl5KZdB5rHtMhbVB1CGS2mru5efa9+/qF2X4aZnwN1QAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AsBuiltMoving:1",
+          "full_path_name": "AsBuiltMoving:1",
+          "component_name": "AsBuiltMoving",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxESyag9wKWHNtx/CdgDX7ipGAdKoagp6dnBgZgBvTzRY+uOZ2e7o5AgSEBTSX26dIvMTh+3o/L6yTXG56f3/thEgxiQM7WOAdGLITa14bOotho8RxkyuveOMkWhUodilq6oObkWEkZrXph99rVx/8t5cIpKqP0yKjmHV1kzEIrS7YmI/r+fQNAhCjwxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": false,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltMovingBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFSyag9wKWHNtxfBOwBpc4KViHiiHo6emZgQGYAZG7AZD1pa+vp2+bwIHmJOCp3bFPl0C3xOD4eT8ur5Ncb3h+fu+HSTCIATlb4xwYsRBqXxs6i2KjxXOQKa9b4yRbFCp1KGrpgpqTYyVltOqF3WtXH/93KRdOURmlR0Y17+giYxZaWbI1GdH327df1OkHSValp9UAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_occurrences_after": [
+        {
+          "name": "AsBuiltFixed:1",
+          "full_path_name": "AsBuiltFixed:1",
+          "component_name": "AsBuiltFixed",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Ouw1CMQwsmYDeC1hyHMd2JmANgpMUrEPFEPT09MzAAMyAyBM9uuZ0uh+BAEMCWkjsi6WforB/v+7n5yFfrnh8fG675WDICuSswaVj75VQRgt0zoJB1UsnFW5b43IGyxCZCXsTQXF3rNomlhk8JnU7pfl/y2q1zLrCanM1lBM2nYKWvdnw8LDYvn8BLVyTaMcAAAA=",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": true,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltFixedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31PsQ0CMQwsmYA+C1hybMdxJmAN8k5SsA4VQ9DT0zMDAzADIvkBkHXSyTrfnTFYwDkx0MTOyCaLQdZGw/HzflxeJ77e4Pz83g9TQYE1oJE6pQatFQTp1cGIBRyLpYYqVJfjVDpJFxkRWhUBMTMoWgek4dQHtrzF8T8rl5KZdB5rHtMhbVB1CGS2mru5efa9+/qF2X4aZnwN1QAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AsBuiltMoving:1",
+          "full_path_name": "AsBuiltMoving:1",
+          "component_name": "AsBuiltMoving",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxESyag9wKWHNtx/CdgDX7ipGAdKoagp6dnBgZgBvTzRY+uOZ2e7o5AgSEBTSX26dIvMTh+3o/L6yTXG56f3/thEgxiQM7WOAdGLITa14bOotho8RxkyuveOMkWhUodilq6oObkWEkZrXph99rVx/8t5cIpKqP0yKjmHV1kzEIrS7YmI/r+fQNAhCjwxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            1.0,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_grounded": false,
+          "body_count": 1,
+          "bodies": [
+            {
+              "name": "AsBuiltMovingBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFSyag9wKWHNtxfBOwBpc4KViHiiHo6emZgQGYAZG7AZD1pa+vp2+bwIHmJOCp3bFPl0C3xOD4eT8ur5Ncb3h+fu+HSTCIATlb4xwYsRBqXxs6i2KjxXOQKa9b4yRbFCp1KGrpgpqTYyVltOqF3WtXH/93KRdOURmlR0Y17+giYxZaWbI1GdH327df1OkHSValp9UAAAA=",
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  -1.0,
+                  2.0
+                ],
+                "max": [
+                  5.0,
+                  0.0,
+                  3.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "captured_before_immediate_after_final_placements_unchanged": true,
+      "native_placements_match_actual_snapshots": true,
+      "native_motion_limits_match_actual_getters": true,
+      "enabled_limit_roles": [
+        "SlideMinimum"
+      ],
+      "point_geometry_API_corroborated": true,
+      "decoder_does_not_mutate_input": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "control": "Native joint collection member count unsupported",
+      "rejected": true,
+      "reason": "As-built native joint collection membership differs"
+    },
+    {
+      "control": "Common joint members alias",
+      "rejected": true,
+      "reason": "As-built native joint member identities coincide"
+    },
+    {
+      "control": "Owned ordered context frame backlink differs",
+      "rejected": true,
+      "reason": "Unsupported reference encoding"
+    },
+    {
+      "control": "Occurrence UUID loses explicit same-asset match",
+      "rejected": true,
+      "reason": "As-built route namespace/occurrence/footer ambiguous"
+    },
+    {
+      "control": "Marker1 opaque prefix is unobserved",
+      "rejected": true,
+      "reason": "Unsupported As-built native joint matrix marker/prefix"
+    },
+    {
+      "control": "Point geometry backend owner is wrong",
+      "rejected": true,
+      "reason": "Unsupported As-built point geometry backend framing/owner"
+    },
+    {
+      "control": "Typed native point becomes unknown leaf identity",
+      "rejected": true,
+      "reason": "As-built selected native origin point unresolved"
+    },
+    {
+      "control": "Enabled limit binding disagrees with native parameter cache",
+      "rejected": true,
+      "reason": "As-built enabled limit binding owner/value disagrees"
+    },
+    {
+      "control": "Shared native motion entry self-owner is wrong",
+      "rejected": true,
+      "reason": "Joint motion entry self-owner mismatch"
+    }
+  ],
+  "ordinary_joint_goldens": [
+    {
+      "file": "jointmodes-20d3aef2a07d/rigid.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/revolute.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/slider.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/cylindrical.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/pin_slot.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/planar.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/ball.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
+      "shared_refactor_output_exact_prior_golden": true,
+      "new_AsBuilt_helper_does_not_recover_or_reject": true
+    }
+  ],
+  "limitations": [
+    "Only same-root direct occurrences, one joint collection member, principal Rigid/Revolute/Slider and nonrigid native component-origin point input are admitted.",
+    "Native context matrices and member ordering remain stored caches/associations. Feature ordered input contexts Moving/Fixed differ from common joint member order Fixed/Moving; no ordinal shortcut bridges them.",
+    "Marker1 matrix branch preserves exact forty-byte prefix and39-byte opaque footer. Their numeric/reference-looking fields have no invented semantics.",
+    "Rigid geometry is explicitly absent in native/API controls. Its API joint.transform remains an independent getter observation; it is not supplied as a decoded geometric origin.",
+    "Native point-provider sentinel vector [-1,-1,-1] is literal, not a source point position. Typed native leaf/component origin and owned context/backend cache establish point provenance.",
+    "As-built native suppression flags, ordinary-Joint alignment controls, arbitrary source geometry, custom directions, nested contexts, lifecycle replay and native writing remain unresolved.",
+    "Unchanged before/after occurrence getters in these three cases do not establish a general joint solver or solved world placement."
+  ],
+  "validation": {
+    "actual_AsBuilt_files": 3,
+    "decoded_AsBuilt_features": 3,
+    "decoded_common_native_joints": 3,
+    "ordinary_joint_golden_controls": 8,
+    "malformed_guards": 9,
+    "nonrigid_point_geometry_API_comparisons": 2,
+    "actual_source_placement_snapshots": 6,
+    "actual_all_getter_errors": 0,
+    "actual_all_setter_errors": 0,
+    "all_owned_closeFalse_returns": true,
+    "shared_motion_parser_reused": true,
+    "solved_world_placement_claim": false,
+    "live_Fusion_calls_by_validator": 0,
+    "all_checks_passed": true
+  }
+}

@@ -1,0 +1,2901 @@
+{
+  "scope": "Observed explicit mixed-seed curved sketch pattern groups and single circular fitted-spline source/copies; identity association comes from native ordered role groups",
+  "capture_folder": "sketchmixedpatterns-fcb7610f3c95",
+  "fusion_version": "2705.1.30",
+  "capture_errors": [],
+  "validation": {
+    "new_archives": 4,
+    "api_and_structure_comparisons": 220,
+    "all_passed": true,
+    "prior_curved_default_and_expanded_exact": 6,
+    "legacy_line_circle_noop": 8,
+    "malformed_guards": [
+      {
+        "case": "swap distinct seed IDs without swapping created groups",
+        "passed": true,
+        "reason": "Sketch pattern grouped member kind disagrees with seed"
+      },
+      {
+        "case": "unknown ellipse seed dependency extra5",
+        "passed": true,
+        "reason": "Unobserved sketch pattern dependency extra field"
+      },
+      {
+        "case": "generated ellipse center reference mismatch",
+        "passed": true,
+        "reason": "Patterned ellipse center ownership or coordinates disagree"
+      },
+      {
+        "case": "circular fitted-spline continuation owner missing",
+        "passed": true,
+        "reason": "Split spline geometry is unresolved or ambiguous"
+      }
+    ],
+    "syntax": true
+  },
+  "integration": {
+    "wrapper": "decode_sketch_mixed_patterns(data, records, features)",
+    "interface": "patterns/additional_geometry/unresolved/scope, no feature mutation",
+    "shared_kwargs": "decode_sketch_curved_patterns(...,allow_multiple_seeds=False,allow_circular_fitted=False); opt-in only, prior defaults preserved",
+    "merge": "Replace previous curved-helper call with mixed wrapper at same location immediately after decode_sketches; merge additional_geometry and successfulpatterns byowner/id beforecoverage/details/profiles/placement. Clear only specific successful pattern/geometry unresolved IDs.",
+    "additional_geometry_count": 10,
+    "controllers": {
+      "circular_arc_circle": 306,
+      "rectangular_ellipse_line": 358,
+      "rectangular_fitted_spline_arc": 376,
+      "circular_fitted_spline": 315
+    }
+  },
+  "evidence": {
+    "source_assignments": "Common native parser returns each instance_groups.seed_associations [{seed_entity_id,entity_id,kind}]. These IDs select the source for per-member validation. API source/created ordered geometry arrays corroborate those previously assigned IDs; coordinates never select IDs.",
+    "mixed_order": "Two input IDs form seed prefix, followed by instance-major pairs. Arc/Circle and Ellipse/Line remain distinct typed sources; FittedSpline/Arc likewise.",
+    "circular_fitted": "Same FF8 primary+NURBS continuation+fitpoint collection as rectangular; sourcegenesis258,created256. Native degree/knots/weights/controlpoints and orderedfitpoints all agree with actualAPIgetters for3curves. Pairwise storedcontrolpoint distances independently verify congruent shape, never assign roles.",
+    "ellipse_extra": "MixedseedEllipse dependency raw4 repeats prior two single-seed captures; created0, tagmeaningunknown.",
+    "shape_checks": "Circle radii, Line lengths, Arc radius/sweep, Ellipse radii and spline schema/shape validate already assigned native members."
+  },
+  "limits": [
+    "Suppression and custom direction variants remain outside curved wrapper",
+    "Other combinations of curved seed types unobserved",
+    "No geometry-derived source identity or instance grouping",
+    "No sketch constraint solver or writer"
+  ],
+  "samples": [
+    {
+      "file": "sketchmixedpatterns-fcb7610f3c95/circular_arc_circle.f3d",
+      "sha256": "b3f6eaa3aa03db09c4367832d4c56d768ef0e93c58c52a6fe3d49049a60ec030",
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 3,
+        "total_angle_radians": 2.0943951023931953,
+        "is_symmetric": false,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 306,
+        "entity_ids": [
+          234,
+          240
+        ],
+        "created_entity_ids": [
+          292,
+          295,
+          302,
+          305
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 3,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              234,
+              240
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 234,
+                "entity_id": 234,
+                "kind": "Arc"
+              },
+              {
+                "seed_entity_id": 240,
+                "entity_id": 240,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              292,
+              295
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 234,
+                "entity_id": 292,
+                "kind": "Arc"
+              },
+              {
+                "seed_entity_id": 240,
+                "entity_id": 295,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              302,
+              305
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 234,
+                "entity_id": 302,
+                "kind": "Arc"
+              },
+              {
+                "seed_entity_id": 240,
+                "entity_id": 305,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 30402,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058",
+        "native_dependency_slots": [
+          {
+            "entity_object_id": 205,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 234,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 240,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 292,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 295,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 302,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 305,
+            "stored_extra_u32": 0
+          }
+        ],
+        "sketch_object_id": 202,
+        "curved_member_provenance": [
+          {
+            "entity_object_id": 234,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 104,
+            "support": {
+              "center_point_id": 228,
+              "start_point_id": 230,
+              "end_point_id": 232
+            },
+            "seed_entity_object_id": 234
+          },
+          {
+            "entity_object_id": 240,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Circle",
+            "entity_tag": 106,
+            "support": {
+              "center_point_id": 238
+            },
+            "seed_entity_object_id": 240
+          },
+          {
+            "entity_object_id": 292,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 110,
+            "support": {
+              "center_point_id": 286,
+              "start_point_id": 288,
+              "end_point_id": 290
+            },
+            "seed_entity_object_id": 234
+          },
+          {
+            "entity_object_id": 295,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Circle",
+            "entity_tag": 112,
+            "support": {
+              "center_point_id": 293
+            },
+            "seed_entity_object_id": 240
+          },
+          {
+            "entity_object_id": 302,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 116,
+            "support": {
+              "center_point_id": 296,
+              "start_point_id": 298,
+              "end_point_id": 300
+            },
+            "seed_entity_object_id": 234
+          },
+          {
+            "entity_object_id": 305,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Circle",
+            "entity_tag": 118,
+            "support": {
+              "center_point_id": 303
+            },
+            "seed_entity_object_id": 240
+          }
+        ],
+        "dependency_extra_status": "Seed Ellipse observed extra4 accepted by typed native ID; raw tag meaning unresolved; other slots zero",
+        "curved_geometry_status": "Native ordered IDs assign roles; owned primitive/NURBS shape checks independently validate explicit members"
+      },
+      "additional_geometry": [],
+      "checks": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression": true,
+        "no_feature_mutation": true,
+        "entities0.kind": true,
+        "entities0.start": true,
+        "entities0.end": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "entities1.kind": true,
+        "entities1.center": true,
+        "entities1.radius": true,
+        "created_entities0.kind": true,
+        "created_entities0.start": true,
+        "created_entities0.end": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.kind": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.kind": true,
+        "created_entities2.start": true,
+        "created_entities2.end": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.kind": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "explicit_seed_order.instance0": true,
+        "explicit_member_order.instance0": true,
+        "explicit_seed_order.instance1": true,
+        "explicit_member_order.instance1": true,
+        "explicit_seed_order.instance2": true,
+        "explicit_member_order.instance2": true,
+        "quantity": true,
+        "angle": true,
+        "center": true,
+        "symmetry": true
+      },
+      "actual_api_source_types": [
+        "adsk::fusion::SketchArc",
+        "adsk::fusion::SketchCircle"
+      ],
+      "actual_api_created_types": [
+        "adsk::fusion::SketchArc",
+        "adsk::fusion::SketchCircle",
+        "adsk::fusion::SketchArc",
+        "adsk::fusion::SketchCircle"
+      ],
+      "getter_errors": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "main_reader_patterns_and_geometry_exact": true
+    },
+    {
+      "file": "sketchmixedpatterns-fcb7610f3c95/rectangular_ellipse_line.f3d",
+      "sha256": "a3c6c5a50411fa6696a8d6f27b4d73894e021c8c243e788502d5ea312995ad5e",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "quantity_one": 2,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 358,
+        "entity_ids": [
+          230,
+          264
+        ],
+        "created_entity_ids": [
+          336,
+          341,
+          344,
+          349,
+          352,
+          357
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 4,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230,
+              264
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Ellipse"
+              },
+              {
+                "seed_entity_id": 264,
+                "entity_id": 264,
+                "kind": "Line"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              336,
+              341
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 336,
+                "kind": "Ellipse"
+              },
+              {
+                "seed_entity_id": 264,
+                "entity_id": 341,
+                "kind": "Line"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              344,
+              349
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 344,
+                "kind": "Ellipse"
+              },
+              {
+                "seed_entity_id": 264,
+                "entity_id": 349,
+                "kind": "Line"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              352,
+              357
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 352,
+                "kind": "Ellipse"
+              },
+              {
+                "seed_entity_id": 264,
+                "entity_id": 357,
+                "kind": "Line"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 34008,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_dependency_slots": [
+          {
+            "entity_object_id": 230,
+            "stored_extra_u32": 4
+          },
+          {
+            "entity_object_id": 264,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 336,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 341,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 344,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 349,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 352,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 357,
+            "stored_extra_u32": 0
+          }
+        ],
+        "sketch_object_id": 202,
+        "curved_member_provenance": [
+          {
+            "entity_object_id": 230,
+            "class_guid": "FF23079A-D99C-47AB-940E-2F4E18F022AB",
+            "kind": "Ellipse",
+            "entity_tag": 102,
+            "support": {
+              "center_point_id": 228,
+              "major_axis_entity_id": 235,
+              "minor_axis_entity_id": 240
+            },
+            "seed_entity_object_id": 230
+          },
+          {
+            "entity_object_id": 264,
+            "class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "kind": "Line",
+            "entity_tag": 111,
+            "support": {
+              "start_point_id": 260,
+              "end_point_id": 262
+            },
+            "seed_entity_object_id": 264
+          },
+          {
+            "entity_object_id": 336,
+            "class_guid": "FF23079A-D99C-47AB-940E-2F4E18F022AB",
+            "kind": "Ellipse",
+            "entity_tag": 113,
+            "support": {
+              "center_point_id": 334,
+              "major_axis_entity_id": null,
+              "minor_axis_entity_id": null
+            },
+            "seed_entity_object_id": 230
+          },
+          {
+            "entity_object_id": 341,
+            "class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "kind": "Line",
+            "entity_tag": 116,
+            "support": {
+              "start_point_id": 337,
+              "end_point_id": 339
+            },
+            "seed_entity_object_id": 264
+          },
+          {
+            "entity_object_id": 344,
+            "class_guid": "FF23079A-D99C-47AB-940E-2F4E18F022AB",
+            "kind": "Ellipse",
+            "entity_tag": 118,
+            "support": {
+              "center_point_id": 342,
+              "major_axis_entity_id": null,
+              "minor_axis_entity_id": null
+            },
+            "seed_entity_object_id": 230
+          },
+          {
+            "entity_object_id": 349,
+            "class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "kind": "Line",
+            "entity_tag": 121,
+            "support": {
+              "start_point_id": 345,
+              "end_point_id": 347
+            },
+            "seed_entity_object_id": 264
+          },
+          {
+            "entity_object_id": 352,
+            "class_guid": "FF23079A-D99C-47AB-940E-2F4E18F022AB",
+            "kind": "Ellipse",
+            "entity_tag": 123,
+            "support": {
+              "center_point_id": 350,
+              "major_axis_entity_id": null,
+              "minor_axis_entity_id": null
+            },
+            "seed_entity_object_id": 230
+          },
+          {
+            "entity_object_id": 357,
+            "class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "kind": "Line",
+            "entity_tag": 126,
+            "support": {
+              "start_point_id": 353,
+              "end_point_id": 355
+            },
+            "seed_entity_object_id": 264
+          }
+        ],
+        "dependency_extra_status": "Seed Ellipse observed extra4 accepted by typed native ID; raw tag meaning unresolved; other slots zero",
+        "curved_geometry_status": "Native ordered IDs assign roles; owned primitive/NURBS shape checks independently validate explicit members"
+      },
+      "additional_geometry": [
+        {
+          "kind": "Ellipse",
+          "object_id": 336,
+          "entity_tag": 113,
+          "entity_genesis": 128,
+          "sketch_object_id": 202,
+          "record_offset": 29717,
+          "center_point_id": 334,
+          "center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "major_radius_cm": 0.6000000000000001,
+          "minor_radius_cm": 0.25,
+          "stored_major_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_minor_axis": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "major_axis_entity_id": null,
+          "minor_axis_entity_id": null,
+          "axis_line_status": "Explicit optional native references; generated copies have both absent",
+          "uninterpreted_style_hex": "0000000000000000000000000100000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        {
+          "kind": "Ellipse",
+          "object_id": 344,
+          "entity_tag": 118,
+          "entity_genesis": 128,
+          "sketch_object_id": 202,
+          "record_offset": 31237,
+          "center_point_id": 342,
+          "center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "major_radius_cm": 0.6000000000000001,
+          "minor_radius_cm": 0.25,
+          "stored_major_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_minor_axis": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "major_axis_entity_id": null,
+          "minor_axis_entity_id": null,
+          "axis_line_status": "Explicit optional native references; generated copies have both absent",
+          "uninterpreted_style_hex": "0000000000000000000000000100000000010000000000000000000000000000803f0000803f0000000000"
+        },
+        {
+          "kind": "Ellipse",
+          "object_id": 352,
+          "entity_tag": 123,
+          "entity_genesis": 128,
+          "sketch_object_id": 202,
+          "record_offset": 32757,
+          "center_point_id": 350,
+          "center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "major_radius_cm": 0.6000000000000001,
+          "minor_radius_cm": 0.25,
+          "stored_major_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_minor_axis": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "major_axis_entity_id": null,
+          "minor_axis_entity_id": null,
+          "axis_line_status": "Explicit optional native references; generated copies have both absent",
+          "uninterpreted_style_hex": "0000000000000000000000000100000000010000000000000000000000000000803f0000803f0000000000"
+        }
+      ],
+      "checks": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression": true,
+        "no_feature_mutation": true,
+        "entities0.kind": true,
+        "entities0.center": true,
+        "entities0.major_radius": true,
+        "entities0.minor_radius": true,
+        "entities0.major_axis": true,
+        "entities0.optional_major_axis_presence": true,
+        "entities0.optional_minor_axis_presence": true,
+        "entities1.kind": true,
+        "entities1.start": true,
+        "entities1.end": true,
+        "created_entities0.kind": true,
+        "created_entities0.center": true,
+        "created_entities0.major_radius": true,
+        "created_entities0.minor_radius": true,
+        "created_entities0.major_axis": true,
+        "created_entities0.optional_major_axis_presence": true,
+        "created_entities0.optional_minor_axis_presence": true,
+        "created_entities1.kind": true,
+        "created_entities1.start": true,
+        "created_entities1.end": true,
+        "created_entities2.kind": true,
+        "created_entities2.center": true,
+        "created_entities2.major_radius": true,
+        "created_entities2.minor_radius": true,
+        "created_entities2.major_axis": true,
+        "created_entities2.optional_major_axis_presence": true,
+        "created_entities2.optional_minor_axis_presence": true,
+        "created_entities3.kind": true,
+        "created_entities3.start": true,
+        "created_entities3.end": true,
+        "created_entities4.kind": true,
+        "created_entities4.center": true,
+        "created_entities4.major_radius": true,
+        "created_entities4.minor_radius": true,
+        "created_entities4.major_axis": true,
+        "created_entities4.optional_major_axis_presence": true,
+        "created_entities4.optional_minor_axis_presence": true,
+        "created_entities5.kind": true,
+        "created_entities5.start": true,
+        "created_entities5.end": true,
+        "explicit_seed_order.instance0": true,
+        "explicit_member_order.instance0": true,
+        "explicit_seed_order.instance1": true,
+        "explicit_member_order.instance1": true,
+        "explicit_seed_order.instance2": true,
+        "explicit_member_order.instance2": true,
+        "explicit_seed_order.instance3": true,
+        "explicit_member_order.instance3": true,
+        "quantityOne": true,
+        "quantityTwo": true,
+        "distanceOne": true,
+        "distanceTwo": true,
+        "distance_type": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "actual_api_source_types": [
+        "adsk::fusion::SketchEllipse",
+        "adsk::fusion::SketchLine"
+      ],
+      "actual_api_created_types": [
+        "adsk::fusion::SketchEllipse",
+        "adsk::fusion::SketchLine",
+        "adsk::fusion::SketchEllipse",
+        "adsk::fusion::SketchLine",
+        "adsk::fusion::SketchEllipse",
+        "adsk::fusion::SketchLine"
+      ],
+      "getter_errors": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "main_reader_patterns_and_geometry_exact": true
+    },
+    {
+      "file": "sketchmixedpatterns-fcb7610f3c95/rectangular_fitted_spline_arc.f3d",
+      "sha256": "1fe4803a688514b69b82d179cc607eac61f1f99cef3fd514d0c2e35e207b10b8",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "quantity_one": 2,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 376,
+        "entity_ids": [
+          236,
+          249
+        ],
+        "created_entity_ids": [
+          327,
+          337,
+          346,
+          356,
+          365,
+          375
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 4,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              236,
+              249
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 236,
+                "kind": "FittedSpline"
+              },
+              {
+                "seed_entity_id": 249,
+                "entity_id": 249,
+                "kind": "Arc"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              327,
+              337
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 327,
+                "kind": "FittedSpline"
+              },
+              {
+                "seed_entity_id": 249,
+                "entity_id": 337,
+                "kind": "Arc"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              346,
+              356
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 346,
+                "kind": "FittedSpline"
+              },
+              {
+                "seed_entity_id": 249,
+                "entity_id": 356,
+                "kind": "Arc"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              365,
+              375
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 365,
+                "kind": "FittedSpline"
+              },
+              {
+                "seed_entity_id": 249,
+                "entity_id": 375,
+                "kind": "Arc"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 40138,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_dependency_slots": [
+          {
+            "entity_object_id": 236,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 249,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 327,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 337,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 346,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 356,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 365,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 375,
+            "stored_extra_u32": 0
+          }
+        ],
+        "sketch_object_id": 202,
+        "curved_member_provenance": [
+          {
+            "entity_object_id": 236,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 105,
+            "support": {
+              "fit_point_ids": [
+                228,
+                230,
+                232,
+                234
+              ],
+              "geometry_record_offset": 26699
+            },
+            "seed_entity_object_id": 236
+          },
+          {
+            "entity_object_id": 249,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 109,
+            "support": {
+              "center_point_id": 243,
+              "start_point_id": 245,
+              "end_point_id": 247
+            },
+            "seed_entity_object_id": 249
+          },
+          {
+            "entity_object_id": 327,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 114,
+            "support": {
+              "fit_point_ids": [
+                319,
+                321,
+                323,
+                325
+              ],
+              "geometry_record_offset": 30376
+            },
+            "seed_entity_object_id": 236
+          },
+          {
+            "entity_object_id": 337,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 118,
+            "support": {
+              "center_point_id": 331,
+              "start_point_id": 333,
+              "end_point_id": 335
+            },
+            "seed_entity_object_id": 249
+          },
+          {
+            "entity_object_id": 346,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 123,
+            "support": {
+              "fit_point_ids": [
+                338,
+                340,
+                342,
+                344
+              ],
+              "geometry_record_offset": 34053
+            },
+            "seed_entity_object_id": 236
+          },
+          {
+            "entity_object_id": 356,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 127,
+            "support": {
+              "center_point_id": 350,
+              "start_point_id": 352,
+              "end_point_id": 354
+            },
+            "seed_entity_object_id": 249
+          },
+          {
+            "entity_object_id": 365,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 132,
+            "support": {
+              "fit_point_ids": [
+                357,
+                359,
+                361,
+                363
+              ],
+              "geometry_record_offset": 37730
+            },
+            "seed_entity_object_id": 236
+          },
+          {
+            "entity_object_id": 375,
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "kind": "Arc",
+            "entity_tag": 136,
+            "support": {
+              "center_point_id": 369,
+              "start_point_id": 371,
+              "end_point_id": 373
+            },
+            "seed_entity_object_id": 249
+          }
+        ],
+        "dependency_extra_status": "Seed Ellipse observed extra4 accepted by typed native ID; raw tag meaning unresolved; other slots zero",
+        "curved_geometry_status": "Native ordered IDs assign roles; owned primitive/NURBS shape checks independently validate explicit members"
+      },
+      "additional_geometry": [
+        {
+          "kind": "FittedSpline",
+          "object_id": 236,
+          "entity_tag": 105,
+          "sketch_object_id": 202,
+          "record_offset": 26506,
+          "geometry_record_offset": 26699,
+          "start_point_id": 228,
+          "end_point_id": 234,
+          "start_cm": [
+            1.4,
+            1.0,
+            0.0
+          ],
+          "end_cm": [
+            2.6,
+            1.7,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                1.4,
+                1.0,
+                0.0
+              ],
+              [
+                1.4028864294702579,
+                1.055446548483877,
+                0.0
+              ],
+              [
+                1.4104450256180718,
+                1.1600587351698943,
+                0.0
+              ],
+              [
+                1.427140075809631,
+                1.298134480107836,
+                0.0
+              ],
+              [
+                1.46019283747499,
+                1.4442747100042213,
+                0.0
+              ],
+              [
+                1.5197068468581263,
+                1.5629428159699943,
+                0.0
+              ],
+              [
+                1.5972283543997758,
+                1.6182745949374147,
+                0.0
+              ],
+              [
+                1.6916860704444205,
+                1.6140392867299547,
+                0.0
+              ],
+              [
+                1.8006091758065166,
+                1.5589294868617831,
+                0.0
+              ],
+              [
+                1.9194732091615867,
+                1.4688620939883394,
+                0.0
+              ],
+              [
+                2.0424853371363016,
+                1.364215873631376,
+                0.0
+              ],
+              [
+                2.1633668633307535,
+                1.2670787129888685,
+                0.0
+              ],
+              [
+                2.2761314353963056,
+                1.1985099620066497,
+                0.0
+              ],
+              [
+                2.3757900204055074,
+                1.1760603788851867,
+                0.0
+              ],
+              [
+                2.459333404700601,
+                1.2103156913242672,
+                0.0
+              ],
+              [
+                2.525426111492935,
+                1.3059734697496423,
+                0.0
+              ],
+              [
+                2.5640586923634614,
+                1.432609970178408,
+                0.0
+              ],
+              [
+                2.5850945553399494,
+                1.5555198146905793,
+                0.0
+              ],
+              [
+                2.595615357169164,
+                1.649785657493242,
+                0.0
+              ],
+              [
+                2.6,
+                1.7,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            228,
+            230,
+            232,
+            234
+          ],
+          "fit_points_cm": [
+            [
+              1.4,
+              1.0,
+              0.0
+            ],
+            [
+              1.7,
+              1.6,
+              0.0
+            ],
+            [
+              2.3,
+              1.2,
+              0.0
+            ],
+            [
+              2.6,
+              1.7,
+              0.0
+            ]
+          ],
+          "entity_genesis": 130
+        },
+        {
+          "kind": "FittedSpline",
+          "object_id": 327,
+          "entity_tag": 114,
+          "sketch_object_id": 202,
+          "record_offset": 30183,
+          "geometry_record_offset": 30376,
+          "start_point_id": 319,
+          "end_point_id": 325,
+          "start_cm": [
+            3.4,
+            1.0,
+            0.0
+          ],
+          "end_cm": [
+            4.6,
+            1.7,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                3.4,
+                1.0,
+                0.0
+              ],
+              [
+                3.402886429470258,
+                1.055446548483877,
+                0.0
+              ],
+              [
+                3.410445025618072,
+                1.1600587351698943,
+                0.0
+              ],
+              [
+                3.427140075809631,
+                1.298134480107836,
+                0.0
+              ],
+              [
+                3.46019283747499,
+                1.4442747100042213,
+                0.0
+              ],
+              [
+                3.519706846858126,
+                1.5629428159699943,
+                0.0
+              ],
+              [
+                3.5972283543997756,
+                1.6182745949374147,
+                0.0
+              ],
+              [
+                3.6916860704444208,
+                1.6140392867299547,
+                0.0
+              ],
+              [
+                3.8006091758065166,
+                1.5589294868617831,
+                0.0
+              ],
+              [
+                3.9194732091615867,
+                1.4688620939883394,
+                0.0
+              ],
+              [
+                4.042485337136302,
+                1.364215873631376,
+                0.0
+              ],
+              [
+                4.1633668633307535,
+                1.2670787129888685,
+                0.0
+              ],
+              [
+                4.276131435396305,
+                1.1985099620066497,
+                0.0
+              ],
+              [
+                4.375790020405507,
+                1.1760603788851867,
+                0.0
+              ],
+              [
+                4.459333404700601,
+                1.2103156913242672,
+                0.0
+              ],
+              [
+                4.525426111492935,
+                1.3059734697496423,
+                0.0
+              ],
+              [
+                4.564058692363462,
+                1.432609970178408,
+                0.0
+              ],
+              [
+                4.58509455533995,
+                1.5555198146905793,
+                0.0
+              ],
+              [
+                4.595615357169164,
+                1.649785657493242,
+                0.0
+              ],
+              [
+                4.6,
+                1.7,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            319,
+            321,
+            323,
+            325
+          ],
+          "fit_points_cm": [
+            [
+              3.4,
+              1.0,
+              0.0
+            ],
+            [
+              3.7,
+              1.6,
+              0.0
+            ],
+            [
+              4.3,
+              1.2,
+              0.0
+            ],
+            [
+              4.6,
+              1.7,
+              0.0
+            ]
+          ],
+          "entity_genesis": 128
+        },
+        {
+          "kind": "FittedSpline",
+          "object_id": 346,
+          "entity_tag": 123,
+          "sketch_object_id": 202,
+          "record_offset": 33860,
+          "geometry_record_offset": 34053,
+          "start_point_id": 338,
+          "end_point_id": 344,
+          "start_cm": [
+            1.4,
+            2.5,
+            0.0
+          ],
+          "end_cm": [
+            2.6,
+            3.2,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                1.4,
+                2.5,
+                0.0
+              ],
+              [
+                1.4028864294702579,
+                2.555446548483877,
+                0.0
+              ],
+              [
+                1.4104450256180718,
+                2.660058735169894,
+                0.0
+              ],
+              [
+                1.427140075809631,
+                2.7981344801078363,
+                0.0
+              ],
+              [
+                1.46019283747499,
+                2.9442747100042213,
+                0.0
+              ],
+              [
+                1.5197068468581263,
+                3.0629428159699943,
+                0.0
+              ],
+              [
+                1.5972283543997758,
+                3.1182745949374144,
+                0.0
+              ],
+              [
+                1.6916860704444205,
+                3.1140392867299544,
+                0.0
+              ],
+              [
+                1.8006091758065166,
+                3.058929486861783,
+                0.0
+              ],
+              [
+                1.9194732091615867,
+                2.9688620939883394,
+                0.0
+              ],
+              [
+                2.0424853371363016,
+                2.864215873631376,
+                0.0
+              ],
+              [
+                2.1633668633307535,
+                2.7670787129888685,
+                0.0
+              ],
+              [
+                2.2761314353963056,
+                2.69850996200665,
+                0.0
+              ],
+              [
+                2.3757900204055074,
+                2.676060378885187,
+                0.0
+              ],
+              [
+                2.459333404700601,
+                2.710315691324267,
+                0.0
+              ],
+              [
+                2.525426111492935,
+                2.8059734697496426,
+                0.0
+              ],
+              [
+                2.5640586923634614,
+                2.932609970178408,
+                0.0
+              ],
+              [
+                2.5850945553399494,
+                3.0555198146905793,
+                0.0
+              ],
+              [
+                2.595615357169164,
+                3.1497856574932417,
+                0.0
+              ],
+              [
+                2.6,
+                3.2,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            338,
+            340,
+            342,
+            344
+          ],
+          "fit_points_cm": [
+            [
+              1.4,
+              2.5,
+              0.0
+            ],
+            [
+              1.7,
+              3.1,
+              0.0
+            ],
+            [
+              2.3,
+              2.7,
+              0.0
+            ],
+            [
+              2.6,
+              3.2,
+              0.0
+            ]
+          ],
+          "entity_genesis": 128
+        },
+        {
+          "kind": "FittedSpline",
+          "object_id": 365,
+          "entity_tag": 132,
+          "sketch_object_id": 202,
+          "record_offset": 37537,
+          "geometry_record_offset": 37730,
+          "start_point_id": 357,
+          "end_point_id": 363,
+          "start_cm": [
+            3.4,
+            2.5,
+            0.0
+          ],
+          "end_cm": [
+            4.6,
+            3.2,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                3.4,
+                2.5,
+                0.0
+              ],
+              [
+                3.402886429470258,
+                2.555446548483877,
+                0.0
+              ],
+              [
+                3.410445025618072,
+                2.660058735169894,
+                0.0
+              ],
+              [
+                3.427140075809631,
+                2.7981344801078363,
+                0.0
+              ],
+              [
+                3.46019283747499,
+                2.9442747100042213,
+                0.0
+              ],
+              [
+                3.519706846858126,
+                3.0629428159699943,
+                0.0
+              ],
+              [
+                3.5972283543997756,
+                3.1182745949374144,
+                0.0
+              ],
+              [
+                3.6916860704444208,
+                3.1140392867299544,
+                0.0
+              ],
+              [
+                3.8006091758065166,
+                3.058929486861783,
+                0.0
+              ],
+              [
+                3.9194732091615867,
+                2.9688620939883394,
+                0.0
+              ],
+              [
+                4.042485337136302,
+                2.864215873631376,
+                0.0
+              ],
+              [
+                4.1633668633307535,
+                2.7670787129888685,
+                0.0
+              ],
+              [
+                4.276131435396305,
+                2.69850996200665,
+                0.0
+              ],
+              [
+                4.375790020405507,
+                2.676060378885187,
+                0.0
+              ],
+              [
+                4.459333404700601,
+                2.710315691324267,
+                0.0
+              ],
+              [
+                4.525426111492935,
+                2.8059734697496426,
+                0.0
+              ],
+              [
+                4.564058692363462,
+                2.932609970178408,
+                0.0
+              ],
+              [
+                4.58509455533995,
+                3.0555198146905793,
+                0.0
+              ],
+              [
+                4.595615357169164,
+                3.1497856574932417,
+                0.0
+              ],
+              [
+                4.6,
+                3.2,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            357,
+            359,
+            361,
+            363
+          ],
+          "fit_points_cm": [
+            [
+              3.4,
+              2.5,
+              0.0
+            ],
+            [
+              3.7,
+              3.1,
+              0.0
+            ],
+            [
+              4.3,
+              2.7,
+              0.0
+            ],
+            [
+              4.6,
+              3.2,
+              0.0
+            ]
+          ],
+          "entity_genesis": 128
+        }
+      ],
+      "checks": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression": true,
+        "no_feature_mutation": true,
+        "entities0.kind": true,
+        "entities0.fitpoints": true,
+        "entities0.start": true,
+        "entities0.end": true,
+        "entities0.nurbs_degree": true,
+        "entities0.nurbs_knots": true,
+        "entities0.nurbs_weights": true,
+        "entities0.nurbs_rational": true,
+        "entities0.nurbs_periodic": true,
+        "entities0.nurbs_controlpoints": true,
+        "entities1.kind": true,
+        "entities1.start": true,
+        "entities1.end": true,
+        "entities1.center": true,
+        "entities1.radius": true,
+        "created_entities0.kind": true,
+        "created_entities0.fitpoints": true,
+        "created_entities0.start": true,
+        "created_entities0.end": true,
+        "created_entities0.nurbs_degree": true,
+        "created_entities0.nurbs_knots": true,
+        "created_entities0.nurbs_weights": true,
+        "created_entities0.nurbs_rational": true,
+        "created_entities0.nurbs_periodic": true,
+        "created_entities0.nurbs_controlpoints": true,
+        "created_entities1.kind": true,
+        "created_entities1.start": true,
+        "created_entities1.end": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.kind": true,
+        "created_entities2.fitpoints": true,
+        "created_entities2.start": true,
+        "created_entities2.end": true,
+        "created_entities2.nurbs_degree": true,
+        "created_entities2.nurbs_knots": true,
+        "created_entities2.nurbs_weights": true,
+        "created_entities2.nurbs_rational": true,
+        "created_entities2.nurbs_periodic": true,
+        "created_entities2.nurbs_controlpoints": true,
+        "created_entities3.kind": true,
+        "created_entities3.start": true,
+        "created_entities3.end": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "created_entities4.kind": true,
+        "created_entities4.fitpoints": true,
+        "created_entities4.start": true,
+        "created_entities4.end": true,
+        "created_entities4.nurbs_degree": true,
+        "created_entities4.nurbs_knots": true,
+        "created_entities4.nurbs_weights": true,
+        "created_entities4.nurbs_rational": true,
+        "created_entities4.nurbs_periodic": true,
+        "created_entities4.nurbs_controlpoints": true,
+        "created_entities5.kind": true,
+        "created_entities5.start": true,
+        "created_entities5.end": true,
+        "created_entities5.center": true,
+        "created_entities5.radius": true,
+        "explicit_seed_order.instance0": true,
+        "explicit_member_order.instance0": true,
+        "explicit_seed_order.instance1": true,
+        "explicit_member_order.instance1": true,
+        "explicit_seed_order.instance2": true,
+        "explicit_member_order.instance2": true,
+        "explicit_seed_order.instance3": true,
+        "explicit_member_order.instance3": true,
+        "quantityOne": true,
+        "quantityTwo": true,
+        "distanceOne": true,
+        "distanceTwo": true,
+        "distance_type": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "actual_api_source_types": [
+        "adsk::fusion::SketchFittedSpline",
+        "adsk::fusion::SketchArc"
+      ],
+      "actual_api_created_types": [
+        "adsk::fusion::SketchFittedSpline",
+        "adsk::fusion::SketchArc",
+        "adsk::fusion::SketchFittedSpline",
+        "adsk::fusion::SketchArc",
+        "adsk::fusion::SketchFittedSpline",
+        "adsk::fusion::SketchArc"
+      ],
+      "getter_errors": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "main_reader_patterns_and_geometry_exact": true
+    },
+    {
+      "file": "sketchmixedpatterns-fcb7610f3c95/circular_fitted_spline.f3d",
+      "sha256": "f37bc816a6b0be8b9499deb954f3cb24fa09b2a9d7b144b294c5588f6860ed99",
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 3,
+        "total_angle_radians": 2.0943951023931953,
+        "is_symmetric": false,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 315,
+        "entity_ids": [
+          236
+        ],
+        "created_entity_ids": [
+          299,
+          311
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 3,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              236
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 236,
+                "kind": "FittedSpline"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              299
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 299,
+                "kind": "FittedSpline"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              311
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 236,
+                "entity_id": 311,
+                "kind": "FittedSpline"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 32402,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058",
+        "native_dependency_slots": [
+          {
+            "entity_object_id": 205,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 236,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 299,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 311,
+            "stored_extra_u32": 0
+          }
+        ],
+        "sketch_object_id": 202,
+        "curved_member_provenance": [
+          {
+            "entity_object_id": 236,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 105,
+            "support": {
+              "fit_point_ids": [
+                228,
+                230,
+                232,
+                234
+              ],
+              "geometry_record_offset": 26162
+            }
+          },
+          {
+            "entity_object_id": 299,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 110,
+            "support": {
+              "fit_point_ids": [
+                291,
+                293,
+                295,
+                297
+              ],
+              "geometry_record_offset": 28665
+            }
+          },
+          {
+            "entity_object_id": 311,
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "kind": "FittedSpline",
+            "entity_tag": 115,
+            "support": {
+              "fit_point_ids": [
+                303,
+                305,
+                307,
+                309
+              ],
+              "geometry_record_offset": 31168
+            }
+          }
+        ],
+        "dependency_extra_status": "Seed Ellipse observed extra4 accepted by typed native ID; raw tag meaning unresolved; other slots zero",
+        "curved_geometry_status": "Native ordered IDs assign roles; owned primitive/NURBS shape checks independently validate explicit members"
+      },
+      "additional_geometry": [
+        {
+          "kind": "FittedSpline",
+          "object_id": 236,
+          "entity_tag": 105,
+          "sketch_object_id": 202,
+          "record_offset": 25969,
+          "geometry_record_offset": 26162,
+          "start_point_id": 228,
+          "end_point_id": 234,
+          "start_cm": [
+            1.4,
+            1.0,
+            0.0
+          ],
+          "end_cm": [
+            2.6,
+            1.7,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                1.4,
+                1.0,
+                0.0
+              ],
+              [
+                1.4028864294702579,
+                1.055446548483877,
+                0.0
+              ],
+              [
+                1.4104450256180718,
+                1.1600587351698943,
+                0.0
+              ],
+              [
+                1.427140075809631,
+                1.298134480107836,
+                0.0
+              ],
+              [
+                1.46019283747499,
+                1.4442747100042213,
+                0.0
+              ],
+              [
+                1.5197068468581263,
+                1.5629428159699943,
+                0.0
+              ],
+              [
+                1.5972283543997758,
+                1.6182745949374147,
+                0.0
+              ],
+              [
+                1.6916860704444205,
+                1.6140392867299547,
+                0.0
+              ],
+              [
+                1.8006091758065166,
+                1.5589294868617831,
+                0.0
+              ],
+              [
+                1.9194732091615867,
+                1.4688620939883394,
+                0.0
+              ],
+              [
+                2.0424853371363016,
+                1.364215873631376,
+                0.0
+              ],
+              [
+                2.1633668633307535,
+                1.2670787129888685,
+                0.0
+              ],
+              [
+                2.2761314353963056,
+                1.1985099620066497,
+                0.0
+              ],
+              [
+                2.3757900204055074,
+                1.1760603788851867,
+                0.0
+              ],
+              [
+                2.459333404700601,
+                1.2103156913242672,
+                0.0
+              ],
+              [
+                2.525426111492935,
+                1.3059734697496423,
+                0.0
+              ],
+              [
+                2.5640586923634614,
+                1.432609970178408,
+                0.0
+              ],
+              [
+                2.5850945553399494,
+                1.5555198146905793,
+                0.0
+              ],
+              [
+                2.595615357169164,
+                1.649785657493242,
+                0.0
+              ],
+              [
+                2.6,
+                1.7,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            228,
+            230,
+            232,
+            234
+          ],
+          "fit_points_cm": [
+            [
+              1.4,
+              1.0,
+              0.0
+            ],
+            [
+              1.7,
+              1.6,
+              0.0
+            ],
+            [
+              2.3,
+              1.2,
+              0.0
+            ],
+            [
+              2.6,
+              1.7,
+              0.0
+            ]
+          ],
+          "entity_genesis": 258
+        },
+        {
+          "kind": "FittedSpline",
+          "object_id": 299,
+          "entity_tag": 110,
+          "sketch_object_id": 202,
+          "record_offset": 28472,
+          "geometry_record_offset": 28665,
+          "start_point_id": 291,
+          "end_point_id": 297,
+          "start_cm": [
+            -0.16602540378443853,
+            1.7124355652982142,
+            0.0
+          ],
+          "end_cm": [
+            -0.17224318643354541,
+            3.1016660498395403,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                -0.16602540378443853,
+                1.7124355652982142,
+                0.0
+              ],
+              [
+                -0.21260030858851264,
+                1.7426585607876282,
+                0.0
+              ],
+              [
+                -0.29941782173013676,
+                1.8015105904115907,
+                0.0
+              ],
+              [
+                -0.4106473993970753,
+                1.8850068004639082,
+                0.0
+              ],
+              [
+                -0.5206821701695635,
+                1.9867014466795339,
+                0.0
+              ],
+              [
+                -0.5936947598633385,
+                2.097576143669282,
+                0.0
+              ],
+              [
+                -0.6028527323148852,
+                2.1923776280237277,
+                0.0
+              ],
+              [
+                -0.5519559897920457,
+                2.272062755598117,
+                0.0
+              ],
+              [
+                -0.4497679504276848,
+                2.3388380319666955,
+                0.0
+              ],
+              [
+                -0.312335283469114,
+                2.3967436080117452,
+                0.0
+              ],
+              [
+                -0.16020293424260212,
+                2.450952125632949,
+                0.0
+              ],
+              [
+                -0.015638922377474662,
+                2.5070700178443244,
+                0.0
+              ],
+              [
+                0.100125643911672,
+                2.5704426264088642,
+                0.0
+              ],
+              [
+                0.16939684570383018,
+                2.6455247011713126,
+                0.0
+              ],
+              [
+                0.18150256706456025,
+                2.73500305050853,
+                0.0
+              ],
+              [
+                0.13170685427476925,
+                2.840069902808255,
+                0.0
+              ],
+              [
+                0.041352718292362534,
+                2.93684494947027,
+                0.0
+              ],
+              [
+                -0.05457239794212909,
+                3.016517463454523,
+                0.0
+              ],
+              [
+                -0.13094861160377813,
+                3.0727616665081365,
+                0.0
+              ],
+              [
+                -0.17224318643354541,
+                3.1016660498395403,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            291,
+            293,
+            295,
+            297
+          ],
+          "fit_points_cm": [
+            [
+              -0.16602540378443853,
+              1.7124355652982142,
+              0.0
+            ],
+            [
+              -0.5356406460551016,
+              2.272243186433546,
+              0.0
+            ],
+            [
+              0.11076951545867386,
+              2.591858428704209,
+              0.0
+            ],
+            [
+              -0.17224318643354541,
+              3.1016660498395403,
+              0.0
+            ]
+          ],
+          "entity_genesis": 256
+        },
+        {
+          "kind": "FittedSpline",
+          "object_id": 311,
+          "entity_tag": 115,
+          "sketch_object_id": 202,
+          "record_offset": 30975,
+          "geometry_record_offset": 31168,
+          "start_point_id": 303,
+          "end_point_id": 309,
+          "start_cm": [
+            -1.5660254037844386,
+            0.7124355652982144,
+            0.0
+          ],
+          "end_cm": [
+            -2.7722431864335455,
+            1.4016660498395415,
+            0.0
+          ],
+          "nurbs": {
+            "degree": 5,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06666666666666667,
+              0.13333333333333333,
+              0.2,
+              0.26666666666666666,
+              0.3333333333333333,
+              0.39999999999999997,
+              0.4666666666666666,
+              0.5333333333333333,
+              0.6,
+              0.6666666666666666,
+              0.7333333333333333,
+              0.7999999999999999,
+              0.8666666666666666,
+              0.9333333333333332,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "control_points_cm": [
+              [
+                -1.5660254037844386,
+                0.7124355652982144,
+                0.0
+              ],
+              [
+                -1.6154867380587705,
+                0.6872120123037514,
+                0.0
+              ],
+              [
+                -1.7098628473482087,
+                0.6414518552416969,
+                0.0
+              ],
+              [
+                -1.8377874752067065,
+                0.5868723203560726,
+                0.0
+              ],
+              [
+                -1.9808750076445536,
+                0.5424267366753134,
+                0.0
+              ],
+              [
+                -2.1134016067214647,
+                0.5346333276992884,
+                0.0
+              ],
+              [
+                -2.200081086714661,
+                0.5741030330863137,
+                0.0
+              ],
+              [
+                -2.243642060236467,
+                0.658023468868163,
+                0.0
+              ],
+              [
+                -2.2503771262342016,
+                0.7799085451049128,
+                0.0
+              ],
+              [
+                -2.2318084926307007,
+                0.9278815140234064,
+                0.0
+              ],
+              [
+                -2.2026882713789036,
+                1.0867362520015735,
+                0.0
+              ],
+              [
+                -2.1790057857082283,
+                1.2399913048554567,
+                0.0
+              ],
+              [
+                -2.1760057914846334,
+                1.3719326644022152,
+                0.0
+              ],
+              [
+                -2.2063931747016774,
+                1.4694643222861266,
+                0.0
+              ],
+              [
+                -2.2778308376360408,
+                1.5246873591842633,
+                0.0
+              ],
+              [
+                -2.3937192572181654,
+                1.5340964330586133,
+                0.0
+              ],
+              [
+                -2.5227059740710986,
+                1.5042349792918634,
+                0.0
+              ],
+              [
+                -2.6396669532820782,
+                1.4609976487639447,
+                0.0
+              ],
+              [
+                -2.7265639687729424,
+                1.422976009014895,
+                0.0
+              ],
+              [
+                -2.7722431864335455,
+                1.4016660498395415,
+                0.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "is_periodic": false,
+            "parameter_domain": [
+              0.0,
+              1.0
+            ],
+            "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+          },
+          "state_status": "Spline construction/fixed state not decoded",
+          "fit_point_ids": [
+            303,
+            305,
+            307,
+            309
+          ],
+          "fit_points_cm": [
+            [
+              -1.5660254037844386,
+              0.7124355652982144,
+              0.0
+            ],
+            [
+              -2.235640646055102,
+              0.6722431864335462,
+              0.0
+            ],
+            [
+              -2.189230484541326,
+              1.3918584287042095,
+              0.0
+            ],
+            [
+              -2.7722431864335455,
+              1.4016660498395415,
+              0.0
+            ]
+          ],
+          "entity_genesis": 256
+        }
+      ],
+      "checks": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression": true,
+        "no_feature_mutation": true,
+        "entities0.kind": true,
+        "entities0.fitpoints": true,
+        "entities0.start": true,
+        "entities0.end": true,
+        "entities0.nurbs_degree": true,
+        "entities0.nurbs_knots": true,
+        "entities0.nurbs_weights": true,
+        "entities0.nurbs_rational": true,
+        "entities0.nurbs_periodic": true,
+        "entities0.nurbs_controlpoints": true,
+        "created_entities0.kind": true,
+        "created_entities0.fitpoints": true,
+        "created_entities0.start": true,
+        "created_entities0.end": true,
+        "created_entities0.nurbs_degree": true,
+        "created_entities0.nurbs_knots": true,
+        "created_entities0.nurbs_weights": true,
+        "created_entities0.nurbs_rational": true,
+        "created_entities0.nurbs_periodic": true,
+        "created_entities0.nurbs_controlpoints": true,
+        "created_entities1.kind": true,
+        "created_entities1.fitpoints": true,
+        "created_entities1.start": true,
+        "created_entities1.end": true,
+        "created_entities1.nurbs_degree": true,
+        "created_entities1.nurbs_knots": true,
+        "created_entities1.nurbs_weights": true,
+        "created_entities1.nurbs_rational": true,
+        "created_entities1.nurbs_periodic": true,
+        "created_entities1.nurbs_controlpoints": true,
+        "explicit_seed_order.instance0": true,
+        "explicit_member_order.instance0": true,
+        "explicit_seed_order.instance1": true,
+        "explicit_member_order.instance1": true,
+        "explicit_seed_order.instance2": true,
+        "explicit_member_order.instance2": true,
+        "quantity": true,
+        "angle": true,
+        "center": true,
+        "symmetry": true
+      },
+      "actual_api_source_types": [
+        "adsk::fusion::SketchFittedSpline"
+      ],
+      "actual_api_created_types": [
+        "adsk::fusion::SketchFittedSpline",
+        "adsk::fusion::SketchFittedSpline"
+      ],
+      "getter_errors": [
+        [],
+        [],
+        []
+      ],
+      "main_reader_patterns_and_geometry_exact": true
+    }
+  ],
+  "prior_samples": [
+    {
+      "file": "sketchcurvedpatterns-185c2406ef52/circular_arc.f3d",
+      "default_pattern_exact": true,
+      "expanded_prior_pattern_exact": true
+    },
+    {
+      "file": "sketchcurvedpatterns-185c2406ef52/rectangular_arc.f3d",
+      "default_pattern_exact": true,
+      "expanded_prior_pattern_exact": true
+    },
+    {
+      "file": "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d",
+      "default_pattern_exact": true,
+      "expanded_prior_pattern_exact": true
+    },
+    {
+      "file": "sketchcurvedpatterns-185c2406ef52/rectangular_ellipse.f3d",
+      "default_pattern_exact": true,
+      "expanded_prior_pattern_exact": true
+    },
+    {
+      "file": "sketchcurvedpatterns-185c2406ef52/rectangular_fitted_spline.f3d",
+      "default_pattern_exact": true,
+      "expanded_prior_pattern_exact": true
+    },
+    {
+      "file": "sketchcurvedpatterns-512a788b850e/rectangular_fitted_spline.f3d",
+      "default_pattern_exact": true,
+      "expanded_prior_pattern_exact": true
+    }
+  ],
+  "legacy_noop_files": [
+    "sketchpatternmodes-5b83cb71a99d/circular_two_circles.f3d",
+    "sketchpatternmodes-5b83cb71a99d/circular_line_circle.f3d",
+    "sketchpatternmodes-5b83cb71a99d/circular_line.f3d",
+    "sketchpatternmodes-5b83cb71a99d/circular_suppressed.f3d",
+    "sketchpatternmodes-5b83cb71a99d/rectangular_two_circles.f3d",
+    "sketchpatternmodes-5b83cb71a99d/rectangular_line_circle.f3d",
+    "sketchpatternmodes-5b83cb71a99d/rectangular_direction.f3d",
+    "sketchpatternmodes-5b83cb71a99d/rectangular_suppressed.f3d"
+  ]
+}

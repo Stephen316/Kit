@@ -1,0 +1,401 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "extend_natural.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 1,
+        "distance_cm": 0.4,
+        "extend_type": 0,
+        "is_chaining_enabled": true,
+        "alignment": 0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "extend_tangent.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 1,
+        "distance_cm": 0.4,
+        "extend_type": 1,
+        "is_chaining_enabled": true,
+        "alignment": 0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "extend_perpendicular.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 1,
+        "distance_cm": 0.4,
+        "extend_type": 2,
+        "is_chaining_enabled": true,
+        "alignment": 0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "extend_perpendicular_negative.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 1,
+        "distance_cm": -0.30000000000000004,
+        "extend_type": 2,
+        "is_chaining_enabled": true,
+        "alignment": 0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": -0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "extend_aligned.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 1,
+        "distance_cm": 0.4,
+        "extend_type": 0,
+        "is_chaining_enabled": true,
+        "alignment": 1,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "extend_two_edges.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 2,
+        "distance_cm": 0.4,
+        "extend_type": 0,
+        "is_chaining_enabled": true,
+        "alignment": 0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "untrim_internal.f3d",
+      "kind": "UntrimFeature",
+      "settings": {
+        "loop_type": 2,
+        "extension_distance_cm": 0.0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extensionDistance",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "untrim_external.f3d",
+      "kind": "UntrimFeature",
+      "settings": {
+        "loop_type": 1,
+        "extension_distance_cm": 0.30000000000000004,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extensionDistance",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "untrim_all.f3d",
+      "kind": "UntrimFeature",
+      "settings": {
+        "loop_type": 0,
+        "extension_distance_cm": 0.30000000000000004,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extensionDistance",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "untrim_manual.f3d",
+      "kind": "UntrimFeature",
+      "settings": {
+        "loop_type": 3,
+        "extension_distance_cm": 0.0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extensionDistance",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "ruled_tangent.f3d",
+      "kind": "RuledSurfaceFeature",
+      "settings": {
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "ruled_type": 0,
+        "corner_type": 0,
+        "alternate_face": false,
+        "operation_input": "NewBody",
+        "result_body_count": 2
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ruledDistance",
+          "value": 0.5,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        },
+        {
+          "name": "d2",
+          "role": "ruledAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "ruled_normal.f3d",
+      "kind": "RuledSurfaceFeature",
+      "settings": {
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "ruled_type": 1,
+        "corner_type": 0,
+        "alternate_face": false,
+        "operation_input": "NewBody",
+        "result_body_count": 2
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ruledDistance",
+          "value": 0.5,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        },
+        {
+          "name": "d2",
+          "role": "ruledAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "ruled_direction.f3d",
+      "kind": "RuledSurfaceFeature",
+      "settings": {
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "ruled_type": 2,
+        "corner_type": 0,
+        "alternate_face": false,
+        "operation_input": "NewBody",
+        "direction_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "result_body_count": 2
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ruledDistance",
+          "value": 0.5,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        },
+        {
+          "name": "d2",
+          "role": "ruledAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "ruled_mitered.f3d",
+      "kind": "RuledSurfaceFeature",
+      "settings": {
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "ruled_type": 0,
+        "corner_type": 1,
+        "alternate_face": false,
+        "operation_input": "NewBody",
+        "result_body_count": 2
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ruledDistance",
+          "value": 0.5,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        },
+        {
+          "name": "d2",
+          "role": "ruledAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    },
+    {
+      "file": "trim_positive.f3d",
+      "kind": "TrimFeature",
+      "settings": {
+        "cells": [
+          {
+            "index": 0,
+            "bounding_box_center_cm": [
+              0.0,
+              -0.5,
+              0.0
+            ],
+            "is_removed": false
+          },
+          {
+            "index": 1,
+            "bounding_box_center_cm": [
+              0.0,
+              0.5,
+              0.0
+            ],
+            "is_removed": true
+          }
+        ],
+        "tool_plane_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tool_plane_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "result_body_count": 1
+      },
+      "parameters": []
+    },
+    {
+      "file": "trim_negative.f3d",
+      "kind": "TrimFeature",
+      "settings": {
+        "cells": [
+          {
+            "index": 0,
+            "bounding_box_center_cm": [
+              0.0,
+              -0.5,
+              0.0
+            ],
+            "is_removed": true
+          },
+          {
+            "index": 1,
+            "bounding_box_center_cm": [
+              0.0,
+              0.5,
+              0.0
+            ],
+            "is_removed": false
+          }
+        ],
+        "tool_plane_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tool_plane_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "result_body_count": 1
+      },
+      "parameters": []
+    }
+  ],
+  "errors": []
+}

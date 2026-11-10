@@ -1,0 +1,421 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "closure_open_four.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 4,
+        "guide_count": 0,
+        "is_centerline": false,
+        "guides": [],
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 2,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection3",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 3,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection4",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "RotateAngle",
+          "value": 1.5707963267948966,
+          "unit": "deg",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "RotateAngle",
+          "value": 3.141592653589793,
+          "unit": "deg",
+          "created_by": "Plane2"
+        },
+        {
+          "name": "d5",
+          "role": "RotateAngle",
+          "value": 4.71238898038469,
+          "unit": "deg",
+          "created_by": "Plane3"
+        }
+      ]
+    },
+    {
+      "file": "closure_closed_four.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": true,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 4,
+        "guide_count": 0,
+        "is_centerline": false,
+        "guides": [],
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 2,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection3",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 3,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection4",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "RotateAngle",
+          "value": 1.5707963267948966,
+          "unit": "deg",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "RotateAngle",
+          "value": 3.141592653589793,
+          "unit": "deg",
+          "created_by": "Plane2"
+        },
+        {
+          "name": "d5",
+          "role": "RotateAngle",
+          "value": 4.71238898038469,
+          "unit": "deg",
+          "created_by": "Plane3"
+        }
+      ]
+    },
+    {
+      "file": "closure_closed_surface.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          false
+        ],
+        "operation": 3,
+        "is_solid": false,
+        "is_closed": true,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 4,
+        "guide_count": 0,
+        "is_centerline": false,
+        "guides": [],
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 2,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection3",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 3,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection4",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "RotateAngle",
+          "value": 1.5707963267948966,
+          "unit": "deg",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "RotateAngle",
+          "value": 3.141592653589793,
+          "unit": "deg",
+          "created_by": "Plane2"
+        },
+        {
+          "name": "d5",
+          "role": "RotateAngle",
+          "value": 4.71238898038469,
+          "unit": "deg",
+          "created_by": "Plane3"
+        }
+      ]
+    },
+    {
+      "file": "one_rail.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 1,
+        "is_centerline": false,
+        "guides": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::SketchLine",
+            "edge_condition": null,
+            "sketch_name": "LoftRail1",
+            "start_world_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.6,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "two_rails.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 2,
+        "is_centerline": false,
+        "guides": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::SketchLine",
+            "edge_condition": null,
+            "sketch_name": "LoftRail1",
+            "start_world_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.6,
+              0.0,
+              3.0
+            ]
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::SketchLine",
+            "edge_condition": null,
+            "sketch_name": "LoftRail2",
+            "start_world_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              -0.6,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "surface_one_rail.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          false
+        ],
+        "operation": 3,
+        "is_solid": false,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 1,
+        "is_centerline": false,
+        "guides": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::SketchLine",
+            "edge_condition": null,
+            "sketch_name": "LoftRail1",
+            "start_world_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.6,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

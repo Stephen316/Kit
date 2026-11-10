@@ -1,0 +1,618 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "intersect_line.f3d",
+      "requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOtMDY3AtJEBUKmBsYIBAHROShuSAAAA",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            1.0,
+            0.0,
+            -1.0
+          ],
+          "end_world_cm": [
+            1.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOtA1psYAQCTF16ahwAAAA==",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "settings": {
+        "method": "intersectWithSketchPlane",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchPoint",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOuMTM1AJNBEQwNTAFL+f7KOAAAA",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOtMDY3AtJEBUKmBsYIBAHROShuSAAAA",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "position_world_cm": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "intersect_circle.f3d",
+      "requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchCircle",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7U0AhMGxkAlQKxAQDfKZpSkgAAAA==",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Circle3D",
+          "center_world_cm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "radius_cm": 1.0,
+          "normal_world": [
+            -0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAtg5kvYkRAB4+8nyHAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "settings": {
+        "method": "intersectWithSketchPlane",
+        "output_count": 2,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchPoint",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7I1AxEGpsoGBqYAAAbLhkwjgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchCircle",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7U0AhMGxkAlQKxAQDfKZpSkgAAAA==",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "position_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchPoint",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7I1AxEGpsoGBqYAgCNHh5HjgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchCircle",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7U0AhMGxkAlQKxAQDfKZpSkgAAAA==",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "position_world_cm": [
+              2.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "intersect_plane.f3d",
+      "requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "YZ",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuPypM7FW53j2kIudOgc3HMKqMJIwdhMISnN2MIoOcVUNznN0lzXxMjYVNcyJdFI1yTJODHV0iwp0cjCAqwWaAYDGgDbZ6AAtg6kyMQEAExf7BaHAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuPypM7FW53j2kIudOgc3HMKqMJIwdhMISnN2MIoOcVUNznN0lzXxMjYVNcyJdFI1yTJODHV0iwp0cjCAqwWaAYDGgDbZ6AAtg6kyMQIAHn6j/+HAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "settings": {
+        "method": "intersectWithSketchPlane",
+        "output_count": 0,
+        "outputs": []
+      }
+    },
+    {
+      "file": "include_arc.f3d",
+      "requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchArc",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAW2dqaASmjQyASg1MFAwAPjwwXZIAAAA=",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Arc3D",
+          "start_world_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "end_world_cm": [
+            0.9999999999999999,
+            0.0,
+            2.0
+          ],
+          "center_world_cm": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "radius_cm": 1.0,
+          "normal_world": [
+            0.0,
+            1.0,
+            -0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAWwey3sQIALXq8b2HAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "settings": {
+        "method": "include",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchArc",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAW2dqaASmjYyB1hpYKhgAAMD3F3+SAAAA",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchArc",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAW2dqaASmjQyASg1MFAwAPjwwXZIAAAA=",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "is_construction": false,
+            "world_geometry_type": "Arc3D",
+            "start_world_cm": [
+              0.9999999999999999,
+              0.0,
+              2.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              0.9999999999999999
+            ],
+            "center_world_cm": [
+              1.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0,
+            "normal_world": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "surface_closest_line.f3d",
+      "requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArTM1NALTRgZApQbGCgYA/xW49pIAAAA=",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            0.5,
+            0.7,
+            0.0
+          ],
+          "end_world_cm": [
+            2.0,
+            1.3,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArQNZb2IEAJ6r2n2HAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "BRepFace",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/5WPO04EMQyGKTkCpS9gybGdSVKCYBskStrRTJKRaACh3Y5mTsCRuAjHgI6CJA1DJFYQWYr9+feLgMGADJAceyuzQU12QWWaMSzOoWMOkgdDagJQ0VY9VY998QxoJQN83ryv18/nHy/r5Xr2+nZaFFz75uyFZiI0mSLqEAVDZIPRL95Zm8RQbNrS46R7bR5BG6cgoBygfLbQYralhaT9bZcOaA+4B7IBBPPD4T7lNC5TzONTjnePeUzTfoKLHcAOfJFg7XoF9XRsZr4TDLfF7dlWXIfUmDcx/blKflT1pMb6n6V+Kz6+lB49pSNfupXH4F4CAAA=",
+            "sketch_name": null,
+            "body_name": "ProjectionFamilySurface"
+          },
+          "surface_geometry_type": "Plane",
+          "point_on_face_world_cm": [
+            0.5,
+            0.5,
+            1.0
+          ],
+          "area_cm2": 25.0
+        },
+        "direction": null,
+        "surface_project_type": 0
+      },
+      "settings": {
+        "method": "projectToSurface",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArTM1NALTxiZAQaBaAwDhu2FMkgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArTM1NALTRgZApQbGCgYA/xW49pIAAAA=",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "is_construction": false,
+            "world_geometry_type": "Line3D",
+            "start_world_cm": [
+              0.5,
+              0.7,
+              1.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              1.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "surface_vector_line.f3d",
+      "requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ1CQQxDETPQ4wVO+Hz3Q+iQ6Nji7ncMwwTMwCJMQccYhJQkimJZTzbhYGyF4lLJQ1X0n2N47w72uJw/zyte29v+HoTQDKvZGOPYC5ep0umznHqzYmy+uiSbnmxkbP4m+4isW6ryi4GygV+87h2NkgAAAA==",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            0.5,
+            0.7,
+            0.0
+          ],
+          "end_world_cm": [
+            2.0,
+            1.3,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkMRfbM5zg4v1nkpnGbKku8DqjBSMDZTSDYzS0xMNDfRNTBNMtI1MbBI0rU0MTbTNTMwtki2MDIyMkuyAKsFmsGABsD2GSiArQMpMjECAD7Wb8aHAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "BRepFace",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/5WPy00EMQyGETVwxw1YOI7Hm7mtQOyBAriOkkxGWg6AVtAGFVADjVAFN8ogzoUhEiuILMX+/PtFwODAK/BcpKgSbuY0oPAyYnLssAh7t0ghziNQ1ZqezONQPQdiROHj7EJfr7afbzfwfnp3/lIVbH2zaoxxI0hDYhQKCUfxiko+5MDMmkLT1h4n3WvzCNo4AQ/CI9RvqLTa0NKefPvbLh2QHnAP/AoQpIfn+7nM0xJzmQ4l7x/LNMenCJc7gB3Ynmhdr8FOx2buO8FwW92ercU2xGJexfTnKv+jqicWy3+W+q34+FJy9JSOfAGK5EzKXgIAAA==",
+            "sketch_name": null,
+            "body_name": "ProjectionFamilySurface"
+          },
+          "surface_geometry_type": "Plane",
+          "point_on_face_world_cm": [
+            0.5,
+            0.5,
+            1.0
+          ],
+          "area_cm2": 25.0
+        },
+        "direction": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkMRfbM5zg4v1nkpnGbKku8DqjBSMDZTSDYzS0xMNDfRNTBNMtI1MbBI0rU0MTbTNTMwtki2MDIyMkuyAKsFmsGABsD2GSiArTM1NALTxiZAQaBaAwCiQMQ3kgAAAA==",
+            "sketch_name": "ProjectionFamilyDirection",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_world_cm": [
+            0.0,
+            0.0,
+            2.0
+          ]
+        },
+        "surface_project_type": 1
+      },
+      "settings": {
+        "method": "projectToSurface",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkMRfbM5zg4v1nkpnGbKku8DqjBSMDZTSDYzS0xMNDfRNTBNMtI1MbBI0rU0MTbTNTMwtki2MDIyMkuyAKsFmsGABsD2GSiArTM1NALTxubGQKuBLACAjpuekgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ1CQQxDETPQ4wVO+Hz3Q+iQ6Nji7ncMwwTMwCJMQccYhJQkimJZTzbhYGyF4lLJQ1X0n2N47w72uJw/zyte29v+HoTQDKvZGOPYC5ep0umznHqzYmy+uiSbnmxkbP4m+4isW6ryi4GygV+87h2NkgAAAA==",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "is_construction": false,
+            "world_geometry_type": "Line3D",
+            "start_world_cm": [
+              2.0,
+              1.3,
+              1.0
+            ],
+            "end_world_cm": [
+              0.5,
+              0.7,
+              1.0
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "sdk_methods": {
+    "IntersectWithSketchPlane": "Sketch.intersectWithSketchPlane",
+    "Include3DGeometry": "Sketch.include (no include3DGeometry method in this SDK)",
+    "ProjectToSurface": "Sketch.projectToSurface"
+  },
+  "token_scope": "Opaque API tokens retained without native object ID interpretation"
+}
