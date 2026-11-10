@@ -1,0 +1,1604 @@
+{
+  "scope": "Focused six-archive replay and reciprocal topology checks; saved census17175 attributes only inventories framing, not a full-main audit",
+  "integration": {
+    "function": "decode_sketch_attributes.decode_sketch_attribute(record)",
+    "caller": "Shared generic reader retains initial prefix/index checks, typed COEDGE/EDGE/VERTEX owner and reciprocal chain, then compares payload_hex against original blob. Existing dictionary shape/text preserved exactly.",
+    "validation_command": "/usr/bin/python3 validate_sketch_attributes.py"
+  },
+  "inventory": {
+    "archives": 559,
+    "blobs": 959,
+    "initial_sketch_attributes": 17175,
+    "owner_counts": {
+      "coedge": 13172,
+      "edge": 3969,
+      "vertex": 34
+    },
+    "observed_payloads": "Every record10 tokens, schema integer[1,1,3], six space-separated text fields; ASCII-decimal grammar and actual payload replay independently checked in focused sample",
+    "observed_headers": "Every record pointer0=-1, integer1=-1; no relaxed header variant needed",
+    "provenance": "Read-only initial ASM record census of committed fusion-class-catalog.json file list; no whole-model reader run; 4.98 seconds. Focused payload/owner checks below are independently repeatable."
+  },
+  "files": [
+    {
+      "file": "advanced-627f7fe095f4/advanced.f3d",
+      "validated_owner_counts": {
+        "coedge": 7,
+        "edge": 6
+      }
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "validated_owner_counts": {
+        "coedge": 9,
+        "edge": 5,
+        "vertex": 1
+      }
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "validated_owner_counts": {
+        "coedge": 10,
+        "edge": 5,
+        "vertex": 1
+      }
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "validated_owner_counts": {
+        "coedge": 10,
+        "edge": 5,
+        "vertex": 1
+      }
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "validated_owner_counts": {
+        "coedge": 10,
+        "edge": 5,
+        "vertex": 1
+      }
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "validated_owner_counts": {
+        "coedge": 15,
+        "edge": 6,
+        "vertex": 2
+      }
+    }
+  ],
+  "representatives": [
+    {
+      "file": "advanced-627f7fe095f4/advanced.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2d8a0c2d-99da-478f-9ddf-525aa61dd3c9.smb",
+      "record_index": 38,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "181 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "181",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 3236,
+        "payload_end_offset": 3297,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31383120302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 38,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 32,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "181 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        38
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 32,
+        "edge_index": 39,
+        "next_coedge_index": 32,
+        "previous_coedge_index": 32,
+        "curve_index": 52,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          51,
+          51
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "advanced-627f7fe095f4/advanced.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2d8a0c2d-99da-478f-9ddf-525aa61dd3c9.smb",
+      "record_index": 50,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "181 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "181",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 4537,
+        "payload_end_offset": 4598,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31383120302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 50,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 39,
+        "owner_kind": "edge",
+        "uninterpreted_text": "181 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        50
+      ],
+      "typed_source": {
+        "owner_kind": "edge",
+        "owner_index": 39,
+        "first_coedge_index": 32,
+        "curve_index": 52,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          51,
+          51
+        ],
+        "raw_endpoint_positions": [
+          [
+            2.25,
+            3.0,
+            0.0
+          ],
+          [
+            2.25,
+            3.0,
+            0.0
+          ]
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.19f04fff-2e75-4ab3-a154-6421bbc7e66f.smbh",
+      "record_index": 45,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "102 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "102",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 5105,
+        "payload_end_offset": 5166,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303220302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 45,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 36,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "102 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        45
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 36,
+        "edge_index": 46,
+        "next_coedge_index": 36,
+        "previous_coedge_index": 36,
+        "curve_index": 58,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          57,
+          57
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f1580b32-f3d3-42c9-a7fc-a9198adcf2b5.smb",
+      "record_index": 11,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "3 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "3",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 982,
+        "payload_end_offset": 1041,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3320302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 11,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 3,
+        "owner_kind": "edge",
+        "uninterpreted_text": "3 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        11,
+        21
+      ],
+      "typed_source": {
+        "owner_kind": "edge",
+        "owner_index": 3,
+        "first_coedge_index": 13,
+        "curve_index": 14,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          12,
+          12
+        ],
+        "raw_endpoint_positions": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            1.0
+          ],
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            1.0
+          ]
+        ]
+      },
+      "body_graph_memberships": [
+        91
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f1580b32-f3d3-42c9-a7fc-a9198adcf2b5.smb",
+      "record_index": 22,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "4 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "4",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2010,
+        "payload_end_offset": 2069,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3420302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 22,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 12,
+        "owner_kind": "vertex",
+        "uninterpreted_text": "4 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        22
+      ],
+      "typed_source": {
+        "owner_kind": "vertex",
+        "owner_index": 12,
+        "first_edge_index": 3,
+        "point_index": 23,
+        "raw_point": [
+          -1.0,
+          -1.2246467991473532e-16,
+          1.0
+        ],
+        "curve_index": 14,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          12,
+          12
+        ]
+      },
+      "body_graph_memberships": [
+        91
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f1580b32-f3d3-42c9-a7fc-a9198adcf2b5.smb",
+      "record_index": 68,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "102 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "102",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 6701,
+        "payload_end_offset": 6762,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303220302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 68,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 46,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "102 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        68
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 46,
+        "edge_index": 69,
+        "next_coedge_index": 46,
+        "previous_coedge_index": 46,
+        "curve_index": 90,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          89,
+          89
+        ]
+      },
+      "body_graph_memberships": [
+        91
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.791890f1-c38f-4102-a3b6-47432880e35b.smb",
+      "record_index": 31,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2703,
+        "payload_end_offset": 2764,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 31,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 22,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        31
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 22,
+        "edge_index": 33,
+        "next_coedge_index": 22,
+        "previous_coedge_index": 22,
+        "curve_index": 53,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          52,
+          52
+        ]
+      },
+      "body_graph_memberships": [
+        38
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.791890f1-c38f-4102-a3b6-47432880e35b.smb",
+      "record_index": 51,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "3 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "3",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 4766,
+        "payload_end_offset": 4825,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3320302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 51,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 33,
+        "owner_kind": "edge",
+        "uninterpreted_text": "3 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        51,
+        76
+      ],
+      "typed_source": {
+        "owner_kind": "edge",
+        "owner_index": 33,
+        "first_coedge_index": 32,
+        "curve_index": 53,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          52,
+          52
+        ],
+        "raw_endpoint_positions": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            3.0
+          ],
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            3.0
+          ]
+        ]
+      },
+      "body_graph_memberships": [
+        38
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.791890f1-c38f-4102-a3b6-47432880e35b.smb",
+      "record_index": 77,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "4 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "4",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 7758,
+        "payload_end_offset": 7817,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3420302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 77,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 52,
+        "owner_kind": "vertex",
+        "uninterpreted_text": "4 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        77
+      ],
+      "typed_source": {
+        "owner_kind": "vertex",
+        "owner_index": 52,
+        "first_edge_index": 33,
+        "point_index": 78,
+        "raw_point": [
+          -1.0,
+          -1.2246467991473532e-16,
+          3.0
+        ],
+        "curve_index": 53,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          52,
+          52
+        ]
+      },
+      "body_graph_memberships": [
+        38
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.14c4a50a-4317-4864-ad90-73a07453094a.smbh",
+      "record_index": 46,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 5247,
+        "payload_end_offset": 5308,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 46,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 37,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        46
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 37,
+        "edge_index": 47,
+        "next_coedge_index": 37,
+        "previous_coedge_index": 37,
+        "curve_index": 59,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          58,
+          58
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e006f0f6-0574-4be8-bc64-55e9a22e2c25.smbh",
+      "record_index": 46,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 11122,
+        "payload_end_offset": 11183,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 46,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 37,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        46
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 37,
+        "edge_index": 47,
+        "next_coedge_index": 37,
+        "previous_coedge_index": 37,
+        "curve_index": 61,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          60,
+          60
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c2deb29b-10fc-4229-8db8-9f3ef40b20b1.smb",
+      "record_index": 10,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "3 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "3",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 840,
+        "payload_end_offset": 899,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3320302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 10,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 3,
+        "owner_kind": "edge",
+        "uninterpreted_text": "3 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        10,
+        22
+      ],
+      "typed_source": {
+        "owner_kind": "edge",
+        "owner_index": 3,
+        "first_coedge_index": 12,
+        "curve_index": 13,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          11,
+          11
+        ],
+        "raw_endpoint_positions": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            3.0
+          ],
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            3.0
+          ]
+        ]
+      },
+      "body_graph_memberships": [
+        90
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c2deb29b-10fc-4229-8db8-9f3ef40b20b1.smb",
+      "record_index": 23,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "4 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "4",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2154,
+        "payload_end_offset": 2213,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3420302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 23,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 11,
+        "owner_kind": "vertex",
+        "uninterpreted_text": "4 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        23
+      ],
+      "typed_source": {
+        "owner_kind": "vertex",
+        "owner_index": 11,
+        "first_edge_index": 3,
+        "point_index": 24,
+        "raw_point": [
+          -1.0,
+          -1.2246467991473532e-16,
+          3.0
+        ],
+        "curve_index": 13,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          11,
+          11
+        ]
+      },
+      "body_graph_memberships": [
+        90
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c2deb29b-10fc-4229-8db8-9f3ef40b20b1.smb",
+      "record_index": 25,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2342,
+        "payload_end_offset": 2403,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 25,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 12,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        25
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 12,
+        "edge_index": 3,
+        "next_coedge_index": 12,
+        "previous_coedge_index": 12,
+        "curve_index": 13,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          11,
+          11
+        ]
+      },
+      "body_graph_memberships": [
+        90
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.80cb298d-8ed8-4cf0-944c-0156a247260c.smbh",
+      "record_index": 46,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 26641,
+        "payload_end_offset": 26702,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 46,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 37,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        46
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 37,
+        "edge_index": 47,
+        "next_coedge_index": 37,
+        "previous_coedge_index": 37,
+        "curve_index": 61,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          60,
+          60
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ac252160-149a-43db-a358-680b534e2a37.smb",
+      "record_index": 10,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "3 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "3",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 840,
+        "payload_end_offset": 899,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3320302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 10,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 3,
+        "owner_kind": "edge",
+        "uninterpreted_text": "3 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        10,
+        22
+      ],
+      "typed_source": {
+        "owner_kind": "edge",
+        "owner_index": 3,
+        "first_coedge_index": 12,
+        "curve_index": 13,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          11,
+          11
+        ],
+        "raw_endpoint_positions": [
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            3.0
+          ],
+          [
+            -1.0,
+            -1.2246467991473532e-16,
+            3.0
+          ]
+        ]
+      },
+      "body_graph_memberships": [
+        90
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ac252160-149a-43db-a358-680b534e2a37.smb",
+      "record_index": 23,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "4 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "4",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2154,
+        "payload_end_offset": 2213,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3420302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 23,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 11,
+        "owner_kind": "vertex",
+        "uninterpreted_text": "4 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        23
+      ],
+      "typed_source": {
+        "owner_kind": "vertex",
+        "owner_index": 11,
+        "first_edge_index": 3,
+        "point_index": 24,
+        "raw_point": [
+          -1.0,
+          -1.2246467991473532e-16,
+          3.0
+        ],
+        "curve_index": 13,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          11,
+          11
+        ]
+      },
+      "body_graph_memberships": [
+        90
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ac252160-149a-43db-a358-680b534e2a37.smb",
+      "record_index": 25,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2342,
+        "payload_end_offset": 2403,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 25,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 12,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        25
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 12,
+        "edge_index": 3,
+        "next_coedge_index": 12,
+        "previous_coedge_index": 12,
+        "curve_index": 13,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          11,
+          11
+        ]
+      },
+      "body_graph_memberships": [
+        90
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52d1f5c3-fe81-4cc6-83f9-728fea894ddc.smbh",
+      "record_index": 68,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "102 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "102",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 13602,
+        "payload_end_offset": 13663,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303220302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 68,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 53,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "102 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        68
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 53,
+        "edge_index": 69,
+        "next_coedge_index": 53,
+        "previous_coedge_index": 53,
+        "curve_index": 89,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          88,
+          88
+        ]
+      },
+      "body_graph_memberships": [
+        1
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7a6b2b33-65bb-445c-a3a7-a09d8d107412.smb",
+      "record_index": 11,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "5 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "5",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 938,
+        "payload_end_offset": 997,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3520302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 11,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 2,
+        "owner_kind": "edge",
+        "uninterpreted_text": "5 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        11,
+        28
+      ],
+      "typed_source": {
+        "owner_kind": "edge",
+        "owner_index": 2,
+        "first_coedge_index": 13,
+        "curve_index": 14,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          12,
+          12
+        ],
+        "raw_endpoint_positions": [
+          [
+            -0.6,
+            -7.347880794884119e-17,
+            4.0
+          ],
+          [
+            -0.6,
+            -7.347880794884119e-17,
+            4.0
+          ]
+        ]
+      },
+      "body_graph_memberships": [
+        125
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7a6b2b33-65bb-445c-a3a7-a09d8d107412.smb",
+      "record_index": 29,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "6 0 1 0 1 1",
+        "stored_decimal_text_fields": [
+          "6",
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2715,
+        "payload_end_offset": 2774,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070b3620302031203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 29,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 12,
+        "owner_kind": "vertex",
+        "uninterpreted_text": "6 0 1 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        29
+      ],
+      "typed_source": {
+        "owner_kind": "vertex",
+        "owner_index": 12,
+        "first_edge_index": 2,
+        "point_index": 30,
+        "raw_point": [
+          -0.6,
+          -7.347880794884119e-17,
+          4.0
+        ],
+        "curve_index": 14,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          12,
+          12
+        ]
+      },
+      "body_graph_memberships": [
+        125
+      ]
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7a6b2b33-65bb-445c-a3a7-a09d8d107412.smb",
+      "record_index": 31,
+      "expected_payload": {
+        "definition_name": "sketch_attrib_def",
+        "stored_schema_fields": [
+          1,
+          1,
+          3
+        ],
+        "uninterpreted_text": "105 0 0 0 1 1",
+        "stored_decimal_text_fields": [
+          "105",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        "payload_offset": 2903,
+        "payload_end_offset": 2964,
+        "payload_hex": "0711736b657463685f6174747269625f646566040100000000000000040100000000000000040300000000000000070d31303520302030203020312031",
+        "identity_scope": "Six literal decimal text fields; native sketch/entity identities and flag semantics unresolved",
+        "ownership_scope": "Payload only; caller must validate initial typed owner and reciprocal attribute chain"
+      },
+      "expected_shared_dictionary": {
+        "attribute_record_index": 31,
+        "definition_name": "sketch_attrib_def",
+        "owner_record_index": 13,
+        "owner_kind": "coedge",
+        "uninterpreted_text": "105 0 0 0 1 1"
+      },
+      "reciprocal_attribute_chain": [
+        31
+      ],
+      "typed_source": {
+        "owner_kind": "coedge",
+        "owner_index": 13,
+        "edge_index": 2,
+        "next_coedge_index": 13,
+        "previous_coedge_index": 13,
+        "curve_index": 14,
+        "curve_kind": "ellipse-curve",
+        "edge_vertex_indices": [
+          12,
+          12
+        ]
+      },
+      "body_graph_memberships": [
+        125
+      ]
+    }
+  ],
+  "saved_API_contexts": [
+    {
+      "file": "advanced-627f7fe095f4/advanced.f3d",
+      "saved_API_sketch_names": [
+        "Parallel",
+        "Perpendicular",
+        "Equal",
+        "Collinear",
+        "Concentric",
+        "Tangent",
+        "MidPoint",
+        "HorizontalPoints",
+        "VerticalPoints",
+        "Symmetry",
+        "Primitives",
+        "ConstructionAndFixed",
+        "LinearDimension",
+        "DiameterDimension",
+        "AngularDimension"
+      ],
+      "native_sketches": [
+        {
+          "name": "Parallel",
+          "sketch_object_id": 202,
+          "entity_object_ids": [
+            205,
+            228,
+            230,
+            236,
+            238,
+            232,
+            240
+          ]
+        },
+        {
+          "name": "Perpendicular",
+          "sketch_object_id": 255,
+          "entity_object_ids": [
+            257,
+            280,
+            282,
+            288,
+            290,
+            284,
+            292
+          ]
+        },
+        {
+          "name": "Equal",
+          "sketch_object_id": 317,
+          "entity_object_ids": [
+            319,
+            342,
+            344,
+            350,
+            352,
+            346,
+            354
+          ]
+        },
+        {
+          "name": "Collinear",
+          "sketch_object_id": 392,
+          "entity_object_ids": [
+            394,
+            417,
+            419,
+            425,
+            427,
+            421,
+            429
+          ]
+        },
+        {
+          "name": "Concentric",
+          "sketch_object_id": 477,
+          "entity_object_ids": [
+            479,
+            502,
+            508,
+            504,
+            510
+          ]
+        },
+        {
+          "name": "Tangent",
+          "sketch_object_id": 568,
+          "entity_object_ids": [
+            570,
+            593,
+            595,
+            601,
+            597,
+            603
+          ]
+        },
+        {
+          "name": "MidPoint",
+          "sketch_object_id": 668,
+          "entity_object_ids": [
+            670,
+            693,
+            695,
+            701,
+            697
+          ]
+        },
+        {
+          "name": "HorizontalPoints",
+          "sketch_object_id": 777,
+          "entity_object_ids": [
+            779,
+            802,
+            807
+          ]
+        },
+        {
+          "name": "VerticalPoints",
+          "sketch_object_id": 893,
+          "entity_object_ids": [
+            895,
+            918,
+            923
+          ]
+        },
+        {
+          "name": "Symmetry",
+          "sketch_object_id": 1019,
+          "entity_object_ids": [
+            1021,
+            1044,
+            1049,
+            1054,
+            1056,
+            1058
+          ]
+        },
+        {
+          "name": "Primitives",
+          "sketch_object_id": 1163,
+          "entity_object_ids": [
+            1165,
+            1188,
+            1190,
+            1192,
+            1198,
+            1201,
+            1203,
+            1206,
+            1208,
+            1194,
+            1200,
+            1205,
+            1210
+          ]
+        },
+        {
+          "name": "ConstructionAndFixed",
+          "sketch_object_id": 1340,
+          "entity_object_ids": [
+            1342,
+            1365,
+            1367,
+            1376,
+            1369,
+            1378
+          ]
+        },
+        {
+          "name": "LinearDimension",
+          "sketch_object_id": 1505,
+          "entity_object_ids": [
+            1507,
+            1530,
+            1532,
+            1534
+          ]
+        },
+        {
+          "name": "DiameterDimension",
+          "sketch_object_id": 1675,
+          "entity_object_ids": [
+            1677,
+            1700,
+            1702
+          ]
+        },
+        {
+          "name": "AngularDimension",
+          "sketch_object_id": 1853,
+          "entity_object_ids": [
+            1855,
+            1878,
+            1880,
+            1886,
+            1888,
+            1882,
+            1890
+          ]
+        }
+      ],
+      "source_identity_scope": "Native entity-to-sketch references decoded independently by sketch reader; no mapping from attribute text numbers"
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "saved_API_sketch_names": [],
+      "native_sketches": [
+        {
+          "name": "LoftBrepStartCylinderSection",
+          "sketch_object_id": 202,
+          "entity_object_ids": [
+            205,
+            228,
+            230
+          ]
+        },
+        {
+          "name": "LoftBrepEndCylinderSection",
+          "sketch_object_id": 289,
+          "entity_object_ids": [
+            291,
+            314,
+            316
+          ]
+        }
+      ],
+      "source_identity_scope": "Native entity-to-sketch references decoded independently by sketch reader; no mapping from attribute text numbers"
+    }
+  ],
+  "guards": [
+    {
+      "case": "signed decimal field",
+      "rejected": true
+    },
+    {
+      "case": "multiple spaces",
+      "rejected": true
+    },
+    {
+      "case": "unobserved schema",
+      "rejected": true
+    },
+    {
+      "case": "text token wrong typed kind",
+      "rejected": true
+    },
+    {
+      "case": "unconsumed payload trailer",
+      "rejected": true
+    },
+    {
+      "case": "noncontiguous typed payload offsets",
+      "rejected": true
+    },
+    {
+      "case": "valid payload claimed by different typed VERTEX outside reciprocal owner chain",
+      "rejected_by_production_caller": true,
+      "pure_payload_unchanged": true
+    }
+  ],
+  "limitations": [
+    "Six decimal substrings remain opaque strings, not native sketch/entity IDs or interpreted flags.",
+    "Typed topology ownership establishes source-cache provenance only; it does not establish native sketch identity, current/final visibility, or selected source closure.",
+    "Pure payload helper intentionally does not validate owner/header/initial scope; the production caller owns those checks.",
+    "Saved API sketch names and native sketches are independent context controls, not attribute text-to-sketch mappings.",
+    "No solver, geometry regeneration, live capture or global history-pointer conversion is performed."
+  ],
+  "summary": {
+    "archives": 6,
+    "payload_replays": 99,
+    "owner_counts": {
+      "coedge": 61,
+      "edge": 32,
+      "vertex": 6
+    },
+    "typed_source_checks": 99,
+    "production_dictionary_exact_matches": 99,
+    "preserved_legacy_COEDGE_dictionaries": 61,
+    "guards": 7,
+    "saved_API_contexts": 2
+  }
+}

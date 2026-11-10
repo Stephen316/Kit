@@ -1,0 +1,2597 @@
+{
+  "batch_id": "9c5f83456a0e",
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "root_body",
+      "file": "root_body.f3d",
+      "getter_errors": [],
+      "compute_before": true,
+      "requested_target_before": {
+        "status": "returned_body",
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "RemoveTargetBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+        "component_name": "(Unsaved)",
+        "assembly_context_path": null,
+        "is_solid": true,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "collections_before": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 2,
+          "occurrence_count": 0,
+          "bodies": [
+            {
+              "status": "returned_body",
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "RemoveTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+              "component_name": "(Unsaved)",
+              "assembly_context_path": null,
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "status": "returned_body",
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "RemoveSurvivorBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2xqAgDsASkciAAAAA==",
+              "component_name": "(Unsaved)",
+              "assembly_context_path": null,
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  5.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ],
+          "occurrences": []
+        },
+        "all_occurrences": [],
+        "all_occurrence_count": 0
+      },
+      "source_component_before": {
+        "name": "(Unsaved)",
+        "body_count": 2,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+            "component_name": "(Unsaved)",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveSurvivorBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2xqAgDsASkciAAAAA==",
+            "component_name": "(Unsaved)",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                5.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "parameters_before": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10.00 mm",
+          "created_by": "RemoveTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "RemoveTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10.00 mm",
+          "created_by": "RemoveSurvivorExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "RemoveSurvivorExtrude"
+        }
+      ],
+      "actual_item_to_remove": {
+        "status": "returned_body",
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "RemoveTargetBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+        "component_name": "(Unsaved)",
+        "assembly_context_path": null,
+        "is_solid": true,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "collections_rolled_back": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 2,
+          "occurrence_count": 0,
+          "bodies": [
+            {
+              "status": "returned_body",
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "RemoveSurvivorBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2xqAgDsASkciAAAAA==",
+              "component_name": "(Unsaved)",
+              "assembly_context_path": null,
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  5.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "status": "returned_body",
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "RemoveTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+              "component_name": "(Unsaved)",
+              "assembly_context_path": null,
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ],
+          "occurrences": []
+        },
+        "all_occurrences": [],
+        "all_occurrence_count": 0
+      },
+      "compute_after": true,
+      "feature_identity": {
+        "name": "ProbeRemoveRootBody",
+        "entity_type": "adsk::fusion::RemoveFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2JoDgDXgwPkiAAAAA==",
+        "timeline_index": 4,
+        "parent_component_name": "(Unsaved)"
+      },
+      "is_suppressed": false,
+      "health_state": 0,
+      "warning": "",
+      "actual_feature_bodies": [],
+      "collections_after": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 1,
+          "occurrence_count": 0,
+          "bodies": [
+            {
+              "status": "returned_body",
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "RemoveSurvivorBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2xqAgDsASkciAAAAA==",
+              "component_name": "(Unsaved)",
+              "assembly_context_path": null,
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  5.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ],
+          "occurrences": []
+        },
+        "all_occurrences": [],
+        "all_occurrence_count": 0
+      },
+      "source_component_after": {
+        "name": "(Unsaved)",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveSurvivorBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2xqAgDsASkciAAAAA==",
+            "component_name": "(Unsaved)",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                5.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "parameters_after": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10.00 mm",
+          "created_by": "RemoveTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "RemoveTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10.00 mm",
+          "created_by": "RemoveSurvivorExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "RemoveSurvivorExtrude"
+        }
+      ],
+      "remove_feature_count": 1,
+      "remove_feature_names": [
+        "ProbeRemoveRootBody"
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 64522,
+        "sha256": "8a0b3ba20c6c97b84c08937a9e688153e7745b3477b007ee49dbe96c88a50d98"
+      },
+      "close_owned_document_returned": true
+    },
+    {
+      "case": "root_occurrence",
+      "file": "root_occurrence.f3d",
+      "getter_errors": [
+        {
+          "field": "source_component_after.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : Xl::Utils::referenceKey(this, referenceKey)\n"
+        }
+      ],
+      "compute_before": true,
+      "requested_target_before": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetComponent:1",
+        "full_path_name": "RemoveTargetComponent:1",
+        "component_name": "RemoveTargetComponent",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": "RemoveTargetComponent:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "max": [
+                3.0,
+                2.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "collections_before": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 0,
+          "occurrence_count": 2,
+          "bodies": [],
+          "occurrences": [
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveTargetComponent:1",
+              "full_path_name": "RemoveTargetComponent:1",
+              "component_name": "RemoveTargetComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveTargetComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+                  "component_name": "RemoveTargetComponent",
+                  "assembly_context_path": "RemoveTargetComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      2.0,
+                      1.0,
+                      0.0
+                    ],
+                    "max": [
+                      3.0,
+                      2.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveSurvivorComponent:1",
+              "full_path_name": "RemoveSurvivorComponent:1",
+              "component_name": "RemoveSurvivorComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                6.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                6.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveSurvivorComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFG1oGoEtDaclJnMSumSSJkxGY4s/ACgxCQU/PAtQUOH8AZFk6WU9nGx07tPIuWO8U2Mg7WpPstvPxdL1dHvfPczu8vy9LBBez62PQKKQwhQMYVpASB6gwUakinMQslqQUYo8q0JtmIOIILVCBln31Ootin/93pZGZsAZIQmSG0pZBAVtSLLNm5LHfvn4hxh+ncS3x1QAAAA==",
+                  "component_name": "RemoveSurvivorComponent",
+                  "assembly_context_path": "RemoveSurvivorComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      6.0,
+                      -1.0,
+                      2.0
+                    ],
+                    "max": [
+                      7.0,
+                      0.0,
+                      3.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "all_occurrences": [
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveTargetComponent:1",
+            "full_path_name": "RemoveTargetComponent:1",
+            "component_name": "RemoveTargetComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveTargetComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+                "component_name": "RemoveTargetComponent",
+                "assembly_context_path": "RemoveTargetComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    2.0,
+                    1.0,
+                    0.0
+                  ],
+                  "max": [
+                    3.0,
+                    2.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveSurvivorComponent:1",
+            "full_path_name": "RemoveSurvivorComponent:1",
+            "component_name": "RemoveSurvivorComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveSurvivorComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFG1oGoEtDaclJnMSumSSJkxGY4s/ACgxCQU/PAtQUOH8AZFk6WU9nGx07tPIuWO8U2Mg7WpPstvPxdL1dHvfPczu8vy9LBBez62PQKKQwhQMYVpASB6gwUakinMQslqQUYo8q0JtmIOIILVCBln31Ootin/93pZGZsAZIQmSG0pZBAVtSLLNm5LHfvn4hxh+ncS3x1QAAAA==",
+                "component_name": "RemoveSurvivorComponent",
+                "assembly_context_path": "RemoveSurvivorComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    7.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "all_occurrence_count": 2
+      },
+      "source_component_before": {
+        "name": "RemoveTargetComponent",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQo8qr2TZPOfT6z+d72F5+ucWUIWRgrGZQkqSpXlaskWKroVRiomuialZmq6lQWqSrkFykrF5smWqkWmqOVgt0AwGNAC2z0ABbB3IemNjCwDCndkhiAAAAA==",
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "parameters_before": [],
+      "actual_item_to_remove": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetComponent:1",
+        "full_path_name": "RemoveTargetComponent:1",
+        "component_name": "RemoveTargetComponent",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": "RemoveTargetComponent:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "max": [
+                3.0,
+                2.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "collections_rolled_back": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 0,
+          "occurrence_count": 2,
+          "bodies": [],
+          "occurrences": [
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveSurvivorComponent:1",
+              "full_path_name": "RemoveSurvivorComponent:1",
+              "component_name": "RemoveSurvivorComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                6.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                6.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveSurvivorComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFG1oGoEtDaclJnMSumSSJkxGY4s/ACgxCQU/PAtQUOH8AZFk6WU9nGx07tPIuWO8U2Mg7WpPstvPxdL1dHvfPczu8vy9LBBez62PQKKQwhQMYVpASB6gwUakinMQslqQUYo8q0JtmIOIILVCBln31Ootin/93pZGZsAZIQmSG0pZBAVtSLLNm5LHfvn4hxh+ncS3x1QAAAA==",
+                  "component_name": "RemoveSurvivorComponent",
+                  "assembly_context_path": "RemoveSurvivorComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      6.0,
+                      -1.0,
+                      2.0
+                    ],
+                    "max": [
+                      7.0,
+                      0.0,
+                      3.0
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveTargetComponent:1",
+              "full_path_name": "RemoveTargetComponent:1",
+              "component_name": "RemoveTargetComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveTargetComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+                  "component_name": "RemoveTargetComponent",
+                  "assembly_context_path": "RemoveTargetComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      2.0,
+                      1.0,
+                      0.0
+                    ],
+                    "max": [
+                      3.0,
+                      2.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "all_occurrences": [
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveSurvivorComponent:1",
+            "full_path_name": "RemoveSurvivorComponent:1",
+            "component_name": "RemoveSurvivorComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveSurvivorComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFG1oGoEtDaclJnMSumSSJkxGY4s/ACgxCQU/PAtQUOH8AZFk6WU9nGx07tPIuWO8U2Mg7WpPstvPxdL1dHvfPczu8vy9LBBez62PQKKQwhQMYVpASB6gwUakinMQslqQUYo8q0JtmIOIILVCBln31Ootin/93pZGZsAZIQmSG0pZBAVtSLLNm5LHfvn4hxh+ncS3x1QAAAA==",
+                "component_name": "RemoveSurvivorComponent",
+                "assembly_context_path": "RemoveSurvivorComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    7.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveTargetComponent:1",
+            "full_path_name": "RemoveTargetComponent:1",
+            "component_name": "RemoveTargetComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveTargetComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+                "component_name": "RemoveTargetComponent",
+                "assembly_context_path": "RemoveTargetComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    2.0,
+                    1.0,
+                    0.0
+                  ],
+                  "max": [
+                    3.0,
+                    2.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "all_occurrence_count": 2
+      },
+      "compute_after": true,
+      "feature_identity": {
+        "name": "ProbeRemoveRootOccurrence",
+        "entity_type": "adsk::fusion::RemoveFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQo8qr2TZPOfT6z+d72F5+ucWUIWRgrGZQnJqqkmquUmKbpqlhZEukJmoa2lunKqbYmlhYmKeaGlpYWoJVgs0gwENgO0zUABbB7Le1NIAAFr9SxyIAAAA",
+        "timeline_index": 6,
+        "parent_component_name": "(Unsaved)"
+      },
+      "is_suppressed": false,
+      "health_state": 0,
+      "warning": "",
+      "actual_feature_bodies": [],
+      "collections_after": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 0,
+          "occurrence_count": 1,
+          "bodies": [],
+          "occurrences": [
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveSurvivorComponent:1",
+              "full_path_name": "RemoveSurvivorComponent:1",
+              "component_name": "RemoveSurvivorComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                6.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                6.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveSurvivorComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFG1oGoEtDaclJnMSumSSJkxGY4s/ACgxCQU/PAtQUOH8AZFk6WU9nGx07tPIuWO8U2Mg7WpPstvPxdL1dHvfPczu8vy9LBBez62PQKKQwhQMYVpASB6gwUakinMQslqQUYo8q0JtmIOIILVCBln31Ootin/93pZGZsAZIQmSG0pZBAVtSLLNm5LHfvn4hxh+ncS3x1QAAAA==",
+                  "component_name": "RemoveSurvivorComponent",
+                  "assembly_context_path": "RemoveSurvivorComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      6.0,
+                      -1.0,
+                      2.0
+                    ],
+                    "max": [
+                      7.0,
+                      0.0,
+                      3.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "all_occurrences": [
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveSurvivorComponent:1",
+            "full_path_name": "RemoveSurvivorComponent:1",
+            "component_name": "RemoveSurvivorComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEG1oGoEtDaSlxnNiumSSJkxGYghlYgUEo6OlZgJoCf9Gja06n07uLgQKGFKIrobhLv6SGy3F/OF9P99v7cdm9Pk9vYMg1jDlpMhksFQS3DZTzBFMh4qYqRZ3iTSqYRzaF0a0CkWToSAy9ppZsscWx/m+VWYViQyhK5ATuG8Eg9mKRV6tR5vb9CySQcC3HAAAA",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveSurvivorComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQwFG1oGoEtDaclJnMSumSSJkxGY4s/ACgxCQU/PAtQUOH8AZFk6WU9nGx07tPIuWO8U2Mg7WpPstvPxdL1dHvfPczu8vy9LBBez62PQKKQwhQMYVpASB6gwUakinMQslqQUYo8q0JtmIOIILVCBln31Ootin/93pZGZsAZIQmSG0pZBAVtSLLNm5LHfvn4hxh+ncS3x1QAAAA==",
+                "component_name": "RemoveSurvivorComponent",
+                "assembly_context_path": "RemoveSurvivorComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    -1.0,
+                    2.0
+                  ],
+                  "max": [
+                    7.0,
+                    0.0,
+                    3.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "all_occurrence_count": 1
+      },
+      "source_component_after": {
+        "name": "RemoveTargetComponent",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "parameters_after": [],
+      "remove_feature_count": 1,
+      "remove_feature_names": [
+        "ProbeRemoveRootOccurrence"
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 70588,
+        "sha256": "acfcc772e1f5e50e9d7e9d24a56eb3a9448965f5f0a8bffd20da17f8a93b972c"
+      },
+      "close_owned_document_returned": true
+    },
+    {
+      "case": "nested_occurrence",
+      "file": "nested_occurrence.f3d",
+      "getter_errors": [
+        {
+          "field": "requested_native_child_before.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 60, in <lambda>\n    entity_token=observe(label+'.entityToken',lambda:occurrence.entityToken),\n                                                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_native_child_before.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_native_child_before.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_target_before.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "before.all_occurrences[0].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "actual_item_to_remove.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 60, in <lambda>\n    entity_token=observe(label+'.entityToken',lambda:occurrence.entityToken),\n                                                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "actual_item_to_remove.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "actual_item_to_remove.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "rolled_back.all_occurrences[0].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "source_component_after.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : Xl::Utils::referenceKey(this, referenceKey)\n"
+        }
+      ],
+      "requested_native_child_before": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetChild:1",
+        "full_path_name": "RemoveTargetChild:1",
+        "component_name": "RemoveTargetChild",
+        "entity_token": null,
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": null,
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": "RemoveTargetChild:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                4.0,
+                -1.0,
+                2.0
+              ],
+              "max": [
+                5.0,
+                0.0,
+                3.0
+              ]
+            }
+          }
+        ]
+      },
+      "requested_parent_before": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveParentComponent:1",
+        "full_path_name": "RemoveParentComponent:1",
+        "component_name": "RemoveParentComponent",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          3.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          3.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": []
+      },
+      "compute_before": true,
+      "requested_target_before": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetChild:1",
+        "full_path_name": "RemoveParentComponent:1+RemoveTargetChild:1",
+        "component_name": "RemoveTargetChild",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV8/R5dczo96e5i4EABQ5xC0ulwS1J4HN633f50vT8vx+/ndZ4EhSWF4cWEtMCo5MAmFbR4g9h6JydUX3gjRUXER4KG2oCzNKiNG0iMyExpDE4rh4hqJg49W50cGWjWCAu6YPZFxOj/JskWrVSHlFsHRp+dngpkx9SNLFsZ68cfkumw5u8AAAA=",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          6.0,
+          0.0,
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": "RemoveParentComponent:1",
+        "native_object_token": null,
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV86NHJ0un0JN/FoCFOYaB5X0c6HQZekxRuu+dlsz2cr/fT/v16HCdBYUlheDEhLTAqObBJBS3eILbeyQnVF/6RoiLiI0FDbcBZGtTGDSRGZKY0BqeVQ0Q1E4eerU6ODDRrhAVdMPsiYvS/k2SLVqpDyq0Do8+fngpkx9SNLFsZ343rZo74AWUpZhf9AAAA",
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": "RemoveParentComponent:1+RemoveTargetChild:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                6.0,
+                2.0,
+                3.0
+              ],
+              "max": [
+                7.0,
+                3.0,
+                4.0
+              ]
+            }
+          }
+        ]
+      },
+      "collections_before": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 0,
+          "occurrence_count": 2,
+          "bodies": [],
+          "occurrences": [
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveParentComponent:1",
+              "full_path_name": "RemoveParentComponent:1",
+              "component_name": "RemoveParentComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": []
+            },
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveSurvivorComponent:1",
+              "full_path_name": "RemoveSurvivorComponent:1",
+              "component_name": "RemoveSurvivorComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                7.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                7.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveSurvivorComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Puw1CMQwUk5ABsPTiTz4dCyBmsJ2kp2YE5mAAemp6CmpWIe8NgCxLd6fT+byEEpY5MeDcDWGZKAZelRQeh/dttz9d78/L8ft5nacDA6UwWnXBUmEoNmAXhVKbwWK9Y8NYGvFMWZ3KKWvO0KsZsIqBZhrg7NVQSN3p/y3yoT1FhJxsAIsRTJ7A0ihWJQoO2rqvvwjTD5uG1crVAAAA",
+                  "component_name": "RemoveSurvivorComponent",
+                  "assembly_context_path": "RemoveSurvivorComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      7.0,
+                      0.0,
+                      0.0
+                    ],
+                    "max": [
+                      8.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "all_occurrences": [
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveTargetChild:1",
+            "full_path_name": "RemoveParentComponent:1+RemoveTargetChild:1",
+            "component_name": "RemoveTargetChild",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV8/R5dczo96e5i4EABQ5xC0ulwS1J4HN633f50vT8vx+/ndZ4EhSWF4cWEtMCo5MAmFbR4g9h6JydUX3gjRUXER4KG2oCzNKiNG0iMyExpDE4rh4hqJg49W50cGWjWCAu6YPZFxOj/JskWrVSHlFsHRp+dngpkx9SNLFsZ68cfkumw5u8AAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": "RemoveParentComponent:1",
+            "native_object_token": null,
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveTargetChildBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV86NHJ0un0JN/FoCFOYaB5X0c6HQZekxRuu+dlsz2cr/fT/v16HCdBYUlheDEhLTAqObBJBS3eILbeyQnVF/6RoiLiI0FDbcBZGtTGDSRGZKY0BqeVQ0Q1E4eerU6ODDRrhAVdMPsiYvS/k2SLVqpDyq0Do8+fngpkx9SNLFsZ343rZo74AWUpZhf9AAAA",
+                "component_name": "RemoveTargetChild",
+                "assembly_context_path": "RemoveParentComponent:1+RemoveTargetChild:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    2.0,
+                    3.0
+                  ],
+                  "max": [
+                    7.0,
+                    3.0,
+                    4.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveParentComponent:1",
+            "full_path_name": "RemoveParentComponent:1",
+            "component_name": "RemoveParentComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": []
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveSurvivorComponent:1",
+            "full_path_name": "RemoveSurvivorComponent:1",
+            "component_name": "RemoveSurvivorComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              7.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              7.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveSurvivorComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Puw1CMQwUk5ABsPTiTz4dCyBmsJ2kp2YE5mAAemp6CmpWIe8NgCxLd6fT+byEEpY5MeDcDWGZKAZelRQeh/dttz9d78/L8ft5nacDA6UwWnXBUmEoNmAXhVKbwWK9Y8NYGvFMWZ3KKWvO0KsZsIqBZhrg7NVQSN3p/y3yoT1FhJxsAIsRTJ7A0ihWJQoO2rqvvwjTD5uG1crVAAAA",
+                "component_name": "RemoveSurvivorComponent",
+                "assembly_context_path": "RemoveSurvivorComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "max": [
+                    8.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "all_occurrence_count": 3
+      },
+      "source_component_before": {
+        "name": "RemoveTargetChild",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkadi92M8r7VS/cUOty/eswfqMJIwdhMwdQ82SDZMjFF18w8KVXXxDDFTDcpxcxS1zzF0Cw12SjZPNkyDawWaAYDGgDbZ6AAtg5kvYmBIQB1+wvpiAAAAA==",
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "parameters_before": [],
+      "actual_item_to_remove": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetChild:1",
+        "full_path_name": "RemoveTargetChild:1",
+        "component_name": "RemoveTargetChild",
+        "entity_token": null,
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": null,
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": "RemoveTargetChild:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                4.0,
+                -1.0,
+                2.0
+              ],
+              "max": [
+                5.0,
+                0.0,
+                3.0
+              ]
+            }
+          }
+        ]
+      },
+      "collections_rolled_back": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 0,
+          "occurrence_count": 2,
+          "bodies": [],
+          "occurrences": [
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveParentComponent:1",
+              "full_path_name": "RemoveParentComponent:1",
+              "component_name": "RemoveParentComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": []
+            },
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveSurvivorComponent:1",
+              "full_path_name": "RemoveSurvivorComponent:1",
+              "component_name": "RemoveSurvivorComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                7.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                7.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveSurvivorComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Puw1CMQwUk5ABsPTiTz4dCyBmsJ2kp2YE5mAAemp6CmpWIe8NgCxLd6fT+byEEpY5MeDcDWGZKAZelRQeh/dttz9d78/L8ft5nacDA6UwWnXBUmEoNmAXhVKbwWK9Y8NYGvFMWZ3KKWvO0KsZsIqBZhrg7NVQSN3p/y3yoT1FhJxsAIsRTJ7A0ihWJQoO2rqvvwjTD5uG1crVAAAA",
+                  "component_name": "RemoveSurvivorComponent",
+                  "assembly_context_path": "RemoveSurvivorComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      7.0,
+                      0.0,
+                      0.0
+                    ],
+                    "max": [
+                      8.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "all_occurrences": [
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveTargetChild:1",
+            "full_path_name": "RemoveParentComponent:1+RemoveTargetChild:1",
+            "component_name": "RemoveTargetChild",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV8/R5dczo96e5i4EABQ5xC0ulwS1J4HN633f50vT8vx+/ndZ4EhSWF4cWEtMCo5MAmFbR4g9h6JydUX3gjRUXER4KG2oCzNKiNG0iMyExpDE4rh4hqJg49W50cGWjWCAu6YPZFxOj/JskWrVSHlFsHRp+dngpkx9SNLFsZ68cfkumw5u8AAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": "RemoveParentComponent:1",
+            "native_object_token": null,
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveTargetChildBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV86NHJ0un0JN/FoCFOYaB5X0c6HQZekxRuu+dlsz2cr/fT/v16HCdBYUlheDEhLTAqObBJBS3eILbeyQnVF/6RoiLiI0FDbcBZGtTGDSRGZKY0BqeVQ0Q1E4eerU6ODDRrhAVdMPsiYvS/k2SLVqpDyq0Do8+fngpkx9SNLFsZ343rZo74AWUpZhf9AAAA",
+                "component_name": "RemoveTargetChild",
+                "assembly_context_path": "RemoveParentComponent:1+RemoveTargetChild:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    6.0,
+                    2.0,
+                    3.0
+                  ],
+                  "max": [
+                    7.0,
+                    3.0,
+                    4.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveParentComponent:1",
+            "full_path_name": "RemoveParentComponent:1",
+            "component_name": "RemoveParentComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": []
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveSurvivorComponent:1",
+            "full_path_name": "RemoveSurvivorComponent:1",
+            "component_name": "RemoveSurvivorComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              7.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              7.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveSurvivorComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Puw1CMQwUk5ABsPTiTz4dCyBmsJ2kp2YE5mAAemp6CmpWIe8NgCxLd6fT+byEEpY5MeDcDWGZKAZelRQeh/dttz9d78/L8ft5nacDA6UwWnXBUmEoNmAXhVKbwWK9Y8NYGvFMWZ3KKWvO0KsZsIqBZhrg7NVQSN3p/y3yoT1FhJxsAIsRTJ7A0ihWJQoO2rqvvwjTD5uG1crVAAAA",
+                "component_name": "RemoveSurvivorComponent",
+                "assembly_context_path": "RemoveSurvivorComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "max": [
+                    8.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "all_occurrence_count": 3
+      },
+      "compute_after": true,
+      "feature_identity": {
+        "name": "ProbeRemoveNestedOccurrence",
+        "entity_type": "adsk::fusion::RemoveFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkadi92M8r7VS/cUOty/eswfqMJIwdhMITUlLdnSJNVANyXF1FLXxNzYRNfSyCBR1zLZ3NIyydjUyCLNEqwWaAYDGgDbZ6AAtg5kvZmpKQAiPC0OiAAAAA==",
+        "timeline_index": 7,
+        "parent_component_name": "RemoveParentComponent"
+      },
+      "is_suppressed": false,
+      "health_state": 0,
+      "warning": "",
+      "actual_feature_bodies": [],
+      "collections_after": {
+        "root": {
+          "name": "(Unsaved)",
+          "body_count": 0,
+          "occurrence_count": 2,
+          "bodies": [],
+          "occurrences": [
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveParentComponent:1",
+              "full_path_name": "RemoveParentComponent:1",
+              "component_name": "RemoveParentComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                1.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": []
+            },
+            {
+              "status": "returned_occurrence",
+              "entity_type": "adsk::fusion::Occurrence",
+              "name": "RemoveSurvivorComponent:1",
+              "full_path_name": "RemoveSurvivorComponent:1",
+              "component_name": "RemoveSurvivorComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                7.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+              "native_object_transform": [
+                1.0,
+                0.0,
+                0.0,
+                7.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "bodies": [
+                {
+                  "status": "returned_body",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "RemoveSurvivorComponentBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Puw1CMQwUk5ABsPTiTz4dCyBmsJ2kp2YE5mAAemp6CmpWIe8NgCxLd6fT+byEEpY5MeDcDWGZKAZelRQeh/dttz9d78/L8ft5nacDA6UwWnXBUmEoNmAXhVKbwWK9Y8NYGvFMWZ3KKWvO0KsZsIqBZhrg7NVQSN3p/y3yoT1FhJxsAIsRTJ7A0ihWJQoO2rqvvwjTD5uG1crVAAAA",
+                  "component_name": "RemoveSurvivorComponent",
+                  "assembly_context_path": "RemoveSurvivorComponent:1",
+                  "is_solid": true,
+                  "bounding_box_cm": {
+                    "min": [
+                      7.0,
+                      0.0,
+                      0.0
+                    ],
+                    "max": [
+                      8.0,
+                      1.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "all_occurrences": [
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveParentComponent:1",
+            "full_path_name": "RemoveParentComponent:1",
+            "component_name": "RemoveParentComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxExSRkACwl/nZ+3LEAYoY4jntqRmAOBqCnpqegZhWM6NE1p9PT3eVECVNJOVSwhSu/pKbb7nnZbA/n6/20f78exyAwLTW5yWBsAt7RgAZ3aGIKWedEw9JsoWgJkhszm1fQ0hRoZYWupMA5FyKs7lT/b03zITQzmLFEw0IgmDvIWEV0iRsu3+8fFOT7xccAAAA=",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": []
+          },
+          {
+            "status": "returned_occurrence",
+            "entity_type": "adsk::fusion::Occurrence",
+            "name": "RemoveSurvivorComponent:1",
+            "full_path_name": "RemoveSurvivorComponent:1",
+            "component_name": "RemoveSurvivorComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              7.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31OuQ0CQRATlTAFMNLtPPtkNICoYWafnJgSqIMCyInJLyCmFfZEjpzYlmV7AQGCAMtEoDxZ+DkRHof1ttufrvfn5fh5v84zQcARRitVKRccRg2lqmEuzXHx3qlRyI1ltmxJk5gsJezFHcXU0RIPrFKLk7LVyv+3uA7rMRCm6ANFnXHqiB5H9qJBafD2/QtEUWu0xwAAAA==",
+            "native_object_transform": [
+              1.0,
+              0.0,
+              0.0,
+              7.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": [
+              {
+                "status": "returned_body",
+                "entity_type": "adsk::fusion::BRepBody",
+                "name": "RemoveSurvivorComponentBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/31Puw1CMQwUk5ABsPTiTz4dCyBmsJ2kp2YE5mAAemp6CmpWIe8NgCxLd6fT+byEEpY5MeDcDWGZKAZelRQeh/dttz9d78/L8ft5nacDA6UwWnXBUmEoNmAXhVKbwWK9Y8NYGvFMWZ3KKWvO0KsZsIqBZhrg7NVQSN3p/y3yoT1FhJxsAIsRTJ7A0ihWJQoO2rqvvwjTD5uG1crVAAAA",
+                "component_name": "RemoveSurvivorComponent",
+                "assembly_context_path": "RemoveSurvivorComponent:1",
+                "is_solid": true,
+                "bounding_box_cm": {
+                  "min": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "max": [
+                    8.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "all_occurrence_count": 2
+      },
+      "source_component_after": {
+        "name": "RemoveTargetChild",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "parent_component_after": {
+        "name": "RemoveParentComponent",
+        "body_count": 0,
+        "occurrence_count": 0,
+        "bodies": [],
+        "occurrences": []
+      },
+      "parameters_after": [],
+      "remove_feature_count": 0,
+      "remove_feature_names": [],
+      "export": {
+        "returned_success": true,
+        "byte_count": 72706,
+        "sha256": "4109ef9f0407638eb0ed9519ff39b3aa59728f67683ccd2f98a438fbee13f96d"
+      },
+      "close_owned_document_returned": true
+    }
+  ],
+  "errors": [],
+  "requested_cases": [
+    "root_body",
+    "root_occurrence",
+    "nested_occurrence"
+  ],
+  "executed_generator_sha256": "750dd545c576a65493956808daf3494547070860a95c20ad6e51cde5bae57cff",
+  "execution_scope": "Three new owned parametric documents; local native export and closeFalse only; no global settings or existing document changes",
+  "API_scope": "Documented RemoveFeatures.add(single solid body or component occurrence); itemToRemove read only while timeline is immediately before owned RemoveFeature",
+  "evidence_scope": "Named requested source before removal, rolled-back actual itemToRemove, independent before/rolled-back/after collections and feature getters. Current collection absence does not assign persistent native identity or general lifecycle semantics.",
+  "terminal_status": "complete",
+  "exported_sample_count": 3
+}

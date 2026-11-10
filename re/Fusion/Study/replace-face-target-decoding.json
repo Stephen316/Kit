@@ -1,0 +1,2917 @@
+{
+  "scope": "Three actual owned ReplaceFace features with singleton independent Patch-sheet face/body targets and source Extrude face; explicit native target representation and tangent-chain control only. Existing shared selection/header codec reused.",
+  "interface": "decode_replace_face_targets(data,records,features)->decoded/unresolved/scope; rows feature_object_id/kind/name/settings",
+  "shared_hook": "decode_face_tool(...,replace_target_resolver=None); optional five-argument callback returns(target_descriptor_guid,replacement_target). None preserves default plane-only path and errors; opt-in admits only singleton5662 face/9716 body descriptors through existing owner/class checks.",
+  "integration": {
+    "stream": "replace_face_targets",
+    "settings_field": "settings",
+    "decode_level": "Observed ReplaceFace sheet target type, tangent control and owned source/target routes; persistent face identity and regeneration unresolved",
+    "cleared_old_reason": "Unsupported face-edit selection descriptor class",
+    "late_body_evidence_path": "settings.replacement_target.native_evidence",
+    "scope": "Only same-feature old target-class rejection replaced on success. Kind/discovery/timeline/unresolved_inputs and unrelated warnings remain unchanged."
+  },
+  "capture_provenance": {
+    "ground_truth": "replacefacetargets-670e35eedbc8/ground_truth.json",
+    "ground_truth_sha256": "b861698cd6d7af000e337800fc22e7d64155b4bada36ea5baaadf0fef60aa285",
+    "executed_generator_sha256": "d7fd8b478c9371e6953f1c74706584b0db7f4ea6066a44e2adea7f44298bf20a",
+    "executed_sdk_surface_sha256": "ab98a767311bfb4298ea904a9a1648ab0ce57f012efe296e0ec55686c23e2f22",
+    "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+    "fusion_version": "2705.1.30"
+  },
+  "native_schema": {
+    "feature_class_guid": "8BD31492-18F4-45C9-8512-D720CCFC2450",
+    "prefix": "0000",
+    "tangent_bool_offset": 2,
+    "target_count_offset": 3,
+    "target_reference_offset": 7,
+    "source_count_offset": 18,
+    "source_reference_offset": 22,
+    "source_descriptor_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+    "target_face_descriptor_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+    "target_body_descriptor_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+    "target_face_descriptor_extent": 276,
+    "target_body_descriptor_extent": 290,
+    "proxy_extent": 105
+  },
+  "samples": [
+    {
+      "archive": "replacefacetargets-670e35eedbc8/sheet_face.f3d",
+      "archive_sha256": "a60cf0c067d23bfd6d7e690ec4ce242bf2b73c6ebe8741b04859c2d2b612180d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 828,
+            "kind": "ReplaceFace",
+            "name": "OwnedReplaceFaceTarget_sheet_face",
+            "settings": {
+              "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+              "is_tangent_chain": false,
+              "source_selection_record_object_id": 837,
+              "source_descriptor_object_ids": [
+                840
+              ],
+              "selected_descriptor_count": 1,
+              "target_selection_record_object_id": 829,
+              "target_descriptor_object_ids": [
+                832
+              ],
+              "replacement_target": {
+                "kind": "BRepFace",
+                "native_body_object_id": 379,
+                "native_evidence": {
+                  "feature_object_id": 828,
+                  "feature_record_offset": 47201,
+                  "source_selection_record_object_id": 837,
+                  "target_selection_record_object_id": 829,
+                  "target_descriptor_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+                  "source_face_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 837,
+                      "attributes": {},
+                      "faces": [
+                        {
+                          "descriptor_object_id": 840,
+                          "body_anchor_object_id": 281,
+                          "native_body_object_id": 275,
+                          "source_owner_object_id": 243,
+                          "namespace_text": "425d388e-a242-407e-acc0-1cd5d8ee1a45",
+                          "entity_guid_text": "5636a8c7-8dc7-43c0-9f62-ec9b39f784d3",
+                          "context_record_object_ids": [
+                            865
+                          ],
+                          "recipe": {
+                            "object_id": 843,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 49072,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "2",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 1,
+                                "terms": [
+                                  {
+                                    "name": "3",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 2,
+                                "terms": [
+                                  {
+                                    "name": "6",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 3,
+                                "terms": [
+                                  {
+                                    "name": "4",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 4,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "bounded_face_recipe_data",
+                            "payload_relative_offset": 171,
+                            "payload_length": 476,
+                            "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              -1,
+                              2,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              3,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              3,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              0,
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 840,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "source_owner_object_id": 243,
+                      "namespace_text": "425d388e-a242-407e-acc0-1cd5d8ee1a45",
+                      "entity_guid_text": "5636a8c7-8dc7-43c0-9f62-ec9b39f784d3",
+                      "context_record_object_ids": [
+                        865
+                      ],
+                      "recipe": {
+                        "object_id": 843,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49072,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "2",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 1,
+                            "terms": [
+                              {
+                                "name": "3",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 2,
+                            "terms": [
+                              {
+                                "name": "6",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 3,
+                            "terms": [
+                              {
+                                "name": "4",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 4,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "bounded_face_recipe_data",
+                        "payload_relative_offset": 171,
+                        "payload_length": 476,
+                        "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          -1,
+                          2,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 840,
+                      "owner_object_id": 828,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 843,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49072,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "2",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 1,
+                            "terms": [
+                              {
+                                "name": "3",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 2,
+                            "terms": [
+                              {
+                                "name": "6",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 3,
+                            "terms": [
+                              {
+                                "name": "4",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 4,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "bounded_face_recipe_data",
+                        "payload_relative_offset": 171,
+                        "payload_length": 476,
+                        "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          -1,
+                          2,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 865,
+                      "namespace_text": "425d388e-a242-407e-acc0-1cd5d8ee1a45",
+                      "entity_guid_text": "5636a8c7-8dc7-43c0-9f62-ec9b39f784d3",
+                      "stored_context_index_field": 12,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "source_owner_object_id": 243,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "replacement_target_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 829,
+                      "attributes": {},
+                      "faces": [
+                        {
+                          "descriptor_object_id": 832,
+                          "body_anchor_object_id": 383,
+                          "native_body_object_id": 379,
+                          "source_owner_object_id": 344,
+                          "namespace_text": "425d388e-a242-407e-acc0-1cd5d8ee1a45",
+                          "entity_guid_text": "5636a8c7-8dc7-43c0-9f62-ec9b39f784d3",
+                          "context_record_object_ids": [
+                            893
+                          ],
+                          "recipe": {
+                            "object_id": 835,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 48283,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 305,
+                                    "numeric_record_collision": {
+                                      "object_id": 305,
+                                      "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                      "record_offset": 38255,
+                                      "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "face_recipe_data",
+                            "payload_relative_offset": 63,
+                            "payload_length": 8,
+                            "payload_hex": "00000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 832,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "namespace_text": "425d388e-a242-407e-acc0-1cd5d8ee1a45",
+                      "entity_guid_text": "5636a8c7-8dc7-43c0-9f62-ec9b39f784d3",
+                      "context_record_object_ids": [
+                        893
+                      ],
+                      "recipe": {
+                        "object_id": 835,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 48283,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38255,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 832,
+                      "owner_object_id": 828,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 835,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 48283,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38255,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 893,
+                      "namespace_text": "425d388e-a242-407e-acc0-1cd5d8ee1a45",
+                      "entity_guid_text": "5636a8c7-8dc7-43c0-9f62-ec9b39f784d3",
+                      "stored_context_index_field": 16,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "source_historical_native_body_object_id": 275,
+                  "replacement_historical_native_body_object_id": 379,
+                  "historical_body_properties": [
+                    {
+                      "object_id": 275,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 33564,
+                      "name": "OwnedReplaceBlock_sheet_face",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_275",
+                      "name_helper_object_id": 276,
+                      "name_field_offset": 34160,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 379,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 45720,
+                      "name": "OwnedReplacementSheet_sheet_face",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_379",
+                      "name_helper_object_id": 380,
+                      "name_field_offset": 46312,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    }
+                  ],
+                  "native_current_body_collection": {
+                    "object_id": 7,
+                    "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "body_object_ids": [
+                      275,
+                      379
+                    ],
+                    "stored_field_at_3": 2,
+                    "uninterpreted_middle_hex": "010118010000000000000000010800000000000000000001011200000000000000000000"
+                  },
+                  "native_history_mapping_object_id": 8,
+                  "raw_role_prefix_hex": "00000001000000013d030000000000000000010000000145030000000000000000",
+                  "stored_collection_payload_hex": "00000002000000020000000113010000000000000000017b010000000000000000010118010000000000000000010800000000000000000001011200000000000000000000020000000113010000000000000000017b0100000000000000000103000000000000000000",
+                  "stored_mapping_payload_hex": "000002000000a2000000000000001301000000000000a3000000000000007b010000000000000107000000000000000000002e00000042005200450050002e00610039003900620064003900630034002d0030003400660032002d0034003800340032002d0038006200370030002d006300620034003800620061003900390031006400640061002e0073006d0062006800",
+                  "scope": "Observed ReplaceFace distinct owned source-face and replacement face/body descriptors, historical Extrude/Patch BODY anchors, typed naming contexts and reciprocal stored BODY collection; initial same-asset ASM stored IDs qualified separately. Native target representation is retained; no persistent selected ASMface/API identity, source/result pairing, lifecycle or regeneration inferred."
+                },
+                "representation_scope": "Native face/body descriptor kind is explicit; requested and rolled API representations must be recorded independently",
+                "scope": "Observed ReplaceFace distinct owned source-face and replacement face/body descriptors, historical Extrude/Patch BODY anchors, typed naming contexts and reciprocal stored BODY collection; initial same-asset ASM stored IDs qualified separately. Native target representation is retained; no persistent selected ASMface/API identity, source/result pairing, lifecycle or regeneration inferred."
+              }
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed singleton ReplaceFace source face and distinct target face/body descriptors for an independent owned Patch sheet, tangent-chain false/true controls and reciprocal historical native BODY routes. API argument normalization, selected ASM face identity, general targets, lifecycle and regeneration remain separate or unresolved."
+      },
+      "actual_input_target_type": "BRepFace",
+      "actual_rolled_feature_target_type": "Collection",
+      "native_target_kind": "BRepFace",
+      "actual_tangent_chain": false,
+      "actual_current_BRep_count": 2,
+      "actual_feature_BRep_count": 1,
+      "actual_source_getter_scope": "No public feature.sourceFaces getter; actual input.sourceFaces captured separately before add",
+      "exact_role_prefix_replay": true,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "replacefacetargets-670e35eedbc8/sheet_body.f3d",
+      "archive_sha256": "2a92c7838db2e4b15a878bdcd36222539712c16183c4ee9c0b24b35350f943db",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 840,
+            "kind": "ReplaceFace",
+            "name": "OwnedReplaceFaceTarget_sheet_body",
+            "settings": {
+              "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+              "is_tangent_chain": false,
+              "source_selection_record_object_id": 848,
+              "source_descriptor_object_ids": [
+                851
+              ],
+              "selected_descriptor_count": 1,
+              "target_selection_record_object_id": 841,
+              "target_descriptor_object_ids": [
+                844
+              ],
+              "replacement_target": {
+                "kind": "BRepBody",
+                "native_body_object_id": 379,
+                "native_evidence": {
+                  "feature_object_id": 840,
+                  "feature_record_offset": 47201,
+                  "source_selection_record_object_id": 848,
+                  "target_selection_record_object_id": 841,
+                  "target_descriptor_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                  "source_face_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 848,
+                      "attributes": {},
+                      "faces": [
+                        {
+                          "descriptor_object_id": 851,
+                          "body_anchor_object_id": 281,
+                          "native_body_object_id": 275,
+                          "source_owner_object_id": 243,
+                          "namespace_text": "e04154c9-f67c-49d1-b1d4-4a5496269458",
+                          "entity_guid_text": "a13d8775-eecc-46ec-a4f6-df5f9ed07d1f",
+                          "context_record_object_ids": [
+                            878
+                          ],
+                          "recipe": {
+                            "object_id": 854,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 49168,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "2",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 1,
+                                "terms": [
+                                  {
+                                    "name": "3",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 2,
+                                "terms": [
+                                  {
+                                    "name": "6",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 3,
+                                "terms": [
+                                  {
+                                    "name": "4",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 4,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "bounded_face_recipe_data",
+                            "payload_relative_offset": 171,
+                            "payload_length": 476,
+                            "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              -1,
+                              2,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              3,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              3,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              0,
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 851,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "source_owner_object_id": 243,
+                      "namespace_text": "e04154c9-f67c-49d1-b1d4-4a5496269458",
+                      "entity_guid_text": "a13d8775-eecc-46ec-a4f6-df5f9ed07d1f",
+                      "context_record_object_ids": [
+                        878
+                      ],
+                      "recipe": {
+                        "object_id": 854,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49168,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "2",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 1,
+                            "terms": [
+                              {
+                                "name": "3",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 2,
+                            "terms": [
+                              {
+                                "name": "6",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 3,
+                            "terms": [
+                              {
+                                "name": "4",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 4,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "bounded_face_recipe_data",
+                        "payload_relative_offset": 171,
+                        "payload_length": 476,
+                        "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          -1,
+                          2,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 851,
+                      "owner_object_id": 840,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 854,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49168,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "2",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 1,
+                            "terms": [
+                              {
+                                "name": "3",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 2,
+                            "terms": [
+                              {
+                                "name": "6",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 3,
+                            "terms": [
+                              {
+                                "name": "4",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 4,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "bounded_face_recipe_data",
+                        "payload_relative_offset": 171,
+                        "payload_length": 476,
+                        "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          -1,
+                          2,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 878,
+                      "namespace_text": "e04154c9-f67c-49d1-b1d4-4a5496269458",
+                      "entity_guid_text": "a13d8775-eecc-46ec-a4f6-df5f9ed07d1f",
+                      "stored_context_index_field": 11,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "source_owner_object_id": 243,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "replacement_target_route": {
+                    "kind": "Body",
+                    "selection": {
+                      "selection_record_object_id": 841,
+                      "owner_object_id": 840,
+                      "attributes": {},
+                      "descriptor_object_ids": [
+                        844
+                      ],
+                      "native_body_object_ids": [
+                        379
+                      ],
+                      "association": "Explicit counted proxy list with matching descriptor owners"
+                    },
+                    "descriptor": {
+                      "object_id": 844,
+                      "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                      "owner_object_id": 840,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "body_properties": {},
+                      "source_owner_object_id": 344,
+                      "recipe_record_object_id": 847,
+                      "stored_identifier": 305,
+                      "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                      "stored_kind_field": 3,
+                      "namespace_text": "e04154c9-f67c-49d1-b1d4-4a5496269458",
+                      "entity_uuid_text": "a13d8775-eecc-46ec-a4f6-df5f9ed07d1f",
+                      "context_record_object_ids": [
+                        906
+                      ],
+                      "stored_trailer_kind_field": 9,
+                      "uninterpreted_trailer_field_hex": "00000000000000000000",
+                      "uninterpreted_cached_scalar": 0.00012141600000000006,
+                      "helper_record_object_id": 846,
+                      "support_record_object_id": 845,
+                      "support_reference_object_ids": [
+                        344
+                      ],
+                      "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                      "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                    },
+                    "recipe": {
+                      "object_id": 847,
+                      "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                      "record_offset": 48381,
+                      "stored_header_fields": [
+                        1,
+                        3
+                      ],
+                      "name_table": [
+                        {
+                          "table_index": 0,
+                          "terms": [
+                            {
+                              "name": "305",
+                              "stored_index": 6,
+                              "stored_reference_tag": 0,
+                              "stored_reference_value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "payload_kind": "body_recipe_data",
+                      "payload_relative_offset": 61,
+                      "payload_length": 8,
+                      "payload_hex": "00000000ffffffff",
+                      "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                      "uninterpreted_payload_int32": [
+                        0,
+                        -1
+                      ]
+                    },
+                    "typed_context": {
+                      "context_object_id": 906,
+                      "stored_index_field": 15,
+                      "namespace_text": "e04154c9-f67c-49d1-b1d4-4a5496269458",
+                      "entity_guid_text": "a13d8775-eecc-46ec-a4f6-df5f9ed07d1f",
+                      "stored_context_payload_hex": "00000f0000000000000024000000650030003400310035003400630039002d0066003600370063002d0034003900640031002d0062003100640034002d0034006100350034003900360032003600390034003500380024000000610031003300640038003700370035002d0065006500630063002d0034003600650063002d0061003400660036002d006400660035006600390065006400300037006400310066000200000000000000018b030000000000000000",
+                      "body_identity_link_object_id": 907,
+                      "body_identity_leaf_object_id": 908,
+                      "leaf_native_body_object_id": 379,
+                      "stored_leaf_payload_hex": "00007b01000000000000"
+                    }
+                  },
+                  "source_historical_native_body_object_id": 275,
+                  "replacement_historical_native_body_object_id": 379,
+                  "historical_body_properties": [
+                    {
+                      "object_id": 275,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 33564,
+                      "name": "OwnedReplaceBlock_sheet_body",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_275",
+                      "name_helper_object_id": 276,
+                      "name_field_offset": 34160,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 379,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 45720,
+                      "name": "OwnedReplacementSheet_sheet_body",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_379",
+                      "name_helper_object_id": 380,
+                      "name_field_offset": 46312,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    }
+                  ],
+                  "native_current_body_collection": {
+                    "object_id": 7,
+                    "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "body_object_ids": [
+                      275,
+                      379
+                    ],
+                    "stored_field_at_3": 2,
+                    "uninterpreted_middle_hex": "010118010000000000000000010800000000000000000001011200000000000000000000"
+                  },
+                  "native_history_mapping_object_id": 8,
+                  "raw_role_prefix_hex": "000000010000000149030000000000000000010000000150030000000000000000",
+                  "stored_collection_payload_hex": "00000002000000020000000113010000000000000000017b010000000000000000010118010000000000000000010800000000000000000001011200000000000000000000020000000113010000000000000000017b0100000000000000000103000000000000000000",
+                  "stored_mapping_payload_hex": "000002000000a2000000000000001301000000000000a3000000000000007b010000000000000107000000000000000000002e00000042005200450050002e00650038003000650031003900610066002d0065006500650065002d0034003300390030002d0038003700300034002d003000660037006600380065006200350062003100350065002e0073006d0062006800",
+                  "scope": "Observed ReplaceFace distinct owned source-face and replacement face/body descriptors, historical Extrude/Patch BODY anchors, typed naming contexts and reciprocal stored BODY collection; initial same-asset ASM stored IDs qualified separately. Native target representation is retained; no persistent selected ASMface/API identity, source/result pairing, lifecycle or regeneration inferred."
+                },
+                "representation_scope": "Native face/body descriptor kind is explicit; requested and rolled API representations must be recorded independently",
+                "scope": "Observed ReplaceFace distinct owned source-face and replacement face/body descriptors, historical Extrude/Patch BODY anchors, typed naming contexts and reciprocal stored BODY collection; initial same-asset ASM stored IDs qualified separately. Native target representation is retained; no persistent selected ASMface/API identity, source/result pairing, lifecycle or regeneration inferred."
+              }
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed singleton ReplaceFace source face and distinct target face/body descriptors for an independent owned Patch sheet, tangent-chain false/true controls and reciprocal historical native BODY routes. API argument normalization, selected ASM face identity, general targets, lifecycle and regeneration remain separate or unresolved."
+      },
+      "actual_input_target_type": "BRepBody",
+      "actual_rolled_feature_target_type": "BRepBody",
+      "native_target_kind": "BRepBody",
+      "actual_tangent_chain": false,
+      "actual_current_BRep_count": 2,
+      "actual_feature_BRep_count": 1,
+      "actual_source_getter_scope": "No public feature.sourceFaces getter; actual input.sourceFaces captured separately before add",
+      "exact_role_prefix_replay": true,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "replacefacetargets-670e35eedbc8/sheet_face_tangent.f3d",
+      "archive_sha256": "a87a88ebf56417731941401ff87c771d56aabe9780ad2e35ece80c3eee7dbf78",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 828,
+            "kind": "ReplaceFace",
+            "name": "OwnedReplaceFaceTarget_sheet_face_tangent",
+            "settings": {
+              "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+              "is_tangent_chain": true,
+              "source_selection_record_object_id": 837,
+              "source_descriptor_object_ids": [
+                840
+              ],
+              "selected_descriptor_count": 1,
+              "target_selection_record_object_id": 829,
+              "target_descriptor_object_ids": [
+                832
+              ],
+              "replacement_target": {
+                "kind": "BRepFace",
+                "native_body_object_id": 379,
+                "native_evidence": {
+                  "feature_object_id": 828,
+                  "feature_record_offset": 47313,
+                  "source_selection_record_object_id": 837,
+                  "target_selection_record_object_id": 829,
+                  "target_descriptor_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+                  "source_face_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 837,
+                      "attributes": {},
+                      "faces": [
+                        {
+                          "descriptor_object_id": 840,
+                          "body_anchor_object_id": 281,
+                          "native_body_object_id": 275,
+                          "source_owner_object_id": 243,
+                          "namespace_text": "e07ff6e4-9c22-42db-b93d-07a8ab7b6f78",
+                          "entity_guid_text": "8e9c8893-5387-4e37-8f37-25e83af485f1",
+                          "context_record_object_ids": [
+                            865
+                          ],
+                          "recipe": {
+                            "object_id": 843,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 49200,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "2",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 1,
+                                "terms": [
+                                  {
+                                    "name": "3",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 2,
+                                "terms": [
+                                  {
+                                    "name": "6",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 3,
+                                "terms": [
+                                  {
+                                    "name": "4",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              },
+                              {
+                                "table_index": 4,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 301
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "bounded_face_recipe_data",
+                            "payload_relative_offset": 171,
+                            "payload_length": 476,
+                            "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              -1,
+                              2,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              3,
+                              -1,
+                              0,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              3,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              4,
+                              -1,
+                              0,
+                              -1,
+                              3,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              -1,
+                              -1,
+                              2,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              2,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              0,
+                              -1,
+                              4,
+                              -1,
+                              0,
+                              0,
+                              -1,
+                              3,
+                              2,
+                              -1,
+                              1,
+                              -1,
+                              0,
+                              -1,
+                              0,
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 840,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "source_owner_object_id": 243,
+                      "namespace_text": "e07ff6e4-9c22-42db-b93d-07a8ab7b6f78",
+                      "entity_guid_text": "8e9c8893-5387-4e37-8f37-25e83af485f1",
+                      "context_record_object_ids": [
+                        865
+                      ],
+                      "recipe": {
+                        "object_id": 843,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49200,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "2",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 1,
+                            "terms": [
+                              {
+                                "name": "3",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 2,
+                            "terms": [
+                              {
+                                "name": "6",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 3,
+                            "terms": [
+                              {
+                                "name": "4",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 4,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "bounded_face_recipe_data",
+                        "payload_relative_offset": 171,
+                        "payload_length": 476,
+                        "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          -1,
+                          2,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 840,
+                      "owner_object_id": 828,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 843,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49200,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "2",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 1,
+                            "terms": [
+                              {
+                                "name": "3",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 2,
+                            "terms": [
+                              {
+                                "name": "6",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 3,
+                            "terms": [
+                              {
+                                "name": "4",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          },
+                          {
+                            "table_index": 4,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 301
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "bounded_face_recipe_data",
+                        "payload_relative_offset": 171,
+                        "payload_length": 476,
+                        "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          -1,
+                          2,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          3,
+                          -1,
+                          0,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          4,
+                          -1,
+                          0,
+                          -1,
+                          3,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          -1,
+                          -1,
+                          2,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          2,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          0,
+                          -1,
+                          4,
+                          -1,
+                          0,
+                          0,
+                          -1,
+                          3,
+                          2,
+                          -1,
+                          1,
+                          -1,
+                          0,
+                          -1,
+                          0,
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 865,
+                      "namespace_text": "e07ff6e4-9c22-42db-b93d-07a8ab7b6f78",
+                      "entity_guid_text": "8e9c8893-5387-4e37-8f37-25e83af485f1",
+                      "stored_context_index_field": 12,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "source_owner_object_id": 243,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "replacement_target_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 829,
+                      "attributes": {},
+                      "faces": [
+                        {
+                          "descriptor_object_id": 832,
+                          "body_anchor_object_id": 383,
+                          "native_body_object_id": 379,
+                          "source_owner_object_id": 344,
+                          "namespace_text": "e07ff6e4-9c22-42db-b93d-07a8ab7b6f78",
+                          "entity_guid_text": "8e9c8893-5387-4e37-8f37-25e83af485f1",
+                          "context_record_object_ids": [
+                            893
+                          ],
+                          "recipe": {
+                            "object_id": 835,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 48411,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 305,
+                                    "numeric_record_collision": {
+                                      "object_id": 305,
+                                      "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                      "record_offset": 38335,
+                                      "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "face_recipe_data",
+                            "payload_relative_offset": 63,
+                            "payload_length": 8,
+                            "payload_hex": "00000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 832,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "namespace_text": "e07ff6e4-9c22-42db-b93d-07a8ab7b6f78",
+                      "entity_guid_text": "8e9c8893-5387-4e37-8f37-25e83af485f1",
+                      "context_record_object_ids": [
+                        893
+                      ],
+                      "recipe": {
+                        "object_id": 835,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 48411,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38335,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 832,
+                      "owner_object_id": 828,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 835,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 48411,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38335,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 893,
+                      "namespace_text": "e07ff6e4-9c22-42db-b93d-07a8ab7b6f78",
+                      "entity_guid_text": "8e9c8893-5387-4e37-8f37-25e83af485f1",
+                      "stored_context_index_field": 16,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "source_historical_native_body_object_id": 275,
+                  "replacement_historical_native_body_object_id": 379,
+                  "historical_body_properties": [
+                    {
+                      "object_id": 275,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 33596,
+                      "name": "OwnedReplaceBlock_sheet_face_tangent",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_275",
+                      "name_helper_object_id": 276,
+                      "name_field_offset": 34192,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 379,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 45816,
+                      "name": "OwnedReplacementSheet_sheet_face_tangent",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_379",
+                      "name_helper_object_id": 380,
+                      "name_field_offset": 46408,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    }
+                  ],
+                  "native_current_body_collection": {
+                    "object_id": 7,
+                    "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "body_object_ids": [
+                      275,
+                      379
+                    ],
+                    "stored_field_at_3": 2,
+                    "uninterpreted_middle_hex": "010118010000000000000000010800000000000000000001011200000000000000000000"
+                  },
+                  "native_history_mapping_object_id": 8,
+                  "raw_role_prefix_hex": "00000101000000013d030000000000000000010000000145030000000000000000",
+                  "stored_collection_payload_hex": "00000002000000020000000113010000000000000000017b010000000000000000010118010000000000000000010800000000000000000001011200000000000000000000020000000113010000000000000000017b0100000000000000000103000000000000000000",
+                  "stored_mapping_payload_hex": "000002000000a2000000000000001301000000000000a3000000000000007b010000000000000107000000000000000000002e00000042005200450050002e00310035003200640061006500650032002d0032003300370035002d0034003700660031002d0039006400300066002d003000660062006600630039006300390038003600620030002e0073006d0062006800",
+                  "scope": "Observed ReplaceFace distinct owned source-face and replacement face/body descriptors, historical Extrude/Patch BODY anchors, typed naming contexts and reciprocal stored BODY collection; initial same-asset ASM stored IDs qualified separately. Native target representation is retained; no persistent selected ASMface/API identity, source/result pairing, lifecycle or regeneration inferred."
+                },
+                "representation_scope": "Native face/body descriptor kind is explicit; requested and rolled API representations must be recorded independently",
+                "scope": "Observed ReplaceFace distinct owned source-face and replacement face/body descriptors, historical Extrude/Patch BODY anchors, typed naming contexts and reciprocal stored BODY collection; initial same-asset ASM stored IDs qualified separately. Native target representation is retained; no persistent selected ASMface/API identity, source/result pairing, lifecycle or regeneration inferred."
+              }
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed singleton ReplaceFace source face and distinct target face/body descriptors for an independent owned Patch sheet, tangent-chain false/true controls and reciprocal historical native BODY routes. API argument normalization, selected ASM face identity, general targets, lifecycle and regeneration remain separate or unresolved."
+      },
+      "actual_input_target_type": "BRepFace",
+      "actual_rolled_feature_target_type": "Collection",
+      "native_target_kind": "BRepFace",
+      "actual_tangent_chain": true,
+      "actual_current_BRep_count": 2,
+      "actual_feature_BRep_count": 1,
+      "actual_source_getter_scope": "No public feature.sourceFaces getter; actual input.sourceFaces captured separately before add",
+      "exact_role_prefix_replay": true,
+      "owned_document_closed_true": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Nonboolean tangent control",
+      "absolute_mutation_offset": 47222,
+      "rejected": true,
+      "reason": "Unsupported replacement-face selection groups"
+    },
+    {
+      "guard": "Unsupported target selection group count",
+      "absolute_mutation_offset": 47223,
+      "rejected": true,
+      "reason": "Unsupported replacement-face selection groups"
+    },
+    {
+      "guard": "Unsupported source selection group count",
+      "absolute_mutation_offset": 47238,
+      "rejected": true,
+      "reason": "Unsupported replacement-face selection groups"
+    },
+    {
+      "guard": "Target proxy owner differs",
+      "absolute_mutation_offset": 47697,
+      "rejected": true,
+      "reason": "ReplaceFace target owned singleton proxy differs"
+    },
+    {
+      "guard": "Target descriptor owner differs",
+      "absolute_mutation_offset": 48132,
+      "rejected": true,
+      "reason": "Unsupported face descriptor prefix/owner"
+    },
+    {
+      "guard": "Source descriptor owner differs",
+      "absolute_mutation_offset": 48921,
+      "rejected": true,
+      "reason": "Unsupported face descriptor prefix/owner"
+    },
+    {
+      "guard": "Source and replacement proxy aliases",
+      "absolute_mutation_offset": 47242,
+      "rejected": true,
+      "reason": "ReplaceFace source/target proxies alias"
+    },
+    {
+      "guard": "Callback cannot admit an unsupported descriptor kind",
+      "absolute_mutation_offset": null,
+      "rejected": true,
+      "reason": "Unsupported replacement target resolver evidence"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "faceedits-3f120cbee8d9/offset_positive.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 282,
+          "kind": "OffsetFaces",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "distance_cm": 0.25,
+            "distance_binding_object_id": 291,
+            "selection_record_object_id": 283,
+            "selection_descriptor_object_ids": [
+              286
+            ],
+            "selected_descriptor_count": 1
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "faceedits-3f120cbee8d9/offset_negative.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 282,
+          "kind": "OffsetFaces",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "distance_cm": -0.2,
+            "distance_binding_object_id": 291,
+            "selection_record_object_id": 283,
+            "selection_descriptor_object_ids": [
+              286
+            ],
+            "selected_descriptor_count": 1
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "faceedits-3f120cbee8d9/offset_two_faces.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 282,
+          "kind": "OffsetFaces",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "distance_cm": 0.25,
+            "distance_binding_object_id": 295,
+            "selection_record_object_id": 283,
+            "selection_descriptor_object_ids": [
+              286,
+              290
+            ],
+            "selected_descriptor_count": 2
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "faceedits-3f120cbee8d9/offset_cylinder.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 267,
+          "kind": "OffsetFaces",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "distance_cm": 0.25,
+            "distance_binding_object_id": 276,
+            "selection_record_object_id": 268,
+            "selection_descriptor_object_ids": [
+              271
+            ],
+            "selected_descriptor_count": 1
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "faceedits-3f120cbee8d9/replace_plane.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 304,
+          "kind": "ReplaceFace",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "is_tangent_chain": false,
+            "source_selection_record_object_id": 312,
+            "source_descriptor_object_ids": [
+              315
+            ],
+            "selected_descriptor_count": 1,
+            "target_selection_record_object_id": 305,
+            "target_descriptor_object_ids": [
+              308
+            ],
+            "replacement_target": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "ReplacementPlane",
+                "object_id": 282,
+                "feature_object_id": 283,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "selection_object_id": 305,
+              "descriptor_object_id": 308,
+              "terminal_object_id": 311,
+              "namespace_text": "3313e947-4529-479c-86aa-ba4dae1c7132",
+              "entity_guid_text": "fcec4fca-93c1-46db-9034-836e06a1d489",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            }
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "faceedits-3f120cbee8d9/replace_plane_tangent.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 304,
+          "kind": "ReplaceFace",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "is_tangent_chain": true,
+            "source_selection_record_object_id": 312,
+            "source_descriptor_object_ids": [
+              315
+            ],
+            "selected_descriptor_count": 1,
+            "target_selection_record_object_id": 305,
+            "target_descriptor_object_ids": [
+              308
+            ],
+            "replacement_target": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "ReplacementPlane",
+                "object_id": 282,
+                "feature_object_id": 283,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "selection_object_id": 305,
+              "descriptor_object_id": 308,
+              "terminal_object_id": 311,
+              "namespace_text": "52529254-aca7-49ff-a006-7c407adab44b",
+              "entity_guid_text": "b8fa7405-dce1-4177-bdd8-8c5fdfe23708",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            }
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "faceedits-3f120cbee8d9/delete_hole_face.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 346,
+          "kind": "DeleteFace",
+          "settings": {
+            "input_selection_status": "Observed descriptor lists and owners; persistent face-to-ASM topology mapping unresolved",
+            "selection_record_object_id": 347,
+            "selection_descriptor_object_ids": [
+              350
+            ],
+            "selected_descriptor_count": 1,
+            "mode_status": "Observed delete-face feature; no general healing-mode field decoded"
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    }
+  ],
+  "limitations": [
+    "Only captured one-source-face replacement using independent owned Patch sheet face/body target routes is qualified; plural, arbitrary imported surfaces, other source owners and general regeneration remain unsupported.",
+    "Native target classes distinguish BRepFace and BRepBody. API face argument becomes a Collection in the feature getter, while body argument/getter remain BRepBody; these representations are recorded separately.",
+    "No public feature.sourceFaces getter exists; original input source faces were captured before add. No feature-source getter value is invented.",
+    "Explicit recipe/context/seed BODY routes do not imply persistent selected ASM face identity, exact face-to-API matching, source/result pairing or universal lifecycle.",
+    "Same-asset ASM BODY joins and numerical geometry corroboration are separate late evidence, not required to identify the native target descriptor kind.",
+    "Current component contains two BRep bodies and feature.bodies contains one in these captures; no geometry is selected by ordinal, names, coordinates or bounds."
+  ],
+  "default_preservation": {
+    "pinned_revision": "7b2daac",
+    "pinned_face_tools_sha256": "47b724b5abc65ea9ebd5628c674c587da37d2ed2e2131c805cf39bf1f0e2905a",
+    "files": 7,
+    "offset_controls": 4,
+    "construction_plane_replace_controls": 2,
+    "delete_face_controls": 1,
+    "scope": "Direct common decoder, no main-reader execution"
+  },
+  "source_sha256": {
+    "decode_face_tools.py": "07b119db10651a08c392c5f3c8e875c3d5c73fb125832290264399159f86ee60",
+    "decode_replace_face_targets.py": "b0c964cd194aa7aa33262ad8eb9d4cf267c7fcd37c99728eff59d37ee511a4f0",
+    "decode_replace_face_body_routes.py": "25921d23cb927ba4d431dde5a3f0be8918a762f7e68dd45a4f138ea278dc9904",
+    "validate_replace_face_targets.py": "bcfeb012cf5f5a8a3d6cb166c7715f9b854859ead0420863225be4597f10b18c"
+  },
+  "validation": {
+    "actual_exports": 3,
+    "decoded_targets": 3,
+    "native_face_targets": 2,
+    "native_body_targets": 1,
+    "tangent_boolean_contrasts": 2,
+    "typed_source_routes": 3,
+    "typed_target_routes": 3,
+    "malformed_guards": 8,
+    "exact_pinned_default_files": 7,
+    "exact_historical_settings_files": 7,
+    "no_main_calls": true
+  }
+}

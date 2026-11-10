@@ -1,0 +1,720 @@
+class FaceGroup(Base):
+    r"""Represent a connected region on a single geometric surface."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.FaceGroup *":
+        return _fusion.FaceGroup___deref__(self)
+
+    def __eq__(self, rhs: "FaceGroup") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.FaceGroup___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "FaceGroup") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.FaceGroup___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.FaceGroup'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.FaceGroup_classType()
+    __swig_destroy__ = _fusion.delete_FaceGroup
+
+    def _get_parentBody(self) -> "adsk.fusion.MeshBody":
+        r"""Returns the parent mesh body of the face group."""
+        return _fusion.FaceGroup__get_parentBody(self)
+
+    def _get_area(self) -> "float":
+        r"""Returns the area in cm ^ 2."""
+        return _fusion.FaceGroup__get_area(self)
+
+    def _get_boundingBox(self) -> "adsk.core.BoundingBox3D":
+        r"""Returns the bounding box of this face group."""
+        return _fusion.FaceGroup__get_boundingBox(self)
+
+    def _get_centroid(self) -> "adsk.core.Point3D":
+        r"""Returns a point at the centroid (aka, geometric center) of the face."""
+        return _fusion.FaceGroup__get_centroid(self)
+
+    def _get_tempId(self) -> "int":
+        r"""
+        Returns the temporary ID of this face group. This ID is only good while the document
+        remains open and as long as the owning mesh body is not modified in any way.
+        The corresponding triangles to this facegroup can be obtained with the help of PolygonMesh.triangleFaceGroupTempIds, which gives
+        the face group tempIds for all triangles.
+        """
+        return _fusion.FaceGroup__get_tempId(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the face group object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same face.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as a way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        This is only valid for faces that exist in the design, (the isTemporary
+        property is false).
+        """
+        return _fusion.FaceGroup__get_entityToken(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this
+        object in an assembly. This is only valid in the case where this
+        face group object is acting as a proxy in an assembly. Returns null
+        in the case where the object is not in the context of an assembly.
+        but is already the native object.
+        """
+        return _fusion.FaceGroup__get_assemblyContext(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.FaceGroup":
+        r"""
+        The NativeObject is the object outside the context of an assembly.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.FaceGroup__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.FaceGroup":
+        r"""
+        Returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context for the created proxy.
+        Returns the new face group proxy or null if this isn't the NativeObject.
+        """
+        return _fusion.FaceGroup_createForAssemblyContext(self, occurrence)
+
+    def _get_isPlanar(self) -> "bool":
+        r"""Returns if the face group is planar or not."""
+        return _fusion.FaceGroup__get_isPlanar(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face group."""
+        return _fusion.FaceGroup__get_attributes(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.FaceGroup__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.FaceGroup__get_isValid(self)
+
+# Register FaceGroup in _fusion:
+_fusion.FaceGroup_swigregister(FaceGroup)
+
+def FaceGroup_classType() -> "str":
+    return _fusion.FaceGroup_classType()
+
+
+FaceGroup.parentBody = property(FaceGroup._get_parentBody, doc="Returns the parent mesh body of the face group.")
+
+
+FaceGroup.area = property(FaceGroup._get_area, doc="Returns the area in cm ^ 2.")
+
+
+FaceGroup.boundingBox = property(FaceGroup._get_boundingBox, doc="Returns the bounding box of this face group.")
+
+
+FaceGroup.centroid = property(FaceGroup._get_centroid, doc="Returns a point at the centroid (aka, geometric center) of the face.")
+
+
+FaceGroup.tempId = property(FaceGroup._get_tempId, doc="Returns the temporary ID of this face group. This ID is only good while the document\nremains open and as long as the owning mesh body is not modified in any way.\nThe corresponding triangles to this facegroup can be obtained with the help of PolygonMesh.triangleFaceGroupTempIds, which gives\nthe face group tempIds for all triangles.")
+
+
+FaceGroup.entityToken = property(FaceGroup._get_entityToken, doc="Returns a token for the face group object. This can be saved and used at a later\ntime with the Design.findEntityByToken method to get back the same face.\nWhen using entity tokens it's important to understand that the token string returned for a\nspecific entity can be different over time. However, even if you have two different token\nstrings that were obtained from the same entity, when you use findEntityByToken they\nwill both return the same entity. Because of that you should never compare entity tokens\nas a way to determine what the token represents. Instead, you need to use the findEntityByToken\nmethod to get the two entities identified by the tokens and then compare them.\nThis is only valid for faces that exist in the design, (the isTemporary\nproperty is false).")
+
+
+FaceGroup.assemblyContext = property(FaceGroup._get_assemblyContext, doc="Returns the assembly occurrence (i.e. the occurrence) of this\nobject in an assembly. This is only valid in the case where this\nface group object is acting as a proxy in an assembly. Returns null\nin the case where the object is not in the context of an assembly.\nbut is already the native object.")
+
+
+FaceGroup.nativeObject = property(FaceGroup._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+FaceGroup.isPlanar = property(FaceGroup._get_isPlanar, doc="Returns if the face group is planar or not.")
+
+
+FaceGroup.attributes = property(FaceGroup._get_attributes, doc="Returns the collection of attributes associated with this face group.")
+
+
+FaceGroup.cast = lambda arg: arg if isinstance(arg, FaceGroup) else None
+
+
+class FaceGroups(Base):
+    r"""FaceGroup collection."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.FaceGroups *":
+        return _fusion.FaceGroups___deref__(self)
+
+    def __eq__(self, rhs: "FaceGroups") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.FaceGroups___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "FaceGroups") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.FaceGroups___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.FaceGroups'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.FaceGroups___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.FaceGroup":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.FaceGroups___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.FaceGroups_classType()
+    __swig_destroy__ = _fusion.delete_FaceGroups
+
+    def item(self, index: "int") -> "adsk.fusion.FaceGroup":
+        r"""
+        Function that returns the specified faceGroup using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.FaceGroups_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of FaceGroup objects in the collection."""
+        return _fusion.FaceGroups__get_count(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.FaceGroups__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.FaceGroups__get_isValid(self)
+
+# Register FaceGroups in _fusion:
+_fusion.FaceGroups_swigregister(FaceGroups)
+
+def FaceGroups_classType() -> "str":
+    return _fusion.FaceGroups_classType()
+
+
+FaceGroups.count = property(FaceGroups._get_count, doc="The number of FaceGroup objects in the collection.")
+
+
+FaceGroups.cast = lambda arg: arg if isinstance(arg, FaceGroups) else None
+
+
+class MeshCombineFaceGroupsFeatureInput(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    This class defines the methods and properties that pertain to the definition of a mesh combine face groups
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshCombineFaceGroupsFeatureInput *":
+        return _fusion.MeshCombineFaceGroupsFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "MeshCombineFaceGroupsFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshCombineFaceGroupsFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshCombineFaceGroupsFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshCombineFaceGroupsFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshCombineFaceGroupsFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshCombineFaceGroupsFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_MeshCombineFaceGroupsFeatureInput
+
+    def _get_inputFaceGroups(self) -> "list[adsk.fusion.FaceGroup]":
+        r"""Gets and sets the input face groups, which should be combined. They need to belong to the same mesh body."""
+        return _fusion.MeshCombineFaceGroupsFeatureInput__get_inputFaceGroups(self)
+
+    def _set_inputFaceGroups(self, value: "list[FaceGroup]") -> "bool":
+        r"""Gets and sets the input face groups, which should be combined. They need to belong to the same mesh body."""
+        return _fusion.MeshCombineFaceGroupsFeatureInput__set_inputFaceGroups(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshCombineFaceGroupsFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshCombineFaceGroupsFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshCombineFaceGroupsFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshCombineFaceGroupsFeatureInput__get_isValid(self)
+
+# Register MeshCombineFaceGroupsFeatureInput in _fusion:
+_fusion.MeshCombineFaceGroupsFeatureInput_swigregister(MeshCombineFaceGroupsFeatureInput)
+
+def MeshCombineFaceGroupsFeatureInput_classType() -> "str":
+    return _fusion.MeshCombineFaceGroupsFeatureInput_classType()
+
+
+MeshCombineFaceGroupsFeatureInput.inputFaceGroups = property(MeshCombineFaceGroupsFeatureInput._get_inputFaceGroups, MeshCombineFaceGroupsFeatureInput._set_inputFaceGroups, doc="Gets and sets the input face groups, which should be combined. They need to belong to the same mesh body.")
+
+
+MeshCombineFaceGroupsFeatureInput.targetBaseFeature = property(MeshCombineFaceGroupsFeatureInput._get_targetBaseFeature, MeshCombineFaceGroupsFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+MeshCombineFaceGroupsFeatureInput.cast = lambda arg: arg if isinstance(arg, MeshCombineFaceGroupsFeatureInput) else None
+
+
+class MeshCombineFaceGroupsFeatures(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Collection that provides access to all of the existing mesh combine face groups features in a component
+    and supports the ability to create new mesh face group combine features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshCombineFaceGroupsFeatures *":
+        return _fusion.MeshCombineFaceGroupsFeatures___deref__(self)
+
+    def __eq__(self, rhs: "MeshCombineFaceGroupsFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshCombineFaceGroupsFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshCombineFaceGroupsFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshCombineFaceGroupsFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshCombineFaceGroupsFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.MeshCombineFaceGroupsFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.MeshCombineFaceGroupsFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.MeshCombineFaceGroupsFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshCombineFaceGroupsFeatures_classType()
+    __swig_destroy__ = _fusion.delete_MeshCombineFaceGroupsFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.MeshCombineFaceGroupsFeature":
+        r"""
+        Function that returns the specified mesh combine face groups feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.MeshCombineFaceGroupsFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of mesh combine face groups features in the collection."""
+        return _fusion.MeshCombineFaceGroupsFeatures__get_count(self)
+
+    def createInput(self, inputFaceGroups: "list[FaceGroup]") -> "adsk.fusion.MeshCombineFaceGroupsFeatureInput":
+        r"""
+        Creates a MeshCombineFaceGroupsFeatureInput object. Use properties and methods on this object
+        to define the mesh combine face groups feature you want to create and then use the add method, passing in
+        the MeshCombineFaceGroupsFeatureInput object.
+        inputFaceGroups : An array with face groups belonging to the same mesh. The mesh can be in either a parametric or direct modeling design.
+        Returns the newly created MeshCombineFaceGroupsFeatureInput object or null if the creation failed.
+        """
+        return _fusion.MeshCombineFaceGroupsFeatures_createInput(self, inputFaceGroups)
+
+    def add(self, input: "MeshCombineFaceGroupsFeatureInput") -> "adsk.fusion.MeshCombineFaceGroupsFeature":
+        r"""
+        Creates a mesh combine face groups feature.
+        input : A MeshCombineFaceGroupsFeatureInput object that defines the desired mesh combine face groups feature. Use the createInput
+        method to create a new MeshCombineFaceGroupsFeatureInput object and then use methods on it
+        (the MeshCombineFaceGroupsFeatureInput object) to define the mesh combine face groups feature.
+        Returns the newly created MeshCombineFaceGroupsFeatureInput object or null if the creation failed.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.MeshCombineFaceGroupsFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.MeshCombineFaceGroupsFeature":
+        r"""
+        Function that returns the specified MeshCombineFaceGroups feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.MeshCombineFaceGroupsFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshCombineFaceGroupsFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshCombineFaceGroupsFeatures__get_isValid(self)
+
+# Register MeshCombineFaceGroupsFeatures in _fusion:
+_fusion.MeshCombineFaceGroupsFeatures_swigregister(MeshCombineFaceGroupsFeatures)
+
+def MeshCombineFaceGroupsFeatures_classType() -> "str":
+    return _fusion.MeshCombineFaceGroupsFeatures_classType()
+
+
+MeshCombineFaceGroupsFeatures.count = property(MeshCombineFaceGroupsFeatures._get_count, doc="The number of mesh combine face groups features in the collection.")
+
+
+MeshCombineFaceGroupsFeatures.cast = lambda arg: arg if isinstance(arg, MeshCombineFaceGroupsFeatures) else None
+
+
+class MeshCombineFaceGroupsFeature(MeshFeature):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Object that represents an existing mesh combine face groups feature in a design.
+    To change the properties of this feature, you need to position the timeline marker to immediately before this feature.
+    This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshCombineFaceGroupsFeature *":
+        return _fusion.MeshCombineFaceGroupsFeature___deref__(self)
+
+    def __eq__(self, rhs: "MeshCombineFaceGroupsFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshCombineFaceGroupsFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshCombineFaceGroupsFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshCombineFaceGroupsFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshCombineFaceGroupsFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshCombineFaceGroupsFeature_classType()
+    __swig_destroy__ = _fusion.delete_MeshCombineFaceGroupsFeature
+
+    def _get_mesh(self) -> "adsk.core.Base":
+        r"""Gets the input mesh body. The actual mesh body is set implicitly by the input face groups."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_mesh(self)
+
+    def _get_inputFaceGroups(self) -> "list[adsk.fusion.FaceGroup]":
+        r"""
+        Gets and sets the input face groups, which should be combined. They need to belong to the same mesh body.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_inputFaceGroups(self)
+
+    def _set_inputFaceGroups(self, value: "list[FaceGroup]") -> "bool":
+        r"""
+        Gets and sets the input face groups, which should be combined. They need to belong to the same mesh body.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__set_inputFaceGroups(self, value)
+
+    def _get_nativeObject(self) -> "adsk.fusion.MeshCombineFaceGroupsFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.MeshCombineFaceGroupsFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshCombineFaceGroupsFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.MeshCombineFaceGroupsFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.MeshCombineFaceGroupsFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshCombineFaceGroupsFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshCombineFaceGroupsFeature__get_isValid(self)
+
+# Register MeshCombineFaceGroupsFeature in _fusion:
+_fusion.MeshCombineFaceGroupsFeature_swigregister(MeshCombineFaceGroupsFeature)
+
+def MeshCombineFaceGroupsFeature_classType() -> "str":
+    return _fusion.MeshCombineFaceGroupsFeature_classType()
+
+
+MeshCombineFaceGroupsFeature.mesh = property(MeshCombineFaceGroupsFeature._get_mesh, doc="Gets the input mesh body. The actual mesh body is set implicitly by the input face groups.")
+
+
+MeshCombineFaceGroupsFeature.inputFaceGroups = property(MeshCombineFaceGroupsFeature._get_inputFaceGroups, MeshCombineFaceGroupsFeature._set_inputFaceGroups, doc="Gets and sets the input face groups, which should be combined. They need to belong to the same mesh body.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+MeshCombineFaceGroupsFeature.nativeObject = property(MeshCombineFaceGroupsFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+MeshCombineFaceGroupsFeature.cast = lambda arg: arg if isinstance(arg, MeshCombineFaceGroupsFeature) else None

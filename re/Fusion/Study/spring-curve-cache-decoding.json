@@ -1,0 +1,3191 @@
+{
+  "stage": "Spring procedural curve approximation caches",
+  "integration": {
+    "helper": "decode_spring_curve_cache.decode_spring_curve_cache(record)",
+    "dispatch": "In decode_bspline, dispatch intcurve-curve with subtype_start at token 4 and spring_int_cur at token 5 before the generic false-wrapper check. Existing readers remain unchanged.",
+    "returns": "Canonical XYZ degree/knots/controls/weights/domain, separate embedded UV cache, raw support/trailer/flags.",
+    "evaluation": "decode_bspline.evaluate_curve(cache, raw_cache_parameter). Edge parameter sign mapping is evidence-only, never silently applied."
+  },
+  "framing": {
+    "wrapper": "Boolean true/false; spring_int_cur version 23100 enum 0; cubic form 0 rational XYZ grid; counted compact knots and four-value controls.",
+    "support": "Spline/ref0 with exact bounded false flags; explicit planar origin/normal/axis; degree 1 form 0 two-control non-rational UV grid.",
+    "trailer": "nullbs; two false flags; four empty scalar lists; observed terminal enum 0 (true wrapper) / 2 (false wrapper); outer subtype end and two false flags.",
+    "unknowns": "Wrapper/enum meaning, inline ref0 identity, cache scalar meaning and exact spring construction remain unresolved."
+  },
+  "validation": {
+    "checks": 89,
+    "saved_files": 2,
+    "spring_curve_caches": 4,
+    "typed_endpoint_checks": 8,
+    "independent_cache_comparisons": 36,
+    "guards": [
+      {
+        "guard": "Nonpositive rational weight",
+        "reason": "Spring NURBS weights must be finite and positive"
+      },
+      {
+        "guard": "Nonfinite XYZ control coordinate",
+        "reason": "Nonfinite procedural spline cache scalar"
+      },
+      {
+        "guard": "Non-increasing compact knot sequence",
+        "reason": "Compact knot values are not strictly increasing"
+      },
+      {
+        "guard": "Unobserved inline support reference",
+        "reason": "Unsupported procedural cache field 71"
+      },
+      {
+        "guard": "UV grid degree is unobserved",
+        "reason": "Unsupported procedural cache field 87"
+      },
+      {
+        "guard": "Wrapper/terminal enum pair is unobserved",
+        "reason": "Unobserved spring wrapper/terminal-enum combination"
+      },
+      {
+        "guard": "Trailing token after exact outer wrapper",
+        "reason": "Unconsumed spring cache trailer"
+      }
+    ],
+    "API_curve_or_surface_evaluator_getters_captured": false,
+    "maximum_sampled_independent_cache_deviation_raw": 1.4895204919483639e-15
+  },
+  "limitations": [
+    "Caches are stored approximations; finite sampled agreement provides no exact procedural equivalence or global error bound.",
+    "Direct API truth contains Fillet settings, not curve/surface evaluator outputs.",
+    "True wrapper examples have negative edge parameters and only sign-negated endpoint hypotheses fit the raw XYZ cache; this is not generalized into a production orientation rule.",
+    "The spline inline ref0 remains opaque. Surface 10 correspondence is independently established through typed coedge/loop/face links.",
+    "Raw ASM coordinates are retained; component/body transforms, unit/context conversions and lifecycle classification are not applied."
+  ],
+  "samples": [
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+      "actual_API_settings": {
+        "rolling_ball_corner": false,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "AsymmetricFilletEdgeSet",
+            "tangent_chain": false,
+            "offsetOne": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "EdgeOffset1"
+            },
+            "offsetTwo": {
+              "name": "d5",
+              "value": 0.1,
+              "role": "EdgeOffset2"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 2,
+            "isFlipped": false
+          }
+        ]
+      },
+      "curves": [
+        {
+          "record_index": 53,
+          "edge_index": 32,
+          "cache": {
+            "degree": 3,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.75,
+              0.75,
+              1.5,
+              1.5,
+              1.5,
+              2.25,
+              2.25,
+              3.0,
+              3.0,
+              3.0,
+              3.0
+            ],
+            "stored_compact_knots": [
+              [
+                0.0,
+                3
+              ],
+              [
+                0.75,
+                2
+              ],
+              [
+                1.5,
+                3
+              ],
+              [
+                2.25,
+                2
+              ],
+              [
+                3.0,
+                3
+              ]
+            ],
+            "raw_control_points": [
+              [
+                1.2,
+                4.0,
+                2.0
+              ],
+              [
+                1.2,
+                3.75,
+                2.0
+              ],
+              [
+                1.2,
+                3.5,
+                2.0
+              ],
+              [
+                1.2,
+                3.0,
+                2.0
+              ],
+              [
+                1.2,
+                2.75,
+                2.0
+              ],
+              [
+                1.2,
+                2.5,
+                2.0
+              ],
+              [
+                1.2,
+                2.25,
+                2.0
+              ],
+              [
+                1.2,
+                2.0,
+                2.0
+              ],
+              [
+                1.2,
+                1.5,
+                2.0
+              ],
+              [
+                1.2,
+                1.25,
+                2.0
+              ],
+              [
+                1.2,
+                1.0,
+                2.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "parameter_domain": [
+              0.0,
+              3.0
+            ],
+            "stored_form_code": 0,
+            "procedural_subtype": "spring_int_cur",
+            "stored_wrapper_flag": true,
+            "stored_terminal_enum": 0,
+            "uninterpreted_cache_scalar": 9.999999999999999e-06,
+            "stored_inline_surface_ref": 0,
+            "stored_support_surface_flag": false,
+            "stored_explicit_plane_support": {
+              "raw_origin": [
+                3.0,
+                2.5,
+                2.0
+              ],
+              "raw_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "raw_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "stored_embedded_uv_cache": {
+              "degree": 1,
+              "knots": [
+                0.0,
+                0.0,
+                3.0,
+                3.0
+              ],
+              "stored_compact_knots": [
+                [
+                  0.0,
+                  1
+                ],
+                [
+                  3.0,
+                  1
+                ]
+              ],
+              "raw_control_points": [
+                [
+                  0.0,
+                  1.1102230246251565e-16
+                ],
+                [
+                  0.0,
+                  3.0000000000000004
+                ]
+              ],
+              "weights": [],
+              "is_rational": false,
+              "stored_form_code": 0,
+              "parameter_domain": [
+                0.0,
+                3.0
+              ],
+              "scope": "Independent stored UV grid; inline support identity/parameter correspondence not inferred"
+            },
+            "stored_trailer_scalar_lists": [
+              [],
+              [],
+              [],
+              []
+            ],
+            "stored_outer_trailer_flags": [
+              false,
+              false
+            ],
+            "stored_cache_trailer": [
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 9.999999999999999e-06,
+                "offset": 13508
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "spline",
+                "offset": 13517
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13525
+              },
+              {
+                "tag": 15,
+                "kind": "subtype_start",
+                "value": null,
+                "offset": 13526
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "ref",
+                "offset": 13527
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13532
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 13541
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13542
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13543
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13544
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13545
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "plane",
+                "offset": 13546
+              },
+              {
+                "tag": 19,
+                "kind": "position_vector",
+                "value": [
+                  3.0,
+                  2.5,
+                  2.0
+                ],
+                "offset": 13553
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "offset": 13578
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "offset": 13603
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13628
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13629
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13630
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13631
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13632
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nubs",
+                "offset": 13633
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 13639
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 0,
+                "offset": 13648
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 2,
+                "offset": 13657
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0,
+                "offset": 13666
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 13675
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 3.0,
+                "offset": 13684
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 13693
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0,
+                "offset": 13702
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 1.1102230246251565e-16,
+                "offset": 13711
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0,
+                "offset": 13720
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 3.0000000000000004,
+                "offset": 13729
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nullbs",
+                "offset": 13738
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13746
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13747
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13748
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13757
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13766
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13775
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 0,
+                "offset": 13784
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 13793
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13794
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13795
+              }
+            ],
+            "flag_scope": "Captured wrapper/enum pairs retained; no automatic edge-parameter negation, orientation or geometric reversal",
+            "reference_scope": "Inline ref0 is opaque; parent-surface correspondence requires independent coedge/loop/face links",
+            "representation": "Stored cubic rational spring-curve approximation with a separate linear UV cache; procedural spring definition is not reconstructed",
+            "cache_status": "Only stored grids/typed endpoint evidence; no direct API curve evaluator or global approximation error bound",
+            "coordinate_scope": "Raw ASM cache coordinates; body transforms and units/context not applied"
+          },
+          "typed_endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 41,
+              "point_index": 65,
+              "edge_parameter": -3.0,
+              "stored_position": [
+                1.2,
+                1.0,
+                2.0
+              ]
+            },
+            {
+              "which": "end",
+              "vertex_index": 52,
+              "point_index": 78,
+              "edge_parameter": -0.0,
+              "stored_position": [
+                1.2,
+                4.0,
+                2.0
+              ]
+            }
+          ],
+          "sign_hypotheses": [
+            {
+              "edge_to_raw_cache_parameter_multiplier": 1,
+              "mapped_parameters": [
+                -3.0,
+                -0.0
+              ],
+              "outside_raw_domain": true,
+              "endpoint_errors_raw": [
+                0.0
+              ],
+              "matches_both_typed_endpoints": false
+            },
+            {
+              "edge_to_raw_cache_parameter_multiplier": -1,
+              "mapped_parameters": [
+                3.0,
+                0.0
+              ],
+              "outside_raw_domain": false,
+              "endpoint_errors_raw": [
+                0.0,
+                0.0
+              ],
+              "matches_both_typed_endpoints": true
+            }
+          ],
+          "parameter_scope": "Sign hypotheses are limited to these explicit endpoint links. Raw cache domain and wrapper are preserved; no general edge evaluator/reversal rule is added.",
+          "typed_support_chain": {
+            "coedge_index": 21,
+            "loop_index": 9,
+            "face_index": 6,
+            "surface_index": 10,
+            "pcurve_index": 34
+          },
+          "independent_cache_samples": [
+            {
+              "fraction": 0.0,
+              "XYZ_cache_parameter": 0.0,
+              "linked_pcurve_parameter": 0.0,
+              "XYZ_cache_position": [
+                1.2,
+                4.0,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.1102230246251565e-16
+              ],
+              "surface_cache_position": [
+                1.2,
+                4.0,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.2,
+                4.0,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.125,
+              "XYZ_cache_parameter": 0.375,
+              "linked_pcurve_parameter": 0.375,
+              "XYZ_cache_position": [
+                1.2,
+                3.625,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                0.37500000000000017
+              ],
+              "surface_cache_position": [
+                1.2,
+                3.625,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.2,
+                3.625,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.25,
+              "XYZ_cache_parameter": 0.75,
+              "linked_pcurve_parameter": 0.75,
+              "XYZ_cache_position": [
+                1.2,
+                3.25,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                0.7500000000000002
+              ],
+              "surface_cache_position": [
+                1.2,
+                3.25,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.2,
+                3.25,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.375,
+              "XYZ_cache_parameter": 1.125,
+              "linked_pcurve_parameter": 1.125,
+              "XYZ_cache_position": [
+                1.2,
+                2.875,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.1250000000000002
+              ],
+              "surface_cache_position": [
+                1.2,
+                2.875,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.2,
+                2.875,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.5,
+              "XYZ_cache_parameter": 1.5,
+              "linked_pcurve_parameter": 1.5,
+              "XYZ_cache_position": [
+                1.2,
+                2.5,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.5000000000000002
+              ],
+              "surface_cache_position": [
+                1.2,
+                2.499999999999999,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 8.881784197001252e-16,
+              "linear_endpoint_chord_position": [
+                1.2,
+                2.5,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.625,
+              "XYZ_cache_parameter": 1.875,
+              "linked_pcurve_parameter": 1.875,
+              "XYZ_cache_position": [
+                1.2,
+                2.125,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.8750000000000002
+              ],
+              "surface_cache_position": [
+                1.2,
+                2.125,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.2,
+                2.125,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.75,
+              "XYZ_cache_parameter": 2.25,
+              "linked_pcurve_parameter": 2.25,
+              "XYZ_cache_position": [
+                1.2,
+                1.75,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                2.2500000000000004
+              ],
+              "surface_cache_position": [
+                1.2,
+                1.7499999999999998,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 2.220446049250313e-16,
+              "linear_endpoint_chord_position": [
+                1.2,
+                1.75,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.875,
+              "XYZ_cache_parameter": 2.625,
+              "linked_pcurve_parameter": 2.625,
+              "XYZ_cache_position": [
+                1.2,
+                1.375,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                2.6250000000000004
+              ],
+              "surface_cache_position": [
+                1.2,
+                1.3749999999999996,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 4.440892098500626e-16,
+              "linear_endpoint_chord_position": [
+                1.2,
+                1.375,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 1.0,
+              "XYZ_cache_parameter": 3.0,
+              "linked_pcurve_parameter": 3.0,
+              "XYZ_cache_position": [
+                1.2,
+                1.0,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                3.0000000000000004
+              ],
+              "surface_cache_position": [
+                1.2,
+                0.9999999999999993,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 6.661338147750939e-16,
+              "linear_endpoint_chord_position": [
+                1.2,
+                1.0,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            }
+          ],
+          "maximum_sampled_cache_deviation_raw": 8.881784197001252e-16,
+          "maximum_sampled_linear_parameterization_deviation_raw": 0.0,
+          "comparison_scope": "Each stored domain is sampled independently at equal fractions; tiny domain endpoint differences are retained. Finite agreement is internal cache corroboration, not exact procedural/API evaluator equivalence or a global error bound."
+        },
+        {
+          "record_index": 60,
+          "edge_index": 36,
+          "cache": {
+            "degree": 3,
+            "knots": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.75,
+              0.75,
+              1.5,
+              1.5,
+              1.5,
+              2.25,
+              2.25,
+              3.0,
+              3.0,
+              3.0,
+              3.0
+            ],
+            "stored_compact_knots": [
+              [
+                0.0,
+                3
+              ],
+              [
+                0.75,
+                2
+              ],
+              [
+                1.5,
+                3
+              ],
+              [
+                2.25,
+                2
+              ],
+              [
+                3.0,
+                3
+              ]
+            ],
+            "raw_control_points": [
+              [
+                1.0,
+                4.0,
+                1.9
+              ],
+              [
+                1.0,
+                3.75,
+                1.9
+              ],
+              [
+                1.0,
+                3.5,
+                1.9
+              ],
+              [
+                1.0,
+                3.0,
+                1.9
+              ],
+              [
+                1.0,
+                2.75,
+                1.9
+              ],
+              [
+                1.0,
+                2.5,
+                1.9
+              ],
+              [
+                1.0,
+                2.25,
+                1.9
+              ],
+              [
+                1.0,
+                2.0,
+                1.9
+              ],
+              [
+                1.0,
+                1.5,
+                1.9
+              ],
+              [
+                1.0,
+                1.25,
+                1.9
+              ],
+              [
+                1.0,
+                1.0,
+                1.9
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "parameter_domain": [
+              0.0,
+              3.0
+            ],
+            "stored_form_code": 0,
+            "procedural_subtype": "spring_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_terminal_enum": 2,
+            "uninterpreted_cache_scalar": 9.999999999999999e-06,
+            "stored_inline_surface_ref": 0,
+            "stored_support_surface_flag": false,
+            "stored_explicit_plane_support": {
+              "raw_origin": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "raw_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "raw_reference_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            "stored_embedded_uv_cache": {
+              "degree": 1,
+              "knots": [
+                0.0,
+                0.0,
+                3.0,
+                3.0
+              ],
+              "stored_compact_knots": [
+                [
+                  0.0,
+                  1
+                ],
+                [
+                  3.0,
+                  1
+                ]
+              ],
+              "raw_control_points": [
+                [
+                  1.0,
+                  1.1102230246251565e-16
+                ],
+                [
+                  1.0,
+                  3.0000000000000004
+                ]
+              ],
+              "weights": [],
+              "is_rational": false,
+              "stored_form_code": 0,
+              "parameter_domain": [
+                0.0,
+                3.0
+              ],
+              "scope": "Independent stored UV grid; inline support identity/parameter correspondence not inferred"
+            },
+            "stored_trailer_scalar_lists": [
+              [],
+              [],
+              [],
+              []
+            ],
+            "stored_outer_trailer_flags": [
+              false,
+              false
+            ],
+            "stored_cache_trailer": [
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 9.999999999999999e-06,
+                "offset": 15365
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "spline",
+                "offset": 15374
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15382
+              },
+              {
+                "tag": 15,
+                "kind": "subtype_start",
+                "value": null,
+                "offset": 15383
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "ref",
+                "offset": 15384
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 15389
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 15398
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15399
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15400
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15401
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15402
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "plane",
+                "offset": 15403
+              },
+              {
+                "tag": 19,
+                "kind": "position_vector",
+                "value": [
+                  1.0,
+                  4.0,
+                  0.0
+                ],
+                "offset": 15410
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "offset": 15435
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "offset": 15460
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15485
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15486
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15487
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15488
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15489
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nubs",
+                "offset": 15490
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 15496
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 0,
+                "offset": 15505
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 2,
+                "offset": 15514
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0,
+                "offset": 15523
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 15532
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 3.0,
+                "offset": 15541
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 15550
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 1.0,
+                "offset": 15559
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 1.1102230246251565e-16,
+                "offset": 15568
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 1.0,
+                "offset": 15577
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 3.0000000000000004,
+                "offset": 15586
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nullbs",
+                "offset": 15595
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15603
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15604
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 15605
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 15614
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 15623
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 15632
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 2,
+                "offset": 15641
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 15650
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15651
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 15652
+              }
+            ],
+            "flag_scope": "Captured wrapper/enum pairs retained; no automatic edge-parameter negation, orientation or geometric reversal",
+            "reference_scope": "Inline ref0 is opaque; parent-surface correspondence requires independent coedge/loop/face links",
+            "representation": "Stored cubic rational spring-curve approximation with a separate linear UV cache; procedural spring definition is not reconstructed",
+            "cache_status": "Only stored grids/typed endpoint evidence; no direct API curve evaluator or global approximation error bound",
+            "coordinate_scope": "Raw ASM cache coordinates; body transforms and units/context not applied"
+          },
+          "typed_endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 59,
+              "point_index": 82,
+              "edge_parameter": 0.0,
+              "stored_position": [
+                1.0,
+                4.0,
+                1.9
+              ]
+            },
+            {
+              "which": "end",
+              "vertex_index": 40,
+              "point_index": 64,
+              "edge_parameter": 3.0,
+              "stored_position": [
+                1.0,
+                1.0,
+                1.9
+              ]
+            }
+          ],
+          "sign_hypotheses": [
+            {
+              "edge_to_raw_cache_parameter_multiplier": 1,
+              "mapped_parameters": [
+                0.0,
+                3.0
+              ],
+              "outside_raw_domain": false,
+              "endpoint_errors_raw": [
+                0.0,
+                0.0
+              ],
+              "matches_both_typed_endpoints": true
+            },
+            {
+              "edge_to_raw_cache_parameter_multiplier": -1,
+              "mapped_parameters": [
+                -0.0,
+                -3.0
+              ],
+              "outside_raw_domain": true,
+              "endpoint_errors_raw": [
+                0.0
+              ],
+              "matches_both_typed_endpoints": false
+            }
+          ],
+          "parameter_scope": "Sign hypotheses are limited to these explicit endpoint links. Raw cache domain and wrapper are preserved; no general edge evaluator/reversal rule is added.",
+          "typed_support_chain": {
+            "coedge_index": 22,
+            "loop_index": 9,
+            "face_index": 6,
+            "surface_index": 10,
+            "pcurve_index": 37
+          },
+          "independent_cache_samples": [
+            {
+              "fraction": 0.0,
+              "XYZ_cache_parameter": 0.0,
+              "linked_pcurve_parameter": 0.0,
+              "XYZ_cache_position": [
+                1.0,
+                4.0,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.1102230246251565e-16
+              ],
+              "surface_cache_position": [
+                1.0,
+                4.0,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                4.0,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.125,
+              "XYZ_cache_parameter": 0.375,
+              "linked_pcurve_parameter": 0.375,
+              "XYZ_cache_position": [
+                1.0,
+                3.625,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                0.37500000000000017
+              ],
+              "surface_cache_position": [
+                1.0,
+                3.625,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                3.625,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.25,
+              "XYZ_cache_parameter": 0.75,
+              "linked_pcurve_parameter": 0.75,
+              "XYZ_cache_position": [
+                1.0,
+                3.25,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                0.7500000000000002
+              ],
+              "surface_cache_position": [
+                1.0,
+                3.25,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                3.25,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.375,
+              "XYZ_cache_parameter": 1.125,
+              "linked_pcurve_parameter": 1.125,
+              "XYZ_cache_position": [
+                1.0,
+                2.875,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.1250000000000002
+              ],
+              "surface_cache_position": [
+                1.0,
+                2.875,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                2.875,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.5,
+              "XYZ_cache_parameter": 1.5,
+              "linked_pcurve_parameter": 1.5,
+              "XYZ_cache_position": [
+                1.0,
+                2.5,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.5000000000000002
+              ],
+              "surface_cache_position": [
+                1.0,
+                2.499999999999999,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 8.881784197001252e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                2.5,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.625,
+              "XYZ_cache_parameter": 1.875,
+              "linked_pcurve_parameter": 1.875,
+              "XYZ_cache_position": [
+                1.0,
+                2.125,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.8750000000000002
+              ],
+              "surface_cache_position": [
+                1.0,
+                2.125,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                2.125,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.75,
+              "XYZ_cache_parameter": 2.25,
+              "linked_pcurve_parameter": 2.25,
+              "XYZ_cache_position": [
+                1.0,
+                1.75,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                2.2500000000000004
+              ],
+              "surface_cache_position": [
+                1.0,
+                1.7499999999999998,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 2.220446049250313e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                1.75,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.875,
+              "XYZ_cache_parameter": 2.625,
+              "linked_pcurve_parameter": 2.625,
+              "XYZ_cache_position": [
+                1.0,
+                1.375,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                2.6250000000000004
+              ],
+              "surface_cache_position": [
+                1.0,
+                1.3749999999999996,
+                1.9
+              ],
+              "independent_cache_deviation_raw": 4.440892098500626e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                1.375,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 1.0,
+              "XYZ_cache_parameter": 3.0,
+              "linked_pcurve_parameter": 3.0,
+              "XYZ_cache_position": [
+                1.0,
+                1.0,
+                1.9
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                3.0000000000000004
+              ],
+              "surface_cache_position": [
+                1.0,
+                0.9999999999999993,
+                1.8999999999999992
+              ],
+              "independent_cache_deviation_raw": 9.42055475210265e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                1.0,
+                1.9
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            }
+          ],
+          "maximum_sampled_cache_deviation_raw": 9.42055475210265e-16,
+          "maximum_sampled_linear_parameterization_deviation_raw": 0.0,
+          "comparison_scope": "Each stored domain is sampled independently at equal fractions; tiny domain endpoint differences are retained. Finite agreement is internal cache corroboration, not exact procedural/API evaluator equivalence or a global error bound."
+        }
+      ]
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "actual_API_settings": {
+        "rolling_ball_corner": true,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "ChordLengthFilletEdgeSet",
+            "tangent_chain": false,
+            "chordLength": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "ChordLen"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "curves": [
+        {
+          "record_index": 53,
+          "edge_index": 32,
+          "cache": {
+            "degree": 3,
+            "knots": [
+              -9.729933521887863e-16,
+              -9.729933521887863e-16,
+              -9.729933521887863e-16,
+              -9.729933521887863e-16,
+              0.7499999999999992,
+              0.7499999999999992,
+              1.4999999999999993,
+              1.4999999999999993,
+              1.4999999999999993,
+              2.2499999999999996,
+              2.2499999999999996,
+              2.9999999999999996,
+              2.9999999999999996,
+              2.9999999999999996,
+              2.9999999999999996
+            ],
+            "stored_compact_knots": [
+              [
+                -9.729933521887863e-16,
+                3
+              ],
+              [
+                0.7499999999999992,
+                2
+              ],
+              [
+                1.4999999999999993,
+                3
+              ],
+              [
+                2.2499999999999996,
+                2
+              ],
+              [
+                2.9999999999999996,
+                3
+              ]
+            ],
+            "raw_control_points": [
+              [
+                1.1414213562373094,
+                4.000000000000004,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                3.749954969004105,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                3.4999950259950543,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                3.000004974620337,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                2.7500007897171352,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                2.5000000000000013,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                2.2499992102828688,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                1.9999950253802081,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                1.5000049740044024,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                1.2500450309909512,
+                2.0
+              ],
+              [
+                1.1414213562373094,
+                1.0,
+                2.0
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "parameter_domain": [
+              -9.729933521887863e-16,
+              2.9999999999999996
+            ],
+            "stored_form_code": 0,
+            "procedural_subtype": "spring_int_cur",
+            "stored_wrapper_flag": true,
+            "stored_terminal_enum": 0,
+            "uninterpreted_cache_scalar": 0.0001021055841274837,
+            "stored_inline_surface_ref": 0,
+            "stored_support_surface_flag": false,
+            "stored_explicit_plane_support": {
+              "raw_origin": [
+                3.0,
+                2.5,
+                2.0
+              ],
+              "raw_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "raw_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "stored_embedded_uv_cache": {
+              "degree": 1,
+              "knots": [
+                -9.729933521887863e-16,
+                -9.729933521887863e-16,
+                2.9999999999999996,
+                2.9999999999999996
+              ],
+              "stored_compact_knots": [
+                [
+                  -9.729933521887863e-16,
+                  1
+                ],
+                [
+                  2.9999999999999996,
+                  1
+                ]
+              ],
+              "raw_control_points": [
+                [
+                  0.0,
+                  -9.43689570931383e-16
+                ],
+                [
+                  0.0,
+                  3.0
+                ]
+              ],
+              "weights": [],
+              "is_rational": false,
+              "stored_form_code": 0,
+              "parameter_domain": [
+                -9.729933521887863e-16,
+                2.9999999999999996
+              ],
+              "scope": "Independent stored UV grid; inline support identity/parameter correspondence not inferred"
+            },
+            "stored_trailer_scalar_lists": [
+              [],
+              [],
+              [],
+              []
+            ],
+            "stored_outer_trailer_flags": [
+              false,
+              false
+            ],
+            "stored_cache_trailer": [
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0001021055841274837,
+                "offset": 12877
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "spline",
+                "offset": 12886
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12894
+              },
+              {
+                "tag": 15,
+                "kind": "subtype_start",
+                "value": null,
+                "offset": 12895
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "ref",
+                "offset": 12896
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 12901
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 12910
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12911
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12912
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12913
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12914
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "plane",
+                "offset": 12915
+              },
+              {
+                "tag": 19,
+                "kind": "position_vector",
+                "value": [
+                  3.0,
+                  2.5,
+                  2.0
+                ],
+                "offset": 12922
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "offset": 12947
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "offset": 12972
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12997
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12998
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 12999
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13000
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13001
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nubs",
+                "offset": 13002
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 13008
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 0,
+                "offset": 13017
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 2,
+                "offset": 13026
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": -9.729933521887863e-16,
+                "offset": 13035
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 13044
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 2.9999999999999996,
+                "offset": 13053
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 13062
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0,
+                "offset": 13071
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": -9.43689570931383e-16,
+                "offset": 13080
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0,
+                "offset": 13089
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 3.0,
+                "offset": 13098
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nullbs",
+                "offset": 13107
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13115
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13116
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13117
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13126
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13135
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 13144
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 0,
+                "offset": 13153
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 13162
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13163
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 13164
+              }
+            ],
+            "flag_scope": "Captured wrapper/enum pairs retained; no automatic edge-parameter negation, orientation or geometric reversal",
+            "reference_scope": "Inline ref0 is opaque; parent-surface correspondence requires independent coedge/loop/face links",
+            "representation": "Stored cubic rational spring-curve approximation with a separate linear UV cache; procedural spring definition is not reconstructed",
+            "cache_status": "Only stored grids/typed endpoint evidence; no direct API curve evaluator or global approximation error bound",
+            "coordinate_scope": "Raw ASM cache coordinates; body transforms and units/context not applied"
+          },
+          "typed_endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 41,
+              "point_index": 65,
+              "edge_parameter": -2.9999999999999996,
+              "stored_position": [
+                1.1414213562373094,
+                1.0,
+                2.0
+              ]
+            },
+            {
+              "which": "end",
+              "vertex_index": 52,
+              "point_index": 78,
+              "edge_parameter": -1.6910620466406303e-15,
+              "stored_position": [
+                1.1414213562373094,
+                4.000000000000002,
+                2.0
+              ]
+            }
+          ],
+          "sign_hypotheses": [
+            {
+              "edge_to_raw_cache_parameter_multiplier": 1,
+              "mapped_parameters": [
+                -2.9999999999999996,
+                -9.729933521887863e-16
+              ],
+              "outside_raw_domain": true,
+              "endpoint_errors_raw": [
+                2.6645352591003757e-15
+              ],
+              "matches_both_typed_endpoints": false
+            },
+            {
+              "edge_to_raw_cache_parameter_multiplier": -1,
+              "mapped_parameters": [
+                2.9999999999999996,
+                1.6910620466406303e-15
+              ],
+              "outside_raw_domain": false,
+              "endpoint_errors_raw": [
+                0.0,
+                0.0
+              ],
+              "matches_both_typed_endpoints": true
+            }
+          ],
+          "parameter_scope": "Sign hypotheses are limited to these explicit endpoint links. Raw cache domain and wrapper are preserved; no general edge evaluator/reversal rule is added.",
+          "typed_support_chain": {
+            "coedge_index": 21,
+            "loop_index": 9,
+            "face_index": 6,
+            "surface_index": 10,
+            "pcurve_index": 34
+          },
+          "independent_cache_samples": [
+            {
+              "fraction": 0.0,
+              "XYZ_cache_parameter": -9.729933521887863e-16,
+              "linked_pcurve_parameter": 1.7763568394002505e-15,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                4.000000000000004,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                -9.992007221626409e-16
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                4.000000000000004,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                4.000000000000004,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.125,
+              "XYZ_cache_parameter": 0.37499999999999906,
+              "linked_pcurve_parameter": 0.3750000000000015,
+              "XYZ_cache_position": [
+                1.1414213562373092,
+                3.624981248163147,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                0.3749999999999991
+              ],
+              "surface_cache_position": [
+                1.1414213562373097,
+                3.6249812481631474,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 6.280369834735101e-16,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                3.625000000000004,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 1.875183685706716e-05
+            },
+            {
+              "fraction": 0.25,
+              "XYZ_cache_parameter": 0.7499999999999991,
+              "linked_pcurve_parameter": 0.7500000000000012,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                3.2500000003076956,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                0.7499999999999992
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                3.2500000003076956,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                3.2500000000000036,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 3.0769209402592423e-10
+            },
+            {
+              "fraction": 0.375,
+              "XYZ_cache_parameter": 1.1249999999999993,
+              "linked_pcurve_parameter": 1.1250000000000009,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                2.875002161665013,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.1249999999999993
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                2.875002161665013,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                2.8750000000000027,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 2.1616650105471535e-06
+            },
+            {
+              "fraction": 0.5,
+              "XYZ_cache_parameter": 1.4999999999999993,
+              "linked_pcurve_parameter": 1.5000000000000007,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                2.5000000000000013,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.4999999999999996
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                2.5,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 1.3322676295501878e-15,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                2.500000000000002,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 8.881784197001252e-16
+            },
+            {
+              "fraction": 0.625,
+              "XYZ_cache_parameter": 1.8749999999999993,
+              "linked_pcurve_parameter": 1.8750000000000004,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                2.1249978383351924,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                1.8749999999999996
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                2.124997838335192,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 4.440892098500626e-16,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                2.1250000000000018,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 2.1616648093747415e-06
+            },
+            {
+              "fraction": 0.75,
+              "XYZ_cache_parameter": 2.2499999999999996,
+              "linked_pcurve_parameter": 2.25,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                1.7499999996923052,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                2.2499999999999996
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                1.7499999996923052,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                1.750000000000001,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 3.0769586878420796e-10
+            },
+            {
+              "fraction": 0.875,
+              "XYZ_cache_parameter": 2.6249999999999996,
+              "linked_pcurve_parameter": 2.625,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                1.3750187518347956,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                2.6250000000000004
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                1.3750187518347947,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 8.881784197001252e-16,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                1.3750000000000004,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 1.875183479516096e-05
+            },
+            {
+              "fraction": 1.0,
+              "XYZ_cache_parameter": 2.9999999999999996,
+              "linked_pcurve_parameter": 2.9999999999999996,
+              "XYZ_cache_position": [
+                1.1414213562373094,
+                1.0,
+                2.0
+              ],
+              "linked_pcurve_UV": [
+                0.0,
+                3.0
+              ],
+              "surface_cache_position": [
+                1.1414213562373094,
+                0.9999999999999993,
+                2.0
+              ],
+              "independent_cache_deviation_raw": 6.661338147750939e-16,
+              "linear_endpoint_chord_position": [
+                1.1414213562373094,
+                1.0,
+                2.0
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            }
+          ],
+          "maximum_sampled_cache_deviation_raw": 1.3322676295501878e-15,
+          "maximum_sampled_linear_parameterization_deviation_raw": 1.875183685706716e-05,
+          "comparison_scope": "Each stored domain is sampled independently at equal fractions; tiny domain endpoint differences are retained. Finite agreement is internal cache corroboration, not exact procedural/API evaluator equivalence or a global error bound."
+        },
+        {
+          "record_index": 60,
+          "edge_index": 36,
+          "cache": {
+            "degree": 3,
+            "knots": [
+              -9.729933521887863e-16,
+              -9.729933521887863e-16,
+              -9.729933521887863e-16,
+              -9.729933521887863e-16,
+              0.7499999999999992,
+              0.7499999999999992,
+              1.4999999999999993,
+              1.4999999999999993,
+              1.4999999999999993,
+              2.2499999999999996,
+              2.2499999999999996,
+              2.9999999999999996,
+              2.9999999999999996,
+              2.9999999999999996,
+              2.9999999999999996
+            ],
+            "stored_compact_knots": [
+              [
+                -9.729933521887863e-16,
+                3
+              ],
+              [
+                0.7499999999999992,
+                2
+              ],
+              [
+                1.4999999999999993,
+                3
+              ],
+              [
+                2.2499999999999996,
+                2
+              ],
+              [
+                2.9999999999999996,
+                3
+              ]
+            ],
+            "raw_control_points": [
+              [
+                1.0,
+                4.000000000000004,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                3.749954969004105,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                3.4999950259950543,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                3.000004974620337,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                2.7500007897171352,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                2.5000000000000013,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                2.2499992102828688,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                1.9999950253802081,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                1.5000049740044024,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                1.2500450309909512,
+                1.8585786437626906
+              ],
+              [
+                1.0,
+                1.0,
+                1.8585786437626906
+              ]
+            ],
+            "weights": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "is_rational": true,
+            "parameter_domain": [
+              -9.729933521887863e-16,
+              2.9999999999999996
+            ],
+            "stored_form_code": 0,
+            "procedural_subtype": "spring_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_terminal_enum": 2,
+            "uninterpreted_cache_scalar": 0.0001021055841274837,
+            "stored_inline_surface_ref": 0,
+            "stored_support_surface_flag": false,
+            "stored_explicit_plane_support": {
+              "raw_origin": [
+                1.0,
+                4.0,
+                0.0
+              ],
+              "raw_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "raw_reference_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            "stored_embedded_uv_cache": {
+              "degree": 1,
+              "knots": [
+                -9.729933521887863e-16,
+                -9.729933521887863e-16,
+                2.9999999999999996,
+                2.9999999999999996
+              ],
+              "stored_compact_knots": [
+                [
+                  -9.729933521887863e-16,
+                  1
+                ],
+                [
+                  2.9999999999999996,
+                  1
+                ]
+              ],
+              "raw_control_points": [
+                [
+                  1.0,
+                  -9.992007221626409e-16
+                ],
+                [
+                  1.0,
+                  2.9999999999999996
+                ]
+              ],
+              "weights": [],
+              "is_rational": false,
+              "stored_form_code": 0,
+              "parameter_domain": [
+                -9.729933521887863e-16,
+                2.9999999999999996
+              ],
+              "scope": "Independent stored UV grid; inline support identity/parameter correspondence not inferred"
+            },
+            "stored_trailer_scalar_lists": [
+              [],
+              [],
+              [],
+              []
+            ],
+            "stored_outer_trailer_flags": [
+              false,
+              false
+            ],
+            "stored_cache_trailer": [
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 0.0001021055841274837,
+                "offset": 14662
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "spline",
+                "offset": 14671
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14679
+              },
+              {
+                "tag": 15,
+                "kind": "subtype_start",
+                "value": null,
+                "offset": 14680
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "ref",
+                "offset": 14681
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 14686
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 14695
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14696
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14697
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14698
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14699
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "plane",
+                "offset": 14700
+              },
+              {
+                "tag": 19,
+                "kind": "position_vector",
+                "value": [
+                  1.0,
+                  4.0,
+                  0.0
+                ],
+                "offset": 14707
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "offset": 14732
+              },
+              {
+                "tag": 20,
+                "kind": "direction_vector",
+                "value": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "offset": 14757
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14782
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14783
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14784
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14785
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14786
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nubs",
+                "offset": 14787
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 14793
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 0,
+                "offset": 14802
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 2,
+                "offset": 14811
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": -9.729933521887863e-16,
+                "offset": 14820
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 14829
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 2.9999999999999996,
+                "offset": 14838
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 1,
+                "offset": 14847
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 1.0,
+                "offset": 14856
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": -9.992007221626409e-16,
+                "offset": 14865
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 1.0,
+                "offset": 14874
+              },
+              {
+                "tag": 6,
+                "kind": "double",
+                "value": 2.9999999999999996,
+                "offset": 14883
+              },
+              {
+                "tag": 13,
+                "kind": "entity_name",
+                "value": "nullbs",
+                "offset": 14892
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14900
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14901
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 14902
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 14911
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 14920
+              },
+              {
+                "tag": 4,
+                "kind": "integer",
+                "value": 0,
+                "offset": 14929
+              },
+              {
+                "tag": 21,
+                "kind": "enum",
+                "value": 2,
+                "offset": 14938
+              },
+              {
+                "tag": 16,
+                "kind": "subtype_end",
+                "value": null,
+                "offset": 14947
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14948
+              },
+              {
+                "tag": 11,
+                "kind": "boolean_token",
+                "value": false,
+                "offset": 14949
+              }
+            ],
+            "flag_scope": "Captured wrapper/enum pairs retained; no automatic edge-parameter negation, orientation or geometric reversal",
+            "reference_scope": "Inline ref0 is opaque; parent-surface correspondence requires independent coedge/loop/face links",
+            "representation": "Stored cubic rational spring-curve approximation with a separate linear UV cache; procedural spring definition is not reconstructed",
+            "cache_status": "Only stored grids/typed endpoint evidence; no direct API curve evaluator or global approximation error bound",
+            "coordinate_scope": "Raw ASM cache coordinates; body transforms and units/context not applied"
+          },
+          "typed_endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 59,
+              "point_index": 82,
+              "edge_parameter": 1.6910620466406303e-15,
+              "stored_position": [
+                1.0,
+                4.000000000000002,
+                1.8585786437626906
+              ]
+            },
+            {
+              "which": "end",
+              "vertex_index": 40,
+              "point_index": 64,
+              "edge_parameter": 2.9999999999999996,
+              "stored_position": [
+                1.0,
+                1.0,
+                1.8585786437626906
+              ]
+            }
+          ],
+          "sign_hypotheses": [
+            {
+              "edge_to_raw_cache_parameter_multiplier": 1,
+              "mapped_parameters": [
+                1.6910620466406303e-15,
+                2.9999999999999996
+              ],
+              "outside_raw_domain": false,
+              "endpoint_errors_raw": [
+                0.0,
+                0.0
+              ],
+              "matches_both_typed_endpoints": true
+            },
+            {
+              "edge_to_raw_cache_parameter_multiplier": -1,
+              "mapped_parameters": [
+                -9.729933521887863e-16,
+                -2.9999999999999996
+              ],
+              "outside_raw_domain": true,
+              "endpoint_errors_raw": [
+                2.6645352591003757e-15
+              ],
+              "matches_both_typed_endpoints": false
+            }
+          ],
+          "parameter_scope": "Sign hypotheses are limited to these explicit endpoint links. Raw cache domain and wrapper are preserved; no general edge evaluator/reversal rule is added.",
+          "typed_support_chain": {
+            "coedge_index": 22,
+            "loop_index": 9,
+            "face_index": 6,
+            "surface_index": 10,
+            "pcurve_index": 37
+          },
+          "independent_cache_samples": [
+            {
+              "fraction": 0.0,
+              "XYZ_cache_parameter": -9.729933521887863e-16,
+              "linked_pcurve_parameter": 1.7763568394002505e-15,
+              "XYZ_cache_position": [
+                1.0,
+                4.000000000000004,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                -9.992007221626409e-16
+              ],
+              "surface_cache_position": [
+                1.0,
+                4.000000000000004,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                4.000000000000004,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            },
+            {
+              "fraction": 0.125,
+              "XYZ_cache_parameter": 0.37499999999999906,
+              "linked_pcurve_parameter": 0.3750000000000015,
+              "XYZ_cache_position": [
+                1.0,
+                3.624981248163147,
+                1.8585786437626903
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                0.3749999999999991
+              ],
+              "surface_cache_position": [
+                1.0,
+                3.6249812481631474,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 4.965068306494546e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                3.625000000000004,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 1.875183685706716e-05
+            },
+            {
+              "fraction": 0.25,
+              "XYZ_cache_parameter": 0.7499999999999991,
+              "linked_pcurve_parameter": 0.7500000000000012,
+              "XYZ_cache_position": [
+                1.0,
+                3.2500000003076956,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                0.7499999999999992
+              ],
+              "surface_cache_position": [
+                1.0,
+                3.2500000003076956,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                3.2500000000000036,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 3.0769209402592423e-10
+            },
+            {
+              "fraction": 0.375,
+              "XYZ_cache_parameter": 1.1249999999999993,
+              "linked_pcurve_parameter": 1.1250000000000009,
+              "XYZ_cache_position": [
+                1.0,
+                2.875002161665013,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.1249999999999993
+              ],
+              "surface_cache_position": [
+                1.0,
+                2.875002161665013,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                2.8750000000000027,
+                1.8585786437626903
+              ],
+              "linear_parameterization_deviation_raw": 2.1616650105471535e-06
+            },
+            {
+              "fraction": 0.5,
+              "XYZ_cache_parameter": 1.4999999999999993,
+              "linked_pcurve_parameter": 1.5000000000000007,
+              "XYZ_cache_position": [
+                1.0,
+                2.5000000000000013,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.4999999999999996
+              ],
+              "surface_cache_position": [
+                1.0,
+                2.5,
+                1.8585786437626899
+              ],
+              "independent_cache_deviation_raw": 1.4895204919483639e-15,
+              "linear_endpoint_chord_position": [
+                1.0,
+                2.500000000000002,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 8.881784197001252e-16
+            },
+            {
+              "fraction": 0.625,
+              "XYZ_cache_parameter": 1.8749999999999993,
+              "linked_pcurve_parameter": 1.8750000000000004,
+              "XYZ_cache_position": [
+                1.0,
+                2.1249978383351924,
+                1.8585786437626908
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                1.8749999999999996
+              ],
+              "surface_cache_position": [
+                1.0,
+                2.124997838335192,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 4.965068306494546e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                2.1250000000000018,
+                1.8585786437626903
+              ],
+              "linear_parameterization_deviation_raw": 2.1616648093747415e-06
+            },
+            {
+              "fraction": 0.75,
+              "XYZ_cache_parameter": 2.2499999999999996,
+              "linked_pcurve_parameter": 2.25,
+              "XYZ_cache_position": [
+                1.0,
+                1.7499999996923052,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                2.2499999999999996
+              ],
+              "surface_cache_position": [
+                1.0,
+                1.7499999996923052,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 0.0,
+              "linear_endpoint_chord_position": [
+                1.0,
+                1.750000000000001,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 3.0769586878420796e-10
+            },
+            {
+              "fraction": 0.875,
+              "XYZ_cache_parameter": 2.6249999999999996,
+              "linked_pcurve_parameter": 2.625,
+              "XYZ_cache_position": [
+                1.0,
+                1.3750187518347956,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                2.6250000000000004
+              ],
+              "surface_cache_position": [
+                1.0,
+                1.3750187518347947,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 8.881784197001252e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                1.3750000000000004,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 1.875183479516096e-05
+            },
+            {
+              "fraction": 1.0,
+              "XYZ_cache_parameter": 2.9999999999999996,
+              "linked_pcurve_parameter": 2.9999999999999996,
+              "XYZ_cache_position": [
+                1.0,
+                1.0,
+                1.8585786437626906
+              ],
+              "linked_pcurve_UV": [
+                1.0,
+                3.0
+              ],
+              "surface_cache_position": [
+                1.0,
+                0.9999999999999993,
+                1.8585786437626906
+              ],
+              "independent_cache_deviation_raw": 6.661338147750939e-16,
+              "linear_endpoint_chord_position": [
+                1.0,
+                1.0,
+                1.8585786437626906
+              ],
+              "linear_parameterization_deviation_raw": 0.0
+            }
+          ],
+          "maximum_sampled_cache_deviation_raw": 1.4895204919483639e-15,
+          "maximum_sampled_linear_parameterization_deviation_raw": 1.875183685706716e-05,
+          "comparison_scope": "Each stored domain is sampled independently at equal fractions; tiny domain endpoint differences are retained. Finite agreement is internal cache corroboration, not exact procedural/API evaluator equivalence or a global error bound."
+        }
+      ]
+    }
+  ]
+}

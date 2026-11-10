@@ -1,0 +1,1797 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "rigid.f3d",
+      "settings": {
+        "joint_type": 0,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {},
+        "vectors": {},
+        "current_motion_values": {},
+        "limits": {},
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "revolute.f3d",
+      "settings": {
+        "joint_type": 1,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {
+          "rotationAxis": 2
+        },
+        "vectors": {
+          "rotationAxisVector": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "current_motion_values": {
+          "rotationValue": 0.0
+        },
+        "limits": {
+          "rotationLimits": {
+            "minimumValue": -0.39968039870670147,
+            "maximumValue": 1.0995574287564276,
+            "restValue": 0.2007128639793479,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": true
+          }
+        },
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d9",
+          "role": "RotateMinimum",
+          "value": -0.39968039870670147,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d10",
+          "role": "RotateMaximum",
+          "value": 1.0995574287564276,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d11",
+          "role": "RotateRest",
+          "value": 0.2007128639793479,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "slider.f3d",
+      "settings": {
+        "joint_type": 2,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {
+          "slideDirection": 0
+        },
+        "vectors": {
+          "slideDirectionVector": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "current_motion_values": {
+          "slideValue": 0.0
+        },
+        "limits": {
+          "slideLimits": {
+            "minimumValue": -0.8,
+            "maximumValue": 1.8,
+            "restValue": 0.30000000000000004,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": false,
+            "isRestValueEnabled": true
+          }
+        },
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d9",
+          "role": "SlideMinimum",
+          "value": -0.8,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d10",
+          "role": "SlideRest",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "cylindrical.f3d",
+      "settings": {
+        "joint_type": 3,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {
+          "rotationAxis": 1
+        },
+        "vectors": {
+          "rotationAxisVector": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "current_motion_values": {
+          "rotationValue": 0.0,
+          "slideValue": 0.0
+        },
+        "limits": {
+          "rotationLimits": {
+            "minimumValue": -0.39968039870670147,
+            "maximumValue": 1.0995574287564276,
+            "restValue": 0.2,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": false
+          },
+          "slideLimits": {
+            "minimumValue": -0.8,
+            "maximumValue": 1.8,
+            "restValue": 0.3,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": false
+          }
+        },
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d9",
+          "role": "RotateMinimum",
+          "value": -0.39968039870670147,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d10",
+          "role": "RotateMaximum",
+          "value": 1.0995574287564276,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d11",
+          "role": "SlideMinimum",
+          "value": -0.8,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d12",
+          "role": "SlideMaximum",
+          "value": 1.8,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "pin_slot.f3d",
+      "settings": {
+        "joint_type": 4,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {
+          "rotationAxis": 2,
+          "slideDirection": 0
+        },
+        "vectors": {
+          "rotationAxisVector": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "slideDirectionVector": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "current_motion_values": {
+          "rotationValue": 0.0,
+          "slideValue": 0.0
+        },
+        "limits": {
+          "rotationLimits": {
+            "minimumValue": -0.39968039870670147,
+            "maximumValue": 1.0995574287564276,
+            "restValue": 0.2,
+            "isMinimumValueEnabled": false,
+            "isMaximumValueEnabled": false,
+            "isRestValueEnabled": false
+          },
+          "slideLimits": {
+            "minimumValue": -0.8,
+            "maximumValue": 1.8,
+            "restValue": 0.30000000000000004,
+            "isMinimumValueEnabled": false,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": true
+          }
+        },
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d11",
+          "role": "SlideMaximum",
+          "value": 1.8,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d12",
+          "role": "SlideRest",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "planar.f3d",
+      "settings": {
+        "joint_type": 5,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {
+          "normalDirection": 2,
+          "primarySlideDirection": 0
+        },
+        "vectors": {
+          "normalDirectionVector": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "primarySlideDirectionVector": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "secondarySlideDirectionVector": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "current_motion_values": {
+          "rotationValue": 0.0,
+          "primarySlideValue": 0.0,
+          "secondarySlideValue": 0.0
+        },
+        "limits": {
+          "rotationLimits": {
+            "minimumValue": -0.39968039870670147,
+            "maximumValue": 1.0995574287564276,
+            "restValue": 0.2007128639793479,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": true
+          },
+          "primarySlideLimits": {
+            "minimumValue": -0.7000000000000001,
+            "maximumValue": 1.7,
+            "restValue": 0.25,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": false,
+            "isRestValueEnabled": true
+          },
+          "secondarySlideLimits": {
+            "minimumValue": -0.9,
+            "maximumValue": 2.1,
+            "restValue": 0.5,
+            "isMinimumValueEnabled": false,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": false
+          }
+        },
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d9",
+          "role": "RotateMinimum",
+          "value": -0.39968039870670147,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d10",
+          "role": "RotateMaximum",
+          "value": 1.0995574287564276,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d11",
+          "role": "RotateRest",
+          "value": 0.2007128639793479,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d12",
+          "role": "SlideMinimum",
+          "value": -0.7000000000000001,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d13",
+          "role": "SlideRest",
+          "value": 0.25,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d14",
+          "role": "SlideMaximum",
+          "value": 2.1,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "ball.f3d",
+      "settings": {
+        "joint_type": 6,
+        "is_flipped": false,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.2617993877991494,
+        "offset_cm": 0.30000000000000004,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {
+          "pitchDirection": 2,
+          "yawDirection": 0
+        },
+        "vectors": {
+          "pitchDirectionVector": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "yawDirectionVector": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "rollDirectionVector": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "current_motion_values": {
+          "pitchValue": 0.0,
+          "yawValue": 0.0,
+          "rollValue": 0.0
+        },
+        "limits": {
+          "pitchLimits": {
+            "minimumValue": -0.24958208303518914,
+            "maximumValue": 0.5497787143782138,
+            "restValue": 0.1,
+            "isMinimumValueEnabled": false,
+            "isMaximumValueEnabled": false,
+            "isRestValueEnabled": false
+          },
+          "yawLimits": {
+            "minimumValue": -0.3508111796508603,
+            "maximumValue": 0.6492624817418906,
+            "restValue": 0.15009831567151233,
+            "isMinimumValueEnabled": true,
+            "isMaximumValueEnabled": true,
+            "isRestValueEnabled": true
+          },
+          "rollLimits": {
+            "minimumValue": -0.45,
+            "maximumValue": 0.75,
+            "restValue": 0.2007128639793479,
+            "isMinimumValueEnabled": false,
+            "isMaximumValueEnabled": false,
+            "isRestValueEnabled": true
+          }
+        },
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.30000000000000004
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0,
+            0.0,
+            0.25881904510252074,
+            0.9659258262890683,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.30000000000000004,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d11",
+          "role": "YawMinimum",
+          "value": -0.3508111796508603,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d12",
+          "role": "YawMaximum",
+          "value": 0.6492624817418906,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d13",
+          "role": "YawRest",
+          "value": 0.15009831567151233,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d14",
+          "role": "RollRest",
+          "value": 0.2007128639793479,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    },
+    {
+      "file": "rigid_flipped.f3d",
+      "settings": {
+        "joint_type": 0,
+        "is_flipped": true,
+        "is_locked": false,
+        "is_suppressed": false,
+        "angle_radians": 0.6108652381980153,
+        "offset_cm": 0.6000000000000001,
+        "occurrence_one_name": "Moving:1",
+        "occurrence_two_name": "Fixed:1",
+        "frame_one": [
+          0.819152044288992,
+          0.5735764363510462,
+          0.0,
+          0.0,
+          -0.5735764363510462,
+          0.819152044288992,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.6000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "frame_two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "directions": {},
+        "vectors": {},
+        "current_motion_values": {},
+        "limits": {},
+        "health_state": 0,
+        "warning": ""
+      },
+      "joint_geometry": [
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.6000000000000001
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            5.551115123125783e-17,
+            0.0
+          ],
+          "third_axis": [
+            -5.551115123125783e-17,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "geometry_type": 0,
+          "key_point_type": 3,
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "primary_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "secondary_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "third_axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "name": "Fixed:1",
+          "component_name": "Fixed",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Moving:1",
+          "component_name": "Moving",
+          "transform": [
+            0.819152044288992,
+            0.5735764363510462,
+            0.0,
+            0.0,
+            0.5735764363510462,
+            -0.819152044288992,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0,
+            0.6000000000000001,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d5",
+          "role": "alignAngle",
+          "value": 0.6108652381980153,
+          "unit": "deg",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d6",
+          "role": "alignOffsetX",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d7",
+          "role": "alignOffsetY",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        },
+        {
+          "name": "d8",
+          "role": "alignOffsetZ",
+          "value": 0.6000000000000001,
+          "unit": "mm",
+          "created_by": "ProbeJoint"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

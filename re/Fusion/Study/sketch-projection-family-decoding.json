@@ -1,0 +1,1263 @@
+{
+  "status": "Observed primitive sketch intersections, spatial Arc inclusion and planar surface projection controls/provenance",
+  "integration": {
+    "module": "decode_sketch_projection_families.py",
+    "call": "decode_sketch_projection_families(data, records, features)",
+    "order": "After decode_sketches; merge with old projection summary before output annotation",
+    "canonical_key": [
+      "controller_object_id",
+      "output_cache.object_id"
+    ],
+    "successful_overlap": "Zero in old/new fixture sets. Include Arc succeeds only in new helper; Include Line only in old reader",
+    "merge": "Merge successes by canonical key; remove old unresolved only for controller IDs with new successful relationships",
+    "compatibility": "All relationships retain controller_object_id/output_cache/target_feature_object_id/target_sketch_object_id",
+    "empty_plane_case": "Actual API outcome only; no controller or attempted operation inferred from empty sketch"
+  },
+  "capture": {
+    "folder": "projectionfamilies-d987c50c2d73",
+    "generator": "GenerateSketchProjectionFamilies.py",
+    "fusion_version": "2705.1.30",
+    "exports": 6,
+    "case_errors": [],
+    "linked_controllers": 5,
+    "output_relationships": 6
+  },
+  "layout": {
+    "standard_controller": "F1451EC8-11A4-4952-84ED-5AB7C13E2E83,105bytes",
+    "family_u32_offset": 26,
+    "family_codes": {
+      "2": "IntersectWithSketchPlane",
+      "3": "Project/Include"
+    },
+    "standard_byte5": "1 Project or Intersect,0 Include; not sufficient to distinguish intersection",
+    "old_reader_correction": "Require family3 before returning Project/Include; all5 prior linked fixture variants use3",
+    "counted_entry": "CA72DD8E:two zero bytes,u32 count,(namingRef11+outputObjectIDu64)*count,finalu64=1",
+    "circle_name_auxiliary": "progenitor_aux_data has GUID BE7E2847-FBC4-4898-A6E7-632A559A7F89/u32=1; auxiliary/root semantics unresolved; final naming leaf points to original Circle",
+    "surface_controller": "A9DB7E42-E095-4A66-BE81-7F36DA04028E,125/135bytes",
+    "surface_mode_u32_offset2": {
+      "1": "ClosestPoint(API0)",
+      "0": "AlongVector(API1)"
+    },
+    "surface_direction_offset6": "Absent0 byte or explicit F2A7590D backend reference; backend method10/count1 selects owned SketchLine descriptor/source leaf",
+    "surface_faces": "Counted owned face proxy->5662F619 face descriptor->face_recipe_data and typed historical SurfacePatch body anchor",
+    "output_genesis": "0 for intersection/included Arc;64 for surface Lines. Provenance requires actual controller chains",
+    "spatial_state": "is_2d computed from primitive positions/normal in target sketch frame; API reference true matched explicit owned source/output naming link"
+  },
+  "validation": {
+    "actual_export_outcomes": 6,
+    "available_controls_geometry_and_source_links_matched": true,
+    "old_fixtures_preserved": [
+      {
+        "file": "sketchprojections-67c0c4531b8f/body_edge.f3d",
+        "relationships": 1,
+        "controller_family": 3
+      },
+      {
+        "file": "sketchprojections-67c0c4531b8f/included_line.f3d",
+        "relationships": 1,
+        "controller_family": 3
+      },
+      {
+        "file": "sketchprojections-67c0c4531b8f/linked_circle.f3d",
+        "relationships": 1,
+        "controller_family": 3
+      },
+      {
+        "file": "sketchprojections-67c0c4531b8f/linked_line.f3d",
+        "relationships": 1,
+        "controller_family": 3
+      },
+      {
+        "file": "sketchprojections-67c0c4531b8f/linked_point.f3d",
+        "relationships": 1,
+        "controller_family": 3
+      },
+      {
+        "file": "sketchprojections-8fedd685854a/broken_line.f3d",
+        "relationships": 0,
+        "controller_family": null
+      },
+      {
+        "file": "sketchprojections-8fedd685854a/unlinked_line.f3d",
+        "relationships": 0,
+        "controller_family": null
+      }
+    ],
+    "malformed_guards": [
+      {
+        "case": "circle naming source mismatch",
+        "reason": "Projection-family source sketch/tag unresolved"
+      },
+      {
+        "case": "foreign surface proxy owner",
+        "reason": "Projection-family owned selection disagrees"
+      },
+      {
+        "case": "foreign direction backend owner",
+        "reason": "Projection-family owned selection disagrees"
+      },
+      {
+        "case": "foreign output cache owner",
+        "reason": "Projection-family output native owner/genesis disagrees"
+      }
+    ],
+    "circle": "Two native slots/distinct point IDs under one controller match API points[0,0,0] and[2,0,0]",
+    "vector_projection": "Actual/native Line endpoint order reverses source order; preserved without a general traversal inference",
+    "main_entrypoint": {
+      "new_outcomes": 6,
+      "prior_fixtures": 7,
+      "exact_relationship_matches": 6,
+      "geometry_annotations": 6,
+      "all_passed": true
+    }
+  },
+  "limits": [
+    "Origin construction-plane intersection returned0outputs; no stored controller, so attempted operation cannot be recovered from absence",
+    "Only observed sketch Line/Circle intersections, one spatial Arc inclusion and simple planar-face Line surface projections added",
+    "Projected primitive fixed/construction state remains unresolved where existing reader reports flags[65536,0]; point state also unknown. Actual false API getters retained as evidence, not guessed from invariant values",
+    "Circle auxiliary name field/root ordering semantics remain unknown",
+    "Historical face recipe/body identity retained; exact BRep/ASM face mapping, parametric endpoint mapping and occurrence transforms unresolved",
+    "Genesis64 alone does not prove reference linkage or detachment",
+    "No projection/intersection solver, regeneration or native writer"
+  ],
+  "samples": [
+    {
+      "file": "projectionfamilies-d987c50c2d73/intersect_line.f3d",
+      "api_requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOtMDY3AtJEBUKmBsYIBAHROShuSAAAA",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            1.0,
+            0.0,
+            -1.0
+          ],
+          "end_world_cm": [
+            1.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOtA1psYAQCTF16ahwAAAA==",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "api_settings": {
+        "method": "intersectWithSketchPlane",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchPoint",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOuMTM1AJNBEQwNTAFL+f7KOAAAA",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqIZk943T3EO337ot+jmFYfjgSqMFIzNFFJNkk1TTM3SdM2NUhN1TczSTHQTk8xSdU3T0tISDdNMLCzMTMBqgWYwoAGwfQYKYOtMDY3AtJEBUKmBsYIBAHROShuSAAAA",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "position_world_cm": [
+              1.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 273,
+            "entry_object_id": 281,
+            "target_feature_object_id": 240,
+            "target_sketch_object_id": 236,
+            "target_sketch_name": "ProjectionFamilyTarget",
+            "method": "IntersectWithSketchPlane",
+            "stored_controller_family": 2,
+            "is_linked": true,
+            "stored_projection_mode": 1,
+            "source_proxy_object_id": 274,
+            "source_descriptor_object_id": 277,
+            "output_index": 0,
+            "output_count": 1,
+            "output_naming_record_object_id": 304,
+            "output_name_attributes": {
+              "EdgeEndVertexProgenitor": {
+                "referenced_object_id": 308
+              },
+              "EdgeStartVertexProgenitor": {
+                "referenced_object_id": 306
+              }
+            },
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 280,
+              "sketch_object_id": 202,
+              "sketch_name": "ProjectionFamilySource",
+              "entity_object_id": 232,
+              "entity_tag": 103,
+              "entity_kind": "Line"
+            },
+            "output_cache": {
+              "object_id": 310,
+              "sketch_object_id": 236,
+              "kind": "Point",
+              "entity_tag": 105,
+              "entity_genesis": 0,
+              "position_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_2d": true,
+              "dimensionality_status": "Computed from decoded primitive positions/normal in target sketch frame",
+              "state_status": "Fixed/construction state unresolved for this projected primitive; actual API getters retained in capture evidence"
+            },
+            "surface_project_type": null,
+            "surface_selections": [],
+            "direction": null,
+            "stored_surface_project_type_code": null,
+            "link_status": "Explicit owned controller, counted output/naming, source selection and target cache references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed primitive intersections, spatial Arc inclusion and planar-face surface projection provenance; no intersection/project solver"
+      },
+      "old_reader_unresolved": [
+        {
+          "object_id": 273,
+          "reason": "Projection controller family is not observed Project/Include; intersection requires family reader"
+        }
+      ]
+    },
+    {
+      "file": "projectionfamilies-d987c50c2d73/intersect_circle.f3d",
+      "api_requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchCircle",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7U0AhMGxkAlQKxAQDfKZpSkgAAAA==",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Circle3D",
+          "center_world_cm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "radius_cm": 1.0,
+          "normal_world": [
+            -0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAtg5kvYkRAB4+8nyHAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "api_settings": {
+        "method": "intersectWithSketchPlane",
+        "output_count": 2,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchPoint",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7I1AxEGpsoGBqYAAAbLhkwjgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchCircle",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7U0AhMGxkAlQKxAQDfKZpSkgAAAA==",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "position_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchPoint",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7I1AxEGpsoGBqYAgCNHh5HjgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": true,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchCircle",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQs0xT/UJ8z1fzH1scrXGhCMXqMJIwdhMIdXSzNTAwihVN9ksMUXXxNzUWDcp0dJQN808ySzRxCDZPMnSFKwWaAYDGgDbZ6AAts7U0AhMGxkAlQKxAQDfKZpSkgAAAA==",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "position_world_cm": [
+              2.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 271,
+            "entry_object_id": 279,
+            "target_feature_object_id": 238,
+            "target_sketch_object_id": 234,
+            "target_sketch_name": "ProjectionFamilyTarget",
+            "method": "IntersectWithSketchPlane",
+            "stored_controller_family": 2,
+            "is_linked": true,
+            "stored_projection_mode": 1,
+            "source_proxy_object_id": 272,
+            "source_descriptor_object_id": 275,
+            "output_index": 0,
+            "output_count": 2,
+            "output_naming_record_object_id": 296,
+            "output_name_attributes": {
+              "progenitor_aux_data": {
+                "stored_type_guid": "BE7E2847-FBC4-4898-A6E7-632A559A7F89",
+                "uninterpreted_u32": 1,
+                "scope": "Native auxiliary name data; intersection-root semantics unresolved"
+              }
+            },
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 278,
+              "sketch_object_id": 202,
+              "sketch_name": "ProjectionFamilySource",
+              "entity_object_id": 230,
+              "entity_tag": 102,
+              "entity_kind": "Circle"
+            },
+            "output_cache": {
+              "object_id": 300,
+              "sketch_object_id": 234,
+              "kind": "Point",
+              "entity_tag": 104,
+              "entity_genesis": 0,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_2d": true,
+              "dimensionality_status": "Computed from decoded primitive positions/normal in target sketch frame",
+              "state_status": "Fixed/construction state unresolved for this projected primitive; actual API getters retained in capture evidence"
+            },
+            "surface_project_type": null,
+            "surface_selections": [],
+            "direction": null,
+            "stored_surface_project_type_code": null,
+            "link_status": "Explicit owned controller, counted output/naming, source selection and target cache references"
+          },
+          {
+            "controller_object_id": 271,
+            "entry_object_id": 279,
+            "target_feature_object_id": 238,
+            "target_sketch_object_id": 234,
+            "target_sketch_name": "ProjectionFamilyTarget",
+            "method": "IntersectWithSketchPlane",
+            "stored_controller_family": 2,
+            "is_linked": true,
+            "stored_projection_mode": 1,
+            "source_proxy_object_id": 272,
+            "source_descriptor_object_id": 275,
+            "output_index": 1,
+            "output_count": 2,
+            "output_naming_record_object_id": 298,
+            "output_name_attributes": {
+              "progenitor_aux_data": {
+                "stored_type_guid": "BE7E2847-FBC4-4898-A6E7-632A559A7F89",
+                "uninterpreted_u32": 1,
+                "scope": "Native auxiliary name data; intersection-root semantics unresolved"
+              }
+            },
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 278,
+              "sketch_object_id": 202,
+              "sketch_name": "ProjectionFamilySource",
+              "entity_object_id": 230,
+              "entity_tag": 102,
+              "entity_kind": "Circle"
+            },
+            "output_cache": {
+              "object_id": 302,
+              "sketch_object_id": 234,
+              "kind": "Point",
+              "entity_tag": 105,
+              "entity_genesis": 0,
+              "position_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_2d": true,
+              "dimensionality_status": "Computed from decoded primitive positions/normal in target sketch frame",
+              "state_status": "Fixed/construction state unresolved for this projected primitive; actual API getters retained in capture evidence"
+            },
+            "surface_project_type": null,
+            "surface_selections": [],
+            "direction": null,
+            "stored_surface_project_type_code": null,
+            "link_status": "Explicit owned controller, counted output/naming, source selection and target cache references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed primitive intersections, spatial Arc inclusion and planar-face surface projection provenance; no intersection/project solver"
+      },
+      "old_reader_unresolved": [
+        {
+          "object_id": 271,
+          "reason": "Projection controller family is not observed Project/Include; intersection requires family reader"
+        }
+      ]
+    },
+    {
+      "file": "projectionfamilies-d987c50c2d73/intersect_plane.f3d",
+      "api_requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "YZ",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuPypM7FW53j2kIudOgc3HMKqMJIwdhMISnN2MIoOcVUNznN0lzXxMjYVNcyJdFI1yTJODHV0iwp0cjCAqwWaAYDGgDbZ6AAtg6kyMQEAExf7BaHAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuPypM7FW53j2kIudOgc3HMKqMJIwdhMISnN2MIoOcVUNznN0lzXxMjYVNcyJdFI1yTJODHV0iwp0cjCAqwWaAYDGgDbZ6AAtg6kyMQIAHn6j/+HAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "api_settings": {
+        "method": "intersectWithSketchPlane",
+        "output_count": 0,
+        "outputs": []
+      },
+      "decoded": {
+        "relationships": [],
+        "unresolved": [],
+        "scope": "Observed primitive intersections, spatial Arc inclusion and planar-face surface projection provenance; no intersection/project solver"
+      },
+      "old_reader_unresolved": []
+    },
+    {
+      "file": "projectionfamilies-d987c50c2d73/include_arc.f3d",
+      "api_requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchArc",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAW2dqaASmjQyASg1MFAwAPjwwXZIAAAA=",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Arc3D",
+          "start_world_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "end_world_cm": [
+            0.9999999999999999,
+            0.0,
+            2.0
+          ],
+          "center_world_cm": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "radius_cm": 1.0,
+          "normal_world": [
+            0.0,
+            1.0,
+            -0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAWwey3sQIALXq8b2HAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": null,
+        "direction": null
+      },
+      "api_settings": {
+        "method": "include",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchArc",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAW2dqaASmjYyB1hpYKhgAAMD3F3+SAAAA",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchArc",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtFWgUV2x7zK5i4XqW7fZGwFVGGkYGymYGKWZGJiYmmhm5RikaZrYmZuoGtpmmyqm5xqnGaZaGhqbGZsDlYLNIMBDYDtM1AAW2dqaASmjQyASg1MFAwAPjwwXZIAAAA=",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "is_construction": false,
+            "world_geometry_type": "Arc3D",
+            "start_world_cm": [
+              0.9999999999999999,
+              0.0,
+              2.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              0.9999999999999999
+            ],
+            "center_world_cm": [
+              1.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0,
+            "normal_world": [
+              0.0,
+              -1.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 275,
+            "entry_object_id": 283,
+            "target_feature_object_id": 242,
+            "target_sketch_object_id": 238,
+            "target_sketch_name": "ProjectionFamilyTarget",
+            "method": "Include",
+            "stored_controller_family": 3,
+            "is_linked": true,
+            "stored_projection_mode": 0,
+            "source_proxy_object_id": 276,
+            "source_descriptor_object_id": 279,
+            "output_index": 0,
+            "output_count": 1,
+            "output_naming_record_object_id": 306,
+            "output_name_attributes": {
+              "EdgeEndVertexProgenitor": {
+                "referenced_object_id": 310
+              },
+              "EdgeStartVertexProgenitor": {
+                "referenced_object_id": 308
+              }
+            },
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 282,
+              "sketch_object_id": 202,
+              "sketch_name": "ProjectionFamilySource",
+              "entity_object_id": 234,
+              "entity_tag": 104,
+              "entity_kind": "Arc"
+            },
+            "output_cache": {
+              "object_id": 318,
+              "sketch_object_id": 238,
+              "kind": "Arc",
+              "entity_tag": 109,
+              "entity_genesis": 0,
+              "start_point_id": 312,
+              "end_point_id": 314,
+              "center_point_id": 316,
+              "start_cm": [
+                0.9999999999999999,
+                0.0,
+                2.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.9999999999999999
+              ],
+              "center_cm": [
+                1.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_axis": [
+                -1.1102230246251565e-16,
+                0.0,
+                1.0
+              ],
+              "start_angle_radians": 0.0,
+              "end_angle_radians": 1.5707963267948966,
+              "unrecognized_state_flags": [
+                65536,
+                0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_2d": false,
+              "dimensionality_status": "Computed from decoded primitive positions/normal in target sketch frame",
+              "state_status": "Fixed/construction state unresolved for this projected primitive; actual API getters retained in capture evidence"
+            },
+            "surface_project_type": null,
+            "surface_selections": [],
+            "direction": null,
+            "stored_surface_project_type_code": null,
+            "link_status": "Explicit owned controller, counted output/naming, source selection and target cache references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed primitive intersections, spatial Arc inclusion and planar-face surface projection provenance; no intersection/project solver"
+      },
+      "old_reader_unresolved": [
+        {
+          "object_id": 275,
+          "reason": "Projection source sketch entity/tag unresolved or ambiguous"
+        }
+      ]
+    },
+    {
+      "file": "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+      "api_requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArTM1NALTRgZApQbGCgYA/xW49pIAAAA=",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            0.5,
+            0.7,
+            0.0
+          ],
+          "end_world_cm": [
+            2.0,
+            1.3,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArQNZb2IEAJ6r2n2HAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "BRepFace",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/5WPO04EMQyGKTkCpS9gybGdSVKCYBskStrRTJKRaACh3Y5mTsCRuAjHgI6CJA1DJFYQWYr9+feLgMGADJAceyuzQU12QWWaMSzOoWMOkgdDagJQ0VY9VY998QxoJQN83ryv18/nHy/r5Xr2+nZaFFz75uyFZiI0mSLqEAVDZIPRL95Zm8RQbNrS46R7bR5BG6cgoBygfLbQYralhaT9bZcOaA+4B7IBBPPD4T7lNC5TzONTjnePeUzTfoKLHcAOfJFg7XoF9XRsZr4TDLfF7dlWXIfUmDcx/blKflT1pMb6n6V+Kz6+lB49pSNfupXH4F4CAAA=",
+            "sketch_name": null,
+            "body_name": "ProjectionFamilySurface"
+          },
+          "surface_geometry_type": "Plane",
+          "point_on_face_world_cm": [
+            0.5,
+            0.5,
+            1.0
+          ],
+          "area_cm2": 25.0
+        },
+        "direction": null,
+        "surface_project_type": 0
+      },
+      "api_settings": {
+        "method": "projectToSurface",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArTM1NALTxiZAQaBaAwDhu2FMkgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwh+/L43eNY5f+xtdGiX23+EAqjBSMDZTSE21MDZIMjDQNUw1SNY1MUs21rVMNjLUTbZIszA3NU0xNjRIBqsFmsGABsD2GSiArTM1NALTRgZApQbGCgYA/xW49pIAAAA=",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "is_construction": false,
+            "world_geometry_type": "Line3D",
+            "start_world_cm": [
+              0.5,
+              0.7,
+              1.0
+            ],
+            "end_world_cm": [
+              2.0,
+              1.3,
+              1.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 388,
+            "entry_object_id": 396,
+            "target_feature_object_id": 344,
+            "target_sketch_object_id": 340,
+            "target_sketch_name": "ProjectionFamilyTarget",
+            "method": "ProjectToSurface",
+            "stored_controller_family": 3,
+            "is_linked": true,
+            "stored_projection_mode": null,
+            "source_proxy_object_id": 389,
+            "source_descriptor_object_id": 392,
+            "output_index": 0,
+            "output_count": 1,
+            "output_naming_record_object_id": 407,
+            "output_name_attributes": {},
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 395,
+              "sketch_object_id": 202,
+              "sketch_name": "ProjectionFamilySource",
+              "entity_object_id": 232,
+              "entity_tag": 103,
+              "entity_kind": "Line"
+            },
+            "output_cache": {
+              "object_id": 387,
+              "sketch_object_id": 340,
+              "kind": "Line",
+              "entity_tag": 116,
+              "entity_genesis": 64,
+              "start_point_id": 383,
+              "end_point_id": 385,
+              "start_cm": [
+                0.5,
+                0.7,
+                1.0
+              ],
+              "end_cm": [
+                2.0,
+                1.3,
+                1.0
+              ],
+              "unrecognized_state_flags": [
+                65536,
+                0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_2d": false,
+              "dimensionality_status": "Computed from decoded primitive positions/normal in target sketch frame",
+              "state_status": "Fixed/construction state unresolved for this projected primitive; actual API getters retained in capture evidence"
+            },
+            "surface_project_type": "ClosestPoint",
+            "surface_selections": [
+              {
+                "selection_record_object_id": 397,
+                "descriptor_object_id": 400,
+                "recipe": {
+                  "object_id": 403,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 45321,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 303,
+                          "matching_primary_record": {
+                            "object_id": 303,
+                            "class_guid": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+                            "record_offset": 36639,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "face_recipe_data",
+                  "payload_relative_offset": 63,
+                  "payload_length": 8,
+                  "payload_hex": "00000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 339,
+                "native_body_object_id": 333,
+                "source_owner_object_id": 298,
+                "context_record_object_ids": [
+                  409
+                ],
+                "face_identity_scope": "Historical native body and face recipe; exact ASM face mapping and occurrence transforms unresolved"
+              }
+            ],
+            "direction": null,
+            "stored_surface_project_type_code": 1,
+            "link_status": "Explicit owned controller, counted output/naming, source selection and target cache references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed primitive intersections, spatial Arc inclusion and planar-face surface projection provenance; no intersection/project solver"
+      },
+      "old_reader_unresolved": []
+    },
+    {
+      "file": "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
+      "api_requested": {
+        "source": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ1CQQxDETPQ4wVO+Hz3Q+iQ6Nji7ncMwwTMwCJMQccYhJQkimJZTzbhYGyF4lLJQ1X0n2N47w72uJw/zyte29v+HoTQDKvZGOPYC5ep0umznHqzYmy+uiSbnmxkbP4m+4isW6ryi4GygV+87h2NkgAAAA==",
+            "sketch_name": "ProjectionFamilySource",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            0.5,
+            0.7,
+            0.0
+          ],
+          "end_world_cm": [
+            2.0,
+            1.3,
+            0.0
+          ]
+        },
+        "target_plane": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "ConstructionPlane",
+            "name": "XY",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkMRfbM5zg4v1nkpnGbKku8DqjBSMDZTSDYzS0xMNDfRNTBNMtI1MbBI0rU0MTbTNTMwtki2MDIyMkuyAKsFmsGABsD2GSiArQMpMjECAD7Wb8aHAAAA",
+            "sketch_name": null,
+            "body_name": null
+          },
+          "origin_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal_world": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "target_sketch_name": "ProjectionFamilyTarget",
+        "face": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "BRepFace",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/5WPy00EMQyGETVwxw1YOI7Hm7mtQOyBAriOkkxGWg6AVtAGFVADjVAFN8ogzoUhEiuILMX+/PtFwODAK/BcpKgSbuY0oPAyYnLssAh7t0ghziNQ1ZqezONQPQdiROHj7EJfr7afbzfwfnp3/lIVbH2zaoxxI0hDYhQKCUfxiko+5MDMmkLT1h4n3WvzCNo4AQ/CI9RvqLTa0NKefPvbLh2QHnAP/AoQpIfn+7nM0xJzmQ4l7x/LNMenCJc7gB3Ynmhdr8FOx2buO8FwW92ercU2xGJexfTnKv+jqicWy3+W+q34+FJy9JSOfAGK5EzKXgIAAA==",
+            "sketch_name": null,
+            "body_name": "ProjectionFamilySurface"
+          },
+          "surface_geometry_type": "Plane",
+          "point_on_face_world_cm": [
+            0.5,
+            0.5,
+            1.0
+          ],
+          "area_cm2": 25.0
+        },
+        "direction": {
+          "getter_errors": [],
+          "identity": {
+            "kind": "SketchLine",
+            "name": null,
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkMRfbM5zg4v1nkpnGbKku8DqjBSMDZTSDYzS0xMNDfRNTBNMtI1MbBI0rU0MTbTNTMwtki2MDIyMkuyAKsFmsGABsD2GSiArTM1NALTxiZAQaBaAwCiQMQ3kgAAAA==",
+            "sketch_name": "ProjectionFamilyDirection",
+            "body_name": null
+          },
+          "is_reference": false,
+          "is_2d": true,
+          "is_fixed": false,
+          "referenced_entity": null,
+          "is_construction": false,
+          "world_geometry_type": "Line3D",
+          "start_world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_world_cm": [
+            0.0,
+            0.0,
+            2.0
+          ]
+        },
+        "surface_project_type": 1
+      },
+      "api_settings": {
+        "method": "projectToSurface",
+        "output_count": 1,
+        "outputs": [
+          {
+            "getter_errors": [],
+            "identity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkMRfbM5zg4v1nkpnGbKku8DqjBSMDZTSDYzS0xMNDfRNTBNMtI1MbBI0rU0MTbTNTMwtki2MDIyMkuyAKsFmsGABsD2GSiArTM1NALTxubGQKuBLACAjpuekgAAAA==",
+              "sketch_name": "ProjectionFamilyTarget",
+              "body_name": null
+            },
+            "is_reference": true,
+            "is_2d": false,
+            "is_fixed": false,
+            "referenced_entity": {
+              "kind": "SketchLine",
+              "name": null,
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ1CQQxDETPQ4wVO+Hz3Q+iQ6Nji7ncMwwTMwCJMQccYhJQkimJZTzbhYGyF4lLJQ1X0n2N47w72uJw/zyte29v+HoTQDKvZGOPYC5ep0umznHqzYmy+uiSbnmxkbP4m+4isW6ryi4GygV+87h2NkgAAAA==",
+              "sketch_name": "ProjectionFamilySource",
+              "body_name": null
+            },
+            "is_construction": false,
+            "world_geometry_type": "Line3D",
+            "start_world_cm": [
+              2.0,
+              1.3,
+              1.0
+            ],
+            "end_world_cm": [
+              0.5,
+              0.7,
+              1.0
+            ]
+          }
+        ]
+      },
+      "decoded": {
+        "relationships": [
+          {
+            "controller_object_id": 427,
+            "entry_object_id": 435,
+            "target_feature_object_id": 377,
+            "target_sketch_object_id": 373,
+            "target_sketch_name": "ProjectionFamilyTarget",
+            "method": "ProjectToSurface",
+            "stored_controller_family": 3,
+            "is_linked": true,
+            "stored_projection_mode": null,
+            "source_proxy_object_id": 428,
+            "source_descriptor_object_id": 431,
+            "output_index": 0,
+            "output_count": 1,
+            "output_naming_record_object_id": 453,
+            "output_name_attributes": {},
+            "source": {
+              "kind": "SketchEntity",
+              "source_leaf_object_id": 434,
+              "sketch_object_id": 202,
+              "sketch_name": "ProjectionFamilySource",
+              "entity_object_id": 232,
+              "entity_tag": 103,
+              "entity_kind": "Line"
+            },
+            "output_cache": {
+              "object_id": 426,
+              "sketch_object_id": 373,
+              "kind": "Line",
+              "entity_tag": 120,
+              "entity_genesis": 64,
+              "start_point_id": 422,
+              "end_point_id": 424,
+              "start_cm": [
+                2.0,
+                1.3,
+                1.0
+              ],
+              "end_cm": [
+                0.5,
+                0.7,
+                1.0
+              ],
+              "unrecognized_state_flags": [
+                65536,
+                0
+              ],
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "is_2d": false,
+              "dimensionality_status": "Computed from decoded primitive positions/normal in target sketch frame",
+              "state_status": "Fixed/construction state unresolved for this projected primitive; actual API getters retained in capture evidence"
+            },
+            "surface_project_type": "AlongVector",
+            "surface_selections": [
+              {
+                "selection_record_object_id": 436,
+                "descriptor_object_id": 439,
+                "recipe": {
+                  "object_id": 442,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 49097,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 303,
+                          "matching_primary_record": {
+                            "object_id": 303,
+                            "class_guid": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+                            "record_offset": 37144,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "face_recipe_data",
+                  "payload_relative_offset": 63,
+                  "payload_length": 8,
+                  "payload_hex": "00000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 339,
+                "native_body_object_id": 333,
+                "source_owner_object_id": 298,
+                "context_record_object_ids": [
+                  455
+                ],
+                "face_identity_scope": "Historical native body and face recipe; exact ASM face mapping and occurrence transforms unresolved"
+              }
+            ],
+            "direction": {
+              "backend_record_object_id": 444,
+              "descriptor_object_id": 447,
+              "source": {
+                "kind": "SketchEntity",
+                "source_leaf_object_id": 450,
+                "sketch_object_id": 340,
+                "sketch_name": "ProjectionFamilyDirection",
+                "entity_object_id": 369,
+                "entity_tag": 116,
+                "entity_kind": "Line"
+              }
+            },
+            "stored_surface_project_type_code": 0,
+            "link_status": "Explicit owned controller, counted output/naming, source selection and target cache references"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed primitive intersections, spatial Arc inclusion and planar-face surface projection provenance; no intersection/project solver"
+      },
+      "old_reader_unresolved": []
+    }
+  ]
+}

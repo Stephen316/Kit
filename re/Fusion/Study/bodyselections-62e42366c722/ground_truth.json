@@ -1,0 +1,119 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "scale_two_bodies_point.f3d",
+      "getter_errors": [],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrHAhzP6Gb7b9jefuP/h/tUKoAojBWMzhbRUc2OzpOQUXZOUNHNdE0MLQ12LFMNEXTMgmWKaZpySkpoGVgs0gwENgO0zUABbB7LeyNwUAJA4Q66IAAAA",
+          "body_name": "SelectedBody1"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrHAhzP6Gb7b9jefuP/h/tUKoAojBWMzhbRUc2OzpOQUXZOUNHNdE0MLQ12LFMNEXTMgmWKaZpySkpoGVgs0gwENgO0zUABbB7Le2NQEALMAsOqIAAAA",
+          "body_name": "SelectedBody2"
+        }
+      ],
+      "actual_point": {
+        "entity_type": "adsk::fusion::SketchPoint",
+        "position_cm": [
+          1.0,
+          -1.0,
+          0.0
+        ],
+        "sketch_name": "ScalePointSketch"
+      },
+      "feature_kind": "ScaleFeature",
+      "result_body_count": 2,
+      "settings": {
+        "is_uniform": true,
+        "factor": 1.4
+      }
+    },
+    {
+      "file": "mirror_two_bodies_plane.f3d",
+      "getter_errors": [],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqplqpbnGyfdiasrRIK3MX4CqjBSMDZTMDQ3TzE3NDDVTTRJM9E1sTRK07W0ME7UTTFLS7Y0NE80NDQyA6sFmsGABsD2GSiArQNZb2RuCgCv98lEiAAAAA==",
+          "body_name": "SelectedBody1"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqplqpbnGyfdiasrRIK3MX4CqjBSMDZTMDQ3TzE3NDDVTTRJM9E1sTRK07W0ME7UTTFLS7Y0NE80NDQyA6sFmsGABsD2GSiArQNZb2xqAgCMzzoAiAAAAA==",
+          "body_name": "SelectedBody2"
+        }
+      ],
+      "actual_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "name": "SelectionMirrorPlane",
+        "origin_cm": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "feature_kind": "MirrorFeature",
+      "result_body_count": 4,
+      "settings": {
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.001,
+        "compute_option": 2
+      }
+    },
+    {
+      "file": "shell_body.f3d",
+      "getter_errors": [],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvLTvxdXBvusn7efwTmh3acEqMJIwdhMwdLQ3Nws2ShFN9XAPEXXxMjMUtfCMClNN9XcNDXN1MjQxCDNHKwWaAYDGgDbZ6AAtg5kvZG5KQCOpunsiAAAAA==",
+          "body_name": "SelectedBody1"
+        }
+      ],
+      "feature_kind": "ShellFeature",
+      "result_body_count": 1,
+      "settings": {
+        "is_tangent_chain": false,
+        "shell_type": 0,
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null
+      }
+    },
+    {
+      "file": "shell_two_faces.f3d",
+      "getter_errors": [],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFPUohuAxUJTXptOBGcHZu3UmTX5mNiozn8AxuxSN4D28jpjLY2O0QDIE8Xn39XpMgaCAwFvRAhdlmZSxGxa6QGn0KCjMP7DQlwghYWeFRlHZVEbA4Fm5fTs/u9tf09vV68XH+/lkJLbkWrRtDZIWFam6IVjkaScUS8kDo7cCmsTXjZLVaH0KrYzCwGQnkqG77ERkbpHaKXBt2bfDa2PwyEMLD833KaSo+5ukpx91jnpLfe7jcAmzBVURJyFWVVRy2bpMmZ0TDzQExzdM/wyUllQvOLMbzB8IdqTS9yk7UguM/nOlUcq+yE3X8NmaOO5W6V9mJ+ucDfAMPB74UAAMAAA==",
+          "body_name": "SelectedBody1",
+          "surface_type": 0
+        },
+        {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42QTUrEQBCFPUohuGyo6q7pdAQ3A87OrTsJ/RdxozKM5/AMbsUjeA9vI3Z1IJhMCGkC/Xj18r6iETQQGAu6oZ7ZZmUsRsWuJ9X6FBRmbthpSoQRsGQlj6K0K4qAxbHw8H559Xi6o8/fj5vv66+fktDSa9G6NkRW2FPpDdEqRy2p2IfcEHrbsKnZ0nExO5WHUHEMBnYtgVzFrWgZGxxukXPDzg2eG7t/BkJ4eXtOOXW9j7k75vj0mrvkTx72B4ADuBJRUnJbZBHDp+ukyjGi4X6ImOrpyXCMC3KSM5Px+IPkFpB6E5LPqrautoDkNeQ4NBuR56stIM0acuXBNq72B1u8d9oAAwAA",
+          "body_name": "SelectedBody1",
+          "surface_type": 0
+        }
+      ],
+      "feature_kind": "ShellFeature",
+      "result_body_count": 1,
+      "settings": {
+        "is_tangent_chain": false,
+        "shell_type": 0,
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null
+      }
+    }
+  ],
+  "errors": []
+}

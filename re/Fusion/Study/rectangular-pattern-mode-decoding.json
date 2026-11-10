@@ -1,0 +1,2197 @@
+{
+  "fixture_directory": "rectmodes-a069f8f4b8a2",
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_one.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 1,
+        "distance_one_cm": 2.5,
+        "distance_two_cm": 0.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": null,
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "0acb7851-7f6f-441f-b6bd-fb49a08f2066",
+          "entity_guid_text": "3f53e3f7-2c15-4c24-947a-6eb663842cce",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": null,
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": null,
+        "stored_direction_two_vector": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 324,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            3,
+            304
+          ],
+          [
+            6,
+            305
+          ]
+        ],
+        "element_record_object_ids": [
+          316,
+          317,
+          318
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          333,
+          338
+        ],
+        "generated_result_reference_count": 2,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 2,
+        "distance_one_cm": 2.5,
+        "distance_two_cm": 3.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          0.6000000000000001,
+          0.8,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "CustomDiagonalAxis",
+            "object_id": 395,
+            "feature_object_id": 396,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.6000000000000001,
+              0.8,
+              0.0
+            ]
+          },
+          "selection_object_id": 446,
+          "descriptor_object_id": 449,
+          "terminal_object_id": 452,
+          "namespace_text": "51e4b8f2-73b8-4467-b5f6-7bd5ed0869a2",
+          "entity_guid_text": "bc992fbd-8be3-4f24-b5aa-4029583ca373",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Z",
+            "object_id": 41,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 453,
+          "descriptor_object_id": 456,
+          "terminal_object_id": 459,
+          "namespace_text": "51e4b8f2-73b8-4467-b5f6-7bd5ed0869a2",
+          "entity_guid_text": "bc992fbd-8be3-4f24-b5aa-4029583ca373",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 446,
+        "direction_two_selection_record_object_id": 453,
+        "stored_direction_two_vector": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 422,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 419,
+        "input_selection_record_object_id": 423,
+        "input_count": 2,
+        "input_body_count": 2,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 426,
+            "association_record_object_id": 475,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          },
+          {
+            "descriptor_object_id": 430,
+            "association_record_object_id": 478,
+            "native_body_object_id": 354,
+            "body_anchor_object_id": 358
+          }
+        ],
+        "native_input_body_object_ids": [
+          275,
+          354
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            311
+          ],
+          [
+            3,
+            309
+          ],
+          [
+            5,
+            312
+          ],
+          [
+            6,
+            310
+          ],
+          [
+            9,
+            313
+          ]
+        ],
+        "element_record_object_ids": [
+          460,
+          461,
+          462,
+          463,
+          464,
+          465
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          495,
+          500,
+          505,
+          510,
+          515,
+          520,
+          525,
+          530,
+          535,
+          540
+        ],
+        "generated_result_reference_count": 10,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_sketchlines.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 2,
+        "distance_one_cm": 2.5,
+        "distance_two_cm": 3.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          0.6,
+          0.8,
+          0.0
+        ],
+        "direction_two": [
+          -0.8,
+          0.6,
+          0.0
+        ],
+        "direction_one_selection": {
+          "kind": "SketchLine",
+          "selection_object_id": 356,
+          "descriptor_object_id": 359,
+          "terminal_object_id": 362,
+          "sketch_object_id": 282,
+          "curve_object_id": 311,
+          "curve_entity_tag": 112,
+          "sketch_name": "PatternDirections",
+          "association": "Explicit descriptor/leaf sketch identity and curve tag, with matching cached direction"
+        },
+        "direction_two_selection": {
+          "kind": "SketchLine",
+          "selection_object_id": 363,
+          "descriptor_object_id": 366,
+          "terminal_object_id": 369,
+          "sketch_object_id": 282,
+          "curve_object_id": 322,
+          "curve_entity_tag": 115,
+          "sketch_name": "PatternDirections",
+          "association": "Explicit descriptor/leaf sketch identity and curve tag, with matching cached direction"
+        },
+        "direction_one_selection_record_object_id": 356,
+        "direction_two_selection_record_object_id": 363,
+        "stored_direction_two_vector": [
+          -0.7999999999999999,
+          0.6,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 336,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 333,
+        "input_selection_record_object_id": 337,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 340,
+            "association_record_object_id": 393,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            307
+          ],
+          [
+            3,
+            305
+          ],
+          [
+            5,
+            308
+          ],
+          [
+            6,
+            306
+          ],
+          [
+            9,
+            309
+          ]
+        ],
+        "element_record_object_ids": [
+          370,
+          371,
+          372,
+          373,
+          374,
+          375
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          405,
+          410,
+          415,
+          420,
+          425
+        ],
+        "generated_result_reference_count": 5,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_negative.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 1,
+        "distance_one_cm": -3.0,
+        "distance_two_cm": 0.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": null,
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "7b1326b3-953e-4dd4-ae4a-316b1102cc27",
+          "entity_guid_text": "7372934f-0101-4e5f-acfa-2891002df167",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": null,
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": null,
+        "stored_direction_two_vector": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 324,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            3,
+            304
+          ],
+          [
+            6,
+            305
+          ]
+        ],
+        "element_record_object_ids": [
+          316,
+          317,
+          318
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          333,
+          338
+        ],
+        "generated_result_reference_count": 2,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/feature_optimized.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 2,
+        "distance_one_cm": 2.5,
+        "distance_two_cm": 3.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "37f2fbc2-6f8d-42ec-8154-c1b8eadae845",
+          "entity_guid_text": "64e83d08-8f4c-4d88-a974-669d1ce2410f",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "37f2fbc2-6f8d-42ec-8154-c1b8eadae845",
+          "entity_guid_text": "64e83d08-8f4c-4d88-a974-669d1ce2410f",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Features",
+        "pattern_entity_type_code": 1,
+        "pattern_compute_option": "Optimized",
+        "pattern_compute_option_code": 0,
+        "compute_applies_to_feature_inputs": true,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": null,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 338,
+            "source_feature_object_id": 243,
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "SeedFeature0",
+            "terminal_object_id": 296
+          }
+        ],
+        "native_input_body_object_ids": [],
+        "source_feature_object_ids": [
+          243
+        ],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            306
+          ],
+          [
+            3,
+            304
+          ],
+          [
+            5,
+            307
+          ],
+          [
+            6,
+            305
+          ],
+          [
+            9,
+            308
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          350,
+          355,
+          360,
+          365,
+          370
+        ],
+        "generated_result_reference_count": 5,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/feature_identical.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 2,
+        "distance_one_cm": 2.5,
+        "distance_two_cm": 3.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "dbe10997-6b7a-4174-a569-450b68dcf398",
+          "entity_guid_text": "a2df9320-ecff-4716-bc87-9bc273b3f392",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "dbe10997-6b7a-4174-a569-450b68dcf398",
+          "entity_guid_text": "a2df9320-ecff-4716-bc87-9bc273b3f392",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Features",
+        "pattern_entity_type_code": 1,
+        "pattern_compute_option": "Identical",
+        "pattern_compute_option_code": 1,
+        "compute_applies_to_feature_inputs": true,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": null,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 338,
+            "source_feature_object_id": 243,
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "SeedFeature0",
+            "terminal_object_id": 296
+          }
+        ],
+        "native_input_body_object_ids": [],
+        "source_feature_object_ids": [
+          243
+        ],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            306
+          ],
+          [
+            3,
+            304
+          ],
+          [
+            5,
+            307
+          ],
+          [
+            6,
+            305
+          ],
+          [
+            9,
+            308
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          350,
+          355,
+          360,
+          365,
+          370
+        ],
+        "generated_result_reference_count": 5,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/feature_adjust.f3d",
+      "checks": {
+        "quantities_distances_symmetry_and_distance_type_match_api": true,
+        "compute_and_entity_type_match_api": true,
+        "explicit_direction_one_matches_api": true,
+        "explicit_direction_two_matches_api_or_is_inactive": true,
+        "input_count_matches_api": true,
+        "empty_suppression_matches_api": true,
+        "native_element_count_matches_api": true,
+        "observed_result_refs_plus_seed_inputs_match_api_body_count": true,
+        "explicit_input_identity_names_match_api": true
+      },
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 2,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 4.0,
+        "distance_type": "Extent",
+        "stored_extent_flag": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "473e9cac-8425-4784-9d12-472ff65a3b86",
+          "entity_guid_text": "207a193e-077c-4fc1-b175-c8c271dcdf18",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "473e9cac-8425-4784-9d12-472ff65a3b86",
+          "entity_guid_text": "207a193e-077c-4fc1-b175-c8c271dcdf18",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Features",
+        "pattern_entity_type_code": 1,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": true,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": null,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 338,
+            "source_feature_object_id": 243,
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "SeedFeature0",
+            "terminal_object_id": 296
+          }
+        ],
+        "native_input_body_object_ids": [],
+        "source_feature_object_ids": [
+          243
+        ],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            306
+          ],
+          [
+            3,
+            304
+          ],
+          [
+            5,
+            307
+          ],
+          [
+            6,
+            305
+          ],
+          [
+            9,
+            308
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          375,
+          380,
+          385,
+          390,
+          395
+        ],
+        "generated_result_reference_count": 5,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    }
+  ],
+  "existing_holdouts": [
+    {
+      "archive": "patterns-35e49809a812/one_spacing.f3d",
+      "legacy_core_fields_unchanged": [
+        "quantity_one",
+        "quantity_two",
+        "distance_one_cm",
+        "distance_two_cm",
+        "distance_type",
+        "stored_extent_flag",
+        "symmetric_one",
+        "symmetric_two",
+        "direction_one",
+        "direction_two",
+        "stored_direction_two_vector"
+      ],
+      "symmetric_key_order_retained_without_api_mapping": true,
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 1,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 0.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": null,
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "2eb3a1e1-7571-471e-995c-1eb9decf2de2",
+          "entity_guid_text": "3d4551ef-b2f9-4904-b2f9-f8aa36d46532",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": null,
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": null,
+        "stored_direction_two_vector": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 364,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            3,
+            304
+          ],
+          [
+            6,
+            305
+          ]
+        ],
+        "element_record_object_ids": [
+          316,
+          317,
+          318
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          333,
+          338
+        ],
+        "generated_result_reference_count": 2,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "patterns-35e49809a812/one_extent.f3d",
+      "legacy_core_fields_unchanged": [
+        "quantity_one",
+        "quantity_two",
+        "distance_one_cm",
+        "distance_two_cm",
+        "distance_type",
+        "stored_extent_flag",
+        "symmetric_one",
+        "symmetric_two",
+        "direction_one",
+        "direction_two",
+        "stored_direction_two_vector"
+      ],
+      "symmetric_key_order_retained_without_api_mapping": true,
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 1,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 0.0,
+        "distance_type": "Extent",
+        "stored_extent_flag": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": null,
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "4481c447-ea9e-40e7-aeaf-bd2ed8b2550c",
+          "entity_guid_text": "ab6c7188-275b-4884-9b9f-84868e9099ff",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": null,
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": null,
+        "stored_direction_two_vector": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 364,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            3,
+            304
+          ],
+          [
+            6,
+            305
+          ]
+        ],
+        "element_record_object_ids": [
+          316,
+          317,
+          318
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          333,
+          338
+        ],
+        "generated_result_reference_count": 2,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "patterns-35e49809a812/two_spacing.f3d",
+      "legacy_core_fields_unchanged": [
+        "quantity_one",
+        "quantity_two",
+        "distance_one_cm",
+        "distance_two_cm",
+        "distance_type",
+        "stored_extent_flag",
+        "symmetric_one",
+        "symmetric_two",
+        "direction_one",
+        "direction_two",
+        "stored_direction_two_vector"
+      ],
+      "symmetric_key_order_retained_without_api_mapping": true,
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 4,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 5.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "3dcbd118-e59b-4b28-a73c-0008e9586084",
+          "entity_guid_text": "c41f9b08-f0c4-49e6-9766-eb88c00553bc",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "3dcbd118-e59b-4b28-a73c-0008e9586084",
+          "entity_guid_text": "c41f9b08-f0c4-49e6-9766-eb88c00553bc",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 469,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            306
+          ],
+          [
+            3,
+            304
+          ],
+          [
+            4,
+            309
+          ],
+          [
+            5,
+            307
+          ],
+          [
+            6,
+            305
+          ],
+          [
+            7,
+            312
+          ],
+          [
+            8,
+            310
+          ],
+          [
+            9,
+            308
+          ],
+          [
+            12,
+            313
+          ],
+          [
+            13,
+            311
+          ],
+          [
+            18,
+            314
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9,
+          4,
+          8,
+          13,
+          7,
+          12,
+          18
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          362,
+          367,
+          372,
+          377,
+          382,
+          387,
+          392,
+          397,
+          402,
+          407,
+          412
+        ],
+        "generated_result_reference_count": 11,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "patterns-35e49809a812/two_extent.f3d",
+      "legacy_core_fields_unchanged": [
+        "quantity_one",
+        "quantity_two",
+        "distance_one_cm",
+        "distance_two_cm",
+        "distance_type",
+        "stored_extent_flag",
+        "symmetric_one",
+        "symmetric_two",
+        "direction_one",
+        "direction_two",
+        "stored_direction_two_vector"
+      ],
+      "symmetric_key_order_retained_without_api_mapping": true,
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 4,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 5.0,
+        "distance_type": "Extent",
+        "stored_extent_flag": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "a1d8c715-2097-4044-8d59-e2ea80d7b6b8",
+          "entity_guid_text": "05be3963-5e83-4c5f-a1f3-1d5b449be1aa",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "a1d8c715-2097-4044-8d59-e2ea80d7b6b8",
+          "entity_guid_text": "05be3963-5e83-4c5f-a1f3-1d5b449be1aa",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 469,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            306
+          ],
+          [
+            3,
+            304
+          ],
+          [
+            4,
+            309
+          ],
+          [
+            5,
+            307
+          ],
+          [
+            6,
+            305
+          ],
+          [
+            7,
+            312
+          ],
+          [
+            8,
+            310
+          ],
+          [
+            9,
+            308
+          ],
+          [
+            12,
+            313
+          ],
+          [
+            13,
+            311
+          ],
+          [
+            18,
+            314
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334
+        ],
+        "stored_element_keys": [
+          1,
+          3,
+          6,
+          2,
+          5,
+          9,
+          4,
+          8,
+          13,
+          7,
+          12,
+          18
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          362,
+          367,
+          372,
+          377,
+          382,
+          387,
+          392,
+          397,
+          402,
+          407,
+          412
+        ],
+        "generated_result_reference_count": 11,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "patterns-35e49809a812/symmetric_one.f3d",
+      "legacy_core_fields_unchanged": [
+        "quantity_one",
+        "quantity_two",
+        "distance_one_cm",
+        "distance_two_cm",
+        "distance_type",
+        "stored_extent_flag",
+        "symmetric_one",
+        "symmetric_two",
+        "direction_one",
+        "direction_two",
+        "stored_direction_two_vector"
+      ],
+      "symmetric_key_order_retained_without_api_mapping": true,
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 4,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 5.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": true,
+        "symmetric_two": false,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "fda7e848-68c2-4af5-8d15-d675d1de10cf",
+          "entity_guid_text": "8d69dfe5-6511-4b9a-8506-6822c38b0985",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "fda7e848-68c2-4af5-8d15-d675d1de10cf",
+          "entity_guid_text": "8d69dfe5-6511-4b9a-8506-6822c38b0985",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 469,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            307
+          ],
+          [
+            3,
+            305
+          ],
+          [
+            4,
+            310
+          ],
+          [
+            5,
+            308
+          ],
+          [
+            6,
+            304
+          ],
+          [
+            7,
+            313
+          ],
+          [
+            8,
+            311
+          ],
+          [
+            9,
+            306
+          ],
+          [
+            12,
+            314
+          ],
+          [
+            13,
+            309
+          ],
+          [
+            18,
+            312
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334
+        ],
+        "stored_element_keys": [
+          6,
+          1,
+          3,
+          9,
+          2,
+          5,
+          13,
+          4,
+          8,
+          18,
+          7,
+          12
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          362,
+          367,
+          372,
+          377,
+          382,
+          387,
+          392,
+          397,
+          402,
+          407,
+          412
+        ],
+        "generated_result_reference_count": 11,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    },
+    {
+      "archive": "patterns-35e49809a812/symmetric_two.f3d",
+      "legacy_core_fields_unchanged": [
+        "quantity_one",
+        "quantity_two",
+        "distance_one_cm",
+        "distance_two_cm",
+        "distance_type",
+        "stored_extent_flag",
+        "symmetric_one",
+        "symmetric_two",
+        "direction_one",
+        "direction_two",
+        "stored_direction_two_vector"
+      ],
+      "symmetric_key_order_retained_without_api_mapping": true,
+      "settings": {
+        "quantity_one": 3,
+        "quantity_two": 4,
+        "distance_one_cm": 6.0,
+        "distance_two_cm": 5.0,
+        "distance_type": "Spacing",
+        "stored_extent_flag": 0,
+        "symmetric_one": false,
+        "symmetric_two": true,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_one_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "X",
+            "object_id": 39,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 309,
+          "descriptor_object_id": 312,
+          "terminal_object_id": 315,
+          "namespace_text": "7a901c7c-d467-46f0-8245-dc79f8d346c3",
+          "entity_guid_text": "3b7929b4-fff9-4987-b190-5c49e17b2088",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_two_selection": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "terminal_object_id": 322,
+          "namespace_text": "7a901c7c-d467-46f0-8245-dc79f8d346c3",
+          "entity_guid_text": "3b7929b4-fff9-4987-b190-5c49e17b2088",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "direction_one_selection_record_object_id": 309,
+        "direction_two_selection_record_object_id": 316,
+        "stored_direction_two_vector": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_scope": "Observed explicit native axes/sketch-line vectors; inactive second/API default and occurrence contexts unresolved",
+        "control_record_object_id": 289,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option": "Adjust",
+        "pattern_compute_option_code": 2,
+        "compute_applies_to_feature_inputs": false,
+        "input_entity_collection_object_id": 286,
+        "input_selection_record_object_id": 290,
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_descriptors": [
+          {
+            "descriptor_object_id": 293,
+            "association_record_object_id": 469,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281
+          }
+        ],
+        "native_input_body_object_ids": [
+          275
+        ],
+        "source_feature_object_ids": [],
+        "stored_instance_key_pairs": [
+          [
+            2,
+            309
+          ],
+          [
+            3,
+            307
+          ],
+          [
+            4,
+            304
+          ],
+          [
+            5,
+            310
+          ],
+          [
+            6,
+            308
+          ],
+          [
+            7,
+            312
+          ],
+          [
+            8,
+            305
+          ],
+          [
+            9,
+            311
+          ],
+          [
+            12,
+            313
+          ],
+          [
+            13,
+            306
+          ],
+          [
+            18,
+            314
+          ]
+        ],
+        "element_record_object_ids": [
+          323,
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334
+        ],
+        "stored_element_keys": [
+          4,
+          8,
+          13,
+          1,
+          3,
+          6,
+          2,
+          5,
+          9,
+          7,
+          12,
+          18
+        ],
+        "stored_suppressed_element_keys": [],
+        "suppressed_element_ids": [],
+        "suppression_status": "Empty suppression lists observed; nonempty native-key/API-ID mapping remains unverified",
+        "grid_key_scope": "Native key sets match observed one-based Cantor pairing; no semantic API ID, symmetric order, or transform mapping asserted",
+        "result_record_object_ids": [
+          362,
+          367,
+          372,
+          377,
+          382,
+          387,
+          392,
+          397,
+          402,
+          407,
+          412
+        ],
+        "generated_result_reference_count": 11,
+        "input_selection_status": "Owned input proxy/collection copies agree; explicit native body or source feature identities recovered",
+        "geometry_status": "Controls, references and cached directions only; no pattern geometry regeneration"
+      }
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Unobserved compute option rejected",
+      "passed": true,
+      "reason": "Unobserved rectangular compute/entity/distance mode"
+    },
+    {
+      "check": "Duplicate native grid key rejected",
+      "passed": true,
+      "reason": "Rectangular native element keys do not cover the declared grid"
+    },
+    {
+      "check": "Controller owner changed to a valid source feature",
+      "passed": true,
+      "reason": "Rectangular repeated quantity/controller owner disagrees"
+    },
+    {
+      "check": "Direction selector owner changed",
+      "passed": true,
+      "reason": "Unsupported rectangular direction selector/owner"
+    },
+    {
+      "check": "Sketch-line tag no longer resolves to the explicit source curve",
+      "passed": true,
+      "reason": "Rectangular pattern sketch-line source missing or ambiguous"
+    },
+    {
+      "check": "Native axis descriptor owner changed to another existing feature",
+      "passed": true,
+      "reason": "Rectangular direction descriptor class/count/owner mismatch"
+    }
+  ],
+  "capture_errors": [
+    {
+      "case": "body_suppressed",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRectangularPatternModes.py\", line 82, in run\n    feature.suppressedElementsIds = [1, 4]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 123608, in _set_suppressedElementsIds\n    return _fusion.RectangularPatternFeature__set_suppressedElementsIds(self, value)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 5 : API Function not yet implemented\n"
+    }
+  ],
+  "limitations": [
+    "Feature-wide rectangular suppression setter raises API Function not yet implemented in the captured build; no successful nonempty suppression contrast yet.",
+    "Native element keys match one-based Cantor pairing; no key-to-API-ID, suppression, symmetric-order or transform mapping is asserted.",
+    "Only observed body/feature inputs, construction axes and explicit sketch lines are decoded; face/occurrence/construction patterns and unresolved selection contexts remain unsupported.",
+    "Inactive second-direction/API defaults are not inferred from the zero native cache.",
+    "No pattern geometry regeneration or solver is provided."
+  ],
+  "post_review_check": "F2 descriptor count and typed5A namespace count/owner are validated before both native-axis and sketch-line resolution; native-axis positive case and bad-descriptor-owner rejection passed.",
+  "main_reader_integration": {
+    "status": "pass",
+    "archives": 7,
+    "settings_match_stage_report": true,
+    "explicit_pattern_input_body_groups": 4
+  }
+}

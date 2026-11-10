@@ -1,0 +1,2040 @@
+{
+  "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved",
+  "interfaces": {
+    "individual": "inspect_fpm_context_cache(data,records,track)",
+    "summary": "decode_fpm_context_cache(data,records,fpm_summary)",
+    "exact_replay": "encode_fpm_context_cache(item)",
+    "validator": "validate_fixtures(root,zstd_library=None)",
+    "integration": "Attach only to the corresponding FPM numeric track as cached_context_line_comparison, or retain separate fpm_context_cache summary. Keep original FPM source/state fields null and preserve initial selection-context/tool failures.",
+    "expected_outputs": "samples[].expected_summary and controls[].expected_summary contain complete context helper outputs"
+  },
+  "framing": {
+    "context": "Typed50AEE context is exactly55bytes: zero16, six finite float64 values, exact trailer0000000100. Full payload byte replay preserves float signs and trailer literals.",
+    "semantic_gate": "Existing FPM pass must independently qualify a named-recipe/FPM Line owner in slot0/side0 alternate view. Native descriptor context reference, edge recipe bytes/name table, Fillet/Chamfer owner GUID, anchor/helper and reciprocal source support are rechecked.",
+    "observed_correspondence": "First three float64 fields match the qualified Line start and typed owner endpoint cache. Last three match qualified end-minus-start displacement; separately normalized direction agrees the qualified unit Line direction. No coordinates select an entity.",
+    "trailer": "Five literal bytes[0,0,0,1,0] retained. No boolean orientation, closure, selection, state or trim semantics assigned."
+  },
+  "limitations": [
+    "No selected-edge geometry or evaluator getters were captured for these old EdgeMode samples. Comparisons in the FPM cases are independent serialized-context versus qualified ASM cache comparisons, not API evaluator equivalence.",
+    "Qualified alternate-view provenance stays literal slot0/side0. Historical selected-source identity and chronological/current/final-state interpretation remain unassigned.",
+    "The55-byte class/shape alone does not identify natural curve type. Only already-qualified FPM Line tracks enter this decoder; same-shaped Revolve/Silhouette contexts are exclusion/corroboration controls, not new attachments.",
+    "Stored vector magnitude3 is observed endpoint displacement scale here. General context vector scale, natural-curve parameterization, trim/closure and trailer semantics remain unresolved.",
+    "The recorded raw caches occur in controlled root-component fixtures. No header-unit conversion, occurrence transform or general world-coordinate claim is made."
+  ],
+  "samples": [
+    {
+      "file": "edgemodes-52695761f185/chamfer_multiple.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 286,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Chamfer",
+            "context_object_id": 335,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 289,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9c059944-7a26-4de6-b9d7-43dce7fc477f.smbh",
+            "support_object_id": 287,
+            "FPM_attribute_record_index": 149,
+            "FPM_owner_edge_geometry_ordinal": 142,
+            "FPM_owner_edge_record_index": 148,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 40,
+              "geometry_entity_ordinal": 142,
+              "inspection_record_index": 148,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          },
+          {
+            "numerically_matching_descriptor_object_id": 298,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Chamfer",
+            "context_object_id": 336,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 301,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9c059944-7a26-4de6-b9d7-43dce7fc477f.smbh",
+            "support_object_id": 299,
+            "FPM_attribute_record_index": 151,
+            "FPM_owner_edge_geometry_ordinal": 144,
+            "FPM_owner_edge_record_index": 150,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 42,
+              "geometry_entity_ordinal": 144,
+              "inspection_record_index": 150,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              5.0,
+              1.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "00000000000000001440000000000000f03f00000000000000400000000000000000000000000000084000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                5.0,
+                1.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                5.0,
+                4.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "EqualDistanceChamferEdgeSet",
+            "tangent_chain": false,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            }
+          },
+          {
+            "kind": "TwoDistancesChamferEdgeSet",
+            "tangent_chain": false,
+            "distanceOne": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Distance 1"
+            },
+            "distanceTwo": {
+              "name": "d5",
+              "value": 0.30000000000000004,
+              "role": "Distance 2"
+            },
+            "isFlipped": false
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 287,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Fillet",
+            "context_object_id": 318,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 290,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.15e46248-e0bb-4458-b94a-6415a37d0e03.smbh",
+            "support_object_id": 288,
+            "FPM_attribute_record_index": 133,
+            "FPM_owner_edge_geometry_ordinal": 126,
+            "FPM_owner_edge_record_index": 132,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 56,
+              "geometry_entity_ordinal": 126,
+              "inspection_record_index": 132,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 0.75,
+              "role": "TangencyWeight"
+            },
+            "continuity": 2
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/chamfer_angle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 286,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Chamfer",
+            "context_object_id": 319,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 289,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ae3c04a8-5f53-41df-80be-20051fed0659.smbh",
+            "support_object_id": 287,
+            "FPM_attribute_record_index": 129,
+            "FPM_owner_edge_geometry_ordinal": 122,
+            "FPM_owner_edge_record_index": 128,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 56,
+              "geometry_entity_ordinal": 122,
+              "inspection_record_index": 128,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "DistanceAndAngleChamferEdgeSet",
+            "tangent_chain": false,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            },
+            "angle": {
+              "name": "d4",
+              "value": 0.6108652381980153,
+              "role": "Rotate Angle"
+            },
+            "isFlipped": false
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 286,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Chamfer",
+            "context_object_id": 319,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 289,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.3f35efef-6a1c-4cc4-b5b8-20997bff7ad1.smbh",
+            "support_object_id": 287,
+            "FPM_attribute_record_index": 129,
+            "FPM_owner_edge_geometry_ordinal": 122,
+            "FPM_owner_edge_record_index": 128,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 56,
+              "geometry_entity_ordinal": 122,
+              "inspection_record_index": 128,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "DistanceAndAngleChamferEdgeSet",
+            "tangent_chain": false,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            },
+            "angle": {
+              "name": "d4",
+              "value": 0.6108652381980153,
+              "role": "Rotate Angle"
+            },
+            "isFlipped": true
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_multiple.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 287,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Fillet",
+            "context_object_id": 336,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 290,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.83021902-550f-4da5-88d8-909794d154ae.smbh",
+            "support_object_id": 288,
+            "FPM_attribute_record_index": 149,
+            "FPM_owner_edge_geometry_ordinal": 142,
+            "FPM_owner_edge_record_index": 148,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 40,
+              "geometry_entity_ordinal": 142,
+              "inspection_record_index": 148,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          },
+          {
+            "numerically_matching_descriptor_object_id": 301,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Fillet",
+            "context_object_id": 337,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 304,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.83021902-550f-4da5-88d8-909794d154ae.smbh",
+            "support_object_id": 302,
+            "FPM_attribute_record_index": 151,
+            "FPM_owner_edge_geometry_ordinal": 144,
+            "FPM_owner_edge_record_index": 150,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 42,
+              "geometry_entity_ordinal": 144,
+              "inspection_record_index": 150,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              5.0,
+              1.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "00000000000000001440000000000000f03f00000000000000400000000000000000000000000000084000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                5.0,
+                1.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                5.0,
+                4.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          },
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d6",
+              "value": 0.30000000000000004,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d5",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 287,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Fillet",
+            "context_object_id": 321,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 290,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4b63da5d-220b-4c36-9e5e-fc3e86906343.smbh",
+            "support_object_id": 288,
+            "FPM_attribute_record_index": 133,
+            "FPM_owner_edge_geometry_ordinal": 126,
+            "FPM_owner_edge_record_index": 132,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 56,
+              "geometry_entity_ordinal": 126,
+              "inspection_record_index": 132,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "AsymmetricFilletEdgeSet",
+            "tangent_chain": false,
+            "offsetOne": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "EdgeOffset1"
+            },
+            "offsetTwo": {
+              "name": "d5",
+              "value": 0.1,
+              "role": "EdgeOffset2"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 2,
+            "isFlipped": false
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 287,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Fillet",
+            "context_object_id": 318,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 290,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+            "support_object_id": 288,
+            "FPM_attribute_record_index": 133,
+            "FPM_owner_edge_geometry_ordinal": 126,
+            "FPM_owner_edge_record_index": 132,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 54,
+              "geometry_entity_ordinal": 126,
+              "inspection_record_index": 132,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "ChordLengthFilletEdgeSet",
+            "tangent_chain": false,
+            "chordLength": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "ChordLen"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_variable.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "numerically_matching_descriptor_object_id": 290,
+            "descriptor_owner_object_id": 282,
+            "descriptor_owner_kind": "Fillet",
+            "context_object_id": 321,
+            "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+            "primary_recipe_object_id": 293,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "historical_source_owner_object_id": 243,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.beb206bb-c918-4c74-8b94-ffb0283953ec.smbh",
+            "support_object_id": 291,
+            "FPM_attribute_record_index": 129,
+            "FPM_owner_edge_geometry_ordinal": 122,
+            "FPM_owner_edge_record_index": 128,
+            "qualified_view_state_slot": 0,
+            "qualified_view_pointer_side": 0,
+            "qualified_view_edge_origin": {
+              "view_record_index": 56,
+              "geometry_entity_ordinal": 122,
+              "inspection_record_index": 128,
+              "section": "trailing_states",
+              "kind": "edge"
+            },
+            "stored_prefix_hex": "0000",
+            "cached_raw_point": [
+              1.0,
+              4.0,
+              2.0
+            ],
+            "stored_raw_vector": [
+              0.0,
+              -3.0,
+              0.0
+            ],
+            "derived_unit_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "stored_vector_magnitude": 3.0,
+            "stored_tail_hex": "0000000100",
+            "stored_tail_bytes": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "payload_hex": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+            "cache_correspondence": {
+              "point_matches_qualified_line_start": true,
+              "vector_matches_qualified_endpoint_displacement": true,
+              "normalized_vector_matches_qualified_unit_direction": true,
+              "qualified_start_point": [
+                1.0,
+                4.0,
+                2.0
+              ],
+              "qualified_end_point": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "qualified_line_parameter_domain": [
+                0.0,
+                3.0
+              ]
+            },
+            "semantic_gate": "Typed Fillet/Chamfer descriptor primary recipe, explicit native/body/blob tracking, and separately qualified alternate-view named-face/endpoint incidence agree with the reciprocal FPM Line owner before interpreting cache fields",
+            "vector_scale_status": "Observed stored vector equals qualified endpoint displacement; its magnitude stays separate from the unit direction. General context scale, curve parameterization and trim semantics remain unassigned.",
+            "tail_status": "Exact literal0000000100 retained without flag, direction, closure or state semantics",
+            "coordinate_scope": "Raw stored root-component cache values; no selected-edge API evaluator was captured for these fixtures, and no occurrence/world conversion is inferred",
+            "qualified_historical_state": null,
+            "exact_selected_source_identity": null,
+            "source_geometry": null,
+            "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "API_evidence": {
+        "actual_edge_sets": [
+          {
+            "kind": "VariableRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "startRadius": {
+              "name": "d4",
+              "value": 0.1,
+              "role": "StartRadius"
+            },
+            "endRadius": {
+              "name": "d5",
+              "value": 0.30000000000000004,
+              "role": "EndRadius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ],
+        "selected_edge_geometry_getter_captured": false,
+        "scope": "Actual tool settings only. Context values are compared with separately qualified serialized edge caches, not an invented source API evaluator."
+      }
+    }
+  ],
+  "controls": [
+    {
+      "file": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "independent_API_corroboration": {
+        "start_cm": [
+          4.8,
+          0.0,
+          0.0
+        ],
+        "end_cm": [
+          1.1,
+          0.0,
+          0.0
+        ],
+        "stored_context_point": [
+          4.8,
+          0.0,
+          0.0
+        ],
+        "stored_context_vector": [
+          -3.6999999999999997,
+          0.0,
+          0.0
+        ],
+        "stored_vector_magnitude": 3.6999999999999997,
+        "scope": "Actual getter comparison in an existing independent linear source role. No new FPM attachment or cross-role generalization."
+      }
+    },
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed FPM-qualified Fillet/Chamfer Line context point/vector cache and exact correspondence to bounded alternate-view start/displacement; historical source identity, chronology, general evaluator and flag/scale semantics remain unresolved"
+      },
+      "independent_API_corroboration": {
+        "start_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "end_cm": [
+          8.0,
+          -2.0,
+          0.0
+        ],
+        "stored_context_point": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "stored_context_vector": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "stored_vector_magnitude": 2.0,
+        "scope": "Actual getter comparison in an existing independent linear source role. No new FPM attachment or cross-role generalization."
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d every qualified FPM track has one context cache",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor286 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 exact55-byte replay",
+      "actual": "00000000000000001440000000000000f03f00000000000000400000000000000000000000000000084000000000000000000000000100",
+      "expected": "00000000000000001440000000000000f03f00000000000000400000000000000000000000000000084000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/chamfer_multiple.f3d descriptor298 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d every qualified FPM track has one context cache",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-52695761f185/fillet_curvature.f3d descriptor287 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d every qualified FPM track has one context cache",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle.f3d descriptor286 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d every qualified FPM track has one context cache",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d descriptor286 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d every qualified FPM track has one context cache",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor287 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 exact55-byte replay",
+      "actual": "00000000000000001440000000000000f03f00000000000000400000000000000000000000000000084000000000000000000000000100",
+      "expected": "00000000000000001440000000000000f03f00000000000000400000000000000000000000000000084000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_multiple.f3d descriptor301 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d every qualified FPM track has one context cache",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_asymmetric.f3d descriptor287 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d every qualified FPM track has one context cache",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_chord.f3d descriptor287 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d every qualified FPM track has one context cache",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d no additional context-cache failure",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d prior FPM summary preserved exactly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 exact55-byte replay",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 literal trailer retained",
+      "actual": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 captured displacement magnitude remains3",
+      "actual": 3.0,
+      "expected": 3.0,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 point equals qualified start",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 vector equals qualified endpoint displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 natural/evaluated source geometry remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 historical state remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "edgemodes-87edbf67527b/fillet_variable.f3d descriptor290 exact selected-source identity remains unassigned",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "Actual Chamfer flip does not alter source context payload",
+      "actual": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "expected": "0000000000000000f03f00000000000010400000000000000040000000000000000000000000000008c000000000000000000000000100",
+      "passed": true
+    },
+    {
+      "label": "Distinct named edge operands cover both stored direction signs",
+      "actual": [
+        [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "expected": [
+        [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "label": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d same-shaped context is not an FPM attachment",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d independently corroborated context schema",
+      "actual": [
+        "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        55,
+        "0000000100"
+      ],
+      "expected": [
+        "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        55,
+        "0000000100"
+      ],
+      "passed": true
+    },
+    {
+      "label": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d point vs actual independent edge getter",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d stored vector vs actual endpoint getter displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d same-shaped context is not an FPM attachment",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d independently corroborated context schema",
+      "actual": [
+        "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        55,
+        "0000000100"
+      ],
+      "expected": [
+        "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        55,
+        "0000000100"
+      ],
+      "passed": true
+    },
+    {
+      "label": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d point vs actual independent edge getter",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d stored vector vs actual endpoint getter displacement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Context point disagrees with qualified owner",
+      "rejected": true,
+      "reason": "FPM native context does not agree with qualified-view Line start/displacement caches"
+    },
+    {
+      "label": "Degenerate stored context vector",
+      "rejected": true,
+      "reason": "FPM context point/vector cache is nonfinite or degenerate"
+    },
+    {
+      "label": "Scaled vector disagrees with qualified displacement",
+      "rejected": true,
+      "reason": "FPM native context does not agree with qualified-view Line start/displacement caches"
+    },
+    {
+      "label": "Unknown literal trailer frame",
+      "rejected": true,
+      "reason": "Unobserved FPM55-byte context extent/prefix/tail or role identity"
+    },
+    {
+      "label": "Context reference targets wrong native record class",
+      "rejected": true,
+      "reason": "FPM context typed native reference missing, ambiguous or wrong class"
+    },
+    {
+      "label": "Numeric FPM correspondence without qualified Line view",
+      "rejected": true,
+      "reason": "FPM context requires a separately qualified named-recipe/FPM Line owner agreement"
+    },
+    {
+      "label": "Stale prerequisite recipe cannot validate altered native input",
+      "rejected": true,
+      "reason": "FPM context primary recipe differs from independently qualified input"
+    }
+  ],
+  "validation": {
+    "saved_FPM_files": 8,
+    "qualified_context_caches": 10,
+    "exact55_byte_payload_replays": 10,
+    "independent_API_schema_controls": 2,
+    "comparisons_passed": 114,
+    "malformed_guards_passed": 7,
+    "source_API_evaluator_claims": 0,
+    "state_or_exact_source_identity_claims": 0,
+    "context_or_tool_failures_cleared": 0,
+    "new_API_calls": 0
+  }
+}

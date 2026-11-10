@@ -1,0 +1,500 @@
+{
+  "scope": "One Fusion version; generated circle-based blind extrusions only",
+  "files_checked": 9,
+  "parameter_records_checked": 20,
+  "independent_holdout_files": 4,
+  "status": "pass",
+  "failures": [],
+  "limitations": [
+    "Record discovery uses observed semantic labels; no complete binary grammar.",
+    "No decoded extrusion-to-parameter ownership graph; names matched to API evidence only.",
+    "No sketch, profile, topology, body geometry or general end-condition decoder.",
+    "No writer or modified-file loading test; no compatibility claim for other Fusion versions.",
+    "Draft values checked against generation inputs; depth and expressions against API readings."
+  ],
+  "results": [
+    {
+      "file": "output-7230965e9265/depth07_a.f3d",
+      "sha256": "47683457b8b16b4463554c06a66ef4fef5c916fc7e6c926f73a65479b28b620b",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 0.7000000000000001,
+              "role_offset": 27360,
+              "value_offset": 27410,
+              "expression_candidates": [
+                "7 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 7.000000000000001
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 27700,
+              "value_offset": 27746,
+              "expression_candidates": [
+                "0.0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "api_depth_cm": 0.7000000000000001,
+          "draft_degrees": 0
+        }
+      ]
+    },
+    {
+      "file": "output-7230965e9265/depth07_b.f3d",
+      "sha256": "feebc8ce61263c8102421c18d529af186201ab29340710bbd5d9b67faa86ff83",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 0.7000000000000001,
+              "role_offset": 27360,
+              "value_offset": 27410,
+              "expression_candidates": [
+                "7 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 7.000000000000001
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 27700,
+              "value_offset": 27746,
+              "expression_candidates": [
+                "0.0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "api_depth_cm": 0.7000000000000001,
+          "draft_degrees": 0
+        }
+      ]
+    },
+    {
+      "file": "output-7230965e9265/depth13.f3d",
+      "sha256": "f7153c32b51d4f9d38ccc047259fcd57b891b68883731abfa63766724c3ffa98",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 1.3,
+              "role_offset": 27362,
+              "value_offset": 27412,
+              "expression_candidates": [
+                "13 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 13.0
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 27702,
+              "value_offset": 27748,
+              "expression_candidates": [
+                "0.0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "api_depth_cm": 1.3,
+          "draft_degrees": 0
+        }
+      ]
+    },
+    {
+      "file": "output-7230965e9265/depth29.f3d",
+      "sha256": "f024244132a9aa48f904fc898ae6a3ab9e36d1017846b4723a228f777d74c8e3",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 2.9000000000000004,
+              "role_offset": 27362,
+              "value_offset": 27412,
+              "expression_candidates": [
+                "29 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 29.000000000000004
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 27702,
+              "value_offset": 27748,
+              "expression_candidates": [
+                "0.0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "api_depth_cm": 2.9000000000000004,
+          "draft_degrees": 0
+        }
+      ]
+    },
+    {
+      "file": "output-7230965e9265/depth07_return.f3d",
+      "sha256": "2016d42d2d87b5c04d687085b1d3b4bafc9f4c274f12e54df6e172e3051e032a",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 0.7000000000000001,
+              "role_offset": 27360,
+              "value_offset": 27410,
+              "expression_candidates": [
+                "7 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 7.000000000000001
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 27700,
+              "value_offset": 27746,
+              "expression_candidates": [
+                "0.0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "api_depth_cm": 0.7000000000000001,
+          "draft_degrees": 0
+        }
+      ]
+    },
+    {
+      "file": "holdouts-f8c508a73323/independent_depth.f3d",
+      "sha256": "56501d4fb9121a9c44ee6dff4e5be1158731386cb643de40b032a0039c8d0ab5",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 1.7375,
+              "role_offset": 27396,
+              "value_offset": 27446,
+              "expression_candidates": [
+                "17.375 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 17.375
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 27732,
+              "value_offset": 27778,
+              "expression_candidates": [
+                "0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 17.375,
+          "radius_mm": 6.25,
+          "draft_degrees": 0,
+          "reverse": false,
+          "parameter_name": "d1",
+          "api_depth_cm": 1.7375,
+          "expression": "17.375 mm"
+        }
+      ]
+    },
+    {
+      "file": "holdouts-f8c508a73323/expression_depth.f3d",
+      "sha256": "d5365b4b0eb7ec4ee31486d966dbbd9521a30eb814207a9705402087b6b6bdbb",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d2",
+              "display_units": "mm",
+              "raw_float64": 1.9250000000000003,
+              "role_offset": 30962,
+              "value_offset": 31012,
+              "expression_candidates": [
+                "probeDepth * 2 + 1 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 19.250000000000004
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d3",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 31298,
+              "value_offset": 31344,
+              "expression_candidates": [
+                "0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 19.25,
+          "radius_mm": 12,
+          "draft_degrees": 0,
+          "reverse": false,
+          "parameter_name": "d2",
+          "api_depth_cm": 1.9250000000000003,
+          "expression": "probeDepth * 2 + 1 mm"
+        }
+      ]
+    },
+    {
+      "file": "holdouts-f8c508a73323/two_extrusions.f3d",
+      "sha256": "1995deb1b78e8ca45b3cc0bb3e0fdb30205ed0674600776a9bffa1ba222c21ce",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 4.3125,
+              "role_offset": 31810,
+              "value_offset": 31860,
+              "expression_candidates": [
+                "43.125 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 43.125
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 32146,
+              "value_offset": 32192,
+              "expression_candidates": [
+                "0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            },
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d3",
+              "display_units": "mm",
+              "raw_float64": -0.5875,
+              "role_offset": 38604,
+              "value_offset": 38654,
+              "expression_candidates": [
+                "-( 5.875 mm )"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": -5.875
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d4",
+              "display_units": "deg",
+              "raw_float64": 0.0,
+              "role_offset": 38940,
+              "value_offset": 38986,
+              "expression_candidates": [
+                "0 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 0.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 43.125,
+          "radius_mm": 4,
+          "draft_degrees": 0,
+          "reverse": false,
+          "parameter_name": "d1",
+          "api_depth_cm": 4.3125,
+          "expression": "43.125 mm"
+        },
+        {
+          "name": "BlindProbe_1",
+          "depth_mm": 5.875,
+          "radius_mm": 3,
+          "draft_degrees": 0,
+          "reverse": true,
+          "parameter_name": "d3",
+          "api_depth_cm": -0.5875,
+          "expression": "-( 5.875 mm )"
+        }
+      ]
+    },
+    {
+      "file": "holdouts-f8c508a73323/drafted_extrusion.f3d",
+      "sha256": "8745a3c1396959165517d872f70078377411273cd7f5bcb1870554fc613785fa",
+      "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "parameters": [
+            {
+              "role": "AlongDistance",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 2.125,
+              "role_offset": 27394,
+              "value_offset": 27444,
+              "expression_candidates": [
+                "21.25 mm"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_mm": 21.25
+            },
+            {
+              "role": "TaperAngle",
+              "parameter_name": "d2",
+              "display_units": "deg",
+              "raw_float64": 0.08726646259971647,
+              "role_offset": 27730,
+              "value_offset": 27776,
+              "expression_candidates": [
+                "5 deg"
+              ],
+              "layout": "u32-length UTF16LE strings followed by LE float64",
+              "hypothesized_value_degrees": 5.0
+            }
+          ],
+          "rejected": []
+        }
+      ],
+      "validation": "pass",
+      "validation_errors": [],
+      "reference_extrusions": [
+        {
+          "name": "BlindProbe_0",
+          "depth_mm": 21.25,
+          "radius_mm": 10,
+          "draft_degrees": 5,
+          "reverse": false,
+          "parameter_name": "d1",
+          "api_depth_cm": 2.125,
+          "expression": "21.25 mm"
+        }
+      ]
+    }
+  ]
+}

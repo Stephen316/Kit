@@ -1,0 +1,1558 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "endpoint_only_control",
+      "file": "endpoint_only_control.f3d",
+      "requested": {
+        "positions": [],
+        "radii_cm": [],
+        "start_radius_cm": 0.1,
+        "end_radius_cm": 0.3,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12Oy01DMRBFKWUaGGl+2JMCQKKBbKP4h7ICRVSQJQVQBS2kEBZIbGiACrBNQLxnWZrrO8d3hkCAQQN4cy6eGxYvjqZumDRn5Ka8icbWagLq7OBpKPGuGGw4Ab6Orw8vz3en0+HjbG/vn52QkbtRlSZKGKQpWo6MiZJjDDnFeB04O022Z1ytzpxHMMcZKAgF6MW6O5aebSWedW62MsLasH8GQS33dXes+fBYd2X/tIcbcEC+XIHb/qQhh7h42x9Epye/zSU1shecLtp/Hzr3DRTgI2B/AQAA",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqeiNfnTujybmjIf7DW5efcpUIWRgrGZgqWxsVGakbGBrplRmrGuSbK5oW6SQZKFrrlZcpK5uamZYbKFAVgt0AwGNAC2z0ABbB3IeiNzUwASd9l2iAAAAA==",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "set_mid_radii_status": "Endpoint-only control; no midpoint setter called",
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::VariableRadiusFilletEdgeSetInput",
+        "start_radius_value_input_real": 0.1,
+        "end_radius_value_input_real": 0.3,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ],
+        "mid_array_scope": "Requested arrays accepted by setMidRadii; this input class has no mid-array getters"
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqeiNfnTujybmjIf7DW5efcpUIWRgrGZgqWxsVGakbGBrplRmrGuSbK5oW6SQZKFrrlZcpK5uamZYbKFAVgt0AwGNAC2z0ABbB3IeiNzUwASd9l2iAAAAA==",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.972142572305952,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeVariableFilletIntermediate",
+        "rolling_ball_corner": true,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::VariableRadiusFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 1,
+            "start_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "StartRadius",
+              "raw_value": 0.1,
+              "unit": "mm",
+              "expression": "1.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "end_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EndRadius",
+              "raw_value": 0.30000000000000004,
+              "unit": "mm",
+              "expression": "3.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "mid_radius_count": 0,
+            "mid_position_count": 0,
+            "mid_radii": [],
+            "mid_positions": [],
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12Oy01DMRBFKWUaGGl+2JMCQKKBbKP4h7ICRVSQJQVQBS2kEBZIbGiACrBNQLxnWZrrO8d3hkCAQQN4cy6eGxYvjqZumDRn5Ka8icbWagLq7OBpKPGuGGw4Ab6Orw8vz3en0+HjbG/vn52QkbtRlSZKGKQpWo6MiZJjDDnFeB04O022Z1ytzpxHMMcZKAgF6MW6O5aebSWedW62MsLasH8GQS33dXes+fBYd2X/tIcbcEC+XIHb/qQhh7h42x9Epye/zSU1shecLtp/Hzr3DRTgI2B/AQAA",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "VariableFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqeiNfnTujybmjIf7DW5efcpUIWRgrGZgqWxsVGakbGBrplRmrGuSbK5oW6SQZKFrrlZcpK5uamZYbKFAVgt0AwGNAC2z0ABbB3IeiNzUwASd9l2iAAAAA==",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "StartRadius",
+          "raw_value": 0.1,
+          "unit": "mm",
+          "expression": "1.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EndRadius",
+          "raw_value": 0.30000000000000004,
+          "unit": "mm",
+          "expression": "3.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "one_quarter",
+      "file": "one_quarter.f3d",
+      "requested": {
+        "positions": [
+          0.25
+        ],
+        "radii_cm": [
+          0.2
+        ],
+        "start_radius_cm": 0.1,
+        "end_radius_cm": 0.3,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OvW0DMQyFDbhyndINFyBAkTpKHiBu0qc9nH7OSBcE3iCdB/AMaVx5gWQyW1Iuge8EAXx6/PRIAgYDojDsUohsBVMMDq0zAb1PBkPnkuqu4zF3QIWtPFXFvigDtjoK55+vy3W733yuv0+3p5djIbjlkjgNHHEcjUUrrsMhBIM+K6Wo4jlTY0vGanHaPII2zoIAk0Iptrh16dYWMq22zRaGLg37YBDkdMj9R45v77lPw3GAZ/CAZroM+/KkKquYvNdfRJrHf805VbNnnMza/x8KdwcwGhb8fwEAAA==",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrSDK9ZulnbjbGY+0PVf2LsEqMJIwdhMIdHA2NwsyShZNy3N0ETXxNjcVDcxKclQ1yLVzCAl2czYwijVAKwWaAYDGgDbZ6AAtg5kvZG5KQB584DLiAAAAA==",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "set_mid_radii_returned": true,
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::VariableRadiusFilletEdgeSetInput",
+        "start_radius_value_input_real": 0.1,
+        "end_radius_value_input_real": 0.3,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ],
+        "mid_array_scope": "Requested arrays accepted by setMidRadii; this input class has no mid-array getters"
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrSDK9ZulnbjbGY+0PVf2LsEqMJIwdhMIdHA2NwsyShZNy3N0ETXxNjcVDcxKclQ1yLVzCAl2czYwijVAKwWaAYDGgDbZ6AAtg5kvZG5KQB584DLiAAAAA==",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.96097456094172,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeVariableFilletIntermediate",
+        "rolling_ball_corner": true,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::VariableRadiusFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 1,
+            "start_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "StartRadius",
+              "raw_value": 0.1,
+              "unit": "mm",
+              "expression": "1.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "end_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EndRadius",
+              "raw_value": 0.30000000000000004,
+              "unit": "mm",
+              "expression": "3.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "mid_radius_count": 1,
+            "mid_position_count": 1,
+            "mid_radii": [
+              {
+                "index": 0,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d6",
+                "role": "MidRadius",
+                "raw_value": 0.2,
+                "unit": "mm",
+                "expression": "2.00 mm",
+                "created_by": "ProbeVariableFilletIntermediate"
+              }
+            ],
+            "mid_positions": [
+              {
+                "index": 0,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d7",
+                "role": "MidParams",
+                "raw_value": 0.25,
+                "unit": "",
+                "expression": "0.25",
+                "created_by": "ProbeVariableFilletIntermediate"
+              }
+            ],
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OvW0DMQyFDbhyndINFyBAkTpKHiBu0qc9nH7OSBcE3iCdB/AMaVx5gWQyW1Iuge8EAXx6/PRIAgYDojDsUohsBVMMDq0zAb1PBkPnkuqu4zF3QIWtPFXFvigDtjoK55+vy3W733yuv0+3p5djIbjlkjgNHHEcjUUrrsMhBIM+K6Wo4jlTY0vGanHaPII2zoIAk0Iptrh16dYWMq22zRaGLg37YBDkdMj9R45v77lPw3GAZ/CAZroM+/KkKquYvNdfRJrHf805VbNnnMza/x8KdwcwGhb8fwEAAA==",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "VariableFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrSDK9ZulnbjbGY+0PVf2LsEqMJIwdhMIdHA2NwsyShZNy3N0ETXxNjcVDcxKclQ1yLVzCAl2czYwijVAKwWaAYDGgDbZ6AAtg5kvZG5KQB584DLiAAAAA==",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "StartRadius",
+          "raw_value": 0.1,
+          "unit": "mm",
+          "expression": "1.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EndRadius",
+          "raw_value": 0.30000000000000004,
+          "unit": "mm",
+          "expression": "3.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "MidRadius",
+          "raw_value": 0.2,
+          "unit": "mm",
+          "expression": "2.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "MidParams",
+          "raw_value": 0.25,
+          "unit": "",
+          "expression": "0.25",
+          "created_by": "ProbeVariableFilletIntermediate"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "one_three_quarters",
+      "file": "one_three_quarters.f3d",
+      "requested": {
+        "positions": [
+          0.75
+        ],
+        "radii_cm": [
+          0.2
+        ],
+        "start_radius_cm": 0.1,
+        "end_radius_cm": 0.3,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OTWoDMQyFcxRdQCBLGo+9KGTTUuYALXQTxIxTsgiE0pN00XVvlgMEeoFuKjs/ZMYY9Pz0+UkEDAEkQjQqtNURi6ihWkmYmA25M+knzrmPAuRs5akqTq4CaHUiDPvX4fj1/Pbzt7bf79ODE9xyRaWMYYtJqUPN2VU2ReqDMKXYicbGesZqcdo8gjZOQYApghd1ty7d2kKh1bbZwohLQ+8MgjK9l81HGXeHspns0+AREmC4XIYnf1KVVVy8lzMizeNrc07V7Bkns/btg3P/kLelqX8BAAA=",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglduuNf9SR5RC347JL6b9toWqMJIwdhMwczYxDg12TBN18LEwFTXxNISyLJMNNE1MDc0NjKwMDM1NjEDqwWawYAGwPYZKICtA1lvZG4KAEQEmTuIAAAA",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "set_mid_radii_returned": true,
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::VariableRadiusFilletEdgeSetInput",
+        "start_radius_value_input_real": 0.1,
+        "end_radius_value_input_real": 0.3,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ],
+        "mid_array_scope": "Requested arrays accepted by setMidRadii; this input class has no mid-array getters"
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglduuNf9SR5RC347JL6b9toWqMJIwdhMwczYxDg12TBN18LEwFTXxNISyLJMNNE1MDc0NjKwMDM1NjEDqwWawYAGwPYZKICtA1lvZG4KAEQEmTuIAAAA",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.981327284730458,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeVariableFilletIntermediate",
+        "rolling_ball_corner": true,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::VariableRadiusFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 1,
+            "start_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "StartRadius",
+              "raw_value": 0.1,
+              "unit": "mm",
+              "expression": "1.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "end_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EndRadius",
+              "raw_value": 0.30000000000000004,
+              "unit": "mm",
+              "expression": "3.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "mid_radius_count": 1,
+            "mid_position_count": 1,
+            "mid_radii": [
+              {
+                "index": 0,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d6",
+                "role": "MidRadius",
+                "raw_value": 0.2,
+                "unit": "mm",
+                "expression": "2.00 mm",
+                "created_by": "ProbeVariableFilletIntermediate"
+              }
+            ],
+            "mid_positions": [
+              {
+                "index": 0,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d7",
+                "role": "MidParams",
+                "raw_value": 0.75,
+                "unit": "",
+                "expression": "0.75",
+                "created_by": "ProbeVariableFilletIntermediate"
+              }
+            ],
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OTWoDMQyFcxRdQCBLGo+9KGTTUuYALXQTxIxTsgiE0pN00XVvlgMEeoFuKjs/ZMYY9Pz0+UkEDAEkQjQqtNURi6ihWkmYmA25M+knzrmPAuRs5akqTq4CaHUiDPvX4fj1/Pbzt7bf79ODE9xyRaWMYYtJqUPN2VU2ReqDMKXYicbGesZqcdo8gjZOQYApghd1ty7d2kKh1bbZwohLQ+8MgjK9l81HGXeHspns0+AREmC4XIYnf1KVVVy8lzMizeNrc07V7Bkns/btg3P/kLelqX8BAAA=",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "VariableFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglduuNf9SR5RC347JL6b9toWqMJIwdhMwczYxDg12TBN18LEwFTXxNISyLJMNNE1MDc0NjKwMDM1NjEDqwWawYAGwPYZKICtA1lvZG4KAEQEmTuIAAAA",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "StartRadius",
+          "raw_value": 0.1,
+          "unit": "mm",
+          "expression": "1.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EndRadius",
+          "raw_value": 0.30000000000000004,
+          "unit": "mm",
+          "expression": "3.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "MidRadius",
+          "raw_value": 0.2,
+          "unit": "mm",
+          "expression": "2.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "MidParams",
+          "raw_value": 0.75,
+          "unit": "",
+          "expression": "0.75",
+          "created_by": "ProbeVariableFilletIntermediate"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "two_intermediates",
+      "file": "two_intermediates.f3d",
+      "requested": {
+        "positions": [
+          0.25,
+          0.75
+        ],
+        "radii_cm": [
+          0.18,
+          0.24
+        ],
+        "start_radius_cm": 0.1,
+        "end_radius_cm": 0.3,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OMQ7CMAxFOYovEMlxTJpMiAF2JGBhqNI0RWyAWLgBKxIn4W7sOKEg2iiSf75fvo1AoMFYIBs5eqxUrJgUTzmqgOhEGa8bT9yGBChs5jErcqI0cHYs7B6r01XPn/dwe22u65kQlHM9Gp0coXJTbhRXMSrXtZ2KJgXfIHdNqAorGZPRKfMQyjgGA4QWpLC4eenSNqhLLZuNDDs2+M9ASO0+1ecUD8dUt+ESYAEOlO4vwVKemGUWvbf9IKZ49G0OqZw94Myg/fsg3BvncvPQfwEAAA==",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvSUwMJKQ8dNExM7voZWhtgDVRgpGJspWBoYG6ZaGBnoWpiaJOmamCcn61qkpaTpJhunJlomGZikJSWag9UCzWBAA2D7DBTA1oGsNzI3BQBnhULiiAAAAA==",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "set_mid_radii_returned": true,
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::VariableRadiusFilletEdgeSetInput",
+        "start_radius_value_input_real": 0.1,
+        "end_radius_value_input_real": 0.3,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ],
+        "mid_array_scope": "Requested arrays accepted by setMidRadii; this input class has no mid-array getters"
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "VariableFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvSUwMJKQ8dNExM7voZWhtgDVRgpGJspWBoYG6ZaGBnoWpiaJOmamCcn61qkpaTpJhunJlomGZikJSWag9UCzWBAA2D7DBTA1oGsNzI3BQBnhULiiAAAAA==",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.970471252945547,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeVariableFilletIntermediate",
+        "rolling_ball_corner": true,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::VariableRadiusFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 1,
+            "start_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "StartRadius",
+              "raw_value": 0.1,
+              "unit": "mm",
+              "expression": "1.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "end_radius": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EndRadius",
+              "raw_value": 0.30000000000000004,
+              "unit": "mm",
+              "expression": "3.00 mm",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeVariableFilletIntermediate"
+            },
+            "mid_radius_count": 2,
+            "mid_position_count": 2,
+            "mid_radii": [
+              {
+                "index": 0,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d6",
+                "role": "MidRadius",
+                "raw_value": 0.24,
+                "unit": "mm",
+                "expression": "2.40 mm",
+                "created_by": "ProbeVariableFilletIntermediate"
+              },
+              {
+                "index": 1,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d7",
+                "role": "MidRadius",
+                "raw_value": 0.18000000000000002,
+                "unit": "mm",
+                "expression": "1.80 mm",
+                "created_by": "ProbeVariableFilletIntermediate"
+              }
+            ],
+            "mid_positions": [
+              {
+                "index": 0,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d8",
+                "role": "MidParams",
+                "raw_value": 0.75,
+                "unit": "",
+                "expression": "0.75",
+                "created_by": "ProbeVariableFilletIntermediate"
+              },
+              {
+                "index": 1,
+                "entity_type": "adsk::fusion::ModelParameter",
+                "name": "d9",
+                "role": "MidParams",
+                "raw_value": 0.25,
+                "unit": "",
+                "expression": "0.25",
+                "created_by": "ProbeVariableFilletIntermediate"
+              }
+            ],
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OMQ7CMAxFOYovEMlxTJpMiAF2JGBhqNI0RWyAWLgBKxIn4W7sOKEg2iiSf75fvo1AoMFYIBs5eqxUrJgUTzmqgOhEGa8bT9yGBChs5jErcqI0cHYs7B6r01XPn/dwe22u65kQlHM9Gp0coXJTbhRXMSrXtZ2KJgXfIHdNqAorGZPRKfMQyjgGA4QWpLC4eenSNqhLLZuNDDs2+M9ASO0+1ecUD8dUt+ESYAEOlO4vwVKemGUWvbf9IKZ49G0OqZw94Myg/fsg3BvncvPQfwEAAA==",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "VariableFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvSUwMJKQ8dNExM7voZWhtgDVRgpGJspWBoYG6ZaGBnoWpiaJOmamCcn61qkpaTpJhunJlomGZikJSWag9UCzWBAA2D7DBTA1oGsNzI3BQBnhULiiAAAAA==",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "VariableFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "StartRadius",
+          "raw_value": 0.1,
+          "unit": "mm",
+          "expression": "1.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EndRadius",
+          "raw_value": 0.30000000000000004,
+          "unit": "mm",
+          "expression": "3.00 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "MidRadius",
+          "raw_value": 0.24,
+          "unit": "mm",
+          "expression": "2.40 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "MidRadius",
+          "raw_value": 0.18000000000000002,
+          "unit": "mm",
+          "expression": "1.80 mm",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "MidParams",
+          "raw_value": 0.75,
+          "unit": "",
+          "expression": "0.75",
+          "created_by": "ProbeVariableFilletIntermediate"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d9",
+          "role": "MidParams",
+          "raw_value": 0.25,
+          "unit": "",
+          "expression": "0.25",
+          "created_by": "ProbeVariableFilletIntermediate"
+        }
+      ],
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [],
+  "status": "complete",
+  "executed_generator_sha256": "9431d92fb4d2d65eea5bdadcdc16cbb72ae8200e5e0db2a169fb078febe80e83",
+  "SDK_scope": "VariableRadiusFilletEdgeSetInput.setMidRadii(radii,positions): radii real values are cm; positions real values are unitless0..1. Actual feature midRadii/midPositions are ModelParameter lists.",
+  "identity_scope": "Actual API source getters retained before fillet consumes the edge and after rollback; no serialized native/ASM identity or orientation assigned by this generator"
+}

@@ -1,0 +1,1430 @@
+{
+  "scope": "Observed explicit sketch-point Loft endpoint membership, PointSharp and PointTangent controls; no Loft surface regeneration.",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateLoftPointModes.py",
+  "capture_folder": "loftpoints-f5bbdb97a568",
+  "summary": {
+    "new_archives": 4,
+    "api_comparisons": 90,
+    "all_comparisons_passed": true,
+    "prior_loft_archives_checked": 19,
+    "malformed_checks": 8,
+    "coincident_point_counterexamples": 1,
+    "capture_errors": 0,
+    "getter_errors": 0
+  },
+  "integration": {
+    "function": "decode_loft_points(data, records, body, feature, features)",
+    "callsite": "Public Loft dispatcher may call this helper for explicit point-section variants. It imports modes/operation profile resolver only, never public decode_loft.",
+    "modes_hooks": "Root-authorized allow_point_end_conditions=False and section_resolver=None keyword defaults preserve existing profile/end-condition acceptance. Root independently added guide resolver after our shared edits.",
+    "placement": "Main decode_basics resolves sketch placement before tool decoding. When decoded component_position_cm exists, section cached xyz must agree; identity resolution always uses sketch ID/tag first."
+  },
+  "layout": {
+    "point_section": "2F3200BA section60: bytes0:2 zero; uint32@2=1; float64[3]@6 cached component endpoint xyz(cm); uint32@30=0; owner ref@34; proxy ref@45; uint32@56=4. Existing profile section36/code2 remains supported.",
+    "point_identity": "Owned105-byte2CA proxy has one5A1BF263 descriptor; descriptor primary ref points to D95D18 leaf with uint64 sketchID@2 and pointtag@10. Resolve exactly one Point in exactly one decoded sketch; validate proxy/descriptor feature owners and reciprocal6CCF support links to source sketch feature.",
+    "point_context": "Descriptor owns one994C context payload38bytes for origin point/start or166bytes for offset endpoint; retained raw with typed class, without assigning matrix/frame semantics.",
+    "endpoint_controls": "Main Loft condition code4/no angle/no weight=PointSharp; code5/no angle/positive side Weight binding=PointTangent. End Weight1vs2 captures confirm active binding values. Profile endpoint remains Free in these samples."
+  },
+  "observations": [
+    "Point at z3 has local coordinates[0,0,0], decoded component coordinates[0,0,3], and section cached coordinates[0,0,3]; establishes observed cache frame without using coordinates to identify the point.",
+    "SharpStart captures the first-section variant independently; tangent-start is unverified and rejected.",
+    "Actual API point/profile entity types, condition types and tangent weights were read after timeline rollback; exports occurred after timeline restoration. All getter/case error lists are empty.",
+    "API entity tokens are opaque and were not compared as native IDs. Native numeric sketch IDs/tags come from typed D95D leaf payloads."
+  ],
+  "limitations": [
+    "Only open solid NewBody with two sections, one sketch point and one sketch profile, no guides; other combinations explicitly rejected.",
+    "PointTangent supported only at last section as captured; first-section tangent, dual points, interior points, surface/closed points and operation combinations unverified.",
+    "ConstructionPoint, direct BRepVertex and assembly-context point selections unverified; SDK does not document direct BRepVertex section input.",
+    "Point context coordinate-frame schema, profile traversal, exact loft geometry, stable topology, solving and native writer remain unresolved."
+  ],
+  "samples": [
+    {
+      "file": "loftpoints-f5bbdb97a568/sharp_end.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section0.sketch_name",
+          "decoded": "LoftPointSection1",
+          "api": "LoftPointSection1",
+          "passed": true
+        },
+        {
+          "field": "section0.end_condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.profile_loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section0.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.curve.type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section0.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.circle.radius_cm",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::SketchPoint",
+          "api": "adsk::fusion::SketchPoint",
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_name",
+          "decoded": "LoftPointSection2",
+          "api": "LoftPointSection2",
+          "passed": true
+        },
+        {
+          "field": "section1.end_condition_type",
+          "decoded": "adsk::fusion::LoftPointSharpEndCondition",
+          "api": "adsk::fusion::LoftPointSharpEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.world_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.cached_section_position_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          317,
+          325
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 317,
+            "profile": {
+              "selection_record_object_id": 318,
+              "descriptor_object_id": 321,
+              "loop_definition_object_id": 324,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftPointSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 325,
+            "point": {
+              "selection_record_object_id": 326,
+              "descriptor_object_id": 329,
+              "terminal_object_id": 332,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftPointSection2",
+              "point_object_id": 281,
+              "point_entity_tag": 104,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "proxy_support_record_object_id": 327,
+              "descriptor_support_record_object_id": 330,
+              "context_record_object_id": 341,
+              "context_payload_hex": "000000000000000000000000000000000000000000000000084000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000840000000000000000000000000000000000000000000000000000000000000f03f0156010000000000000000",
+              "context_status": "Typed observed 38/166-byte point context retained; coordinate-frame payload semantics unresolved",
+              "association": "Owned section/proxy/descriptor and reciprocal supports select typed sketch ID and point tag",
+              "scope": "Explicit selected point membership; cached section position is independently cross-checked when sketch placement is available"
+            },
+            "end_condition": {
+              "type": "PointSharp",
+              "stored_condition_code": 4,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 333,
+        "result_body_anchor_object_ids": [
+          358
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit ordered profile and sketch-point sections; point identified by native sketch ID/tag with reciprocal owners",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Captured sharp point at start/end and tangent point at end with positive weight; other point-section combinations remain unsupported"
+      },
+      "api_result_observations": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguOdnr4/tz1tJ6TNdos/+eMKUIWRgrGZgpGZmWmqgUWKbqJJspGuiUlysm5SYrKlrnmqoYWRpbmpZUpyClgt0AwGNAC2z0ABbB3IemNTIwCg8SzeiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535901963,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            3.0
+          ]
+        }
+      ],
+      "getter_errors": []
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/sharp_start.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::SketchPoint",
+          "api": "adsk::fusion::SketchPoint",
+          "passed": true
+        },
+        {
+          "field": "section0.sketch_name",
+          "decoded": "LoftPointSection1",
+          "api": "LoftPointSection1",
+          "passed": true
+        },
+        {
+          "field": "section0.end_condition_type",
+          "decoded": "adsk::fusion::LoftPointSharpEndCondition",
+          "api": "adsk::fusion::LoftPointSharpEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.sketch_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.world_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.cached_section_position_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_name",
+          "decoded": "LoftPointSection2",
+          "api": "LoftPointSection2",
+          "passed": true
+        },
+        {
+          "field": "section1.end_condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.profile_loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section1.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.curve.type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section1.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.circle.radius_cm",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          317,
+          325
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 317,
+            "point": {
+              "selection_record_object_id": 318,
+              "descriptor_object_id": 321,
+              "terminal_object_id": 324,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftPointSection1",
+              "point_object_id": 228,
+              "point_entity_tag": 101,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "proxy_support_record_object_id": 319,
+              "descriptor_support_record_object_id": 322,
+              "context_record_object_id": 339,
+              "context_payload_hex": "0000000000000000000000000000000000000000000000000000010154010000000000000000",
+              "context_status": "Typed observed 38/166-byte point context retained; coordinate-frame payload semantics unresolved",
+              "association": "Owned section/proxy/descriptor and reciprocal supports select typed sketch ID and point tag",
+              "scope": "Explicit selected point membership; cached section position is independently cross-checked when sketch placement is available"
+            },
+            "end_condition": {
+              "type": "PointSharp",
+              "stored_condition_code": 4,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 325,
+            "profile": {
+              "selection_record_object_id": 326,
+              "descriptor_object_id": 329,
+              "loop_definition_object_id": 332,
+              "sketch_object_id": 255,
+              "sketch_name": "LoftPointSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 282,
+                      "entity_kind": "Circle",
+                      "entity_tag": 104,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 333,
+        "result_body_anchor_object_ids": [
+          358
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit ordered profile and sketch-point sections; point identified by native sketch ID/tag with reciprocal owners",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Captured sharp point at start/end and tangent point at end with positive weight; other point-section combinations remain unsupported"
+      },
+      "api_result_observations": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuT3Nyac++FiN8l57tkbijrWQBVGCsZmCqaJaalGyWZpumYpyQa6JuamabqJRiYWuubmSWnJqWaWBkmp5mC1QDMY0ADYPgMFsHUg641NjQDg4+2qiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535901963,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            3.0
+          ]
+        }
+      ],
+      "getter_errors": []
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/tangent_end_weight1.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section0.sketch_name",
+          "decoded": "LoftPointSection1",
+          "api": "LoftPointSection1",
+          "passed": true
+        },
+        {
+          "field": "section0.end_condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.profile_loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section0.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.curve.type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section0.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.circle.radius_cm",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::SketchPoint",
+          "api": "adsk::fusion::SketchPoint",
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_name",
+          "decoded": "LoftPointSection2",
+          "api": "LoftPointSection2",
+          "passed": true
+        },
+        {
+          "field": "section1.end_condition_type",
+          "decoded": "adsk::fusion::LoftPointTangentEndCondition",
+          "api": "adsk::fusion::LoftPointTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.weight",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.world_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.cached_section_position_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          320,
+          328
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 320,
+            "profile": {
+              "selection_record_object_id": 321,
+              "descriptor_object_id": 324,
+              "loop_definition_object_id": 327,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftPointSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 328,
+            "point": {
+              "selection_record_object_id": 329,
+              "descriptor_object_id": 332,
+              "terminal_object_id": 335,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftPointSection2",
+              "point_object_id": 281,
+              "point_entity_tag": 104,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "proxy_support_record_object_id": 330,
+              "descriptor_support_record_object_id": 333,
+              "context_record_object_id": 344,
+              "context_payload_hex": "000000000000000000000000000000000000000000000000084000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000840000000000000000000000000000000000000000000000000000000000000f03f0159010000000000000000",
+              "context_status": "Typed observed 38/166-byte point context retained; coordinate-frame payload semantics unresolved",
+              "association": "Owned section/proxy/descriptor and reciprocal supports select typed sketch ID and point tag",
+              "scope": "Explicit selected point membership; cached section position is independently cross-checked when sketch placement is available"
+            },
+            "end_condition": {
+              "type": "PointTangent",
+              "stored_condition_code": 5,
+              "stored_endpoint_integer": -1,
+              "byte_length": 28,
+              "weight": 1.0,
+              "weight_binding_object_id": 318
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.0,
+          "weight_binding_object_id": 318
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 1.0,
+          "weight_binding_object_id": 318
+        },
+        "result_control_record_object_id": 336,
+        "result_body_anchor_object_ids": [
+          361
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit ordered profile and sketch-point sections; point identified by native sketch ID/tag with reciprocal owners",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Captured sharp point at start/end and tangent point at end with positive weight; other point-section combinations remain unsupported"
+      },
+      "api_result_observations": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuFbicZfi/0mNnN4veXYtHMGUIWRgrGZgmmSuYFRokmarnmihYGuiZFxqm5iiomlbrJZamJampmhkXmiIVgt0AwGNAC2z0ABbB3IemNTUwAZ+UNYiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 4.712477266404322,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            3.0
+          ]
+        }
+      ],
+      "getter_errors": []
+    },
+    {
+      "file": "loftpoints-f5bbdb97a568/tangent_end_weight2.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section0.sketch_name",
+          "decoded": "LoftPointSection1",
+          "api": "LoftPointSection1",
+          "passed": true
+        },
+        {
+          "field": "section0.end_condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.profile_loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section0.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section0.curve.type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section0.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section0.circle.radius_cm",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::SketchPoint",
+          "api": "adsk::fusion::SketchPoint",
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_name",
+          "decoded": "LoftPointSection2",
+          "api": "LoftPointSection2",
+          "passed": true
+        },
+        {
+          "field": "section1.end_condition_type",
+          "decoded": "adsk::fusion::LoftPointTangentEndCondition",
+          "api": "adsk::fusion::LoftPointTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.weight",
+          "decoded": 2.0,
+          "api": 2.0,
+          "passed": true
+        },
+        {
+          "field": "section1.sketch_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.world_point_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.cached_section_position_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          320,
+          328
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 320,
+            "profile": {
+              "selection_record_object_id": 321,
+              "descriptor_object_id": 324,
+              "loop_definition_object_id": 327,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftPointSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 328,
+            "point": {
+              "selection_record_object_id": 329,
+              "descriptor_object_id": 332,
+              "terminal_object_id": 335,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftPointSection2",
+              "point_object_id": 281,
+              "point_entity_tag": 104,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "proxy_support_record_object_id": 330,
+              "descriptor_support_record_object_id": 333,
+              "context_record_object_id": 344,
+              "context_payload_hex": "000000000000000000000000000000000000000000000000084000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f0000000000000840000000000000000000000000000000000000000000000000000000000000f03f0159010000000000000000",
+              "context_status": "Typed observed 38/166-byte point context retained; coordinate-frame payload semantics unresolved",
+              "association": "Owned section/proxy/descriptor and reciprocal supports select typed sketch ID and point tag",
+              "scope": "Explicit selected point membership; cached section position is independently cross-checked when sketch placement is available"
+            },
+            "end_condition": {
+              "type": "PointTangent",
+              "stored_condition_code": 5,
+              "stored_endpoint_integer": -1,
+              "byte_length": 28,
+              "weight": 2.0,
+              "weight_binding_object_id": 318
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 2.0,
+          "weight_binding_object_id": 318
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 28,
+          "weight": 2.0,
+          "weight_binding_object_id": 318
+        },
+        "result_control_record_object_id": 336,
+        "result_body_anchor_object_ids": [
+          361
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit ordered profile and sketch-point sections; point identified by native sketch ID/tag with reciprocal owners",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Captured sharp point at start/end and tangent point at end with positive weight; other point-section combinations remain unsupported"
+      },
+      "api_result_observations": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkP71AUbnrouW3Gk5ZnkRPO3QBVGCsZmChaGpmlmBsaJuqaW5im6JhapZroW5kkmumaGBgZJxsaGlimmBmC1QDMY0ADYPgMFsHUg641NTQGqDoq3iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 6.911251594065401,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            3.0
+          ]
+        }
+      ],
+      "getter_errors": []
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "point section owner mismatch",
+      "rejected": true,
+      "reason": "Unsupported Loft point section/owner"
+    },
+    {
+      "case": "unknown point entity tag",
+      "rejected": true,
+      "reason": "Loft point entity tag missing or ambiguous"
+    },
+    {
+      "case": "wrong typed point leaf",
+      "rejected": true,
+      "reason": "Loft point typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "case": "nonreciprocal descriptor support",
+      "rejected": true,
+      "reason": "Loft point selection support references are not reciprocal"
+    },
+    {
+      "case": "cache contradicts explicit point placement",
+      "rejected": true,
+      "reason": "Loft point section cache disagrees with explicitly selected point placement"
+    },
+    {
+      "case": "point has unsupported Free endpoint condition",
+      "rejected": true,
+      "reason": "Loft endpoint condition disagrees with explicit point/profile section"
+    },
+    {
+      "case": "unverified surface point Loft",
+      "rejected": true,
+      "reason": "Only observed open solid two-section NewBody point Loft without guides supported"
+    },
+    {
+      "case": "nonpositive tangent point weight",
+      "rejected": true,
+      "reason": "Loft point tangent weight must be positive"
+    }
+  ],
+  "coincident_point_selection_counterexample": {
+    "original_point_object_id": 281,
+    "coincident_alternate_point_object_id": 258,
+    "original_point_tag": 104,
+    "alternate_point_tag": 103,
+    "unchanged_coordinates_cm": [
+      0.0,
+      0.0,
+      3.0
+    ],
+    "mutated_leaf_selected_alternate": true,
+    "meaning": "Changing only explicit leaf tag selects the other coincident point, proving membership does not depend on nearest-coordinate matching."
+  },
+  "legacy_controls": [
+    "loftoperations-0cfcad35feb7/cut.f3d",
+    "loftoperations-0cfcad35feb7/intersect.f3d",
+    "loftoperations-0cfcad35feb7/join.f3d",
+    "loftoperations-0cfcad35feb7/new_body.f3d",
+    "loftoperations-0cfcad35feb7/new_component.f3d",
+    "loftguides-265bcb9af34a/closure_closed_four.f3d",
+    "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+    "loftguides-265bcb9af34a/closure_open_four.f3d",
+    "loftguides-265bcb9af34a/one_rail.f3d",
+    "loftguides-265bcb9af34a/surface_one_rail.f3d",
+    "loftguides-265bcb9af34a/two_rails.f3d",
+    "lofts-838ea6e83e97/both_direction.f3d",
+    "lofts-838ea6e83e97/end_direction.f3d",
+    "lofts-838ea6e83e97/solid_two.f3d",
+    "lofts-838ea6e83e97/start_direction.f3d",
+    "lofts-838ea6e83e97/surface_two.f3d",
+    "lofts-838ea6e83e97/unmerged.f3d",
+    "lofts-03b4a6f1ce2f/centerline.f3d",
+    "lofts-03b4a6f1ce2f/solid_three.f3d"
+  ]
+}

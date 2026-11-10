@@ -1,0 +1,4297 @@
+{
+  "source": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+  "focused_validation": [
+    {
+      "case": "PolynomialPatch",
+      "full_grid_knots_weights_match_api": true,
+      "evaluation_errors_cm": [
+        2.220446049250313e-16,
+        2.220446049250313e-16,
+        2.220446049250313e-16
+      ]
+    },
+    {
+      "case": "RationalPatch",
+      "full_grid_knots_weights_match_api": true,
+      "evaluation_errors_cm": [
+        1.2412670766236366e-16,
+        3.554447978966673e-16,
+        2.7755575615628914e-16
+      ]
+    },
+    {
+      "case": "ExistingLoftCacheRegression",
+      "evaluation_errors_cm": [
+        4.611102534756203e-16,
+        9.171947447016606e-16,
+        4.920258062434079e-16
+      ]
+    }
+  ],
+  "decodings": [
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Version-8 MetaStream indexes validate record boundaries; field semantics remain inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
+        "Profile membership is partial; no general trimmed-contour reconstruction, topology, sketch solver or native writer.",
+        "Modeling tools expose observed settings; input topology and unobserved modes remain partial.",
+        "Timeline/state layouts and local rigid assemblies are partial; no complete history regeneration or body reconstruction."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "UnsupportedFeature",
+              "object_id": 202,
+              "native_kind_label": "Base Feature",
+              "stored_index": 1,
+              "name": "PolynomialPatch",
+              "record_offset": 23090,
+              "type_code": "367",
+              "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+              "class_namespace": "Fusion",
+              "parameters": [],
+              "discovery": "Explicit class ancestry includes observed feature base GUID",
+              "decode_level": "Unsupported feature class; available label and parameters only",
+              "state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "history_index": 0,
+              "history_owner_object_id": 26,
+              "timeline_index": 0,
+              "native_dependency_tables": [
+                {
+                  "graph_object_id": 29,
+                  "edges": [
+                    {
+                      "object_id": 33,
+                      "stored_flags": 4096
+                    }
+                  ]
+                }
+              ],
+              "component_ownership_evidence": [
+                "Explicit dependency scope edge and typed component datum"
+              ],
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "component_scope_object_id": 33,
+              "component_association": "Explicit dependency scope edge and typed component datum",
+              "component_ownership_status": "Observed native component-scope reference decoded"
+            },
+            {
+              "kind": "UnsupportedFeature",
+              "object_id": 224,
+              "native_kind_label": "Base Feature",
+              "stored_index": 2,
+              "name": "RationalPatch",
+              "record_offset": 27266,
+              "type_code": "367",
+              "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+              "class_namespace": "Fusion",
+              "parameters": [],
+              "discovery": "Explicit class ancestry includes observed feature base GUID",
+              "decode_level": "Unsupported feature class; available label and parameters only",
+              "state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "history_index": 1,
+              "history_owner_object_id": 26,
+              "timeline_index": 1,
+              "native_dependency_tables": [
+                {
+                  "graph_object_id": 29,
+                  "edges": [
+                    {
+                      "object_id": 33,
+                      "stored_flags": 4096
+                    },
+                    {
+                      "object_id": 202,
+                      "stored_flags": 1024
+                    }
+                  ]
+                }
+              ],
+              "component_ownership_evidence": [
+                "Explicit dependency scope edge and typed component datum"
+              ],
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "component_scope_object_id": 33,
+              "component_association": "Explicit dependency scope edge and typed component datum",
+              "component_ownership_status": "Observed native component-scope reference decoded"
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 262,
+          "record_index": {
+            "source": "MetaStream version-8 class registry and object-offset tables",
+            "status": "Indexed headers validated against object IDs, primary classes and continuation inheritance",
+            "primary_objects": 233,
+            "continuations": 29,
+            "indexed_records": 262,
+            "next_object_id": 243,
+            "class_registry": [
+              {
+                "type_code": "256",
+                "class_guid": "8A348869-9B0E-442C-A795-8F446256F157",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "257",
+                "class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "258",
+                "class_guid": "702b9cd2-537c-429e-8cc4-22beeeb98c37",
+                "base_class_guid": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+                "namespace": "Scene",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "259",
+                "class_guid": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "260",
+                "class_guid": "2972A3B8-3627-49BC-8C3D-18707605EC44",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "261",
+                "class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 4
+              },
+              {
+                "type_code": "262",
+                "class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "DataModel",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 0,
+                "record_count": 9
+              },
+              {
+                "type_code": "263",
+                "class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "DataModel",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 11
+              },
+              {
+                "type_code": "264",
+                "class_guid": "2343b7ab-a2e0-4c66-8b74-99a05e4c670b",
+                "base_class_guid": "74d7fef9-44e9-494d-a25d-81ec33d2841e",
+                "namespace": "Scene",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "265",
+                "class_guid": "74d7fef9-44e9-494d-a25d-81ec33d2841e",
+                "base_class_guid": "3928dd64-b6a2-41e1-b4c7-e2bfdaa4e53d",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "266",
+                "class_guid": "3928dd64-b6a2-41e1-b4c7-e2bfdaa4e53d",
+                "base_class_guid": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "267",
+                "class_guid": "7E84430B-74C7-4B67-92D0-4131A0B79109",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "268",
+                "class_guid": "5988EB6C-011B-4012-B500-089A713F57BF",
+                "base_class_guid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "269",
+                "class_guid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "EntityTracking",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 2
+              },
+              {
+                "type_code": "270",
+                "class_guid": "736DEAAF-2425-405E-B871-003AAB726295",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Scene",
+                "stored_version_or_flags": 5,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "271",
+                "class_guid": "AD3F9695-7FDF-4708-AE05-B21309CDE969",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "272",
+                "class_guid": "0DBF95ED-82D2-4CC4-936D-642370679CBB",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Component",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "273",
+                "class_guid": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "274",
+                "class_guid": "F9CB8717-EB86-47F2-AAA7-39E142C57A09",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "275",
+                "class_guid": "B4CDE096-07DE-4272-BA4A-B257EFE0B470",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "276",
+                "class_guid": "74CA4562-59F8-4C97-8AD1-F8297C21F9AA",
+                "base_class_guid": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+                "namespace": "Body",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "277",
+                "class_guid": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+                "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+                "namespace": "Body",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "278",
+                "class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "279",
+                "class_guid": "30DCFC57-8E13-405B-9295-5CF74AC1FB39",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "280",
+                "class_guid": "372234A0-2A6C-4122-8047-E74DBA04F326",
+                "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+                "namespace": "Body",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "281",
+                "class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 1
+              },
+              {
+                "type_code": "282",
+                "class_guid": "C6EE7300-667E-4ea5-9F61-71F98412DE8B",
+                "base_class_guid": "199B8352-4C51-4cb3-9756-26722AE44E76",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 96,
+                "record_count": 96
+              },
+              {
+                "type_code": "283",
+                "class_guid": "199B8352-4C51-4cb3-9756-26722AE44E76",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "284",
+                "class_guid": "2C54F6D6-5C2B-4C4A-89A2-2AB486EF152D",
+                "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "285",
+                "class_guid": "074F9459-89C2-4B7D-8AB4-DCE67AE944FE",
+                "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "286",
+                "class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 1
+              },
+              {
+                "type_code": "287",
+                "class_guid": "0FAF9824-8ECA-45ED-B199-589022ED5F6D",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 10,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "288",
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Body",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "289",
+                "class_guid": "878C70A7-15B8-4B0B-B1B7-C2A7A23CC45C",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "290",
+                "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "291",
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "base_class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 3,
+                "record_count": 3
+              },
+              {
+                "type_code": "292",
+                "class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+                "base_class_guid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 5,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "293",
+                "class_guid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+                "base_class_guid": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "294",
+                "class_guid": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "295",
+                "class_guid": "5275CBA4-3D7D-40DC-A651-1DFF3FC8AFBF",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "296",
+                "class_guid": "a9dcf6c1-617c-4f65-8302-c6f3a9ebbc4c",
+                "base_class_guid": "d0edef7c-5879-45a4-9651-900659cc4fdd",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "297",
+                "class_guid": "d0edef7c-5879-45a4-9651-900659cc4fdd",
+                "base_class_guid": "03bc52c5-f13f-4f61-9e9f-e5c1e876c3ef",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "298",
+                "class_guid": "03bc52c5-f13f-4f61-9e9f-e5c1e876c3ef",
+                "base_class_guid": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "299",
+                "class_guid": "8EF00D65-F18D-4179-A644-FE0CA39943D6",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 5,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "300",
+                "class_guid": "B65B5682-9355-44C7-8AFC-823058C4A36B",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "301",
+                "class_guid": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06573",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "302",
+                "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "303",
+                "class_guid": "AE9F7FB5-2798-4BE4-8905-F8FB42A07193",
+                "base_class_guid": "CC33853A-069B-4292-BC1B-059FE3A08E09",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "304",
+                "class_guid": "CC33853A-069B-4292-BC1B-059FE3A08E09",
+                "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+                "namespace": "Scene",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "305",
+                "class_guid": "3185B924-6C84-4804-BE77-9105B09209DA",
+                "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "306",
+                "class_guid": "49B2AA69-7655-4C36-A14E-9582CCF1283C",
+                "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "307",
+                "class_guid": "FCB17D75-8538-4E8E-BDBE-CB4FE2120DB7",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Component",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "308",
+                "class_guid": "FA21074E-32D2-4DC9-9E77-8F53D7E7D96B",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "309",
+                "class_guid": "1E650EA7-07C5-4111-B639-7DEE3A659799",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "310",
+                "class_guid": "77EF6384-409E-498D-8167-BCA537533B35",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Component",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "311",
+                "class_guid": "BF7A6B8B-6E56-4C84-8882-1E8A1C1FE487",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "312",
+                "class_guid": "CC039B2C-C546-4F97-B1EA-2EFF4470D3E6",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "313",
+                "class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "314",
+                "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+                "base_class_guid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "315",
+                "class_guid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+                "base_class_guid": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "316",
+                "class_guid": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "317",
+                "class_guid": "A8635B5F-1E2C-45FD-8BA9-0173B0FEB75E",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "318",
+                "class_guid": "64435F6E-077A-4f6b-A7B6-537BF84BA414",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "319",
+                "class_guid": "BC84911E-A581-4E51-ABE4-B0F681CFED06",
+                "base_class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "320",
+                "class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+                "base_class_guid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "321",
+                "class_guid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "DataModel",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "322",
+                "class_guid": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "323",
+                "class_guid": "E276745D-D84E-40D5-88BC-8C94DD4ACCDF",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "324",
+                "class_guid": "d9554b4f-2333-42c2-9495-2148d96f7437",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 11,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "325",
+                "class_guid": "88A5C187-5E68-4318-8A33-3AAA72F9DDB1",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "326",
+                "class_guid": "3978701C-58EC-401A-8D24-A6FF4103DC24",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "327",
+                "class_guid": "47C245A2-2DBE-4B1F-9C56-762F373BB0C8",
+                "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "328",
+                "class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+                "base_class_guid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "329",
+                "class_guid": "D50DCC35-42CC-4E7D-9B81-4EB8252712D0",
+                "base_class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "330",
+                "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "331",
+                "class_guid": "1787C882-91E2-4363-9C18-80C98EBE4C77",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "332",
+                "class_guid": "F670456D-872C-4818-95E9-DE115B264ACA",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "333",
+                "class_guid": "19031004-3AB6-4D13-ABBF-C51EE214688D",
+                "base_class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 3,
+                "record_count": 3
+              },
+              {
+                "type_code": "334",
+                "class_guid": "D572415C-6C2C-460B-8C84-265C52D89EDF",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "335",
+                "class_guid": "B61F1D39-4984-47b0-9248-3A1113E86FC1",
+                "base_class_guid": "199B8352-4C51-4cb3-9756-26722AE44E76",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 12,
+                "record_count": 12
+              },
+              {
+                "type_code": "336",
+                "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+                "namespace": "Body",
+                "stored_version_or_flags": 19,
+                "primary_object_count": 4,
+                "record_count": 4
+              },
+              {
+                "type_code": "337",
+                "class_guid": "60F93DE2-6329-4598-A6AF-096AC63E627C",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "338",
+                "class_guid": "904F885E-D859-4755-A7EF-6EBED8732FAD",
+                "base_class_guid": "21F379C8-CAFD-4985-B461-767673A4C502",
+                "namespace": "Component",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "339",
+                "class_guid": "21F379C8-CAFD-4985-B461-767673A4C502",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "340",
+                "class_guid": "549FBB80-B890-473E-A5C0-415D3D9BF4E6",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "341",
+                "class_guid": "596C8B98-D176-4E40-B294-6404BAD566BC",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Component",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "342",
+                "class_guid": "A1675506-5D2D-47a5-8AD2-8FD5CE946DA0",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "343",
+                "class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "344",
+                "class_guid": "21086CE0-C398-4b1b-9CD6-86F092429833",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 6,
+                "record_count": 6
+              },
+              {
+                "type_code": "345",
+                "class_guid": "3B9288E7-E1DE-414D-90BD-1C0CDAC77EB1",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "346",
+                "class_guid": "CE2913AA-CFE0-4F04-9102-24424ED3BCFA",
+                "base_class_guid": "D4CBC599-0FFB-4d32-BF14-A7F0AFA25013",
+                "namespace": "Component",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "347",
+                "class_guid": "D4CBC599-0FFB-4d32-BF14-A7F0AFA25013",
+                "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 10,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "348",
+                "class_guid": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 5,
+                "record_count": 5
+              },
+              {
+                "type_code": "349",
+                "class_guid": "AC202226-A700-462A-BC41-13631C9E95D5",
+                "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+                "namespace": "Component",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "350",
+                "class_guid": "E55D0457-898F-4A8E-B1A5-C85BDBA8794F",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Body",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 3,
+                "record_count": 3
+              },
+              {
+                "type_code": "351",
+                "class_guid": "91461D14-4F77-44B2-9E79-8B052566D9CE",
+                "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "352",
+                "class_guid": "0C5DAB90-715E-49EA-A56E-E30F2328F43E",
+                "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "353",
+                "class_guid": "40DCC3F41D-E94F-B3B1-3E95-9B6ABE572C",
+                "base_class_guid": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+                "namespace": "Body",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "354",
+                "class_guid": "C170F594-38B1-4C2A-B649-7FE0164C44E3",
+                "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "355",
+                "class_guid": "23FD63FB-4EBE-4c85-A42B-5D9809AA3499",
+                "base_class_guid": "3C822807-C6B1-4ffc-9AE4-769A487EC7B3",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 18,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "356",
+                "class_guid": "3C822807-C6B1-4ffc-9AE4-769A487EC7B3",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "357",
+                "class_guid": "A2EDAFD4-B122-49CC-AF09-96BE5C57A89D",
+                "base_class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+                "namespace": "Body",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "358",
+                "class_guid": "B13113CC-031E-4F93-8240-C4C10728869F",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "359",
+                "class_guid": "12D00AC0-B828-48C8-9740-80C4D992DB65",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "360",
+                "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+                "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "361",
+                "class_guid": "778FECF0-46E7-4EB8-A8D0-52C950CCEAAE",
+                "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+                "namespace": "EntityTracking",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "362",
+                "class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+                "base_class_guid": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 23,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "363",
+                "class_guid": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+                "base_class_guid": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+                "namespace": "Component",
+                "stored_version_or_flags": 16,
+                "primary_object_count": 0,
+                "record_count": 1
+              },
+              {
+                "type_code": "364",
+                "class_guid": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+                "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+                "namespace": "CommonData",
+                "stored_version_or_flags": 8,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "365",
+                "class_guid": "0E18EEF2-0D6F-480C-997E-5EBC7369AE5F",
+                "base_class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+                "namespace": "Geometry",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 1,
+                "record_count": 1
+              },
+              {
+                "type_code": "366",
+                "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "367",
+                "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+                "base_class_guid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 2,
+                "record_count": 2
+              },
+              {
+                "type_code": "368",
+                "class_guid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+                "base_class_guid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "369",
+                "class_guid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+                "base_class_guid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 2,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "370",
+                "class_guid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+                "base_class_guid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "371",
+                "class_guid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "base_class_guid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "372",
+                "class_guid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "base_class_guid": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "373",
+                "class_guid": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "base_class_guid": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "namespace": "Fusion",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "374",
+                "class_guid": "CDACB430-543C-40b2-A275-2070D34FCD66",
+                "base_class_guid": "4C835764-5BAB-4421-B5D2-06015BEF6EB2",
+                "namespace": "",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "375",
+                "class_guid": "4C835764-5BAB-4421-B5D2-06015BEF6EB2",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 4,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "376",
+                "class_guid": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "377",
+                "class_guid": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "378",
+                "class_guid": "E9F2168E-EB4D-4547-9B47-449B294FA81C",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "379",
+                "class_guid": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 3,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "380",
+                "class_guid": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "381",
+                "class_guid": "5852F708-9AA6-47F7-BD5A-2A5A6B56B327",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "382",
+                "class_guid": "FCFA11CB-9D87-41D6-9FD8-92E23427386D",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "383",
+                "class_guid": "45BC3A57-B585-4245-A04C-130090F875CA",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "384",
+                "class_guid": "C9898782-7161-4519-8F36-6F7C317AEA29",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "385",
+                "class_guid": "8EB02C29-F2C0-477A-8FAF-1B764DCFA9E8",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "386",
+                "class_guid": "B728301A-AB43-43A5-A612-8A1F6D5014E4",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "387",
+                "class_guid": "5A484388-9F39-4745-80CE-FACDA0029438",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 0,
+                "primary_object_count": 0,
+                "record_count": 0
+              },
+              {
+                "type_code": "388",
+                "class_guid": "1666C0B1-46B3-45b7-8AA1-C618F7CFA703",
+                "base_class_guid": "",
+                "namespace": "",
+                "stored_version_or_flags": 1,
+                "primary_object_count": 0,
+                "record_count": 0
+              }
+            ],
+            "limitations": "Class GUIDs are opaque identifiers, not decoded field schemas."
+          },
+          "feature_discovery": {
+            "method": "Observed feature class ancestry from MetaStream",
+            "recognized_named_feature_count": 0,
+            "unsupported_feature_count": 2,
+            "unsupported_features": [
+              {
+                "object_id": 202,
+                "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+                "native_kind_label": "Base Feature",
+                "record_offset": 23090
+              },
+              {
+                "object_id": 224,
+                "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+                "native_kind_label": "Base Feature",
+                "record_offset": 27266
+              }
+            ],
+            "scope": "Observed feature base class only; unsupported fields and unknown ancestry remain undecoded"
+          },
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "tool_constraints": {
+              "decoded": [],
+              "unresolved": [],
+              "scope": "Observed offset pairs and single-circle patterns; no offset/pattern solver"
+            },
+            "unsupported_dimensions": [],
+            "scope": "Observed primitives, NURBS, conics, geometric constraints and dimensions; not a constraint solver"
+          },
+          "profile_decoding": {
+            "decoded": [],
+            "unresolved": [],
+            "scope": "Observed selected loop/curve membership only; no general trimmed-profile reconstruction"
+          },
+          "modeling_decoding": {
+            "unresolved": [],
+            "scope": "Observed extrusion starts/ends and angular/entity revolve modes; no body regeneration"
+          },
+          "placement_decoding": {
+            "decoded_sketch_placements": 0,
+            "unresolved_sketches": [],
+            "decoded_construction_planes": 0,
+            "scope": "Observed rigid sketch transforms and offset/angle plane geometry"
+          },
+          "construction_decoding": {
+            "decoded": [],
+            "unresolved": [],
+            "scope": "Observed named axis/point native geometry; parametric input definitions remain partial"
+          },
+          "selection_decoding": {
+            "resolved": [],
+            "unresolved": [],
+            "scope": "Observed native construction-plane and origin-axis selection chains; no face/edge topology"
+          },
+          "tool_decoding": {
+            "decoded": [],
+            "unresolved": [],
+            "scope": "Observed settings only; no general input body/face/edge reconstruction"
+          },
+          "timeline_decoding": {
+            "sequences": [
+              {
+                "history_record_object_id": 35,
+                "owner_object_id": 26,
+                "native_entry_object_ids": [
+                  202,
+                  224
+                ],
+                "feature_order": [
+                  202,
+                  224
+                ],
+                "groups": [],
+                "visible_entries": [
+                  {
+                    "object_id": 202,
+                    "name": "PolynomialPatch",
+                    "kind": "UnsupportedFeature",
+                    "state": {
+                      "is_suppressed": false,
+                      "is_rolled_back": false,
+                      "source": "Observed shared feature footer; suppression copies agree"
+                    },
+                    "timeline_index": 0
+                  },
+                  {
+                    "object_id": 224,
+                    "name": "RationalPatch",
+                    "kind": "UnsupportedFeature",
+                    "state": {
+                      "is_suppressed": false,
+                      "is_rolled_back": false,
+                      "source": "Observed shared feature footer; suppression copies agree"
+                    },
+                    "timeline_index": 1
+                  }
+                ],
+                "timeline_count": 2,
+                "marker_position": 2,
+                "marker_source": "Derived from decoded rollback flags and group projection",
+                "scope": "Observed history owner; multiple owners are not merged"
+              }
+            ],
+            "unresolved": [],
+            "scope": "Observed history lists, group projection and shared feature state only"
+          },
+          "assembly_decoding": {
+            "components": [
+              {
+                "object_id": 3,
+                "name": "(Unsaved)",
+                "native_guid_text": "724ad14c-94c6-4bc1-806e-b0367c87d081",
+                "root_occurrence_object_id": 57,
+                "name_scope": "Stored native label; root may contain only a document display suffix"
+              }
+            ],
+            "native_occurrences": [
+              {
+                "object_id": 57,
+                "component_object_id": 3,
+                "instance_number": 0,
+                "explicit_name": "rootInstance",
+                "namespace_text": "b003f084-f7ab-470a-af26-652b72443ab6",
+                "instance_guid_text": "b9a2143e-2ff9-48ca-b3a5-40f223ddeff9",
+                "parent_collection_object_id": null,
+                "local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "translation_units": "cm",
+                "matrix_order": "row-major; column-vector multiplication"
+              }
+            ],
+            "occurrence_collections": [
+              {
+                "object_id": 6,
+                "component_object_id": 3,
+                "occurrence_object_ids": []
+              }
+            ],
+            "occurrence_paths": [],
+            "root_sketches": [],
+            "unresolved": [],
+            "scope": "Observed local definitions, repeated/nested instances and owned sketch coordinates",
+            "limitations": [
+              "No external component resolution, flexible assembly, joints or grounding semantics.",
+              "Source-sketch ownership does not establish general modeling-feature ownership."
+            ]
+          },
+          "dependency_decoding": {
+            "graphs": [
+              {
+                "object_id": 29,
+                "owner_object_id": 26,
+                "forward": [
+                  {
+                    "object_id": 202,
+                    "edges": [
+                      {
+                        "object_id": 33,
+                        "stored_flags": 4096
+                      }
+                    ]
+                  },
+                  {
+                    "object_id": 206,
+                    "edges": [
+                      {
+                        "object_id": 202,
+                        "stored_flags": 1
+                      }
+                    ]
+                  },
+                  {
+                    "object_id": 224,
+                    "edges": [
+                      {
+                        "object_id": 33,
+                        "stored_flags": 4096
+                      },
+                      {
+                        "object_id": 202,
+                        "stored_flags": 1024
+                      }
+                    ]
+                  },
+                  {
+                    "object_id": 228,
+                    "edges": [
+                      {
+                        "object_id": 224,
+                        "stored_flags": 1
+                      }
+                    ]
+                  }
+                ],
+                "reverse": [
+                  {
+                    "object_id": 33,
+                    "edges": [
+                      {
+                        "object_id": 202,
+                        "stored_flags": 4096
+                      },
+                      {
+                        "object_id": 224,
+                        "stored_flags": 4096
+                      }
+                    ]
+                  },
+                  {
+                    "object_id": 202,
+                    "edges": [
+                      {
+                        "object_id": 206,
+                        "stored_flags": 1
+                      },
+                      {
+                        "object_id": 224,
+                        "stored_flags": 1024
+                      }
+                    ]
+                  },
+                  {
+                    "object_id": 224,
+                    "edges": [
+                      {
+                        "object_id": 228,
+                        "stored_flags": 1
+                      }
+                    ]
+                  }
+                ],
+                "edge_count": 5,
+                "validation": "Forward/reverse edges and flags match as multisets"
+              }
+            ],
+            "component_scope_datums": [
+              {
+                "object_id": 33,
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "anchor_object_id": 34,
+                "optional_snapshot_object_id": null
+              }
+            ],
+            "unresolved": [],
+            "features_without_component_owner": [],
+            "scope": "Observed paired tables and component-scope edges; other edge flags remain uninterpreted"
+          },
+          "body_blob_bindings": {
+            "decoded": [],
+            "unresolved": [
+              {
+                "object_id": 8,
+                "reason": "Unsupported attribute layout"
+              }
+            ],
+            "scope": "Native mapping tables and conditional root candidates; no guaranteed final-body identity"
+          },
+          "body_properties": {
+            "bodies": [
+              {
+                "object_id": 209,
+                "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                "record_offset": 23981,
+                "name": null,
+                "name_status": "Stored body name field unresolved",
+                "collection_object_id": 22,
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+              },
+              {
+                "object_id": 215,
+                "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                "record_offset": 25629,
+                "name": null,
+                "name_status": "Stored body name field unresolved",
+                "collection_object_id": 7,
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+              },
+              {
+                "object_id": 230,
+                "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                "record_offset": 28024,
+                "name": null,
+                "name_status": "Stored body name field unresolved",
+                "collection_object_id": 22,
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+              },
+              {
+                "object_id": 235,
+                "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                "record_offset": 29574,
+                "name": null,
+                "name_status": "Stored body name field unresolved",
+                "collection_object_id": 7,
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+              }
+            ],
+            "collections": [
+              {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  215,
+                  235
+                ],
+                "stored_field_at_3": 2,
+                "uninterpreted_middle_hex": "0101db000000000000000000010800000000000000000001011200000000000000000000"
+              },
+              {
+                "object_id": 22,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  209,
+                  230
+                ],
+                "stored_field_at_3": 2,
+                "uninterpreted_middle_hex": "0101d00000000000000000000118000000000000000000010000"
+              }
+            ],
+            "unresolved": [
+              {
+                "object_id": 209,
+                "kind": "BodyName",
+                "reason": "Unsupported attribute layout"
+              },
+              {
+                "object_id": 215,
+                "kind": "BodyName",
+                "reason": "Unsupported attribute layout"
+              },
+              {
+                "object_id": 230,
+                "kind": "BodyName",
+                "reason": "Unsupported attribute layout"
+              },
+              {
+                "object_id": 235,
+                "kind": "BodyName",
+                "reason": "Unsupported attribute layout"
+              }
+            ],
+            "scope": "Observed explicit component ownership and custom-name field anchors; material/property schemas remain partial"
+          },
+          "body_placement": {
+            "bodies": [],
+            "unresolved": [],
+            "scope": "Conditional body-root candidates composed through decoded local occurrence paths"
+          }
+        }
+      ],
+      "asm_decoding": {
+        "streams": [
+          {
+            "header": {
+              "signature": "ASM BinaryFile8",
+              "version": 23200,
+              "stored_record_count": 0,
+              "stored_entity_count": 3,
+              "stored_flags": 2,
+              "product": "Autodesk Neutron",
+              "kernel_version": "ASM 232.5.0.65535 OSX",
+              "creation_date_text": "Tue Oct 20 20:12:49 2026",
+              "units_in_mm": 10.0,
+              "resolution_tolerance": 1e-06,
+              "normal_tolerance": 1e-10
+            },
+            "token_count": 1441,
+            "complete_token_stream": true,
+            "unresolved_reason": null,
+            "last_complete_offset": 11966,
+            "total_bytes": 11966,
+            "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
+            "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ce4d73fa-1614-40c4-b2a0-86d90f5b97f1.smb",
+            "record_count": 80,
+            "record_type_counts": {
+              "ATTRIB_CUSTOM-attrib": 18,
+              "End-of-ASM-data": 1,
+              "asmheader": 1,
+              "body": 2,
+              "coedge": 8,
+              "edge": 8,
+              "ellipse-curve": 3,
+              "face": 2,
+              "intcurve-curve": 3,
+              "loop": 2,
+              "lump": 2,
+              "pcurve": 8,
+              "point": 8,
+              "shell": 2,
+              "spline-surface": 2,
+              "straight-curve": 2,
+              "vertex": 8
+            },
+            "blob_role": "body data",
+            "topology": {
+              "body_graphs": [
+                {
+                  "body_index": 1,
+                  "counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "lump_indices": [
+                    3
+                  ],
+                  "shell_indices": [
+                    5
+                  ],
+                  "face_indices": [
+                    7
+                  ],
+                  "loop_indices": [
+                    10
+                  ],
+                  "coedge_indices": [
+                    15,
+                    17,
+                    25,
+                    18
+                  ],
+                  "edge_indices": [
+                    19,
+                    26,
+                    28,
+                    43
+                  ],
+                  "vertex_indices": [
+                    31,
+                    32,
+                    46,
+                    49
+                  ],
+                  "pcurve_indices": [
+                    20,
+                    27,
+                    29,
+                    44
+                  ],
+                  "pcurve_status": "Observed degree-one UV caches decoded; other pcurve layouts remain unsupported",
+                  "face_trim_loops": [
+                    {
+                      "face_index": 7,
+                      "loop_index": 10,
+                      "surface_index": 11,
+                      "trims": [
+                        {
+                          "coedge_index": 15,
+                          "pcurve_index": 20,
+                          "edge_index": 19,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              2.4186773244895647,
+                              2.4186773244895647
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                2.4186773244895647,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              2.4186773244895647
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.282480566569023e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 17,
+                          "pcurve_index": 27,
+                          "edge_index": 26,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              1.0,
+                              1.0
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                1.0,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                1.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                1.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              1.0
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.2381909585617906e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 25,
+                          "pcurve_index": 44,
+                          "edge_index": 43,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              1.0,
+                              1.0
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                1.0,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              1.0
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.7603130658598166e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 18,
+                          "pcurve_index": 29,
+                          "edge_index": 28,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              1.0,
+                              1.0
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                1.0,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                0.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                0.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              1.0
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.2651806710472086e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        }
+                      ],
+                      "uv_endpoints_close_in_this_chart": true,
+                      "scope": "Observed stored UV boundaries; periodic chart changes and general trimming remain partial"
+                    }
+                  ],
+                  "raw_vertex_positions": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.4,
+                      0.0,
+                      0.3
+                    ],
+                    [
+                      2.4,
+                      2.6,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      2.6,
+                      0.1
+                    ]
+                  ],
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "body_transform_status": "No transform reference or observed identity",
+                  "surface_record_types": {
+                    "spline-surface": 1
+                  },
+                  "analytic_surfaces": [
+                    {
+                      "face_index": 7,
+                      "surface_index": 11,
+                      "face_is_reversed": false,
+                      "geometry": null,
+                      "geometry_status": "Cached spline surface decoded separately"
+                    }
+                  ],
+                  "spline_surfaces": [
+                    {
+                      "face_index": 7,
+                      "surface_index": 11,
+                      "cache": {
+                        "degree_u": 2,
+                        "degree_v": 2,
+                        "control_count_u": 3,
+                        "control_count_v": 3,
+                        "raw_control_points": [
+                          [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          [
+                            0.0,
+                            1.3,
+                            0.2
+                          ],
+                          [
+                            0.0,
+                            2.6,
+                            0.1
+                          ],
+                          [
+                            1.2,
+                            0.0,
+                            0.15
+                          ],
+                          [
+                            1.2,
+                            1.3,
+                            1.2
+                          ],
+                          [
+                            1.2,
+                            2.6,
+                            -0.1
+                          ],
+                          [
+                            2.4,
+                            0.0,
+                            0.3
+                          ],
+                          [
+                            2.4,
+                            1.3,
+                            0.1
+                          ],
+                          [
+                            2.4,
+                            2.6,
+                            0.4
+                          ]
+                        ],
+                        "weights": [],
+                        "is_rational": false,
+                        "knots_u": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "knots_v": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "stored_compact_knots_u": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_compact_knots_v": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_control_grid_order": "u-fast",
+                        "normalized_control_grid_order": "v-fast",
+                        "parameter_domain_u": [
+                          0.0,
+                          1.0
+                        ],
+                        "parameter_domain_v": [
+                          0.0,
+                          1.0
+                        ],
+                        "stored_axis_flags": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "periodicity_status": "Native axis flags preserved; general form semantics unverified",
+                        "stored_cache_trailer_scalar": 0.0,
+                        "stored_cache_trailer": [
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 1487
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 1496
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 1505
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 1514
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 1523
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 1532
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 1541
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 1550
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 1551
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 1552
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 1561
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 1562
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 1571
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 1572
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 1581
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 1582
+                          },
+                          {
+                            "tag": 21,
+                            "kind": "enum",
+                            "value": 0,
+                            "offset": 1591
+                          },
+                          {
+                            "tag": 16,
+                            "kind": "subtype_end",
+                            "value": null,
+                            "offset": 1600
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 1601
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 1602
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 1603
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 1604
+                          }
+                        ],
+                        "procedural_subtype": "exact_spl_sur",
+                        "representation": "Stored exact spline grid; observed clamped open polynomial/rational surface layout",
+                        "coordinate_scope": "Raw ASM control coordinates; body transforms and units/context not applied"
+                      }
+                    }
+                  ],
+                  "spline_curves": [],
+                  "all_coedges_have_partners": false,
+                  "identity_status": "Stored body graph; final visible body mapping unresolved",
+                  "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
+                },
+                {
+                  "body_index": 2,
+                  "counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "lump_indices": [
+                    4
+                  ],
+                  "shell_indices": [
+                    6
+                  ],
+                  "face_indices": [
+                    8
+                  ],
+                  "loop_indices": [
+                    13
+                  ],
+                  "coedge_indices": [
+                    16,
+                    21,
+                    34,
+                    22
+                  ],
+                  "edge_indices": [
+                    23,
+                    35,
+                    37,
+                    55
+                  ],
+                  "vertex_indices": [
+                    40,
+                    41,
+                    58,
+                    61
+                  ],
+                  "pcurve_indices": [
+                    24,
+                    36,
+                    38,
+                    56
+                  ],
+                  "pcurve_status": "Observed degree-one UV caches decoded; other pcurve layouts remain unsupported",
+                  "face_trim_loops": [
+                    {
+                      "face_index": 8,
+                      "loop_index": 13,
+                      "surface_index": 14,
+                      "trims": [
+                        {
+                          "coedge_index": 16,
+                          "pcurve_index": 24,
+                          "edge_index": 23,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              2.4186773244895647,
+                              2.4186773244895647
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                2.4186773244895647,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              2.4186773244895647
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 3.766435306923873e-12,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 21,
+                          "pcurve_index": 36,
+                          "edge_index": 35,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              -2.0399136399531104,
+                              -2.0399136399531104,
+                              -1.137860016360587,
+                              -1.137860016360587
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                -2.0399136399531104,
+                                1
+                              ],
+                              [
+                                -1.137860016360587,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                0.9999999999999998,
+                                0.9999999999999998
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                0.9999999999999998,
+                                0.9999999999999998
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              -2.0399136399531104,
+                              -1.137860016360587
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 1.0454074261542116e-15,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 34,
+                          "pcurve_index": 56,
+                          "edge_index": 55,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.9832973030667802,
+                              0.9832973030667802,
+                              2.270299520653351,
+                              2.270299520653351
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.9832973030667802,
+                                1
+                              ],
+                              [
+                                2.270299520653351,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.9832973030667802,
+                              2.270299520653351
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 1.1682640662135511e-15,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 22,
+                          "pcurve_index": 38,
+                          "edge_index": 37,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              1.110071516600627,
+                              1.110071516600627,
+                              2.012125140193163,
+                              2.012125140193163
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                1.110071516600627,
+                                1
+                              ],
+                              [
+                                2.012125140193163,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                0.9999999999999998
+                              ],
+                              [
+                                5.349798105197911e-19,
+                                2.852128261622414e-16
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                0.9999999999999998
+                              ],
+                              [
+                                5.349798105197911e-19,
+                                2.852128261622414e-16
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              1.110071516600627,
+                              2.012125140193163
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 6.793669785473796e-16,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        }
+                      ],
+                      "uv_endpoints_close_in_this_chart": true,
+                      "scope": "Observed stored UV boundaries; periodic chart changes and general trimming remain partial"
+                    }
+                  ],
+                  "raw_vertex_positions": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.4,
+                      0.0,
+                      0.3
+                    ],
+                    [
+                      2.4,
+                      2.6,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      2.6,
+                      0.1
+                    ]
+                  ],
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "body_transform_status": "No transform reference or observed identity",
+                  "surface_record_types": {
+                    "spline-surface": 1
+                  },
+                  "analytic_surfaces": [
+                    {
+                      "face_index": 8,
+                      "surface_index": 14,
+                      "face_is_reversed": false,
+                      "geometry": null,
+                      "geometry_status": "Cached spline surface decoded separately"
+                    }
+                  ],
+                  "spline_surfaces": [
+                    {
+                      "face_index": 8,
+                      "surface_index": 14,
+                      "cache": {
+                        "degree_u": 2,
+                        "degree_v": 2,
+                        "control_count_u": 3,
+                        "control_count_v": 3,
+                        "raw_control_points": [
+                          [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          [
+                            0.0,
+                            1.3,
+                            0.2
+                          ],
+                          [
+                            0.0,
+                            2.6,
+                            0.1
+                          ],
+                          [
+                            1.2,
+                            0.0,
+                            0.15
+                          ],
+                          [
+                            1.2,
+                            1.3,
+                            1.2
+                          ],
+                          [
+                            1.2,
+                            2.6,
+                            -0.1
+                          ],
+                          [
+                            2.4,
+                            0.0,
+                            0.3
+                          ],
+                          [
+                            2.4,
+                            1.3,
+                            0.1
+                          ],
+                          [
+                            2.4,
+                            2.6,
+                            0.4
+                          ]
+                        ],
+                        "weights": [
+                          1.0,
+                          0.9,
+                          1.0,
+                          0.8,
+                          0.65,
+                          0.8,
+                          1.0,
+                          0.9,
+                          1.0
+                        ],
+                        "is_rational": true,
+                        "knots_u": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "knots_v": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "stored_compact_knots_u": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_compact_knots_v": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_control_grid_order": "u-fast",
+                        "normalized_control_grid_order": "v-fast",
+                        "parameter_domain_u": [
+                          0.0,
+                          1.0
+                        ],
+                        "parameter_domain_v": [
+                          0.0,
+                          1.0
+                        ],
+                        "stored_axis_flags": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "periodicity_status": "Native axis flags preserved; general form semantics unverified",
+                        "stored_cache_trailer_scalar": 0.0,
+                        "stored_cache_trailer": [
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 2429
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2438
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2447
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2456
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2465
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2474
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2483
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2492
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2493
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 2494
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2503
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 2504
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2513
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 2514
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2523
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 2524
+                          },
+                          {
+                            "tag": 21,
+                            "kind": "enum",
+                            "value": 0,
+                            "offset": 2533
+                          },
+                          {
+                            "tag": 16,
+                            "kind": "subtype_end",
+                            "value": null,
+                            "offset": 2542
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2543
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2544
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2545
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2546
+                          }
+                        ],
+                        "procedural_subtype": "exact_spl_sur",
+                        "representation": "Stored exact spline grid; observed clamped open polynomial/rational surface layout",
+                        "coordinate_scope": "Raw ASM control coordinates; body transforms and units/context not applied"
+                      }
+                    }
+                  ],
+                  "spline_curves": [],
+                  "all_coedges_have_partners": false,
+                  "identity_status": "Stored body graph; final visible body mapping unresolved",
+                  "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
+                }
+              ],
+              "unresolved": [
+                {
+                  "index": 47,
+                  "kind": "intcurve-curve",
+                  "reason": "Unsupported exact curve cache trailer"
+                },
+                {
+                  "index": 50,
+                  "kind": "intcurve-curve",
+                  "reason": "Unsupported exact curve cache trailer"
+                },
+                {
+                  "index": 68,
+                  "kind": "intcurve-curve",
+                  "reason": "Unsupported exact curve cache trailer"
+                }
+              ],
+              "initial_geometry_record_count": 79,
+              "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+              "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
+              "nodes_included": false
+            },
+            "declared_root_records": [
+              {
+                "index": 0,
+                "kind": "asmheader"
+              },
+              {
+                "index": 1,
+                "kind": "body"
+              },
+              {
+                "index": 2,
+                "kind": "body"
+              }
+            ]
+          },
+          {
+            "header": {
+              "signature": "ASM BinaryFile8",
+              "version": 23200,
+              "stored_record_count": 0,
+              "stored_entity_count": 3,
+              "stored_flags": 3,
+              "product": "Autodesk Neutron",
+              "kernel_version": "ASM 232.5.0.65535 OSX",
+              "creation_date_text": "Tue Oct 20 20:12:49 2026",
+              "units_in_mm": 50.0,
+              "resolution_tolerance": 1e-06,
+              "normal_tolerance": 1e-10
+            },
+            "token_count": 1814,
+            "complete_token_stream": true,
+            "unresolved_reason": null,
+            "last_complete_offset": 15327,
+            "total_bytes": 15327,
+            "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
+            "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.87a3aee2-5c8c-4441-b151-2d20d05d857f.smbh",
+            "record_count": 90,
+            "record_type_counts": {
+              "ATTRIB_CUSTOM-attrib": 22,
+              "Begin-of-ASM-History-Data": 1,
+              "End-of-ASM-History-Section": 1,
+              "End-of-ASM-data": 1,
+              "asmheader": 1,
+              "body": 2,
+              "coedge": 8,
+              "delta_state": 3,
+              "edge": 8,
+              "ellipse-curve": 3,
+              "face": 2,
+              "history_stream": 1,
+              "intcurve-curve": 3,
+              "loop": 2,
+              "lump": 2,
+              "pcurve": 8,
+              "point": 8,
+              "shell": 2,
+              "spline-surface": 2,
+              "straight-curve": 2,
+              "vertex": 8
+            },
+            "blob_role": "history",
+            "topology": {
+              "body_graphs": [
+                {
+                  "body_index": 1,
+                  "counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "lump_indices": [
+                    4
+                  ],
+                  "shell_indices": [
+                    8
+                  ],
+                  "face_indices": [
+                    11
+                  ],
+                  "loop_indices": [
+                    14
+                  ],
+                  "coedge_indices": [
+                    19,
+                    21,
+                    29,
+                    22
+                  ],
+                  "edge_indices": [
+                    23,
+                    30,
+                    32,
+                    47
+                  ],
+                  "vertex_indices": [
+                    35,
+                    36,
+                    50,
+                    53
+                  ],
+                  "pcurve_indices": [
+                    24,
+                    31,
+                    33,
+                    48
+                  ],
+                  "pcurve_status": "Observed degree-one UV caches decoded; other pcurve layouts remain unsupported",
+                  "face_trim_loops": [
+                    {
+                      "face_index": 11,
+                      "loop_index": 14,
+                      "surface_index": 15,
+                      "trims": [
+                        {
+                          "coedge_index": 19,
+                          "pcurve_index": 24,
+                          "edge_index": 23,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              2.4186773244895647,
+                              2.4186773244895647
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                2.4186773244895647,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              2.4186773244895647
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.282480566569023e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 21,
+                          "pcurve_index": 31,
+                          "edge_index": 30,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              1.0,
+                              1.0
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                1.0,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                1.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                1.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              1.0
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.2381909585617906e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 29,
+                          "pcurve_index": 48,
+                          "edge_index": 47,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              1.0,
+                              1.0
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                1.0,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              1.0
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.7603130658598166e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 22,
+                          "pcurve_index": 33,
+                          "edge_index": 32,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              1.0,
+                              1.0
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                1.0,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                0.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                0.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              1.0
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 2.2651806710472086e-16,
+                            "stored_inline_surface_ref": 0,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        }
+                      ],
+                      "uv_endpoints_close_in_this_chart": true,
+                      "scope": "Observed stored UV boundaries; periodic chart changes and general trimming remain partial"
+                    }
+                  ],
+                  "raw_vertex_positions": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.4,
+                      0.0,
+                      0.3
+                    ],
+                    [
+                      2.4,
+                      2.6,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      2.6,
+                      0.1
+                    ]
+                  ],
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "body_transform_status": "No transform reference or observed identity",
+                  "surface_record_types": {
+                    "spline-surface": 1
+                  },
+                  "analytic_surfaces": [
+                    {
+                      "face_index": 11,
+                      "surface_index": 15,
+                      "face_is_reversed": false,
+                      "geometry": null,
+                      "geometry_status": "Cached spline surface decoded separately"
+                    }
+                  ],
+                  "spline_surfaces": [
+                    {
+                      "face_index": 11,
+                      "surface_index": 15,
+                      "cache": {
+                        "degree_u": 2,
+                        "degree_v": 2,
+                        "control_count_u": 3,
+                        "control_count_v": 3,
+                        "raw_control_points": [
+                          [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          [
+                            0.0,
+                            1.3,
+                            0.2
+                          ],
+                          [
+                            0.0,
+                            2.6,
+                            0.1
+                          ],
+                          [
+                            1.2,
+                            0.0,
+                            0.15
+                          ],
+                          [
+                            1.2,
+                            1.3,
+                            1.2
+                          ],
+                          [
+                            1.2,
+                            2.6,
+                            -0.1
+                          ],
+                          [
+                            2.4,
+                            0.0,
+                            0.3
+                          ],
+                          [
+                            2.4,
+                            1.3,
+                            0.1
+                          ],
+                          [
+                            2.4,
+                            2.6,
+                            0.4
+                          ]
+                        ],
+                        "weights": [],
+                        "is_rational": false,
+                        "knots_u": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "knots_v": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "stored_compact_knots_u": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_compact_knots_v": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_control_grid_order": "u-fast",
+                        "normalized_control_grid_order": "v-fast",
+                        "parameter_domain_u": [
+                          0.0,
+                          1.0
+                        ],
+                        "parameter_domain_v": [
+                          0.0,
+                          1.0
+                        ],
+                        "stored_axis_flags": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "periodicity_status": "Native axis flags preserved; general form semantics unverified",
+                        "stored_cache_trailer_scalar": 0.0,
+                        "stored_cache_trailer": [
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 2095
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2104
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2113
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2122
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2131
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2140
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 2149
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2158
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2159
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 2160
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2169
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 2170
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2179
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 2180
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 2189
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 2190
+                          },
+                          {
+                            "tag": 21,
+                            "kind": "enum",
+                            "value": 0,
+                            "offset": 2199
+                          },
+                          {
+                            "tag": 16,
+                            "kind": "subtype_end",
+                            "value": null,
+                            "offset": 2208
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2209
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2210
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2211
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 2212
+                          }
+                        ],
+                        "procedural_subtype": "exact_spl_sur",
+                        "representation": "Stored exact spline grid; observed clamped open polynomial/rational surface layout",
+                        "coordinate_scope": "Raw ASM control coordinates; body transforms and units/context not applied"
+                      }
+                    }
+                  ],
+                  "spline_curves": [],
+                  "all_coedges_have_partners": false,
+                  "identity_status": "Stored body graph; final visible body mapping unresolved",
+                  "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
+                },
+                {
+                  "body_index": 2,
+                  "counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "lump_indices": [
+                    6
+                  ],
+                  "shell_indices": [
+                    10
+                  ],
+                  "face_indices": [
+                    12
+                  ],
+                  "loop_indices": [
+                    17
+                  ],
+                  "coedge_indices": [
+                    20,
+                    25,
+                    38,
+                    26
+                  ],
+                  "edge_indices": [
+                    27,
+                    39,
+                    41,
+                    59
+                  ],
+                  "vertex_indices": [
+                    44,
+                    45,
+                    62,
+                    65
+                  ],
+                  "pcurve_indices": [
+                    28,
+                    40,
+                    42,
+                    60
+                  ],
+                  "pcurve_status": "Observed degree-one UV caches decoded; other pcurve layouts remain unsupported",
+                  "face_trim_loops": [
+                    {
+                      "face_index": 12,
+                      "loop_index": 17,
+                      "surface_index": 18,
+                      "trims": [
+                        {
+                          "coedge_index": 20,
+                          "pcurve_index": 28,
+                          "edge_index": 27,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.0,
+                              0.0,
+                              2.4186773244895647,
+                              2.4186773244895647
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.0,
+                                1
+                              ],
+                              [
+                                2.4186773244895647,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                0.0
+                              ],
+                              [
+                                1.0,
+                                0.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.0,
+                              2.4186773244895647
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 3.766435306923873e-12,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 25,
+                          "pcurve_index": 40,
+                          "edge_index": 39,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              -2.0399136399531104,
+                              -2.0399136399531104,
+                              -1.137860016360587,
+                              -1.137860016360587
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                -2.0399136399531104,
+                                1
+                              ],
+                              [
+                                -1.137860016360587,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                0.9999999999999998,
+                                0.9999999999999998
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                0.0
+                              ],
+                              [
+                                0.9999999999999998,
+                                0.9999999999999998
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              -2.0399136399531104,
+                              -1.137860016360587
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 1.0454074261542116e-15,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 38,
+                          "pcurve_index": 60,
+                          "edge_index": 59,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              0.9832973030667802,
+                              0.9832973030667802,
+                              2.270299520653351,
+                              2.270299520653351
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                0.9832973030667802,
+                                1
+                              ],
+                              [
+                                2.270299520653351,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                1.0,
+                                1.0
+                              ],
+                              [
+                                0.0,
+                                1.0
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              0.9832973030667802,
+                              2.270299520653351
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 1.1682640662135511e-15,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        },
+                        {
+                          "coedge_index": 26,
+                          "pcurve_index": 42,
+                          "edge_index": 41,
+                          "is_opposed_to_edge": false,
+                          "uv_curve": {
+                            "degree": 1,
+                            "knots": [
+                              1.110071516600627,
+                              1.110071516600627,
+                              2.012125140193163,
+                              2.012125140193163
+                            ],
+                            "stored_compact_knots": [
+                              [
+                                1.110071516600627,
+                                1
+                              ],
+                              [
+                                2.012125140193163,
+                                1
+                              ]
+                            ],
+                            "raw_control_points_uv": [
+                              [
+                                0.0,
+                                0.9999999999999998
+                              ],
+                              [
+                                5.349798105197911e-19,
+                                2.852128261622414e-16
+                              ]
+                            ],
+                            "parameter_offset_uv": [
+                              0.0,
+                              0.0
+                            ],
+                            "control_points_uv": [
+                              [
+                                0.0,
+                                0.9999999999999998
+                              ],
+                              [
+                                5.349798105197911e-19,
+                                2.852128261622414e-16
+                              ]
+                            ],
+                            "weights": [],
+                            "parameter_domain": [
+                              1.110071516600627,
+                              2.012125140193163
+                            ],
+                            "stored_form_code": 0,
+                            "uninterpreted_cache_scalar": 6.793669785473796e-16,
+                            "stored_inline_surface_ref": 1,
+                            "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
+                            "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
+                            "representation": "Observed explicit degree-one non-rational parameter curve cache"
+                          }
+                        }
+                      ],
+                      "uv_endpoints_close_in_this_chart": true,
+                      "scope": "Observed stored UV boundaries; periodic chart changes and general trimming remain partial"
+                    }
+                  ],
+                  "raw_vertex_positions": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.4,
+                      0.0,
+                      0.3
+                    ],
+                    [
+                      2.4,
+                      2.6,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      2.6,
+                      0.1
+                    ]
+                  ],
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "body_transform_status": "No transform reference or observed identity",
+                  "surface_record_types": {
+                    "spline-surface": 1
+                  },
+                  "analytic_surfaces": [
+                    {
+                      "face_index": 12,
+                      "surface_index": 18,
+                      "face_is_reversed": false,
+                      "geometry": null,
+                      "geometry_status": "Cached spline surface decoded separately"
+                    }
+                  ],
+                  "spline_surfaces": [
+                    {
+                      "face_index": 12,
+                      "surface_index": 18,
+                      "cache": {
+                        "degree_u": 2,
+                        "degree_v": 2,
+                        "control_count_u": 3,
+                        "control_count_v": 3,
+                        "raw_control_points": [
+                          [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          [
+                            0.0,
+                            1.3,
+                            0.2
+                          ],
+                          [
+                            0.0,
+                            2.6,
+                            0.1
+                          ],
+                          [
+                            1.2,
+                            0.0,
+                            0.15
+                          ],
+                          [
+                            1.2,
+                            1.3,
+                            1.2
+                          ],
+                          [
+                            1.2,
+                            2.6,
+                            -0.1
+                          ],
+                          [
+                            2.4,
+                            0.0,
+                            0.3
+                          ],
+                          [
+                            2.4,
+                            1.3,
+                            0.1
+                          ],
+                          [
+                            2.4,
+                            2.6,
+                            0.4
+                          ]
+                        ],
+                        "weights": [
+                          1.0,
+                          0.9,
+                          1.0,
+                          0.8,
+                          0.65,
+                          0.8,
+                          1.0,
+                          0.9,
+                          1.0
+                        ],
+                        "is_rational": true,
+                        "knots_u": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "knots_v": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          1.0,
+                          1.0,
+                          1.0
+                        ],
+                        "stored_compact_knots_u": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_compact_knots_v": [
+                          [
+                            0.0,
+                            2
+                          ],
+                          [
+                            1.0,
+                            2
+                          ]
+                        ],
+                        "stored_control_grid_order": "u-fast",
+                        "normalized_control_grid_order": "v-fast",
+                        "parameter_domain_u": [
+                          0.0,
+                          1.0
+                        ],
+                        "parameter_domain_v": [
+                          0.0,
+                          1.0
+                        ],
+                        "stored_axis_flags": [
+                          0,
+                          0,
+                          0,
+                          0
+                        ],
+                        "periodicity_status": "Native axis flags preserved; general form semantics unverified",
+                        "stored_cache_trailer_scalar": 0.0,
+                        "stored_cache_trailer": [
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 3037
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 3046
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 3055
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 3064
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 3073
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 3082
+                          },
+                          {
+                            "tag": 4,
+                            "kind": "integer",
+                            "value": 0,
+                            "offset": 3091
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 3100
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 3101
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 3102
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 3111
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 3112
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 3121
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 1.0,
+                            "offset": 3122
+                          },
+                          {
+                            "tag": 10,
+                            "kind": "boolean_token",
+                            "value": true,
+                            "offset": 3131
+                          },
+                          {
+                            "tag": 6,
+                            "kind": "double",
+                            "value": 0.0,
+                            "offset": 3132
+                          },
+                          {
+                            "tag": 21,
+                            "kind": "enum",
+                            "value": 0,
+                            "offset": 3141
+                          },
+                          {
+                            "tag": 16,
+                            "kind": "subtype_end",
+                            "value": null,
+                            "offset": 3150
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 3151
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 3152
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 3153
+                          },
+                          {
+                            "tag": 11,
+                            "kind": "boolean_token",
+                            "value": false,
+                            "offset": 3154
+                          }
+                        ],
+                        "procedural_subtype": "exact_spl_sur",
+                        "representation": "Stored exact spline grid; observed clamped open polynomial/rational surface layout",
+                        "coordinate_scope": "Raw ASM control coordinates; body transforms and units/context not applied"
+                      }
+                    }
+                  ],
+                  "spline_curves": [],
+                  "all_coedges_have_partners": false,
+                  "identity_status": "Stored body graph; final visible body mapping unresolved",
+                  "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
+                }
+              ],
+              "unresolved": [
+                {
+                  "index": 51,
+                  "kind": "intcurve-curve",
+                  "reason": "Unsupported exact curve cache trailer"
+                },
+                {
+                  "index": 54,
+                  "kind": "intcurve-curve",
+                  "reason": "Unsupported exact curve cache trailer"
+                },
+                {
+                  "index": 72,
+                  "kind": "intcurve-curve",
+                  "reason": "Unsupported exact curve cache trailer"
+                }
+              ],
+              "initial_geometry_record_count": 83,
+              "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+              "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
+              "nodes_included": false
+            },
+            "declared_root_records": [
+              {
+                "index": 0,
+                "kind": "asmheader"
+              },
+              {
+                "index": 1,
+                "kind": "body"
+              },
+              {
+                "index": 2,
+                "kind": "body"
+              }
+            ]
+          }
+        ],
+        "scope": "Observed ASM tokens and reciprocal topology; final visible-body identity unresolved"
+      }
+    }
+  ],
+  "limitations": [
+    "Only observed clamped open exact_spl_sur polynomial/rational grids are decoded.",
+    "Axis flags, trailer fields and procedural definitions remain partial; body root associations remain experimental."
+  ]
+}

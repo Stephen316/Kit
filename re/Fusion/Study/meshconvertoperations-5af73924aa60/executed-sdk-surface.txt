@@ -1,0 +1,1428 @@
+class MeshConvertFeatures(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Collection that provides access to all of the existing mesh convert features in a component
+    and supports the ability to create new mesh Convert features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshConvertFeatures *":
+        return _fusion.MeshConvertFeatures___deref__(self)
+
+    def __eq__(self, rhs: "MeshConvertFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshConvertFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshConvertFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshConvertFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshConvertFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.MeshConvertFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.MeshConvertFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.MeshConvertFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshConvertFeatures_classType()
+    __swig_destroy__ = _fusion.delete_MeshConvertFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.MeshConvertFeature":
+        r"""
+        Function that returns the specified mesh convert feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.MeshConvertFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of mesh convert features in the collection."""
+        return _fusion.MeshConvertFeatures__get_count(self)
+
+    def createInput(self, inputBodies: "list[MeshBody]") -> "adsk.fusion.MeshConvertFeatureInput":
+        r"""
+        Creates a MeshConvertFeatureInput object. Use properties and methods on this object
+        to define the mesh convert you want to create and then use the add method, passing in
+        the MeshConvertFeatureInput object.
+        inputBodies : An array with mesh bodies in either a parametric or direct modeling design.
+        Returns the newly created MeshConvertFeatureInput object or null if the creation failed.
+        """
+        return _fusion.MeshConvertFeatures_createInput(self, inputBodies)
+
+    def add(self, input: "MeshConvertFeatureInput") -> "adsk.fusion.MeshConvertFeature":
+        r"""
+        Creates a mesh convert feature.
+        input : A MeshConvertFeatureInput object that defines the desired convert feature. Use the createInput
+        method to create a new MeshConvertFeatureInput object and then use methods on it
+        (the MeshConvertFeatureInput object) to define the convert.
+        Returns the newly created MeshConvertFeatureInput object or null if the creation failed.
+        Returns null in the case where the feature is non-parametric.
+        """
+        return _fusion.MeshConvertFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.MeshConvertFeature":
+        r"""
+        Function that returns the specified MeshConvert feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.MeshConvertFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshConvertFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshConvertFeatures__get_isValid(self)
+
+# Register MeshConvertFeatures in _fusion:
+_fusion.MeshConvertFeatures_swigregister(MeshConvertFeatures)
+
+def MeshConvertFeatures_classType() -> "str":
+    return _fusion.MeshConvertFeatures_classType()
+
+
+MeshConvertFeatures.count = property(MeshConvertFeatures._get_count, doc="The number of mesh convert features in the collection.")
+
+
+MeshConvertFeatures.cast = lambda arg: arg if isinstance(arg, MeshConvertFeatures) else None
+
+class MeshConvertFeatureInput(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    This class defines the methods and properties that pertain to the definition of a mesh convert
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshConvertFeatureInput *":
+        return _fusion.MeshConvertFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "MeshConvertFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshConvertFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshConvertFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshConvertFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshConvertFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshConvertFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_MeshConvertFeatureInput
+
+    def _get_inputBodies(self) -> "list[adsk.fusion.MeshBody]":
+        r"""Gets and sets the input meshes."""
+        return _fusion.MeshConvertFeatureInput__get_inputBodies(self)
+
+    def _set_inputBodies(self, value: "list[MeshBody]") -> "bool":
+        r"""Gets and sets the input meshes."""
+        return _fusion.MeshConvertFeatureInput__set_inputBodies(self, value)
+
+    def _get_meshConvertMethodType(self) -> "adsk.fusion.MeshConvertMethodTypes":
+        r"""Gets and sets the convert type of mesh convert, default value is FacetedMeshConvertMethodType."""
+        return _fusion.MeshConvertFeatureInput__get_meshConvertMethodType(self)
+
+    def _set_meshConvertMethodType(self, value: "MeshConvertMethodTypes") -> "bool":
+        r"""Gets and sets the convert type of mesh convert, default value is FacetedMeshConvertMethodType."""
+        return _fusion.MeshConvertFeatureInput__set_meshConvertMethodType(self, value)
+
+    def _get_meshConvertResolutionType(self) -> "adsk.fusion.MeshConvertResolutionTypes":
+        r"""
+        Gets and sets the resolution method of mesh convert, default value is ByAccuracyMeshConvertResolutionType.
+        Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeatureInput__get_meshConvertResolutionType(self)
+
+    def _set_meshConvertResolutionType(self, value: "MeshConvertResolutionTypes") -> "bool":
+        r"""
+        Gets and sets the resolution method of mesh convert, default value is ByAccuracyMeshConvertResolutionType.
+        Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeatureInput__set_meshConvertResolutionType(self, value)
+
+    def _get_meshConvertAccuracyType(self) -> "adsk.fusion.MeshConvertAccuracyTypes":
+        r"""
+        Gets and sets the accuracy of organic mesh convert, default value is MediumMeshConvertResolutionType.
+        Only valid if meshConvertResolutionType is ByAccuracyMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeatureInput__get_meshConvertAccuracyType(self)
+
+    def _set_meshConvertAccuracyType(self, value: "MeshConvertAccuracyTypes") -> "bool":
+        r"""
+        Gets and sets the accuracy of organic mesh convert, default value is MediumMeshConvertResolutionType.
+        Only valid if meshConvertResolutionType is ByAccuracyMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeatureInput__set_meshConvertAccuracyType(self, value)
+
+    def _get_numberOfFaces(self) -> "adsk.core.ValueInput":
+        r"""
+        Specify the number of faces to generate for the converted body.
+        Only valid if meshConvertResolutionType is ByFacetNumberMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeatureInput__get_numberOfFaces(self)
+
+    def _set_numberOfFaces(self, value: "ValueInput") -> "bool":
+        r"""
+        Specify the number of faces to generate for the converted body.
+        Only valid if meshConvertResolutionType is ByFacetNumberMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeatureInput__set_numberOfFaces(self, value)
+
+    def _get_isPreprocessHoles(self) -> "bool":
+        r"""
+        Smooths the boundaries of open holes in the mesh body. Improves the chance of successful conversion by
+        refining the shape of holes that will remain open. Default value is false. Only valid if meshConvertMethodType is
+        OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeatureInput__get_isPreprocessHoles(self)
+
+    def _set_isPreprocessHoles(self, value: "bool") -> "bool":
+        r"""
+        Smooths the boundaries of open holes in the mesh body. Improves the chance of successful conversion by
+        refining the shape of holes that will remain open. Default value is false. Only valid if meshConvertMethodType is
+        OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeatureInput__set_isPreprocessHoles(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshConvertFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshConvertFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_meshConvertOperationType(self) -> "adsk.fusion.MeshConvertOperationTypes":
+        r"""Gets and sets the operation type of mesh convert, default value is ParametricFeatureMeshConvertOperationType."""
+        return _fusion.MeshConvertFeatureInput__get_meshConvertOperationType(self)
+
+    def _set_meshConvertOperationType(self, value: "MeshConvertOperationTypes") -> "bool":
+        r"""Gets and sets the operation type of mesh convert, default value is ParametricFeatureMeshConvertOperationType."""
+        return _fusion.MeshConvertFeatureInput__set_meshConvertOperationType(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshConvertFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshConvertFeatureInput__get_isValid(self)
+
+# Register MeshConvertFeatureInput in _fusion:
+_fusion.MeshConvertFeatureInput_swigregister(MeshConvertFeatureInput)
+
+def MeshConvertFeatureInput_classType() -> "str":
+    return _fusion.MeshConvertFeatureInput_classType()
+
+
+MeshConvertFeatureInput.inputBodies = property(MeshConvertFeatureInput._get_inputBodies, MeshConvertFeatureInput._set_inputBodies, doc="Gets and sets the input meshes.")
+
+
+MeshConvertFeatureInput.meshConvertMethodType = property(MeshConvertFeatureInput._get_meshConvertMethodType, MeshConvertFeatureInput._set_meshConvertMethodType, doc="Gets and sets the convert type of mesh convert, default value is FacetedMeshConvertMethodType.")
+
+
+MeshConvertFeatureInput.meshConvertResolutionType = property(MeshConvertFeatureInput._get_meshConvertResolutionType, MeshConvertFeatureInput._set_meshConvertResolutionType, doc="Gets and sets the resolution method of mesh convert, default value is ByAccuracyMeshConvertResolutionType.\nOnly valid if meshConvertMethodType is OrganicMeshConvertMethodType.")
+
+
+MeshConvertFeatureInput.meshConvertAccuracyType = property(MeshConvertFeatureInput._get_meshConvertAccuracyType, MeshConvertFeatureInput._set_meshConvertAccuracyType, doc="Gets and sets the accuracy of organic mesh convert, default value is MediumMeshConvertResolutionType.\nOnly valid if meshConvertResolutionType is ByAccuracyMeshConvertResolutionType.")
+
+
+MeshConvertFeatureInput.numberOfFaces = property(MeshConvertFeatureInput._get_numberOfFaces, MeshConvertFeatureInput._set_numberOfFaces, doc="Specify the number of faces to generate for the converted body.\nOnly valid if meshConvertResolutionType is ByFacetNumberMeshConvertResolutionType.")
+
+
+MeshConvertFeatureInput.isPreprocessHoles = property(MeshConvertFeatureInput._get_isPreprocessHoles, MeshConvertFeatureInput._set_isPreprocessHoles, doc="Smooths the boundaries of open holes in the mesh body. Improves the chance of successful conversion by\nrefining the shape of holes that will remain open. Default value is false. Only valid if meshConvertMethodType is\nOrganicMeshConvertMethodType.")
+
+
+MeshConvertFeatureInput.targetBaseFeature = property(MeshConvertFeatureInput._get_targetBaseFeature, MeshConvertFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+MeshConvertFeatureInput.meshConvertOperationType = property(MeshConvertFeatureInput._get_meshConvertOperationType, MeshConvertFeatureInput._set_meshConvertOperationType, doc="Gets and sets the operation type of mesh convert, default value is ParametricFeatureMeshConvertOperationType.")
+
+
+MeshConvertFeatureInput.cast = lambda arg: arg if isinstance(arg, MeshConvertFeatureInput) else None
+
+class MeshConvertFeature(Feature):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Object that represents an existing mesh convert feature in a design.
+    To change the properties of this feature, you need to position the timeline marker to immediately before this feature.
+    This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshConvertFeature *":
+        return _fusion.MeshConvertFeature___deref__(self)
+
+    def __eq__(self, rhs: "MeshConvertFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshConvertFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshConvertFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshConvertFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshConvertFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshConvertFeature_classType()
+    __swig_destroy__ = _fusion.delete_MeshConvertFeature
+
+    def _get_inputBodies(self) -> "list[adsk.fusion.MeshBody]":
+        r"""Gets and sets the input meshes."""
+        return _fusion.MeshConvertFeature__get_inputBodies(self)
+
+    def _set_inputBodies(self, value: "list[MeshBody]") -> "bool":
+        r"""Gets and sets the input meshes."""
+        return _fusion.MeshConvertFeature__set_inputBodies(self, value)
+
+    def _get_meshConvertMethodType(self) -> "adsk.fusion.MeshConvertMethodTypes":
+        r"""Gets and sets the convert type of mesh convert."""
+        return _fusion.MeshConvertFeature__get_meshConvertMethodType(self)
+
+    def _set_meshConvertMethodType(self, value: "MeshConvertMethodTypes") -> "bool":
+        r"""Gets and sets the convert type of mesh convert."""
+        return _fusion.MeshConvertFeature__set_meshConvertMethodType(self, value)
+
+    def _get_meshConvertResolutionType(self) -> "adsk.fusion.MeshConvertResolutionTypes":
+        r"""
+        Gets and sets the resolution method of mesh convert.
+        Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeature__get_meshConvertResolutionType(self)
+
+    def _set_meshConvertResolutionType(self, value: "MeshConvertResolutionTypes") -> "bool":
+        r"""
+        Gets and sets the resolution method of mesh convert.
+        Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeature__set_meshConvertResolutionType(self, value)
+
+    def _get_meshConvertAccuracyType(self) -> "adsk.fusion.MeshConvertAccuracyTypes":
+        r"""
+        Gets and sets the accuracy of organic mesh convert.
+        Only valid if meshConvertResolutionType is ByAccuracyMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeature__get_meshConvertAccuracyType(self)
+
+    def _set_meshConvertAccuracyType(self, value: "MeshConvertAccuracyTypes") -> "bool":
+        r"""
+        Gets and sets the accuracy of organic mesh convert.
+        Only valid if meshConvertResolutionType is ByAccuracyMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeature__set_meshConvertAccuracyType(self, value)
+
+    def _get_numberOfFaces(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Specify the number of faces to generate for the converted body.
+        Only valid if meshConvertResolutionType is ByFacetNumberMeshConvertResolutionType.
+        """
+        return _fusion.MeshConvertFeature__get_numberOfFaces(self)
+
+    def _get_isPreprocessHoles(self) -> "bool":
+        r"""
+        Smooths the boundaries of open holes in the mesh body. Improves the chance of successful conversion by
+        refining the shape of holes that will remain open. Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeature__get_isPreprocessHoles(self)
+
+    def _set_isPreprocessHoles(self, value: "bool") -> "bool":
+        r"""
+        Smooths the boundaries of open holes in the mesh body. Improves the chance of successful conversion by
+        refining the shape of holes that will remain open. Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.
+        """
+        return _fusion.MeshConvertFeature__set_isPreprocessHoles(self, value)
+
+    def _get_nativeObject(self) -> "adsk.fusion.MeshConvertFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.MeshConvertFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.MeshConvertFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.MeshConvertFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshConvertFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshConvertFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.MeshConvertFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.MeshConvertFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshConvertFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshConvertFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.MeshConvertFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.MeshConvertFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.MeshConvertFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.MeshConvertFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.MeshConvertFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.MeshConvertFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.MeshConvertFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.MeshConvertFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.MeshConvertFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.MeshConvertFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.MeshConvertFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.MeshConvertFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshConvertFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshConvertFeature__get_isValid(self)
+
+# Register MeshConvertFeature in _fusion:
+_fusion.MeshConvertFeature_swigregister(MeshConvertFeature)
+
+def MeshConvertFeature_classType() -> "str":
+    return _fusion.MeshConvertFeature_classType()
+
+
+MeshConvertFeature.inputBodies = property(MeshConvertFeature._get_inputBodies, MeshConvertFeature._set_inputBodies, doc="Gets and sets the input meshes.")
+
+
+MeshConvertFeature.meshConvertMethodType = property(MeshConvertFeature._get_meshConvertMethodType, MeshConvertFeature._set_meshConvertMethodType, doc="Gets and sets the convert type of mesh convert.")
+
+
+MeshConvertFeature.meshConvertResolutionType = property(MeshConvertFeature._get_meshConvertResolutionType, MeshConvertFeature._set_meshConvertResolutionType, doc="Gets and sets the resolution method of mesh convert.\nOnly valid if meshConvertMethodType is OrganicMeshConvertMethodType.")
+
+
+MeshConvertFeature.meshConvertAccuracyType = property(MeshConvertFeature._get_meshConvertAccuracyType, MeshConvertFeature._set_meshConvertAccuracyType, doc="Gets and sets the accuracy of organic mesh convert.\nOnly valid if meshConvertResolutionType is ByAccuracyMeshConvertResolutionType.")
+
+
+MeshConvertFeature.numberOfFaces = property(MeshConvertFeature._get_numberOfFaces, doc="Specify the number of faces to generate for the converted body.\nOnly valid if meshConvertResolutionType is ByFacetNumberMeshConvertResolutionType.")
+
+
+MeshConvertFeature.isPreprocessHoles = property(MeshConvertFeature._get_isPreprocessHoles, MeshConvertFeature._set_isPreprocessHoles, doc="Smooths the boundaries of open holes in the mesh body. Improves the chance of successful conversion by\nrefining the shape of holes that will remain open. Only valid if meshConvertMethodType is OrganicMeshConvertMethodType.")
+
+
+MeshConvertFeature.nativeObject = property(MeshConvertFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+MeshConvertFeature.cast = lambda arg: arg if isinstance(arg, MeshConvertFeature) else None
+
+class MeshConvertOperationTypes(object):
+    r"""
+    ** This enum is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Specify the operation method for the mesh conversion.
+
+    Attributes:
+        ParametricFeatureMeshConvertOperationType: A parametric MeshConvert feature is created after the operation.
+        BaseFeatureMeshConvertOperationType: A base feature is created after the operation.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    ParametricFeatureMeshConvertOperationType = _fusion.MeshConvertOperationTypes_ParametricFeatureMeshConvertOperationType
+    BaseFeatureMeshConvertOperationType = _fusion.MeshConvertOperationTypes_BaseFeatureMeshConvertOperationType
+
+    def __init__(self):
+        _fusion.MeshConvertOperationTypes_swiginit(self, _fusion.new_MeshConvertOperationTypes())
+    __swig_destroy__ = _fusion.delete_MeshConvertOperationTypes
+
+# Register MeshConvertOperationTypes in _fusion:
+_fusion.MeshConvertOperationTypes_swigregister(MeshConvertOperationTypes)
+
+class MeshConvertMethodTypes(object):
+    r"""
+    ** This enum is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Specify the convert method for the mesh.
+
+    Attributes:
+        FacetedMeshConvertMethodType: Converts individual faces on the mesh body to individual faces on the new solid or surface body.
+        PrismaticMeshConvertMethodType: Merges groups of faces in prismatic features into singular faces on the new solid or surface body. Face
+            groups are used to infer prismatic features.
+        OrganicMeshConvertMethodType: This converts the mesh body to an organically shaped solid or surface body. Only accessible if the product design extension is active.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    FacetedMeshConvertMethodType = _fusion.MeshConvertMethodTypes_FacetedMeshConvertMethodType
+    PrismaticMeshConvertMethodType = _fusion.MeshConvertMethodTypes_PrismaticMeshConvertMethodType
+    OrganicMeshConvertMethodType = _fusion.MeshConvertMethodTypes_OrganicMeshConvertMethodType
+
+    def __init__(self):
+        _fusion.MeshConvertMethodTypes_swiginit(self, _fusion.new_MeshConvertMethodTypes())
+    __swig_destroy__ = _fusion.delete_MeshConvertMethodTypes
+
+# Register MeshConvertMethodTypes in _fusion:
+_fusion.MeshConvertMethodTypes_swigregister(MeshConvertMethodTypes)
+
+class BaseFeature(Feature):
+    r"""The BaseFeature class represents a direct edit feature within a parametric design."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.BaseFeature *":
+        return _fusion.BaseFeature___deref__(self)
+
+    def __eq__(self, rhs: "BaseFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.BaseFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "BaseFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.BaseFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.BaseFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.BaseFeature_classType()
+    __swig_destroy__ = _fusion.delete_BaseFeature
+
+    def _get_constructionPlanes(self) -> "list[adsk.fusion.ConstructionPlane]":
+        r"""Returns an array of the construction planes associated with this base feature."""
+        return _fusion.BaseFeature__get_constructionPlanes(self)
+
+    def _get_constructionAxes(self) -> "list[adsk.fusion.ConstructionAxis]":
+        r"""Returns an array of the construction axes associated with this base feature."""
+        return _fusion.BaseFeature__get_constructionAxes(self)
+
+    def _get_constructionPoints(self) -> "list[adsk.fusion.ConstructionPoint]":
+        r"""Returns an array of the construction points associated with this base feature."""
+        return _fusion.BaseFeature__get_constructionPoints(self)
+
+    def _get_sketches(self) -> "list[adsk.fusion.Sketch]":
+        r"""Returns an array of the sketches associated with this base feature."""
+        return _fusion.BaseFeature__get_sketches(self)
+
+    def _get_meshBodies(self) -> "list[adsk.fusion.MeshBody]":
+        r"""Returns an array of the mesh bodies associated with this base feature."""
+        return _fusion.BaseFeature__get_meshBodies(self)
+
+    def startEdit(self) -> "bool":
+        r"""
+        Set the user-interface so that the base body is in edit mode.
+        Returns true if successful.
+        """
+        return _fusion.BaseFeature_startEdit(self)
+
+    def finishEdit(self) -> "bool":
+        r"""
+        Exits from edit mode in the user-interface. If this base feature in not
+        in edit mode, then nothing happens.
+        Returns true if successful.
+        """
+        return _fusion.BaseFeature_finishEdit(self)
+
+    def updateBody(self, sourceBody: "BRepBody", newBody: "BRepBody") -> "bool":
+        r"""
+        Update an existing source BRepBody created by this BaseFeature.
+        The input BRepBody definition will be copied into the existing BRepBody.
+        sourceBody : The source BRepBody to update. The source bodies of a BaseFeature are only available
+        from the bodies collection of the BaseFeature when the BaseFeature is in edit mode.
+        newBody : The BRepBody whose definition will be used to replace the existing source body's definition.
+        Returns true if the body was updated, or false if the update failed.
+        """
+        return _fusion.BaseFeature_updateBody(self, sourceBody, newBody)
+
+    def _get_nativeObject(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.BaseFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.BaseFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this is not the NativeObject.
+        """
+        return _fusion.BaseFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_sourceBodies(self) -> "list[adsk.fusion.BRepBody]":
+        r"""
+        Returns the B-Rep bodies owned by the base feature.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations. The result bodies can be obtained by
+        using the bodies property of the BaseFeature object.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.BaseFeature__get_sourceBodies(self)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.BaseFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.BaseFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.BaseFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.BaseFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.BaseFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.BaseFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.BaseFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.BaseFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.BaseFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.BaseFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.BaseFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.BaseFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.BaseFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.BaseFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.BaseFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.BaseFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.BaseFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.BaseFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.BaseFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.BaseFeature__get_isValid(self)
+
+# Register BaseFeature in _fusion:
+_fusion.BaseFeature_swigregister(BaseFeature)
+
+def BaseFeature_classType() -> "str":
+    return _fusion.BaseFeature_classType()
+
+
+BaseFeature.constructionPlanes = property(BaseFeature._get_constructionPlanes, doc="Returns an array of the construction planes associated with this base feature.")
+
+
+BaseFeature.constructionAxes = property(BaseFeature._get_constructionAxes, doc="Returns an array of the construction axes associated with this base feature.")
+
+
+BaseFeature.constructionPoints = property(BaseFeature._get_constructionPoints, doc="Returns an array of the construction points associated with this base feature.")
+
+
+BaseFeature.sketches = property(BaseFeature._get_sketches, doc="Returns an array of the sketches associated with this base feature.")
+
+
+BaseFeature.meshBodies = property(BaseFeature._get_meshBodies, doc="Returns an array of the mesh bodies associated with this base feature.")
+
+
+BaseFeature.nativeObject = property(BaseFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+BaseFeature.sourceBodies = property(BaseFeature._get_sourceBodies, doc="Returns the B-Rep bodies owned by the base feature.\nWhen a body is added to a base feature, that body is owned by the base feature\nand is only seen in the UI when the base feature is active. This body is referred\nto as a 'source body'. Fusion creates a parametric copy of the body when you\nexit the base feature. This copy is referred to as the 'result body,' and it\nis used for subsequent modeling operations. The result bodies can be obtained by\nusing the bodies property of the BaseFeature object.\nYou can map between the source and result bodies by using their position\nwithin the bodies returned. To get a valid list of result bodies, you should\nroll the timeline to immediately after the base feature node in the timeline.\nOtherwise, subsequent operations could have done something to cause one or\nmore bodies to no longer be available.")
+
+
+BaseFeature.cast = lambda arg: arg if isinstance(arg, BaseFeature) else None
+
+class Feature(Base):
+    r"""Base class object representing all features."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.Feature *":
+        return _fusion.Feature___deref__(self)
+
+    def __eq__(self, rhs: "Feature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.Feature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "Feature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.Feature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.Feature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.Feature_classType()
+    __swig_destroy__ = _fusion.delete_Feature
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.Feature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.Feature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.Feature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.Feature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.Feature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.Feature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.Feature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.Feature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.Feature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.Feature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.Feature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.Feature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.Feature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.Feature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.Feature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.Feature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.Feature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.Feature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.Feature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.Feature__get_isValid(self)
+
+# Register Feature in _fusion:
+_fusion.Feature_swigregister(Feature)
+
+def Feature_classType() -> "str":
+    return _fusion.Feature_classType()
+
+
+Feature.name = property(Feature._get_name, Feature._set_name, doc="Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric).")
+
+
+Feature.isSuppressed = property(Feature._get_isSuppressed, Feature._set_isSuppressed, doc="Gets and sets if this feature is suppressed. This is only valid\nfor parametric features.")
+
+
+Feature.isParametric = property(Feature._get_isParametric, doc="Indicates if this feature is parametric or not.")
+
+
+Feature.faces = property(Feature._get_faces, doc="Returns the faces that were created by this feature. This works for\nboth parametric and non-parametric features.\nDepending on the modifications made to the body after the feature was\ncreated, this may not return all of the faces. For example, when a\ncomponent is created from a body, the original body and its faces\nno longer exist, so this won't return any faces. However, you can\nroll the timeline to immediately after the feature, and all the\noriginal faces will be available.")
+
+
+Feature.parentComponent = property(Feature._get_parentComponent, doc="Returns the parent component that owns this feature.")
+
+
+Feature.linkedFeatures = property(Feature._get_linkedFeatures, doc="Returns the set of features that are linked to this feature. The set of linked features\nare all of the features that were created in various components as the result of a\nsingle feature being created in the user interface.")
+
+
+Feature.assemblyContext = property(Feature._get_assemblyContext, doc="Returns the assembly occurrence (i.e. the occurrence) of this object\nin an assembly. This is only valid in the case where this is acting\nas a proxy in an assembly. Returns null in the case where the object\nis not in the context of an assembly but is already the native object.")
+
+
+Feature.timelineObject = property(Feature._get_timelineObject, doc="Returns the timeline object associated with this feature.")
+
+
+Feature.bodies = property(Feature._get_bodies, doc="Returns the bodies that were modified or created by this feature.\nThis property works for both parametric and non-parametric features.\nFor a BaseFeature, this property has two different behaviors depending\non if the BaseFeature is active for edit or not. When the base feature is\nactive, this property returns the bodies owned by the base feature or the\nsource bodies. When the base feature is not active, this property returns\nthe result bodies.\nWhen a body is added to a base feature, that body is owned by the base feature\nand is only seen in the UI when the base feature is active. This body is referred\nto as a 'source body'. Fusion creates a parametric copy of the body when you\nexit the base feature. This copy is referred to as the 'result body,' and it\nis used for subsequent modeling operations.\nYou can map between the source and result bodies by using their position\nwithin the bodies returned. To get a valid list of result bodies, you should\nroll the timeline to immediately after the base feature node in the timeline.\nOtherwise, subsequent operations could have done something to cause one or\nmore bodies to no longer be available.")
+
+
+Feature.attributes = property(Feature._get_attributes, doc="Returns the collection of attributes associated with this face.")
+
+
+Feature.baseFeature = property(Feature._get_baseFeature, doc="If this feature is associated with a base feature, this property will return that base feature.\nIf it's not associated with a base feature, this property will return null.")
+
+
+Feature.healthState = property(Feature._get_healthState, doc="Returns the current health state of the feature.")
+
+
+Feature.errorOrWarningMessage = property(Feature._get_errorOrWarningMessage, doc="Returns the error or warning message in the case where the healthState property returns either\nWarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.")
+
+
+Feature.entityToken = property(Feature._get_entityToken, doc="Returns a token for the Feature object. This can be saved and used at a later\ntime with the Design.findEntityByToken method to get back the same feature.\nWhen using entity tokens it's important to understand that the token string returned for a\nspecific entity can be different over time. However, even if you have two different token\nstrings that were obtained from the same entity, when you use findEntityByToken they\nwill both return the same entity. Because of that you should never compare entity tokens\nas way to determine what the token represents. Instead, you need to use the findEntityByToken\nmethod to get the two entities identified by the tokens and then compare them.")
+
+
+Feature.cast = lambda arg: arg if isinstance(arg, Feature) else None
+
+class TimelineObject(Base):
+    r"""Represents an object in the timeline."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.TimelineObject *":
+        return _fusion.TimelineObject___deref__(self)
+
+    def __eq__(self, rhs: "TimelineObject") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.TimelineObject___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "TimelineObject") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.TimelineObject___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.TimelineObject'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.TimelineObject_classType()
+    __swig_destroy__ = _fusion.delete_TimelineObject
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""Gets and sets if this object is suppressed."""
+        return _fusion.TimelineObject__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""Gets and sets if this object is suppressed."""
+        return _fusion.TimelineObject__set_isSuppressed(self, value)
+
+    def _get_parentGroup(self) -> "adsk.fusion.TimelineGroup":
+        r"""
+        Returns the parent group, if this object is part of a group.
+        Returns null if this object is not part of a group.
+        """
+        return _fusion.TimelineObject__get_parentGroup(self)
+
+    def _get_index(self) -> "int":
+        r"""
+        Returns the position of this item within the timeline where
+        the first item has an index of 0.
+        This property can return -1 in the two cases where this object
+        is not currently represented in the timeline. The two cases are:
+        1. When this is a TimelineGroup object and the group is expanded.
+        2. When this object is part of a group and the group is collapsed.
+        """
+        return _fusion.TimelineObject__get_index(self)
+
+    def _get_isRolledBack(self) -> "bool":
+        r"""
+        Indicates if this item is currently not being computed
+        because it has been rolled back.
+        If this is a timelineGroup object and the group is expanded
+        the value of this property should be ignored.
+        """
+        return _fusion.TimelineObject__get_isRolledBack(self)
+
+    def rollTo(self, rollBefore: "bool") -> "bool":
+        r"""
+        Rolls the timeline by repositioning the marker to either before or after this object.
+        This method will fail if this is a timelineGroup object and the group is expanded.
+        rollBefore : Set rollBefore to true to reposition the marker before this object or to false to
+        reposition the marker after this object
+        Returns true if the move was successful
+        """
+        return _fusion.TimelineObject_rollTo(self, rollBefore)
+
+    def _get_entity(self) -> "adsk.core.Base":
+        r"""
+        Returns the entity associated with this timeline object.
+        Edit operations can be performed by getting the object
+        representing the associated entity and using the methods
+        and properties on that entity to make changes.
+        Returns null if this TimelineObject does not have a single public-API
+        entity. This includes TimelineGroup rows (iterate the TimelineGroup's
+        children instead, or use the TimelineGroup itself), and any entry
+        whose feature type does not yet have a public API representation.
+        Scripts that walk the timeline should null-check this property rather
+        than relying on it to throw.
+        """
+        return _fusion.TimelineObject__get_entity(self)
+
+    def canReorder(self, beforeIndex: "int"=-1) -> "bool":
+        r"""
+        Checks to see if this object can be reordered to the specified position.
+        The default value of -1 indicates the end of the timeline.
+        This method will fail if this is a timelineGroup object and the group is expanded.
+        beforeIndex : The index number of the position in the timeline to check
+        Returns true if the object can be reordered to the specified position
+        """
+        return _fusion.TimelineObject_canReorder(self, beforeIndex)
+
+    def reorder(self, beforeIndex: "int"=-1) -> "bool":
+        r"""
+        Reorders this object to the position specified.
+        The default value of -1 indicates the end of the timeline.
+        beforeIndex : The index number of the position in the timeline to place this object before
+        Returns true if the reorder operation was successful
+        This method will fail and return false if this is a timelineGroup object and the
+        group is expanded.
+        """
+        return _fusion.TimelineObject_reorder(self, beforeIndex)
+
+    def _get_isGroup(self) -> "bool":
+        r"""
+        Indicates if this TimelineObject represents a group. If True you can
+        operate on this object as a TimelineGroup object.
+        """
+        return _fusion.TimelineObject__get_isGroup(self)
+
+    def _get_name(self) -> "str":
+        r"""
+        Gets and sets the name of this timeline object. This name is shared by the object
+        the timeline object represents. For example, if the TimelineObject represents a Sketch
+        and you change the name using the TimelineObject, the name of the sketch in the browser
+        is also changed. The reverse is also true. Setting the name of an object; sketch, feature
+        construction geometry, etc, will also change the name of the associated node in the timeline.
+        """
+        return _fusion.TimelineObject__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""
+        Gets and sets the name of this timeline object. This name is shared by the object
+        the timeline object represents. For example, if the TimelineObject represents a Sketch
+        and you change the name using the TimelineObject, the name of the sketch in the browser
+        is also changed. The reverse is also true. Setting the name of an object; sketch, feature
+        construction geometry, etc, will also change the name of the associated node in the timeline.
+        """
+        return _fusion.TimelineObject__set_name(self, value)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""
+        Returns the current health state of the object associated with this TimelineObject.
+        Returns UnknownFeatureHealthState when this TimelineObject represents a TimelineGroup,
+        since groups do not carry their own health state.
+        """
+        return _fusion.TimelineObject__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.TimelineObject__get_errorOrWarningMessage(self)
+
+    def _get_parentTimeline(self) -> "adsk.fusion.Timeline":
+        r"""Returns the Timeline that owns this TimelineObject."""
+        return _fusion.TimelineObject__get_parentTimeline(self)
+
+    def _get_isDeletable(self) -> "bool":
+        r"""
+        Indicates whether this TimelineObject can be deleted standalone using deleteObject().
+        Returns false in cases where standalone deletion is not supported, for example:
+        - The object is a child of a collapsed TimelineGroup (delete the parent group instead).
+        - The object represents a snapshot or other entry that cannot be deleted independently.
+        - The underlying feature has dependents whose deletion would cascade.
+        For TimelineGroup objects use TimelineGroup.deleteMe() rather than this method.
+        """
+        return _fusion.TimelineObject__get_isDeletable(self)
+
+    def deleteObject(self) -> "bool":
+        r"""
+        Deletes this TimelineObject and its associated feature from the design.
+        This method should not be used for TimelineGroup objects; use TimelineGroup.deleteMe() instead.
+        Check the isDeletable property before calling this method.
+        Returns true if the delete was successful. Returns false if this object is not deletable
+        (for example a group child, a snapshot, or a TimelineGroup) without throwing.
+        """
+        return _fusion.TimelineObject_deleteObject(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.TimelineObject__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.TimelineObject__get_isValid(self)
+
+# Register TimelineObject in _fusion:
+_fusion.TimelineObject_swigregister(TimelineObject)
+
+def TimelineObject_classType() -> "str":
+    return _fusion.TimelineObject_classType()
+
+
+TimelineObject.isSuppressed = property(TimelineObject._get_isSuppressed, TimelineObject._set_isSuppressed, doc="Gets and sets if this object is suppressed.")
+
+
+TimelineObject.parentGroup = property(TimelineObject._get_parentGroup, doc="Returns the parent group, if this object is part of a group.\nReturns null if this object is not part of a group.")
+
+
+TimelineObject.index = property(TimelineObject._get_index, doc="Returns the position of this item within the timeline where\nthe first item has an index of 0.\nThis property can return -1 in the two cases where this object\nis not currently represented in the timeline. The two cases are:\n1. When this is a TimelineGroup object and the group is expanded.\n2. When this object is part of a group and the group is collapsed.")
+
+
+TimelineObject.isRolledBack = property(TimelineObject._get_isRolledBack, doc="Indicates if this item is currently not being computed\nbecause it has been rolled back.\nIf this is a timelineGroup object and the group is expanded\nthe value of this property should be ignored.")
+
+
+TimelineObject.entity = property(TimelineObject._get_entity, doc="Returns the entity associated with this timeline object.\nEdit operations can be performed by getting the object\nrepresenting the associated entity and using the methods\nand properties on that entity to make changes.\nReturns null if this TimelineObject does not have a single public-API\nentity. This includes TimelineGroup rows (iterate the TimelineGroup's\nchildren instead, or use the TimelineGroup itself), and any entry\nwhose feature type does not yet have a public API representation.\nScripts that walk the timeline should null-check this property rather\nthan relying on it to throw.")
+
+
+TimelineObject.isGroup = property(TimelineObject._get_isGroup, doc="Indicates if this TimelineObject represents a group. If True you can\noperate on this object as a TimelineGroup object.")
+
+
+TimelineObject.name = property(TimelineObject._get_name, TimelineObject._set_name, doc="Gets and sets the name of this timeline object. This name is shared by the object\nthe timeline object represents. For example, if the TimelineObject represents a Sketch\nand you change the name using the TimelineObject, the name of the sketch in the browser\nis also changed. The reverse is also true. Setting the name of an object; sketch, feature\nconstruction geometry, etc, will also change the name of the associated node in the timeline.")
+
+
+TimelineObject.healthState = property(TimelineObject._get_healthState, doc="Returns the current health state of the object associated with this TimelineObject.\nReturns UnknownFeatureHealthState when this TimelineObject represents a TimelineGroup,\nsince groups do not carry their own health state.")
+
+
+TimelineObject.errorOrWarningMessage = property(TimelineObject._get_errorOrWarningMessage, doc="Returns the error or warning message in the case where the healthState property returns either\nWarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.")
+
+
+TimelineObject.parentTimeline = property(TimelineObject._get_parentTimeline, doc="Returns the Timeline that owns this TimelineObject.")
+
+
+TimelineObject.isDeletable = property(TimelineObject._get_isDeletable, doc="Indicates whether this TimelineObject can be deleted standalone using deleteObject().\nReturns false in cases where standalone deletion is not supported, for example:\n- The object is a child of a collapsed TimelineGroup (delete the parent group instead).\n- The object represents a snapshot or other entry that cannot be deleted independently.\n- The underlying feature has dependents whose deletion would cascade.\nFor TimelineGroup objects use TimelineGroup.deleteMe() rather than this method.")
+
+
+TimelineObject.cast = lambda arg: arg if isinstance(arg, TimelineObject) else None

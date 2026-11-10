@@ -1,0 +1,724 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "fillet_constant.f3d",
+      "settings": {
+        "rolling_ball_corner": true,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Radius",
+          "value": 0.2,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "fillet_tangent.f3d",
+      "settings": {
+        "rolling_ball_corner": true,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": true,
+            "radius": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Radius",
+          "value": 0.2,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "fillet_setback.f3d",
+      "settings": {
+        "rolling_ball_corner": false,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Radius",
+          "value": 0.2,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "fillet_multiple.f3d",
+      "settings": {
+        "rolling_ball_corner": true,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          },
+          {
+            "kind": "ConstantRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "radius": {
+              "name": "d6",
+              "value": 0.30000000000000004,
+              "role": "Radius"
+            },
+            "tangencyWeight": {
+              "name": "d5",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Radius",
+          "value": 0.2,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d5",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d6",
+          "role": "Radius",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "fillet_variable.f3d",
+      "settings": {
+        "rolling_ball_corner": true,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "VariableRadiusFilletEdgeSet",
+            "tangent_chain": false,
+            "startRadius": {
+              "name": "d4",
+              "value": 0.1,
+              "role": "StartRadius"
+            },
+            "endRadius": {
+              "name": "d5",
+              "value": 0.30000000000000004,
+              "role": "EndRadius"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "StartRadius",
+          "value": 0.1,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d5",
+          "role": "EndRadius",
+          "value": 0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "fillet_chord.f3d",
+      "settings": {
+        "rolling_ball_corner": true,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "ChordLengthFilletEdgeSet",
+            "tangent_chain": false,
+            "chordLength": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "ChordLen"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 1
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "ChordLen",
+          "value": 0.2,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "fillet_asymmetric.f3d",
+      "settings": {
+        "rolling_ball_corner": false,
+        "feature_type": 0,
+        "edge_sets": [
+          {
+            "kind": "AsymmetricFilletEdgeSet",
+            "tangent_chain": false,
+            "offsetOne": {
+              "name": "d4",
+              "value": 0.2,
+              "role": "EdgeOffset1"
+            },
+            "offsetTwo": {
+              "name": "d5",
+              "value": 0.1,
+              "role": "EdgeOffset2"
+            },
+            "tangencyWeight": {
+              "name": "d3",
+              "value": 1.0,
+              "role": "TangencyWeight"
+            },
+            "continuity": 2,
+            "isFlipped": false
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "TangencyWeight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "EdgeOffset1",
+          "value": 0.2,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d5",
+          "role": "EdgeOffset2",
+          "value": 0.1,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "chamfer_equal.f3d",
+      "settings": {
+        "edge_sets": [
+          {
+            "kind": "EqualDistanceChamferEdgeSet",
+            "tangent_chain": false,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            }
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "Distance",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "chamfer_tangent.f3d",
+      "settings": {
+        "edge_sets": [
+          {
+            "kind": "EqualDistanceChamferEdgeSet",
+            "tangent_chain": true,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            }
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "Distance",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "chamfer_two.f3d",
+      "settings": {
+        "edge_sets": [
+          {
+            "kind": "TwoDistancesChamferEdgeSet",
+            "tangent_chain": false,
+            "distanceOne": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance 1"
+            },
+            "distanceTwo": {
+              "name": "d4",
+              "value": 0.25,
+              "role": "Distance 2"
+            },
+            "isFlipped": false
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "Distance 1",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Distance 2",
+          "value": 0.25,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "chamfer_two_flipped.f3d",
+      "settings": {
+        "edge_sets": [
+          {
+            "kind": "TwoDistancesChamferEdgeSet",
+            "tangent_chain": false,
+            "distanceOne": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance 1"
+            },
+            "distanceTwo": {
+              "name": "d4",
+              "value": 0.25,
+              "role": "Distance 2"
+            },
+            "isFlipped": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "Distance 1",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Distance 2",
+          "value": 0.25,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "chamfer_angle.f3d",
+      "settings": {
+        "edge_sets": [
+          {
+            "kind": "DistanceAndAngleChamferEdgeSet",
+            "tangent_chain": false,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            },
+            "angle": {
+              "name": "d4",
+              "value": 0.6108652381980153,
+              "role": "Rotate Angle"
+            },
+            "isFlipped": false
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "Distance",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Rotate Angle",
+          "value": 0.6108652381980153,
+          "unit": "deg",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    },
+    {
+      "file": "chamfer_angle_flipped.f3d",
+      "settings": {
+        "edge_sets": [
+          {
+            "kind": "DistanceAndAngleChamferEdgeSet",
+            "tangent_chain": false,
+            "distance": {
+              "name": "d3",
+              "value": 0.15000000000000002,
+              "role": "Distance"
+            },
+            "angle": {
+              "name": "d4",
+              "value": 0.6108652381980153,
+              "role": "Rotate Angle"
+            },
+            "isFlipped": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d3",
+          "role": "Distance",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeEdgeTool"
+        },
+        {
+          "name": "d4",
+          "role": "Rotate Angle",
+          "value": 0.6108652381980153,
+          "unit": "deg",
+          "created_by": "ProbeEdgeTool"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,82 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "user_multiline_comment.f3d",
+      "parameter": {
+        "name": "probeWidth",
+        "object_type": "adsk::fusion::UserParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "is_favorite": false,
+        "value_type": 0,
+        "value": 0.73
+      },
+      "requested_multiline": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+    },
+    {
+      "file": "text_multiline_value.f3d",
+      "parameter": {
+        "name": "probeLabel",
+        "object_type": "adsk::fusion::UserParameter",
+        "unit": "Text",
+        "expression": "'First \u00d8 line\nSecond\tcolumn\r\nThird line'",
+        "comment": "",
+        "is_favorite": false,
+        "value_type": 1,
+        "text_value": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+      },
+      "requested_multiline": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+    },
+    {
+      "file": "model_favorite_false.f3d",
+      "parameter": {
+        "name": "d1",
+        "object_type": "adsk::fusion::ModelParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "",
+        "is_favorite": false,
+        "value_type": 0,
+        "role": "AlongDistance",
+        "created_by": "ProbeExtrude",
+        "value": 0.73
+      },
+      "requested_multiline": null
+    },
+    {
+      "file": "model_favorite_true.f3d",
+      "parameter": {
+        "name": "d1",
+        "object_type": "adsk::fusion::ModelParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "",
+        "is_favorite": true,
+        "value_type": 0,
+        "role": "AlongDistance",
+        "created_by": "ProbeExtrude",
+        "value": 0.73
+      },
+      "requested_multiline": null
+    },
+    {
+      "file": "model_multiline_comment.f3d",
+      "parameter": {
+        "name": "d1",
+        "object_type": "adsk::fusion::ModelParameter",
+        "unit": "mm",
+        "expression": "7.3 mm",
+        "comment": "First \u00d8 line\nSecond\tcolumn\r\nThird line",
+        "is_favorite": false,
+        "value_type": 0,
+        "role": "AlongDistance",
+        "created_by": "ProbeExtrude",
+        "value": 0.73
+      },
+      "requested_multiline": "First \u00d8 line\nSecond\tcolumn\r\nThird line"
+    }
+  ],
+  "errors": []
+}

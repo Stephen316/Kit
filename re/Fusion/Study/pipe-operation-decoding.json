@@ -1,0 +1,552 @@
+{
+  "scope": "Three actual owned single-root-target straight SketchLine full-distance circular-solid Pipe Join/Cut/Intersect exports; common controls parsed by shared decode_pipe",
+  "interface": "decode_pipe_operations(data,records,features)->decoded/unresolved/scope; rows feature_object_id/tool_settings/target_body/layout and participant applicability. No assembly input required.",
+  "integration": "Run immediately after decode_tools before old unresolved Pipe provenance fallback; apply only successful settings/explicit target attachments and clear only same-feature old unsupported-prefix error. Other paths/settings remain unchanged.",
+  "capture_provenance": {
+    "ground_truth_file": "pipeoperations-6afc81788dbf/ground_truth.json",
+    "ground_truth_sha256": "aa572a393cee5d5ff604fd3f5003df1714990e4f53418599db286503e87d408e",
+    "executed_generator_sha256": "83149cb97c00eebf9a1923e19a094fd5ad3eb91db6a691feb47a2c2f592c48cb",
+    "executed_source_snapshot": "pipeoperations-6afc81788dbf/executed-generator-source.txt"
+  },
+  "schema": {
+    "prefix": "Observed00 00 empty attribute header; hollow@2, operationuint32@3; canonical common offsets shift bycursor2-minus-oldcursor6=-4 without changing source bytes",
+    "operation_codes": {
+      "1": "Join(API0)",
+      "2": "Cut(API1)",
+      "3": "Intersect(API2)"
+    },
+    "target_list": "After common section: zero16, countu32=1, owned proxyref; counted proxy list selects owned Body descriptor\u2192typed anchor\u2192explicit native BODY",
+    "common_parser": "Shared decode_pipe.layout_resolver supplies delta/operation; bindings/path/section/fractions remain existing code"
+  },
+  "samples": [
+    {
+      "file": "pipeoperations-6afc81788dbf/join.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 355,
+            "tool_settings": {
+              "operation": "Join",
+              "is_hollow": false,
+              "section_type": "Circular",
+              "stored_section_type_code": 0,
+              "section_size_cm": 0.6000000000000001,
+              "active_section_thickness_cm": null,
+              "stored_section_thickness_cm": 0.0,
+              "distance_one_fraction": 1.0,
+              "distance_two_fraction": null,
+              "native_against_fraction": 1.0,
+              "native_along_fraction": 1.0,
+              "parameter_bindings": {
+                "AgainstDistance": 374,
+                "AlongDistance": 371,
+                "SectionSize": 377,
+                "SectionThickness": 380
+              },
+              "path": {
+                "selection_record_object_id": 363,
+                "descriptor_object_id": 366,
+                "terminal_object_id": 369,
+                "sketch_object_id": 304,
+                "curve_object_id": 333,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "fraction_scope": "Observed API mapping for this prefix and single sketch line/circle; native role names retained",
+              "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+              "input_selection_status": "Single sketch curve resolved by explicit sketch ID/tag; composite/edge/proxy occurrence paths unsupported"
+            },
+            "stored_operation_code": 1,
+            "target_body": {
+              "proxy_object_id": 356,
+              "descriptor_object_id": 359,
+              "body_anchor_object_id": 303,
+              "native_body_object_id": 297,
+              "source_owner_object_id": 265,
+              "stored_name": "PipeOperationTarget",
+              "name_scope": "Independent typed body-name anchor only; no assembly ownership inferred",
+              "association": "Feature counted target list\u2192owned proxy\u2192owned typed body descriptor\u2192typed body anchor\u2192explicit native BODY",
+              "identity_scope": "Historical native body identity; current/final result lifecycle and selected topology are separate"
+            },
+            "API_participant_applicability": false,
+            "participant_scope": "Explicit API participantBodies applies to Cut/Intersect; Join native target list does not establish an explicit API participant request",
+            "layout": {
+              "empty_attributes_header_hex": "0000",
+              "common_offset_delta": -4,
+              "target_list_start_offset": 80,
+              "target_list_hex": "00000000000000000000000000000000010000000164010000000000000000",
+              "offset_scope": "Relative to native feature body; exact original bytes retained"
+            },
+            "scope": "Observed solid circular full-distance straight-sketch Pipe Join/Cut/Intersect common controls and one explicitly owned historical native target body; no Boolean regeneration, current-final body lifecycle or persistent topology inferred"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid circular full-distance straight-sketch Pipe Join/Cut/Intersect common controls and one explicitly owned historical native target body; no Boolean regeneration, current-final body lifecycle or persistent topology inferred"
+      },
+      "expected_settings": {
+        "operation": "Join",
+        "is_hollow": false,
+        "section_type": "Circular",
+        "stored_section_type_code": 0,
+        "section_size_cm": 0.6000000000000001,
+        "active_section_thickness_cm": null,
+        "stored_section_thickness_cm": 0.0,
+        "distance_one_fraction": 1.0,
+        "distance_two_fraction": null,
+        "native_against_fraction": 1.0,
+        "native_along_fraction": 1.0,
+        "parameter_bindings": {
+          "AgainstDistance": 374,
+          "AlongDistance": 371,
+          "SectionSize": 377,
+          "SectionThickness": 380
+        },
+        "path": {
+          "selection_record_object_id": 363,
+          "descriptor_object_id": 366,
+          "terminal_object_id": 369,
+          "sketch_object_id": 304,
+          "curve_object_id": 333,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "fraction_scope": "Observed API mapping for this prefix and single sketch line/circle; native role names retained",
+        "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+        "input_selection_status": "Single sketch curve resolved by explicit sketch ID/tag; composite/edge/proxy occurrence paths unsupported"
+      },
+      "actual_API_operation": 0,
+      "actual_API_participant_bodies": {
+        "applicable": false,
+        "scope": "No inactive Join participant getter called"
+      },
+      "actual_result_body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "PipeOperationTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DqQ9UaW5gCO4+VIiAAAAA==",
+        "is_solid": true,
+        "face_count": 10,
+        "edge_count": 16,
+        "vertex_count": 12,
+        "volume_cm3": 12.565486677646188,
+        "bounds_min_cm": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "bounds_max_cm": [
+          4.0,
+          1.0,
+          1.0
+        ]
+      },
+      "analytic_volume_corroboration_cm3": 12.565486677646163,
+      "typed_keyed_cache_topology_control": {
+        "native_body_object_id": 297,
+        "stored_handle": 0,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c649026f-d388-4717-9e12-0667bcff58d6.smbh",
+        "asm_body_index": 1,
+        "stored_counts": {
+          "lump": 1,
+          "shell": 1,
+          "face": 10,
+          "loop": 14,
+          "coedge": 32,
+          "edge": 16,
+          "vertex": 12
+        },
+        "counts_match_actual_getters_after_keyed_join": true,
+        "scope": "Stored body cache at explicit native identity; no general lifecycle claim"
+      },
+      "exact_target_list_byte_replay": true,
+      "original_default_prefix_rejection_retained": true,
+      "owned_document_close_result": true
+    },
+    {
+      "file": "pipeoperations-6afc81788dbf/cut.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 361,
+            "tool_settings": {
+              "operation": "Cut",
+              "is_hollow": false,
+              "section_type": "Circular",
+              "stored_section_type_code": 0,
+              "section_size_cm": 0.6000000000000001,
+              "active_section_thickness_cm": null,
+              "stored_section_thickness_cm": 0.0,
+              "distance_one_fraction": 1.0,
+              "distance_two_fraction": null,
+              "native_against_fraction": 1.0,
+              "native_along_fraction": 1.0,
+              "parameter_bindings": {
+                "AgainstDistance": 380,
+                "AlongDistance": 377,
+                "SectionSize": 383,
+                "SectionThickness": 386
+              },
+              "path": {
+                "selection_record_object_id": 369,
+                "descriptor_object_id": 372,
+                "terminal_object_id": 375,
+                "sketch_object_id": 304,
+                "curve_object_id": 333,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "fraction_scope": "Observed API mapping for this prefix and single sketch line/circle; native role names retained",
+              "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+              "input_selection_status": "Single sketch curve resolved by explicit sketch ID/tag; composite/edge/proxy occurrence paths unsupported"
+            },
+            "stored_operation_code": 2,
+            "target_body": {
+              "proxy_object_id": 362,
+              "descriptor_object_id": 365,
+              "body_anchor_object_id": 303,
+              "native_body_object_id": 297,
+              "source_owner_object_id": 265,
+              "stored_name": "PipeOperationTarget",
+              "name_scope": "Independent typed body-name anchor only; no assembly ownership inferred",
+              "association": "Feature counted target list\u2192owned proxy\u2192owned typed body descriptor\u2192typed body anchor\u2192explicit native BODY",
+              "identity_scope": "Historical native body identity; current/final result lifecycle and selected topology are separate"
+            },
+            "API_participant_applicability": true,
+            "participant_scope": "Explicit API participantBodies applies to Cut/Intersect; Join native target list does not establish an explicit API participant request",
+            "layout": {
+              "empty_attributes_header_hex": "0000",
+              "common_offset_delta": -4,
+              "target_list_start_offset": 80,
+              "target_list_hex": "0000000000000000000000000000000001000000016a010000000000000000",
+              "offset_scope": "Relative to native feature body; exact original bytes retained"
+            },
+            "scope": "Observed solid circular full-distance straight-sketch Pipe Join/Cut/Intersect common controls and one explicitly owned historical native target body; no Boolean regeneration, current-final body lifecycle or persistent topology inferred"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid circular full-distance straight-sketch Pipe Join/Cut/Intersect common controls and one explicitly owned historical native target body; no Boolean regeneration, current-final body lifecycle or persistent topology inferred"
+      },
+      "expected_settings": {
+        "operation": "Cut",
+        "is_hollow": false,
+        "section_type": "Circular",
+        "stored_section_type_code": 0,
+        "section_size_cm": 0.6000000000000001,
+        "active_section_thickness_cm": null,
+        "stored_section_thickness_cm": 0.0,
+        "distance_one_fraction": 1.0,
+        "distance_two_fraction": null,
+        "native_against_fraction": 1.0,
+        "native_along_fraction": 1.0,
+        "parameter_bindings": {
+          "AgainstDistance": 380,
+          "AlongDistance": 377,
+          "SectionSize": 383,
+          "SectionThickness": 386
+        },
+        "path": {
+          "selection_record_object_id": 369,
+          "descriptor_object_id": 372,
+          "terminal_object_id": 375,
+          "sketch_object_id": 304,
+          "curve_object_id": 333,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "fraction_scope": "Observed API mapping for this prefix and single sketch line/circle; native role names retained",
+        "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+        "input_selection_status": "Single sketch curve resolved by explicit sketch ID/tag; composite/edge/proxy occurrence paths unsupported"
+      },
+      "actual_API_operation": 1,
+      "actual_API_participant_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 12.0,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "actual_result_body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "PipeOperationTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+        "is_solid": true,
+        "face_count": 7,
+        "edge_count": 14,
+        "vertex_count": 10,
+        "volume_cm3": 11.15176998353072,
+        "bounds_min_cm": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "bounds_max_cm": [
+          3.0,
+          1.0,
+          1.0
+        ]
+      },
+      "analytic_volume_corroboration_cm3": 11.151769983530755,
+      "typed_keyed_cache_topology_control": {
+        "native_body_object_id": 297,
+        "stored_handle": 0,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0d12ae13-7d7d-4ef4-860f-42adbc581cb9.smbh",
+        "asm_body_index": 1,
+        "stored_counts": {
+          "lump": 1,
+          "shell": 1,
+          "face": 7,
+          "loop": 10,
+          "coedge": 28,
+          "edge": 14,
+          "vertex": 10
+        },
+        "counts_match_actual_getters_after_keyed_join": true,
+        "scope": "Stored body cache at explicit native identity; no general lifecycle claim"
+      },
+      "exact_target_list_byte_replay": true,
+      "original_default_prefix_rejection_retained": true,
+      "owned_document_close_result": true
+    },
+    {
+      "file": "pipeoperations-6afc81788dbf/intersect.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 361,
+            "tool_settings": {
+              "operation": "Intersect",
+              "is_hollow": false,
+              "section_type": "Circular",
+              "stored_section_type_code": 0,
+              "section_size_cm": 0.6000000000000001,
+              "active_section_thickness_cm": null,
+              "stored_section_thickness_cm": 0.0,
+              "distance_one_fraction": 1.0,
+              "distance_two_fraction": null,
+              "native_against_fraction": 1.0,
+              "native_along_fraction": 1.0,
+              "parameter_bindings": {
+                "AgainstDistance": 380,
+                "AlongDistance": 377,
+                "SectionSize": 383,
+                "SectionThickness": 386
+              },
+              "path": {
+                "selection_record_object_id": 369,
+                "descriptor_object_id": 372,
+                "terminal_object_id": 375,
+                "sketch_object_id": 304,
+                "curve_object_id": 333,
+                "curve_entity_tag": 112,
+                "kind": "Line",
+                "is_closed": false
+              },
+              "fraction_scope": "Observed API mapping for this prefix and single sketch line/circle; native role names retained",
+              "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+              "input_selection_status": "Single sketch curve resolved by explicit sketch ID/tag; composite/edge/proxy occurrence paths unsupported"
+            },
+            "stored_operation_code": 3,
+            "target_body": {
+              "proxy_object_id": 362,
+              "descriptor_object_id": 365,
+              "body_anchor_object_id": 303,
+              "native_body_object_id": 297,
+              "source_owner_object_id": 265,
+              "stored_name": "PipeOperationTarget",
+              "name_scope": "Independent typed body-name anchor only; no assembly ownership inferred",
+              "association": "Feature counted target list\u2192owned proxy\u2192owned typed body descriptor\u2192typed body anchor\u2192explicit native BODY",
+              "identity_scope": "Historical native body identity; current/final result lifecycle and selected topology are separate"
+            },
+            "API_participant_applicability": true,
+            "participant_scope": "Explicit API participantBodies applies to Cut/Intersect; Join native target list does not establish an explicit API participant request",
+            "layout": {
+              "empty_attributes_header_hex": "0000",
+              "common_offset_delta": -4,
+              "target_list_start_offset": 80,
+              "target_list_hex": "0000000000000000000000000000000001000000016a010000000000000000",
+              "offset_scope": "Relative to native feature body; exact original bytes retained"
+            },
+            "scope": "Observed solid circular full-distance straight-sketch Pipe Join/Cut/Intersect common controls and one explicitly owned historical native target body; no Boolean regeneration, current-final body lifecycle or persistent topology inferred"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid circular full-distance straight-sketch Pipe Join/Cut/Intersect common controls and one explicitly owned historical native target body; no Boolean regeneration, current-final body lifecycle or persistent topology inferred"
+      },
+      "expected_settings": {
+        "operation": "Intersect",
+        "is_hollow": false,
+        "section_type": "Circular",
+        "stored_section_type_code": 0,
+        "section_size_cm": 0.6000000000000001,
+        "active_section_thickness_cm": null,
+        "stored_section_thickness_cm": 0.0,
+        "distance_one_fraction": 1.0,
+        "distance_two_fraction": null,
+        "native_against_fraction": 1.0,
+        "native_along_fraction": 1.0,
+        "parameter_bindings": {
+          "AgainstDistance": 380,
+          "AlongDistance": 377,
+          "SectionSize": 383,
+          "SectionThickness": 386
+        },
+        "path": {
+          "selection_record_object_id": 369,
+          "descriptor_object_id": 372,
+          "terminal_object_id": 375,
+          "sketch_object_id": 304,
+          "curve_object_id": 333,
+          "curve_entity_tag": 112,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "fraction_scope": "Observed API mapping for this prefix and single sketch line/circle; native role names retained",
+        "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+        "input_selection_status": "Single sketch curve resolved by explicit sketch ID/tag; composite/edge/proxy occurrence paths unsupported"
+      },
+      "actual_API_operation": 2,
+      "actual_API_participant_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 12.0,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "actual_result_body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "PipeOperationTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+        "is_solid": true,
+        "face_count": 3,
+        "edge_count": 2,
+        "vertex_count": 2,
+        "volume_cm3": 0.8482300164692809,
+        "bounds_min_cm": [
+          0.0,
+          -0.30000000000000004,
+          -0.30000000000000004
+        ],
+        "bounds_max_cm": [
+          3.0,
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      },
+      "analytic_volume_corroboration_cm3": 0.8482300164692443,
+      "typed_keyed_cache_topology_control": {
+        "native_body_object_id": 297,
+        "stored_handle": 0,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8379f1dd-0f82-4ce2-8b41-5662da5d00c4.smbh",
+        "asm_body_index": 1,
+        "stored_counts": {
+          "lump": 1,
+          "shell": 1,
+          "face": 3,
+          "loop": 4,
+          "coedge": 4,
+          "edge": 2,
+          "vertex": 2
+        },
+        "counts_match_actual_getters_after_keyed_join": true,
+        "scope": "Stored body cache at explicit native identity; no general lifecycle claim"
+      },
+      "exact_target_list_byte_replay": true,
+      "original_default_prefix_rejection_retained": true,
+      "owned_document_close_result": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "Unknown operation code",
+      "reason": "Pipe Boolean operation code outside observed Join/Cut/Intersect"
+    },
+    {
+      "case": "Hollow field not boolean",
+      "reason": "Unsupported observed Pipe prefix/operation"
+    },
+    {
+      "case": "Target count outside captured one-body list",
+      "reason": "Pipe Boolean target body-list reserved/count fields unsupported"
+    },
+    {
+      "case": "Target proxy owner differs from feature",
+      "reason": "Pipe Boolean target proxy count/attributes/owner disagrees"
+    },
+    {
+      "case": "Target descriptor owner differs from feature",
+      "reason": "Pipe Boolean target descriptor owner differs from feature"
+    },
+    {
+      "case": "Section binding has wrong role",
+      "reason": "Pipe binding role disagrees with field: SectionSize"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "file": "pipepaths-3d11bd427946/composite_circular.f3d",
+      "no_new_summary_or_feature_mutation": true
+    },
+    {
+      "file": "pipepaths-3d11bd427946/spline_circular.f3d",
+      "no_new_summary_or_feature_mutation": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "no_new_summary_or_feature_mutation": true
+    }
+  ],
+  "limitations": [
+    "Native target-body identity is historical provenance and does not establish general current/final visibility or persistent topology.",
+    "Join has an explicit native body-selection route but API participantBodies is documented only for Cut/Intersect; Join participant setter/getter were deliberately not called.",
+    "Only observed solid circular full-distance single-Line root-context family supported; composite/BRep/occurrence/hollow/partial Boolean variants remain unsupported.",
+    "API volumes and keyed stored topology counts corroborate these fixtures after explicit identity qualification; neither geometry nor names choose candidate identity.",
+    "No Boolean regeneration or native writing implemented. Existing NewBody and extended-path default outputs remain unchanged."
+  ],
+  "summary": {
+    "actual_exports": 3,
+    "Boolean_operations_decoded": 3,
+    "actual_API_parameter_role_name_value_matches": 9,
+    "explicit_native_target_body_routes": 3,
+    "explicit_API_participant_controls": 2,
+    "Join_inference_distinguished": 1,
+    "keyed_stored_topology_count_controls": 3,
+    "analytic_actual_volume_controls": 3,
+    "target_list_byte_replays": 3,
+    "malformed_guards": 6,
+    "legacy_controls": 3,
+    "all_owned_documents_closed_true": true
+  }
+}

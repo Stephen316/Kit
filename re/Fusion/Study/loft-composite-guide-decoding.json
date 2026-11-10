@@ -1,0 +1,5027 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+      "checks": {
+        "native_order_matches_actual_api_source_member_kinds": true,
+        "controls_match_actual_api": true,
+        "opposed_flags_remain_unresolved_in_decoded_output": true,
+        "Line_parameter_domain_matches_actual_source": true,
+        "Line_five_natural_source_points_match_actual_api": true,
+        "Line_five_parameter_derivatives_match_actual_getTangent": true,
+        "Arc_parameter_domain_matches_actual_source": true,
+        "Arc_five_natural_source_points_match_actual_api": true,
+        "Arc_five_parameter_derivatives_match_actual_getTangent": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          377,
+          385
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 377,
+            "profile": {
+              "selection_record_object_id": 378,
+              "descriptor_object_id": 381,
+              "loop_definition_object_id": 384,
+              "sketch_object_id": 314,
+              "sketch_name": "CompositeLoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 341,
+                      "entity_kind": "Circle",
+                      "entity_tag": 109,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 385,
+            "profile": {
+              "selection_record_object_id": 386,
+              "descriptor_object_id": 389,
+              "loop_definition_object_id": 392,
+              "sketch_object_id": 345,
+              "sketch_name": "CompositeLoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 372,
+                      "entity_kind": "Circle",
+                      "entity_tag": 112,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 404,
+        "result_body_anchor_object_ids": [
+          442
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 1,
+        "is_centerline": true,
+        "centerline": {
+          "kind": "CompositeSketchGuide",
+          "selection_record_object_id": 393,
+          "sketch_object_id": 202,
+          "sketch_name": "CompositeLoftGuide",
+          "member_count": 2,
+          "members": [
+            {
+              "index": 0,
+              "descriptor_object_id": 396,
+              "terminal_object_id": 399,
+              "sketch_object_id": 202,
+              "sketch_name": "CompositeLoftGuide",
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "natural_component_geometry": {
+                "kind": "Line",
+                "start_cm": [
+                  4.0,
+                  0.0,
+                  -2.0
+                ],
+                "end_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "length_cm": 2.0,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -1.5
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -1.0
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -0.5
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            },
+            {
+              "index": 1,
+              "descriptor_object_id": 400,
+              "terminal_object_id": 403,
+              "sketch_object_id": 202,
+              "sketch_name": "CompositeLoftGuide",
+              "curve_object_id": 240,
+              "curve_entity_tag": 106,
+              "kind": "Arc",
+              "natural_component_geometry": {
+                "kind": "Arc",
+                "start_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "end_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "center_cm": [
+                  -8.881784197001252e-16,
+                  0.0,
+                  -8.881784197001252e-16
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "reference_axis": [
+                  2.2204460492503126e-16,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 4.000000000000001,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 1.5707963267948961,
+                "length_cm": 6.283185307179586,
+                "parameter_domain": [
+                  0.0,
+                  1.5707963267948961
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "parameter_derivative_component": [
+                      4.000000000000001,
+                      0.0,
+                      -8.881784197001252e-16
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872403,
+                    "point_component_cm": [
+                      1.5307337294603591,
+                      0.0,
+                      3.695518130045147
+                    ],
+                    "parameter_derivative_component": [
+                      3.695518130045148,
+                      0.0,
+                      -1.53073372946036
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974481,
+                    "point_component_cm": [
+                      2.8284271247461894,
+                      0.0,
+                      2.82842712474619
+                    ],
+                    "parameter_derivative_component": [
+                      2.8284271247461907,
+                      0.0,
+                      -2.8284271247461903
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.178097245096172,
+                    "point_component_cm": [
+                      3.695518130045147,
+                      0.0,
+                      1.5307337294603596
+                    ],
+                    "parameter_derivative_component": [
+                      1.5307337294603605,
+                      0.0,
+                      -3.695518130045148
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948961,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      2.449293598294711e-16
+                    ],
+                    "parameter_derivative_component": [
+                      1.1331077795295963e-15,
+                      0.0,
+                      -4.000000000000001
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            }
+          ],
+          "secondary_flags_record_object_id": 428,
+          "secondary_flags_hex": "0000010100",
+          "order_scope": "Explicit counted native descriptor order; observed API member order agrees in captured Line/Arc paths",
+          "traversal_scope": "Source natural geometry only; Path member traversal/opposed flags are unresolved and not inferred from endpoint connectivity",
+          "chain_option_scope": "Invariant secondary flags retained without chain-option semantics; connected discovery and explicit member input produce the same observed layout",
+          "coordinate_scope": "Parent component coordinates; no occurrence/joint transformations or Loft regeneration"
+        },
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Owned same-sketch ordered tangent Line/Arc centerline/rail, or single fitted-spline centerline; natural geometry decoded, traversal/opposition unresolved",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved"
+      },
+      "actual_api_guide": {
+        "index": 0,
+        "entity_type": "adsk::fusion::Path",
+        "is_centerline": true,
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 2,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAts7U0AhMGxkAlRoYKxgAAHCLTrKSAAAA",
+                "sketch_name": "CompositeLoftGuide",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAtg5kvZGBEQCPDPsgiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 2.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -2.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -0.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    }
+                  ]
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  2.0
+                ],
+                "length_cm": 2.0,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -0.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 2.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "degree": 1,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    2.0,
+                    2.0
+                  ],
+                  "is_rational": false,
+                  "weights": [],
+                  "is_periodic": false
+                }
+              }
+            },
+            {
+              "index": 1,
+              "is_opposed_to_entity": true,
+              "source": {
+                "entity_type": "adsk::fusion::SketchArc",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKRgAAJtJhbSSAAAA",
+                "sketch_name": "CompositeLoftGuide",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAtg5kvZGBEQCPDPsgiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Arc3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.5707963267948961
+                  ],
+                  "length_cm": 6.283185307179586,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "tangent": [
+                        4.000000000000001,
+                        0.0,
+                        -8.881784197001252e-16
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.39269908169872403,
+                      "point_cm": [
+                        1.5307337294603591,
+                        0.0,
+                        3.695518130045147
+                      ],
+                      "tangent": [
+                        3.695518130045148,
+                        0.0,
+                        -1.53073372946036
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.7853981633974481,
+                      "point_cm": [
+                        2.8284271247461894,
+                        0.0,
+                        2.82842712474619
+                      ],
+                      "tangent": [
+                        2.8284271247461907,
+                        0.0,
+                        -2.8284271247461903
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 1.178097245096172,
+                      "point_cm": [
+                        3.695518130045147,
+                        0.0,
+                        1.5307337294603596
+                      ],
+                      "tangent": [
+                        1.5307337294603605,
+                        0.0,
+                        -3.695518130045148
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.5707963267948961,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        2.449293598294711e-16
+                      ],
+                      "tangent": [
+                        1.1331077795295963e-15,
+                        0.0,
+                        -4.000000000000001
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    -8.881784197001252e-16,
+                    0.0,
+                    -8.881784197001252e-16
+                  ],
+                  "radius_cm": 4.000000000000001,
+                  "normal": [
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "reference_axis": [
+                    2.2204460492503126e-16,
+                    0.0,
+                    1.0
+                  ],
+                  "start_angle_radians": 0.0,
+                  "end_angle_radians": 1.5707963267948961
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  1.570796326794897,
+                  3.141592653589793
+                ],
+                "length_cm": 6.283185307243229,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 1.570796326794897,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.449293598294703e-16
+                    ],
+                    "tangent": [
+                      -4.440892098500626e-16,
+                      0.0,
+                      3.601265264628425
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 1.9634954084936211,
+                    "point_cm": [
+                      3.719153204249721,
+                      0.0,
+                      1.4723788382474907
+                    ],
+                    "tangent": [
+                      -1.4891695670873837,
+                      0.0,
+                      3.7615657215614355
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 2.356194490192345,
+                    "point_cm": [
+                      2.8284271247461907,
+                      0.0,
+                      2.828427124746188
+                    ],
+                    "tangent": [
+                      -2.9833858286244515,
+                      0.0,
+                      2.9833858286244546
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.748893571891069,
+                    "point_cm": [
+                      1.4723788382474923,
+                      0.0,
+                      3.719153204249721
+                    ],
+                    "tangent": [
+                      -3.761565721561434,
+                      0.0,
+                      1.4891695670873846
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "point_cm": [
+                      9.436165209571273e-16,
+                      0.0,
+                      4.0
+                    ],
+                    "tangent": [
+                      -3.6012652646284247,
+                      0.0,
+                      1.5543122344752192e-15
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      4.0,
+                      0.0,
+                      -2.449293598294703e-16
+                    ],
+                    [
+                      3.9999999999999996,
+                      0.0,
+                      3.9999999999999982
+                    ],
+                    [
+                      4.898587196589414e-16,
+                      0.0,
+                      4.0
+                    ]
+                  ],
+                  "degree": 2,
+                  "knots": [
+                    1.570796326794897,
+                    1.570796326794897,
+                    1.570796326794897,
+                    3.141592653589793,
+                    3.141592653589793,
+                    3.141592653589793
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    0.7071067811865477,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        }
+      },
+      "actual_input_path": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 2,
+        "is_closed": false,
+        "members": [
+          {
+            "index": 0,
+            "is_opposed_to_entity": false,
+            "source": {
+              "entity_type": "adsk::fusion::SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAts7U0AhMGxkAlRoYKxgAAHCLTrKSAAAA",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAtg5kvZGBEQCPDPsgiAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::Line3D",
+                "parameter_extents": [
+                  0.0,
+                  1.0
+                ],
+                "length_cm": 2.0,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -0.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                0.0,
+                2.0
+              ],
+              "length_cm": 2.0,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 0.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -2.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 0.5,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -1.5
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 1.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -1.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 1.5,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -0.5
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 2.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    4.0,
+                    0.0,
+                    -2.0
+                  ],
+                  [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                "degree": 1,
+                "knots": [
+                  0.0,
+                  0.0,
+                  2.0,
+                  2.0
+                ],
+                "is_rational": false,
+                "weights": [],
+                "is_periodic": false
+              }
+            }
+          },
+          {
+            "index": 1,
+            "is_opposed_to_entity": true,
+            "source": {
+              "entity_type": "adsk::fusion::SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAts7U0AhMGxkAlRqYKRgAAJtJhbSSAAAA",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpT9og8Vh/2ZV8VN83uaeJUHqMJIwdhMIdnC1MQyLdFC19I0LVnXxDjNRDcx2cJM18AsLc08OdXUwtIoBawWaAYDGgDbZ6AAtg5kvZGBEQCPDPsgiAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::Arc3D",
+                "parameter_extents": [
+                  0.0,
+                  1.5707963267948961
+                ],
+                "length_cm": 6.283185307179586,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "tangent": [
+                      4.000000000000001,
+                      0.0,
+                      -8.881784197001252e-16
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872403,
+                    "point_cm": [
+                      1.5307337294603591,
+                      0.0,
+                      3.695518130045147
+                    ],
+                    "tangent": [
+                      3.695518130045148,
+                      0.0,
+                      -1.53073372946036
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974481,
+                    "point_cm": [
+                      2.8284271247461894,
+                      0.0,
+                      2.82842712474619
+                    ],
+                    "tangent": [
+                      2.8284271247461907,
+                      0.0,
+                      -2.8284271247461903
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.178097245096172,
+                    "point_cm": [
+                      3.695518130045147,
+                      0.0,
+                      1.5307337294603596
+                    ],
+                    "tangent": [
+                      1.5307337294603605,
+                      0.0,
+                      -3.695518130045148
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948961,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      2.449293598294711e-16
+                    ],
+                    "tangent": [
+                      1.1331077795295963e-15,
+                      0.0,
+                      -4.000000000000001
+                    ]
+                  }
+                ],
+                "center_cm": [
+                  -8.881784197001252e-16,
+                  0.0,
+                  -8.881784197001252e-16
+                ],
+                "radius_cm": 4.000000000000001,
+                "normal": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "reference_axis": [
+                  2.2204460492503126e-16,
+                  0.0,
+                  1.0
+                ],
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 1.5707963267948961
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                1.570796326794897,
+                3.141592653589793
+              ],
+              "length_cm": 6.283185307243229,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 1.570796326794897,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -2.449293598294703e-16
+                  ],
+                  "tangent": [
+                    -4.440892098500626e-16,
+                    0.0,
+                    3.601265264628425
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 1.9634954084936211,
+                  "point_cm": [
+                    3.719153204249721,
+                    0.0,
+                    1.4723788382474907
+                  ],
+                  "tangent": [
+                    -1.4891695670873837,
+                    0.0,
+                    3.7615657215614355
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 2.356194490192345,
+                  "point_cm": [
+                    2.8284271247461907,
+                    0.0,
+                    2.828427124746188
+                  ],
+                  "tangent": [
+                    -2.9833858286244515,
+                    0.0,
+                    2.9833858286244546
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 2.748893571891069,
+                  "point_cm": [
+                    1.4723788382474923,
+                    0.0,
+                    3.719153204249721
+                  ],
+                  "tangent": [
+                    -3.761565721561434,
+                    0.0,
+                    1.4891695670873846
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 3.141592653589793,
+                  "point_cm": [
+                    9.436165209571273e-16,
+                    0.0,
+                    4.0
+                  ],
+                  "tangent": [
+                    -3.6012652646284247,
+                    0.0,
+                    1.5543122344752192e-15
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    4.0,
+                    0.0,
+                    -2.449293598294703e-16
+                  ],
+                  [
+                    3.9999999999999996,
+                    0.0,
+                    3.9999999999999982
+                  ],
+                  [
+                    4.898587196589414e-16,
+                    0.0,
+                    4.0
+                  ]
+                ],
+                "degree": 2,
+                "knots": [
+                  1.570796326794897,
+                  1.570796326794897,
+                  1.570796326794897,
+                  3.141592653589793,
+                  3.141592653589793,
+                  3.141592653589793
+                ],
+                "is_rational": true,
+                "weights": [
+                  1.0,
+                  0.7071067811865477,
+                  1.0
+                ],
+                "is_periodic": false
+              }
+            }
+          }
+        ]
+      },
+      "requested_path_mode": "Seed line with connectedChainedCurves",
+      "api_evidence_scope": "Actual Path order/opposed flags and oriented geometry retained as evidence only; decoded samples describe natural source geometry"
+    },
+    {
+      "archive": "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+      "checks": {
+        "native_order_matches_actual_api_source_member_kinds": true,
+        "controls_match_actual_api": true,
+        "opposed_flags_remain_unresolved_in_decoded_output": true,
+        "Line_parameter_domain_matches_actual_source": true,
+        "Line_five_natural_source_points_match_actual_api": true,
+        "Line_five_parameter_derivatives_match_actual_getTangent": true,
+        "Arc_parameter_domain_matches_actual_source": true,
+        "Arc_five_natural_source_points_match_actual_api": true,
+        "Arc_five_parameter_derivatives_match_actual_getTangent": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          377,
+          385
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 377,
+            "profile": {
+              "selection_record_object_id": 378,
+              "descriptor_object_id": 381,
+              "loop_definition_object_id": 384,
+              "sketch_object_id": 314,
+              "sketch_name": "CompositeLoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 341,
+                      "entity_kind": "Circle",
+                      "entity_tag": 109,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 385,
+            "profile": {
+              "selection_record_object_id": 386,
+              "descriptor_object_id": 389,
+              "loop_definition_object_id": 392,
+              "sketch_object_id": 345,
+              "sketch_name": "CompositeLoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 372,
+                      "entity_kind": "Circle",
+                      "entity_tag": 112,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 404,
+        "result_body_anchor_object_ids": [
+          442
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 1,
+        "is_centerline": true,
+        "centerline": {
+          "kind": "CompositeSketchGuide",
+          "selection_record_object_id": 393,
+          "sketch_object_id": 202,
+          "sketch_name": "CompositeLoftGuide",
+          "member_count": 2,
+          "members": [
+            {
+              "index": 0,
+              "descriptor_object_id": 396,
+              "terminal_object_id": 399,
+              "sketch_object_id": 202,
+              "sketch_name": "CompositeLoftGuide",
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "natural_component_geometry": {
+                "kind": "Line",
+                "start_cm": [
+                  4.0,
+                  0.0,
+                  -2.0
+                ],
+                "end_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "length_cm": 2.0,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -1.5
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -1.0
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -0.5
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            },
+            {
+              "index": 1,
+              "descriptor_object_id": 400,
+              "terminal_object_id": 403,
+              "sketch_object_id": 202,
+              "sketch_name": "CompositeLoftGuide",
+              "curve_object_id": 240,
+              "curve_entity_tag": 106,
+              "kind": "Arc",
+              "natural_component_geometry": {
+                "kind": "Arc",
+                "start_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "end_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "center_cm": [
+                  -8.881784197001252e-16,
+                  0.0,
+                  -8.881784197001252e-16
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "reference_axis": [
+                  2.2204460492503126e-16,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 4.000000000000001,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 1.5707963267948961,
+                "length_cm": 6.283185307179586,
+                "parameter_domain": [
+                  0.0,
+                  1.5707963267948961
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "parameter_derivative_component": [
+                      4.000000000000001,
+                      0.0,
+                      -8.881784197001252e-16
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872403,
+                    "point_component_cm": [
+                      1.5307337294603591,
+                      0.0,
+                      3.695518130045147
+                    ],
+                    "parameter_derivative_component": [
+                      3.695518130045148,
+                      0.0,
+                      -1.53073372946036
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974481,
+                    "point_component_cm": [
+                      2.8284271247461894,
+                      0.0,
+                      2.82842712474619
+                    ],
+                    "parameter_derivative_component": [
+                      2.8284271247461907,
+                      0.0,
+                      -2.8284271247461903
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.178097245096172,
+                    "point_component_cm": [
+                      3.695518130045147,
+                      0.0,
+                      1.5307337294603596
+                    ],
+                    "parameter_derivative_component": [
+                      1.5307337294603605,
+                      0.0,
+                      -3.695518130045148
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948961,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      2.449293598294711e-16
+                    ],
+                    "parameter_derivative_component": [
+                      1.1331077795295963e-15,
+                      0.0,
+                      -4.000000000000001
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            }
+          ],
+          "secondary_flags_record_object_id": 428,
+          "secondary_flags_hex": "0000010100",
+          "order_scope": "Explicit counted native descriptor order; observed API member order agrees in captured Line/Arc paths",
+          "traversal_scope": "Source natural geometry only; Path member traversal/opposed flags are unresolved and not inferred from endpoint connectivity",
+          "chain_option_scope": "Invariant secondary flags retained without chain-option semantics; connected discovery and explicit member input produce the same observed layout",
+          "coordinate_scope": "Parent component coordinates; no occurrence/joint transformations or Loft regeneration"
+        },
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Owned same-sketch ordered tangent Line/Arc centerline/rail, or single fitted-spline centerline; natural geometry decoded, traversal/opposition unresolved",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved"
+      },
+      "actual_api_guide": {
+        "index": 0,
+        "entity_type": "adsk::fusion::Path",
+        "is_centerline": true,
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 2,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1pkaGoFpIwOgUgOgFgBIgPGjkgAAAA==",
+                "sketch_name": "CompositeLoftGuide",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1oGsNzIwAgAqvlmCiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 2.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -2.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        -0.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        2.0
+                      ]
+                    }
+                  ]
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  2.0
+                ],
+                "length_cm": 2.0,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -0.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 2.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "degree": 1,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    2.0,
+                    2.0
+                  ],
+                  "is_rational": false,
+                  "weights": [],
+                  "is_periodic": false
+                }
+              }
+            },
+            {
+              "index": 1,
+              "is_opposed_to_entity": true,
+              "source": {
+                "entity_type": "adsk::fusion::SketchArc",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1pkaGoFpIwOgUgMzBQMAo0I6pZIAAAA=",
+                "sketch_name": "CompositeLoftGuide",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1oGsNzIwAgAqvlmCiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Arc3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.5707963267948961
+                  ],
+                  "length_cm": 6.283185307179586,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "tangent": [
+                        4.000000000000001,
+                        0.0,
+                        -8.881784197001252e-16
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.39269908169872403,
+                      "point_cm": [
+                        1.5307337294603591,
+                        0.0,
+                        3.695518130045147
+                      ],
+                      "tangent": [
+                        3.695518130045148,
+                        0.0,
+                        -1.53073372946036
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.7853981633974481,
+                      "point_cm": [
+                        2.8284271247461894,
+                        0.0,
+                        2.82842712474619
+                      ],
+                      "tangent": [
+                        2.8284271247461907,
+                        0.0,
+                        -2.8284271247461903
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 1.178097245096172,
+                      "point_cm": [
+                        3.695518130045147,
+                        0.0,
+                        1.5307337294603596
+                      ],
+                      "tangent": [
+                        1.5307337294603605,
+                        0.0,
+                        -3.695518130045148
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.5707963267948961,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        2.449293598294711e-16
+                      ],
+                      "tangent": [
+                        1.1331077795295963e-15,
+                        0.0,
+                        -4.000000000000001
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    -8.881784197001252e-16,
+                    0.0,
+                    -8.881784197001252e-16
+                  ],
+                  "radius_cm": 4.000000000000001,
+                  "normal": [
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "reference_axis": [
+                    2.2204460492503126e-16,
+                    0.0,
+                    1.0
+                  ],
+                  "start_angle_radians": 0.0,
+                  "end_angle_radians": 1.5707963267948961
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  1.570796326794897,
+                  3.141592653589793
+                ],
+                "length_cm": 6.283185307243229,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 1.570796326794897,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.449293598294703e-16
+                    ],
+                    "tangent": [
+                      -4.440892098500626e-16,
+                      0.0,
+                      3.601265264628425
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 1.9634954084936211,
+                    "point_cm": [
+                      3.719153204249721,
+                      0.0,
+                      1.4723788382474907
+                    ],
+                    "tangent": [
+                      -1.4891695670873837,
+                      0.0,
+                      3.7615657215614355
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 2.356194490192345,
+                    "point_cm": [
+                      2.8284271247461907,
+                      0.0,
+                      2.828427124746188
+                    ],
+                    "tangent": [
+                      -2.9833858286244515,
+                      0.0,
+                      2.9833858286244546
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.748893571891069,
+                    "point_cm": [
+                      1.4723788382474923,
+                      0.0,
+                      3.719153204249721
+                    ],
+                    "tangent": [
+                      -3.761565721561434,
+                      0.0,
+                      1.4891695670873846
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "point_cm": [
+                      9.436165209571273e-16,
+                      0.0,
+                      4.0
+                    ],
+                    "tangent": [
+                      -3.6012652646284247,
+                      0.0,
+                      1.5543122344752192e-15
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      4.0,
+                      0.0,
+                      -2.449293598294703e-16
+                    ],
+                    [
+                      3.9999999999999996,
+                      0.0,
+                      3.9999999999999982
+                    ],
+                    [
+                      4.898587196589414e-16,
+                      0.0,
+                      4.0
+                    ]
+                  ],
+                  "degree": 2,
+                  "knots": [
+                    1.570796326794897,
+                    1.570796326794897,
+                    1.570796326794897,
+                    3.141592653589793,
+                    3.141592653589793,
+                    3.141592653589793
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    0.7071067811865477,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        }
+      },
+      "actual_input_path": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 2,
+        "is_closed": false,
+        "members": [
+          {
+            "index": 0,
+            "is_opposed_to_entity": false,
+            "source": {
+              "entity_type": "adsk::fusion::SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1pkaGoFpIwOgUgOgFgBIgPGjkgAAAA==",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1oGsNzIwAgAqvlmCiAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::Line3D",
+                "parameter_extents": [
+                  0.0,
+                  1.0
+                ],
+                "length_cm": 2.0,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -1.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -0.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                0.0,
+                2.0
+              ],
+              "length_cm": 2.0,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 0.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -2.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 0.5,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -1.5
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 1.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -1.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 1.5,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -0.5
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 2.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    0.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    4.0,
+                    0.0,
+                    -2.0
+                  ],
+                  [
+                    4.0,
+                    0.0,
+                    0.0
+                  ]
+                ],
+                "degree": 1,
+                "knots": [
+                  0.0,
+                  0.0,
+                  2.0,
+                  2.0
+                ],
+                "is_rational": false,
+                "weights": [],
+                "is_periodic": false
+              }
+            }
+          },
+          {
+            "index": 1,
+            "is_opposed_to_entity": true,
+            "source": {
+              "entity_type": "adsk::fusion::SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1pkaGoFpIwOgUgMzBQMAo0I6pZIAAAA=",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtYDTpF6V3fZ/mf/PJeVmCgBVRgpGJspJKZaGpgaJlrqpiRbJuqaJFmY6yYZGaXpGpikpRoYGqammZkZg9UCzWBAA2D7DBTA1oGsNzIwAgAqvlmCiAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::Arc3D",
+                "parameter_extents": [
+                  0.0,
+                  1.5707963267948961
+                ],
+                "length_cm": 6.283185307179586,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "tangent": [
+                      4.000000000000001,
+                      0.0,
+                      -8.881784197001252e-16
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872403,
+                    "point_cm": [
+                      1.5307337294603591,
+                      0.0,
+                      3.695518130045147
+                    ],
+                    "tangent": [
+                      3.695518130045148,
+                      0.0,
+                      -1.53073372946036
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974481,
+                    "point_cm": [
+                      2.8284271247461894,
+                      0.0,
+                      2.82842712474619
+                    ],
+                    "tangent": [
+                      2.8284271247461907,
+                      0.0,
+                      -2.8284271247461903
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.178097245096172,
+                    "point_cm": [
+                      3.695518130045147,
+                      0.0,
+                      1.5307337294603596
+                    ],
+                    "tangent": [
+                      1.5307337294603605,
+                      0.0,
+                      -3.695518130045148
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948961,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      2.449293598294711e-16
+                    ],
+                    "tangent": [
+                      1.1331077795295963e-15,
+                      0.0,
+                      -4.000000000000001
+                    ]
+                  }
+                ],
+                "center_cm": [
+                  -8.881784197001252e-16,
+                  0.0,
+                  -8.881784197001252e-16
+                ],
+                "radius_cm": 4.000000000000001,
+                "normal": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "reference_axis": [
+                  2.2204460492503126e-16,
+                  0.0,
+                  1.0
+                ],
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 1.5707963267948961
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                1.570796326794897,
+                3.141592653589793
+              ],
+              "length_cm": 6.283185307243229,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 1.570796326794897,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -2.449293598294703e-16
+                  ],
+                  "tangent": [
+                    -4.440892098500626e-16,
+                    0.0,
+                    3.601265264628425
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 1.9634954084936211,
+                  "point_cm": [
+                    3.719153204249721,
+                    0.0,
+                    1.4723788382474907
+                  ],
+                  "tangent": [
+                    -1.4891695670873837,
+                    0.0,
+                    3.7615657215614355
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 2.356194490192345,
+                  "point_cm": [
+                    2.8284271247461907,
+                    0.0,
+                    2.828427124746188
+                  ],
+                  "tangent": [
+                    -2.9833858286244515,
+                    0.0,
+                    2.9833858286244546
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 2.748893571891069,
+                  "point_cm": [
+                    1.4723788382474923,
+                    0.0,
+                    3.719153204249721
+                  ],
+                  "tangent": [
+                    -3.761565721561434,
+                    0.0,
+                    1.4891695670873846
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 3.141592653589793,
+                  "point_cm": [
+                    9.436165209571273e-16,
+                    0.0,
+                    4.0
+                  ],
+                  "tangent": [
+                    -3.6012652646284247,
+                    0.0,
+                    1.5543122344752192e-15
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    4.0,
+                    0.0,
+                    -2.449293598294703e-16
+                  ],
+                  [
+                    3.9999999999999996,
+                    0.0,
+                    3.9999999999999982
+                  ],
+                  [
+                    4.898587196589414e-16,
+                    0.0,
+                    4.0
+                  ]
+                ],
+                "degree": 2,
+                "knots": [
+                  1.570796326794897,
+                  1.570796326794897,
+                  1.570796326794897,
+                  3.141592653589793,
+                  3.141592653589793,
+                  3.141592653589793
+                ],
+                "is_rational": true,
+                "weights": [
+                  1.0,
+                  0.7071067811865477,
+                  1.0
+                ],
+                "is_periodic": false
+              }
+            }
+          }
+        ]
+      },
+      "requested_path_mode": "Explicit ObjectCollection line then arc; chain option ignored for collection per SDK",
+      "api_evidence_scope": "Actual Path order/opposed flags and oriented geometry retained as evidence only; decoded samples describe natural source geometry"
+    },
+    {
+      "archive": "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d",
+      "checks": {
+        "native_order_matches_actual_api_source_member_kinds": true,
+        "controls_match_actual_api": true,
+        "opposed_flags_remain_unresolved_in_decoded_output": true,
+        "Line_parameter_domain_matches_actual_source": true,
+        "Line_five_natural_source_points_match_actual_api": true,
+        "Line_five_parameter_derivatives_match_actual_getTangent": true,
+        "Arc_parameter_domain_matches_actual_source": true,
+        "Arc_five_natural_source_points_match_actual_api": true,
+        "Arc_five_parameter_derivatives_match_actual_getTangent": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 48,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          377,
+          385
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 377,
+            "profile": {
+              "selection_record_object_id": 378,
+              "descriptor_object_id": 381,
+              "loop_definition_object_id": 384,
+              "sketch_object_id": 314,
+              "sketch_name": "CompositeLoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 341,
+                      "entity_kind": "Circle",
+                      "entity_tag": 109,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": 0,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 385,
+            "profile": {
+              "selection_record_object_id": 386,
+              "descriptor_object_id": 389,
+              "loop_definition_object_id": 392,
+              "sketch_object_id": 345,
+              "sketch_name": "CompositeLoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 372,
+                      "entity_kind": "Circle",
+                      "entity_tag": 112,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": 0,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": 0,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 404,
+        "result_body_anchor_object_ids": [
+          442
+        ],
+        "result_anchor_list_end_relative_offset": 128,
+        "guide_count": 1,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 1,
+        "rails": [
+          {
+            "index": 0,
+            "selection": {
+              "kind": "CompositeSketchGuide",
+              "selection_record_object_id": 393,
+              "sketch_object_id": 202,
+              "sketch_name": "CompositeLoftGuide",
+              "member_count": 2,
+              "members": [
+                {
+                  "index": 0,
+                  "descriptor_object_id": 396,
+                  "terminal_object_id": 399,
+                  "sketch_object_id": 202,
+                  "sketch_name": "CompositeLoftGuide",
+                  "curve_object_id": 232,
+                  "curve_entity_tag": 103,
+                  "kind": "Line",
+                  "natural_component_geometry": {
+                    "kind": "Line",
+                    "start_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      0.0,
+                      1.0
+                    ],
+                    "length_cm": 1.0,
+                    "parameter_domain": [
+                      0.0,
+                      1.0
+                    ],
+                    "analytic_samples": [
+                      {
+                        "parameter_fraction": 0.0,
+                        "parameter": 0.0,
+                        "point_component_cm": [
+                          1.0,
+                          0.0,
+                          0.0
+                        ],
+                        "parameter_derivative_component": [
+                          0.0,
+                          0.0,
+                          1.0
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 0.25,
+                        "parameter": 0.25,
+                        "point_component_cm": [
+                          1.0,
+                          0.0,
+                          0.25
+                        ],
+                        "parameter_derivative_component": [
+                          0.0,
+                          0.0,
+                          1.0
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 0.5,
+                        "parameter": 0.5,
+                        "point_component_cm": [
+                          1.0,
+                          0.0,
+                          0.5
+                        ],
+                        "parameter_derivative_component": [
+                          0.0,
+                          0.0,
+                          1.0
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 0.75,
+                        "parameter": 0.75,
+                        "point_component_cm": [
+                          1.0,
+                          0.0,
+                          0.75
+                        ],
+                        "parameter_derivative_component": [
+                          0.0,
+                          0.0,
+                          1.0
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 1.0,
+                        "parameter": 1.0,
+                        "point_component_cm": [
+                          1.0,
+                          0.0,
+                          1.0
+                        ],
+                        "parameter_derivative_component": [
+                          0.0,
+                          0.0,
+                          1.0
+                        ]
+                      }
+                    ],
+                    "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+                  },
+                  "path_is_opposed_to_entity": null
+                },
+                {
+                  "index": 1,
+                  "descriptor_object_id": 400,
+                  "terminal_object_id": 403,
+                  "sketch_object_id": 202,
+                  "sketch_name": "CompositeLoftGuide",
+                  "curve_object_id": 240,
+                  "curve_entity_tag": 106,
+                  "kind": "Arc",
+                  "natural_component_geometry": {
+                    "kind": "Arc",
+                    "start_cm": [
+                      0.6,
+                      0.0,
+                      3.0
+                    ],
+                    "end_cm": [
+                      1.0,
+                      0.0,
+                      1.0
+                    ],
+                    "center_cm": [
+                      -4.200000000000021,
+                      0.0,
+                      0.9999999999999956
+                    ],
+                    "normal": [
+                      0.0,
+                      0.9999999999999998,
+                      0.0
+                    ],
+                    "reference_axis": [
+                      0.9230769230769232,
+                      0.0,
+                      0.3846153846153839
+                    ],
+                    "radius_cm": 5.200000000000021,
+                    "start_angle_radians": 0.0,
+                    "end_angle_radians": 0.39479111969975966,
+                    "length_cm": 2.052913822438758,
+                    "parameter_domain": [
+                      0.0,
+                      0.39479111969975966
+                    ],
+                    "analytic_samples": [
+                      {
+                        "parameter_fraction": 0.0,
+                        "parameter": 0.0,
+                        "point_component_cm": [
+                          0.5999999999999996,
+                          0.0,
+                          3.0
+                        ],
+                        "parameter_derivative_component": [
+                          2.0000000000000036,
+                          0.0,
+                          -4.8000000000000185
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 0.25,
+                        "parameter": 0.09869777992493992,
+                        "point_component_cm": [
+                          0.7737152039400197,
+                          0.0,
+                          2.517286087096258
+                        ],
+                        "parameter_derivative_component": [
+                          1.517286087096262,
+                          0.0,
+                          -4.973715203940039
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 0.5,
+                        "parameter": 0.19739555984987983,
+                        "point_component_cm": [
+                          0.8990195135927834,
+                          0.0,
+                          2.0198039027185577
+                        ],
+                        "parameter_derivative_component": [
+                          1.0198039027185613,
+                          0.0,
+                          -5.099019513592803
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 0.75,
+                        "parameter": 0.2960933397748198,
+                        "point_component_cm": [
+                          0.974693298673964,
+                          0.0,
+                          1.5123956134265404
+                        ],
+                        "parameter_derivative_component": [
+                          0.5123956134265439,
+                          0.0,
+                          -5.174693298673983
+                        ]
+                      },
+                      {
+                        "parameter_fraction": 1.0,
+                        "parameter": 0.39479111969975966,
+                        "point_component_cm": [
+                          0.9999999999999991,
+                          0.0,
+                          1.000000000000002
+                        ],
+                        "parameter_derivative_component": [
+                          5.484501741648295e-15,
+                          0.0,
+                          -5.200000000000019
+                        ]
+                      }
+                    ],
+                    "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+                  },
+                  "path_is_opposed_to_entity": null
+                }
+              ],
+              "secondary_flags_record_object_id": 428,
+              "secondary_flags_hex": "0000010100",
+              "order_scope": "Explicit counted native descriptor order; observed API member order agrees in captured Line/Arc paths",
+              "traversal_scope": "Source natural geometry only; Path member traversal/opposed flags are unresolved and not inferred from endpoint connectivity",
+              "chain_option_scope": "Invariant secondary flags retained without chain-option semantics; connected discovery and explicit member input produce the same observed layout",
+              "coordinate_scope": "Parent component coordinates; no occurrence/joint transformations or Loft regeneration"
+            }
+          }
+        ],
+        "guide_status": "Owned same-sketch ordered tangent Line/Arc centerline/rail, or single fitted-spline centerline; natural geometry decoded, traversal/opposition unresolved",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved"
+      },
+      "actual_api_guide": {
+        "index": 0,
+        "entity_type": "adsk::fusion::Path",
+        "is_centerline": false,
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 2,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAGg8Ad6hv25IAAAA=",
+                "sketch_name": "CompositeLoftGuide",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbB3IeiMDIwChkM+FiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 1.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        1.0,
+                        0.0,
+                        0.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        1.0,
+                        0.0,
+                        0.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        1.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        1.0,
+                        0.0,
+                        1.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    }
+                  ]
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  1.0
+                ],
+                "length_cm": 1.0,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.25
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.75
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      1.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      0.0,
+                      1.0
+                    ]
+                  ],
+                  "degree": 1,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_rational": false,
+                  "weights": [],
+                  "is_periodic": false
+                }
+              }
+            },
+            {
+              "index": 1,
+              "is_opposed_to_entity": true,
+              "source": {
+                "entity_type": "adsk::fusion::SketchArc",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAAJxqpN2SAAAA",
+                "sketch_name": "CompositeLoftGuide",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbB3IeiMDIwChkM+FiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Arc3D",
+                  "parameter_extents": [
+                    0.0,
+                    0.39479111969975966
+                  ],
+                  "length_cm": 2.0529138224387564,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.5999999999999988,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.0000000000000044,
+                        0.0,
+                        -4.800000000000019
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.09869777992493992,
+                      "point_cm": [
+                        0.77371520394002,
+                        0.0,
+                        2.5172860870962577
+                      ],
+                      "tangent": [
+                        1.5172860870962626,
+                        0.0,
+                        -4.97371520394004
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.19739555984987983,
+                      "point_cm": [
+                        0.8990195135927831,
+                        0.0,
+                        2.0198039027185573
+                      ],
+                      "tangent": [
+                        1.0198039027185617,
+                        0.0,
+                        -5.099019513592804
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.2960933397748198,
+                      "point_cm": [
+                        0.9746932986739638,
+                        0.0,
+                        1.5123956134265402
+                      ],
+                      "tangent": [
+                        0.5123956134265446,
+                        0.0,
+                        -5.174693298673985
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 0.39479111969975966,
+                      "point_cm": [
+                        0.9999999999999991,
+                        0.0,
+                        1.0000000000000018
+                      ],
+                      "tangent": [
+                        6.217248937900877e-15,
+                        0.0,
+                        -5.20000000000002
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    -4.200000000000021,
+                    0.0,
+                    0.9999999999999956
+                  ],
+                  "radius_cm": 5.20000000000002,
+                  "normal": [
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "reference_axis": [
+                    0.9230769230769234,
+                    0.0,
+                    0.38461538461538397
+                  ],
+                  "start_angle_radians": 0.0,
+                  "end_angle_radians": 0.39479111969975966
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  2.7468015338900336,
+                  3.141592653589793
+                ],
+                "length_cm": 2.0529138224387444,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 2.7468015338900336,
+                    "point_cm": [
+                      0.9999999999999991,
+                      0.0,
+                      1.0000000000000018
+                    ],
+                    "tangent": [
+                      -4.676814491233472e-15,
+                      0.0,
+                      5.166296057997056
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 2.8454993138149733,
+                    "point_cm": [
+                      0.974816608331242,
+                      0.0,
+                      1.5111487749561077
+                    ],
+                    "tangent": [
+                      -0.5115610640400837,
+                      0.0,
+                      5.178990579792613
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 2.9441970937399136,
+                    "point_cm": [
+                      0.8990195135927832,
+                      0.0,
+                      2.0198039027185586
+                    ],
+                    "tangent": [
+                      -1.0231282454783837,
+                      0.0,
+                      5.115641227391901
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 3.0428948736648533,
+                    "point_cm": [
+                      0.773349474981187,
+                      0.0,
+                      2.51848444170638
+                    ],
+                    "tangent": [
+                      -1.5197092408063166,
+                      0.0,
+                      4.977360944439366
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "point_cm": [
+                      0.5999999999999986,
+                      0.0,
+                      2.9999999999999996
+                    ],
+                    "tangent": [
+                      -1.987036945383483,
+                      0.0,
+                      4.7688886689203605
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      0.9999999999999991,
+                      0.0,
+                      1.0000000000000018
+                    ],
+                    [
+                      0.9999999999999982,
+                      0.0,
+                      2.0400000000000005
+                    ],
+                    [
+                      0.5999999999999988,
+                      0.0,
+                      2.9999999999999996
+                    ]
+                  ],
+                  "degree": 2,
+                  "knots": [
+                    2.7468015338900336,
+                    2.7468015338900336,
+                    2.7468015338900336,
+                    3.141592653589793,
+                    3.141592653589793,
+                    3.141592653589793
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    0.9805806756909203,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        }
+      },
+      "actual_input_path": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 2,
+        "is_closed": false,
+        "members": [
+          {
+            "index": 0,
+            "is_opposed_to_entity": false,
+            "source": {
+              "entity_type": "adsk::fusion::SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUAGg8Ad6hv25IAAAA=",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbB3IeiMDIwChkM+FiAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::Line3D",
+                "parameter_extents": [
+                  0.0,
+                  1.0
+                ],
+                "length_cm": 1.0,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.25
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      0.75
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      1.0,
+                      0.0,
+                      1.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ]
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                0.0,
+                1.0
+              ],
+              "length_cm": 1.0,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 0.0,
+                  "point_cm": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 0.25,
+                  "point_cm": [
+                    1.0,
+                    0.0,
+                    0.25
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 0.5,
+                  "point_cm": [
+                    1.0,
+                    0.0,
+                    0.5
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 0.75,
+                  "point_cm": [
+                    1.0,
+                    0.0,
+                    0.75
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 1.0,
+                  "point_cm": [
+                    1.0,
+                    0.0,
+                    1.0
+                  ],
+                  "tangent": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    1.0,
+                    0.0,
+                    1.0
+                  ]
+                ],
+                "degree": 1,
+                "knots": [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0
+                ],
+                "is_rational": false,
+                "weights": [],
+                "is_periodic": false
+              }
+            }
+          },
+          {
+            "index": 1,
+            "is_opposed_to_entity": true,
+            "source": {
+              "entity_type": "adsk::fusion::SketchArc",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAAJxqpN2SAAAA",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoPF2o9fN/h87tkcHHr2Y70xUIWRgrGZgrGxoUVSSpKZbqqhaYquibFRiq5lcmqKblJKiqVBopmpoZmpCVgt0AwGNAC2z0ABbB3IeiMDIwChkM+FiAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::Arc3D",
+                "parameter_extents": [
+                  0.0,
+                  0.39479111969975966
+                ],
+                "length_cm": 2.0529138224387564,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.5999999999999988,
+                      0.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      2.0000000000000044,
+                      0.0,
+                      -4.800000000000019
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.09869777992493992,
+                    "point_cm": [
+                      0.77371520394002,
+                      0.0,
+                      2.5172860870962577
+                    ],
+                    "tangent": [
+                      1.5172860870962626,
+                      0.0,
+                      -4.97371520394004
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.19739555984987983,
+                    "point_cm": [
+                      0.8990195135927831,
+                      0.0,
+                      2.0198039027185573
+                    ],
+                    "tangent": [
+                      1.0198039027185617,
+                      0.0,
+                      -5.099019513592804
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.2960933397748198,
+                    "point_cm": [
+                      0.9746932986739638,
+                      0.0,
+                      1.5123956134265402
+                    ],
+                    "tangent": [
+                      0.5123956134265446,
+                      0.0,
+                      -5.174693298673985
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 0.39479111969975966,
+                    "point_cm": [
+                      0.9999999999999991,
+                      0.0,
+                      1.0000000000000018
+                    ],
+                    "tangent": [
+                      6.217248937900877e-15,
+                      0.0,
+                      -5.20000000000002
+                    ]
+                  }
+                ],
+                "center_cm": [
+                  -4.200000000000021,
+                  0.0,
+                  0.9999999999999956
+                ],
+                "radius_cm": 5.20000000000002,
+                "normal": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "reference_axis": [
+                  0.9230769230769234,
+                  0.0,
+                  0.38461538461538397
+                ],
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 0.39479111969975966
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                2.7468015338900336,
+                3.141592653589793
+              ],
+              "length_cm": 2.0529138224387444,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 2.7468015338900336,
+                  "point_cm": [
+                    0.9999999999999991,
+                    0.0,
+                    1.0000000000000018
+                  ],
+                  "tangent": [
+                    -4.676814491233472e-15,
+                    0.0,
+                    5.166296057997056
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 2.8454993138149733,
+                  "point_cm": [
+                    0.974816608331242,
+                    0.0,
+                    1.5111487749561077
+                  ],
+                  "tangent": [
+                    -0.5115610640400837,
+                    0.0,
+                    5.178990579792613
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 2.9441970937399136,
+                  "point_cm": [
+                    0.8990195135927832,
+                    0.0,
+                    2.0198039027185586
+                  ],
+                  "tangent": [
+                    -1.0231282454783837,
+                    0.0,
+                    5.115641227391901
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 3.0428948736648533,
+                  "point_cm": [
+                    0.773349474981187,
+                    0.0,
+                    2.51848444170638
+                  ],
+                  "tangent": [
+                    -1.5197092408063166,
+                    0.0,
+                    4.977360944439366
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 3.141592653589793,
+                  "point_cm": [
+                    0.5999999999999986,
+                    0.0,
+                    2.9999999999999996
+                  ],
+                  "tangent": [
+                    -1.987036945383483,
+                    0.0,
+                    4.7688886689203605
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    0.9999999999999991,
+                    0.0,
+                    1.0000000000000018
+                  ],
+                  [
+                    0.9999999999999982,
+                    0.0,
+                    2.0400000000000005
+                  ],
+                  [
+                    0.5999999999999988,
+                    0.0,
+                    2.9999999999999996
+                  ]
+                ],
+                "degree": 2,
+                "knots": [
+                  2.7468015338900336,
+                  2.7468015338900336,
+                  2.7468015338900336,
+                  3.141592653589793,
+                  3.141592653589793,
+                  3.141592653589793
+                ],
+                "is_rational": true,
+                "weights": [
+                  1.0,
+                  0.9805806756909203,
+                  1.0
+                ],
+                "is_periodic": false
+              }
+            }
+          }
+        ]
+      },
+      "requested_path_mode": "Explicit ObjectCollection line then arc; chain option ignored for collection per SDK",
+      "api_evidence_scope": "Actual Path order/opposed flags and oriented geometry retained as evidence only; decoded samples describe natural source geometry"
+    },
+    {
+      "archive": "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+      "checks": {
+        "native_order_matches_actual_api_source_member_kinds": true,
+        "controls_match_actual_api": true,
+        "opposed_flags_remain_unresolved_in_decoded_output": true,
+        "FittedSpline_parameter_domain_matches_actual_source": true,
+        "FittedSpline_five_natural_source_points_match_actual_api": true,
+        "FittedSpline_five_parameter_derivatives_match_actual_getTangent": true,
+        "stored_nurbs_degree_knots_weights_controls_match_actual_api": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 47,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          398,
+          406
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 398,
+            "profile": {
+              "selection_record_object_id": 399,
+              "descriptor_object_id": 402,
+              "loop_definition_object_id": 405,
+              "sketch_object_id": 335,
+              "sketch_name": "CompositeLoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 362,
+                      "entity_kind": "Circle",
+                      "entity_tag": 109,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 406,
+            "profile": {
+              "selection_record_object_id": 407,
+              "descriptor_object_id": 410,
+              "loop_definition_object_id": 413,
+              "sketch_object_id": 366,
+              "sketch_name": "CompositeLoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 393,
+                      "entity_kind": "Circle",
+                      "entity_tag": 112,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 421,
+        "result_body_anchor_object_ids": [
+          452
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 1,
+        "is_centerline": true,
+        "centerline": {
+          "kind": "FittedSplineGuide",
+          "selection_record_object_id": 414,
+          "sketch_object_id": 202,
+          "sketch_name": "CompositeLoftGuide",
+          "member_count": 1,
+          "members": [
+            {
+              "index": 0,
+              "descriptor_object_id": 417,
+              "terminal_object_id": 420,
+              "sketch_object_id": 202,
+              "sketch_name": "CompositeLoftGuide",
+              "curve_object_id": 238,
+              "curve_entity_tag": 106,
+              "kind": "FittedSpline",
+              "natural_component_geometry": {
+                "kind": "FittedSpline",
+                "start_cm": [
+                  4.0,
+                  0.0,
+                  -2.0
+                ],
+                "end_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "nurbs": {
+                  "degree": 5,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.05,
+                    0.1,
+                    0.15000000000000002,
+                    0.2,
+                    0.25,
+                    0.3,
+                    0.35,
+                    0.39999999999999997,
+                    0.44999999999999996,
+                    0.49999999999999994,
+                    0.5499999999999999,
+                    0.6,
+                    0.65,
+                    0.7000000000000001,
+                    0.7500000000000001,
+                    0.8000000000000002,
+                    0.8500000000000002,
+                    0.9000000000000002,
+                    0.9500000000000003,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "control_points_cm": [
+                    [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    [
+                      3.9967258481223573,
+                      0.0,
+                      -1.9585705927614836
+                    ],
+                    [
+                      3.991172108565433,
+                      0.0,
+                      -1.871940157212803
+                    ],
+                    [
+                      3.9858240527398654,
+                      0.0,
+                      -1.7306802989924295
+                    ],
+                    [
+                      3.9846926941894143,
+                      0.0,
+                      -1.5196073399421266
+                    ],
+                    [
+                      3.9920924041354167,
+                      0.0,
+                      -1.218151499352757
+                    ],
+                    [
+                      4.004668405756014,
+                      0.0,
+                      -0.8807262592234395
+                    ],
+                    [
+                      4.014560523912939,
+                      0.0,
+                      -0.5115899370330138
+                    ],
+                    [
+                      4.009559347851351,
+                      0.0,
+                      -0.11794835093050385
+                    ],
+                    [
+                      3.9758510549386332,
+                      0.0,
+                      0.29131343039762075
+                    ],
+                    [
+                      3.900178719387499,
+                      0.0,
+                      0.706509481954983
+                    ],
+                    [
+                      3.772099456952093,
+                      0.0,
+                      1.1181049523120934
+                    ],
+                    [
+                      3.5866715397365283,
+                      0.0,
+                      1.5177320938242436
+                    ],
+                    [
+                      3.345835118652871,
+                      0.0,
+                      1.8988491522925153
+                    ],
+                    [
+                      3.0560031276258455,
+                      0.0,
+                      2.256358838526672
+                    ],
+                    [
+                      2.72651499524814,
+                      0.0,
+                      2.586459496321806
+                    ],
+                    [
+                      2.3678047403658655,
+                      0.0,
+                      2.8864566742434428
+                    ],
+                    [
+                      1.9898948357075896,
+                      0.0,
+                      3.1546271422531027
+                    ],
+                    [
+                      1.6004679263383412,
+                      0.0,
+                      3.3901451129317444
+                    ],
+                    [
+                      1.2044882740702179,
+                      0.0,
+                      3.5928839734862823
+                    ],
+                    [
+                      0.8049780386439271,
+                      0.0,
+                      3.763120587978818
+                    ],
+                    [
+                      0.48374381865193267,
+                      0.0,
+                      3.8736709968196363
+                    ],
+                    [
+                      0.24213632268901067,
+                      0.0,
+                      3.942348767777091
+                    ],
+                    [
+                      0.08076245917023271,
+                      0.0,
+                      3.9818330723486057
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ]
+                  ],
+                  "weights": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_rational": true,
+                  "is_periodic": false,
+                  "parameter_domain": [
+                    0.0,
+                    1.0
+                  ],
+                  "representation": "Stored NURBS controls transformed into parent component coordinates"
+                },
+                "length_status": "Not evaluated; no sampled-polyline length substituted for the API getter",
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "parameter_derivative_component": [
+                      -0.32741518776426837,
+                      0.0,
+                      4.14294072385164
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_component_cm": [
+                      4.01082383025933,
+                      0.0,
+                      -0.5054776148094715
+                    ],
+                    "parameter_derivative_component": [
+                      0.02722339313048439,
+                      0.0,
+                      7.6143700105664465
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_component_cm": [
+                      3.572856686961277,
+                      0.0,
+                      1.51311661027168
+                    ],
+                    "parameter_derivative_component": [
+                      -4.2556824789615595,
+                      0.0,
+                      7.797742796979923
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_component_cm": [
+                      1.9869929313360728,
+                      0.0,
+                      3.1464698443755634
+                    ],
+                    "parameter_derivative_component": [
+                      -7.662829051210963,
+                      0.0,
+                      5.036090720039573
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_component_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "parameter_derivative_component": [
+                      -8.076245917023318,
+                      0.0,
+                      1.8166927651394376
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            }
+          ],
+          "secondary_flags_record_object_id": 438,
+          "secondary_flags_hex": "0000010100",
+          "order_scope": "Explicit counted native descriptor order; observed API member order agrees in captured Line/Arc paths",
+          "traversal_scope": "Source natural geometry only; Path member traversal/opposed flags are unresolved and not inferred from endpoint connectivity",
+          "chain_option_scope": "Invariant secondary flags retained without chain-option semantics; connected discovery and explicit member input produce the same observed layout",
+          "coordinate_scope": "Parent component coordinates; no occurrence/joint transformations or Loft regeneration"
+        },
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Owned same-sketch ordered tangent Line/Arc centerline/rail, or single fitted-spline centerline; natural geometry decoded, traversal/opposition unresolved",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved"
+      },
+      "actual_api_guide": {
+        "index": 0,
+        "entity_type": "adsk::fusion::SketchFittedSpline",
+        "is_centerline": true,
+        "path": null,
+        "curve": {
+          "entity_type": "adsk::fusion::SketchFittedSpline",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv2CJS/sFb249tv8k/7ceOc2UIWRgrGZQqqFUWqqZVKarqWlgaWuiZFxiq6lmbmJbqpJUpKFSZKJuVmiKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAACUWGAySAAAA",
+          "sketch_name": "CompositeLoftGuide",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv2CJS/sFb249tv8k/7ceOc2UIWRgrGZQqqFUWqqZVKarqWlgaWuiZFxiq6lmbmJbqpJUpKFSZKJuVmiKVgt0AwGNAC2z0ABbB3IeiMDIwCIu801iAAAAA==",
+          "natural_world_geometry": {
+            "geometry_type": "adsk::core::NurbsCurve3D",
+            "parameter_extents": [
+              0.0,
+              1.0
+            ],
+            "length_cm": 8.057941301582536,
+            "samples": [
+              {
+                "parameter_fraction": 0.0,
+                "parameter": 0.0,
+                "point_cm": [
+                  4.0,
+                  0.0,
+                  -2.0
+                ],
+                "tangent": [
+                  -0.32741518776426837,
+                  0.0,
+                  4.14294072385164
+                ]
+              },
+              {
+                "parameter_fraction": 0.25,
+                "parameter": 0.25,
+                "point_cm": [
+                  4.01082383025933,
+                  0.0,
+                  -0.5054776148094715
+                ],
+                "tangent": [
+                  0.027223393130484413,
+                  0.0,
+                  7.6143700105664465
+                ]
+              },
+              {
+                "parameter_fraction": 0.5,
+                "parameter": 0.5,
+                "point_cm": [
+                  3.572856686961277,
+                  0.0,
+                  1.51311661027168
+                ],
+                "tangent": [
+                  -4.2556824789615595,
+                  0.0,
+                  7.797742796979923
+                ]
+              },
+              {
+                "parameter_fraction": 0.75,
+                "parameter": 0.75,
+                "point_cm": [
+                  1.9869929313360728,
+                  0.0,
+                  3.1464698443755634
+                ],
+                "tangent": [
+                  -7.662829051210963,
+                  0.0,
+                  5.0360907200395735
+                ]
+              },
+              {
+                "parameter_fraction": 1.0,
+                "parameter": 1.0,
+                "point_cm": [
+                  -4.7993469126579895e-17,
+                  0.0,
+                  4.0
+                ],
+                "tangent": [
+                  -8.076245917023318,
+                  0.0,
+                  1.816692765139438
+                ]
+              }
+            ],
+            "nurbs": {
+              "get_data_success": true,
+              "control_points_cm": [
+                [
+                  4.0,
+                  0.0,
+                  -2.0
+                ],
+                [
+                  3.9967258481223573,
+                  0.0,
+                  -1.9585705927614836
+                ],
+                [
+                  3.991172108565433,
+                  0.0,
+                  -1.871940157212803
+                ],
+                [
+                  3.9858240527398654,
+                  0.0,
+                  -1.7306802989924295
+                ],
+                [
+                  3.9846926941894143,
+                  0.0,
+                  -1.5196073399421266
+                ],
+                [
+                  3.9920924041354167,
+                  0.0,
+                  -1.218151499352757
+                ],
+                [
+                  4.004668405756014,
+                  0.0,
+                  -0.8807262592234395
+                ],
+                [
+                  4.014560523912939,
+                  0.0,
+                  -0.5115899370330138
+                ],
+                [
+                  4.009559347851351,
+                  0.0,
+                  -0.11794835093050385
+                ],
+                [
+                  3.9758510549386332,
+                  0.0,
+                  0.29131343039762075
+                ],
+                [
+                  3.900178719387499,
+                  0.0,
+                  0.706509481954983
+                ],
+                [
+                  3.772099456952093,
+                  0.0,
+                  1.1181049523120934
+                ],
+                [
+                  3.5866715397365283,
+                  0.0,
+                  1.5177320938242436
+                ],
+                [
+                  3.345835118652871,
+                  0.0,
+                  1.8988491522925153
+                ],
+                [
+                  3.0560031276258455,
+                  0.0,
+                  2.256358838526672
+                ],
+                [
+                  2.72651499524814,
+                  0.0,
+                  2.586459496321806
+                ],
+                [
+                  2.3678047403658655,
+                  0.0,
+                  2.8864566742434428
+                ],
+                [
+                  1.9898948357075896,
+                  0.0,
+                  3.1546271422531027
+                ],
+                [
+                  1.6004679263383412,
+                  0.0,
+                  3.3901451129317444
+                ],
+                [
+                  1.2044882740702179,
+                  0.0,
+                  3.5928839734862823
+                ],
+                [
+                  0.8049780386439271,
+                  0.0,
+                  3.763120587978818
+                ],
+                [
+                  0.48374381865193267,
+                  0.0,
+                  3.8736709968196363
+                ],
+                [
+                  0.24213632268901067,
+                  0.0,
+                  3.942348767777091
+                ],
+                [
+                  0.08076245917023271,
+                  0.0,
+                  3.9818330723486057
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ]
+              ],
+              "degree": 5,
+              "knots": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05,
+                0.1,
+                0.15000000000000002,
+                0.2,
+                0.25,
+                0.3,
+                0.35,
+                0.39999999999999997,
+                0.44999999999999996,
+                0.49999999999999994,
+                0.5499999999999999,
+                0.6,
+                0.65,
+                0.7000000000000001,
+                0.7500000000000001,
+                0.8000000000000002,
+                0.8500000000000002,
+                0.9000000000000002,
+                0.9500000000000003,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "is_rational": true,
+              "weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "is_periodic": false
+            }
+          }
+        }
+      },
+      "actual_input_path": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "is_closed": false,
+        "members": [
+          {
+            "index": 0,
+            "is_opposed_to_entity": false,
+            "source": {
+              "entity_type": "adsk::fusion::SketchFittedSpline",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv2CJS/sFb249tv8k/7ceOc2UIWRgrGZQqqFUWqqZVKarqWlgaWuiZFxiq6lmbmJbqpJUpKFSZKJuVmiKVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAACUWGAySAAAA",
+              "sketch_name": "CompositeLoftGuide",
+              "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv2CJS/sFb249tv8k/7ceOc2UIWRgrGZQqqFUWqqZVKarqWlgaWuiZFxiq6lmbmJbqpJUpKFSZKJuVmiKVgt0AwGNAC2z0ABbB3IeiMDIwCIu801iAAAAA==",
+              "natural_world_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  1.0
+                ],
+                "length_cm": 8.057941301582536,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    "tangent": [
+                      -0.32741518776426837,
+                      0.0,
+                      4.14294072385164
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_cm": [
+                      4.01082383025933,
+                      0.0,
+                      -0.5054776148094715
+                    ],
+                    "tangent": [
+                      0.027223393130484413,
+                      0.0,
+                      7.6143700105664465
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      3.572856686961277,
+                      0.0,
+                      1.51311661027168
+                    ],
+                    "tangent": [
+                      -4.2556824789615595,
+                      0.0,
+                      7.797742796979923
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      1.9869929313360728,
+                      0.0,
+                      3.1464698443755634
+                    ],
+                    "tangent": [
+                      -7.662829051210963,
+                      0.0,
+                      5.0360907200395735
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      -4.7993469126579895e-17,
+                      0.0,
+                      4.0
+                    ],
+                    "tangent": [
+                      -8.076245917023318,
+                      0.0,
+                      1.816692765139438
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      4.0,
+                      0.0,
+                      -2.0
+                    ],
+                    [
+                      3.9967258481223573,
+                      0.0,
+                      -1.9585705927614836
+                    ],
+                    [
+                      3.991172108565433,
+                      0.0,
+                      -1.871940157212803
+                    ],
+                    [
+                      3.9858240527398654,
+                      0.0,
+                      -1.7306802989924295
+                    ],
+                    [
+                      3.9846926941894143,
+                      0.0,
+                      -1.5196073399421266
+                    ],
+                    [
+                      3.9920924041354167,
+                      0.0,
+                      -1.218151499352757
+                    ],
+                    [
+                      4.004668405756014,
+                      0.0,
+                      -0.8807262592234395
+                    ],
+                    [
+                      4.014560523912939,
+                      0.0,
+                      -0.5115899370330138
+                    ],
+                    [
+                      4.009559347851351,
+                      0.0,
+                      -0.11794835093050385
+                    ],
+                    [
+                      3.9758510549386332,
+                      0.0,
+                      0.29131343039762075
+                    ],
+                    [
+                      3.900178719387499,
+                      0.0,
+                      0.706509481954983
+                    ],
+                    [
+                      3.772099456952093,
+                      0.0,
+                      1.1181049523120934
+                    ],
+                    [
+                      3.5866715397365283,
+                      0.0,
+                      1.5177320938242436
+                    ],
+                    [
+                      3.345835118652871,
+                      0.0,
+                      1.8988491522925153
+                    ],
+                    [
+                      3.0560031276258455,
+                      0.0,
+                      2.256358838526672
+                    ],
+                    [
+                      2.72651499524814,
+                      0.0,
+                      2.586459496321806
+                    ],
+                    [
+                      2.3678047403658655,
+                      0.0,
+                      2.8864566742434428
+                    ],
+                    [
+                      1.9898948357075896,
+                      0.0,
+                      3.1546271422531027
+                    ],
+                    [
+                      1.6004679263383412,
+                      0.0,
+                      3.3901451129317444
+                    ],
+                    [
+                      1.2044882740702179,
+                      0.0,
+                      3.5928839734862823
+                    ],
+                    [
+                      0.8049780386439271,
+                      0.0,
+                      3.763120587978818
+                    ],
+                    [
+                      0.48374381865193267,
+                      0.0,
+                      3.8736709968196363
+                    ],
+                    [
+                      0.24213632268901067,
+                      0.0,
+                      3.942348767777091
+                    ],
+                    [
+                      0.08076245917023271,
+                      0.0,
+                      3.9818330723486057
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ]
+                  ],
+                  "degree": 5,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.05,
+                    0.1,
+                    0.15000000000000002,
+                    0.2,
+                    0.25,
+                    0.3,
+                    0.35,
+                    0.39999999999999997,
+                    0.44999999999999996,
+                    0.49999999999999994,
+                    0.5499999999999999,
+                    0.6,
+                    0.65,
+                    0.7000000000000001,
+                    0.7500000000000001,
+                    0.8000000000000002,
+                    0.8500000000000002,
+                    0.9000000000000002,
+                    0.9500000000000003,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            },
+            "actual_path_geometry": {
+              "geometry_type": "adsk::core::NurbsCurve3D",
+              "parameter_extents": [
+                0.0,
+                1.0
+              ],
+              "length_cm": 8.057941301582536,
+              "samples": [
+                {
+                  "parameter_fraction": 0.0,
+                  "parameter": 0.0,
+                  "point_cm": [
+                    4.0,
+                    0.0,
+                    -2.0
+                  ],
+                  "tangent": [
+                    -0.32741518776426837,
+                    0.0,
+                    4.14294072385164
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.25,
+                  "parameter": 0.25,
+                  "point_cm": [
+                    4.01082383025933,
+                    0.0,
+                    -0.5054776148094715
+                  ],
+                  "tangent": [
+                    0.027223393130484413,
+                    0.0,
+                    7.6143700105664465
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.5,
+                  "parameter": 0.5,
+                  "point_cm": [
+                    3.572856686961277,
+                    0.0,
+                    1.51311661027168
+                  ],
+                  "tangent": [
+                    -4.2556824789615595,
+                    0.0,
+                    7.797742796979923
+                  ]
+                },
+                {
+                  "parameter_fraction": 0.75,
+                  "parameter": 0.75,
+                  "point_cm": [
+                    1.9869929313360728,
+                    0.0,
+                    3.1464698443755634
+                  ],
+                  "tangent": [
+                    -7.662829051210963,
+                    0.0,
+                    5.0360907200395735
+                  ]
+                },
+                {
+                  "parameter_fraction": 1.0,
+                  "parameter": 1.0,
+                  "point_cm": [
+                    -4.7993469126579895e-17,
+                    0.0,
+                    4.0
+                  ],
+                  "tangent": [
+                    -8.076245917023318,
+                    0.0,
+                    1.816692765139438
+                  ]
+                }
+              ],
+              "nurbs": {
+                "get_data_success": true,
+                "control_points_cm": [
+                  [
+                    4.0,
+                    0.0,
+                    -2.0
+                  ],
+                  [
+                    3.9967258481223573,
+                    0.0,
+                    -1.9585705927614836
+                  ],
+                  [
+                    3.991172108565433,
+                    0.0,
+                    -1.871940157212803
+                  ],
+                  [
+                    3.9858240527398654,
+                    0.0,
+                    -1.7306802989924295
+                  ],
+                  [
+                    3.9846926941894143,
+                    0.0,
+                    -1.5196073399421266
+                  ],
+                  [
+                    3.9920924041354167,
+                    0.0,
+                    -1.218151499352757
+                  ],
+                  [
+                    4.004668405756014,
+                    0.0,
+                    -0.8807262592234395
+                  ],
+                  [
+                    4.014560523912939,
+                    0.0,
+                    -0.5115899370330138
+                  ],
+                  [
+                    4.009559347851351,
+                    0.0,
+                    -0.11794835093050385
+                  ],
+                  [
+                    3.9758510549386332,
+                    0.0,
+                    0.29131343039762075
+                  ],
+                  [
+                    3.900178719387499,
+                    0.0,
+                    0.706509481954983
+                  ],
+                  [
+                    3.772099456952093,
+                    0.0,
+                    1.1181049523120934
+                  ],
+                  [
+                    3.5866715397365283,
+                    0.0,
+                    1.5177320938242436
+                  ],
+                  [
+                    3.345835118652871,
+                    0.0,
+                    1.8988491522925153
+                  ],
+                  [
+                    3.0560031276258455,
+                    0.0,
+                    2.256358838526672
+                  ],
+                  [
+                    2.72651499524814,
+                    0.0,
+                    2.586459496321806
+                  ],
+                  [
+                    2.3678047403658655,
+                    0.0,
+                    2.8864566742434428
+                  ],
+                  [
+                    1.9898948357075896,
+                    0.0,
+                    3.1546271422531027
+                  ],
+                  [
+                    1.6004679263383412,
+                    0.0,
+                    3.3901451129317444
+                  ],
+                  [
+                    1.2044882740702179,
+                    0.0,
+                    3.5928839734862823
+                  ],
+                  [
+                    0.8049780386439271,
+                    0.0,
+                    3.763120587978818
+                  ],
+                  [
+                    0.48374381865193267,
+                    0.0,
+                    3.8736709968196363
+                  ],
+                  [
+                    0.24213632268901067,
+                    0.0,
+                    3.942348767777091
+                  ],
+                  [
+                    0.08076245917023271,
+                    0.0,
+                    3.9818330723486057
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    4.0
+                  ]
+                ],
+                "degree": 5,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2,
+                  0.25,
+                  0.3,
+                  0.35,
+                  0.39999999999999997,
+                  0.44999999999999996,
+                  0.49999999999999994,
+                  0.5499999999999999,
+                  0.6,
+                  0.65,
+                  0.7000000000000001,
+                  0.7500000000000001,
+                  0.8000000000000002,
+                  0.8500000000000002,
+                  0.9000000000000002,
+                  0.9500000000000003,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "is_rational": true,
+                "weights": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "is_periodic": false
+              }
+            }
+          }
+        ]
+      },
+      "requested_path_mode": "Single fitted spline, no chained curves",
+      "api_evidence_scope": "Actual Path order/opposed flags and oriented geometry retained as evidence only; decoded samples describe natural source geometry"
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Descriptor owner mismatch",
+      "passed": true,
+      "reason": "Composite Loft descriptor count/layout/owner mismatch"
+    },
+    {
+      "check": "Curve leaf tag missing",
+      "passed": true,
+      "reason": "Composite Loft source sketch/tag missing, unsupported or ambiguous"
+    },
+    {
+      "check": "Unobserved secondary flags",
+      "passed": true,
+      "reason": "Unobserved composite Loft secondary flags"
+    },
+    {
+      "check": "Missing source placement",
+      "passed": true,
+      "reason": "Composite Loft guide sketch placement unresolved"
+    }
+  ],
+  "interface": "decode_loft_composite_guides(data,records,body,feature,features); resolve_loft_composite_guide is the existing five-argument guide_resolver hook",
+  "validation_command": "python3 decode_loft_composite_guides.py --validate --zstd-library <local libzstd path>",
+  "limitations": [
+    "Observed source sequences are same-sketch tangent Line then Arc, or one open FittedSpline. Other sequences, cross-sketch, closed and BRep paths are rejected.",
+    "Wrapper requires open solid NewBody with two Free profile sections and exactly one guide; spline rails, point ends and other operations remain unverified.",
+    "Descriptor order is decoded. Path per-member opposed flags/traversal and connected-discovery options are not decoded from invariant secondary bytes.",
+    "Natural source geometry and exact NURBS point/derivative evaluation are reported in parent component coordinates; no assembly/joint solving or Loft surface regeneration.",
+    "Spline length is not derived from sparse samples; actual API length remains evidence only."
+  ]
+}

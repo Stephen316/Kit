@@ -1,0 +1,177 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "sqrt_sum.f3d",
+      "requested_expression": "sqrt(probeScale + 1)",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value": 0.73,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value": 2.5,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ]
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value": 0.12,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeResult",
+          "unit": "",
+          "expression": "sqrt(probeScale + 1)",
+          "value": 1.8708286933869707,
+          "dependency_names": [
+            "probeScale"
+          ],
+          "dependent_names": []
+        }
+      ]
+    },
+    {
+      "file": "abs_difference.f3d",
+      "requested_expression": "abs(probeAllowance - probeWidth)",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value": 0.73,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ]
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value": 2.5,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value": 0.12,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ]
+        },
+        {
+          "name": "probeResult",
+          "unit": "mm",
+          "expression": "abs(probeAllowance - probeWidth)",
+          "value": 0.61,
+          "dependency_names": [
+            "probeAllowance",
+            "probeWidth"
+          ],
+          "dependent_names": []
+        }
+      ]
+    },
+    {
+      "file": "nested_sqrt.f3d",
+      "requested_expression": "sqrt(probeScale * sqrt(probeScale))",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value": 0.73,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value": 2.5,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ]
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value": 0.12,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeResult",
+          "unit": "",
+          "expression": "sqrt(probeScale * sqrt(probeScale))",
+          "value": 1.9881768219176268,
+          "dependency_names": [
+            "probeScale"
+          ],
+          "dependent_names": []
+        }
+      ]
+    },
+    {
+      "file": "nested_unary_abs.f3d",
+      "requested_expression": "-abs(-probeWidth) + 20 mm",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value": 0.73,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ]
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value": 2.5,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value": 0.12,
+          "dependency_names": [],
+          "dependent_names": []
+        },
+        {
+          "name": "probeResult",
+          "unit": "mm",
+          "expression": "-abs(-probeWidth) + 20 mm",
+          "value": 1.27,
+          "dependency_names": [
+            "probeWidth"
+          ],
+          "dependent_names": []
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

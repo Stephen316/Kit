@@ -1,0 +1,1395 @@
+{
+  "scope": "Ten saved Mesh/PlaneCut/Reduce BaseFeatures with absent pair branch and zero result-anchor list, plus two paired-body control archives; no full corpus/main rerun or live calls",
+  "interface": "decode_base_feature_empty_lists(data,records,features)->partial/unresolved/scope; partial rows contain definition/controller/ownership/history only, no kind/tool_settings and no feature mutation",
+  "integration": "Optional partial provenance attachment by feature_object_id; keep UnsupportedFeature, old direct-body diagnostic, discovery counts, timeline kind, mesh owners, body properties and placements unchanged",
+  "schema": {
+    "initial_prefix_hex": "0001000000000000000001000000000000",
+    "controller_ref": 17,
+    "reserved_uint32": 28,
+    "result_anchor_count": 32,
+    "nil_uuid_string": 44,
+    "repeated_controller_ref": 127,
+    "raw_metadata_uint32": 138,
+    "kind_label_string": 142,
+    "metadata_semantics": "Literal2, no interpretation",
+    "controller": "71bytes; owner refs14/60; literal separator20zero+010000 before typed bookkeepingref48; bookkeeping39bytes/backlink12; opaque8bytes retained",
+    "ownership": "Inherited CB owners of feature/controller agree; typed3A6D collection/inherited834C counted membership unique; C342 container footer collection backlink at end-22",
+    "history": "C342 footer explicit typed2F4 historyref at end-55; history owner matches container and counted list contains feature exactly once"
+  },
+  "samples": [
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+      "archive_sha256": "af92be84cad999ab8b363e93aefb3b6c9be54138fcc321f843aff498dc387ac3",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 202,
+            "name": "Owned tetra mesh stl_centimeter",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                206
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cd0000000000000000000002000000010100004d6e1ecbdef9f53e0101000001cc00000000000000000001000001cb0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 206,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 23347,
+              "feature_owner_reference_offsets": [
+                23380,
+                23426
+              ],
+              "bookkeeping_object_id": 207,
+              "bookkeeping_record_offset": 23467,
+              "bookkeeping_backlink_offset": 23498,
+              "opaque_bookkeeping_8byte_hex": "2aaa833f585e0600",
+              "payload_hex": "000000000000000000000000000001ca000000000000000000000000000000000000000000000000000000000001000001cf0000000000000000000001ca000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001ce0000000000000000002aaa833f585e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3290,
+              "feature_owner_fragment_offset": 23154,
+              "controller_owner_fragment_offset": 23456,
+              "membership_fragment_offset": 3330,
+              "counted_member_object_ids": [
+                33,
+                202,
+                206,
+                224,
+                228
+              ],
+              "membership_payload_hex": "05000000012100000000000000000001ca00000000000000000001ce00000000000000000001e000000000000000000001e4000000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3238,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4087,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3205,
+              "ordered_native_entry_object_ids": [
+                202,
+                224
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000200000001ca00000000000000000001e0000000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 22825,
+              "end_offset": 23135,
+              "hex": "000100000000000000000100000000000001ce0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001ce000000000000000000020000000c00000042006100730065002000460065006100740075007200650001000000000000001f0000004f0077006e006500640020007400650074007200610020006d006500730068002000730074006c005f00630065006e00740069006d0065007400650072000000000000000001cd0000000000000000000002000000010100004d6e1ecbdef9f53e0101000001cc00000000000000000001000001cb0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZGAEAMWs2PYgAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "actual_brep_bodies": [],
+        "mesh_and_source_body_vector_getter_failures": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "scope": "Only BRep bodies emptiness was read successfully; failed vector fields remain unknown"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+      "archive_sha256": "e4576022f6b38dae4cb4aae1230d091f6ad6b21dc4d1223525e1870a656051d8",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 202,
+            "name": "Owned tetra mesh stl_millimeter",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                206
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cd00000000000000000000020000000101000087c613419c87f33e0101000001cc00000000000000000001000001cb0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 206,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 23347,
+              "feature_owner_reference_offsets": [
+                23380,
+                23426
+              ],
+              "bookkeeping_object_id": 207,
+              "bookkeeping_record_offset": 23467,
+              "bookkeeping_backlink_offset": 23498,
+              "opaque_bookkeeping_8byte_hex": "72dd8a3f585e0600",
+              "payload_hex": "000000000000000000000000000001ca000000000000000000000000000000000000000000000000000000000001000001cf0000000000000000000001ca000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001ce00000000000000000072dd8a3f585e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3290,
+              "feature_owner_fragment_offset": 23154,
+              "controller_owner_fragment_offset": 23456,
+              "membership_fragment_offset": 3330,
+              "counted_member_object_ids": [
+                33,
+                202,
+                206,
+                224,
+                228
+              ],
+              "membership_payload_hex": "05000000012100000000000000000001ca00000000000000000001ce00000000000000000001e000000000000000000001e4000000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3238,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4087,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3205,
+              "ordered_native_entry_object_ids": [
+                202,
+                224
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000200000001ca00000000000000000001e0000000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 22825,
+              "end_offset": 23135,
+              "hex": "000100000000000000000100000000000001ce0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001ce000000000000000000020000000c00000042006100730065002000460065006100740075007200650001000000000000001f0000004f0077006e006500640020007400650074007200610020006d006500730068002000730074006c005f006d0069006c006c0069006d0065007400650072000000000000000001cd00000000000000000000020000000101000087c613419c87f33e0101000001cc00000000000000000001000001cb0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_millimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGAEAIhkXxCIAAAA",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "actual_brep_bodies": [],
+        "mesh_and_source_body_vector_getter_failures": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "scope": "Only BRep bodies emptiness was read successfully; failed vector fields remain unknown"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
+      "archive_sha256": "c15badb77434bc38e1940076ac22f2a3f43855198b550b4c8dd0ddec68f10efa",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 202,
+            "name": "Owned tetra mesh triangle_data_centimeter",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                206
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cd0000000000000000000002000000010100009463a8468cf7f33e0101000001cc00000000000000000001000001cb0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 206,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 23130,
+              "feature_owner_reference_offsets": [
+                23163,
+                23209
+              ],
+              "bookkeeping_object_id": 207,
+              "bookkeeping_record_offset": 23250,
+              "bookkeeping_backlink_offset": 23281,
+              "opaque_bookkeeping_8byte_hex": "fc33903f585e0600",
+              "payload_hex": "000000000000000000000000000001ca000000000000000000000000000000000000000000000000000000000001000001cf0000000000000000000001ca000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001ce000000000000000000fc33903f585e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3249,
+              "feature_owner_fragment_offset": 22937,
+              "controller_owner_fragment_offset": 23239,
+              "membership_fragment_offset": 3289,
+              "counted_member_object_ids": [
+                33,
+                202,
+                206
+              ],
+              "membership_payload_hex": "03000000012100000000000000000001ca00000000000000000001ce000000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3197,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 3861,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3164,
+              "ordered_native_entry_object_ids": [
+                202
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000100000001ca000000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 22588,
+              "end_offset": 22918,
+              "hex": "000100000000000000000100000000000001ce0000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001ce000000000000000000020000000c0000004200610073006500200046006500610074007500720065000100000000000000290000004f0077006e006500640020007400650074007200610020006d00650073006800200074007200690061006e0067006c0065005f0064006100740061005f00630065006e00740069006d0065007400650072000000000000000001cd0000000000000000000002000000010100009463a8468cf7f33e0101000001cc00000000000000000001000001cb0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh triangle_data_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcyMAIA6cb45ogAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "actual_brep_bodies": [],
+        "mesh_and_source_body_vector_getter_failures": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "scope": "Only BRep bodies emptiness was read successfully; failed vector fields remain unknown"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
+      "archive_sha256": "fcbcc42bba9adc6ea682b10d69e0448330f817687fde7fedf32f25e0a6ee6241",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned tetra import split_body_minimal_fill",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf0000000000000000000002000000010100002c431cebe236fa3e0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 24763,
+              "feature_owner_reference_offsets": [
+                24796,
+                24842
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 24883,
+              "bookkeeping_backlink_offset": 24914,
+              "opaque_bookkeeping_8byte_hex": "ec20be2c595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d0000000000000000000ec20be2c595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3482,
+              "feature_owner_fragment_offset": 24570,
+              "controller_owner_fragment_offset": 24872,
+              "membership_fragment_offset": 3522,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                259,
+                261,
+                265,
+                257,
+                272,
+                309,
+                312,
+                317,
+                320,
+                308,
+                338,
+                341
+              ],
+              "membership_payload_hex": "11000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de0000000000000000000103010000000000000000010501000000000000000001090100000000000000000101010000000000000000011001000000000000000001350100000000000000000138010000000000000000013d0100000000000000000140010000000000000000013401000000000000000001520100000000000000000155010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3430,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 5335,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3397,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                257,
+                308
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001010100000000000000000134010000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 24219,
+              "end_offset": 24551,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c00000042006100730065002000460065006100740075007200650001000000000000002a0000004f0077006e0065006400200074006500740072006100200069006d0070006f00720074002000730070006c00690074005f0062006f00640079005f006d0069006e0069006d0061006c005f00660069006c006c000000000000000001cf0000000000000000000002000000010100002c431cebe236fa3e0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import split_body_minimal_fill",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgv/V20FGV333T9ginx9g9UIeqMJIwdhMwSLZICnVwMBI19IgxUDXxNDYVNcyzdhS1yg10cjALNnU2MTMAKwWaAYDGgDbZ6AAtg5kvZGBCQBTb0+NiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "base_getter_errors": []
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+      "archive_sha256": "ddf4dcac983c748405f084dd19cab7b03b90371b84c0bede77b434a03dcabbfd",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned tetra import trim_minimal_fill",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf000000000000000000000200000001010000863b21b8ed22fc3e0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 24565,
+              "feature_owner_reference_offsets": [
+                24598,
+                24644
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 24685,
+              "bookkeeping_backlink_offset": 24716,
+              "opaque_bookkeeping_8byte_hex": "f784b82c595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d0000000000000000000f784b82c595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3471,
+              "feature_owner_fragment_offset": 24372,
+              "controller_owner_fragment_offset": 24674,
+              "membership_fragment_offset": 3511,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                259,
+                261,
+                265,
+                257,
+                272,
+                309,
+                312,
+                317,
+                320,
+                308
+              ],
+              "membership_payload_hex": "0f000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de0000000000000000000103010000000000000000010501000000000000000001090100000000000000000101010000000000000000011001000000000000000001350100000000000000000138010000000000000000013d01000000000000000001400100000000000000000134010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3419,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 5160,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3386,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                257,
+                308
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001010100000000000000000134010000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 24033,
+              "end_offset": 24353,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c0000004200610073006500200046006500610074007500720065000100000000000000240000004f0077006e0065006400200074006500740072006100200069006d0070006f007200740020007400720069006d005f006d0069006e0069006d0061006c005f00660069006c006c000000000000000001cf000000000000000000000200000001010000863b21b8ed22fc3e0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import trim_minimal_fill",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQm3wyU1HlP0Xrn1X3i6/REIMqMJIwdhMwdLEIDHZOM1U19TcKFnXxCglUdfCFMg1NLVMMbFIMjdLSTYBqwWawYAGwPYZKICtA1lvZGACAEkhPFGIAAAA",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "base_getter_errors": []
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshplanecuts-18f2683c83f5/trim_no_fill.f3d",
+      "archive_sha256": "c13e3702935ab2bfccf8f0b4220aca75a9c32af942eac088eebe9e1497b2c458",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned tetra import trim_no_fill",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf000000000000000000000200000001010000925672d16de2043f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 24555,
+              "feature_owner_reference_offsets": [
+                24588,
+                24634
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 24675,
+              "bookkeeping_backlink_offset": 24706,
+              "opaque_bookkeeping_8byte_hex": "0985af2c595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d00000000000000000000985af2c595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3471,
+              "feature_owner_fragment_offset": 24362,
+              "controller_owner_fragment_offset": 24664,
+              "membership_fragment_offset": 3511,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                259,
+                261,
+                265,
+                257,
+                272,
+                309,
+                312,
+                317,
+                320,
+                308
+              ],
+              "membership_payload_hex": "0f000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de0000000000000000000103010000000000000000010501000000000000000001090100000000000000000101010000000000000000011001000000000000000001350100000000000000000138010000000000000000013d01000000000000000001400100000000000000000134010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3419,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 5160,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3386,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                257,
+                308
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000400000001cc00000000000000000001da00000000000000000001010100000000000000000134010000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 24033,
+              "end_offset": 24343,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c00000042006100730065002000460065006100740075007200650001000000000000001f0000004f0077006e0065006400200074006500740072006100200069006d0070006f007200740020007400720069006d005f006e006f005f00660069006c006c000000000000000001cf000000000000000000000200000001010000925672d16de2043f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned tetra import trim_no_fill",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwptJCkun33CeNL3lZU/Rqbq3QBVGCsZmCsmmZsbGJknGuskmFia6JkbJproWiaaWuhbJBgYGSWnGiSmpRmC1QDMY0ADYPgMFsHUg640MTACqnRiqiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "brep_bodies": [],
+          "collection_scope": "BRep sourceBodies/bodies are not mesh source/result collections",
+          "base_getter_errors": []
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshreduces-780954a23308/adaptive_count_six.f3d",
+      "archive_sha256": "19b5699bec19450695c61a35ba9ad570c15082e09db511e598f61be781e839d8",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned octahedron import adaptive_count_six",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf000000000000000000000200000001010000dead2cd15966113f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 24162,
+              "feature_owner_reference_offsets": [
+                24195,
+                24241
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 24282,
+              "bookkeeping_backlink_offset": 24313,
+              "opaque_bookkeeping_8byte_hex": "67ba5e36595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d000000000000000000067ba5e36595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3461,
+              "feature_owner_fragment_offset": 23969,
+              "controller_owner_fragment_offset": 24271,
+              "membership_fragment_offset": 3501,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                257,
+                260,
+                265,
+                268,
+                271,
+                256
+              ],
+              "membership_payload_hex": "0b000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000010101000000000000000001040100000000000000000109010000000000000000010c010000000000000000010f0100000000000000000100010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3409,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4756,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3376,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                256
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000100010000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 23618,
+              "end_offset": 23950,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c00000042006100730065002000460065006100740075007200650001000000000000002a0000004f0077006e006500640020006f0063007400610068006500640072006f006e00200069006d0070006f00720074002000610064006100700074006900760065005f0063006f0075006e0074005f007300690078000000000000000001cf000000000000000000000200000001010000dead2cd15966113f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned octahedron import adaptive_count_six",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvkC1rxJy/xf9LzWfZp4zfM5UIWRgrGZgqVlknlaWpqZrkVqYqKuSZKxqa5lirmZrnFKqnmyiUmacbKhEVgt0AwGNAC2z0ABbB3IeiMDEwDshu3aiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "timeline_index": null,
+          "brep_bodies": [],
+          "base_getter_errors": [
+            {
+              "getter": "timelineObject.index",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 73, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 154, in <lambda>\n    result['timeline_index']=observe('timelineObject.index',lambda:feature.timelineObject.index,errors)\n                                                                   ^^^^^^^\nNameError: cannot access free variable 'feature' where it is not associated with a value in enclosing scope\n"
+            }
+          ]
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshreduces-780954a23308/adaptive_proportion_fifty.f3d",
+      "archive_sha256": "b15aace7abc656a340db988bda3afca2e13f77d6fb867332f156889d3551870d",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned octahedron import adaptive_proportion_fifty",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf0000000000000000000002000000010100007a39f1771de10c3f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 23496,
+              "feature_owner_reference_offsets": [
+                23529,
+                23575
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 23616,
+              "bookkeeping_backlink_offset": 23647,
+              "opaque_bookkeeping_8byte_hex": "7e6f7b36595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d00000000000000000007e6f7b36595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3290,
+              "feature_owner_fragment_offset": 23303,
+              "controller_owner_fragment_offset": 23605,
+              "membership_fragment_offset": 3330,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222
+              ],
+              "membership_payload_hex": "05000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3238,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4087,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3205,
+              "ordered_native_entry_object_ids": [
+                204,
+                218
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000200000001cc00000000000000000001da000000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 22938,
+              "end_offset": 23284,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c0000004200610073006500200046006500610074007500720065000100000000000000310000004f0077006e006500640020006f0063007400610068006500640072006f006e00200069006d0070006f00720074002000610064006100700074006900760065005f00700072006f0070006f007200740069006f006e005f00660069006600740079000000000000000001cf0000000000000000000002000000010100007a39f1771de10c3f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned octahedron import adaptive_proportion_fifty",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgkJj6Jdt97xz96anb7JYZjsHqMJIwdhMwdwyNcnE2CRNN9XcyFTXJMXUVDfJwjJZ1yjJ3CA5yTg12SgpBawWaAYDGgDbZ6AAtg5kvZGBCQAgJrD3iAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "timeline_index": null,
+          "brep_bodies": [],
+          "base_getter_errors": [
+            {
+              "getter": "timelineObject.index",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 73, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 154, in <lambda>\n    result['timeline_index']=observe('timelineObject.index',lambda:feature.timelineObject.index,errors)\n                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'index'\n"
+            }
+          ]
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshreduces-780954a23308/uniform_count_six.f3d",
+      "archive_sha256": "dc81e78cb2b47a1349fdd65132789c71bb10345bcf413f2e06d724a806f0a563",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned octahedron import uniform_count_six",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf000000000000000000000200000001010000d2fe029ff10d0d3f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 24160,
+              "feature_owner_reference_offsets": [
+                24193,
+                24239
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 24280,
+              "bookkeeping_backlink_offset": 24311,
+              "opaque_bookkeeping_8byte_hex": "2ff57036595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d00000000000000000002ff57036595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3461,
+              "feature_owner_fragment_offset": 23967,
+              "controller_owner_fragment_offset": 24269,
+              "membership_fragment_offset": 3501,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                257,
+                260,
+                265,
+                268,
+                271,
+                256
+              ],
+              "membership_payload_hex": "0b000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000010101000000000000000001040100000000000000000109010000000000000000010c010000000000000000010f0100000000000000000100010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3409,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4756,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3376,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                256
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000100010000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 23618,
+              "end_offset": 23948,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c0000004200610073006500200046006500610074007500720065000100000000000000290000004f0077006e006500640020006f0063007400610068006500640072006f006e00200069006d0070006f0072007400200075006e00690066006f0072006d005f0063006f0075006e0074005f007300690078000000000000000001cf000000000000000000000200000001010000d2fe029ff10d0d3f0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned octahedron import uniform_count_six",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmGDxq0iW2e/tY+qppa1f/wPVGGkYGymkGKSap6WbJmim5qSaKRrYp5komuZnGapa5qaaGmSYm5ukmhuBlYLNIMBDYDtM1AAWwey3sjABABQf7nmiAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "timeline_index": null,
+          "brep_bodies": [],
+          "base_getter_errors": [
+            {
+              "getter": "timelineObject.index",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 73, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 154, in <lambda>\n    result['timeline_index']=observe('timelineObject.index',lambda:feature.timelineObject.index,errors)\n                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'index'\n"
+            }
+          ]
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    },
+    {
+      "archive": "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d",
+      "archive_sha256": "1df535dcf37e9e639b4fe2cd821fac99452a0b6ce706ee8a8bc61803e1a4f960",
+      "expected_decoded": {
+        "partial": [
+          {
+            "feature_object_id": 204,
+            "name": "Owned octahedron import adaptive_proportion_fifty",
+            "stored_index": 1,
+            "definition_status": "PartialObservedAbsentPairAndZeroResultAnchorLayout",
+            "stored_native_kind_label": "Base Feature",
+            "definition": {
+              "stored_initial_branch_byte": 0,
+              "initial_branch_prefix_hex": "0001000000000000000001000000000000",
+              "body_pair_table_scope": "Observed absent pair branch, contrasted with explicitly typed PM/DM body-pair records; not a count of all contained objects",
+              "stored_reserved_uint32_at_28": 0,
+              "stored_result_anchor_count": 0,
+              "stored_result_anchor_object_ids": [],
+              "stored_nil_uuid": "00000000-0000-0000-0000-000000000000",
+              "stored_repeated_controller_count": 1,
+              "stored_repeated_controller_object_ids": [
+                208
+              ],
+              "stored_table_metadata": 2,
+              "table_metadata_semantics": "Literal2 only; no enum or flag meaning assigned",
+              "stored_shared_feature_state": {
+                "is_suppressed": false,
+                "is_rolled_back": false,
+                "source": "Observed shared feature footer; suppression copies agree"
+              },
+              "remaining_footer_hex": "0000000000000001cf00000000000000000000020000000101000058738ad201f0ff3e0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "entire_contained_object_state": null,
+              "mesh_owner_object_ids": null,
+              "scope": "Only observed native pair/result-anchor fields are qualified; arbitrary contained-object state and mesh ownership are unqualified"
+            },
+            "controller": {
+              "object_id": 208,
+              "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+              "record_offset": 24176,
+              "feature_owner_reference_offsets": [
+                24209,
+                24255
+              ],
+              "bookkeeping_object_id": 209,
+              "bookkeeping_record_offset": 24296,
+              "bookkeeping_backlink_offset": 24327,
+              "opaque_bookkeeping_8byte_hex": "772c663a595e0600",
+              "payload_hex": "000000000000000000000000000001cc000000000000000000000000000000000000000000000000000000000001000001d10000000000000000000001cc000000000000000000",
+              "bookkeeping_payload_hex": "00000000000000000000000001d0000000000000000000772c663a595e06000000000000000000",
+              "association": "Feature direct/repeated controller references; controller twice references feature; typed bookkeeping reciprocally references controller"
+            },
+            "ownership": {
+              "collection_object_id": 27,
+              "collection_class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+              "collection_record_offset": 3461,
+              "feature_owner_fragment_offset": 23983,
+              "controller_owner_fragment_offset": 24285,
+              "membership_fragment_offset": 3501,
+              "counted_member_object_ids": [
+                33,
+                204,
+                208,
+                218,
+                222,
+                257,
+                260,
+                265,
+                268,
+                271,
+                256
+              ],
+              "membership_payload_hex": "0b000000012100000000000000000001cc00000000000000000001d000000000000000000001da00000000000000000001de000000000000000000010101000000000000000001040100000000000000000109010000000000000000010c010000000000000000010f0100000000000000000100010000000000000000011a000000000000000000",
+              "native_history_container_object_id": 26,
+              "native_history_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+              "container_collection_backlink_offset": 3409,
+              "association": "Feature and controller inherited owners agree; unique counted membership includes both; collection footer and typed history-container backlink reciprocate",
+              "scope": "Native ownership container only; no occurrence transform, component geometry or mesh assignment inferred"
+            },
+            "history": {
+              "object_id": 35,
+              "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+              "record_offset": 4756,
+              "owner_object_id": 26,
+              "container_history_reference_offset": 3376,
+              "ordered_native_entry_object_ids": [
+                204,
+                218,
+                256
+              ],
+              "native_entry_index": 0,
+              "payload_hex": "0000011a0000000000000000000300000001cc00000000000000000001da0000000000000000000100010000000000000000",
+              "scope": "Explicit native sequence position, not a separately captured API timeline index or general edit/lifecycle state"
+            },
+            "stored_payload": {
+              "offset": 23618,
+              "end_offset": 23964,
+              "hex": "000100000000000000000100000000000001d00000000000000000000000000000000000000000000000000024000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d003000300030003000300030003000300030003000300030000000000100000001d0000000000000000000020000000c0000004200610073006500200046006500610074007500720065000100000000000000310000004f0077006e006500640020006f0063007400610068006500640072006f006e00200069006d0070006f00720074002000610064006100700074006900760065005f00700072006f0070006f007200740069006f006e005f00660069006600740079000000000000000001cf00000000000000000000020000000101000058738ad201f0ff3e0101000001ce00000000000000000001000001cd0000000000000000000000",
+              "exact_full_payload_replay": true
+            },
+            "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Partial BaseFeature definition with captured absent body-pair branch, zero result-anchor list, reciprocal controller/bookkeeping and typed collection/history membership. Entire contained-object state, mesh ownership, direct edits and current/final lifecycle remain unqualified; feature kind and errors unchanged."
+      },
+      "actual_API_evidence": {
+        "actual_after_edit_base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "isValid": true,
+          "name": "Owned octahedron import adaptive_proportion_fifty",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgk3oXa9NqS5fN6RO/3Bt4cIvQBVGCsZmCiZmpmnmJmmmuobJBim6JhZGybqWiQapuqmJhsmWSQYmJmkmqWC1QDMY0ADYPgMFsHUg640MTACbRT6ciAAAAA==",
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true,
+          "mesh_bodies": [],
+          "brep_source_bodies": [],
+          "timeline_index": null,
+          "brep_bodies": [],
+          "base_getter_errors": [
+            {
+              "getter": "timelineObject.index",
+              "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 80, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshReduceContrasts.py\", line 161, in <lambda>\n    result['timeline_index']=observe('timelineObject.index',lambda:feature.timelineObject.index,errors)\n                                                                   ^^^^^^^\nNameError: cannot access free variable 'feature' where it is not associated with a value in enclosing scope\n"
+            }
+          ]
+        },
+        "scope": "Successful getters return empty BRep and mesh collections at this saved API point; no native mesh-owner link is synthesized"
+      },
+      "full_feature_controller_and_history_byte_replays": true,
+      "original_unsupported_feature_and_direct_body_reason_retained": true,
+      "feature_mutations": 0
+    }
+  ],
+  "controls": [
+    {
+      "archive": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "new_helper_has_no_rows_diagnostics_or_mutation": true,
+      "existing_paired_body_output_exact_against_historical_report": true
+    },
+    {
+      "archive": "splinepatches-900d152c2380/splinepatches.f3d",
+      "new_helper_has_no_rows_diagnostics_or_mutation": true,
+      "existing_paired_body_output_exact_against_historical_report": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "Unexpected result-anchor count",
+      "reason": "Unobserved BaseFeature absent-pair/zero-result-anchor prefix"
+    },
+    {
+      "case": "Unobserved raw metadata",
+      "reason": "Empty-list BaseFeature metadata/label/index/name/footer extent disagrees"
+    },
+    {
+      "case": "Wrong typed controller class",
+      "reason": "Empty-list BaseFeature typed identity missing, ambiguous or wrong class"
+    },
+    {
+      "case": "Controller copied owner differs",
+      "reason": "Empty-list BaseFeature controller framing/reciprocal owners disagree"
+    },
+    {
+      "case": "Bookkeeping backlink differs",
+      "reason": "Empty-list BaseFeature controller/bookkeeping typed backlink disagrees"
+    },
+    {
+      "case": "Collection inherited membership count differs",
+      "reason": "Empty-list BaseFeature collection counted membership extent unsupported"
+    },
+    {
+      "case": "History container points at collection instead of history",
+      "reason": "Empty-list BaseFeature typed identity missing, ambiguous or wrong class"
+    },
+    {
+      "case": "History owner differs",
+      "reason": "Empty-list BaseFeature history/container typed ownership disagrees"
+    }
+  ],
+  "limitations": [
+    "Absent stored body-pair branch and zero result anchors do not mean every possible contained-object category is empty.",
+    "No MeshBody is assigned to this BaseFeature: captured mesh native/API ownership remains separately qualified.",
+    "Original MeshContrasts vector getter failures remain None/errors; they are not evidence for empty lists.",
+    "MeshReduce base timeline getter used feature.timelineObject, not base.timelineObject; its NameError and later wrong-source index are retained as generator limitations, not BaseFeature timeline truth.",
+    "Native ordered history entry position is explicit provenance, not general edit-state, solver or current/final lifecycle evidence."
+  ],
+  "provenance": {
+    "helper_sha256": "1f4013a0ca41e4f5a1151b838f103b240e0eae497b551ff744f1b00cf95c7b1b",
+    "validator_sha256": "735d2e0aea563961101deb0a6e507d207e4720209ef78b2f22929f7788e8ae43",
+    "ground_truth_sha256": {
+      "meshcontrasts-10c2557c91a3/ground_truth.json": "ab9d2fc6ef9c780f3f133a953167869054e945b6e92fb4ce387db1124998da57",
+      "meshplanecuts-18f2683c83f5/ground_truth.json": "79900675f6fe341d2c318c31d9ade09cbcf2425b92c3c656800ecc1ae72322ef",
+      "meshreduces-780954a23308/ground_truth.json": "e48ed9ca3db45b8e17faea2cf75710a8fc14b41b83984a22ea548bc9b51120ed",
+      "meshreduces-8f01528f7f21/ground_truth.json": "818d584c97ab20f69a01e98bd4700010fc5d89950b4c0b581cdf8ef2d46e8455"
+    },
+    "saved_stage_output_cache_used_for_ten_targets": true,
+    "saved_cache_scope": "Features from frozen mesh-operation stage only; raw native bytes independently reread from each archive",
+    "runtime_classification": "Partial provenance only; no UnsupportedFeature, discovery, timeline, tool or ownership changes"
+  },
+  "summary": {
+    "saved_positive_archives": 10,
+    "partial_native_definitions": 10,
+    "full_feature_controller_history_byte_replay_groups": 10,
+    "reliable_API_empty_collection_controls": 7,
+    "retained_original_vector_getter_errors": 6,
+    "paired_body_control_archives": 2,
+    "paired_body_records_preserved_exact": 6,
+    "malformed_guards": 8,
+    "feature_mutations": 0,
+    "new_mesh_owner_claims": 0,
+    "entire_feature_empty_claims": 0,
+    "live_API_calls": 0
+  }
+}

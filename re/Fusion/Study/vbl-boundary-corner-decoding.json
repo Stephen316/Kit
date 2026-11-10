@@ -1,0 +1,3876 @@
+{
+  "interface": "decode_vbl_boundary_corners(blob,*,parsed=None,subtype_catalog=None,topology=None,component_boundaries=None)->decoded/unresolved/scope",
+  "integration": {
+    "summary_field": "topology.vbl_boundary_corners",
+    "location": "After existing vbl_component_boundaries and before optional topology node removal",
+    "preserve_existing_components_and_eight_interior_warnings": true
+  },
+  "samples": [
+    {
+      "file": "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+      "archive": "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+      "archive_sha256": "20b767dcbcb153c88bb931b196556830bf85c0ec8557fda32b4c56aea6d07ce8",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff85f717-f07a-4898-adf9-592eab67cb3d.smb",
+      "blob_sha256": "2e3ce27c54f37ef0e497426e4802255ba9791ba82e8bb1727403c2861a513d12",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "existing_component_summary_exact": true,
+      "existing_interior_diagnostics": [],
+      "typed_vertex_point_byte_proofs": []
+    },
+    {
+      "file": "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+      "archive": "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+      "archive_sha256": "20b767dcbcb153c88bb931b196556830bf85c0ec8557fda32b4c56aea6d07ce8",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh",
+      "blob_sha256": "43dbdd5c66b6ed2c2f3c15f82f08a0d3fd966a99cfcd3017ae4ccd8461d3b4ac",
+      "expected_summary": {
+        "decoded": [
+          {
+            "surface_record_index": 10,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 6,
+            "loop_index": 9,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 15,
+                "edge_index": 24,
+                "partner_coedge_index": 23,
+                "adjacent_face_index": 98,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 47,
+                  "point_index": 99,
+                  "raw_point": [
+                    3.5999999999999996,
+                    1.5,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 48,
+                  "point_index": 100,
+                  "raw_point": [
+                    3.8,
+                    1.5,
+                    2.79460666266051
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 21,
+                "edge_index": 38,
+                "partner_coedge_index": 37,
+                "adjacent_face_index": 163,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 48,
+                  "point_index": 100,
+                  "raw_point": [
+                    3.8,
+                    1.5,
+                    2.79460666266051
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 82,
+                  "point_index": 164,
+                  "raw_point": [
+                    4.0,
+                    1.6,
+                    2.79460666266051
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 36,
+                "edge_index": 76,
+                "partner_coedge_index": 75,
+                "adjacent_face_index": 270,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 82,
+                  "point_index": 164,
+                  "raw_point": [
+                    4.0,
+                    1.6,
+                    2.79460666266051
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 157,
+                  "point_index": 271,
+                  "raw_point": [
+                    4.0,
+                    1.8705900060092353,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 74,
+                "edge_index": 152,
+                "partner_coedge_index": 151,
+                "adjacent_face_index": 388,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 157,
+                  "point_index": 271,
+                  "raw_point": [
+                    4.0,
+                    1.8705900060092353,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 168,
+                  "point_index": 281,
+                  "raw_point": [
+                    3.8,
+                    1.8705900060092353,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 40,
+                "edge_index": 85,
+                "partner_coedge_index": 84,
+                "adjacent_face_index": 186,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 168,
+                  "point_index": 281,
+                  "raw_point": [
+                    3.8,
+                    1.8705900060092353,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 91,
+                  "point_index": 175,
+                  "raw_point": [
+                    3.5999999999999996,
+                    1.7,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 22,
+                "edge_index": 42,
+                "partner_coedge_index": 41,
+                "adjacent_face_index": 174,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 91,
+                  "point_index": 175,
+                  "raw_point": [
+                    3.5999999999999996,
+                    1.7,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 47,
+                  "point_index": 99,
+                  "raw_point": [
+                    3.5999999999999996,
+                    1.5,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 47,
+                "point_index": 99,
+                "raw_point": [
+                  3.5999999999999996,
+                  1.5,
+                  2.9
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 22,
+                "outgoing_coedge_index": 15,
+                "adjacent_support_face_indices": [
+                  174,
+                  98
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 48,
+                "point_index": 100,
+                "raw_point": [
+                  3.8,
+                  1.5,
+                  2.79460666266051
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 15,
+                "outgoing_coedge_index": 21,
+                "adjacent_support_face_indices": [
+                  98,
+                  163
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 82,
+                "point_index": 164,
+                "raw_point": [
+                  4.0,
+                  1.6,
+                  2.79460666266051
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 21,
+                "outgoing_coedge_index": 36,
+                "adjacent_support_face_indices": [
+                  163,
+                  270
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 157,
+                "point_index": 271,
+                "raw_point": [
+                  4.0,
+                  1.8705900060092353,
+                  2.9
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 36,
+                "outgoing_coedge_index": 74,
+                "adjacent_support_face_indices": [
+                  270,
+                  388
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 168,
+                "point_index": 281,
+                "raw_point": [
+                  3.8,
+                  1.8705900060092353,
+                  3.0
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 74,
+                "outgoing_coedge_index": 40,
+                "adjacent_support_face_indices": [
+                  388,
+                  186
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 91,
+                "point_index": 175,
+                "raw_point": [
+                  3.5999999999999996,
+                  1.7,
+                  3.0
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 40,
+                "outgoing_coedge_index": 22,
+                "adjacent_support_face_indices": [
+                  186,
+                  174
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              47,
+              48,
+              82,
+              157,
+              168,
+              91,
+              47
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 14,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 8,
+            "loop_index": 13,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 60,
+                "edge_index": 126,
+                "partner_coedge_index": 93,
+                "adjacent_face_index": 98,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 132,
+                  "point_index": 239,
+                  "raw_point": [
+                    2.2,
+                    1.5,
+                    2.7946066626605095
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 177,
+                  "point_index": 286,
+                  "raw_point": [
+                    2.4000000000000004,
+                    1.5,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 125,
+                "edge_index": 232,
+                "partner_coedge_index": 170,
+                "adjacent_face_index": 174,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 177,
+                  "point_index": 286,
+                  "raw_point": [
+                    2.4000000000000004,
+                    1.5,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 241,
+                  "point_index": 357,
+                  "raw_point": [
+                    2.4000000000000004,
+                    1.7,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 64,
+                "edge_index": 135,
+                "partner_coedge_index": 134,
+                "adjacent_face_index": 186,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 241,
+                  "point_index": 357,
+                  "raw_point": [
+                    2.4000000000000004,
+                    1.7,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 141,
+                  "point_index": 248,
+                  "raw_point": [
+                    2.2,
+                    1.8705900060092349,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 32,
+                "edge_index": 66,
+                "partner_coedge_index": 65,
+                "adjacent_face_index": 247,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 141,
+                  "point_index": 248,
+                  "raw_point": [
+                    2.2,
+                    1.8705900060092349,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 71,
+                  "point_index": 149,
+                  "raw_point": [
+                    2.0,
+                    1.8705900060092349,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 20,
+                "edge_index": 34,
+                "partner_coedge_index": 33,
+                "adjacent_face_index": 148,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 71,
+                  "point_index": 149,
+                  "raw_point": [
+                    2.0,
+                    1.8705900060092349,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 72,
+                  "point_index": 150,
+                  "raw_point": [
+                    2.0,
+                    1.6,
+                    2.7946066626605095
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 31,
+                "edge_index": 62,
+                "partner_coedge_index": 61,
+                "adjacent_face_index": 102,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 72,
+                  "point_index": 150,
+                  "raw_point": [
+                    2.0,
+                    1.6,
+                    2.7946066626605095
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 132,
+                  "point_index": 239,
+                  "raw_point": [
+                    2.2,
+                    1.5,
+                    2.7946066626605095
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 132,
+                "point_index": 239,
+                "raw_point": [
+                  2.2,
+                  1.5,
+                  2.7946066626605095
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 31,
+                "outgoing_coedge_index": 60,
+                "adjacent_support_face_indices": [
+                  102,
+                  98
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 177,
+                "point_index": 286,
+                "raw_point": [
+                  2.4000000000000004,
+                  1.5,
+                  2.9
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 60,
+                "outgoing_coedge_index": 125,
+                "adjacent_support_face_indices": [
+                  98,
+                  174
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 241,
+                "point_index": 357,
+                "raw_point": [
+                  2.4000000000000004,
+                  1.7,
+                  3.0
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 125,
+                "outgoing_coedge_index": 64,
+                "adjacent_support_face_indices": [
+                  174,
+                  186
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 141,
+                "point_index": 248,
+                "raw_point": [
+                  2.2,
+                  1.8705900060092349,
+                  3.0
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 64,
+                "outgoing_coedge_index": 32,
+                "adjacent_support_face_indices": [
+                  186,
+                  247
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 71,
+                "point_index": 149,
+                "raw_point": [
+                  2.0,
+                  1.8705900060092349,
+                  2.9
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 32,
+                "outgoing_coedge_index": 20,
+                "adjacent_support_face_indices": [
+                  247,
+                  148
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 72,
+                "point_index": 150,
+                "raw_point": [
+                  2.0,
+                  1.6,
+                  2.7946066626605095
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 20,
+                "outgoing_coedge_index": 31,
+                "adjacent_support_face_indices": [
+                  148,
+                  102
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              132,
+              177,
+              241,
+              141,
+              71,
+              72,
+              132
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 19,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 12,
+            "loop_index": 18,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 115,
+                "edge_index": 180,
+                "partner_coedge_index": 95,
+                "adjacent_face_index": 98,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 181,
+                  "point_index": 289,
+                  "raw_point": [
+                    3.8,
+                    1.5,
+                    1.4000000000000004
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 223,
+                  "point_index": 340,
+                  "raw_point": [
+                    3.69460666266051,
+                    1.5,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 56,
+                "edge_index": 117,
+                "partner_coedge_index": 116,
+                "adjacent_face_index": 51,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 223,
+                  "point_index": 340,
+                  "raw_point": [
+                    3.69460666266051,
+                    1.5,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 122,
+                  "point_index": 230,
+                  "raw_point": [
+                    3.69460666266051,
+                    1.3,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 30,
+                "edge_index": 58,
+                "partner_coedge_index": 57,
+                "adjacent_face_index": 229,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 122,
+                  "point_index": 230,
+                  "raw_point": [
+                    3.69460666266051,
+                    1.3,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 123,
+                  "point_index": 231,
+                  "raw_point": [
+                    4.2,
+                    1.758090006009236,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 55,
+                "edge_index": 113,
+                "partner_coedge_index": 112,
+                "adjacent_face_index": 336,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 123,
+                  "point_index": 231,
+                  "raw_point": [
+                    4.2,
+                    1.758090006009236,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 217,
+                  "point_index": 337,
+                  "raw_point": [
+                    4.0,
+                    1.758090006009236,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 111,
+                "edge_index": 211,
+                "partner_coedge_index": 210,
+                "adjacent_face_index": 270,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 217,
+                  "point_index": 337,
+                  "raw_point": [
+                    4.0,
+                    1.758090006009236,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 274,
+                  "point_index": 396,
+                  "raw_point": [
+                    4.0,
+                    1.6,
+                    1.4000000000000004
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 209,
+                "edge_index": 272,
+                "partner_coedge_index": 159,
+                "adjacent_face_index": 163,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 274,
+                  "point_index": 396,
+                  "raw_point": [
+                    4.0,
+                    1.6,
+                    1.4000000000000004
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 181,
+                  "point_index": 289,
+                  "raw_point": [
+                    3.8,
+                    1.5,
+                    1.4000000000000004
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 181,
+                "point_index": 289,
+                "raw_point": [
+                  3.8,
+                  1.5,
+                  1.4000000000000004
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 209,
+                "outgoing_coedge_index": 115,
+                "adjacent_support_face_indices": [
+                  163,
+                  98
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 223,
+                "point_index": 340,
+                "raw_point": [
+                  3.69460666266051,
+                  1.5,
+                  1.1
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 115,
+                "outgoing_coedge_index": 56,
+                "adjacent_support_face_indices": [
+                  98,
+                  51
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 122,
+                "point_index": 230,
+                "raw_point": [
+                  3.69460666266051,
+                  1.3,
+                  1.0
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 56,
+                "outgoing_coedge_index": 30,
+                "adjacent_support_face_indices": [
+                  51,
+                  229
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 123,
+                "point_index": 231,
+                "raw_point": [
+                  4.2,
+                  1.758090006009236,
+                  1.0
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 30,
+                "outgoing_coedge_index": 55,
+                "adjacent_support_face_indices": [
+                  229,
+                  336
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 217,
+                "point_index": 337,
+                "raw_point": [
+                  4.0,
+                  1.758090006009236,
+                  1.1
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 55,
+                "outgoing_coedge_index": 111,
+                "adjacent_support_face_indices": [
+                  336,
+                  270
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 274,
+                "point_index": 396,
+                "raw_point": [
+                  4.0,
+                  1.6,
+                  1.4000000000000004
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 111,
+                "outgoing_coedge_index": 209,
+                "adjacent_support_face_indices": [
+                  270,
+                  163
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              181,
+              223,
+              122,
+              123,
+              217,
+              274,
+              181
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 29,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 17,
+            "loop_index": 28,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 201,
+                "edge_index": 321,
+                "partner_coedge_index": 278,
+                "adjacent_face_index": 186,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 432,
+                  "point_index": 522,
+                  "raw_point": [
+                    3.69460666266051,
+                    3.3,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 324,
+                  "point_index": 434,
+                  "raw_point": [
+                    3.8,
+                    3.0999999999999996,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 107,
+                "edge_index": 203,
+                "partner_coedge_index": 202,
+                "adjacent_face_index": 388,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 324,
+                  "point_index": 434,
+                  "raw_point": [
+                    3.8,
+                    3.0999999999999996,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 206,
+                  "point_index": 327,
+                  "raw_point": [
+                    4.0,
+                    3.0999999999999996,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 54,
+                "edge_index": 109,
+                "partner_coedge_index": 108,
+                "adjacent_face_index": 270,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 206,
+                  "point_index": 327,
+                  "raw_point": [
+                    4.0,
+                    3.0999999999999996,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 207,
+                  "point_index": 328,
+                  "raw_point": [
+                    4.0,
+                    3.3,
+                    2.6919099939907642
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 106,
+                "edge_index": 199,
+                "partner_coedge_index": 198,
+                "adjacent_face_index": 430,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 207,
+                  "point_index": 328,
+                  "raw_point": [
+                    4.0,
+                    3.3,
+                    2.6919099939907642
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 319,
+                  "point_index": 431,
+                  "raw_point": [
+                    3.9,
+                    3.5,
+                    2.6919099939907642
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 197,
+                "edge_index": 313,
+                "partner_coedge_index": 312,
+                "adjacent_face_index": 393,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 319,
+                  "point_index": 431,
+                  "raw_point": [
+                    3.9,
+                    3.5,
+                    2.6919099939907642
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 424,
+                  "point_index": 515,
+                  "raw_point": [
+                    3.69460666266051,
+                    3.5,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 311,
+                "edge_index": 419,
+                "partner_coedge_index": 418,
+                "adjacent_face_index": 364,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 424,
+                  "point_index": 515,
+                  "raw_point": [
+                    3.69460666266051,
+                    3.5,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 432,
+                  "point_index": 522,
+                  "raw_point": [
+                    3.69460666266051,
+                    3.3,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 432,
+                "point_index": 522,
+                "raw_point": [
+                  3.69460666266051,
+                  3.3,
+                  3.0
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 311,
+                "outgoing_coedge_index": 201,
+                "adjacent_support_face_indices": [
+                  364,
+                  186
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 324,
+                "point_index": 434,
+                "raw_point": [
+                  3.8,
+                  3.0999999999999996,
+                  3.0
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 201,
+                "outgoing_coedge_index": 107,
+                "adjacent_support_face_indices": [
+                  186,
+                  388
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 206,
+                "point_index": 327,
+                "raw_point": [
+                  4.0,
+                  3.0999999999999996,
+                  2.9
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 107,
+                "outgoing_coedge_index": 54,
+                "adjacent_support_face_indices": [
+                  388,
+                  270
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 207,
+                "point_index": 328,
+                "raw_point": [
+                  4.0,
+                  3.3,
+                  2.6919099939907642
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 54,
+                "outgoing_coedge_index": 106,
+                "adjacent_support_face_indices": [
+                  270,
+                  430
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 319,
+                "point_index": 431,
+                "raw_point": [
+                  3.9,
+                  3.5,
+                  2.6919099939907642
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 106,
+                "outgoing_coedge_index": 197,
+                "adjacent_support_face_indices": [
+                  430,
+                  393
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 424,
+                "point_index": 515,
+                "raw_point": [
+                  3.69460666266051,
+                  3.5,
+                  2.9
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 197,
+                "outgoing_coedge_index": 311,
+                "adjacent_support_face_indices": [
+                  393,
+                  364
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              432,
+              324,
+              206,
+              207,
+              319,
+              424,
+              432
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 53,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 27,
+            "loop_index": 52,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 255,
+                "edge_index": 256,
+                "partner_coedge_index": 145,
+                "adjacent_face_index": 148,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 257,
+                  "point_index": 378,
+                  "raw_point": [
+                    2.0,
+                    1.6,
+                    1.20539333733949
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 376,
+                  "point_index": 479,
+                  "raw_point": [
+                    2.0,
+                    1.7580900060092355,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 193,
+                "edge_index": 305,
+                "partner_coedge_index": 304,
+                "adjacent_face_index": 507,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 376,
+                  "point_index": 479,
+                  "raw_point": [
+                    2.0,
+                    1.7580900060092355,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 308,
+                  "point_index": 416,
+                  "raw_point": [
+                    1.8,
+                    1.7580900060092355,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 105,
+                "edge_index": 195,
+                "partner_coedge_index": 194,
+                "adjacent_face_index": 229,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 308,
+                  "point_index": 416,
+                  "raw_point": [
+                    1.8,
+                    1.7580900060092355,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 309,
+                  "point_index": 417,
+                  "raw_point": [
+                    2.4,
+                    1.3,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 192,
+                "edge_index": 301,
+                "partner_coedge_index": 191,
+                "adjacent_face_index": 51,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 309,
+                  "point_index": 417,
+                  "raw_point": [
+                    2.4,
+                    1.3,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 292,
+                  "point_index": 403,
+                  "raw_point": [
+                    2.4,
+                    1.5,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 183,
+                "edge_index": 184,
+                "partner_coedge_index": 97,
+                "adjacent_face_index": 98,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 292,
+                  "point_index": 403,
+                  "raw_point": [
+                    2.4,
+                    1.5,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 293,
+                  "point_index": 404,
+                  "raw_point": [
+                    2.2,
+                    1.5,
+                    1.20539333733949
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 290,
+                "edge_index": 354,
+                "partner_coedge_index": 235,
+                "adjacent_face_index": 102,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 293,
+                  "point_index": 404,
+                  "raw_point": [
+                    2.2,
+                    1.5,
+                    1.20539333733949
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 257,
+                  "point_index": 378,
+                  "raw_point": [
+                    2.0,
+                    1.6,
+                    1.20539333733949
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 257,
+                "point_index": 378,
+                "raw_point": [
+                  2.0,
+                  1.6,
+                  1.20539333733949
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 290,
+                "outgoing_coedge_index": 255,
+                "adjacent_support_face_indices": [
+                  102,
+                  148
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 376,
+                "point_index": 479,
+                "raw_point": [
+                  2.0,
+                  1.7580900060092355,
+                  1.1
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 255,
+                "outgoing_coedge_index": 193,
+                "adjacent_support_face_indices": [
+                  148,
+                  507
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 308,
+                "point_index": 416,
+                "raw_point": [
+                  1.8,
+                  1.7580900060092355,
+                  1.0
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 193,
+                "outgoing_coedge_index": 105,
+                "adjacent_support_face_indices": [
+                  507,
+                  229
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 309,
+                "point_index": 417,
+                "raw_point": [
+                  2.4,
+                  1.3,
+                  1.0
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 105,
+                "outgoing_coedge_index": 192,
+                "adjacent_support_face_indices": [
+                  229,
+                  51
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 292,
+                "point_index": 403,
+                "raw_point": [
+                  2.4,
+                  1.5,
+                  1.1
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 192,
+                "outgoing_coedge_index": 183,
+                "adjacent_support_face_indices": [
+                  51,
+                  98
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 293,
+                "point_index": 404,
+                "raw_point": [
+                  2.2,
+                  1.5,
+                  1.20539333733949
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 183,
+                "outgoing_coedge_index": 290,
+                "adjacent_support_face_indices": [
+                  98,
+                  102
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              257,
+              376,
+              308,
+              309,
+              292,
+              293,
+              257
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 300,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 189,
+            "loop_index": 299,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 399,
+                "edge_index": 400,
+                "partner_coedge_index": 280,
+                "adjacent_face_index": 186,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 361,
+                  "point_index": 464,
+                  "raw_point": [
+                    2.2,
+                    3.0999999999999996,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 498,
+                  "point_index": 567,
+                  "raw_point": [
+                    2.30539333733949,
+                    3.3,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 496,
+                "edge_index": 565,
+                "partner_coedge_index": 549,
+                "adjacent_face_index": 364,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 498,
+                  "point_index": 567,
+                  "raw_point": [
+                    2.30539333733949,
+                    3.3,
+                    3.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 571,
+                  "point_index": 619,
+                  "raw_point": [
+                    2.30539333733949,
+                    3.5,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 409,
+                "edge_index": 504,
+                "partner_coedge_index": 503,
+                "adjacent_face_index": 393,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 571,
+                  "point_index": 619,
+                  "raw_point": [
+                    2.30539333733949,
+                    3.5,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 554,
+                  "point_index": 615,
+                  "raw_point": [
+                    2.1,
+                    3.5,
+                    2.6919099939907642
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 368,
+                "edge_index": 473,
+                "partner_coedge_index": 468,
+                "adjacent_face_index": 553,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 554,
+                  "point_index": 615,
+                  "raw_point": [
+                    2.1,
+                    3.5,
+                    2.6919099939907642
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 370,
+                  "point_index": 475,
+                  "raw_point": [
+                    2.0,
+                    3.3,
+                    2.6919099939907642
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 250,
+                "edge_index": 251,
+                "partner_coedge_index": 143,
+                "adjacent_face_index": 148,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 370,
+                  "point_index": 475,
+                  "raw_point": [
+                    2.0,
+                    3.3,
+                    2.6919099939907642
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 252,
+                  "point_index": 372,
+                  "raw_point": [
+                    2.0,
+                    3.0999999999999996,
+                    2.9
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 358,
+                "edge_index": 359,
+                "partner_coedge_index": 243,
+                "adjacent_face_index": 247,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 252,
+                  "point_index": 372,
+                  "raw_point": [
+                    2.0,
+                    3.0999999999999996,
+                    2.9
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 361,
+                  "point_index": 464,
+                  "raw_point": [
+                    2.2,
+                    3.0999999999999996,
+                    3.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 361,
+                "point_index": 464,
+                "raw_point": [
+                  2.2,
+                  3.0999999999999996,
+                  3.0
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 358,
+                "outgoing_coedge_index": 399,
+                "adjacent_support_face_indices": [
+                  247,
+                  186
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 498,
+                "point_index": 567,
+                "raw_point": [
+                  2.30539333733949,
+                  3.3,
+                  3.0
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 399,
+                "outgoing_coedge_index": 496,
+                "adjacent_support_face_indices": [
+                  186,
+                  364
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 571,
+                "point_index": 619,
+                "raw_point": [
+                  2.30539333733949,
+                  3.5,
+                  2.9
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 496,
+                "outgoing_coedge_index": 409,
+                "adjacent_support_face_indices": [
+                  364,
+                  393
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 554,
+                "point_index": 615,
+                "raw_point": [
+                  2.1,
+                  3.5,
+                  2.6919099939907642
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 409,
+                "outgoing_coedge_index": 368,
+                "adjacent_support_face_indices": [
+                  393,
+                  553
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 370,
+                "point_index": 475,
+                "raw_point": [
+                  2.0,
+                  3.3,
+                  2.6919099939907642
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 368,
+                "outgoing_coedge_index": 250,
+                "adjacent_support_face_indices": [
+                  553,
+                  148
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 252,
+                "point_index": 372,
+                "raw_point": [
+                  2.0,
+                  3.0999999999999996,
+                  2.9
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 250,
+                "outgoing_coedge_index": 358,
+                "adjacent_support_face_indices": [
+                  148,
+                  247
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              361,
+              498,
+              571,
+              554,
+              370,
+              252,
+              361
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 408,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 298,
+            "loop_index": 407,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 532,
+                "edge_index": 577,
+                "partner_coedge_index": 512,
+                "adjacent_face_index": 393,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 585,
+                  "point_index": 623,
+                  "raw_point": [
+                    3.7419099939907654,
+                    3.5,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 518,
+                  "point_index": 580,
+                  "raw_point": [
+                    3.9,
+                    3.5,
+                    1.2053933373394903
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 489,
+                "edge_index": 516,
+                "partner_coedge_index": 426,
+                "adjacent_face_index": 430,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 518,
+                  "point_index": 580,
+                  "raw_point": [
+                    3.9,
+                    3.5,
+                    1.2053933373394903
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 435,
+                  "point_index": 523,
+                  "raw_point": [
+                    4.0,
+                    3.3,
+                    1.2053933373394903
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 390,
+                "edge_index": 391,
+                "partner_coedge_index": 269,
+                "adjacent_face_index": 270,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 435,
+                  "point_index": 523,
+                  "raw_point": [
+                    4.0,
+                    3.3,
+                    1.2053933373394903
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 440,
+                  "point_index": 526,
+                  "raw_point": [
+                    4.0,
+                    3.0999999999999996,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 437,
+                "edge_index": 438,
+                "partner_coedge_index": 332,
+                "adjacent_face_index": 336,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 440,
+                  "point_index": 526,
+                  "raw_point": [
+                    4.0,
+                    3.0999999999999996,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 345,
+                  "point_index": 450,
+                  "raw_point": [
+                    4.2,
+                    3.0999999999999996,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 343,
+                "edge_index": 344,
+                "partner_coedge_index": 226,
+                "adjacent_face_index": 229,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 345,
+                  "point_index": 450,
+                  "raw_point": [
+                    4.2,
+                    3.0999999999999996,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 448,
+                  "point_index": 535,
+                  "raw_point": [
+                    3.7419099939907654,
+                    3.7,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 446,
+                "edge_index": 533,
+                "partner_coedge_index": 528,
+                "adjacent_face_index": 501,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 448,
+                  "point_index": 535,
+                  "raw_point": [
+                    3.7419099939907654,
+                    3.7,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 585,
+                  "point_index": 623,
+                  "raw_point": [
+                    3.7419099939907654,
+                    3.5,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 585,
+                "point_index": 623,
+                "raw_point": [
+                  3.7419099939907654,
+                  3.5,
+                  1.1
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 446,
+                "outgoing_coedge_index": 532,
+                "adjacent_support_face_indices": [
+                  501,
+                  393
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 518,
+                "point_index": 580,
+                "raw_point": [
+                  3.9,
+                  3.5,
+                  1.2053933373394903
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 532,
+                "outgoing_coedge_index": 489,
+                "adjacent_support_face_indices": [
+                  393,
+                  430
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 435,
+                "point_index": 523,
+                "raw_point": [
+                  4.0,
+                  3.3,
+                  1.2053933373394903
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 489,
+                "outgoing_coedge_index": 390,
+                "adjacent_support_face_indices": [
+                  430,
+                  270
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 440,
+                "point_index": 526,
+                "raw_point": [
+                  4.0,
+                  3.0999999999999996,
+                  1.1
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 390,
+                "outgoing_coedge_index": 437,
+                "adjacent_support_face_indices": [
+                  270,
+                  336
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 345,
+                "point_index": 450,
+                "raw_point": [
+                  4.2,
+                  3.0999999999999996,
+                  1.0
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 437,
+                "outgoing_coedge_index": 343,
+                "adjacent_support_face_indices": [
+                  336,
+                  229
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 448,
+                "point_index": 535,
+                "raw_point": [
+                  3.7419099939907654,
+                  3.7,
+                  1.0
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 343,
+                "outgoing_coedge_index": 446,
+                "adjacent_support_face_indices": [
+                  229,
+                  501
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              585,
+              518,
+              435,
+              440,
+              345,
+              448,
+              585
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          },
+          {
+            "surface_record_index": 502,
+            "body_index": 1,
+            "lump_index": 3,
+            "shell_index": 5,
+            "face_index": 406,
+            "loop_index": 381,
+            "boundary_edges": [
+              {
+                "component_slot": 0,
+                "coedge_index": 480,
+                "edge_index": 557,
+                "partner_coedge_index": 514,
+                "adjacent_face_index": 393,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 559,
+                  "point_index": 617,
+                  "raw_point": [
+                    2.1,
+                    3.5,
+                    1.20539333733949
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 587,
+                  "point_index": 624,
+                  "raw_point": [
+                    2.258090006009235,
+                    3.5,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 1,
+                "coedge_index": 451,
+                "edge_index": 536,
+                "partner_coedge_index": 527,
+                "adjacent_face_index": 501,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 587,
+                  "point_index": 624,
+                  "raw_point": [
+                    2.258090006009235,
+                    3.5,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 453,
+                  "point_index": 538,
+                  "raw_point": [
+                    2.258090006009235,
+                    3.7,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 2,
+                "coedge_index": 347,
+                "edge_index": 348,
+                "partner_coedge_index": 228,
+                "adjacent_face_index": 229,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 453,
+                  "point_index": 538,
+                  "raw_point": [
+                    2.258090006009235,
+                    3.7,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 454,
+                  "point_index": 539,
+                  "raw_point": [
+                    1.8,
+                    3.0999999999999996,
+                    1.0
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 3,
+                "coedge_index": 380,
+                "edge_index": 483,
+                "partner_coedge_index": 476,
+                "adjacent_face_index": 507,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 454,
+                  "point_index": 539,
+                  "raw_point": [
+                    1.8,
+                    3.0999999999999996,
+                    1.0
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 383,
+                  "point_index": 485,
+                  "raw_point": [
+                    2.0,
+                    3.0999999999999996,
+                    1.1
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 4,
+                "coedge_index": 259,
+                "edge_index": 260,
+                "partner_coedge_index": 147,
+                "adjacent_face_index": 148,
+                "stored_coedge_reversal": false,
+                "entry": {
+                  "vertex_index": 383,
+                  "point_index": 485,
+                  "raw_point": [
+                    2.0,
+                    3.0999999999999996,
+                    1.1
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 384,
+                  "point_index": 486,
+                  "raw_point": [
+                    2.0,
+                    3.3,
+                    1.20539333733949
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              },
+              {
+                "component_slot": 5,
+                "coedge_index": 379,
+                "edge_index": 481,
+                "partner_coedge_index": 469,
+                "adjacent_face_index": 553,
+                "stored_coedge_reversal": true,
+                "entry": {
+                  "vertex_index": 384,
+                  "point_index": 486,
+                  "raw_point": [
+                    2.0,
+                    3.3,
+                    1.20539333733949
+                  ]
+                },
+                "exit": {
+                  "vertex_index": 559,
+                  "point_index": 617,
+                  "raw_point": [
+                    2.1,
+                    3.5,
+                    1.20539333733949
+                  ]
+                },
+                "traversal_scope": "Native topological traversal only; component UV/cache direction and edge parameter map unassigned"
+              }
+            ],
+            "corners": [
+              {
+                "corner_slot": 0,
+                "vertex_index": 559,
+                "point_index": 617,
+                "raw_point": [
+                  2.1,
+                  3.5,
+                  1.20539333733949
+                ],
+                "incoming_component_slot": 5,
+                "outgoing_component_slot": 0,
+                "incoming_coedge_index": 379,
+                "outgoing_coedge_index": 480,
+                "adjacent_support_face_indices": [
+                  553,
+                  393
+                ]
+              },
+              {
+                "corner_slot": 1,
+                "vertex_index": 587,
+                "point_index": 624,
+                "raw_point": [
+                  2.258090006009235,
+                  3.5,
+                  1.1
+                ],
+                "incoming_component_slot": 0,
+                "outgoing_component_slot": 1,
+                "incoming_coedge_index": 480,
+                "outgoing_coedge_index": 451,
+                "adjacent_support_face_indices": [
+                  393,
+                  501
+                ]
+              },
+              {
+                "corner_slot": 2,
+                "vertex_index": 453,
+                "point_index": 538,
+                "raw_point": [
+                  2.258090006009235,
+                  3.7,
+                  1.0
+                ],
+                "incoming_component_slot": 1,
+                "outgoing_component_slot": 2,
+                "incoming_coedge_index": 451,
+                "outgoing_coedge_index": 347,
+                "adjacent_support_face_indices": [
+                  501,
+                  229
+                ]
+              },
+              {
+                "corner_slot": 3,
+                "vertex_index": 454,
+                "point_index": 539,
+                "raw_point": [
+                  1.8,
+                  3.0999999999999996,
+                  1.0
+                ],
+                "incoming_component_slot": 2,
+                "outgoing_component_slot": 3,
+                "incoming_coedge_index": 347,
+                "outgoing_coedge_index": 380,
+                "adjacent_support_face_indices": [
+                  229,
+                  507
+                ]
+              },
+              {
+                "corner_slot": 4,
+                "vertex_index": 383,
+                "point_index": 485,
+                "raw_point": [
+                  2.0,
+                  3.0999999999999996,
+                  1.1
+                ],
+                "incoming_component_slot": 3,
+                "outgoing_component_slot": 4,
+                "incoming_coedge_index": 380,
+                "outgoing_coedge_index": 259,
+                "adjacent_support_face_indices": [
+                  507,
+                  148
+                ]
+              },
+              {
+                "corner_slot": 5,
+                "vertex_index": 384,
+                "point_index": 486,
+                "raw_point": [
+                  2.0,
+                  3.3,
+                  1.20539333733949
+                ],
+                "incoming_component_slot": 4,
+                "outgoing_component_slot": 5,
+                "incoming_coedge_index": 259,
+                "outgoing_coedge_index": 379,
+                "adjacent_support_face_indices": [
+                  148,
+                  553
+                ]
+              }
+            ],
+            "ordered_vertex_cycle": [
+              559,
+              587,
+              453,
+              454,
+              383,
+              384,
+              559
+            ],
+            "component_parameter_orientation": null,
+            "native_edge_parameter_mapping": null,
+            "VBL_interior_geometry": null,
+            "coordinate_scope": "Raw ASM stored point records; no body transform/units/context applied",
+            "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "existing_component_summary_exact": true,
+      "existing_interior_diagnostics": [
+        {
+          "index": 10,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 14,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 19,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 29,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 53,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 300,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 408,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        },
+        {
+          "index": 502,
+          "kind": "spline-surface",
+          "reason": "VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported"
+        }
+      ],
+      "typed_vertex_point_byte_proofs": [
+        {
+          "surface_record_index": 10,
+          "component_slot": 0,
+          "coedge_index": 15,
+          "edge_index": 24,
+          "vertex_index": 47,
+          "vertex_record_offset": 34455,
+          "vertex_record_end_offset": 34518,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c18000000000000000400000000000000000c630000000000000011",
+          "point_index": 99,
+          "point_record_offset": 47973,
+          "point_record_end_offset": 48033,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cccccccccccc0c40000000000000f83f333333333333074011"
+        },
+        {
+          "surface_record_index": 10,
+          "component_slot": 1,
+          "coedge_index": 21,
+          "edge_index": 38,
+          "vertex_index": 48,
+          "vertex_record_offset": 34518,
+          "vertex_record_end_offset": 34581,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c18000000000000000401000000000000000c640000000000000011",
+          "point_index": 100,
+          "point_record_offset": 48033,
+          "point_record_end_offset": 48093,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff136666666666660e40000000000000f83f197ceabc5a5b064011"
+        },
+        {
+          "surface_record_index": 10,
+          "component_slot": 2,
+          "coedge_index": 36,
+          "edge_index": 76,
+          "vertex_index": 82,
+          "vertex_record_offset": 45517,
+          "vertex_record_end_offset": 45580,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c4c000000000000000400000000000000000ca40000000000000011",
+          "point_index": 164,
+          "point_record_offset": 57767,
+          "point_record_end_offset": 57827,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000010409a9999999999f93f197ceabc5a5b064011"
+        },
+        {
+          "surface_record_index": 10,
+          "component_slot": 3,
+          "coedge_index": 74,
+          "edge_index": 152,
+          "vertex_index": 157,
+          "vertex_record_offset": 55929,
+          "vertex_record_end_offset": 55992,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c4c000000000000000401000000000000000c0f0100000000000011",
+          "point_index": 271,
+          "point_record_offset": 76631,
+          "point_record_end_offset": 76691,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000001040b68b40c9efedfd3f333333333333074011"
+        },
+        {
+          "surface_record_index": 10,
+          "component_slot": 4,
+          "coedge_index": 40,
+          "edge_index": 85,
+          "vertex_index": 168,
+          "vertex_record_offset": 58088,
+          "vertex_record_end_offset": 58151,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c55000000000000000400000000000000000c190100000000000011",
+          "point_index": 281,
+          "point_record_offset": 78164,
+          "point_record_end_offset": 78224,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff136666666666660e40b68b40c9efedfd3f000000000000084011"
+        },
+        {
+          "surface_record_index": 10,
+          "component_slot": 5,
+          "coedge_index": 22,
+          "edge_index": 42,
+          "vertex_index": 91,
+          "vertex_record_offset": 46833,
+          "vertex_record_end_offset": 46896,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c55000000000000000401000000000000000caf0000000000000011",
+          "point_index": 175,
+          "point_record_offset": 59935,
+          "point_record_end_offset": 59995,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cccccccccccc0c40333333333333fb3f000000000000084011"
+        },
+        {
+          "surface_record_index": 14,
+          "component_slot": 0,
+          "coedge_index": 60,
+          "edge_index": 126,
+          "vertex_index": 132,
+          "vertex_record_offset": 52672,
+          "vertex_record_end_offset": 52735,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c7e000000000000000400000000000000000cef0000000000000011",
+          "point_index": 239,
+          "point_record_offset": 70860,
+          "point_record_end_offset": 70920,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff139a99999999990140000000000000f83f187ceabc5a5b064011"
+        },
+        {
+          "surface_record_index": 14,
+          "component_slot": 1,
+          "coedge_index": 125,
+          "edge_index": 232,
+          "vertex_index": 177,
+          "vertex_record_offset": 60095,
+          "vertex_record_end_offset": 60158,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c7e000000000000000401000000000000000c1e0100000000000011",
+          "point_index": 286,
+          "point_record_offset": 79238,
+          "point_record_end_offset": 79298,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff133433333333330340000000000000f83f333333333333074011"
+        },
+        {
+          "surface_record_index": 14,
+          "component_slot": 2,
+          "coedge_index": 64,
+          "edge_index": 135,
+          "vertex_index": 241,
+          "vertex_record_offset": 71020,
+          "vertex_record_end_offset": 71083,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c87000000000000000400000000000000000c650100000000000011",
+          "point_index": 357,
+          "point_record_offset": 99123,
+          "point_record_end_offset": 99183,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff133433333333330340333333333333fb3f000000000000084011"
+        },
+        {
+          "surface_record_index": 14,
+          "component_slot": 3,
+          "coedge_index": 32,
+          "edge_index": 66,
+          "vertex_index": 141,
+          "vertex_record_offset": 53988,
+          "vertex_record_end_offset": 54051,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c87000000000000000401000000000000000cf80000000000000011",
+          "point_index": 248,
+          "point_record_offset": 72867,
+          "point_record_end_offset": 72927,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff139a99999999990140b48b40c9efedfd3f000000000000084011"
+        },
+        {
+          "surface_record_index": 14,
+          "component_slot": 4,
+          "coedge_index": 20,
+          "edge_index": 34,
+          "vertex_index": 71,
+          "vertex_record_offset": 43270,
+          "vertex_record_end_offset": 43333,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c22000000000000000400000000000000000c950000000000000011",
+          "point_index": 149,
+          "point_record_offset": 55128,
+          "point_record_end_offset": 55188,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000000040b48b40c9efedfd3f333333333333074011"
+        },
+        {
+          "surface_record_index": 14,
+          "component_slot": 5,
+          "coedge_index": 31,
+          "edge_index": 62,
+          "vertex_index": 72,
+          "vertex_record_offset": 43333,
+          "vertex_record_end_offset": 43396,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c22000000000000000401000000000000000c960000000000000011",
+          "point_index": 150,
+          "point_record_offset": 55188,
+          "point_record_end_offset": 55248,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000000409a9999999999f93f187ceabc5a5b064011"
+        },
+        {
+          "surface_record_index": 19,
+          "component_slot": 0,
+          "coedge_index": 115,
+          "edge_index": 180,
+          "vertex_index": 181,
+          "vertex_record_offset": 61029,
+          "vertex_record_end_offset": 61092,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cb4000000000000000400000000000000000c210100000000000011",
+          "point_index": 289,
+          "point_record_offset": 80556,
+          "point_record_end_offset": 80616,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff136666666666660e40000000000000f83f686666666666f63f11"
+        },
+        {
+          "surface_record_index": 19,
+          "component_slot": 1,
+          "coedge_index": 56,
+          "edge_index": 117,
+          "vertex_index": 223,
+          "vertex_record_offset": 67677,
+          "vertex_record_end_offset": 67740,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cb4000000000000000401000000000000000c540100000000000011",
+          "point_index": 340,
+          "point_record_offset": 95347,
+          "point_record_end_offset": 95407,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff134caf1df08d8e0d40000000000000f83f9a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 19,
+          "component_slot": 2,
+          "coedge_index": 30,
+          "edge_index": 58,
+          "vertex_index": 122,
+          "vertex_record_offset": 50525,
+          "vertex_record_end_offset": 50588,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c3a000000000000000400000000000000000ce60000000000000011",
+          "point_index": 230,
+          "point_record_offset": 68717,
+          "point_record_end_offset": 68777,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff134caf1df08d8e0d40cdccccccccccf43f000000000000f03f11"
+        },
+        {
+          "surface_record_index": 19,
+          "component_slot": 3,
+          "coedge_index": 55,
+          "edge_index": 113,
+          "vertex_index": 123,
+          "vertex_record_offset": 50588,
+          "vertex_record_end_offset": 50651,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c3a000000000000000401000000000000000ce70000000000000011",
+          "point_index": 231,
+          "point_record_offset": 68777,
+          "point_record_end_offset": 68837,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cdcccccccccc1040ecbe73fc2221fc3f000000000000f03f11"
+        },
+        {
+          "surface_record_index": 19,
+          "component_slot": 4,
+          "coedge_index": 111,
+          "edge_index": 211,
+          "vertex_index": 217,
+          "vertex_record_offset": 66620,
+          "vertex_record_end_offset": 66683,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cd3000000000000000400000000000000000c510100000000000011",
+          "point_index": 337,
+          "point_record_offset": 94843,
+          "point_record_end_offset": 94903,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000001040ecbe73fc2221fc3f9a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 19,
+          "component_slot": 5,
+          "coedge_index": 209,
+          "edge_index": 272,
+          "vertex_index": 274,
+          "vertex_record_offset": 76861,
+          "vertex_record_end_offset": 76924,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cd3000000000000000401000000000000000c8c0100000000000011",
+          "point_index": 396,
+          "point_record_offset": 113015,
+          "point_record_end_offset": 113075,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000010409a9999999999f93f686666666666f63f11"
+        },
+        {
+          "surface_record_index": 29,
+          "component_slot": 0,
+          "coedge_index": 201,
+          "edge_index": 321,
+          "vertex_index": 432,
+          "vertex_record_offset": 123002,
+          "vertex_record_end_offset": 123065,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c41010000000000000400000000000000000c0a0200000000000011",
+          "point_index": 522,
+          "point_record_offset": 143024,
+          "point_record_end_offset": 143084,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff134caf1df08d8e0d406666666666660a40000000000000084011"
+        },
+        {
+          "surface_record_index": 29,
+          "component_slot": 1,
+          "coedge_index": 107,
+          "edge_index": 203,
+          "vertex_index": 324,
+          "vertex_record_offset": 91956,
+          "vertex_record_end_offset": 92019,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c41010000000000000401000000000000000cb20100000000000011",
+          "point_index": 434,
+          "point_record_offset": 124126,
+          "point_record_end_offset": 124186,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff136666666666660e40cccccccccccc0840000000000000084011"
+        },
+        {
+          "surface_record_index": 29,
+          "component_slot": 2,
+          "coedge_index": 54,
+          "edge_index": 109,
+          "vertex_index": 206,
+          "vertex_record_offset": 64580,
+          "vertex_record_end_offset": 64643,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c6d000000000000000400000000000000000c470100000000000011",
+          "point_index": 327,
+          "point_record_offset": 92617,
+          "point_record_end_offset": 92677,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000001040cccccccccccc0840333333333333074011"
+        },
+        {
+          "surface_record_index": 29,
+          "component_slot": 3,
+          "coedge_index": 106,
+          "edge_index": 199,
+          "vertex_index": 207,
+          "vertex_record_offset": 64643,
+          "vertex_record_end_offset": 64706,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c6d000000000000000401000000000000000c480100000000000011",
+          "point_index": 328,
+          "point_record_offset": 92677,
+          "point_record_end_offset": 92737,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000010406666666666660a4024ba5f1b0889054011"
+        },
+        {
+          "surface_record_index": 29,
+          "component_slot": 4,
+          "coedge_index": 197,
+          "edge_index": 313,
+          "vertex_index": 319,
+          "vertex_record_offset": 91001,
+          "vertex_record_end_offset": 91064,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c39010000000000000400000000000000000caf0100000000000011",
+          "point_index": 431,
+          "point_record_offset": 122942,
+          "point_record_end_offset": 123002,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff133333333333330f400000000000000c4024ba5f1b0889054011"
+        },
+        {
+          "surface_record_index": 29,
+          "component_slot": 5,
+          "coedge_index": 311,
+          "edge_index": 419,
+          "vertex_index": 424,
+          "vertex_record_offset": 121095,
+          "vertex_record_end_offset": 121158,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c39010000000000000401000000000000000c030200000000000011",
+          "point_index": 515,
+          "point_record_offset": 141790,
+          "point_record_end_offset": 141850,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff134caf1df08d8e0d400000000000000c40333333333333074011"
+        },
+        {
+          "surface_record_index": 53,
+          "component_slot": 0,
+          "coedge_index": 255,
+          "edge_index": 256,
+          "vertex_index": 257,
+          "vertex_record_offset": 74259,
+          "vertex_record_end_offset": 74322,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c00010000000000000400000000000000000c7a0100000000000011",
+          "point_index": 378,
+          "point_record_offset": 103786,
+          "point_record_end_offset": 103846,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000000409a9999999999f93fce072b864a49f33f11"
+        },
+        {
+          "surface_record_index": 53,
+          "component_slot": 1,
+          "coedge_index": 193,
+          "edge_index": 305,
+          "vertex_index": 376,
+          "vertex_record_offset": 102662,
+          "vertex_record_end_offset": 102725,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c00010000000000000401000000000000000cdf0100000000000011",
+          "point_index": 479,
+          "point_record_offset": 134533,
+          "point_record_end_offset": 134593,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000000040eabe73fc2221fc3f9a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 53,
+          "component_slot": 2,
+          "coedge_index": 105,
+          "edge_index": 195,
+          "vertex_index": 308,
+          "vertex_record_offset": 88754,
+          "vertex_record_end_offset": 88817,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cc3000000000000000400000000000000000ca00100000000000011",
+          "point_index": 416,
+          "point_record_offset": 120294,
+          "point_record_end_offset": 120354,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cdccccccccccfc3feabe73fc2221fc3f000000000000f03f11"
+        },
+        {
+          "surface_record_index": 53,
+          "component_slot": 3,
+          "coedge_index": 192,
+          "edge_index": 301,
+          "vertex_index": 309,
+          "vertex_record_offset": 88817,
+          "vertex_record_end_offset": 88880,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cc3000000000000000401000000000000000ca10100000000000011",
+          "point_index": 417,
+          "point_record_offset": 120354,
+          "point_record_end_offset": 120414,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff133333333333330340cdccccccccccf43f000000000000f03f11"
+        },
+        {
+          "surface_record_index": 53,
+          "component_slot": 4,
+          "coedge_index": 183,
+          "edge_index": 184,
+          "vertex_index": 292,
+          "vertex_record_offset": 80938,
+          "vertex_record_end_offset": 81001,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cb8000000000000000400000000000000000c930100000000000011",
+          "point_index": 403,
+          "point_record_offset": 114941,
+          "point_record_end_offset": 115001,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff133333333333330340000000000000f83f9a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 53,
+          "component_slot": 5,
+          "coedge_index": 290,
+          "edge_index": 354,
+          "vertex_index": 293,
+          "vertex_record_offset": 81001,
+          "vertex_record_end_offset": 81064,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cb8000000000000000401000000000000000c940100000000000011",
+          "point_index": 404,
+          "point_record_offset": 115001,
+          "point_record_end_offset": 115061,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff139a99999999990140000000000000f83fce072b864a49f33f11"
+        },
+        {
+          "surface_record_index": 300,
+          "component_slot": 0,
+          "coedge_index": 399,
+          "edge_index": 400,
+          "vertex_index": 361,
+          "vertex_record_offset": 99453,
+          "vertex_record_end_offset": 99516,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c90010000000000000400000000000000000cd00100000000000011",
+          "point_index": 464,
+          "point_record_offset": 131613,
+          "point_record_end_offset": 131673,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff139a99999999990140cccccccccccc0840000000000000084011"
+        },
+        {
+          "surface_record_index": 300,
+          "component_slot": 1,
+          "coedge_index": 496,
+          "edge_index": 565,
+          "vertex_index": 498,
+          "vertex_record_offset": 137951,
+          "vertex_record_end_offset": 138014,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c90010000000000000401000000000000000c370200000000000011",
+          "point_index": 567,
+          "point_record_offset": 150848,
+          "point_record_end_offset": 150908,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13b450e20f727102406666666666660a40000000000000084011"
+        },
+        {
+          "surface_record_index": 300,
+          "component_slot": 2,
+          "coedge_index": 409,
+          "edge_index": 504,
+          "vertex_index": 571,
+          "vertex_record_offset": 151276,
+          "vertex_record_end_offset": 151339,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cf8010000000000000400000000000000000c6b0200000000000011",
+          "point_index": 619,
+          "point_record_offset": 160330,
+          "point_record_end_offset": 160390,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13b450e20f727102400000000000000c40333333333333074011"
+        },
+        {
+          "surface_record_index": 300,
+          "component_slot": 3,
+          "coedge_index": 368,
+          "edge_index": 473,
+          "vertex_index": 554,
+          "vertex_record_offset": 147393,
+          "vertex_record_end_offset": 147456,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cf8010000000000000401000000000000000c670200000000000011",
+          "point_index": 615,
+          "point_record_offset": 158649,
+          "point_record_end_offset": 158709,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cdcccccccccc00400000000000000c4024ba5f1b0889054011"
+        },
+        {
+          "surface_record_index": 300,
+          "component_slot": 4,
+          "coedge_index": 250,
+          "edge_index": 251,
+          "vertex_index": 370,
+          "vertex_record_offset": 101058,
+          "vertex_record_end_offset": 101121,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cfb000000000000000400000000000000000cdb0100000000000011",
+          "point_index": 475,
+          "point_record_offset": 133478,
+          "point_record_end_offset": 133538,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000000406666666666660a4024ba5f1b0889054011"
+        },
+        {
+          "surface_record_index": 300,
+          "component_slot": 5,
+          "coedge_index": 358,
+          "edge_index": 359,
+          "vertex_index": 252,
+          "vertex_record_offset": 73225,
+          "vertex_record_end_offset": 73288,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0cfb000000000000000401000000000000000c740100000000000011",
+          "point_index": 372,
+          "point_record_offset": 102182,
+          "point_record_end_offset": 102242,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000000040cccccccccccc0840333333333333074011"
+        },
+        {
+          "surface_record_index": 408,
+          "component_slot": 0,
+          "coedge_index": 532,
+          "edge_index": 577,
+          "vertex_index": 585,
+          "vertex_record_offset": 154787,
+          "vertex_record_end_offset": 154850,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c41020000000000000400000000000000000c6f0200000000000011",
+          "point_index": 623,
+          "point_record_offset": 161771,
+          "point_record_end_offset": 161831,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff138d20c6816eef0d400000000000000c409a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 408,
+          "component_slot": 1,
+          "coedge_index": 489,
+          "edge_index": 516,
+          "vertex_index": 518,
+          "vertex_record_offset": 142020,
+          "vertex_record_end_offset": 142083,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c41020000000000000401000000000000000c440200000000000011",
+          "point_index": 580,
+          "point_record_offset": 154261,
+          "point_record_end_offset": 154321,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff133333333333330f400000000000000c40cf072b864a49f33f11"
+        },
+        {
+          "surface_record_index": 408,
+          "component_slot": 2,
+          "coedge_index": 390,
+          "edge_index": 391,
+          "vertex_index": 435,
+          "vertex_record_offset": 124186,
+          "vertex_record_end_offset": 124249,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c87010000000000000400000000000000000c0b0200000000000011",
+          "point_index": 523,
+          "point_record_offset": 143084,
+          "point_record_end_offset": 143144,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000010406666666666660a40cf072b864a49f33f11"
+        },
+        {
+          "surface_record_index": 408,
+          "component_slot": 3,
+          "coedge_index": 437,
+          "edge_index": 438,
+          "vertex_index": 440,
+          "vertex_record_offset": 125192,
+          "vertex_record_end_offset": 125255,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c87010000000000000401000000000000000c0e0200000000000011",
+          "point_index": 526,
+          "point_record_offset": 143866,
+          "point_record_end_offset": 143926,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000001040cccccccccccc08409a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 408,
+          "component_slot": 4,
+          "coedge_index": 343,
+          "edge_index": 344,
+          "vertex_index": 345,
+          "vertex_record_offset": 96378,
+          "vertex_record_end_offset": 96441,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c58010000000000000400000000000000000cc20100000000000011",
+          "point_index": 450,
+          "point_record_offset": 128047,
+          "point_record_end_offset": 128107,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cdcccccccccc1040cccccccccccc0840000000000000f03f11"
+        },
+        {
+          "surface_record_index": 408,
+          "component_slot": 5,
+          "coedge_index": 446,
+          "edge_index": 533,
+          "vertex_index": 448,
+          "vertex_record_offset": 126716,
+          "vertex_record_end_offset": 126779,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c58010000000000000401000000000000000c170200000000000011",
+          "point_index": 535,
+          "point_record_offset": 145502,
+          "point_record_end_offset": 145562,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff138d20c6816eef0d409a99999999990d40000000000000f03f11"
+        },
+        {
+          "surface_record_index": 502,
+          "component_slot": 0,
+          "coedge_index": 480,
+          "edge_index": 557,
+          "vertex_index": 559,
+          "vertex_record_offset": 148348,
+          "vertex_record_end_offset": 148411,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c2d020000000000000400000000000000000c690200000000000011",
+          "point_index": 617,
+          "point_record_offset": 159770,
+          "point_record_end_offset": 159830,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cdcccccccccc00400000000000000c40ce072b864a49f33f11"
+        },
+        {
+          "surface_record_index": 502,
+          "component_slot": 1,
+          "coedge_index": 451,
+          "edge_index": 536,
+          "vertex_index": 587,
+          "vertex_record_offset": 155350,
+          "vertex_record_end_offset": 155413,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c2d020000000000000401000000000000000c700200000000000011",
+          "point_index": 624,
+          "point_record_offset": 161831,
+          "point_record_end_offset": 161891,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1374df397e911002400000000000000c409a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 502,
+          "component_slot": 2,
+          "coedge_index": 347,
+          "edge_index": 348,
+          "vertex_index": 453,
+          "vertex_record_offset": 128429,
+          "vertex_record_end_offset": 128492,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c5c010000000000000400000000000000000c1a0200000000000011",
+          "point_index": 538,
+          "point_record_offset": 145882,
+          "point_record_end_offset": 145942,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1374df397e911002409a99999999990d40000000000000f03f11"
+        },
+        {
+          "surface_record_index": 502,
+          "component_slot": 3,
+          "coedge_index": 380,
+          "edge_index": 483,
+          "vertex_index": 454,
+          "vertex_record_offset": 128492,
+          "vertex_record_end_offset": 128555,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c5c010000000000000401000000000000000c1b0200000000000011",
+          "point_index": 539,
+          "point_record_offset": 145942,
+          "point_record_end_offset": 146002,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff13cdccccccccccfc3fcccccccccccc0840000000000000f03f11"
+        },
+        {
+          "surface_record_index": 502,
+          "component_slot": 4,
+          "coedge_index": 259,
+          "edge_index": 260,
+          "vertex_index": 383,
+          "vertex_record_offset": 109525,
+          "vertex_record_end_offset": 109588,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c04010000000000000400000000000000000ce50100000000000011",
+          "point_index": 485,
+          "point_record_offset": 135333,
+          "point_record_end_offset": 135393,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff130000000000000040cccccccccccc08409a9999999999f13f11"
+        },
+        {
+          "surface_record_index": 502,
+          "component_slot": 5,
+          "coedge_index": 379,
+          "edge_index": 481,
+          "vertex_index": 384,
+          "vertex_record_offset": 109588,
+          "vertex_record_end_offset": 109651,
+          "vertex_payload_hex": "0d067665727465780cffffffffffffffff04ffffffffffffffff0cffffffffffffffff0c04010000000000000401000000000000000ce60100000000000011",
+          "point_index": 486,
+          "point_record_offset": 135393,
+          "point_record_end_offset": 135453,
+          "point_payload_hex": "0d05706f696e740cffffffffffffffff04ffffffffffffffff0cffffffffffffffff1300000000000000406666666666660a40ce072b864a49f33f11"
+        }
+      ]
+    }
+  ],
+  "old_controls": [
+    {
+      "archive": "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+      "file": "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.a594c94b-df79-4768-9a8a-29a76e71698c.smb",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "topology_unchanged": true
+    },
+    {
+      "archive": "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+      "file": "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.54e9e087-1405-4f0a-84f2-45325b11ebf0.smbh",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "topology_unchanged": true
+    },
+    {
+      "archive": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.5f62b92d-18ed-4ebc-9f13-78774e2e40e9.smb",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "topology_unchanged": true
+    },
+    {
+      "archive": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "topology_unchanged": true
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "file": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.470ae810-5481-4a60-a494-86e548d1dee4.smb",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "topology_unchanged": true
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "file": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed six-component VBL boundary corner cycles through reciprocal initial BODY/face/loop/coedge/edge/vertex/point links. Coedge reversal orders native topological endpoints only; component UV direction, native curve parameter maps, persistent topology and VBL interior unresolved."
+      },
+      "topology_unchanged": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject coedge reversal copy differing from raw Boolean",
+      "rejected": true,
+      "reason": "VBL corner coedge reversal differs from literal Boolean"
+    },
+    {
+      "guard": "Reject vertex point pointer copy alias",
+      "rejected": true,
+      "reason": "VBL corner node link differs from serialized pointer"
+    },
+    {
+      "guard": "Reject stale parsed point even when topology copy agrees",
+      "rejected": true,
+      "reason": "VBL corner typed record replay differs from original blob"
+    },
+    {
+      "guard": "Reject ambiguous owning BODY graph",
+      "rejected": true,
+      "reason": "VBL corner face BODY ownership missing or ambiguous"
+    },
+    {
+      "guard": "Reject consistently encoded endpoint breaking six-vertex cycle",
+      "rejected": true,
+      "reason": "VBL corner oriented vertex IDs do not close in component/coedge order"
+    },
+    {
+      "guard": "Reject stale supplied component association",
+      "rejected": true,
+      "reason": "VBL corner component associations are stale or differ from typed source"
+    },
+    {
+      "guard": "Reject subtype catalog from another blob",
+      "rejected": true,
+      "reason": "VBL corner subtype catalog belongs to another blob"
+    }
+  ],
+  "checks": [
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff85f717-f07a-4898-adf9-592eab67cb3d.smb direct and supplied views agree"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff85f717-f07a-4898-adf9-592eab67cb3d.smb complete old component dictionary exact"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff85f717-f07a-4898-adf9-592eab67cb3d.smb no input structures mutated"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff85f717-f07a-4898-adf9-592eab67cb3d.smb only old VBL interior warnings retained"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff85f717-f07a-4898-adf9-592eab67cb3d.smb all admitted faces have corner proofs"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh direct and supplied views agree"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh complete old component dictionary exact"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh no input structures mutated"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh only old VBL interior warnings retained"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh all admitted faces have corner proofs"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner47 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner47 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner48 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner48 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner82 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner82 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner157 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner157 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner168 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner168 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner91 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner91 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface10 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner132 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner132 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner177 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner177 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner241 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner241 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner141 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner141 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner71 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner71 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner72 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner72 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface14 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner181 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner181 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner223 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner223 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner122 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner122 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner123 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner123 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner217 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner217 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner274 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner274 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface19 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner432 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner432 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner324 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner324 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner206 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner206 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner207 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner207 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner319 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner319 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner424 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner424 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface29 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner257 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner257 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner376 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner376 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner308 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner308 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner309 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner309 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner292 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner292 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner293 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner293 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface53 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner361 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner361 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner498 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner498 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner571 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner571 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner554 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner554 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner370 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner370 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner252 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner252 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface300 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner585 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner585 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner518 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner518 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner435 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner435 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner440 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner440 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner345 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner345 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner448 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner448 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface408 no UV parameter/interior claim"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 six native corner cycle"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 exact typed BODY ancestry"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 slot0 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner559 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner559 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 slot1 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner587 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner587 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 slot2 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner453 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner453 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 slot3 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner454 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner454 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 slot4 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner383 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner383 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 slot5 literal traversal ID order"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner384 explicit vertex/point field and source bytes"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh corner384 incoming/outgoing slots share exact vertex"
+    },
+    {
+      "check": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ac4ff64-68dc-4dca-ae81-5ab193a2d49c.smbh surface502 no UV parameter/interior claim"
+    },
+    {
+      "check": "Exactly eight faces and48 oriented corner/edge associations"
+    },
+    {
+      "check": "specialfillets-d50f7a4f04e0/rule_all_both.f3d FusionAssetName[Active]/Breps.BlobParts/BREP.a594c94b-df79-4768-9a8a-29a76e71698c.smb unrelated old control no corner claims"
+    },
+    {
+      "check": "specialfillets-d50f7a4f04e0/rule_all_both.f3d FusionAssetName[Active]/Breps.BlobParts/BREP.54e9e087-1405-4f0a-84f2-45325b11ebf0.smbh unrelated old control no corner claims"
+    },
+    {
+      "check": "edgemodes-87edbf67527b/fillet_chord.f3d FusionAssetName[Active]/Breps.BlobParts/BREP.5f62b92d-18ed-4ebc-9f13-78774e2e40e9.smb unrelated old control no corner claims"
+    },
+    {
+      "check": "edgemodes-87edbf67527b/fillet_chord.f3d FusionAssetName[Active]/Breps.BlobParts/BREP.043a7d8f-7e64-4fa6-908c-876c3e240225.smbh unrelated old control no corner claims"
+    },
+    {
+      "check": "patchcontinuity-b9b0be85a281/brep_tangent.f3d FusionAssetName[Active]/Breps.BlobParts/BREP.470ae810-5481-4a60-a494-86e548d1dee4.smb unrelated old control no corner claims"
+    },
+    {
+      "check": "patchcontinuity-b9b0be85a281/brep_tangent.f3d FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh unrelated old control no corner claims"
+    },
+    {
+      "check": "Reject coedge reversal copy differing from raw Boolean"
+    },
+    {
+      "check": "Reject vertex point pointer copy alias"
+    },
+    {
+      "check": "Reject stale parsed point even when topology copy agrees"
+    },
+    {
+      "check": "Reject ambiguous owning BODY graph"
+    },
+    {
+      "check": "Reject consistently encoded endpoint breaking six-vertex cycle"
+    },
+    {
+      "check": "Reject stale supplied component association"
+    },
+    {
+      "check": "Reject subtype catalog from another blob"
+    }
+  ],
+  "actual_API_context": {
+    "settings": {
+      "fillet_feature_type": 1,
+      "is_rolling_ball_corner": false,
+      "health_state": 0,
+      "warning": ""
+    },
+    "actual_rule": {
+      "rule_type": 0,
+      "topology_type": 0,
+      "is_constant_radius": false,
+      "radius": null,
+      "offset_one": {
+        "name": "d7",
+        "role": "EdgeOffset1",
+        "value": 0.1,
+        "unit": "mm"
+      },
+      "offset_two": {
+        "name": "d8",
+        "role": "EdgeOffset2",
+        "value": 0.2,
+        "unit": "mm"
+      },
+      "sources": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQoX3Cq6OEw5XV16sY424kjILqMJIwdhMwdLC1MzcIM1S19TAyFzXxMjcUtfC1MBM18AwNTkxOcnSxNzUHKwWaAYDGgDbZ6AAtg5kvbGJCQAdyvZaiAAAAA==",
+          "name": "FilletBoss",
+          "timeline_index": 4,
+          "body_names": [
+            "FilletTarget"
+          ]
+        }
+      ],
+      "source_one": [],
+      "source_two": []
+    },
+    "corner_vertex_or_VBL_evaluator_getters_captured": false
+  },
+  "validation": {
+    "VBL_faces": 8,
+    "oriented_boundary_edges": 48,
+    "typed_corners": 48,
+    "closed_six_vertex_cycles": 8,
+    "old_control_blobs": 6,
+    "malformed_guards": 7,
+    "check_count": 192,
+    "old_component_dictionaries_exact": true,
+    "retained_VBL_interior_warnings": 8,
+    "new_VBL_interior_evaluators": 0,
+    "no_live_calls": true,
+    "no_main_calls": true
+  },
+  "source_sha256": {
+    "decode_vbl_boundary_corners.py": "671c5658bf5a453b58736eb611f2b8dbbf62e343104f174e60d479e0fa8bf6b7",
+    "validate_vbl_boundary_corners.py": "21c39542c22eab1b1791f80b0fffb336c07d639d0dd353e92b99e055b7005a2d",
+    "decode_vbl_components.py": "fc5013b25327f0d82f576376f3e8e7cd4ea612aeaada4dd636fa87abcbffbac7",
+    "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0",
+    "decode_asm_subtypes.py": "7724e91cd0e083be871784b38b81fa7dacf251f8219391352429100d2e488503",
+    "decode_pcurve_variants.py": "55c33e4819fc2302246bd325406a03e85aec151095ef31fde815c1898e3a3e93",
+    "asm_records.py": "15ed6458f05377799e9a5d6e3885f518206d75006ebc83fa7f3bd67d8dc38094"
+  },
+  "limitations": [
+    "Native coedge reversal orders only the topological entry/exit vertices. It does not assign the direction of a component UV cache, stored XYZ approximation or native edge parameter.",
+    "Corners are linked by exact typed source IDs and reciprocal BODY ownership; no coordinate/name/nearest-geometry matching chooses them. Raw point coordinates remain in ASM asset scope.",
+    "Existing API settings establish the Rule/asymmetric fixture only; no direct API corner identity, VBL evaluator or approximation bound is captured.",
+    "Only observed six distinct vertices and six component edges are admitted; general singular/repeated-vertex VBL loops remain unsupported.",
+    "All eight VBL interior warnings and previous48 component dictionaries remain unchanged. No surface interior, persistent topology, final visible body identity or regeneration claim."
+  ]
+}

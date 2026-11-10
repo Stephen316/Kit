@@ -1,0 +1,1735 @@
+{
+  "scope": "Twenty-archive related payload survey plus seven fixed term-count representatives; ownership, topology and coverage remain outside this payload helper",
+  "integration": {
+    "function": "decode_counted_asm_names.decode_counted_asm_name(record)",
+    "returns": "Existing generic-tag payload keys definition_name,stored_definition_schema_fields,stored_namespace_text,stored_term_count,terms,payload_offset,payload_end_offset,payload_hex.",
+    "term_fields": "Existing exact name/stored_index/count/int32/uint32/zero-terminator dictionary; no extra semantic ID keys.",
+    "shared_callsite": "decode_asm_recipe_tags retains typed owner checks, reciprocal attribute chains, initial-geometry scope, other-definition framing, coverage and exact actual-blob replay; substitute only counted definition/schema/namespace/terms parsing.",
+    "validation_command": "/usr/bin/python3 validate_counted_asm_names.py",
+    "shared_reader_changes_by_this_task": false
+  },
+  "grammar": {
+    "definition": "generic_tag_attrib_def; typed integer schema3,3,-1; literal namespace generic_tag_attrib_def followed by one space.",
+    "term_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ],
+    "component_counts": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "term": "Typed integer ASCII byte length; bounded printable ASCII name; uint32-range stored index in integer64 token; component count; signed32-range typed integer components; separate typed integer zero terminator.",
+    "replay": "Exact token4+signed64 integer and token7+u8-length ASCII string bytes; source payload extent checked, then compared byte-for-byte with the stored blob by this validator."
+  },
+  "files_inspected": [
+    "analytic-86a12b291d0a/analytic.f3d",
+    "bodymodes-d696a14d5f0b/mirror_xy_combine.f3d",
+    "bodymodes-df9b7113539f/mirror_xy.f3d",
+    "boundaryfills-a0953038318b/new_middle.f3d",
+    "boundaryfills-a0953038318b/new_middle_remove.f3d",
+    "boundaryfills-a0953038318b/new_two.f3d",
+    "circularmodes-45f859c1f1b6/body_full.f3d",
+    "circularmodes-45f859c1f1b6/body_negative.f3d",
+    "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+    "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+    "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+    "embossmodes-e40cc931d978/multiple_profiles.f3d",
+    "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+    "embosstext-cd769aa41cdf/text_emboss.f3d",
+    "embosstext-cd769aa41cdf/two_texts.f3d",
+    "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
+    "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+    "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+    "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+    "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+    "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+    "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+    "rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
+    "rectmodes-a069f8f4b8a2/body_one.f3d",
+    "rectmodes-a069f8f4b8a2/feature_optimized.f3d",
+    "solidsweeps-7d2677669e3d/solid_aligned.f3d"
+  ],
+  "inventory_provenance": {
+    "source": "Parent read-only initial-ASM custom framing inventory; only its fixed representatives are replayed here",
+    "snapshot": {
+      "archives": 559,
+      "blobs": 959,
+      "component_counts": {
+        "0": 1101,
+        "1": 8108,
+        "2": 830,
+        "3": 1954
+      },
+      "definitions": {
+        "FDM_feature_attrib_def": 19,
+        "FPM_tracked_attrib_def": 84,
+        "Timestamp_attrib_def": 1053,
+        "generic_tag_attrib_def": 11463,
+        "sketch_attrib_def": 17175
+      },
+      "elapsed": 4.986826167,
+      "examples": {
+        "1": [
+          "analytic-86a12b291d0a/analytic.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.66dea2e4-f2cf-4d43-8c2d-62117e12e1a6.smbh",
+          10
+        ],
+        "2": [
+          "bodymodes-d696a14d5f0b/mirror_xy_combine.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.c6c36581-0df2-4557-8c90-230ed6d810fb.smbh",
+          11
+        ],
+        "3": [
+          "embossmodes-e40cc931d978/multiple_profiles.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.815e6a98-deb3-4882-984d-e2cd220d4b43.smbh",
+          4
+        ],
+        "4": [
+          "embosstext-cd769aa41cdf/text_emboss.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.96d67556-0ea0-4cdc-8805-fe58c0c194a6.smbh",
+          4
+        ],
+        "5": [
+          "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.455a830f-efa1-49f8-b65f-011cdc432290.smbh",
+          4
+        ],
+        "6": [
+          "solidsweeps-7d2677669e3d/solid_aligned.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.2851a5f0-aeff-450e-b46f-7c589764658c.smbh",
+          304
+        ],
+        "8": [
+          "embosstext-cd769aa41cdf/two_texts.f3d",
+          "FusionAssetName[Active]/Breps.BlobParts/BREP.c1988ba3-752f-42d2-babe-839d8495e61c.smbh",
+          4
+        ]
+      },
+      "term_counts": {
+        "1": 11031,
+        "2": 364,
+        "3": 49,
+        "4": 13,
+        "5": 3,
+        "6": 2,
+        "8": 1
+      },
+      "unframed": []
+    }
+  },
+  "survey": [
+    {
+      "file": "bodymodes-df9b7113539f/mirror_xy.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 3
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 6
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 5
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 36
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            2
+          ],
+          "payload_count": 4
+        },
+        {
+          "term_count": 2,
+          "component_counts_by_term": [
+            2,
+            2
+          ],
+          "payload_count": 8
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 5
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 36
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            2
+          ],
+          "payload_count": 12
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 5
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 36
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            2
+          ],
+          "payload_count": 4
+        },
+        {
+          "term_count": 2,
+          "component_counts_by_term": [
+            2,
+            2
+          ],
+          "payload_count": 8
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/body_full.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 5
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 18
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/body_negative.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 5
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 18
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 4
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 12
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 6
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 24
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 10
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 36
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 36
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 15
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            2
+          ],
+          "payload_count": 203
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 14
+        },
+        {
+          "term_count": 8,
+          "component_counts_by_term": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "payload_count": 1
+        }
+      ],
+      "negative_signed32_components_preserved": 217
+    },
+    {
+      "file": "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 4
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 31
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 6
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 2
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 12
+        },
+        {
+          "term_count": 2,
+          "component_counts_by_term": [
+            1,
+            1
+          ],
+          "payload_count": 2
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 2
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 20
+        },
+        {
+          "term_count": 2,
+          "component_counts_by_term": [
+            1,
+            1
+          ],
+          "payload_count": 2
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 2
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 22
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 2
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 22
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 2
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 22
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 2
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 22
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 14
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 36
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 60
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "rectmodes-a069f8f4b8a2/body_one.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 4
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 12
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    },
+    {
+      "file": "rectmodes-a069f8f4b8a2/feature_optimized.f3d",
+      "shape_counts": [
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            0
+          ],
+          "payload_count": 6
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            1
+          ],
+          "payload_count": 18
+        },
+        {
+          "term_count": 1,
+          "component_counts_by_term": [
+            3
+          ],
+          "payload_count": 30
+        }
+      ],
+      "negative_signed32_components_preserved": 0
+    }
+  ],
+  "representative_payloads": [
+    {
+      "file": "bodymodes-df9b7113539f/mirror_xy.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.74daad56-5a5f-420d-9cb6-af4834bc0e13.smb",
+      "record_index": 10,
+      "owner_record_index_unqualified": 1,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 7,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 851,
+        "payload_end_offset": 977,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040700000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    },
+    {
+      "file": "bodymodes-df9b7113539f/mirror_xy.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.74daad56-5a5f-420d-9cb6-af4834bc0e13.smb",
+      "record_index": 19,
+      "owner_record_index_unqualified": 15,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "6",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              301
+            ],
+            "stored_reference_components_uint32": [
+              301
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 1691,
+        "payload_end_offset": 1824,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040100000000000000042d01000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    },
+    {
+      "file": "bodymodes-df9b7113539f/mirror_xy.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.62d73750-b585-4ff3-be79-57d22d3cdf82.smbh",
+      "record_index": 17,
+      "owner_record_index_unqualified": 12,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "6",
+            "stored_index": 0,
+            "stored_reference_component_count": 3,
+            "stored_reference_components_int32": [
+              301,
+              303,
+              304
+            ],
+            "stored_reference_components_uint32": [
+              301,
+              303,
+              304
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 1896,
+        "payload_end_offset": 2047,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040300000000000000042d01000000000000042f01000000000000043001000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b24d3dc9-6436-440e-836b-8da89999836e.smb",
+      "record_index": 41,
+      "owner_record_index_unqualified": 32,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "3",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 3411,
+        "payload_end_offset": 3553,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070133040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b24d3dc9-6436-440e-836b-8da89999836e.smb",
+      "record_index": 69,
+      "owner_record_index_unqualified": 42,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 2,
+        "terms": [
+          {
+            "name": "2",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              301,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              301,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "2",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 6500,
+        "payload_end_offset": 6699,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040200000000000000040100000000000000070132040000000000000000040200000000000000042d01000000000000043201000000000000040000000000000000040100000000000000070132040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c1988ba3-752f-42d2-babe-839d8495e61c.smbh",
+      "record_index": 4,
+      "owner_record_index_unqualified": 1,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 8,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 7,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 310,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 311,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 312,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 313,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 314,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 315,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 316,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 485,
+        "payload_end_offset": 898,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040800000000000000040300000000000000070333303104070000000000000004000000000000000004000000000000000004030000000000000007033330350436010000000000000400000000000000000400000000000000000403000000000000000703333035043701000000000000040000000000000000040000000000000000040300000000000000070333303504380100000000000004000000000000000004000000000000000004030000000000000007033330350439010000000000000400000000000000000400000000000000000403000000000000000703333035043a010000000000000400000000000000000400000000000000000403000000000000000703333035043b010000000000000400000000000000000400000000000000000403000000000000000703333035043c01000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+      "record_index": 22,
+      "owner_record_index_unqualified": 17,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 2,
+        "terms": [
+          {
+            "name": "4",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              303
+            ],
+            "stored_reference_components_uint32": [
+              303
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "5",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              303
+            ],
+            "stored_reference_components_uint32": [
+              303
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 2487,
+        "payload_end_offset": 2668,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040200000000000000040100000000000000070134040000000000000000040100000000000000042f01000000000000040000000000000000040100000000000000070135040000000000000000040100000000000000042f01000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true
+    }
+  ],
+  "inventory_term_count_representatives": [
+    {
+      "file": "analytic-86a12b291d0a/analytic.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.66dea2e4-f2cf-4d43-8c2d-62117e12e1a6.smbh",
+      "record_index": 10,
+      "observed_term_count": 1,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 4,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 947,
+        "payload_end_offset": 1073,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200401000000000000000403000000000000000703333031040400000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    },
+    {
+      "file": "bodymodes-d696a14d5f0b/mirror_xy_combine.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c6c36581-0df2-4557-8c90-230ed6d810fb.smbh",
+      "record_index": 11,
+      "observed_term_count": 2,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 2,
+        "terms": [
+          {
+            "name": "6",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              301
+            ],
+            "stored_reference_components_uint32": [
+              301
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "6",
+            "stored_index": 0,
+            "stored_reference_component_count": 3,
+            "stored_reference_components_int32": [
+              301,
+              303,
+              304
+            ],
+            "stored_reference_components_uint32": [
+              301,
+              303,
+              304
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 1327,
+        "payload_end_offset": 1526,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040200000000000000040100000000000000070136040000000000000000040100000000000000042d01000000000000040000000000000000040100000000000000070136040000000000000000040300000000000000042d01000000000000042f01000000000000043001000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    },
+    {
+      "file": "embossmodes-e40cc931d978/multiple_profiles.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.815e6a98-deb3-4882-984d-e2cd220d4b43.smbh",
+      "record_index": 4,
+      "observed_term_count": 3,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 3,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 7,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 12,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 13,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 485,
+        "payload_end_offset": 693,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004030000000000000004030000000000000007033330310407000000000000000400000000000000000400000000000000000403000000000000000703333035040c000000000000000400000000000000000400000000000000000403000000000000000703333035040d00000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_emboss.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.96d67556-0ea0-4cdc-8805-fe58c0c194a6.smbh",
+      "record_index": 4,
+      "observed_term_count": 4,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 4,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 7,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 80,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 81,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 82,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 485,
+        "payload_end_offset": 734,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f646566200404000000000000000403000000000000000703333031040700000000000000040000000000000000040000000000000000040300000000000000070333303504500000000000000004000000000000000004000000000000000004030000000000000007033330350451000000000000000400000000000000000400000000000000000403000000000000000703333035045200000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.455a830f-efa1-49f8-b65f-011cdc432290.smbh",
+      "record_index": 4,
+      "observed_term_count": 5,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 5,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 7,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 85,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 86,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 87,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 88,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 485,
+        "payload_end_offset": 775,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004050000000000000004030000000000000007033330310407000000000000000400000000000000000400000000000000000403000000000000000703333035045500000000000000040000000000000000040000000000000000040300000000000000070333303504560000000000000004000000000000000004000000000000000004030000000000000007033330350457000000000000000400000000000000000400000000000000000403000000000000000703333035045800000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    },
+    {
+      "file": "solidsweeps-7d2677669e3d/solid_aligned.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2851a5f0-aeff-450e-b46f-7c589764658c.smbh",
+      "record_index": 304,
+      "observed_term_count": 6,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 6,
+        "terms": [
+          {
+            "name": "3",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              304
+            ],
+            "stored_reference_components_uint32": [
+              304
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "3",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              305
+            ],
+            "stored_reference_components_uint32": [
+              305
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "1",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              307
+            ],
+            "stored_reference_components_uint32": [
+              307
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "6",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              307
+            ],
+            "stored_reference_components_uint32": [
+              307
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "7",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              307
+            ],
+            "stored_reference_components_uint32": [
+              307
+            ],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "8",
+            "stored_index": 0,
+            "stored_reference_component_count": 1,
+            "stored_reference_components_int32": [
+              307
+            ],
+            "stored_reference_components_uint32": [
+              307
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 42170,
+        "payload_end_offset": 42543,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040600000000000000040100000000000000070133040000000000000000040100000000000000043001000000000000040000000000000000040100000000000000070133040000000000000000040100000000000000043101000000000000040000000000000000040100000000000000070131040000000000000000040100000000000000043301000000000000040000000000000000040100000000000000070136040000000000000000040100000000000000043301000000000000040000000000000000040100000000000000070137040000000000000000040100000000000000043301000000000000040000000000000000040100000000000000070138040000000000000000040100000000000000043301000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c1988ba3-752f-42d2-babe-839d8495e61c.smbh",
+      "record_index": 4,
+      "observed_term_count": 8,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 8,
+        "terms": [
+          {
+            "name": "301",
+            "stored_index": 7,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 310,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 311,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 312,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 313,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 314,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 315,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          },
+          {
+            "name": "305",
+            "stored_index": 316,
+            "stored_reference_component_count": 0,
+            "stored_reference_components_int32": [],
+            "stored_reference_components_uint32": [],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 485,
+        "payload_end_offset": 898,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040800000000000000040300000000000000070333303104070000000000000004000000000000000004000000000000000004030000000000000007033330350436010000000000000400000000000000000400000000000000000403000000000000000703333035043701000000000000040000000000000000040000000000000000040300000000000000070333303504380100000000000004000000000000000004000000000000000004030000000000000007033330350439010000000000000400000000000000000400000000000000000403000000000000000703333035043a010000000000000400000000000000000400000000000000000403000000000000000703333035043b010000000000000400000000000000000400000000000000000403000000000000000703333035043c01000000000000040000000000000000040000000000000000"
+      },
+      "exact_actual_blob_replay": true,
+      "scope": "Framing representative only; no owner-chain or semantic ID inference"
+    }
+  ],
+  "boundaryfill_six_faces": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "attribute_record_index": 29,
+      "face_record_index_raw_owner": 20,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "6",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 3173,
+        "payload_end_offset": 3315,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070136040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "owner_scope": "Raw owner is typed FACE here; reciprocal owner proof remains the separate owner reader's responsibility"
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "attribute_record_index": 43,
+      "face_record_index_raw_owner": 30,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "2",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 4786,
+        "payload_end_offset": 4928,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070132040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "owner_scope": "Raw owner is typed FACE here; reciprocal owner proof remains the separate owner reader's responsibility"
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "attribute_record_index": 68,
+      "face_record_index_raw_owner": 44,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "4",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 7555,
+        "payload_end_offset": 7697,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070134040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "owner_scope": "Raw owner is typed FACE here; reciprocal owner proof remains the separate owner reader's responsibility"
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "attribute_record_index": 117,
+      "face_record_index_raw_owner": 69,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "5",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 12578,
+        "payload_end_offset": 12720,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070135040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "owner_scope": "Raw owner is typed FACE here; reciprocal owner proof remains the separate owner reader's responsibility"
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "attribute_record_index": 188,
+      "face_record_index_raw_owner": 118,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "1",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              304,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              304,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 19599,
+        "payload_end_offset": 19741,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f64656620040100000000000000040100000000000000070131040000000000000000040200000000000000043001000000000000043201000000000000040000000000000000"
+      },
+      "owner_scope": "Raw owner is typed FACE here; reciprocal owner proof remains the separate owner reader's responsibility"
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "attribute_record_index": 254,
+      "face_record_index_raw_owner": 189,
+      "payload": {
+        "definition_name": "generic_tag_attrib_def",
+        "stored_definition_schema_fields": [
+          3,
+          3,
+          -1
+        ],
+        "stored_namespace_text": "generic_tag_attrib_def ",
+        "stored_term_count": 1,
+        "terms": [
+          {
+            "name": "-5",
+            "stored_index": 0,
+            "stored_reference_component_count": 2,
+            "stored_reference_components_int32": [
+              301,
+              306
+            ],
+            "stored_reference_components_uint32": [
+              301,
+              306
+            ],
+            "stored_reference_terminator_uint32": 0
+          }
+        ],
+        "payload_offset": 26166,
+        "payload_end_offset": 26309,
+        "payload_hex": "071667656e657269635f7461675f6174747269625f64656604030000000000000004030000000000000004ffffffffffffffff071767656e657269635f7461675f6174747269625f6465662004010000000000000004020000000000000007022d35040000000000000000040200000000000000042d01000000000000043201000000000000040000000000000000"
+      },
+      "owner_scope": "Raw owner is typed FACE here; reciprocal owner proof remains the separate owner reader's responsibility"
+    }
+  ],
+  "prior_dictionary_controls": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6e54ac-a55e-4352-9610-0e846d97cc10.smbh",
+      "prior_exact_tag_dictionaries_preserved": 13
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6be85fa6-4695-4089-a1a1-409537f8835f.smbh",
+      "prior_exact_tag_dictionaries_preserved": 13
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.450ca4e7-360a-45c1-aa4c-a78ed6be53c3.smbh",
+      "prior_exact_tag_dictionaries_preserved": 13
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+      "prior_exact_tag_dictionaries_preserved": 9
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9567852f-6f54-4a8f-a8d8-88009da4deb9.smbh",
+      "prior_exact_tag_dictionaries_preserved": 13
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b6eb5dba-03d3-4fc1-8c9e-ff9446a6e261.smbh",
+      "prior_exact_tag_dictionaries_preserved": 13
+    }
+  ],
+  "guards": [
+    {
+      "case": "Explicit ASCII byte length disagrees",
+      "rejected": true,
+      "reason": "Counted ASM naming explicit byte length disagrees"
+    },
+    {
+      "case": "Component exceeds signed32 range",
+      "rejected": true,
+      "reason": "Counted ASM naming integer token kind/range mismatch"
+    },
+    {
+      "case": "Term count must be positive and observed",
+      "rejected": true,
+      "reason": "Counted ASM naming integer token kind/range mismatch"
+    },
+    {
+      "case": "Unobserved term count7 remains rejected",
+      "rejected": true,
+      "reason": "Unobserved counted ASM naming term count"
+    },
+    {
+      "case": "Unobserved oversized component count",
+      "rejected": true,
+      "reason": "Counted ASM naming integer token kind/range mismatch"
+    },
+    {
+      "case": "Separate component terminator must be zero",
+      "rejected": true,
+      "reason": "Counted ASM naming integer token kind/range mismatch"
+    },
+    {
+      "case": "Unconsumed payload token",
+      "rejected": true,
+      "reason": "Unconsumed counted ASM naming payload fields"
+    }
+  ],
+  "limitations": [
+    "This helper parses payload framing only. It does not validate an attribute owner, reciprocal chain, entity kind, whole-blob coverage or native selection identity.",
+    "Component integers remain literal counted naming fields, with signed and unsigned views of the same32 bits; no numeric component becomes a design-object or topology ID.",
+    "Term count7 and counts beyond8, or component counts beyond0/1/2/3, are unsupported until independently observed and framed.",
+    "Exact typed replay confirms stored bytes for the inspected payloads, not native geometry regeneration or a writer.",
+    "Scope is the explicit directly related survey; unrelated opaque attribute definitions and other unresolved CAD semantics remain unchanged."
+  ],
+  "summary": {
+    "saved_archives": 26,
+    "related_survey_archives": 20,
+    "additional_count_representatives_replayed": 7,
+    "generic_payloads_replayed": 1040,
+    "component_count0_terms": 96,
+    "component_count1_terms": 480,
+    "component_count2_terms": 255,
+    "component_count3_terms": 236,
+    "negative_signed_components_bit_preserved": 217,
+    "actual_eight_term_payloads": 1,
+    "old_dictionary_payloads_preserved": 74,
+    "boundaryfill_count2_face_payloads": 6,
+    "malformed_guards": 7
+  }
+}

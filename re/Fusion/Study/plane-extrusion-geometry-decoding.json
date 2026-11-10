@@ -1,0 +1,1503 @@
+{
+  "scope": "Six analytic selected-plane cylinders, including rigid-frame and in-plane-origin invariance; no main/native cache/live API calls",
+  "source_sha256": {
+    "decode_plane_extrusion_geometry.py": "1c695e5513fc85af2df9542824b4745319fae1b380991214a8f467d9fdf3a590",
+    "decode_circular_extrusion_geometry.py": "77fe57a5a7b50cb7b2d3add0dd738b84b13b3501cf87893cd60205fc00ffe6d1",
+    "validate_plane_extrusion_geometry.py": "b7032194bac2755d72679271a4dfb13577af0e20cf9653b4598357476a65cf1a"
+  },
+  "check_count": 42,
+  "checks": [
+    "ToEntity offset 0.0 frame 0 line-plane intersection",
+    "ToEntity offset 0.0 frame 0 signed limit interval",
+    "ToEntity offset 0.0 frame 0 cap centre 0",
+    "ToEntity offset 0.0 frame 0 cap centre 1",
+    "ToEntity offset 0.0 frame 0 cylinder volume",
+    "ToEntity offset 0.0 frame 0 original native controls retained",
+    "ToEntity offset 0.0 frame 0 equivalent mathematical controls labeled",
+    "ToEntity offset 0.0 frame 1 line-plane intersection",
+    "ToEntity offset 0.0 frame 1 signed limit interval",
+    "ToEntity offset 0.0 frame 1 cap centre 0",
+    "ToEntity offset 0.0 frame 1 cap centre 1",
+    "ToEntity offset 0.0 frame 1 cylinder volume",
+    "ToEntity offset 0.0 frame 1 original native controls retained",
+    "ToEntity offset 0.0 frame 1 equivalent mathematical controls labeled",
+    "ToEntity offset 0.4 frame 0 line-plane intersection",
+    "ToEntity offset 0.4 frame 0 signed limit interval",
+    "ToEntity offset 0.4 frame 0 cap centre 0",
+    "ToEntity offset 0.4 frame 0 cap centre 1",
+    "ToEntity offset 0.4 frame 0 cylinder volume",
+    "ToEntity offset 0.4 frame 0 original native controls retained",
+    "ToEntity offset 0.4 frame 0 equivalent mathematical controls labeled",
+    "ToEntity offset 0.4 frame 1 line-plane intersection",
+    "ToEntity offset 0.4 frame 1 signed limit interval",
+    "ToEntity offset 0.4 frame 1 cap centre 0",
+    "ToEntity offset 0.4 frame 1 cap centre 1",
+    "ToEntity offset 0.4 frame 1 cylinder volume",
+    "ToEntity offset 0.4 frame 1 original native controls retained",
+    "ToEntity offset 0.4 frame 1 equivalent mathematical controls labeled",
+    "FromEntity offset 0.5 frame 0 line-plane intersection",
+    "FromEntity offset 0.5 frame 0 signed limit interval",
+    "FromEntity offset 0.5 frame 0 cap centre 0",
+    "FromEntity offset 0.5 frame 0 cap centre 1",
+    "FromEntity offset 0.5 frame 0 cylinder volume",
+    "FromEntity offset 0.5 frame 0 original native controls retained",
+    "FromEntity offset 0.5 frame 0 equivalent mathematical controls labeled",
+    "FromEntity offset 0.5 frame 1 line-plane intersection",
+    "FromEntity offset 0.5 frame 1 signed limit interval",
+    "FromEntity offset 0.5 frame 1 cap centre 0",
+    "FromEntity offset 0.5 frame 1 cap centre 1",
+    "FromEntity offset 0.5 frame 1 cylinder volume",
+    "FromEntity offset 0.5 frame 1 original native controls retained",
+    "FromEntity offset 0.5 frame 1 equivalent mathematical controls labeled"
+  ],
+  "guard_count": 15,
+  "guards": [
+    {
+      "name": "reversed plane normal",
+      "rejected": true,
+      "reason": "Plane extrusion requires parallel co-directed plane and extrusion normals"
+    },
+    {
+      "name": "small oblique normal passes dot-only tolerance but fails vector coefficients",
+      "rejected": true,
+      "reason": "Plane extrusion requires parallel co-directed plane and extrusion normals"
+    },
+    {
+      "name": "nonfinite selected plane",
+      "rejected": true,
+      "reason": "Plane extrusion requires finite numeric operands"
+    },
+    {
+      "name": "target lies on profile plane",
+      "rejected": true,
+      "reason": "Plane extrusion selected plane is not forward from the profile plane"
+    },
+    {
+      "name": "target behind profile plane",
+      "rejected": true,
+      "reason": "Plane extrusion selected plane is not forward from the profile plane"
+    },
+    {
+      "name": "unverified negative ToEntity offset",
+      "rejected": true,
+      "reason": "Plane extrusion negative selected-plane offset convention is unverified"
+    },
+    {
+      "name": "unverified negative FromEntity offset",
+      "rejected": true,
+      "reason": "Plane extrusion negative selected-plane offset convention is unverified"
+    },
+    {
+      "name": "nonfinite selected offset",
+      "rejected": true,
+      "reason": "Plane extrusion requires finite numeric operands"
+    },
+    {
+      "name": "unobserved selected limit flags",
+      "rejected": true,
+      "reason": "Plane extrusion start/end pair outside the observed selected-plane family"
+    },
+    {
+      "name": "unverified selected limit taper",
+      "rejected": true,
+      "reason": "Plane extrusion requires observed zero-taper one-sided solid NewBody controls"
+    },
+    {
+      "name": "unverified two-sided selected limits",
+      "rejected": true,
+      "reason": "Plane extrusion requires observed zero-taper one-sided solid NewBody controls"
+    },
+    {
+      "name": "unverified negative FromEntity distance",
+      "rejected": true,
+      "reason": "Plane extrusion FromEntity requires positive Distance"
+    },
+    {
+      "name": "surface extrusion",
+      "rejected": true,
+      "reason": "Plane extrusion requires observed zero-taper one-sided solid NewBody controls"
+    },
+    {
+      "name": "Boolean operation",
+      "rejected": true,
+      "reason": "Plane extrusion requires observed zero-taper one-sided solid NewBody controls"
+    },
+    {
+      "name": "selected operand role mismatch",
+      "rejected": true,
+      "reason": "Plane extrusion requires exactly the active selected-plane operand"
+    }
+  ],
+  "samples": [
+    {
+      "name": "ToEntity offset 0.0 frame 0",
+      "expected_interval_cm": [
+        0.0,
+        3.0
+      ],
+      "independent_volume_cm3": 14.726215563702155,
+      "result": {
+        "source_circle": {
+          "center_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "radius_cm": 1.25,
+          "unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "reference_v": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": 0.0,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ProfilePlaneStart",
+            "radius_cm": 1.25,
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "axial_distance_cm": 3.0,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ToEntityEnd",
+            "radius_cm": 1.25,
+            "center_cm": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "mathematical_disk_caps": [
+          {
+            "semantic_role": "LowerAxialCap",
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "mathematical_outward_unit_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.0,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          },
+          {
+            "semantic_role": "UpperAxialCap",
+            "center_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "mathematical_outward_unit_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 3.0,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          }
+        ],
+        "lateral_carrier": {
+          "kind": "Cylinder",
+          "axis_origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "radial_slope": 0.0,
+          "radial_intercept_cm": 1.25,
+          "axial_domain_cm": [
+            0.0,
+            3.0
+          ],
+          "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+          "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+          "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+          "chosen_half_angle_radians": 0.0,
+          "native_UV": null,
+          "native_FACE_identity": null
+        },
+        "axial_length_cm": 3.0,
+        "volume_cm3": 14.726215563702155,
+        "lateral_area_cm2": 23.561944901923447,
+        "total_area_cm2": 33.37942194439155,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -1.25,
+            -1.25,
+            0.0
+          ],
+          "maximum": [
+            1.25,
+            1.25,
+            3.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Native selected parallel/co-directed plane, positive plane intersection, observed nonnegative ToEntity/FromEntity offset and zero-taper one-sided solid NewBody construction. Distance-equivalent operands are derived mathematical inputs, not rewritten native controls. No selected BRep, reversed/oblique target convention, UV, ENTITY or chronological identity.",
+        "plane_limit_derivation": {
+          "kind": "ToParallelPlane",
+          "selected_plane_role": "side_one",
+          "profile_plane_origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "extrusion_unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "selected_plane_origin_cm": [
+            2.0,
+            0.0,
+            3.0
+          ],
+          "selected_plane_unit_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "selected_plane_equation_constant_cm": 3.0,
+          "plane_axis_denominator": 1.0,
+          "selected_plane_intersection_distance_cm": 3.0,
+          "original_selected_offset_cm": 0.0,
+          "derived_axial_interval_cm": [
+            0.0,
+            3.0
+          ],
+          "offset_scope": "Observed nonnegative offset with co-directed plane normal and extrusion axis only",
+          "native_start_kind": "ProfilePlane",
+          "native_end_kind": "ToEntity",
+          "native_uninterpreted_side_flags": 1,
+          "mathematical_equivalent_controls_are_native_records": false
+        },
+        "mathematical_equivalent_distance_controls": {
+          "operation": {
+            "kind": "NewBody"
+          },
+          "is_solid": true,
+          "stored_second_extent_enabled": 0,
+          "start": {
+            "kind": "ProfilePlane"
+          },
+          "extent": {
+            "mode": "OneSided",
+            "side_one": {
+              "condition": "Distance",
+              "uninterpreted_flags": 0,
+              "taper_angle_radians": 0.0,
+              "distance_cm": 3.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ToEntity offset 0.0 frame 1",
+      "expected_interval_cm": [
+        0.0,
+        3.0
+      ],
+      "independent_volume_cm3": 14.726215563702155,
+      "result": {
+        "source_circle": {
+          "center_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "radius_cm": 1.25,
+          "unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "reference_u": [
+            0.4472135954999579,
+            0.8944271909999159,
+            0.0
+          ],
+          "reference_v": [
+            -0.5962847939999438,
+            0.2981423969999719,
+            0.7453559924999298
+          ]
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": 0.0,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ProfilePlaneStart",
+            "radius_cm": 1.25,
+            "center_cm": [
+              4.0,
+              -2.0,
+              7.0
+            ]
+          },
+          {
+            "axial_distance_cm": 3.0,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ToEntityEnd",
+            "radius_cm": 1.25,
+            "center_cm": [
+              6.0,
+              -3.0,
+              9.0
+            ]
+          }
+        ],
+        "mathematical_disk_caps": [
+          {
+            "semantic_role": "LowerAxialCap",
+            "center_cm": [
+              4.0,
+              -2.0,
+              7.0
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "reference_u": [
+              0.4472135954999579,
+              0.8944271909999159,
+              0.0
+            ],
+            "reference_v": [
+              -0.5962847939999438,
+              0.2981423969999719,
+              0.7453559924999298
+            ],
+            "mathematical_outward_unit_normal": [
+              -0.6666666666666666,
+              0.3333333333333333,
+              -0.6666666666666666
+            ],
+            "plane_constant_cm": -7.999999999999999,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          },
+          {
+            "semantic_role": "UpperAxialCap",
+            "center_cm": [
+              6.0,
+              -3.0,
+              9.0
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "reference_u": [
+              0.4472135954999579,
+              0.8944271909999159,
+              0.0
+            ],
+            "reference_v": [
+              -0.5962847939999438,
+              0.2981423969999719,
+              0.7453559924999298
+            ],
+            "mathematical_outward_unit_normal": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "plane_constant_cm": 11.0,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          }
+        ],
+        "lateral_carrier": {
+          "kind": "Cylinder",
+          "axis_origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "radial_slope": 0.0,
+          "radial_intercept_cm": 1.25,
+          "axial_domain_cm": [
+            0.0,
+            3.0
+          ],
+          "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+          "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+          "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+          "chosen_half_angle_radians": 0.0,
+          "native_UV": null,
+          "native_FACE_identity": null
+        },
+        "axial_length_cm": 3.0,
+        "volume_cm3": 14.726215563702155,
+        "lateral_area_cm2": 23.561944901923447,
+        "total_area_cm2": 33.37942194439155,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            3.068305009375088,
+            -4.178511301977579,
+            6.068305009375088
+          ],
+          "maximum": [
+            6.931694990624912,
+            -0.8214886980224207,
+            9.931694990624912
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Native selected parallel/co-directed plane, positive plane intersection, observed nonnegative ToEntity/FromEntity offset and zero-taper one-sided solid NewBody construction. Distance-equivalent operands are derived mathematical inputs, not rewritten native controls. No selected BRep, reversed/oblique target convention, UV, ENTITY or chronological identity.",
+        "plane_limit_derivation": {
+          "kind": "ToParallelPlane",
+          "selected_plane_role": "side_one",
+          "profile_plane_origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "extrusion_unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "selected_plane_origin_cm": [
+            6.894427190999916,
+            -1.2111456180001683,
+            9.0
+          ],
+          "selected_plane_unit_normal": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "selected_plane_equation_constant_cm": 11.0,
+          "plane_axis_denominator": 1.0,
+          "selected_plane_intersection_distance_cm": 3.0,
+          "original_selected_offset_cm": 0.0,
+          "derived_axial_interval_cm": [
+            0.0,
+            3.0
+          ],
+          "offset_scope": "Observed nonnegative offset with co-directed plane normal and extrusion axis only",
+          "native_start_kind": "ProfilePlane",
+          "native_end_kind": "ToEntity",
+          "native_uninterpreted_side_flags": 1,
+          "mathematical_equivalent_controls_are_native_records": false
+        },
+        "mathematical_equivalent_distance_controls": {
+          "operation": {
+            "kind": "NewBody"
+          },
+          "is_solid": true,
+          "stored_second_extent_enabled": 0,
+          "start": {
+            "kind": "ProfilePlane"
+          },
+          "extent": {
+            "mode": "OneSided",
+            "side_one": {
+              "condition": "Distance",
+              "uninterpreted_flags": 0,
+              "taper_angle_radians": 0.0,
+              "distance_cm": 3.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ToEntity offset 0.4 frame 0",
+      "expected_interval_cm": [
+        0.0,
+        3.4
+      ],
+      "independent_volume_cm3": 16.689710972195776,
+      "result": {
+        "source_circle": {
+          "center_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "radius_cm": 1.25,
+          "unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "reference_v": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": 0.0,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ProfilePlaneStart",
+            "radius_cm": 1.25,
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "axial_distance_cm": 3.4,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ToEntityEnd",
+            "radius_cm": 1.25,
+            "center_cm": [
+              0.0,
+              0.0,
+              3.4
+            ]
+          }
+        ],
+        "mathematical_disk_caps": [
+          {
+            "semantic_role": "LowerAxialCap",
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "mathematical_outward_unit_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.0,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          },
+          {
+            "semantic_role": "UpperAxialCap",
+            "center_cm": [
+              0.0,
+              0.0,
+              3.4
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "mathematical_outward_unit_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 3.4,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          }
+        ],
+        "lateral_carrier": {
+          "kind": "Cylinder",
+          "axis_origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "radial_slope": 0.0,
+          "radial_intercept_cm": 1.25,
+          "axial_domain_cm": [
+            0.0,
+            3.4
+          ],
+          "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+          "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+          "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+          "chosen_half_angle_radians": 0.0,
+          "native_UV": null,
+          "native_FACE_identity": null
+        },
+        "axial_length_cm": 3.4,
+        "volume_cm3": 16.689710972195776,
+        "lateral_area_cm2": 26.70353755551324,
+        "total_area_cm2": 36.52101459798134,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -1.25,
+            -1.25,
+            0.0
+          ],
+          "maximum": [
+            1.25,
+            1.25,
+            3.4
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Native selected parallel/co-directed plane, positive plane intersection, observed nonnegative ToEntity/FromEntity offset and zero-taper one-sided solid NewBody construction. Distance-equivalent operands are derived mathematical inputs, not rewritten native controls. No selected BRep, reversed/oblique target convention, UV, ENTITY or chronological identity.",
+        "plane_limit_derivation": {
+          "kind": "ToParallelPlane",
+          "selected_plane_role": "side_one",
+          "profile_plane_origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "extrusion_unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "selected_plane_origin_cm": [
+            2.0,
+            0.0,
+            3.0
+          ],
+          "selected_plane_unit_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "selected_plane_equation_constant_cm": 3.0,
+          "plane_axis_denominator": 1.0,
+          "selected_plane_intersection_distance_cm": 3.0,
+          "original_selected_offset_cm": 0.4,
+          "derived_axial_interval_cm": [
+            0.0,
+            3.4
+          ],
+          "offset_scope": "Observed nonnegative offset with co-directed plane normal and extrusion axis only",
+          "native_start_kind": "ProfilePlane",
+          "native_end_kind": "ToEntity",
+          "native_uninterpreted_side_flags": 1,
+          "mathematical_equivalent_controls_are_native_records": false
+        },
+        "mathematical_equivalent_distance_controls": {
+          "operation": {
+            "kind": "NewBody"
+          },
+          "is_solid": true,
+          "stored_second_extent_enabled": 0,
+          "start": {
+            "kind": "ProfilePlane"
+          },
+          "extent": {
+            "mode": "OneSided",
+            "side_one": {
+              "condition": "Distance",
+              "uninterpreted_flags": 0,
+              "taper_angle_radians": 0.0,
+              "distance_cm": 3.4
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ToEntity offset 0.4 frame 1",
+      "expected_interval_cm": [
+        0.0,
+        3.4
+      ],
+      "independent_volume_cm3": 16.689710972195776,
+      "result": {
+        "source_circle": {
+          "center_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "radius_cm": 1.25,
+          "unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "reference_u": [
+            0.4472135954999579,
+            0.8944271909999159,
+            0.0
+          ],
+          "reference_v": [
+            -0.5962847939999438,
+            0.2981423969999719,
+            0.7453559924999298
+          ]
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": 0.0,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ProfilePlaneStart",
+            "radius_cm": 1.25,
+            "center_cm": [
+              4.0,
+              -2.0,
+              7.0
+            ]
+          },
+          {
+            "axial_distance_cm": 3.4,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "ToEntityEnd",
+            "radius_cm": 1.25,
+            "center_cm": [
+              6.266666666666667,
+              -3.1333333333333333,
+              9.266666666666666
+            ]
+          }
+        ],
+        "mathematical_disk_caps": [
+          {
+            "semantic_role": "LowerAxialCap",
+            "center_cm": [
+              4.0,
+              -2.0,
+              7.0
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "reference_u": [
+              0.4472135954999579,
+              0.8944271909999159,
+              0.0
+            ],
+            "reference_v": [
+              -0.5962847939999438,
+              0.2981423969999719,
+              0.7453559924999298
+            ],
+            "mathematical_outward_unit_normal": [
+              -0.6666666666666666,
+              0.3333333333333333,
+              -0.6666666666666666
+            ],
+            "plane_constant_cm": -7.999999999999999,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          },
+          {
+            "semantic_role": "UpperAxialCap",
+            "center_cm": [
+              6.266666666666667,
+              -3.1333333333333333,
+              9.266666666666666
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "reference_u": [
+              0.4472135954999579,
+              0.8944271909999159,
+              0.0
+            ],
+            "reference_v": [
+              -0.5962847939999438,
+              0.2981423969999719,
+              0.7453559924999298
+            ],
+            "mathematical_outward_unit_normal": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "plane_constant_cm": 11.399999999999999,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          }
+        ],
+        "lateral_carrier": {
+          "kind": "Cylinder",
+          "axis_origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "radial_slope": 0.0,
+          "radial_intercept_cm": 1.25,
+          "axial_domain_cm": [
+            0.0,
+            3.4
+          ],
+          "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+          "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+          "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+          "chosen_half_angle_radians": 0.0,
+          "native_UV": null,
+          "native_FACE_identity": null
+        },
+        "axial_length_cm": 3.4,
+        "volume_cm3": 16.689710972195776,
+        "lateral_area_cm2": 26.70353755551324,
+        "total_area_cm2": 36.52101459798134,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            3.068305009375088,
+            -4.311844635310912,
+            6.068305009375088
+          ],
+          "maximum": [
+            7.198361657291579,
+            -0.8214886980224207,
+            10.198361657291578
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Native selected parallel/co-directed plane, positive plane intersection, observed nonnegative ToEntity/FromEntity offset and zero-taper one-sided solid NewBody construction. Distance-equivalent operands are derived mathematical inputs, not rewritten native controls. No selected BRep, reversed/oblique target convention, UV, ENTITY or chronological identity.",
+        "plane_limit_derivation": {
+          "kind": "ToParallelPlane",
+          "selected_plane_role": "side_one",
+          "profile_plane_origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "extrusion_unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "selected_plane_origin_cm": [
+            6.894427190999916,
+            -1.2111456180001683,
+            9.0
+          ],
+          "selected_plane_unit_normal": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "selected_plane_equation_constant_cm": 11.0,
+          "plane_axis_denominator": 1.0,
+          "selected_plane_intersection_distance_cm": 3.0,
+          "original_selected_offset_cm": 0.4,
+          "derived_axial_interval_cm": [
+            0.0,
+            3.4
+          ],
+          "offset_scope": "Observed nonnegative offset with co-directed plane normal and extrusion axis only",
+          "native_start_kind": "ProfilePlane",
+          "native_end_kind": "ToEntity",
+          "native_uninterpreted_side_flags": 1,
+          "mathematical_equivalent_controls_are_native_records": false
+        },
+        "mathematical_equivalent_distance_controls": {
+          "operation": {
+            "kind": "NewBody"
+          },
+          "is_solid": true,
+          "stored_second_extent_enabled": 0,
+          "start": {
+            "kind": "ProfilePlane"
+          },
+          "extent": {
+            "mode": "OneSided",
+            "side_one": {
+              "condition": "Distance",
+              "uninterpreted_flags": 0,
+              "taper_angle_radians": 0.0,
+              "distance_cm": 3.4
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "FromEntity offset 0.5 frame 0",
+      "expected_interval_cm": [
+        3.5,
+        5.2
+      ],
+      "independent_volume_cm3": 8.34485548609789,
+      "result": {
+        "source_circle": {
+          "center_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "radius_cm": 1.25,
+          "unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_u": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "reference_v": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": 3.5,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "FromEntityStart",
+            "radius_cm": 1.25,
+            "center_cm": [
+              0.0,
+              0.0,
+              3.5
+            ]
+          },
+          {
+            "axial_distance_cm": 5.2,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "DistanceEnd",
+            "radius_cm": 1.25,
+            "center_cm": [
+              0.0,
+              0.0,
+              5.2
+            ]
+          }
+        ],
+        "mathematical_disk_caps": [
+          {
+            "semantic_role": "LowerAxialCap",
+            "center_cm": [
+              0.0,
+              0.0,
+              3.5
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "mathematical_outward_unit_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": -3.5,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          },
+          {
+            "semantic_role": "UpperAxialCap",
+            "center_cm": [
+              0.0,
+              0.0,
+              5.2
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "reference_u": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "reference_v": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "mathematical_outward_unit_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 5.2,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          }
+        ],
+        "lateral_carrier": {
+          "kind": "Cylinder",
+          "axis_origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "radial_slope": 0.0,
+          "radial_intercept_cm": 1.25,
+          "axial_domain_cm": [
+            3.5,
+            5.2
+          ],
+          "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+          "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+          "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+          "chosen_half_angle_radians": 0.0,
+          "native_UV": null,
+          "native_FACE_identity": null
+        },
+        "axial_length_cm": 1.7000000000000002,
+        "volume_cm3": 8.34485548609789,
+        "lateral_area_cm2": 13.351768777756622,
+        "total_area_cm2": 23.169245820224724,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -1.25,
+            -1.25,
+            3.5
+          ],
+          "maximum": [
+            1.25,
+            1.25,
+            5.2
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Native selected parallel/co-directed plane, positive plane intersection, observed nonnegative ToEntity/FromEntity offset and zero-taper one-sided solid NewBody construction. Distance-equivalent operands are derived mathematical inputs, not rewritten native controls. No selected BRep, reversed/oblique target convention, UV, ENTITY or chronological identity.",
+        "plane_limit_derivation": {
+          "kind": "FromParallelPlane",
+          "selected_plane_role": "start",
+          "profile_plane_origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "extrusion_unit_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "selected_plane_origin_cm": [
+            2.0,
+            0.0,
+            3.0
+          ],
+          "selected_plane_unit_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "selected_plane_equation_constant_cm": 3.0,
+          "plane_axis_denominator": 1.0,
+          "selected_plane_intersection_distance_cm": 3.0,
+          "original_selected_offset_cm": 0.5,
+          "derived_axial_interval_cm": [
+            3.5,
+            5.2
+          ],
+          "offset_scope": "Observed nonnegative offset with co-directed plane normal and extrusion axis only",
+          "native_start_kind": "FromEntity",
+          "native_end_kind": "Distance",
+          "native_uninterpreted_side_flags": 0,
+          "mathematical_equivalent_controls_are_native_records": false
+        },
+        "mathematical_equivalent_distance_controls": {
+          "operation": {
+            "kind": "NewBody"
+          },
+          "is_solid": true,
+          "stored_second_extent_enabled": 0,
+          "start": {
+            "kind": "Offset",
+            "offset_cm": 3.5
+          },
+          "extent": {
+            "mode": "OneSided",
+            "side_one": {
+              "condition": "Distance",
+              "uninterpreted_flags": 0,
+              "taper_angle_radians": 0.0,
+              "distance_cm": 1.7000000000000002
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "FromEntity offset 0.5 frame 1",
+      "expected_interval_cm": [
+        3.5,
+        5.2
+      ],
+      "independent_volume_cm3": 8.34485548609789,
+      "result": {
+        "source_circle": {
+          "center_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "radius_cm": 1.25,
+          "unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "reference_u": [
+            0.4472135954999579,
+            0.8944271909999159,
+            0.0
+          ],
+          "reference_v": [
+            -0.5962847939999438,
+            0.2981423969999719,
+            0.7453559924999298
+          ]
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": 3.5,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "FromEntityStart",
+            "radius_cm": 1.25,
+            "center_cm": [
+              6.333333333333333,
+              -3.1666666666666665,
+              9.333333333333332
+            ]
+          },
+          {
+            "axial_distance_cm": 5.2,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "DistanceEnd",
+            "radius_cm": 1.25,
+            "center_cm": [
+              7.466666666666667,
+              -3.7333333333333334,
+              10.466666666666667
+            ]
+          }
+        ],
+        "mathematical_disk_caps": [
+          {
+            "semantic_role": "LowerAxialCap",
+            "center_cm": [
+              6.333333333333333,
+              -3.1666666666666665,
+              9.333333333333332
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "reference_u": [
+              0.4472135954999579,
+              0.8944271909999159,
+              0.0
+            ],
+            "reference_v": [
+              -0.5962847939999438,
+              0.2981423969999719,
+              0.7453559924999298
+            ],
+            "mathematical_outward_unit_normal": [
+              -0.6666666666666666,
+              0.3333333333333333,
+              -0.6666666666666666
+            ],
+            "plane_constant_cm": -11.499999999999998,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          },
+          {
+            "semantic_role": "UpperAxialCap",
+            "center_cm": [
+              7.466666666666667,
+              -3.7333333333333334,
+              10.466666666666667
+            ],
+            "radius_cm": 1.25,
+            "axis_unit": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "reference_u": [
+              0.4472135954999579,
+              0.8944271909999159,
+              0.0
+            ],
+            "reference_v": [
+              -0.5962847939999438,
+              0.2981423969999719,
+              0.7453559924999298
+            ],
+            "mathematical_outward_unit_normal": [
+              0.6666666666666666,
+              -0.3333333333333333,
+              0.6666666666666666
+            ],
+            "plane_constant_cm": 13.2,
+            "circle_definition": "C + R*(U*cos(theta)+V*sin(theta)), 0<=theta<2*pi; chosen mathematical angle, no native UV",
+            "disk_definition": "C + rho*(U*cos(theta)+V*sin(theta)), 0<=rho<=R",
+            "native_FACE_identity": null,
+            "native_EDGE_identity": null,
+            "native_UV": null
+          }
+        ],
+        "lateral_carrier": {
+          "kind": "Cylinder",
+          "axis_origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "radial_slope": 0.0,
+          "radial_intercept_cm": 1.25,
+          "axial_domain_cm": [
+            3.5,
+            5.2
+          ],
+          "radius_definition": "radius(h)=radial_intercept+radial_slope*h, h=axis dot (P-axis_origin)",
+          "implicit_definition": "squared norm(P-axis_origin-h*axis) = radius(h)^2",
+          "chosen_parameterization": "P(h,theta)=axis_origin+h*axis+radius(h)*(U*cos(theta)+V*sin(theta))",
+          "chosen_half_angle_radians": 0.0,
+          "native_UV": null,
+          "native_FACE_identity": null
+        },
+        "axial_length_cm": 1.7000000000000002,
+        "volume_cm3": 8.34485548609789,
+        "lateral_area_cm2": 13.351768777756622,
+        "total_area_cm2": 23.169245820224724,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            5.401638342708421,
+            -4.911844635310913,
+            8.40163834270842
+          ],
+          "maximum": [
+            8.398361657291579,
+            -1.9881553646890873,
+            11.398361657291579
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Native selected parallel/co-directed plane, positive plane intersection, observed nonnegative ToEntity/FromEntity offset and zero-taper one-sided solid NewBody construction. Distance-equivalent operands are derived mathematical inputs, not rewritten native controls. No selected BRep, reversed/oblique target convention, UV, ENTITY or chronological identity.",
+        "plane_limit_derivation": {
+          "kind": "FromParallelPlane",
+          "selected_plane_role": "start",
+          "profile_plane_origin_cm": [
+            4.0,
+            -2.0,
+            7.0
+          ],
+          "extrusion_unit_axis": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "selected_plane_origin_cm": [
+            6.894427190999916,
+            -1.2111456180001683,
+            9.0
+          ],
+          "selected_plane_unit_normal": [
+            0.6666666666666666,
+            -0.3333333333333333,
+            0.6666666666666666
+          ],
+          "selected_plane_equation_constant_cm": 11.0,
+          "plane_axis_denominator": 1.0,
+          "selected_plane_intersection_distance_cm": 3.0,
+          "original_selected_offset_cm": 0.5,
+          "derived_axial_interval_cm": [
+            3.5,
+            5.2
+          ],
+          "offset_scope": "Observed nonnegative offset with co-directed plane normal and extrusion axis only",
+          "native_start_kind": "FromEntity",
+          "native_end_kind": "Distance",
+          "native_uninterpreted_side_flags": 0,
+          "mathematical_equivalent_controls_are_native_records": false
+        },
+        "mathematical_equivalent_distance_controls": {
+          "operation": {
+            "kind": "NewBody"
+          },
+          "is_solid": true,
+          "stored_second_extent_enabled": 0,
+          "start": {
+            "kind": "Offset",
+            "offset_cm": 3.5
+          },
+          "extent": {
+            "mode": "OneSided",
+            "side_one": {
+              "condition": "Distance",
+              "uninterpreted_flags": 0,
+              "taper_angle_radians": 0.0,
+              "distance_cm": 1.7000000000000002
+            }
+          }
+        }
+      }
+    }
+  ]
+}

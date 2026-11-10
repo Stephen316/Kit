@@ -1,0 +1,2339 @@
+{
+  "interface": "decode_ruled_edge_sources(data,records,features,member,members,body_identifier_summary,body_selections=None)->associations/unresolved/scope",
+  "operand_interface": "decode_ruled_edge_operands(recipe)->complete156-byte operation fields, without source ownership inference",
+  "integration": {
+    "stream": "ruled_edge_sources",
+    "owner_feature_list": "ruled_edge_sources",
+    "owner_field": "owner_object_id",
+    "old_warning_clearances": 0,
+    "old_tool_changes": 0
+  },
+  "scope": "One source edge per Ruled owner despite two native selector roles; no API geometry/handle identity, general direction, persistent topology or historical-state claim",
+  "baseline": {
+    "commit": "b6385cd",
+    "path": "/private/tmp/fusion-ruled-edge-baseline.json",
+    "sha256": "3c62584ccb1807f096cea2f17d3e4267398525422bdd8546b3585af64e042777"
+  },
+  "samples": [
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_tangent.f3d",
+      "archive_sha256": "6e69bfd071bf1405f85753f1149916ccde35e9ca27e49602fad892dad19200f4",
+      "expected_summary": {
+        "associations": [
+          {
+            "owner_object_id": 285,
+            "descriptor_roles": [
+              {
+                "role": "Profile",
+                "selection_record_object_id": 292,
+                "descriptor_object_id": 295,
+                "recipe_object_id": 298,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "48d9878a-e2b5-4a48-88d3-20a66b9eef49",
+                "entity_guid_text": "aa7d9163-2e28-4c8e-ac35-b462f660f49c",
+                "context_object_id": 366,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 297,
+                "support_object_id": 296,
+                "support_payload_hex": "00000000000001010100000001f300000000000000000050cc4eb84a5e06000127010000000000000000ebcc4eb84a5e06000000000000000000",
+                "proxy_support_object_id": 293,
+                "proxy_helper_object_id": 294,
+                "proxy_payload_hex": "0000010000000127010000000000000000000001000000017001000000000000000000000000080000000000000000000000000001010000001b9fc9fe79ea3e010100000126010000000000000000010000012501000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "0000000000000101010000000127010000000000000000ebcc4eb84a5e060001240100000000000000003ecd4eb84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33346
+              },
+              {
+                "role": "Auxiliary",
+                "selection_record_object_id": 299,
+                "descriptor_object_id": 302,
+                "recipe_object_id": 305,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "48d9878a-e2b5-4a48-88d3-20a66b9eef49",
+                "entity_guid_text": "aa7d9163-2e28-4c8e-ac35-b462f660f49c",
+                "context_object_id": 367,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 304,
+                "support_object_id": 303,
+                "support_payload_hex": "00000000000001010100000001f300000000000000000050cc4eb84a5e0600012e0100000000000000001dcd4eb84a5e06000000000000000000",
+                "proxy_support_object_id": 300,
+                "proxy_helper_object_id": 301,
+                "proxy_payload_hex": "000001000000012e010000000000000000000001000000017101000000000000000000000000080000000000000000000000000001010000008d3b5cad3ee73e01010000012d010000000000000000010000012c01000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "000000000000010101000000012e0100000000000000001dcd4eb84a5e0600012b0100000000000000004dcd4eb84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33384
+              }
+            ],
+            "same_recipe_bytes": true,
+            "same_cached_edge": true,
+            "recipe": {
+              "object_id": 298,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 35091,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "repeated_dependency_object_ids": [
+              287,
+              290,
+              292,
+              295,
+              299,
+              302
+            ],
+            "direction_selection_semantics": null,
+            "full_counted_recipe_payload_hex": "000001000000030000000400000001000000010000003100000000010000002d0100000000000001000000010000003500000000010000002d0100000000000001000000010000003400000000010000002d0100000000000001000000010000003200000000010000002d010000000000000000000010000000656467655f7265636970655f6461746100000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+            "exact_full_counted_recipe_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_count": 1,
+              "face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_endpoint_count": 2,
+              "endpoint_operands": [
+                {
+                  "operand_ordinal": 0,
+                  "relative_offset": 24,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 44,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 2,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 64,
+                      "payload_hex": "02000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000"
+                },
+                {
+                  "operand_ordinal": 1,
+                  "relative_offset": 88,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 108,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 3,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 128,
+                      "payload_hex": "03000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000"
+                }
+              ],
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "exact_full_operation_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 298,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 112,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 76,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        74,
+                        75
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 2,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 109,
+                      "owner_record_index": 72,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 111,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        110,
+                        74
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 3,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 106,
+                      "owner_record_index": 70,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 108,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        75,
+                        107
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "historical_source_owner_object_id": 243,
+            "body_anchor_object_id": 284,
+            "native_body_object_id": 278,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ee2e77da-995e-4b8e-800a-08480ff7a58d.smbh",
+            "explicit_asm_body_index": 3,
+            "endpoint_incidence": [
+              {
+                "operand_ordinal": 0,
+                "adjacent_edge_name_index": 2,
+                "adjacent_edge_record_index": 72,
+                "vertex_record_index": 74,
+                "point_record_index": 113,
+                "raw_point": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "operand_ordinal": 1,
+                "adjacent_edge_name_index": 3,
+                "adjacent_edge_record_index": 70,
+                "vertex_record_index": 75,
+                "point_record_index": 114,
+                "raw_point": [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "curve_record_index": 76,
+              "geometry": {
+                "kind": "Line",
+                "raw_origin": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                "direction": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              "raw_endpoint_points": [
+                [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              ],
+              "parameter_domain": [
+                0.0,
+                2.0
+              ],
+              "stored_edge_reversal": false,
+              "incidence_routes": [
+                {
+                  "edge_record_index": 46,
+                  "coedge_record_index": 33,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 72,
+                  "coedge_record_index": 45,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 70,
+                  "coedge_record_index": 44,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                }
+              ]
+            },
+            "API_input_edge_count": null,
+            "API_handle_identity": null,
+            "direction_parameter_mapping": null,
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "qualified_historical_state": null,
+            "coordinate_scope": "Raw mapped initial ASM cache with identity BODY transform; no general header-unit/occurrence conversion",
+            "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 295,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          },
+          {
+            "descriptor_object_id": 302,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "expected_prior_tool_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "distance_binding_object_id": 287,
+        "angle_binding_object_id": 290,
+        "ruled_type": "Tangent",
+        "stored_ruled_type_code": 1,
+        "corner_type": "Rounded",
+        "stored_corner_type_code": 0,
+        "profile_selection": {
+          "selection_record_object_id": 292,
+          "descriptor_object_ids": [
+            295
+          ],
+          "stored_descriptor_count": 1
+        },
+        "auxiliary_selection": {
+          "selection_record_object_id": 299,
+          "descriptor_object_ids": [
+            302
+          ],
+          "stored_descriptor_count": 1
+        },
+        "direction": null,
+        "result_record_object_ids": [
+          342
+        ],
+        "operation_status": "Native operation and alternate-face controls not decoded"
+      },
+      "API_evidence": {
+        "ground_truth_sha256": "ffb95a9a7bd66f8394d93f63ef93fdd2630bc41ffa32ea34a5224a152f532882",
+        "actual_saved_settings": {
+          "distance_cm": 0.5,
+          "angle_radians": 0.2617993877991494,
+          "ruled_type": 0,
+          "corner_type": 0,
+          "alternate_face": false,
+          "operation_input": "NewBody",
+          "result_body_count": 2
+        },
+        "selected_edge_geometry_getters_captured": false,
+        "native_API_handle_assignment": null,
+        "scope": "Existing saved API controls only; no independent source-edge geometry or two-input-edge claim"
+      },
+      "full_recipe_replays": 2,
+      "duplicate_selector_roles_name_one_edge": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_normal.f3d",
+      "archive_sha256": "162b7804e2f0229d66c7ae514dfd8d2cdb791682cb215c06b0c0c322f9d51fec",
+      "expected_summary": {
+        "associations": [
+          {
+            "owner_object_id": 285,
+            "descriptor_roles": [
+              {
+                "role": "Profile",
+                "selection_record_object_id": 292,
+                "descriptor_object_id": 295,
+                "recipe_object_id": 298,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "07b192e7-06b8-4d38-b703-804ced0c3ae8",
+                "entity_guid_text": "418a490f-ac87-4d61-857c-d8acf2f1caa1",
+                "context_object_id": 366,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 297,
+                "support_object_id": 296,
+                "support_payload_hex": "00000000000001010100000001f30000000000000000006aaa54b84a5e06000127010000000000000000f4aa54b84a5e06000000000000000000",
+                "proxy_support_object_id": 293,
+                "proxy_helper_object_id": 294,
+                "proxy_payload_hex": "00000100000001270100000000000000000000010000000170010000000000000000000000000800000000000000000000000000010100000094162eabb0e93e010100000126010000000000000000010000012501000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "0000000000000101010000000127010000000000000000f4aa54b84a5e0600012401000000000000000045ab54b84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33346
+              },
+              {
+                "role": "Auxiliary",
+                "selection_record_object_id": 299,
+                "descriptor_object_id": 302,
+                "recipe_object_id": 305,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "07b192e7-06b8-4d38-b703-804ced0c3ae8",
+                "entity_guid_text": "418a490f-ac87-4d61-857c-d8acf2f1caa1",
+                "context_object_id": 367,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 304,
+                "support_object_id": 303,
+                "support_payload_hex": "00000000000001010100000001f30000000000000000006aaa54b84a5e0600012e01000000000000000025ab54b84a5e06000000000000000000",
+                "proxy_support_object_id": 300,
+                "proxy_helper_object_id": 301,
+                "proxy_payload_hex": "000001000000012e0100000000000000000000010000000171010000000000000000000000000800000000000000000000000000010100000089a0a958aee73e01010000012d010000000000000000010000012c01000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "000000000000010101000000012e01000000000000000025ab54b84a5e0600012b01000000000000000054ab54b84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33384
+              }
+            ],
+            "same_recipe_bytes": true,
+            "same_cached_edge": true,
+            "recipe": {
+              "object_id": 298,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 35091,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "repeated_dependency_object_ids": [
+              287,
+              290,
+              292,
+              295,
+              299,
+              302
+            ],
+            "direction_selection_semantics": null,
+            "full_counted_recipe_payload_hex": "000001000000030000000400000001000000010000003100000000010000002d0100000000000001000000010000003500000000010000002d0100000000000001000000010000003400000000010000002d0100000000000001000000010000003200000000010000002d010000000000000000000010000000656467655f7265636970655f6461746100000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+            "exact_full_counted_recipe_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_count": 1,
+              "face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_endpoint_count": 2,
+              "endpoint_operands": [
+                {
+                  "operand_ordinal": 0,
+                  "relative_offset": 24,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 44,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 2,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 64,
+                      "payload_hex": "02000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000"
+                },
+                {
+                  "operand_ordinal": 1,
+                  "relative_offset": 88,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 108,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 3,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 128,
+                      "payload_hex": "03000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000"
+                }
+              ],
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "exact_full_operation_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 298,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 112,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 76,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        74,
+                        75
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 2,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 109,
+                      "owner_record_index": 72,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 111,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        110,
+                        74
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 3,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 106,
+                      "owner_record_index": 70,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 108,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        75,
+                        107
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "historical_source_owner_object_id": 243,
+            "body_anchor_object_id": 284,
+            "native_body_object_id": 278,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.96347fa8-9c18-4ed9-97fe-d4ccb17a8138.smbh",
+            "explicit_asm_body_index": 3,
+            "endpoint_incidence": [
+              {
+                "operand_ordinal": 0,
+                "adjacent_edge_name_index": 2,
+                "adjacent_edge_record_index": 72,
+                "vertex_record_index": 74,
+                "point_record_index": 113,
+                "raw_point": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "operand_ordinal": 1,
+                "adjacent_edge_name_index": 3,
+                "adjacent_edge_record_index": 70,
+                "vertex_record_index": 75,
+                "point_record_index": 114,
+                "raw_point": [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "curve_record_index": 76,
+              "geometry": {
+                "kind": "Line",
+                "raw_origin": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                "direction": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              "raw_endpoint_points": [
+                [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              ],
+              "parameter_domain": [
+                0.0,
+                2.0
+              ],
+              "stored_edge_reversal": false,
+              "incidence_routes": [
+                {
+                  "edge_record_index": 46,
+                  "coedge_record_index": 33,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 72,
+                  "coedge_record_index": 45,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 70,
+                  "coedge_record_index": 44,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                }
+              ]
+            },
+            "API_input_edge_count": null,
+            "API_handle_identity": null,
+            "direction_parameter_mapping": null,
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "qualified_historical_state": null,
+            "coordinate_scope": "Raw mapped initial ASM cache with identity BODY transform; no general header-unit/occurrence conversion",
+            "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 295,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          },
+          {
+            "descriptor_object_id": 302,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "expected_prior_tool_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "distance_binding_object_id": 287,
+        "angle_binding_object_id": 290,
+        "ruled_type": "Normal",
+        "stored_ruled_type_code": 0,
+        "corner_type": "Rounded",
+        "stored_corner_type_code": 0,
+        "profile_selection": {
+          "selection_record_object_id": 292,
+          "descriptor_object_ids": [
+            295
+          ],
+          "stored_descriptor_count": 1
+        },
+        "auxiliary_selection": {
+          "selection_record_object_id": 299,
+          "descriptor_object_ids": [
+            302
+          ],
+          "stored_descriptor_count": 1
+        },
+        "direction": null,
+        "result_record_object_ids": [
+          342
+        ],
+        "operation_status": "Native operation and alternate-face controls not decoded"
+      },
+      "API_evidence": {
+        "ground_truth_sha256": "ffb95a9a7bd66f8394d93f63ef93fdd2630bc41ffa32ea34a5224a152f532882",
+        "actual_saved_settings": {
+          "distance_cm": 0.5,
+          "angle_radians": 0.2617993877991494,
+          "ruled_type": 1,
+          "corner_type": 0,
+          "alternate_face": false,
+          "operation_input": "NewBody",
+          "result_body_count": 2
+        },
+        "selected_edge_geometry_getters_captured": false,
+        "native_API_handle_assignment": null,
+        "scope": "Existing saved API controls only; no independent source-edge geometry or two-input-edge claim"
+      },
+      "full_recipe_replays": 2,
+      "duplicate_selector_roles_name_one_edge": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+      "archive_sha256": "d4cef7122b2814e2b03c71ef397eed1f5ff63378811a5fe2d7f55f6bc794c387",
+      "expected_summary": {
+        "associations": [
+          {
+            "owner_object_id": 285,
+            "descriptor_roles": [
+              {
+                "role": "Profile",
+                "selection_record_object_id": 292,
+                "descriptor_object_id": 295,
+                "recipe_object_id": 298,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "cc11db81-e6cc-4547-bed1-5c8ea87cf3de",
+                "entity_guid_text": "bd7b2f83-f8a4-419e-8a74-c8392ad093d7",
+                "context_object_id": 378,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 297,
+                "support_object_id": 296,
+                "support_payload_hex": "00000000000001010100000001f3000000000000000000d2855ab84a5e06000127010000000000000000a9865ab84a5e06000000000000000000",
+                "proxy_support_object_id": 293,
+                "proxy_helper_object_id": 294,
+                "proxy_payload_hex": "0000010000000127010000000000000000000001000000017b0100000000000000000000000008000000000000000000000000000101000000a227655243eb3e010100000126010000000000000000010000012501000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "0000000000000101010000000127010000000000000000a9865ab84a5e06000124010000000000000000ca865ab84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33495
+              },
+              {
+                "role": "Auxiliary",
+                "selection_record_object_id": 299,
+                "descriptor_object_id": 302,
+                "recipe_object_id": 305,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "cc11db81-e6cc-4547-bed1-5c8ea87cf3de",
+                "entity_guid_text": "bd7b2f83-f8a4-419e-8a74-c8392ad093d7",
+                "context_object_id": 377,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 304,
+                "support_object_id": 303,
+                "support_payload_hex": "00000000000001010100000001f3000000000000000000d2855ab84a5e0600012e01000000000000000075865ab84a5e06000000000000000000",
+                "proxy_support_object_id": 300,
+                "proxy_helper_object_id": 301,
+                "proxy_payload_hex": "000001000000012e010000000000000000000001000000017c01000000000000000000000000080000000000000000000000000001010000001fc417ebf0e73e01010000012d010000000000000000010000012c01000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "000000000000010101000000012e01000000000000000075865ab84a5e0600012b010000000000000000da865ab84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33533
+              }
+            ],
+            "same_recipe_bytes": true,
+            "same_cached_edge": true,
+            "recipe": {
+              "object_id": 298,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 35273,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "repeated_dependency_object_ids": [
+              287,
+              290,
+              292,
+              295,
+              299,
+              302,
+              306,
+              309
+            ],
+            "direction_selection_semantics": null,
+            "full_counted_recipe_payload_hex": "000001000000030000000400000001000000010000003100000000010000002d0100000000000001000000010000003500000000010000002d0100000000000001000000010000003400000000010000002d0100000000000001000000010000003200000000010000002d010000000000000000000010000000656467655f7265636970655f6461746100000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+            "exact_full_counted_recipe_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_count": 1,
+              "face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_endpoint_count": 2,
+              "endpoint_operands": [
+                {
+                  "operand_ordinal": 0,
+                  "relative_offset": 24,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 44,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 2,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 64,
+                      "payload_hex": "02000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000"
+                },
+                {
+                  "operand_ordinal": 1,
+                  "relative_offset": 88,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 108,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 3,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 128,
+                      "payload_hex": "03000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000"
+                }
+              ],
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "exact_full_operation_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 298,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 112,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 76,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        74,
+                        75
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 2,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 109,
+                      "owner_record_index": 72,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 111,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        110,
+                        74
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 3,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 106,
+                      "owner_record_index": 70,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 108,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        75,
+                        107
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "historical_source_owner_object_id": 243,
+            "body_anchor_object_id": 284,
+            "native_body_object_id": 278,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2eb2fb51-6f14-451e-9241-2e1dc9781349.smbh",
+            "explicit_asm_body_index": 3,
+            "endpoint_incidence": [
+              {
+                "operand_ordinal": 0,
+                "adjacent_edge_name_index": 2,
+                "adjacent_edge_record_index": 72,
+                "vertex_record_index": 74,
+                "point_record_index": 113,
+                "raw_point": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "operand_ordinal": 1,
+                "adjacent_edge_name_index": 3,
+                "adjacent_edge_record_index": 70,
+                "vertex_record_index": 75,
+                "point_record_index": 114,
+                "raw_point": [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "curve_record_index": 76,
+              "geometry": {
+                "kind": "Line",
+                "raw_origin": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                "direction": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              "raw_endpoint_points": [
+                [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              ],
+              "parameter_domain": [
+                0.0,
+                2.0
+              ],
+              "stored_edge_reversal": false,
+              "incidence_routes": [
+                {
+                  "edge_record_index": 46,
+                  "coedge_record_index": 33,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 72,
+                  "coedge_record_index": 45,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 70,
+                  "coedge_record_index": 44,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                }
+              ]
+            },
+            "API_input_edge_count": null,
+            "API_handle_identity": null,
+            "direction_parameter_mapping": null,
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "qualified_historical_state": null,
+            "coordinate_scope": "Raw mapped initial ASM cache with identity BODY transform; no general header-unit/occurrence conversion",
+            "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 295,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          },
+          {
+            "descriptor_object_id": 302,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "expected_prior_tool_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "distance_binding_object_id": 287,
+        "angle_binding_object_id": 290,
+        "ruled_type": "Direction",
+        "stored_ruled_type_code": 2,
+        "corner_type": "Rounded",
+        "stored_corner_type_code": 0,
+        "profile_selection": {
+          "selection_record_object_id": 292,
+          "descriptor_object_ids": [
+            295
+          ],
+          "stored_descriptor_count": 1
+        },
+        "auxiliary_selection": {
+          "selection_record_object_id": 299,
+          "descriptor_object_ids": [
+            302
+          ],
+          "stored_descriptor_count": 1
+        },
+        "direction": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Z",
+            "object_id": 41,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 306,
+          "descriptor_object_id": 309,
+          "terminal_object_id": 312,
+          "namespace_text": "cc11db81-e6cc-4547-bed1-5c8ea87cf3de",
+          "entity_guid_text": "bd7b2f83-f8a4-419e-8a74-c8392ad093d7",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "result_record_object_ids": [
+          353
+        ],
+        "operation_status": "Native operation and alternate-face controls not decoded"
+      },
+      "API_evidence": {
+        "ground_truth_sha256": "ffb95a9a7bd66f8394d93f63ef93fdd2630bc41ffa32ea34a5224a152f532882",
+        "actual_saved_settings": {
+          "distance_cm": 0.5,
+          "angle_radians": 0.2617993877991494,
+          "ruled_type": 2,
+          "corner_type": 0,
+          "alternate_face": false,
+          "operation_input": "NewBody",
+          "direction_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "result_body_count": 2
+        },
+        "selected_edge_geometry_getters_captured": false,
+        "native_API_handle_assignment": null,
+        "scope": "Existing saved API controls only; no independent source-edge geometry or two-input-edge claim"
+      },
+      "full_recipe_replays": 2,
+      "duplicate_selector_roles_name_one_edge": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+      "archive_sha256": "8c8bc8479011e2e9cc13d6338e20424fbbd04e03007df948b947b94cc87f9f59",
+      "expected_summary": {
+        "associations": [
+          {
+            "owner_object_id": 285,
+            "descriptor_roles": [
+              {
+                "role": "Profile",
+                "selection_record_object_id": 292,
+                "descriptor_object_id": 295,
+                "recipe_object_id": 298,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "baa6dd23-b573-400b-b43d-0cd85c4fb454",
+                "entity_guid_text": "62bf640f-9aab-4257-964a-b733bcb72864",
+                "context_object_id": 367,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 297,
+                "support_object_id": 296,
+                "support_payload_hex": "00000000000001010100000001f3000000000000000000ea2560b84a5e06000127010000000000000000ac2660b84a5e06000000000000000000",
+                "proxy_support_object_id": 293,
+                "proxy_helper_object_id": 294,
+                "proxy_payload_hex": "0000010000000127010000000000000000000001000000017001000000000000000000000000080000000000000000000000000001010000006f34bf1b84e93e010100000126010000000000000000010000012501000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "0000000000000101010000000127010000000000000000ac2660b84a5e06000124010000000000000000d02660b84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33346
+              },
+              {
+                "role": "Auxiliary",
+                "selection_record_object_id": 299,
+                "descriptor_object_id": 302,
+                "recipe_object_id": 305,
+                "body_anchor_object_id": 284,
+                "native_body_object_id": 278,
+                "historical_source_owner_object_id": 243,
+                "namespace_text": "baa6dd23-b573-400b-b43d-0cd85c4fb454",
+                "entity_guid_text": "62bf640f-9aab-4257-964a-b733bcb72864",
+                "context_object_id": 366,
+                "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                "context_payload_hex": "000000000000000000c0000000000000f03f0000000000000000000000000000000000000000000000c000000000000000000000000100",
+                "context_semantics": null,
+                "helper_object_id": 304,
+                "support_object_id": 303,
+                "support_payload_hex": "00000000000001010100000001f3000000000000000000ea2560b84a5e0600012e0100000000000000007f2660b84a5e06000000000000000000",
+                "proxy_support_object_id": 300,
+                "proxy_helper_object_id": 301,
+                "proxy_payload_hex": "000001000000012e0100000000000000000000010000000171010000000000000000000000000800000000000000000000000000010100000006b3c05975e63e01010000012d010000000000000000010000012c01000000000000000000011d010000000000000000",
+                "proxy_support_payload_hex": "000000000000010101000000012e0100000000000000007f2660b84a5e0600012b010000000000000000de2660b84a5e06000000000000000000",
+                "feature_proxy_reference_offset": 33384
+              }
+            ],
+            "same_recipe_bytes": true,
+            "same_cached_edge": true,
+            "recipe": {
+              "object_id": 298,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 35091,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_component_count": 1,
+                      "stored_reference_components_int32": [
+                        301
+                      ],
+                      "stored_reference_components_uint32": [
+                        301
+                      ],
+                      "stored_reference_component_bytes_hex": "2d010000",
+                      "stored_reference_terminator_uint32": 0,
+                      "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+            },
+            "repeated_dependency_object_ids": [
+              287,
+              290,
+              292,
+              295,
+              299,
+              302
+            ],
+            "direction_selection_semantics": null,
+            "full_counted_recipe_payload_hex": "000001000000030000000400000001000000010000003100000000010000002d0100000000000001000000010000003500000000010000002d0100000000000001000000010000003400000000010000002d0100000000000001000000010000003200000000010000002d010000000000000000000010000000656467655f7265636970655f6461746100000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+            "exact_full_counted_recipe_replay": true,
+            "operation_operands": {
+              "stored_direct_edge_name_index": 0,
+              "stored_secondary_index": -1,
+              "stored_face_count": 1,
+              "face_name_index": 1,
+              "stored_face_secondary_index": -1,
+              "stored_endpoint_count": 2,
+              "endpoint_operands": [
+                {
+                  "operand_ordinal": 0,
+                  "relative_offset": 24,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 44,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 2,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 64,
+                      "payload_hex": "02000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000"
+                },
+                {
+                  "operand_ordinal": 1,
+                  "relative_offset": 88,
+                  "stored_direct_vertex_name_index": -1,
+                  "stored_face_count": 1,
+                  "face_name_index": 1,
+                  "stored_face_secondary_index": -1,
+                  "stored_edge_count": 2,
+                  "nested_edges": [
+                    {
+                      "name_table_index": 0,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 108,
+                      "payload_hex": "00000000ffffffff0000000000000000ffffffff"
+                    },
+                    {
+                      "name_table_index": 3,
+                      "stored_secondary_index": -1,
+                      "stored_face_count": 0,
+                      "stored_endpoint_count": 0,
+                      "stored_terminal_int32": -1,
+                      "relative_offset": 128,
+                      "payload_hex": "03000000ffffffff0000000000000000ffffffff"
+                    }
+                  ],
+                  "stored_terminal_int32": 0,
+                  "payload_hex": "ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000"
+                }
+              ],
+              "stored_final_qualifier_int32": -1,
+              "qualifier_semantics": null,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+              "exact_full_operation_payload_replay": true
+            },
+            "naming_correspondence": {
+              "recipe_object_id": 298,
+              "payload_kind": "edge_recipe_data",
+              "name_entries": [
+                {
+                  "name_table_index": 0,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 112,
+                      "owner_record_index": 46,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 76,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        74,
+                        75
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 1,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 25,
+                      "owner_record_index": 19,
+                      "owner_kind": "face",
+                      "body_graph_membership": [
+                        3
+                      ]
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 2,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 109,
+                      "owner_record_index": 72,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 111,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        110,
+                        74
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                },
+                {
+                  "name_table_index": 3,
+                  "term_count": 1,
+                  "candidate_count": 1,
+                  "candidates": [
+                    {
+                      "attribute_record_index": 106,
+                      "owner_record_index": 70,
+                      "owner_kind": "edge",
+                      "body_graph_membership": [
+                        3
+                      ],
+                      "curve_index": 108,
+                      "curve_kind": "straight-curve",
+                      "endpoint_vertex_indices": [
+                        75,
+                        107
+                      ],
+                      "cached_endpoint_identity_same": false
+                    }
+                  ],
+                  "status": "UniqueStoredNamingCorrespondence",
+                  "selected_source_owner_record_index": null,
+                  "scope": "Exact complete stored term-group equality only; native recipe operation payload remains uninterpreted"
+                }
+              ],
+              "selected_source_status": "Unresolved; per-name tuple correspondence does not decode the whole recipe operation or choose among duplicate cache owners",
+              "scope": "Observed exact ASM generic-tag counted term grammar and native recipe name/index/component correspondence in the explicitly mapped same-asset blob; ambiguous cache owners retained without persistent topology/source closure claims"
+            },
+            "historical_source_owner_object_id": 243,
+            "body_anchor_object_id": 284,
+            "native_body_object_id": 278,
+            "mapping_record_object_id": 8,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.149131dd-df92-4535-9690-68f281369577.smbh",
+            "explicit_asm_body_index": 3,
+            "endpoint_incidence": [
+              {
+                "operand_ordinal": 0,
+                "adjacent_edge_name_index": 2,
+                "adjacent_edge_record_index": 72,
+                "vertex_record_index": 74,
+                "point_record_index": 113,
+                "raw_point": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "operand_ordinal": 1,
+                "adjacent_edge_name_index": 3,
+                "adjacent_edge_record_index": 70,
+                "vertex_record_index": 75,
+                "point_record_index": 114,
+                "raw_point": [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              }
+            ],
+            "cached_source": {
+              "kind": "Edge",
+              "edge_record_index": 46,
+              "face_record_index": 19,
+              "curve_record_index": 76,
+              "geometry": {
+                "kind": "Line",
+                "raw_origin": [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                "direction": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ]
+              },
+              "raw_endpoint_points": [
+                [
+                  -2.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -2.0,
+                  -1.0,
+                  0.0
+                ]
+              ],
+              "parameter_domain": [
+                0.0,
+                2.0
+              ],
+              "stored_edge_reversal": false,
+              "incidence_routes": [
+                {
+                  "edge_record_index": 46,
+                  "coedge_record_index": 33,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 72,
+                  "coedge_record_index": 45,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                },
+                {
+                  "edge_record_index": 70,
+                  "coedge_record_index": 44,
+                  "loop_record_index": 26,
+                  "face_record_index": 19
+                }
+              ]
+            },
+            "API_input_edge_count": null,
+            "API_handle_identity": null,
+            "direction_parameter_mapping": null,
+            "current_source_identity": null,
+            "persistent_source_identity": null,
+            "qualified_historical_state": null,
+            "coordinate_scope": "Raw mapped initial ASM cache with identity BODY transform; no general header-unit/occurrence conversion",
+            "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 295,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          },
+          {
+            "descriptor_object_id": 302,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "expected_prior_tool_settings": {
+        "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+        "distance_cm": 0.5,
+        "angle_radians": 0.2617993877991494,
+        "distance_binding_object_id": 287,
+        "angle_binding_object_id": 290,
+        "ruled_type": "Tangent",
+        "stored_ruled_type_code": 1,
+        "corner_type": "Mitered",
+        "stored_corner_type_code": 1,
+        "profile_selection": {
+          "selection_record_object_id": 292,
+          "descriptor_object_ids": [
+            295
+          ],
+          "stored_descriptor_count": 1
+        },
+        "auxiliary_selection": {
+          "selection_record_object_id": 299,
+          "descriptor_object_ids": [
+            302
+          ],
+          "stored_descriptor_count": 1
+        },
+        "direction": null,
+        "result_record_object_ids": [
+          342
+        ],
+        "operation_status": "Native operation and alternate-face controls not decoded"
+      },
+      "API_evidence": {
+        "ground_truth_sha256": "ffb95a9a7bd66f8394d93f63ef93fdd2630bc41ffa32ea34a5224a152f532882",
+        "actual_saved_settings": {
+          "distance_cm": 0.5,
+          "angle_radians": 0.2617993877991494,
+          "ruled_type": 0,
+          "corner_type": 1,
+          "alternate_face": false,
+          "operation_input": "NewBody",
+          "result_body_count": 2
+        },
+        "selected_edge_geometry_getters_captured": false,
+        "native_API_handle_assignment": null,
+        "scope": "Existing saved API controls only; no independent source-edge geometry or two-input-edge claim"
+      },
+      "full_recipe_replays": 2,
+      "duplicate_selector_roles_name_one_edge": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_natural.f3d",
+      "archive_sha256": "38efa6ec0238e3a9bb6d2f0bc714df159ab5a8e012a2ee8175b862da01e83d98",
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 292,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Outside native SurfaceRuled ownership gate; no new source association",
+      "Extend_operand_only_controls": [
+        {
+          "descriptor_object_id": 292,
+          "full_counted_recipe_replay": true,
+          "operand_template": {
+            "scoped_Ruled_template_replay": true,
+            "reason": null
+          },
+          "name_candidate_counts": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "initial_FACE_operand_match": false,
+          "scoped_runtime_source_association": false,
+          "historical_face_resolution": null
+        }
+      ]
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_two_edges.f3d",
+      "archive_sha256": "fd0308c8696e4f83cb60dc92d0cee17a448089187b296cd95f6a9b4d5a050d84",
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 292,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          },
+          {
+            "descriptor_object_id": 296,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Outside native SurfaceRuled ownership gate; no new source association",
+      "Extend_operand_only_controls": [
+        {
+          "descriptor_object_id": 292,
+          "full_counted_recipe_replay": true,
+          "operand_template": {
+            "scoped_Ruled_template_replay": true,
+            "reason": null
+          },
+          "name_candidate_counts": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "initial_FACE_operand_match": false,
+          "scoped_runtime_source_association": false,
+          "historical_face_resolution": null
+        },
+        {
+          "descriptor_object_id": 296,
+          "full_counted_recipe_replay": true,
+          "operand_template": {
+            "scoped_Ruled_template_replay": false,
+            "reason": "Ruled endpoint operation full framing/qualifier replay differs",
+            "first_endpoint_nested_name_order": [
+              2,
+              0
+            ],
+            "scope": "Extend reversed nested-edge order is outside the frozen Ruled template"
+          },
+          "name_candidate_counts": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "initial_FACE_operand_match": false,
+          "scoped_runtime_source_association": false,
+          "historical_face_resolution": null
+        }
+      ]
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [
+          {
+            "descriptor_object_id": 332,
+            "reason": "Source edge operation extent/final qualifier unsupported",
+            "bounded_operand_evidence": null
+          }
+        ],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Outside native SurfaceRuled ownership gate; no new source association"
+    },
+    {
+      "archive": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "archive_sha256": "c868160a0e516a560733acf0b41fbb7dcdefe9a8a650e0d5cf62e3972d8c58e1",
+      "expected_summary": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed156-byte Ruled direct-edge/one-face and two endpoint edge-incidence operands. Profile and auxiliary native selectors name the same cached sheet edge; API handle identity, direction/traversal, opaque qualifiers, current/persistent topology and historical lifecycle unresolved."
+      },
+      "expected_prior_selection_recipe_incidence": {
+        "associations": [],
+        "unresolved": [],
+        "scope": "Observed source descriptor primary recipe -> exact initial generic tags -> reciprocal cached source edge/vertex incidence in explicitly mapped same-asset BODY; secondary context cache and persistent/historical topology remain unresolved"
+      },
+      "prior_incidence_exact": true,
+      "input_features_and_contexts_unchanged": true,
+      "control_status": "Outside native SurfaceRuled ownership gate; no new source association"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Unobserved outer opaque qualifier",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled endpoint operation full framing/qualifier replay differs"
+        }
+      ]
+    },
+    {
+      "label": "Nested endpoint edge-count framing",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled endpoint operation full framing/qualifier replay differs"
+        }
+      ]
+    },
+    {
+      "label": "Profile/auxiliary complete names disagree",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled profile/auxiliary selectors are not distinct identical-source recipe routes"
+        }
+      ]
+    },
+    {
+      "label": "Profile proxy support redirects to other proxy",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled source proxy/secondary/helper/support reciprocity differs"
+        }
+      ]
+    },
+    {
+      "label": "Descriptor trailer marker",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled source descriptor frame/trailer/owner differs"
+        }
+      ]
+    },
+    {
+      "label": "Duplicate primary profile descriptor",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled source typed identity missing, ambiguous or wrong class"
+        }
+      ]
+    },
+    {
+      "label": "Forged supplied source BODY index",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled source supplied ASM BODY association differs"
+        }
+      ]
+    },
+    {
+      "label": "Valid first Ruled owner then invalid second owner remains handled",
+      "successful_owner_ids": [
+        285
+      ],
+      "diagnostics": [
+        {
+          "owner_object_id": 900000,
+          "reason": "Ruled source feature result-anchor owner differs"
+        }
+      ]
+    },
+    {
+      "label": "Direction repeated descriptor differs from independent F2 reference",
+      "successful_owner_ids": [],
+      "diagnostics": [
+        {
+          "owner_object_id": 285,
+          "reason": "Ruled profile/auxiliary roles disagree with repeated feature dependencies"
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "decode_ruled_edge_sources.py": "337e7287fb2158748f1e465cbed1769aaba43737d0afb1597ae3670342d01f10",
+    "validate_ruled_edge_sources.py": "489b8a561f8e359e5beb3abe093d1b3d32002876591a3d1ea07be110631c87e9",
+    "decode_one_face_edge_sources.py": "19d85b1a81243f3f9505898ae5a241328505c0ee54f4ea27b260ff049886b92b",
+    "decode_selection.py": "241b08558add4bd028dfb151a594c7e1a44211d0fccd3d75ba6f65aac14f59cd",
+    "decode_surface_tools.py": "93094acafaa29f85256c0f6a7e2f1efa63f9c3d8c344a9acb104c5259735f73f",
+    "decode_body_selections.py": "8b9b8047009257f7cdba791e3610b6995c481950cf5087224a0190874475544a",
+    "decode_body_asm_identifiers.py": "3c80d7cb4658b49c2429ccdb4da561bb803ba77eef17d32cad0e7d2fa2283a2a",
+    "decode_recipe_components.py": "ce539083f61d3ef5fc2ae8c1c0aeaa9799a26b969854e2bf4717cae80755bd3d",
+    "decode_asm_recipe_tags.py": "6b5570617fd92d99c44722d502198b18eaf81b0040d59ea73d6db1999638dde0",
+    "decode_asm_subtypes.py": "7724e91cd0e083be871784b38b81fa7dacf251f8219391352429100d2e488503",
+    "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0"
+  },
+  "summary": {
+    "focused_archives": 8,
+    "admitted_Ruled_owners": 4,
+    "distinct_native_selector_routes": 8,
+    "cached_source_edges": 4,
+    "complete_recipe_replays": 8,
+    "named_endpoint_intersections": 8,
+    "prior_tool_settings_exact": 4,
+    "prior_incidence_summaries_exact": 8,
+    "empty_controls": 4,
+    "malformed_guards": 9,
+    "independent_API_geometry_corroboration_available": false,
+    "main_runs": 0,
+    "live_calls": 0
+  }
+}

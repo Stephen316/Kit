@@ -1,0 +1,137 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "tangent_start_weight2",
+      "file": "tangent_start_weight2.f3d",
+      "getter_errors": [],
+      "requested_point_source": "SketchPoint",
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAts7I1AxKGhqYAAA53YWCjgAAAA==",
+          "sketch_name": "HoldoutLoftPoint",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAtg5kvZGpGQAc1xbsiAAAAA==",
+          "sketch_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U+DKuj83dJHHgbl3DdkiHf3WA8UNFYwVjIxMwCygGiANZBlZAFmGCiY4dRkpGJspmBmYGVsaGKXoWhgnmumaWJqY6CYmmyXrWlqYGxknmaakmBomwmxmQANg+wwUwNYZGZhA7INCAyOIK0AqAF2zqra+AAAA",
+          "sketch_name": "HoldoutLoftProfile",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAtg5kvZGRCQD3IFlNiAAAAA==",
+          "profile_loop_count": 1,
+          "sketch_circles": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAts7U0AhMGxmZKBgaANkA0/6lFZIAAAA=",
+              "center_world_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointTangent",
+        "section_index": 0,
+        "weight": 2.0
+      },
+      "settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAts7I1AxKGhqYAAA53YWCjgAAAA==",
+            "sketch_name": "HoldoutLoftPoint",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAtg5kvZGpGQAc1xbsiAAAAA==",
+            "sketch_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "world_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftPointTangentEndCondition",
+            "weight": 2.0
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U+DKuj83dJHHgbl3DdkiHf3WA8UNFYwVjIxMwCygGiANZBlZAFmGCiY4dRkpGJspmBmYGVsaGKXoWhgnmumaWJqY6CYmmyXrWlqYGxknmaakmBomwmxmQANg+wwUwNYZGZhA7INCAyOIK0AqAF2zqra+AAAA",
+            "sketch_name": "HoldoutLoftProfile",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAtg5kvZGRCQD3IFlNiAAAAA==",
+            "profile_loop_count": 1,
+            "sketch_circles": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAts7U0AhMGxmZKBgaANkA0/6lFZIAAAA=",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "PointLoftProfilePlane"
+        },
+        {
+          "name": "d3",
+          "role": "Start Weight",
+          "value": 2.0,
+          "unit": "",
+          "created_by": "ProbeLoftPointHoldout"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "token_scope": "Opaque API tokens retained as evidence; token equality does not establish decoded native identity"
+}

@@ -1,0 +1,290 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "product_sum.f3d",
+      "requested_expression": "probeWidth * probeScale + 1 mm",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 2.5
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.12
+        },
+        {
+          "name": "probeResult",
+          "unit": "mm",
+          "expression": "probeWidth * probeScale + 1 mm",
+          "value_type": 0,
+          "dependency_names": [
+            "probeWidth",
+            "probeScale"
+          ],
+          "dependent_names": [],
+          "value": 1.925
+        }
+      ]
+    },
+    {
+      "file": "parenthesized.f3d",
+      "requested_expression": "(probeWidth + probeAllowance) / probeScale",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 2.5
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.12
+        },
+        {
+          "name": "probeResult",
+          "unit": "mm",
+          "expression": "( probeWidth + probeAllowance ) / probeScale",
+          "value_type": 0,
+          "dependency_names": [
+            "probeWidth",
+            "probeAllowance",
+            "probeScale"
+          ],
+          "dependent_names": [],
+          "value": 0.33999999999999997
+        }
+      ]
+    },
+    {
+      "file": "repeated_reference.f3d",
+      "requested_expression": "probeWidth + probeWidth + probeAllowance",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 2.5
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.12
+        },
+        {
+          "name": "probeResult",
+          "unit": "mm",
+          "expression": "probeWidth + probeWidth + probeAllowance",
+          "value_type": 0,
+          "dependency_names": [
+            "probeWidth",
+            "probeAllowance"
+          ],
+          "dependent_names": [],
+          "value": 1.58
+        }
+      ]
+    },
+    {
+      "file": "unary_reference.f3d",
+      "requested_expression": "-probeWidth + 20 mm",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 2.5
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.12
+        },
+        {
+          "name": "probeResult",
+          "unit": "mm",
+          "expression": "-probeWidth + 20 mm",
+          "value_type": 0,
+          "dependency_names": [
+            "probeWidth"
+          ],
+          "dependent_names": [],
+          "value": 1.27
+        }
+      ]
+    },
+    {
+      "file": "function_outside_subset.f3d",
+      "requested_expression": "sqrt(probeScale)",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 2.5
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.12
+        },
+        {
+          "name": "probeResult",
+          "unit": "",
+          "expression": "sqrt(probeScale)",
+          "value_type": 0,
+          "dependency_names": [
+            "probeScale"
+          ],
+          "dependent_names": [],
+          "value": 1.5811388300841898
+        }
+      ]
+    },
+    {
+      "file": "text_name_literal.f3d",
+      "requested_expression": "'probeWidth literal'",
+      "parameters": [
+        {
+          "name": "probeWidth",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "unit": "",
+          "expression": "2.5",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 2.5
+        },
+        {
+          "name": "probeAllowance",
+          "unit": "mm",
+          "expression": "1.2 mm",
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.12
+        },
+        {
+          "name": "probeResult",
+          "unit": "Text",
+          "expression": "'probeWidth literal'",
+          "value_type": 1,
+          "dependency_names": [],
+          "dependent_names": [],
+          "text_value": "probeWidth literal"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

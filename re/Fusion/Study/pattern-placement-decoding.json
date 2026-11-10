@@ -1,0 +1,2164 @@
+{
+  "api_version": "2705.1.30",
+  "rectangular_samples": [
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_one.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 3,
+      "decoded": {
+        "feature_object_id": 282,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              2.5,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 250,
+          "native_element_records": [
+            {
+              "object_id": 316,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 317,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 318,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 6,
+      "decoded": {
+        "feature_object_id": 415,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              1.5000000000000002,
+              2.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              1.5000000000000002,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              3.0000000000000004,
+              4.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0000000000000004,
+              0.0,
+              1.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              0,
+              1
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              1
+            ],
+            "translation_cm": [
+              1.5000000000000002,
+              2.0,
+              3.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              1.5000000000000002,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              1
+            ],
+            "translation_cm": [
+              3.0000000000000004,
+              4.0,
+              3.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0000000000000004,
+              0.0,
+              1.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 422,
+          "controller_payload_bytes": 341,
+          "native_element_records": [
+            {
+              "object_id": 460,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 461,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 462,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 463,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 464,
+              "stored_key_or_ordinal": 5,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 465,
+              "stored_key_or_ordinal": 9,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_sketchlines.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 6,
+      "decoded": {
+        "feature_object_id": 329,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              1.5,
+              2.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              1.5,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              3.0,
+              4.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              1.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              0,
+              1
+            ],
+            "translation_cm": [
+              -2.4000000000000004,
+              1.7999999999999998,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              -2.4000000000000004,
+              0.0,
+              1.0,
+              0.0,
+              1.7999999999999998,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              1
+            ],
+            "translation_cm": [
+              -0.9000000000000004,
+              3.8,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              -0.9000000000000004,
+              0.0,
+              1.0,
+              0.0,
+              3.8,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              1
+            ],
+            "translation_cm": [
+              0.5999999999999996,
+              5.8,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.5999999999999996,
+              0.0,
+              1.0,
+              0.0,
+              5.8,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 336,
+          "controller_payload_bytes": 341,
+          "native_element_records": [
+            {
+              "object_id": 370,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 371,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 372,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 373,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 374,
+              "stored_key_or_ordinal": 5,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 375,
+              "stored_key_or_ordinal": 9,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/body_negative.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 3,
+      "decoded": {
+        "feature_object_id": 282,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              -6.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              -6.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 250,
+          "native_element_records": [
+            {
+              "object_id": 316,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 317,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 318,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/feature_optimized.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 6,
+      "decoded": {
+        "feature_object_id": 282,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              2.5,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              0,
+              1
+            ],
+            "translation_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              1
+            ],
+            "translation_cm": [
+              2.5,
+              3.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              2.5,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              1
+            ],
+            "translation_cm": [
+              5.0,
+              3.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 341,
+          "native_element_records": [
+            {
+              "object_id": 323,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 324,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 325,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 326,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 327,
+              "stored_key_or_ordinal": 5,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 328,
+              "stored_key_or_ordinal": 9,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/feature_identical.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 6,
+      "decoded": {
+        "feature_object_id": 282,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              2.5,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              2.5,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              0,
+              1
+            ],
+            "translation_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              1
+            ],
+            "translation_cm": [
+              2.5,
+              3.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              2.5,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              1
+            ],
+            "translation_cm": [
+              5.0,
+              3.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              5.0,
+              0.0,
+              1.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 341,
+          "native_element_records": [
+            {
+              "object_id": 323,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 324,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 325,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 326,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 327,
+              "stored_key_or_ordinal": 5,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 328,
+              "stored_key_or_ordinal": 9,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    },
+    {
+      "archive": "rectmodes-a069f8f4b8a2/feature_adjust.f3d",
+      "checks": {
+        "matrix_multisets_match_actual_api_getters": true,
+        "all_native_elements_are_exact_17_byte_key_controller_records": true,
+        "api_elements_are_unsuppressed": true,
+        "computed_matrices_have_no_native_or_api_identity": true
+      },
+      "placement_count": 6,
+      "decoded": {
+        "feature_object_id": 282,
+        "kind": "RectangularPattern",
+        "source": "Analytically computed from decoded quantities, distances and explicit directions",
+        "coordinate_frame": "Native feature-control vectors; root-component API cases verified, other context relationships remain partial",
+        "matrix_convention": "Row-major 4x4, column-vector multiplication, translation in cm",
+        "placement_set": [
+          {
+            "logical_grid_coordinates": [
+              0,
+              0
+            ],
+            "translation_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              0
+            ],
+            "translation_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              0
+            ],
+            "translation_cm": [
+              6.0,
+              0.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              0,
+              1
+            ],
+            "translation_cm": [
+              0.0,
+              4.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              1,
+              1
+            ],
+            "translation_cm": [
+              3.0,
+              4.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              1.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "logical_grid_coordinates": [
+              2,
+              1
+            ],
+            "translation_cm": [
+              6.0,
+              4.0,
+              0.0
+            ],
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              6.0,
+              0.0,
+              1.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 341,
+          "native_element_records": [
+            {
+              "object_id": 323,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 324,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 325,
+              "stored_key_or_ordinal": 6,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 326,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 327,
+              "stored_key_or_ordinal": 5,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 328,
+              "stored_key_or_ordinal": 9,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        },
+        "element_association": "Unresolved: no logical-grid-to-native-record, API-ID or result-body mapping asserted",
+        "cache_application": "Not applied: resulting body caches already contain their stored placements",
+        "scope": "Relative input placement set only; feature recomputation and generated geometry are not implemented"
+      }
+    }
+  ],
+  "circular_counterexamples": [
+    {
+      "archive": "circularmodes-45f859c1f1b6/body_full.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 6.283185307179586,
+        "is_symmetric": false,
+        "suppressed_element_ids": [],
+        "pattern_entity_type": 2,
+        "pattern_compute_option": 2,
+        "requested_compute_option": null,
+        "input_names": [
+          "SeedBody0"
+        ],
+        "input_types": [
+          "adsk::fusion::BRepBody"
+        ],
+        "input_count": 1,
+        "result_body_count": 4,
+        "axis_name": "Z",
+        "axis_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "axis_direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "health_state": 0,
+        "warning": ""
+      },
+      "api_getters": [
+        {
+          "api_id": 0,
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 0.0
+        },
+        {
+          "api_id": 1,
+          "matrix": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0,
+            0.0,
+            1.2246467991473532e-16,
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 180.0
+        },
+        {
+          "api_id": 2,
+          "matrix": [
+            -2.220446049250313e-16,
+            1.0,
+            0.0,
+            0.0,
+            -1.0,
+            -2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": -90.00000000000001
+        },
+        {
+          "api_id": 3,
+          "matrix": [
+            1.0,
+            2.4492935982947064e-16,
+            0.0,
+            0.0,
+            -2.4492935982947064e-16,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": -1.4033418597069752e-14
+        }
+      ],
+      "diagnostic": {
+        "comparison_hypothesis": "Ordinary equally spaced +Z rotations about API-reported axis, including identity; not accepted as decoded output",
+        "hypothesis_rotation_angles_degrees": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "hypothesis_and_getter_matrix_multisets_match": false
+      },
+      "unresolved": {
+        "feature_object_id": 282,
+        "kind": "CircularPattern",
+        "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 187,
+          "native_element_records": [
+            {
+              "object_id": 310,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 311,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 312,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 313,
+              "stored_key_or_ordinal": 4,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        }
+      }
+    },
+    {
+      "archive": "circularmodes-45f859c1f1b6/body_negative.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": -3.6651914291880923,
+        "is_symmetric": false,
+        "suppressed_element_ids": [],
+        "pattern_entity_type": 2,
+        "pattern_compute_option": 2,
+        "requested_compute_option": null,
+        "input_names": [
+          "SeedBody0"
+        ],
+        "input_types": [
+          "adsk::fusion::BRepBody"
+        ],
+        "input_count": 1,
+        "result_body_count": 4,
+        "axis_name": "Z",
+        "axis_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "axis_direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "health_state": 0,
+        "warning": ""
+      },
+      "api_getters": [
+        {
+          "api_id": 0,
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 0.0
+        },
+        {
+          "api_id": 1,
+          "matrix": [
+            -0.7660444431189781,
+            0.6427876096865391,
+            0.0,
+            0.0,
+            -0.6427876096865391,
+            -0.7660444431189781,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": -140.00000000000003
+        },
+        {
+          "api_id": 2,
+          "matrix": [
+            -0.8660254037844388,
+            -0.5000000000000002,
+            0.0,
+            0.0,
+            0.5000000000000002,
+            -0.8660254037844388,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 150.0
+        },
+        {
+          "api_id": 3,
+          "matrix": [
+            0.17364817766693086,
+            -0.9848077530122079,
+            0.0,
+            0.0,
+            0.9848077530122079,
+            0.17364817766693086,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 79.99999999999997
+        }
+      ],
+      "diagnostic": {
+        "comparison_hypothesis": "Ordinary equally spaced +Z rotations about API-reported axis, including identity; not accepted as decoded output",
+        "hypothesis_rotation_angles_degrees": [
+          -0.0,
+          -70.00000000000001,
+          -140.00000000000003,
+          -210.00000000000003
+        ],
+        "hypothesis_and_getter_matrix_multisets_match": false
+      },
+      "unresolved": {
+        "feature_object_id": 282,
+        "kind": "CircularPattern",
+        "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 187,
+          "native_element_records": [
+            {
+              "object_id": 310,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 311,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 312,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 313,
+              "stored_key_or_ordinal": 4,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        }
+      }
+    },
+    {
+      "archive": "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+      "api_settings": {
+        "quantity": 5.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": true,
+        "suppressed_element_ids": [],
+        "pattern_entity_type": 2,
+        "pattern_compute_option": 2,
+        "requested_compute_option": null,
+        "input_names": [
+          "SeedBody0"
+        ],
+        "input_types": [
+          "adsk::fusion::BRepBody"
+        ],
+        "input_count": 1,
+        "result_body_count": 5,
+        "axis_name": "Z",
+        "axis_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "axis_direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "health_state": 0,
+        "warning": ""
+      },
+      "api_getters": [
+        {
+          "api_id": 0,
+          "matrix": [
+            2.220446049250313e-16,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 89.99999999999999
+        },
+        {
+          "api_id": 1,
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 0.0
+        },
+        {
+          "api_id": 2,
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 0.0
+        },
+        {
+          "api_id": 3,
+          "matrix": [
+            0.7071067811865475,
+            -0.7071067811865476,
+            0.0,
+            0.0,
+            0.7071067811865476,
+            0.7071067811865475,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 45.00000000000001
+        },
+        {
+          "api_id": 4,
+          "matrix": [
+            -0.7071067811865475,
+            -0.7071067811865477,
+            0.0,
+            0.0,
+            0.7071067811865477,
+            -0.7071067811865475,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 135.0
+        }
+      ],
+      "diagnostic": {
+        "first_getter_matrix_is_identity": false,
+        "sdk_contract": "Local PatternElement.transform documentation says the first element returns identity; captured symmetric getter differs. No corrective transform rule inferred."
+      },
+      "unresolved": {
+        "feature_object_id": 282,
+        "kind": "CircularPattern",
+        "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+        "native_evidence": {
+          "control_record_object_id": 289,
+          "controller_payload_bytes": 214,
+          "native_element_records": [
+            {
+              "object_id": 310,
+              "stored_key_or_ordinal": 4,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 311,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 312,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 313,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 314,
+              "stored_key_or_ordinal": 5,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        }
+      }
+    },
+    {
+      "archive": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 6.283185307179586,
+        "is_symmetric": false,
+        "suppressed_element_ids": [],
+        "pattern_entity_type": 2,
+        "pattern_compute_option": 2,
+        "requested_compute_option": null,
+        "input_names": [
+          "SeedBody0",
+          "SeedBody1"
+        ],
+        "input_types": [
+          "adsk::fusion::BRepBody",
+          "adsk::fusion::BRepBody"
+        ],
+        "input_count": 2,
+        "result_body_count": 8,
+        "axis_name": "OffsetZAxis",
+        "axis_origin_cm": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "axis_direction": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "health_state": 0,
+        "warning": ""
+      },
+      "api_getters": [
+        {
+          "api_id": 0,
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 0.0
+        },
+        {
+          "api_id": 1,
+          "matrix": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0,
+            2.0,
+            1.2246467991473532e-16,
+            -1.0,
+            0.0,
+            -1.2246467991473532e-16,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": 180.0
+        },
+        {
+          "api_id": 2,
+          "matrix": [
+            -2.220446049250313e-16,
+            1.0,
+            0.0,
+            1.0000000000000002,
+            -1.0,
+            -2.220446049250313e-16,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": -90.00000000000001
+        },
+        {
+          "api_id": 3,
+          "matrix": [
+            1.0,
+            2.4492935982947064e-16,
+            0.0,
+            0.0,
+            -2.4492935982947064e-16,
+            1.0,
+            0.0,
+            2.4492935982947064e-16,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation_about_z_degrees_for_this_fixture": -1.4033418597069752e-14
+        }
+      ],
+      "diagnostic": {
+        "comparison_hypothesis": "Ordinary equally spaced +Z rotations about API-reported axis, including identity; not accepted as decoded output",
+        "hypothesis_rotation_angles_degrees": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "hypothesis_and_getter_matrix_multisets_match": false
+      },
+      "unresolved": {
+        "feature_object_id": 404,
+        "kind": "CircularPattern",
+        "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+        "native_evidence": {
+          "control_record_object_id": 411,
+          "controller_payload_bytes": 187,
+          "native_element_records": [
+            {
+              "object_id": 436,
+              "stored_key_or_ordinal": 1,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 437,
+              "stored_key_or_ordinal": 2,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 438,
+              "stored_key_or_ordinal": 3,
+              "payload_bytes": 17
+            },
+            {
+              "object_id": 439,
+              "stored_key_or_ordinal": 4,
+              "payload_bytes": 17
+            }
+          ],
+          "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+        }
+      }
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Symmetric grid rejected",
+      "passed": true,
+      "reason": "Symmetric rectangular placement getters have no captured contrast"
+    },
+    {
+      "check": "Nonempty suppression rejected",
+      "passed": true,
+      "reason": "Rectangular suppressed-key/placement association is unverified"
+    },
+    {
+      "check": "Active direction without explicit selection rejected",
+      "passed": true,
+      "reason": "Active rectangular direction lacks a decoded explicit unit vector"
+    },
+    {
+      "check": "Nonunit active direction rejected",
+      "passed": true,
+      "reason": "Active rectangular direction lacks a decoded explicit unit vector"
+    },
+    {
+      "check": "Nonfinite distance rejected",
+      "passed": true,
+      "reason": "Invalid rectangular placement distance"
+    },
+    {
+      "check": "Native element controller backlink corruption rejected",
+      "passed": true,
+      "reason": "Pattern placement element payload/key/controller mismatch"
+    }
+  ],
+  "validation_command": "python3 decode_pattern_placements.py --validate --zstd-library <local libzstd path>",
+  "interface": "decode_pattern_placements(data, records, features), after decode_tools; returns decoded/unresolved without mutating inputs",
+  "limitations": [
+    "Native grid key sets and API getter matrix multisets are verified separately; no element ID associations follow from matching geometry.",
+    "Circular getter evidence is preserved without guessing a correction or treating its matrices as generated body placements.",
+    "Rectangular symmetry, nonempty suppression, occurrence input/context placement and unsupported direction selections remain unresolved.",
+    "Analytic matrices are relative component-space translations and must not be applied again to already transformed result body caches.",
+    "Matrix sets do not regenerate feature geometry; Adjust compute may change generated geometry even with the same placement set."
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "rectangular_sets_matching_report": 7,
+    "circular_counterexamples_remain_unresolved": 4,
+    "stream_key": "pattern_placements"
+  }
+}

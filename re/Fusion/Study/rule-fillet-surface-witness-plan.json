@@ -1,0 +1,169 @@
+{
+  "status": "Corrected capture executed: two complete cases, sixteen witnesses, two successful owned closes",
+  "generator": "GenerateRuleFilletSurfaceContrasts.py",
+  "generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+  "intended_cases": [
+    "offsets_one_two",
+    "offsets_one_three"
+  ],
+  "maximum_witnesses_per_case": 8,
+  "scope": "Actual additive owned source-face Offset witnesses after unchanged original Rule exports; native VBL association and standalone procedural evaluation remain unproved",
+  "SDK_contract": {
+    "installed_build": "c139e2731e42a0340acc3d34de2cbdb01237a27c",
+    "source_sha256": {
+      "/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/core.py": "4b1178a4b2837699c6840221513866808ddb6cdf15c2d3e79186d31f573b7f8a",
+      "/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1"
+    },
+    "methods": [
+      {
+        "class_name": "ObjectCollection",
+        "method": "add",
+        "line_number": 17725
+      },
+      {
+        "class_name": "OffsetFeatures",
+        "method": "createInput",
+        "line_number": 54322
+      },
+      {
+        "class_name": "OffsetFeatures",
+        "method": "add",
+        "line_number": 54340
+      },
+      {
+        "class_name": "OffsetFeatureInput",
+        "method": "_get_entities",
+        "line_number": 54138
+      },
+      {
+        "class_name": "OffsetFeature",
+        "method": "_get_entities",
+        "line_number": 115956
+      },
+      {
+        "class_name": "Design",
+        "method": "findEntityByToken",
+        "line_number": 103374
+      },
+      {
+        "class_name": "TimelineObject",
+        "method": "rollTo",
+        "line_number": 78020
+      },
+      {
+        "class_name": "Timeline",
+        "method": "moveToEnd",
+        "line_number": 77729
+      },
+      {
+        "class_name": "BRepFace",
+        "method": "__eq__",
+        "line_number": 18497
+      },
+      {
+        "class_name": "OffsetFeature",
+        "method": "__eq__",
+        "line_number": 115915
+      }
+    ],
+    "equality": "Dispatch type(left).__eq__(left,right) for valid identical concrete BRepFace/OffsetFeature wrapper types; require type(result) is bool, explicitly reject NotImplemented and other types. No Python object identity or token-literal comparison.",
+    "source_lookup": "Design.findEntityByToken can return zero, one or multiple entities; exactly one valid expected type is required in the same still-open owned design",
+    "consumer": "OffsetFeatures.createInput accepts ObjectCollection of BRepFace, NewBody/NewComponent operations and chain selection; chainFalse avoids documented tangent expansion",
+    "rolled_getter": "OffsetFeature.entities requires timeline immediately before the feature",
+    "distance": "Actual corrected run accepted sixteen singleton chainFalse zero-offset NewBody witnesses, with healthy features and rolled input entity equality in two completed owned cases.",
+    "superseded_equality": "The prior explicit core.Base.__eq__ call returned NotImplemented for a valid Fusion BRepFace pair in the actual capture. Boolean coercion raised before OffsetFeatures.add."
+  },
+  "phases": [
+    "Populate original Rule/probe frame; API temporary conversion data remains separate and JSON only is returned",
+    "GC with owned document open; original source-only archive export/finalizer; GC; record baseline SHA256 and byte size before consumers",
+    "Build one-to-eight total witness requests across every result body using previously captured opaque face tokens; tempId indexes only saved API probe metadata",
+    "Create singleton chainFalse zero-offset NewBody in short create_witness frame; require actual input entity concrete SDK equality with an actual bool result and controls; record unique feature metadata name/token; return JSON",
+    "GC open after create frame release",
+    "Resolve witness feature token; rollTo(True); resolve source token in that model state; require one actual BRepFace selected by Offset.entities and native concrete SDK equality with an actual bool result; return JSON while before-node",
+    "GC while still before-node after all getter/feature/input aliases are released",
+    "Fresh restore_after_witness frame moves timeline to end and recomputes; return JSON; GC open before next face",
+    "After all witnesses, separate case_witnesses.f3d export with own SHA256/size; verify original baseline file hash unchanged",
+    "Finalizer release and GC with document open, then owned close(False) and actual returned flag"
+  ],
+  "failure_policy": {
+    "no_fallback_distance": true,
+    "no_automatic_retry": true,
+    "no_next_face_or_case": true,
+    "no_close_on_failure": true,
+    "document_quarantine_attribute": "_fusion_study_rule_surface_halted_documents",
+    "native_alias_quarantine_attribute": "_fusion_study_rule_surface_witness_halted_native_handles",
+    "quarantine": "Stable adsk.fusion module retains document and named live wrapper aliases, including ambiguous token matches, without storing exception/traceback objects",
+    "pre_witness_archive": "Existing exported baseline remains a separately hashed artifact even if any witness stage fails"
+  },
+  "future_native_qualification": [
+    "Identify recorded witness Offset native feature by unique class/metadata/name as an operation candidate only",
+    "Require complete typed native proxy/descriptor/recipe ownership and source body/anchor/mapping route",
+    "Decode complete serialized face naming terms and require a unique typed source FACE in the explicitly mapped BODY",
+    "Require that source FACE reference the intended qualified VBL definition/namespace; never assign via coordinates, enumeration, feature name alone or tempId",
+    "Keep actual API source-to-converted tempId correspondence separate; independently evaluate converted UVs and compare captured interior points/first derivatives",
+    "Retain native binding unresolved if zero offset is rejected, getter identity fails, names are ambiguous or the exported native selection is unsupported"
+  ],
+  "offline_validation": {
+    "in_memory_compile_passed": true,
+    "AST_parse_passed": true,
+    "live_API_calls": 0,
+    "main_reader_calls": 0,
+    "executed_generator_snapshot_created": false,
+    "scope": "Actual generator helper/orchestration AST executed against synthetic API handles and temporary fake archive bytes; no adsk import, Fusion API execution, offset acceptance, real native release behavior or native selection/VBL binding is proved",
+    "actual_helper_orchestration_AST_synthetic_scenarios": 8,
+    "synthetic_focused_checks": 67,
+    "synthetic_report": "rule-fillet-surface-witness-lifecycle.json",
+    "synthetic_report_sha256": "c468c2570c50d9e5160f013d2d35cfc22853694c49bab7c9a994b49915af483c",
+    "validator": "validate_rule_fillet_surface_witness_lifecycle.py",
+    "validator_sha256": "4ba7e13904dc2ba05d805739f88e6b4b1cc0d61da0842cec50cbbd47f3f8ebf6"
+  },
+  "known_limits": [
+    "The first Base-equality capture halted before witness add; its owned document was subsequently recovered and closed. The corrected concrete-equality run completed both cases.",
+    "Zero-offset acceptance is verified only for the sixteen captured face witnesses; other procedural faces and cases remain unverified.",
+    "Actual future native bounded-face grammar may differ from existing planar Offset captures",
+    "The original source file and witness archive describe separate additive feature sets; no historical/current geometry identity is inferred",
+    "Original Rule numeric observations, API temporary conversion and native VBL source binding remain separately scoped"
+  ],
+  "native_attempt": {
+    "directory": "rulefilletsurfaces-9dd46198ca8a",
+    "status": "Partial; owned document and pending input retained",
+    "error": "TypeError: NotImplemented should not be used in a boolean context",
+    "source_archive_preserved": true,
+    "witnesses_created": 0,
+    "recovery_required_before_resuming": true
+  },
+  "native_validation": {
+    "directory": "rulefilletsurfaces-7b26b40f98f7",
+    "status": "Complete",
+    "executed_generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+    "ground_truth_sha256": "3a4c0ffeda19e6189aaf2538aa1c0517d3bfc56a95a4f501ad31d03e80307376",
+    "journal_sha256": "cf53b92605c055042665b9b723cde0083e10e4cdd735b66f9f57e8ec3e9616f0",
+    "complete_marker_sha256": "f8c8c6d012d1c79f4842f086df4fc918f59c28a628be559c07c25395ed22cf9a",
+    "healthy_source_exports": 2,
+    "witness_archives": 2,
+    "witness_features_created": 16,
+    "successful_owned_closes": 2,
+    "case_errors": 0,
+    "same_Fusion_pid_alive": 5619,
+    "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+    "API_native_entity_readbacks_verified": true,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  },
+  "known_failure_recovery": {
+    "directory": "recoverrulesurfacewitness-f013800ce846",
+    "status": "RecoveredClosed",
+    "report_sha256": "72169cd461be1f84af9163e2433caceb9581815a8de63787a58342a9cbf8fe45",
+    "owned_close_returned": true,
+    "both_alias_quarantines_released_while_document_open": true,
+    "unrelated_documents_touched": false
+  },
+  "rule_witness_native_validation": {
+    "report": "rule-surface-witness-native-validation.json",
+    "sha256": "af15200c2f3a17b5292eecf3079772b6c7b4e30a7bd70656126c1628aef07211",
+    "healthy_owned_captures": 2,
+    "witnesses": 16,
+    "actual_exports": 4,
+    "focused_saved_trace_checks": 93,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  }
+}

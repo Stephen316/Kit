@@ -1,0 +1,1007 @@
+{
+  "scope": "Three observed construction-plane Mirror fixtures; native membership and bounded computed reflection, no live Fusion access",
+  "samples": [
+    {
+      "file": "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 242,
+            "feature_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+            "input_kind": "ConstructionPlane",
+            "input_count": 1,
+            "component_object_id": 3,
+            "control_record_object_id": 246,
+            "source_plane_object_id": 202,
+            "output_plane_object_id": 270,
+            "mirror_plane_selection": {
+              "descriptor_object_id": 260,
+              "terminal_object_id": 263,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "XY",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "y_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "object_id": 42,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+            },
+            "source_output_provenance": {
+              "feature_object_id": 242,
+              "feature_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+              "status": "ObservedExplicitDatumOutputAssociationAndCache",
+              "control_record_object_id": 246,
+              "source_association_object_id": 264,
+              "output_association_object_id": 271,
+              "source_selection": {
+                "descriptor_object_id": 250,
+                "terminal_object_id": 253,
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "MirroredDatumSource",
+                  "object_id": 202,
+                  "feature_object_id": 203,
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+              },
+              "source_plane": {
+                "native_plane_object_id": 202,
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "record_offset": 23370,
+                "owner_feature_object_id": 203,
+                "scope_reference_object_id": 10,
+                "stored_index": 1,
+                "stored_tag": "0_202",
+                "stored_name": "MirroredDatumSource",
+                "stored_mode_code": 1,
+                "stored_orientation_flag": 0,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "cached_plane_to_component_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "geometry_scope": "Stored oriented plane cache; reflected-geometry regeneration is not applied. Flag1 reverses cross(x_axis,y_axis) normal, corroborated by XY/XZ actual API plane getters."
+              },
+              "output_plane": {
+                "native_plane_object_id": 270,
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "record_offset": 28707,
+                "owner_feature_object_id": 242,
+                "scope_reference_object_id": 10,
+                "stored_index": 2,
+                "stored_tag": "0_270",
+                "stored_name": null,
+                "stored_mode_code": 1,
+                "stored_orientation_flag": 1,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  -3.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  -0.0
+                ],
+                "normal": [
+                  -0.0,
+                  -0.0,
+                  -1.0
+                ],
+                "cached_plane_to_component_matrix": [
+                  1.0,
+                  0.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  -0.0,
+                  0.0,
+                  -0.0,
+                  -0.0,
+                  -1.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "geometry_scope": "Stored oriented plane cache; reflected-geometry regeneration is not applied. Flag1 reverses cross(x_axis,y_axis) normal, corroborated by XY/XZ actual API plane getters."
+              },
+              "mirror_plane": {
+                "descriptor_object_id": 260,
+                "terminal_object_id": 263,
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "XY",
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "x_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "y_axis": [
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "object_id": 42,
+                  "origin_container_object_id": 37,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+              },
+              "association": "Owned input association identifies source; output association repeats raw source ID, explicitly references output native plane, and reciprocally references the same control; output plane reciprocally owns Mirror feature",
+              "api_availability_scope": "Actual resultFeatures returnsNone; output plane timelineObject and definition getters fail. Independent construction-plane collection geometry validates caches only.",
+              "scope": "Native source/output ownership and oriented plane caches; arbitrary datum types, general reflection computation and lifecycle replay unresolved"
+            },
+            "native_component_evidence": {
+              "plane_collection_object_id": 10,
+              "repeated_plane_object_ids": [
+                202,
+                270
+              ],
+              "uninterpreted_collection_middle_hex": "000000000200000000000000000000000101011400000000000000000000",
+              "origin_container_object_id": 37,
+              "dependency_scopes": [
+                {
+                  "feature_object_id": 242,
+                  "scope_object_id": 33,
+                  "component_object_id": 3
+                },
+                {
+                  "feature_object_id": 203,
+                  "scope_object_id": 33,
+                  "component_object_id": 3
+                }
+              ]
+            },
+            "stored_input_kind_code": 4,
+            "stored_api_compute_corresponding_code": 2,
+            "is_combine": null,
+            "stitch_tolerance_cm": null,
+            "unresolved_controls": [
+              "Combine and stitch-tolerance API getters unavailable; native control semantics unqualified",
+              "General datum types, arbitrary construction-plane supports, lifecycle replay and assembly solving"
+            ],
+            "computed_reflection_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "computed_output_plane_frame": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0,
+              -3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_output_plane_frame": [
+              1.0,
+              0.0,
+              -0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              -1.0,
+              -3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "maximum_frame_difference": 0.0,
+            "matrix_scope": "Computed Householder reflection in the explicitly shared native component; determinant -1, not a proper rigid occurrence transform or stored native matrix",
+            "output_scope": "Owned oriented plane cache corroborates this bounded computation; no API resultFeatures or timeline output is invented"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Owned construction-plane Mirror inputs/outputs and same-component reflected cache frames; unavailable controls, occurrence solving and general regeneration remain unresolved"
+      },
+      "API_evidence": {
+        "actual_source_API_geometry_matches": true,
+        "actual_output_API_geometry_available": true,
+        "actual_output_API_matrix_matches": true
+      },
+      "actual_getter_errors": [
+        {
+          "field": "plane.timelineObject",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 51, in <lambda>\n    timeline=observe('plane.timelineObject',lambda:plane.timelineObject)\n                                                   ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27240, in _get_timelineObject\n    return _fusion.ConstructionPlane__get_timelineObject(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkGeom\n"
+        },
+        {
+          "field": "plane.definition.type",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 61, in <lambda>\n    'definition_type':observe('plane.definition.type',lambda:plane.definition.objectType if plane.definition else None)}\n                                                                                            ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27166, in _get_definition\n    return _fusion.ConstructionPlane__get_definition(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkPlane\n"
+        }
+      ],
+      "input_output_frame_involution": true
+    },
+    {
+      "file": "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 242,
+            "feature_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+            "input_kind": "ConstructionPlane",
+            "input_count": 1,
+            "component_object_id": 3,
+            "control_record_object_id": 246,
+            "source_plane_object_id": 202,
+            "output_plane_object_id": 270,
+            "mirror_plane_selection": {
+              "descriptor_object_id": 260,
+              "terminal_object_id": 263,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "XZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "y_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "object_id": 43,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+            },
+            "source_output_provenance": {
+              "feature_object_id": 242,
+              "feature_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+              "status": "ObservedExplicitDatumOutputAssociationAndCache",
+              "control_record_object_id": 246,
+              "source_association_object_id": 264,
+              "output_association_object_id": 271,
+              "source_selection": {
+                "descriptor_object_id": 250,
+                "terminal_object_id": 253,
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "MirroredDatumSource",
+                  "object_id": 202,
+                  "feature_object_id": 203,
+                  "origin_cm": [
+                    0.0,
+                    -2.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+              },
+              "source_plane": {
+                "native_plane_object_id": 202,
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "record_offset": 23370,
+                "owner_feature_object_id": 203,
+                "scope_reference_object_id": 10,
+                "stored_index": 1,
+                "stored_tag": "0_202",
+                "stored_name": "MirroredDatumSource",
+                "stored_mode_code": 1,
+                "stored_orientation_flag": 0,
+                "origin_cm": [
+                  0.0,
+                  -2.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "y_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "cached_plane_to_component_matrix": [
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  -2.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "geometry_scope": "Stored oriented plane cache; reflected-geometry regeneration is not applied. Flag1 reverses cross(x_axis,y_axis) normal, corroborated by XY/XZ actual API plane getters."
+              },
+              "output_plane": {
+                "native_plane_object_id": 270,
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "record_offset": 28709,
+                "owner_feature_object_id": 242,
+                "scope_reference_object_id": 10,
+                "stored_index": 2,
+                "stored_tag": "0_270",
+                "stored_name": null,
+                "stored_mode_code": 1,
+                "stored_orientation_flag": 1,
+                "origin_cm": [
+                  0.0,
+                  2.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "y_axis": [
+                  1.0,
+                  -0.0,
+                  0.0
+                ],
+                "normal": [
+                  -0.0,
+                  -1.0,
+                  -0.0
+                ],
+                "cached_plane_to_component_matrix": [
+                  0.0,
+                  1.0,
+                  -0.0,
+                  0.0,
+                  -0.0,
+                  -0.0,
+                  -1.0,
+                  2.0,
+                  1.0,
+                  0.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "geometry_scope": "Stored oriented plane cache; reflected-geometry regeneration is not applied. Flag1 reverses cross(x_axis,y_axis) normal, corroborated by XY/XZ actual API plane getters."
+              },
+              "mirror_plane": {
+                "descriptor_object_id": 260,
+                "terminal_object_id": 263,
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "XZ",
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "x_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "y_axis": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "object_id": 43,
+                  "origin_container_object_id": 37,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+              },
+              "association": "Owned input association identifies source; output association repeats raw source ID, explicitly references output native plane, and reciprocally references the same control; output plane reciprocally owns Mirror feature",
+              "api_availability_scope": "Actual resultFeatures returnsNone; output plane timelineObject and definition getters fail. Independent construction-plane collection geometry validates caches only.",
+              "scope": "Native source/output ownership and oriented plane caches; arbitrary datum types, general reflection computation and lifecycle replay unresolved"
+            },
+            "native_component_evidence": {
+              "plane_collection_object_id": 10,
+              "repeated_plane_object_ids": [
+                202,
+                270
+              ],
+              "uninterpreted_collection_middle_hex": "000000000200000000000000000000000101011400000000000000000000",
+              "origin_container_object_id": 37,
+              "dependency_scopes": [
+                {
+                  "feature_object_id": 242,
+                  "scope_object_id": 33,
+                  "component_object_id": 3
+                },
+                {
+                  "feature_object_id": 203,
+                  "scope_object_id": 33,
+                  "component_object_id": 3
+                }
+              ]
+            },
+            "stored_input_kind_code": 4,
+            "stored_api_compute_corresponding_code": 2,
+            "is_combine": null,
+            "stitch_tolerance_cm": null,
+            "unresolved_controls": [
+              "Combine and stitch-tolerance API getters unavailable; native control semantics unqualified",
+              "General datum types, arbitrary construction-plane supports, lifecycle replay and assembly solving"
+            ],
+            "computed_reflection_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "computed_output_plane_frame": [
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0,
+              2.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_output_plane_frame": [
+              0.0,
+              1.0,
+              -0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              -1.0,
+              2.0,
+              1.0,
+              0.0,
+              -0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "maximum_frame_difference": 0.0,
+            "matrix_scope": "Computed Householder reflection in the explicitly shared native component; determinant -1, not a proper rigid occurrence transform or stored native matrix",
+            "output_scope": "Owned oriented plane cache corroborates this bounded computation; no API resultFeatures or timeline output is invented"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Owned construction-plane Mirror inputs/outputs and same-component reflected cache frames; unavailable controls, occurrence solving and general regeneration remain unresolved"
+      },
+      "API_evidence": {
+        "actual_source_API_geometry_matches": true,
+        "actual_output_API_geometry_available": true,
+        "actual_output_API_matrix_matches": true
+      },
+      "actual_getter_errors": [
+        {
+          "field": "plane.timelineObject",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 51, in <lambda>\n    timeline=observe('plane.timelineObject',lambda:plane.timelineObject)\n                                                   ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27240, in _get_timelineObject\n    return _fusion.ConstructionPlane__get_timelineObject(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkGeom\n"
+        },
+        {
+          "field": "plane.definition.type",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 61, in <lambda>\n    'definition_type':observe('plane.definition.type',lambda:plane.definition.objectType if plane.definition else None)}\n                                                                                            ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27166, in _get_definition\n    return _fusion.ConstructionPlane__get_definition(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkPlane\n"
+        }
+      ],
+      "input_output_frame_involution": true
+    },
+    {
+      "file": "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 236,
+            "feature_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+            "input_kind": "ConstructionPlane",
+            "input_count": 1,
+            "component_object_id": 3,
+            "control_record_object_id": 240,
+            "source_plane_object_id": 202,
+            "output_plane_object_id": 264,
+            "mirror_plane_selection": {
+              "descriptor_object_id": 254,
+              "terminal_object_id": 257,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+            },
+            "source_output_provenance": {
+              "feature_object_id": 236,
+              "feature_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+              "status": "ObservedExplicitDatumOutputAssociationAndCache",
+              "control_record_object_id": 240,
+              "source_association_object_id": 258,
+              "output_association_object_id": 265,
+              "source_selection": {
+                "descriptor_object_id": 244,
+                "terminal_object_id": 247,
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "MirrorInputDatumPlane",
+                  "object_id": 202,
+                  "feature_object_id": 203,
+                  "origin_cm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+              },
+              "source_plane": {
+                "native_plane_object_id": 202,
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "record_offset": 23370,
+                "owner_feature_object_id": 203,
+                "scope_reference_object_id": 10,
+                "stored_index": 1,
+                "stored_tag": "0_202",
+                "stored_name": "MirrorInputDatumPlane",
+                "stored_mode_code": 1,
+                "stored_orientation_flag": 0,
+                "origin_cm": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "cached_plane_to_component_matrix": [
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "geometry_scope": "Stored oriented plane cache; reflected-geometry regeneration is not applied. Flag1 reverses cross(x_axis,y_axis) normal, corroborated by XY/XZ actual API plane getters."
+              },
+              "output_plane": {
+                "native_plane_object_id": 264,
+                "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+                "record_offset": 28709,
+                "owner_feature_object_id": 236,
+                "scope_reference_object_id": 10,
+                "stored_index": 2,
+                "stored_tag": "0_264",
+                "stored_name": null,
+                "stored_mode_code": 1,
+                "stored_orientation_flag": 1,
+                "origin_cm": [
+                  -2.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  -0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  -1.0,
+                  -0.0,
+                  -0.0
+                ],
+                "cached_plane_to_component_matrix": [
+                  -0.0,
+                  -0.0,
+                  -1.0,
+                  -2.0,
+                  1.0,
+                  0.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "geometry_scope": "Stored oriented plane cache; reflected-geometry regeneration is not applied. Flag1 reverses cross(x_axis,y_axis) normal, corroborated by XY/XZ actual API plane getters."
+              },
+              "mirror_plane": {
+                "descriptor_object_id": 254,
+                "terminal_object_id": 257,
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "YZ",
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "x_axis": [
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "y_axis": [
+                    0.0,
+                    -0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 44,
+                  "origin_container_object_id": 37,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "association": "Owned typed descriptor/leaf explicitly selects known native construction-plane ID"
+              },
+              "association": "Owned input association identifies source; output association repeats raw source ID, explicitly references output native plane, and reciprocally references the same control; output plane reciprocally owns Mirror feature",
+              "api_availability_scope": "Actual resultFeatures returnsNone; output plane timelineObject and definition getters fail. Independent construction-plane collection geometry validates caches only.",
+              "scope": "Native source/output ownership and oriented plane caches; arbitrary datum types, general reflection computation and lifecycle replay unresolved"
+            },
+            "native_component_evidence": {
+              "plane_collection_object_id": 10,
+              "repeated_plane_object_ids": [
+                202,
+                264
+              ],
+              "uninterpreted_collection_middle_hex": "000000000200000000000000000000000101011400000000000000000000",
+              "origin_container_object_id": 37,
+              "dependency_scopes": [
+                {
+                  "feature_object_id": 236,
+                  "scope_object_id": 33,
+                  "component_object_id": 3
+                },
+                {
+                  "feature_object_id": 203,
+                  "scope_object_id": 33,
+                  "component_object_id": 3
+                }
+              ]
+            },
+            "stored_input_kind_code": 4,
+            "stored_api_compute_corresponding_code": 2,
+            "is_combine": null,
+            "stitch_tolerance_cm": null,
+            "unresolved_controls": [
+              "Combine and stitch-tolerance API getters unavailable; native control semantics unqualified",
+              "General datum types, arbitrary construction-plane supports, lifecycle replay and assembly solving"
+            ],
+            "computed_reflection_matrix": [
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "computed_output_plane_frame": [
+              0.0,
+              0.0,
+              -1.0,
+              -2.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_output_plane_frame": [
+              -0.0,
+              -0.0,
+              -1.0,
+              -2.0,
+              1.0,
+              0.0,
+              -0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "maximum_frame_difference": 0.0,
+            "matrix_scope": "Computed Householder reflection in the explicitly shared native component; determinant -1, not a proper rigid occurrence transform or stored native matrix",
+            "output_scope": "Owned oriented plane cache corroborates this bounded computation; no API resultFeatures or timeline output is invented"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Owned construction-plane Mirror inputs/outputs and same-component reflected cache frames; unavailable controls, occurrence solving and general regeneration remain unresolved"
+      },
+      "API_evidence": {
+        "actual_source_API_geometry_matches": true,
+        "actual_output_API_geometry_available": false,
+        "mirror_plane_API_getter_unavailable_requested_only_corroboration": true,
+        "output_geometry_scope": "Typed native output cache and independent reflection only; no missing API geometry getter invented"
+      },
+      "actual_getter_errors": [
+        {
+          "field": "mirrorPlane",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 39, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 187, in <lambda>\n    sample['actual_mirror_plane'] = observe('mirrorPlane',lambda:entity_truth(feature.mirrorPlane))\n                                                                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 54, in entity_truth\n    result = {'entity_type': entity.objectType, 'entity_token': token(entity)}\n                             ^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'objectType'\n"
+        },
+        {
+          "field": "isCombine",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 39, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 188, in <lambda>\n    sample['settings'] = {'is_combine':observe('isCombine',lambda:feature.isCombine),\n                                                                  ^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 113627, in _get_isCombine\n    return _fusion.MirrorFeature__get_isCombine(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcMirror\n"
+        },
+        {
+          "field": "stitchTolerance",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 39, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemainingBodyInputModes.py\", line 189, in <lambda>\n    'stitch_tolerance_cm':observe('stitchTolerance',lambda:feature.stitchTolerance.value),\n                                                           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 113646, in _get_stitchTolerance\n    return _fusion.MirrorFeature__get_stitchTolerance(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcMirror\n"
+        }
+      ],
+      "input_output_frame_involution": true
+    }
+  ],
+  "guards": [
+    {
+      "case": "Repeated collection membership disagrees",
+      "reason": "Datum Mirror repeated source/output plane membership disagrees"
+    },
+    {
+      "case": "Selected origin-plane identity changes independently of output",
+      "reason": "Computed datum reflection does not match the owned output plane cache"
+    },
+    {
+      "case": "Typed dependency component scope missing",
+      "reason": "Datum Mirror source/feature native dependency scopes disagree"
+    },
+    {
+      "case": "Output cache origin no longer reflects source",
+      "reason": "Computed datum reflection does not match the owned output plane cache"
+    },
+    {
+      "case": "Unobserved datum input kind code",
+      "reason": "Unsupported datum-Mirror control modes/owner"
+    }
+  ],
+  "summary": {
+    "saved_files": 3,
+    "datum_reflections": 3,
+    "independent_actual_API_output_matrices": 2,
+    "maximum_stored_frame_difference": 0.0,
+    "malformed_guards": 5,
+    "new_API_calls": 0
+  },
+  "limitations": [
+    "The selected component-origin plane and two-member datum collection are bounded observed layouts.",
+    "The computed matrix reverses orientation; it is not a proper rigid assembly occurrence transform or stored matrix.",
+    "Combine/stitch controls remain null and tool-level warnings stay explicit.",
+    "Native output association is independent of unavailable API resultFeatures/timeline getters; those are never fabricated.",
+    "General datum types/supports, feature lifecycle replay, native writing and assembly solving remain unfinished."
+  ]
+}

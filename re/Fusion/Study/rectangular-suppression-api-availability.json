@@ -1,0 +1,203 @@
+{
+  "scope": "Current installed public modeling rectangular suppression API review; no new live attempt, native mapping or successful suppression export",
+  "status": "No different documented creation/edit route found; existing actual body-pattern setters remain unsupported in the same Fusion version as latest successful circular probes",
+  "historical_evidence_report": "rectangular-suppression-decoding.json",
+  "installed_sdk": {
+    "path": "/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py",
+    "sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+    "classes": [
+      {
+        "class": "RectangularPatternFeatures",
+        "source_line": 61442,
+        "public_methods": [
+          "classType",
+          "item",
+          "createInput",
+          "add",
+          "itemByName"
+        ],
+        "properties": [
+          "count",
+          "objectType",
+          "isValid"
+        ]
+      },
+      {
+        "class": "RectangularPatternFeatureInput",
+        "source_line": 61173,
+        "public_methods": [
+          "classType",
+          "setDirectionTwo"
+        ],
+        "properties": [
+          "inputEntities",
+          "directionOneEntity",
+          "directionTwoEntity",
+          "quantityOne",
+          "quantityTwo",
+          "distanceOne",
+          "distanceTwo",
+          "directionOne",
+          "directionTwo",
+          "isSymmetricInDirectionOne",
+          "isSymmetricInDirectionTwo",
+          "patternDistanceType",
+          "patternComputeOption",
+          "targetBaseFeature",
+          "objectType",
+          "isValid"
+        ]
+      },
+      {
+        "class": "RectangularPatternFeature",
+        "source_line": 123395,
+        "public_methods": [
+          "classType",
+          "createForAssemblyContext",
+          "deleteMe",
+          "dissolve"
+        ],
+        "properties": [
+          "inputEntities",
+          "directionOneEntity",
+          "directionTwoEntity",
+          "directionOne",
+          "directionTwo",
+          "quantityOne",
+          "quantityTwo",
+          "distanceOne",
+          "distanceTwo",
+          "isSymmetricInDirectionOne",
+          "isSymmetricInDirectionTwo",
+          "patternDistanceType",
+          "suppressedElementsIds",
+          "patternElements",
+          "resultFeatures",
+          "nativeObject",
+          "patternEntityType",
+          "patternComputeOption",
+          "name",
+          "isSuppressed",
+          "isParametric",
+          "faces",
+          "parentComponent",
+          "linkedFeatures",
+          "assemblyContext",
+          "timelineObject",
+          "bodies",
+          "attributes",
+          "baseFeature",
+          "healthState",
+          "errorOrWarningMessage",
+          "entityToken",
+          "objectType",
+          "isValid"
+        ]
+      },
+      {
+        "class": "PatternElements",
+        "source_line": 56046,
+        "public_methods": [
+          "classType",
+          "item"
+        ],
+        "properties": [
+          "count",
+          "objectType",
+          "isValid"
+        ]
+      },
+      {
+        "class": "PatternElement",
+        "source_line": 55932,
+        "public_methods": [
+          "classType"
+        ],
+        "properties": [
+          "faces",
+          "id",
+          "parentFeature",
+          "isSuppressed",
+          "transform",
+          "name",
+          "occurrences",
+          "objectType",
+          "isValid"
+        ]
+      },
+      {
+        "class": "RectangularPatternConstraintInput",
+        "source_line": 60916,
+        "public_methods": [
+          "classType",
+          "setDirectionOne",
+          "setDirectionTwo"
+        ],
+        "properties": [
+          "entities",
+          "directionOneEntity",
+          "directionTwoEntity",
+          "quantityOne",
+          "quantityTwo",
+          "distanceOne",
+          "distanceTwo",
+          "isSymmetricInDirectionOne",
+          "isSymmetricInDirectionTwo",
+          "distanceType",
+          "isSuppressed",
+          "objectType",
+          "isValid"
+        ]
+      }
+    ]
+  },
+  "actual_existing_failures": [
+    {
+      "capture_directory": "rectmodes-a069f8f4b8a2",
+      "ground_truth_sha256": "b3d9a10d1053d38a02864e5e7c911d9969a6ea7f4e60d3a132a90c595c582127",
+      "actual_fusion_version": "2705.1.30",
+      "case": "body_suppressed",
+      "setter": "RectangularPatternFeature.suppressedElementsIds",
+      "actual_error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRectangularPatternModes.py\", line 82, in run\n    feature.suppressedElementsIds = [1, 4]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 123608, in _set_suppressedElementsIds\n    return _fusion.RectangularPatternFeature__set_suppressedElementsIds(self, value)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 5 : API Function not yet implemented\n",
+      "case_export_exists": false
+    },
+    {
+      "capture_directory": "rectmodes-419a3a194fc0",
+      "ground_truth_sha256": "603f51d265bc67860a34aa47e64fb8559d57199721a0dde8b44c24b831fb11a3",
+      "actual_fusion_version": "2705.1.30",
+      "case": "body_suppressed_element",
+      "setter": "PatternElement.isSuppressed after rollback",
+      "actual_error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRectangularPatternModes.py\", line 93, in run\n    feature.patternElements.item(1).isSuppressed = True\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 55989, in _set_isSuppressed\n    return _fusion.PatternElement__set_isSuppressed(self, value)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 5 : API Function not yet implemented\n",
+      "case_export_exists": false
+    }
+  ],
+  "same_version_control": {
+    "file": "circularsymsuppression-c837268fa458/ground_truth.json",
+    "fusion_version": "2705.1.30",
+    "successful_circular_suppression_exports": 3,
+    "scope": "Version control only; circular success is not rectangular support"
+  },
+  "findings": [
+    "Feature-wide suppressedElementsIds and correctly rolled-back PatternElement.isSuppressed each already fail RuntimeError5: API Function not yet implemented for body rectangular patterns.",
+    "The installed RectangularPatternFeatureInput has no suppression member; existing feature exposes no alternate createInput/update/suppression-edit method.",
+    "RectangularPatternConstraintInput.isSuppressed belongs to sketch constraint patterns and cannot substitute for modeling BRep body pattern suppression.",
+    "Existing empty native suppression lists/Cantor keys and analytic placement sets do not establish native-key/API-ID mapping."
+  ],
+  "next_qualifying_evidence": [
+    "An actual owned rectangular BRep body-pattern export with nonempty suppression created through a working supported path, paired with actual suppressedElementsIds and ordered PatternElement.id/isSuppressed getters.",
+    "A second differing actual suppressed ID, with a symmetric case separately contrasted before accepting symmetry order; preserve any seed-ordinal result-count counterexample."
+  ],
+  "limits": [
+    "No new generator was dispatched and no retry of either known unimplemented setter was performed.",
+    "No native suppression decoder or array-index mapping claimed from circular similarity, coordinates, names, Cantor keys or element order alone.",
+    "Actual failures are scoped to the saved body-pattern cases/build2705.1.30; other future implementations/versions were not tested."
+  ],
+  "summary": {
+    "new_live_calls": 0,
+    "existing_actual_unimplemented_setter_routes": 2,
+    "installed_SDK_classes_inspected": 6,
+    "alternate_modeling_suppression_input_routes_found": 0,
+    "new_exports": 0,
+    "mapping_claims": 0
+  }
+}

@@ -1,0 +1,2934 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "stl_centimeter",
+      "file": "stl_centimeter.f3d",
+      "getter_errors": [],
+      "phase": "export_complete",
+      "actual_design_type": 1,
+      "root_component": {
+        "objectType": "adsk::fusion::Component",
+        "name": "(Unsaved)",
+        "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+        "isValid": true,
+        "getter_errors": []
+      },
+      "runtime_plane_cut_capability": {
+        "module_has_MeshPlaneCutFeatures": true,
+        "features_has_meshPlaneCutFeatures": true,
+        "plane_cut_attempted": false,
+        "status": "Not attempted: installed public SDK declares no Plane Cut construction API"
+      },
+      "before_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZGAEAMWs2PYgAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 4,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        }
+      },
+      "start_edit_returned": true,
+      "requested": {
+        "method": "MeshBodies.add",
+        "units_enum": 0,
+        "numeric_to_internal_cm_scale": 1.0,
+        "explicit_base_feature_argument": true
+      },
+      "add_returned_mesh_count": 1,
+      "during_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "name": "OwnedTetra_stl_centimeter",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZWgIA+IP/s4gAAAA=",
+            "isValid": true,
+            "getter_errors": [],
+            "area": 20.810249675906654,
+            "volume": 4.000000178813937,
+            "isClosed": true,
+            "isOriented": true,
+            "isVisible": true,
+            "isLightBulbOn": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                2.0,
+                3.0,
+                4.0
+              ]
+            },
+            "baseOrFormFeature": null,
+            "parentComponent": {
+              "objectType": "adsk::fusion::Component",
+              "name": "(Unsaved)",
+              "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+              "isValid": true,
+              "getter_errors": []
+            },
+            "assemblyContext": null,
+            "nativeObject": null,
+            "original_polygon_mesh": {
+              "objectType": "adsk::fusion::PolygonMesh",
+              "nodeCount": 4,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                -0.7682212476697379,
+                -0.5121475381829211,
+                -0.38411062383486894,
+                0.0,
+                0.0,
+                0.999999985098839,
+                0.0,
+                0.999999985098839,
+                0.0,
+                0.999999985098839,
+                0.0,
+                0.0
+              ],
+              "quadCount": 0,
+              "polygonCount": 0,
+              "triangleNodeIndices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "quadNodeIndices": null,
+              "polygonNodeIndices": null,
+              "nodeCountPerPolygon": null,
+              "triangleFaceGroupTempIds": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "getter_errors": [
+                {
+                  "getter": "quadNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "polygonNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "nodeCountPerPolygon",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                }
+              ]
+            },
+            "display_triangle_mesh": {
+              "objectType": "adsk::fusion::TriangleMesh",
+              "nodeCount": 12,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                0.7682212476697379,
+                0.5121475381829211,
+                0.38411062383486894,
+                0.7682212476697379,
+                0.5121475381829211,
+                0.38411062383486894,
+                0.7682212476697379,
+                0.5121475381829211,
+                0.38411062383486894
+              ],
+              "nodeIndices": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                1,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "surfaceTolerance": 1e-06,
+              "getter_errors": []
+            },
+            "mesh_getter_errors": []
+          }
+        ],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZGAEAMWs2PYgAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 4,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "created_mesh_handle": {
+          "objectType": "adsk::fusion::MeshBody",
+          "name": "OwnedTetra_stl_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZWgIA+IP/s4gAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "area": 20.810249675906654,
+          "volume": 4.000000178813937,
+          "isClosed": true,
+          "isOriented": true,
+          "isVisible": true,
+          "isLightBulbOn": true,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              2.0,
+              3.0,
+              4.0
+            ]
+          },
+          "baseOrFormFeature": null,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "isValid": true,
+            "getter_errors": []
+          },
+          "assemblyContext": null,
+          "nativeObject": null,
+          "original_polygon_mesh": {
+            "objectType": "adsk::fusion::PolygonMesh",
+            "nodeCount": 4,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              -0.7682212476697379,
+              -0.5121475381829211,
+              -0.38411062383486894,
+              0.0,
+              0.0,
+              0.999999985098839,
+              0.0,
+              0.999999985098839,
+              0.0,
+              0.999999985098839,
+              0.0,
+              0.0
+            ],
+            "quadCount": 0,
+            "polygonCount": 0,
+            "triangleNodeIndices": [
+              0,
+              2,
+              3,
+              0,
+              3,
+              1,
+              0,
+              1,
+              2,
+              3,
+              2,
+              1
+            ],
+            "quadNodeIndices": null,
+            "polygonNodeIndices": null,
+            "nodeCountPerPolygon": null,
+            "triangleFaceGroupTempIds": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "getter_errors": [
+              {
+                "getter": "quadNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "polygonNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "nodeCountPerPolygon",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              }
+            ]
+          },
+          "display_triangle_mesh": {
+            "objectType": "adsk::fusion::TriangleMesh",
+            "nodeCount": 12,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              0.7682212476697379,
+              0.5121475381829211,
+              0.38411062383486894,
+              0.7682212476697379,
+              0.5121475381829211,
+              0.38411062383486894,
+              0.7682212476697379,
+              0.5121475381829211,
+              0.38411062383486894
+            ],
+            "nodeIndices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              1,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "surfaceTolerance": 1e-06,
+            "getter_errors": []
+          },
+          "mesh_getter_errors": []
+        },
+        "created_mesh_owner_is_base": false
+      },
+      "finish_edit_returned": true,
+      "compute_all_returned": true,
+      "after_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "name": "OwnedTetra_stl_centimeter",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZWgIA+IP/s4gAAAA=",
+            "isValid": true,
+            "getter_errors": [],
+            "area": 20.810249675906654,
+            "volume": 4.000000178813937,
+            "isClosed": true,
+            "isOriented": true,
+            "isVisible": true,
+            "isLightBulbOn": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                2.0,
+                3.0,
+                4.0
+              ]
+            },
+            "baseOrFormFeature": null,
+            "parentComponent": {
+              "objectType": "adsk::fusion::Component",
+              "name": "(Unsaved)",
+              "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+              "isValid": true,
+              "getter_errors": []
+            },
+            "assemblyContext": null,
+            "nativeObject": null,
+            "original_polygon_mesh": {
+              "objectType": "adsk::fusion::PolygonMesh",
+              "nodeCount": 4,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                -0.7682212476697379,
+                -0.5121475381829211,
+                -0.38411062383486894,
+                0.0,
+                0.0,
+                0.999999985098839,
+                0.0,
+                0.999999985098839,
+                0.0,
+                0.999999985098839,
+                0.0,
+                0.0
+              ],
+              "quadCount": 0,
+              "polygonCount": 0,
+              "triangleNodeIndices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "quadNodeIndices": null,
+              "polygonNodeIndices": null,
+              "nodeCountPerPolygon": null,
+              "triangleFaceGroupTempIds": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "getter_errors": [
+                {
+                  "getter": "quadNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "polygonNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "nodeCountPerPolygon",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                }
+              ]
+            },
+            "display_triangle_mesh": {
+              "objectType": "adsk::fusion::TriangleMesh",
+              "nodeCount": 12,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                2.0000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                3.0000000447034836,
+                0.0,
+                0.0,
+                0.0,
+                4.000000059604645
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                -0.999999985098839,
+                0.0,
+                0.0,
+                0.7682212476697379,
+                0.5121475381829211,
+                0.38411062383486894,
+                0.7682212476697379,
+                0.5121475381829211,
+                0.38411062383486894,
+                0.7682212476697379,
+                0.5121475381829211,
+                0.38411062383486894
+              ],
+              "nodeIndices": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                1,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "surfaceTolerance": 1e-06,
+              "getter_errors": []
+            },
+            "mesh_getter_errors": []
+          }
+        ],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZGAEAMWs2PYgAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "created_mesh_handle": {
+          "objectType": "adsk::fusion::MeshBody",
+          "name": "OwnedTetra_stl_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtnXVyTuzPa8OnHvWu2KxYdrgCqMFIzNFFITLZOMUsySdS0tUy10TSwNLXUtEk1TdS0Nzc0sUtKM0wzSDMBqgWYwoAGwfQYKYOtA1hsZWgIA+IP/s4gAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "area": 20.810249675906654,
+          "volume": 4.000000178813937,
+          "isClosed": true,
+          "isOriented": true,
+          "isVisible": true,
+          "isLightBulbOn": true,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              2.0,
+              3.0,
+              4.0
+            ]
+          },
+          "baseOrFormFeature": null,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "isValid": true,
+            "getter_errors": []
+          },
+          "assemblyContext": null,
+          "nativeObject": null,
+          "original_polygon_mesh": {
+            "objectType": "adsk::fusion::PolygonMesh",
+            "nodeCount": 4,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              -0.7682212476697379,
+              -0.5121475381829211,
+              -0.38411062383486894,
+              0.0,
+              0.0,
+              0.999999985098839,
+              0.0,
+              0.999999985098839,
+              0.0,
+              0.999999985098839,
+              0.0,
+              0.0
+            ],
+            "quadCount": 0,
+            "polygonCount": 0,
+            "triangleNodeIndices": [
+              0,
+              2,
+              3,
+              0,
+              3,
+              1,
+              0,
+              1,
+              2,
+              3,
+              2,
+              1
+            ],
+            "quadNodeIndices": null,
+            "polygonNodeIndices": null,
+            "nodeCountPerPolygon": null,
+            "triangleFaceGroupTempIds": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "getter_errors": [
+              {
+                "getter": "quadNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "polygonNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "nodeCountPerPolygon",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              }
+            ]
+          },
+          "display_triangle_mesh": {
+            "objectType": "adsk::fusion::TriangleMesh",
+            "nodeCount": 12,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              2.0000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              3.0000000447034836,
+              0.0,
+              0.0,
+              0.0,
+              4.000000059604645
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              -0.999999985098839,
+              0.0,
+              0.0,
+              0.7682212476697379,
+              0.5121475381829211,
+              0.38411062383486894,
+              0.7682212476697379,
+              0.5121475381829211,
+              0.38411062383486894,
+              0.7682212476697379,
+              0.5121475381829211,
+              0.38411062383486894
+            ],
+            "nodeIndices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              1,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "surfaceTolerance": 1e-06,
+            "getter_errors": []
+          },
+          "mesh_getter_errors": []
+        },
+        "created_mesh_owner_is_base": false
+      },
+      "timeline_count": 2,
+      "timeline_marker_position": 2,
+      "export": {
+        "returned_success": true,
+        "size_bytes": 59553,
+        "sha256": "af92be84cad999ab8b363e93aefb3b6c9be54138fcc321f843aff498dc387ac3"
+      }
+    },
+    {
+      "case": "stl_millimeter",
+      "file": "stl_millimeter.f3d",
+      "getter_errors": [],
+      "phase": "export_complete",
+      "actual_design_type": 1,
+      "root_component": {
+        "objectType": "adsk::fusion::Component",
+        "name": "(Unsaved)",
+        "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+        "isValid": true,
+        "getter_errors": []
+      },
+      "runtime_plane_cut_capability": {
+        "module_has_MeshPlaneCutFeatures": true,
+        "features_has_meshPlaneCutFeatures": true,
+        "plane_cut_attempted": false,
+        "status": "Not attempted: installed public SDK declares no Plane Cut construction API"
+      },
+      "before_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_millimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGAEAIhkXxCIAAAA",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 4,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        }
+      },
+      "start_edit_returned": true,
+      "requested": {
+        "method": "MeshBodies.add",
+        "units_enum": 1,
+        "numeric_to_internal_cm_scale": 0.1,
+        "explicit_base_feature_argument": true
+      },
+      "add_returned_mesh_count": 1,
+      "during_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "name": "OwnedTetra_stl_millimeter",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGgJAEGMlp6IAAAA",
+            "isValid": true,
+            "getter_errors": [],
+            "area": 0.20810250662710217,
+            "volume": 0.004000000178813937,
+            "isClosed": true,
+            "isOriented": true,
+            "isVisible": true,
+            "isLightBulbOn": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                0.20000000298023224,
+                0.30000001192092896,
+                0.4000000059604645
+              ]
+            },
+            "baseOrFormFeature": null,
+            "parentComponent": {
+              "objectType": "adsk::fusion::Component",
+              "name": "(Unsaved)",
+              "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+              "isValid": true,
+              "getter_errors": []
+            },
+            "assemblyContext": null,
+            "nativeObject": null,
+            "original_polygon_mesh": {
+              "objectType": "adsk::fusion::PolygonMesh",
+              "nodeCount": 4,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                -7.682212476697378,
+                -5.121475381829211,
+                -3.841106238348689,
+                0.0,
+                0.0,
+                9.99999985098839,
+                0.0,
+                9.99999985098839,
+                0.0,
+                9.99999985098839,
+                0.0,
+                0.0
+              ],
+              "quadCount": 0,
+              "polygonCount": 0,
+              "triangleNodeIndices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "quadNodeIndices": null,
+              "polygonNodeIndices": null,
+              "nodeCountPerPolygon": null,
+              "triangleFaceGroupTempIds": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "getter_errors": [
+                {
+                  "getter": "quadNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "polygonNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "nodeCountPerPolygon",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                }
+              ]
+            },
+            "display_triangle_mesh": {
+              "objectType": "adsk::fusion::TriangleMesh",
+              "nodeCount": 12,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                7.682212476697378,
+                5.121475381829211,
+                3.841106238348689,
+                7.682212476697378,
+                5.121475381829211,
+                3.841106238348689,
+                7.682212476697378,
+                5.121475381829211,
+                3.841106238348689
+              ],
+              "nodeIndices": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                1,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "surfaceTolerance": 1e-06,
+              "getter_errors": []
+            },
+            "mesh_getter_errors": []
+          }
+        ],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_millimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGAEAIhkXxCIAAAA",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 4,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "created_mesh_handle": {
+          "objectType": "adsk::fusion::MeshBody",
+          "name": "OwnedTetra_stl_millimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGgJAEGMlp6IAAAA",
+          "isValid": true,
+          "getter_errors": [],
+          "area": 0.20810250662710217,
+          "volume": 0.004000000178813937,
+          "isClosed": true,
+          "isOriented": true,
+          "isVisible": true,
+          "isLightBulbOn": true,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              0.20000000298023224,
+              0.30000001192092896,
+              0.4000000059604645
+            ]
+          },
+          "baseOrFormFeature": null,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "isValid": true,
+            "getter_errors": []
+          },
+          "assemblyContext": null,
+          "nativeObject": null,
+          "original_polygon_mesh": {
+            "objectType": "adsk::fusion::PolygonMesh",
+            "nodeCount": 4,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              -7.682212476697378,
+              -5.121475381829211,
+              -3.841106238348689,
+              0.0,
+              0.0,
+              9.99999985098839,
+              0.0,
+              9.99999985098839,
+              0.0,
+              9.99999985098839,
+              0.0,
+              0.0
+            ],
+            "quadCount": 0,
+            "polygonCount": 0,
+            "triangleNodeIndices": [
+              0,
+              2,
+              3,
+              0,
+              3,
+              1,
+              0,
+              1,
+              2,
+              3,
+              2,
+              1
+            ],
+            "quadNodeIndices": null,
+            "polygonNodeIndices": null,
+            "nodeCountPerPolygon": null,
+            "triangleFaceGroupTempIds": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "getter_errors": [
+              {
+                "getter": "quadNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "polygonNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "nodeCountPerPolygon",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              }
+            ]
+          },
+          "display_triangle_mesh": {
+            "objectType": "adsk::fusion::TriangleMesh",
+            "nodeCount": 12,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              7.682212476697378,
+              5.121475381829211,
+              3.841106238348689,
+              7.682212476697378,
+              5.121475381829211,
+              3.841106238348689,
+              7.682212476697378,
+              5.121475381829211,
+              3.841106238348689
+            ],
+            "nodeIndices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              1,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "surfaceTolerance": 1e-06,
+            "getter_errors": []
+          },
+          "mesh_getter_errors": []
+        },
+        "created_mesh_owner_is_base": false
+      },
+      "finish_edit_returned": true,
+      "compute_all_returned": true,
+      "after_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "name": "OwnedTetra_stl_millimeter",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGgJAEGMlp6IAAAA",
+            "isValid": true,
+            "getter_errors": [],
+            "area": 0.20810250662710217,
+            "volume": 0.004000000178813937,
+            "isClosed": true,
+            "isOriented": true,
+            "isVisible": true,
+            "isLightBulbOn": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                0.20000000298023224,
+                0.30000001192092896,
+                0.4000000059604645
+              ]
+            },
+            "baseOrFormFeature": null,
+            "parentComponent": {
+              "objectType": "adsk::fusion::Component",
+              "name": "(Unsaved)",
+              "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+              "isValid": true,
+              "getter_errors": []
+            },
+            "assemblyContext": null,
+            "nativeObject": null,
+            "original_polygon_mesh": {
+              "objectType": "adsk::fusion::PolygonMesh",
+              "nodeCount": 4,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                -7.682212476697378,
+                -5.121475381829211,
+                -3.841106238348689,
+                0.0,
+                0.0,
+                9.99999985098839,
+                0.0,
+                9.99999985098839,
+                0.0,
+                9.99999985098839,
+                0.0,
+                0.0
+              ],
+              "quadCount": 0,
+              "polygonCount": 0,
+              "triangleNodeIndices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "quadNodeIndices": null,
+              "polygonNodeIndices": null,
+              "nodeCountPerPolygon": null,
+              "triangleFaceGroupTempIds": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "getter_errors": [
+                {
+                  "getter": "quadNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "polygonNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "nodeCountPerPolygon",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                }
+              ]
+            },
+            "display_triangle_mesh": {
+              "objectType": "adsk::fusion::TriangleMesh",
+              "nodeCount": 12,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.20000000298023224,
+                0.0,
+                0.0,
+                0.0,
+                0.30000000447034836,
+                0.0,
+                0.0,
+                0.0,
+                0.4000000059604645
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                -9.99999985098839,
+                0.0,
+                0.0,
+                7.682212476697378,
+                5.121475381829211,
+                3.841106238348689,
+                7.682212476697378,
+                5.121475381829211,
+                3.841106238348689,
+                7.682212476697378,
+                5.121475381829211,
+                3.841106238348689
+              ],
+              "nodeIndices": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                1,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "surfaceTolerance": 1e-06,
+              "getter_errors": []
+            },
+            "mesh_getter_errors": []
+          }
+        ],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh stl_millimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGAEAIhkXxCIAAAA",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "created_mesh_handle": {
+          "objectType": "adsk::fusion::MeshBody",
+          "name": "OwnedTetra_stl_millimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrnn3mJJRdfn+49sk5qlPfEOUIWRgrGZgplBcmKKYZqhLpA20TVJTkrWtUizMNNNSzVONU6xsDRKSzEAqwWawYAGwPYZKICtA1lvZGgJAEGMlp6IAAAA",
+          "isValid": true,
+          "getter_errors": [],
+          "area": 0.20810250662710217,
+          "volume": 0.004000000178813937,
+          "isClosed": true,
+          "isOriented": true,
+          "isVisible": true,
+          "isLightBulbOn": true,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              0.20000000298023224,
+              0.30000001192092896,
+              0.4000000059604645
+            ]
+          },
+          "baseOrFormFeature": null,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "isValid": true,
+            "getter_errors": []
+          },
+          "assemblyContext": null,
+          "nativeObject": null,
+          "original_polygon_mesh": {
+            "objectType": "adsk::fusion::PolygonMesh",
+            "nodeCount": 4,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              -7.682212476697378,
+              -5.121475381829211,
+              -3.841106238348689,
+              0.0,
+              0.0,
+              9.99999985098839,
+              0.0,
+              9.99999985098839,
+              0.0,
+              9.99999985098839,
+              0.0,
+              0.0
+            ],
+            "quadCount": 0,
+            "polygonCount": 0,
+            "triangleNodeIndices": [
+              0,
+              2,
+              3,
+              0,
+              3,
+              1,
+              0,
+              1,
+              2,
+              3,
+              2,
+              1
+            ],
+            "quadNodeIndices": null,
+            "polygonNodeIndices": null,
+            "nodeCountPerPolygon": null,
+            "triangleFaceGroupTempIds": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "getter_errors": [
+              {
+                "getter": "quadNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "polygonNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "nodeCountPerPolygon",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              }
+            ]
+          },
+          "display_triangle_mesh": {
+            "objectType": "adsk::fusion::TriangleMesh",
+            "nodeCount": 12,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.20000000298023224,
+              0.0,
+              0.0,
+              0.0,
+              0.30000000447034836,
+              0.0,
+              0.0,
+              0.0,
+              0.4000000059604645
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              -9.99999985098839,
+              0.0,
+              0.0,
+              7.682212476697378,
+              5.121475381829211,
+              3.841106238348689,
+              7.682212476697378,
+              5.121475381829211,
+              3.841106238348689,
+              7.682212476697378,
+              5.121475381829211,
+              3.841106238348689
+            ],
+            "nodeIndices": [
+              0,
+              2,
+              3,
+              4,
+              5,
+              1,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "surfaceTolerance": 1e-06,
+            "getter_errors": []
+          },
+          "mesh_getter_errors": []
+        },
+        "created_mesh_owner_is_base": false
+      },
+      "timeline_count": 2,
+      "timeline_marker_position": 2,
+      "export": {
+        "returned_success": true,
+        "size_bytes": 51735,
+        "sha256": "e4576022f6b38dae4cb4aae1230d091f6ad6b21dc4d1223525e1870a656051d8"
+      }
+    },
+    {
+      "case": "triangle_data_centimeter",
+      "file": "triangle_data_centimeter.f3d",
+      "getter_errors": [],
+      "phase": "export_complete",
+      "actual_design_type": 1,
+      "root_component": {
+        "objectType": "adsk::fusion::Component",
+        "name": "(Unsaved)",
+        "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+        "isValid": true,
+        "getter_errors": []
+      },
+      "runtime_plane_cut_capability": {
+        "module_has_MeshPlaneCutFeatures": true,
+        "features_has_meshPlaneCutFeatures": true,
+        "plane_cut_attempted": false,
+        "status": "Not attempted: installed public SDK declares no Plane Cut construction API"
+      },
+      "before_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh triangle_data_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcyMAIA6cb45ogAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 4,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        }
+      },
+      "start_edit_returned": true,
+      "requested": {
+        "method": "MeshBodies.addByTriangleMeshData",
+        "coordinates_cm": [
+          0.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        "coordinate_indices": [
+          0,
+          2,
+          1,
+          0,
+          1,
+          3,
+          0,
+          3,
+          2,
+          1,
+          2,
+          3
+        ],
+        "normal_vectors": [],
+        "normal_indices": [],
+        "ownership_scope": "No explicit BaseFeature parameter exists; creation is attempted during this owned BaseFeature edit and actual ownership is observed."
+      },
+      "during_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "name": "OwnedTetra_triangle_data_centimeter",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcytAQAIC4xaIgAAAA=",
+            "isValid": true,
+            "getter_errors": [],
+            "area": 20.810249675906654,
+            "volume": 4.0,
+            "isClosed": true,
+            "isOriented": true,
+            "isVisible": true,
+            "isLightBulbOn": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                2.0,
+                3.0,
+                4.0
+              ]
+            },
+            "baseOrFormFeature": null,
+            "parentComponent": {
+              "objectType": "adsk::fusion::Component",
+              "name": "(Unsaved)",
+              "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+              "isValid": true,
+              "getter_errors": []
+            },
+            "assemblyContext": null,
+            "nativeObject": null,
+            "original_polygon_mesh": {
+              "objectType": "adsk::fusion::PolygonMesh",
+              "nodeCount": 4,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                -0.7682212591171265,
+                -0.5121475458145142,
+                -0.38411062955856323,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "quadCount": 0,
+              "polygonCount": 0,
+              "triangleNodeIndices": [
+                0,
+                2,
+                1,
+                0,
+                1,
+                3,
+                0,
+                3,
+                2,
+                1,
+                2,
+                3
+              ],
+              "quadNodeIndices": null,
+              "polygonNodeIndices": null,
+              "nodeCountPerPolygon": null,
+              "triangleFaceGroupTempIds": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "getter_errors": [
+                {
+                  "getter": "quadNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "polygonNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "nodeCountPerPolygon",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                }
+              ]
+            },
+            "display_triangle_mesh": {
+              "objectType": "adsk::fusion::TriangleMesh",
+              "nodeCount": 12,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                3.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.7682212591171265,
+                0.5121475458145142,
+                0.38411062955856323,
+                0.7682212591171265,
+                0.5121475458145142,
+                0.38411062955856323,
+                0.7682212591171265,
+                0.5121475458145142,
+                0.38411062955856323
+              ],
+              "nodeIndices": [
+                0,
+                2,
+                1,
+                4,
+                5,
+                3,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "surfaceTolerance": 1e-06,
+              "getter_errors": []
+            },
+            "mesh_getter_errors": []
+          }
+        ],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh triangle_data_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcyMAIA6cb45ogAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 4,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "created_mesh_handle": {
+          "objectType": "adsk::fusion::MeshBody",
+          "name": "OwnedTetra_triangle_data_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcytAQAIC4xaIgAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "area": 20.810249675906654,
+          "volume": 4.0,
+          "isClosed": true,
+          "isOriented": true,
+          "isVisible": true,
+          "isLightBulbOn": true,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              2.0,
+              3.0,
+              4.0
+            ]
+          },
+          "baseOrFormFeature": null,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "isValid": true,
+            "getter_errors": []
+          },
+          "assemblyContext": null,
+          "nativeObject": null,
+          "original_polygon_mesh": {
+            "objectType": "adsk::fusion::PolygonMesh",
+            "nodeCount": 4,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              -0.7682212591171265,
+              -0.5121475458145142,
+              -0.38411062955856323,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "quadCount": 0,
+            "polygonCount": 0,
+            "triangleNodeIndices": [
+              0,
+              2,
+              1,
+              0,
+              1,
+              3,
+              0,
+              3,
+              2,
+              1,
+              2,
+              3
+            ],
+            "quadNodeIndices": null,
+            "polygonNodeIndices": null,
+            "nodeCountPerPolygon": null,
+            "triangleFaceGroupTempIds": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "getter_errors": [
+              {
+                "getter": "quadNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "polygonNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "nodeCountPerPolygon",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              }
+            ]
+          },
+          "display_triangle_mesh": {
+            "objectType": "adsk::fusion::TriangleMesh",
+            "nodeCount": 12,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              3.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.7682212591171265,
+              0.5121475458145142,
+              0.38411062955856323,
+              0.7682212591171265,
+              0.5121475458145142,
+              0.38411062955856323,
+              0.7682212591171265,
+              0.5121475458145142,
+              0.38411062955856323
+            ],
+            "nodeIndices": [
+              0,
+              2,
+              1,
+              4,
+              5,
+              3,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "surfaceTolerance": 1e-06,
+            "getter_errors": []
+          },
+          "mesh_getter_errors": []
+        },
+        "created_mesh_owner_is_base": false
+      },
+      "finish_edit_returned": true,
+      "compute_all_returned": true,
+      "after_edit": {
+        "getter_errors": [
+          {
+            "getter": "base.meshBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 137, in <lambda>\n    result['base_mesh_bodies'] = observe('base.meshBodies', lambda: [mesh_body(b) for b in collection_items(base.meshBodies)], errors)\n                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'MeshBodyVector' object has no attribute 'count'\n"
+          },
+          {
+            "getter": "base.sourceBodies",
+            "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 138, in <lambda>\n    result['base_brep_source_bodies'] = observe('base.sourceBodies', lambda: [identity(b) for b in collection_items(base.sourceBodies)], errors)\n                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 132, in collection_items\n    return [collection.item(i) for i in range(collection.count)]\n                                              ^^^^^^^^^^^^^^^^\nAttributeError: 'BRepBodyVector' object has no attribute 'count'\n"
+          }
+        ],
+        "component_mesh_bodies": [
+          {
+            "objectType": "adsk::fusion::MeshBody",
+            "name": "OwnedTetra_triangle_data_centimeter",
+            "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcytAQAIC4xaIgAAAA=",
+            "isValid": true,
+            "getter_errors": [],
+            "area": 20.810249675906654,
+            "volume": 4.0,
+            "isClosed": true,
+            "isOriented": true,
+            "isVisible": true,
+            "isLightBulbOn": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                2.0,
+                3.0,
+                4.0
+              ]
+            },
+            "baseOrFormFeature": null,
+            "parentComponent": {
+              "objectType": "adsk::fusion::Component",
+              "name": "(Unsaved)",
+              "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+              "isValid": true,
+              "getter_errors": []
+            },
+            "assemblyContext": null,
+            "nativeObject": null,
+            "original_polygon_mesh": {
+              "objectType": "adsk::fusion::PolygonMesh",
+              "nodeCount": 4,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                -0.7682212591171265,
+                -0.5121475458145142,
+                -0.38411062955856323,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "quadCount": 0,
+              "polygonCount": 0,
+              "triangleNodeIndices": [
+                0,
+                2,
+                1,
+                0,
+                1,
+                3,
+                0,
+                3,
+                2,
+                1,
+                2,
+                3
+              ],
+              "quadNodeIndices": null,
+              "polygonNodeIndices": null,
+              "nodeCountPerPolygon": null,
+              "triangleFaceGroupTempIds": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "getter_errors": [
+                {
+                  "getter": "quadNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "polygonNodeIndices",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                },
+                {
+                  "getter": "nodeCountPerPolygon",
+                  "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+                }
+              ]
+            },
+            "display_triangle_mesh": {
+              "objectType": "adsk::fusion::TriangleMesh",
+              "nodeCount": 12,
+              "nodeCoordinatesAsDouble": [
+                0.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                0.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                3.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0,
+                3.0,
+                0.0,
+                0.0,
+                0.0,
+                4.0
+              ],
+              "triangleCount": 4,
+              "normalVectorsAsDouble": [
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                0.7682212591171265,
+                0.5121475458145142,
+                0.38411062955856323,
+                0.7682212591171265,
+                0.5121475458145142,
+                0.38411062955856323,
+                0.7682212591171265,
+                0.5121475458145142,
+                0.38411062955856323
+              ],
+              "nodeIndices": [
+                0,
+                2,
+                1,
+                4,
+                5,
+                3,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "surfaceTolerance": 1e-06,
+              "getter_errors": []
+            },
+            "mesh_getter_errors": []
+          }
+        ],
+        "base_mesh_bodies": null,
+        "base_brep_source_bodies": null,
+        "base_brep_bodies": [],
+        "base": {
+          "objectType": "adsk::fusion::BaseFeature",
+          "name": "Owned tetra mesh triangle_data_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcyMAIA6cb45ogAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "healthState": 0,
+          "errorOrWarningMessage": "",
+          "isParametric": true
+        },
+        "created_mesh_handle": {
+          "objectType": "adsk::fusion::MeshBody",
+          "name": "OwnedTetra_triangle_data_centimeter",
+          "entityToken": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrHr778knXcImHdAa/LbHW83A1UYKRibKSSlmFuYWFiY6FqYpybrmphaJOsmmqUm6SanJFmmmZglm6UkpYLVAs1gQANg+wwUwNaBrDcytAQAIC4xaIgAAAA=",
+          "isValid": true,
+          "getter_errors": [],
+          "area": 20.810249675906654,
+          "volume": 4.0,
+          "isClosed": true,
+          "isOriented": true,
+          "isVisible": true,
+          "isLightBulbOn": true,
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              2.0,
+              3.0,
+              4.0
+            ]
+          },
+          "baseOrFormFeature": null,
+          "parentComponent": {
+            "objectType": "adsk::fusion::Component",
+            "name": "(Unsaved)",
+            "entityToken": "/v4BAAEAAwAAAAAAAAAAAAAA",
+            "isValid": true,
+            "getter_errors": []
+          },
+          "assemblyContext": null,
+          "nativeObject": null,
+          "original_polygon_mesh": {
+            "objectType": "adsk::fusion::PolygonMesh",
+            "nodeCount": 4,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              -0.7682212591171265,
+              -0.5121475458145142,
+              -0.38411062955856323,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "quadCount": 0,
+            "polygonCount": 0,
+            "triangleNodeIndices": [
+              0,
+              2,
+              1,
+              0,
+              1,
+              3,
+              0,
+              3,
+              2,
+              1,
+              2,
+              3
+            ],
+            "quadNodeIndices": null,
+            "polygonNodeIndices": null,
+            "nodeCountPerPolygon": null,
+            "triangleFaceGroupTempIds": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "getter_errors": [
+              {
+                "getter": "quadNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60098, in _get_quadNodeIndices\n    return _fusion.PolygonMesh__get_quadNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "polygonNodeIndices",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60105, in _get_polygonNodeIndices\n    return _fusion.PolygonMesh__get_polygonNodeIndices(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              },
+              {
+                "getter": "nodeCountPerPolygon",
+                "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 84, in observe\n    return getter()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMeshContrasts.py\", line 111, in <lambda>\n    result[prop] = observe(prop, lambda prop=prop: getattr(mesh, prop), errors)\n                                                   ~~~~~~~^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 60115, in _get_nodeCountPerPolygon\n    return _fusion.PolygonMesh__get_nodeCountPerPolygon(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : return_size > 0\n"
+              }
+            ]
+          },
+          "display_triangle_mesh": {
+            "objectType": "adsk::fusion::TriangleMesh",
+            "nodeCount": 12,
+            "nodeCoordinatesAsDouble": [
+              0.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              0.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              3.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              4.0
+            ],
+            "triangleCount": 4,
+            "normalVectorsAsDouble": [
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.7682212591171265,
+              0.5121475458145142,
+              0.38411062955856323,
+              0.7682212591171265,
+              0.5121475458145142,
+              0.38411062955856323,
+              0.7682212591171265,
+              0.5121475458145142,
+              0.38411062955856323
+            ],
+            "nodeIndices": [
+              0,
+              2,
+              1,
+              4,
+              5,
+              3,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "surfaceTolerance": 1e-06,
+            "getter_errors": []
+          },
+          "mesh_getter_errors": []
+        },
+        "created_mesh_owner_is_base": false
+      },
+      "timeline_count": 1,
+      "timeline_marker_position": 1,
+      "export": {
+        "returned_success": true,
+        "size_bytes": 56938,
+        "sha256": "c15badb77434bc38e1940076ac22f2a3f43855198b550b4c8dd0ddec68f10efa"
+      }
+    }
+  ],
+  "errors": [],
+  "executed_generator_sha256": "09bf244b2431924a17fc743939cd5fd22ebb1de8ffde7976f20cdf4082dac4d4",
+  "planned_cases": [
+    "stl_centimeter",
+    "stl_millimeter",
+    "triangle_data_centimeter"
+  ],
+  "source_mesh": {
+    "file": "owned-tetra.stl",
+    "format": "ASCII STL",
+    "sha256": "2da6d7bfe1811a76ada93c48baf25a10f776801555c72a1cb5f5853d23fe9b3a",
+    "numeric_vertices": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        2.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        3.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        4.0
+      ]
+    ],
+    "triangle_vertex_indices": [
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "facet_normals": [
+      [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.7682212795973759,
+        0.5121475197315839,
+        0.3841106397986879
+      ]
+    ],
+    "unit_scope": "STL numbers are unitless; each import explicitly supplies MeshUnits. Triangle-data coordinates use Fusion internal centimetres.",
+    "analytic_controls": {
+      "signed_tetra_volume_numeric_units_cubed": 4.0
+    }
+  },
+  "scope": "At most three newly owned parametric documents, local owned mesh source and local exports only. No BRep conversion, UI commands or mesh regeneration claim.",
+  "ownership_scope": "MeshBodies and BaseFeature.meshBodies are observed directly before/after edit. BaseFeature.sourceBodies/bodies are BRep-only getters; no source/result mesh identity is inferred from them.",
+  "plane_cut_scope": "No MeshPlaneCutFeatures or meshPlaneCutFeatures member is declared by the installed Python SDK. Runtime capability is recorded only; no undocumented operation is attempted."
+}

@@ -1,0 +1,187 @@
+{
+  "api_version": "2705.1.30",
+  "archive": "loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+  "checks": {
+    "actual_parametric_point_name_matches": true,
+    "cached_position_matches_actual_point_getter": true,
+    "actual_definition_class_matches": true,
+    "actual_definition_source_is_BRepVertex": true,
+    "native_source_is_bounded_vertex_recipe": true,
+    "actual_source_vertex_position_independently_agrees_with_cache": true,
+    "existing_definition_is_not_overwritten": true
+  },
+  "decoded": {
+    "feature_object_id": 326,
+    "kind": "ConstructionPoint",
+    "name": "HoldoutLoftConstructionPoint",
+    "native_geometry_object_id": 325,
+    "backend_object_id": 327,
+    "definition_kind": "ByPoint",
+    "api_definition_class": "ConstructionPointPointDefinition",
+    "source_kind": "VertexRecipe",
+    "stored_feature_variant_code": 0,
+    "stored_backend_method_code": 10,
+    "support_inputs": [
+      {
+        "role": "pointEntity",
+        "descriptor_object_id": 330,
+        "recipe_object_id": 333,
+        "namespace_text": "17117dde-3a31-446b-89c8-293d67150e5c",
+        "entity_guid_text": "60813131-f2ad-4e04-a523-ce74b85cc75d",
+        "entity": {
+          "kind": "VertexRecipe",
+          "recipe": {
+            "object_id": 333,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 39168,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 302,
+                    "matching_primary_record": {
+                      "object_id": 302,
+                      "class_guid": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+                      "record_offset": 35616,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 302,
+                    "matching_primary_record": {
+                      "object_id": 302,
+                      "class_guid": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+                      "record_offset": 35616,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 302,
+                    "matching_primary_record": {
+                      "object_id": 302,
+                      "class_guid": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+                      "record_offset": 35616,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "vertex_recipe_data",
+            "payload_relative_offset": 115,
+            "payload_length": 40,
+            "payload_hex": "ffffffff0300000000000000ffffffff01000000ffffffff02000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          }
+        },
+        "association": "Explicit owned typed descriptor and bounded vertex_recipe_data reference; persistent topology identity unresolved"
+      }
+    ],
+    "cached_geometry": {
+      "position_cm": [
+        0.0,
+        0.0,
+        3.0
+      ]
+    },
+    "cache_consistency": {
+      "native_backend_and_feature_positions_match": true,
+      "source_recipe_geometry_validation": "Unresolved; recipe was not evaluated into topology or a position"
+    },
+    "descriptor_payload_hex": "00000000014d0100000000000000000100000024000000310037003100310037006400640065002d0033006100330031002d0034003400360062002d0038003900630038002d0032003900330064003600370031003500300065003500630024000000360030003800310033003100330031002d0066003200610064002d0034006500300034002d0061003500320033002d006300650037003400620038003500630063003700350064000200000000000000010000000152010000000000000000010000000138010000000000000000010200000000000000000000000001010000000000000000000001010000014c010000000000000000010000014b010000000000000000000146010000000000000000",
+    "backend_auxiliary_prefix_hex": "000000000000f0bf000000000000f0bf000000000000f0bf",
+    "definition_evidence_scope": "Observed variant0/method10 and actual API ConstructionPointPointDefinition with BRepVertex source; native owned recipe framed independently of Loft",
+    "coordinate_scope": "Native parent component coordinates; occurrence/joint transforms not applied",
+    "geometry_status": "Cached construction-point geometry and explicit source recipe; persistent ASM vertex/body mapping and regeneration unresolved"
+  },
+  "actual_api_construction_point": {
+    "entity_type": "adsk::fusion::ConstructionPoint",
+    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YyBQAy0mwQogAAAA=",
+    "name": "HoldoutLoftConstructionPoint",
+    "world_point_cm": [
+      0.0,
+      0.0,
+      3.0
+    ],
+    "is_parametric": true,
+    "component_name": "(Unsaved)",
+    "definition": {
+      "entity_type": "adsk::fusion::ConstructionPointPointDefinition",
+      "sources": {
+        "pointEntity": {
+          "entity_type": "adsk::fusion::BRepVertex",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWoDMQxFe4JCF6FbbbsQyJZmbArZlRwhq8LgsTUldFPCULLJAXKznKJniWQIlNgLPb6fJBNECMAjlFRl1iWgtsQoAweca2OkpqoitdW8AJnrPjnFbBRAPBnh9eX89x4+vi/Xt+3X5vnTjOhzR8qB7eISS0NREixDZKyaZM5DrWlo3bUZTw+n7yPo6wQYgjlWDKAv9mem2Gv/2UPA/wKCXz2uepqOWg8/OrWyFthDBnRvZ0CODuEO0cFabzTvPjMlAQAA",
+          "world_point_cm": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "body_name": "PointSupportBody",
+          "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YwAwA83qP6YgAAAA="
+        }
+      }
+    },
+    "index": 1,
+    "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+  },
+  "negative_checks": [
+    {
+      "check": "Descriptor owner changed",
+      "passed": true,
+      "reason": "Unobserved vertex-point descriptor count/layout/owner"
+    },
+    {
+      "check": "Native reciprocal feature owner changed",
+      "passed": true,
+      "reason": "Vertex-point reciprocal native owner/index/cache mismatch"
+    },
+    {
+      "check": "Recipe kind changed",
+      "passed": true,
+      "reason": "Vertex-point source recipe kind is not vertex_recipe_data"
+    },
+    {
+      "check": "Recipe reference wrong registered class rejected",
+      "passed": true,
+      "reason": "Vertex-point typed reference missing, ambiguous or wrong class"
+    }
+  ],
+  "interface": "decode_construction_vertex_points(data, records, features); run after construction geometry and other definition passes; attaches only unresolved vertex-source candidates",
+  "integration": "Merge returned definitions into construction summary and remove prior unresolved entries only for successful feature IDs; keep persistent source-vertex uncertainty",
+  "validation_command": "python3 decode_construction_vertex_points.py --validate --zstd-library <local libzstd path>",
+  "limitations": [
+    "One actual API vertex-source construction-point capture; other descriptor/backend layouts remain unsupported.",
+    "The source recipe and its numeric terms remain structurally framed; no persistent ASM vertex index, source-body identity, topology operation or coordinate derivation is inferred.",
+    "Cached geometry is checked independently against API construction-point and source-vertex getters in a root-component fixture; this does not create a general world-coordinate or assembly-solving claim.",
+    "Existing definition results and the known SketchPoint-source descriptor branch are preserved."
+  ],
+  "main_integration_checks": {
+    "legacy_mode_rejection_removed": true,
+    "legacy_definition_rejection_removed": true,
+    "source_topology_limit_preserved": true
+  }
+}

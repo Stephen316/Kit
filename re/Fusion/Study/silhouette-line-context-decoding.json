@@ -1,0 +1,1082 @@
+{
+  "scope": "Direct linear BRepEdge Silhouette view-direction role only: separately stored line point/vector cache, without natural edge geometry, trim/closure, persistent topology or evaluated source reconstruction",
+  "integration": {
+    "individual": "inspect_silhouette_line_context(data,records,item), where item is an existing decoded Silhouette direction item",
+    "summary": "decode_silhouette_line_contexts(data,records,features,body_selections=None,*,source_summary=None)",
+    "merge": "Attach cached_source_line_context only to the corresponding direct BRepEdge Silhouette direction source or retain as separate decoded summary. Preserve source_geometryNone and unrelated topology-context failures; this is cached direction evidence, not regenerated/evaluated edge geometry.",
+    "expected_output": "sample.expected_summary is the full additional summary for exact equality.",
+    "validator": "decode_silhouette_line_contexts.validate_fixtures(root,zstd_library=None)"
+  },
+  "schema_basis": {
+    "reuse": "decode_revolve_axes._edge_axis already parses the same50AEE55 point/vector cache; this stage adds a role-gated Silhouette attachment, not a universal curve-family decoder.",
+    "shape": "Exactly55 bytes: prefixzero16, sixfloat64 fields, trailer0000000100. For the admitted linear view-direction role, firstthree fields are a cached point and lastthree a finite nonzero vector; normalized direction is separately derived.",
+    "gate": "The existing guarded Silhouette reader plus native feature/control/direct BRepEdge method8 correspondence must establish the input role. Neither context class/size nor cache coordinates select a topology identity.",
+    "SDK_contract": "Installed adsk.fusion.SilhouetteSplitFeatures.createInput and SilhouetteSplitFeatureInput.viewDirection accept a linear BRepEdge. RevolveFeatureInput.axis also documents a linear edge. ConstructionAxisInput.setByEdge accepts linear/circular edges, so its role alone is deliberately insufficient."
+  },
+  "sample": {
+    "file": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d",
+    "API_actual_direction": {
+      "entity_type": "adsk::fusion::BRepEdge",
+      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OPWpDMRCEU/gK6Rf3gpVWUqQuTYzBvcFFMPv0Y9yZ4MJNruHb+BQ+S/qsZAfyJAQ7mv2YEYIBDeSBpspkg1ZuSlHZHJNiTkXVYHNJRieqDlDYxmNTJojSYJvj4f31vvj82Vxvl9v6uy53QpiWG1yMzD5LEBZlJ6tVdCSq8Jv37GLwubOS8TKc3ofQ6ywQGPQgw4rbi9uaUPfZ/zIYNBrun4FQ8qHsv0o6nso+85nhAwIo/bwGVvLEJpt4etsHQvOlmVEte8bR3xpH7hfbn8c8fwEAAA==",
+      "geometry_type": "adsk::core::Line3D",
+      "temp_id": 33,
+      "body": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgoPoZZbYr97T9lbs9ahNU4oEqjBSMDZTsDC1tExMNEvRTbMwSNU1STIx1LU0NQayUhPNzcwSTS0tzFLAaoFmMKABsH0GCmDrQNYbmZsCABKVUnyIAAAA",
+        "name": "SilhouetteDirectionSupportBody",
+        "is_solid": true,
+        "face_count": 6,
+        "edge_count": 12,
+        "volume_cm3": 4.0,
+        "bounding_box_cm": [
+          [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          [
+            8.0,
+            -1.0,
+            2.0
+          ]
+        ]
+      },
+      "start_vertex_cm": [
+        6.0,
+        -2.0,
+        0.0
+      ],
+      "end_vertex_cm": [
+        8.0,
+        -2.0,
+        0.0
+      ],
+      "line_start_cm": [
+        6.0,
+        -2.0,
+        0.0
+      ],
+      "line_end_cm": [
+        8.0,
+        -2.0,
+        0.0
+      ],
+      "line_origin_cm": [
+        6.0,
+        -2.0,
+        0.0
+      ],
+      "line_direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "actual_trimmed_edge_evaluator": {
+        "parameter_extents": [
+          0.0,
+          2.0
+        ],
+        "parameters": [
+          0.0,
+          1.0,
+          2.0
+        ],
+        "points_cm": [
+          [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          [
+            7.0,
+            -2.0,
+            0.0
+          ],
+          [
+            8.0,
+            -2.0,
+            0.0
+          ]
+        ]
+      }
+    },
+    "expected_summary": {
+      "decoded": [
+        {
+          "feature_object_id": 362,
+          "direction_control_object_id": 363,
+          "source_descriptor_object_id": 366,
+          "context_object_id": 406,
+          "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+          "context_payload_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+          "semantic_gate": "Native direct BRepEdge Silhouette viewDirection method8; documented API input must be linear",
+          "cached_line_point_cm": [
+            6.0,
+            -2.0,
+            0.0
+          ],
+          "stored_line_vector": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "cached_unit_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "vector_scale_status": "Stored cache vector scale; not interpreted as general natural edge length, parameterization or trim domain",
+          "body_anchor_object_id": 281,
+          "native_body_object_id": 275,
+          "source_owner_object_id": 243,
+          "support_object_id": 367,
+          "coordinate_scope": "Captured root-component cache coordinates in cm; occurrence transforms unsupported",
+          "source_geometry_status": "Stored point/direction cache only; natural edge evaluator and exact persistent BRep/ASM geometry remain unresolved",
+          "scope": "Direct linear BRepEdge Silhouette view-direction role only: separately stored line point/vector cache, without natural edge geometry, trim/closure, persistent topology or evaluated source reconstruction"
+        }
+      ],
+      "unresolved": [],
+      "scope": "Direct linear BRepEdge Silhouette view-direction role only: separately stored line point/vector cache, without natural edge geometry, trim/closure, persistent topology or evaluated source reconstruction"
+    },
+    "separate_stored_control_preview": {
+      "origin_cm": [
+        6.0,
+        -2.0,
+        0.0
+      ],
+      "vector": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+      "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+    },
+    "preview_comparison_observation": {
+      "same_point": true,
+      "same_raw_vector": true
+    }
+  },
+  "comparisons": [
+    {
+      "label": "Exactly one admitted direct linear-edge direction",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "No additional unresolved",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "Cached source point matches independent actual edge line origin",
+      "actual": [
+        6.0,
+        -2.0,
+        0.0
+      ],
+      "expected": [
+        6.0,
+        -2.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "label": "Normalized cached direction matches independent actual edge line direction",
+      "actual": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "label": "Actual source API linear edge",
+      "actual": [
+        "adsk::fusion::BRepEdge",
+        "adsk::core::Line3D"
+      ],
+      "expected": [
+        "adsk::fusion::BRepEdge",
+        "adsk::core::Line3D"
+      ],
+      "passed": true
+    },
+    {
+      "label": "Natural edge geometry remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "Additional pass preserves existing source summary",
+      "actual": {
+        "decoded": [
+          {
+            "feature_object_id": 362,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "BRepEdge",
+                "descriptor_object_id": 366,
+                "recipe": {
+                  "object_id": 369,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 42869,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "1",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "edge_recipe_data",
+                  "payload_relative_offset": 138,
+                  "payload_length": 116,
+                  "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                },
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "body_name": "SilhouetteDirectionSupportBody",
+                "namespace_text": "4015d304-5df5-4b96-bd78-bd487d662259",
+                "entity_guid_text": "8599aa6d-f80e-4b41-953e-4ea766a5986d",
+                "context_evidence": {
+                  "object_id": 406,
+                  "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                  "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                  "status": "Stored context retained without geometry interpretation"
+                },
+                "source_geometry": null,
+                "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+              },
+              "selection_object_id": 363,
+              "descriptor_object_id": 366,
+              "recipe_record_object_id": 369,
+              "stored_direction_method_code": 8,
+              "stored_control_cache": {
+                "origin_cm": [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                "vector": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              },
+              "association": "Owned direction control -> owned typed topology descriptor -> recipe and explicit historical body"
+            },
+            "stored_direction_method_code": 8,
+            "direction_control_object_id": 363,
+            "target": {
+              "selection_record_object_id": 371,
+              "descriptor_object_id": 374,
+              "native_body_object_id": 351,
+              "body_anchor_object_id": 355,
+              "source_owner_object_id": 325
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "expected": {
+        "decoded": [
+          {
+            "feature_object_id": 362,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "BRepEdge",
+                "descriptor_object_id": 366,
+                "recipe": {
+                  "object_id": 369,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 42869,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "1",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "numeric_record_collision": {
+                            "object_id": 301,
+                            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+                            "record_offset": 36031,
+                            "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "edge_recipe_data",
+                  "payload_relative_offset": 138,
+                  "payload_length": 116,
+                  "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                },
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "body_name": "SilhouetteDirectionSupportBody",
+                "namespace_text": "4015d304-5df5-4b96-bd78-bd487d662259",
+                "entity_guid_text": "8599aa6d-f80e-4b41-953e-4ea766a5986d",
+                "context_evidence": {
+                  "object_id": 406,
+                  "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                  "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                  "status": "Stored context retained without geometry interpretation"
+                },
+                "source_geometry": null,
+                "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+              },
+              "selection_object_id": 363,
+              "descriptor_object_id": 366,
+              "recipe_record_object_id": 369,
+              "stored_direction_method_code": 8,
+              "stored_control_cache": {
+                "origin_cm": [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                "vector": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              },
+              "association": "Owned direction control -> owned typed topology descriptor -> recipe and explicit historical body"
+            },
+            "stored_direction_method_code": 8,
+            "direction_control_object_id": 363,
+            "target": {
+              "selection_record_object_id": 371,
+              "descriptor_object_id": 374,
+              "native_body_object_id": 351,
+              "body_anchor_object_id": 355,
+              "source_owner_object_id": 325
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "passed": true
+    },
+    {
+      "label": "Existing Revolve same context class and size",
+      "actual": [
+        "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        55
+      ],
+      "expected": [
+        "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        55
+      ],
+      "passed": true
+    },
+    {
+      "label": "Existing Revolve parser agrees with source cache point/vector",
+      "actual": [
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          -3.0,
+          0.0
+        ]
+      ],
+      "expected": [
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          -3.0,
+          0.0
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "label": "Existing Revolve independent API start corroborates cached point",
+      "actual": [
+        0.0,
+        3.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        3.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "label": "Existing Revolve independent API endpoint contrast corroborates stored vector",
+      "actual": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "expected": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "label": "No duplicate Revolve source attachment",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "Circular-capable construction-axis role is not promoted",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "Construction-axis existing source summary unchanged",
+      "actual": {
+        "decoded": [
+          {
+            "feature_object_id": 383,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "object_id": 282,
+                "feature_object_id": 283,
+                "name": "SilhouetteCustomSupportAxisX",
+                "origin_cm": [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                "stored_line_vector": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "direction_status": "Normalized finite native axis line vector; agrees with actual axis getter in captured edge-defined holdout",
+                "definition_kind": "ConstructionAxisEdgeDefinition",
+                "definition_edge": {
+                  "kind": "BRepEdge",
+                  "descriptor_object_id": 287,
+                  "recipe": {
+                    "object_id": 290,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 36751,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "4",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 2,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 3,
+                        "terms": [
+                          {
+                            "name": "5",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "edge_recipe_data",
+                    "payload_relative_offset": 138,
+                    "payload_length": 116,
+                    "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                  },
+                  "body_anchor_object_id": 281,
+                  "native_body_object_id": 275,
+                  "source_owner_object_id": 243,
+                  "body_name": "SilhouetteDirectionSupportBody",
+                  "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+                  "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+                  "context_evidence": {
+                    "object_id": 428,
+                    "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                    "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                    "status": "Stored context retained without geometry interpretation"
+                  },
+                  "source_geometry": null,
+                  "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+                },
+                "native_geometry_suffix_hex": "00000000010000000000000000000000000000803f6666a63f0000000000010a000000000000000000",
+                "definition_control_cache": {
+                  "origin_cm": [
+                    6.0,
+                    -2.0,
+                    0.0
+                  ],
+                  "vector": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                  "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+                }
+              },
+              "selection_object_id": 384,
+              "descriptor_object_id": 387,
+              "terminal_object_id": 390,
+              "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+              "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+              "association": "Explicit native-axis identity leaf; reciprocal named axis geometry/feature and owned edge-definition source",
+              "stored_direction_method_code": 7,
+              "stored_control_cache": {
+                "origin_cm": [
+                  5.8,
+                  -2.0,
+                  0.0
+                ],
+                "vector": [
+                  2.3999999999999995,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000700000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              }
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 384,
+            "target": {
+              "selection_record_object_id": 391,
+              "descriptor_object_id": 394,
+              "native_body_object_id": 372,
+              "body_anchor_object_id": 376,
+              "source_owner_object_id": 346
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "expected": {
+        "decoded": [
+          {
+            "feature_object_id": 383,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "object_id": 282,
+                "feature_object_id": 283,
+                "name": "SilhouetteCustomSupportAxisX",
+                "origin_cm": [
+                  6.0,
+                  -2.0,
+                  0.0
+                ],
+                "stored_line_vector": [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "direction_status": "Normalized finite native axis line vector; agrees with actual axis getter in captured edge-defined holdout",
+                "definition_kind": "ConstructionAxisEdgeDefinition",
+                "definition_edge": {
+                  "kind": "BRepEdge",
+                  "descriptor_object_id": 287,
+                  "recipe": {
+                    "object_id": 290,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 36751,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "4",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 2,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 3,
+                        "terms": [
+                          {
+                            "name": "5",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "edge_recipe_data",
+                    "payload_relative_offset": 138,
+                    "payload_length": 116,
+                    "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff000000000000000000000000",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                  },
+                  "body_anchor_object_id": 281,
+                  "native_body_object_id": 275,
+                  "source_owner_object_id": 243,
+                  "body_name": "SilhouetteDirectionSupportBody",
+                  "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+                  "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+                  "context_evidence": {
+                    "object_id": 428,
+                    "class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+                    "raw_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+                    "status": "Stored context retained without geometry interpretation"
+                  },
+                  "source_geometry": null,
+                  "identity_status": "Explicit typed topology recipe and historical body; exact source face/edge geometry and ASM identity unresolved"
+                },
+                "native_geometry_suffix_hex": "00000000010000000000000000000000000000803f6666a63f0000000000010a000000000000000000",
+                "definition_control_cache": {
+                  "origin_cm": [
+                    6.0,
+                    -2.0,
+                    0.0
+                  ],
+                  "vector": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "remaining_control_bytes_hex": "000000000000000000000000000000000800000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                  "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+                }
+              },
+              "selection_object_id": 384,
+              "descriptor_object_id": 387,
+              "terminal_object_id": 390,
+              "namespace_text": "a85de458-a522-4fba-aa58-eb0c74d5335f",
+              "entity_guid_text": "ec9b87e4-b64d-4349-916a-8454702d8fd4",
+              "association": "Explicit native-axis identity leaf; reciprocal named axis geometry/feature and owned edge-definition source",
+              "stored_direction_method_code": 7,
+              "stored_control_cache": {
+                "origin_cm": [
+                  5.8,
+                  -2.0,
+                  0.0
+                ],
+                "vector": [
+                  2.3999999999999995,
+                  0.0,
+                  0.0
+                ],
+                "remaining_control_bytes_hex": "000000000000000000000000000000000700000000000000000000f0bf000000000000f0bf000000000000f0bf",
+                "status": "Stored control/preview cache; not treated as source edge evaluator or face/axis geometry"
+              }
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 384,
+            "target": {
+              "selection_record_object_id": 391,
+              "descriptor_object_id": 394,
+              "native_body_object_id": 372,
+              "body_anchor_object_id": 376,
+              "source_owner_object_id": 346
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Captured FacesOnly BRepEdge/BRepFace or edge-defined custom-axis direction provenance; exact BRep source geometry, silhouette curves and topology/regeneration unresolved"
+      },
+      "passed": true
+    },
+    {
+      "label": "Closed circle Pipe gets no line-context interpretation",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "label": "Pipe closure remains unclaimed",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "Changing stored F2 preview point leaves typed source-context cache unchanged",
+      "actual": {
+        "feature_object_id": 362,
+        "direction_control_object_id": 363,
+        "source_descriptor_object_id": 366,
+        "context_object_id": 406,
+        "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        "context_payload_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+        "semantic_gate": "Native direct BRepEdge Silhouette viewDirection method8; documented API input must be linear",
+        "cached_line_point_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "stored_line_vector": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "cached_unit_direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "vector_scale_status": "Stored cache vector scale; not interpreted as general natural edge length, parameterization or trim domain",
+        "body_anchor_object_id": 281,
+        "native_body_object_id": 275,
+        "source_owner_object_id": 243,
+        "support_object_id": 367,
+        "coordinate_scope": "Captured root-component cache coordinates in cm; occurrence transforms unsupported",
+        "source_geometry_status": "Stored point/direction cache only; natural edge evaluator and exact persistent BRep/ASM geometry remain unresolved",
+        "scope": "Direct linear BRepEdge Silhouette view-direction role only: separately stored line point/vector cache, without natural edge geometry, trim/closure, persistent topology or evaluated source reconstruction"
+      },
+      "expected": {
+        "feature_object_id": 362,
+        "direction_control_object_id": 363,
+        "source_descriptor_object_id": 366,
+        "context_object_id": 406,
+        "context_class_guid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+        "context_payload_hex": "0000000000000000184000000000000000c000000000000000000000000000000040000000000000000000000000000000000000000100",
+        "semantic_gate": "Native direct BRepEdge Silhouette viewDirection method8; documented API input must be linear",
+        "cached_line_point_cm": [
+          6.0,
+          -2.0,
+          0.0
+        ],
+        "stored_line_vector": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "cached_unit_direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "vector_scale_status": "Stored cache vector scale; not interpreted as general natural edge length, parameterization or trim domain",
+        "body_anchor_object_id": 281,
+        "native_body_object_id": 275,
+        "source_owner_object_id": 243,
+        "support_object_id": 367,
+        "coordinate_scope": "Captured root-component cache coordinates in cm; occurrence transforms unsupported",
+        "source_geometry_status": "Stored point/direction cache only; natural edge evaluator and exact persistent BRep/ASM geometry remain unresolved",
+        "scope": "Direct linear BRepEdge Silhouette view-direction role only: separately stored line point/vector cache, without natural edge geometry, trim/closure, persistent topology or evaluated source reconstruction"
+      },
+      "passed": true
+    }
+  ],
+  "exclusion_controls": [
+    {
+      "file": "revolveaxes-a83b542c4a07/brep_edge.f3d",
+      "status": "Existing negative-Y length3 cached source grammar corroborated; no new Silhouette attachment",
+      "API_actual_axis": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OMW5CMQyGexRLwGjJsR2TzFU5QrcKPfKSiq1CXKFH6NitAzsrx+AgPUKTgFDfiyL5z+8vv03A4EAMXPISkyrmYgOqLwlDkIRl9Ewx5miegCrb+K44VOVAm2OwuCx+r1/P5894+n77WS0rwS3XNAnvUkDKyaMGLhiEHZrP47rorpiWztaMp9np8wj6OAUBJoNatLpt6d4Wcr32XWaGzQ39ZxDk8T1vDzntP/J2HI4DvEAAdPfLsKlParKJu/d6Q6R7PGk+8JY94WTSfnyo3B9wIYODfwEAAA==",
+        "body_name": "AxisSeedBody",
+        "start_cm": [
+          0.0,
+          3.0,
+          0.0
+        ],
+        "end_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "geometry_type": "adsk::core::Line3D"
+      }
+    },
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_custom_axis_x.f3d",
+      "status": "Actual captured source edge is linear, but circular-capable axis role provides no general linear-only semantic gate",
+      "rejection": "Cache interpretation requires the direct linear BRepEdge Silhouette direction role"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "actual_API_source": "Circle3D, closed Path from saved Pipe getter truth",
+      "status": "No Silhouette role, no cache interpretation, no closure inference",
+      "rejection": "Silhouette line-context typed identity missing, ambiguous or wrong class"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Wrong native direction method",
+      "rejected": true,
+      "reason": "Silhouette line role/control descriptor or owner disagrees"
+    },
+    {
+      "label": "Owned descriptor mismatch",
+      "rejected": true,
+      "reason": "Silhouette line role/control descriptor or owner disagrees"
+    },
+    {
+      "label": "Degenerate line context vector",
+      "rejected": true,
+      "reason": "Degenerate or nonfinite role-gated line point/vector cache"
+    },
+    {
+      "label": "Nonreciprocal source support",
+      "rejected": true,
+      "reason": "Silhouette line context support is not reciprocal"
+    }
+  ],
+  "limitations": [
+    "Only direct BRepEdge Silhouette method8 is newly attached. Edge-defined construction-axis sources are not promoted from their role alone because that API also accepts circular edges.",
+    "Vector scale is not treated as natural curve parameterization, trim length or closure. Persistent recipe-to-ASM geometry and occurrence transforms remain unresolved.",
+    "The stored F2 preview/control origin/vector remain separate from this typed source-context cache.",
+    "No cache-only context failures are cleared by this additional direction evidence. Full Pipe failures and unknown closure remain untouched."
+  ],
+  "preview_separation_control": "A changed F2 control/preview point is not substituted for the source-context point; the entire additional source-context result remains identical.",
+  "validation": {
+    "new_cached_direction_entries": 1,
+    "actual_capture_files": 4,
+    "prior_independent_linear_grammar_control": 1,
+    "excluded_circular_capable_axis_cases": 1,
+    "excluded_closed_circle_Pipe_cases": 1,
+    "comparisons_passed": 17,
+    "malformed_guards_passed": 4,
+    "topology_context_failures_cleared": 0,
+    "full_Pipe_failures_cleared": 0,
+    "new_API_calls": 0
+  }
+}

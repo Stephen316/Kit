@@ -1,0 +1,3761 @@
+{
+  "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping",
+  "integration": {
+    "function": "decode_selection_context_recipes(data, records, body_selections=None)",
+    "placement": "Stream summary after existing body selections; no tool settings or geometry mutation. Existing body selection summary can be supplied directly.",
+    "expected_outputs": "samples[].expected_summary contains complete output for stream-summary equality."
+  },
+  "layout": {
+    "topology_descriptor": "Observed276-byte5662 descriptor: primary typed recipe reference@4, count1@15, namespace/entity UTF16 UUIDs@19, Q2/contextcount1@171, context reference@183, anchorcount1@194, typed historical body anchor reference@198, ownerlast11. Descriptor flag@3 preserved without meaning.",
+    "context": "C46D prefix00/indexuint32/zero4, namespace/entityUUIDs@10 agree exactly with descriptor. uint64@162=2. Optional reference terminates at171 bytes when absent or181 bytes when populated.",
+    "populated_route": "Typed4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE link14 bytes:00 00, primary reference@2 to7ACC recipe, finalzero. Both descriptor recipe and secondary context recipe must be edge_recipe_data.",
+    "absent_route": "Observed171-byte context endsQ2+zero for face_recipe_data or bounded_face_recipe_data; no populated route or edge/face geometry inferred.",
+    "contrast_with_body_contexts": "Component body contexts instead use typedCB4F4CC2 link and90055 native body leaf. This reader strictly rejects that distinct chain rather than interpreting its identity as a topology recipe."
+  },
+  "limitations": [
+    "Only explicitly observed276-byte descriptors and171/181-byte contexts. Other variants remain unresolved.",
+    "Context index field, descriptor flag, UUID persistent identity, relationship between the two edge recipes, transforms, exact ASM topology and geometry remain unresolved.",
+    "No native closure flag, Pipe geometry/fractions, glyph generation, parameter evaluation or reconstruction is added.",
+    "Three auxiliary Pipe vertex descriptors retain unsupported-context failures; they are not silently omitted or treated as edge routes.",
+    "Pipe context recipe interpretation already existed in inspect_pipe_edge_controls; this summary reuses it as equality evidence and extends explicit provenance to Loft and Emboss face contexts."
+  ],
+  "samples": [
+    {
+      "file": "loftfaces-055501f619c5/face_free.f3d",
+      "sha256": "7e50917aa2a0213fe358863d2b4b90efc6fd194ffccc06813cbb3fa910838015",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 379,
+            "owner_object_id": 374,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 382,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39556,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37081,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37081,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37081,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 122,
+              "payload_length": 132,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff0200000002000000ffffffff00000000ffffffff01000000ffffffff0200000002000000ffffffff00000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                1,
+                1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                1,
+                0,
+                2,
+                2,
+                2,
+                2,
+                1,
+                0,
+                1,
+                -1
+              ]
+            },
+            "context_object_id": 401,
+            "namespace_text": "9925ab12-d620-4dab-9050-40f866d73c6c",
+            "entity_guid_text": "ccbfc23c-9961-491d-b782-14b2f250df6f",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": null,
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "0.API_type": true,
+        "0.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "0.owner": true,
+        "0.descriptor_recipe": true,
+        "0.body": true,
+        "0.source_owner": true,
+        "0.context_id": true,
+        "0.namespace": true,
+        "optional_body_summary_default_equality": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+      "sha256": "687341057fef34878b61537cf8d772ec47a4c1e909dd6c8b2e3b3b69e09890c3",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 376,
+            "owner_object_id": 368,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 379,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40019,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 400,
+            "namespace_text": "5ea05c8e-840f-4fce-a859-47f2646d2e62",
+            "entity_guid_text": "f0790b9c-b618-484f-a696-2137223458d2",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 394,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 395,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 41643,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "0.API_type": true,
+        "0.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "0.owner": true,
+        "0.descriptor_recipe": true,
+        "0.body": true,
+        "0.source_owner": true,
+        "0.context_id": true,
+        "0.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "376.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+      "sha256": "06c46d20be2069ff0e2a7158833e32f53e0291433522f8f5975cb20ba3ee31b7",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 376,
+            "owner_object_id": 368,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 379,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40019,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 400,
+            "namespace_text": "03da1d94-ff16-4ffc-afa9-195cdafe58a5",
+            "entity_guid_text": "deb6d9e9-ff2b-42a0-ac16-90654d5a3d4a",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 394,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 395,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 41643,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "0.API_type": true,
+        "0.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "0.owner": true,
+        "0.descriptor_recipe": true,
+        "0.body": true,
+        "0.source_owner": true,
+        "0.context_id": true,
+        "0.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "376.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+      "sha256": "136294d8c48f5a56ef80ed0e99f1a2993618781a61eb6c15a0ce062372ebf5dc",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 376,
+            "owner_object_id": 368,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 379,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40019,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37201,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 400,
+            "namespace_text": "7c86cd04-4c98-4ad7-a6f8-64800f5b438f",
+            "entity_guid_text": "736a26f1-eed6-41d4-a803-b8e3a0934abd",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 394,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 395,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 41643,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "0.API_type": true,
+        "0.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "0.owner": true,
+        "0.descriptor_recipe": true,
+        "0.body": true,
+        "0.source_owner": true,
+        "0.context_id": true,
+        "0.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "376.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+      "sha256": "e26a5d052759b2ecaa6f4cd8bce9dd55e97979ad682b792b738bc49f6619d737",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 373,
+            "owner_object_id": 368,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 376,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 39592,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37109,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37109,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 37109,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 397,
+            "namespace_text": "421aacfe-23f4-4075-8ba5-fe811df645f6",
+            "entity_guid_text": "cb132eb8-edcc-4fcb-9e17-77a2f8127d8d",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 391,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 392,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 41197,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37109,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37109,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37109,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "0.API_type": true,
+        "0.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "0.owner": true,
+        "0.descriptor_recipe": true,
+        "0.body": true,
+        "0.source_owner": true,
+        "0.context_id": true,
+        "0.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "373.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/face_end_free.f3d",
+      "sha256": "1843096f6b07bfd9c6aedf4934e79a1e4797ac2697786dc74d42b5dd7b766c5d",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 387,
+            "owner_object_id": 374,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 390,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40367,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35778,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "-105",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35778,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35778,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 124,
+              "payload_length": 132,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff0200000002000000ffffffff00000000ffffffff01000000ffffffff0200000002000000ffffffff00000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                1,
+                1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                1,
+                0,
+                2,
+                1,
+                1,
+                1,
+                2,
+                1,
+                2,
+                -1
+              ]
+            },
+            "context_object_id": 401,
+            "namespace_text": "d99847a9-347c-4311-8e7e-095373bb3d6a",
+            "entity_guid_text": "3f3599bd-dade-473f-8376-f6554845c540",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": null,
+            "body_anchor_object_id": 319,
+            "native_body_object_id": 313,
+            "source_owner_object_id": 287,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "1.API_type": true,
+        "1.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "1.owner": true,
+        "1.descriptor_recipe": true,
+        "1.body": true,
+        "1.source_owner": true,
+        "1.context_id": true,
+        "1.namespace": true,
+        "optional_body_summary_default_equality": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+      "sha256": "94f8c092884d2ab42de7539f809b4d1e15299e7ceb770a7715fbb8faa8cf1c97",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 384,
+            "owner_object_id": 368,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 387,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40830,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-105",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35890,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35890,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35890,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 116,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000001000000010000000100000002000000010000000200000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 400,
+            "namespace_text": "9b7035d9-9a41-48cf-8c7e-1974ba24723a",
+            "entity_guid_text": "cb870630-1802-49cc-81bb-25231d74c250",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 394,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 395,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 41673,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 116,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 319,
+            "native_body_object_id": 313,
+            "source_owner_object_id": 287,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "1.API_type": true,
+        "1.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "1.owner": true,
+        "1.descriptor_recipe": true,
+        "1.body": true,
+        "1.source_owner": true,
+        "1.context_id": true,
+        "1.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "384.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+      "sha256": "271e71539e67213900c2f102ad340ea89a7929bd1c323d899b8d551507192399",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 384,
+            "owner_object_id": 368,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 387,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40832,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-105",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35890,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35890,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 303,
+                      "matching_primary_record": {
+                        "object_id": 303,
+                        "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                        "record_offset": 35890,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 116,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000001000000010000000100000002000000010000000200000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 400,
+            "namespace_text": "04948656-395f-4136-986b-430ffddd9fd1",
+            "entity_guid_text": "53f58088-c1a9-4621-b1ff-5db9cd4786f8",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 394,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 395,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 41675,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 303,
+                        "matching_primary_record": {
+                          "object_id": 303,
+                          "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                          "record_offset": 35890,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 116,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 319,
+            "native_body_object_id": 313,
+            "source_owner_object_id": 287,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "1.API_type": true,
+        "1.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "1.owner": true,
+        "1.descriptor_recipe": true,
+        "1.body": true,
+        "1.source_owner": true,
+        "1.context_id": true,
+        "1.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "384.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+      "sha256": "a9f66e7d819be33ad9ae3351642ad7bc29b958150510affe250e679f2bf62285",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 422,
+            "owner_object_id": 411,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 425,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 45965,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 38202,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 38202,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                        "record_offset": 38202,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 446,
+            "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+            "entity_guid_text": "17c45926-d563-433a-ae17-e8838e937bc5",
+            "stored_context_index_field": 6,
+            "optional_context_recipe_route": {
+              "link_object_id": 440,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 441,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 47872,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 38202,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 38202,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 38202,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          },
+          {
+            "descriptor_object_id": 430,
+            "owner_object_id": 411,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 433,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 46972,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-105",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 305
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 305
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 305
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 116,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000001000000010000000100000002000000010000000200000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 453,
+            "namespace_text": "c453c48d-49d2-49c6-9121-348c0c801cad",
+            "entity_guid_text": "17c45926-d563-433a-ae17-e8838e937bc5",
+            "stored_context_index_field": 7,
+            "optional_context_recipe_route": {
+              "link_object_id": 447,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 448,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 48896,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-105",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 305
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 305
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 305
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 116,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 350,
+            "native_body_object_id": 346,
+            "source_owner_object_id": 320,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "0.API_type": true,
+        "0.API_body_name": true,
+        "1.API_type": true,
+        "1.API_body_name": true
+      },
+      "prior_representation_checks": {
+        "0.owner": true,
+        "0.descriptor_recipe": true,
+        "0.body": true,
+        "0.source_owner": true,
+        "0.context_id": true,
+        "0.namespace": true,
+        "1.owner": true,
+        "1.descriptor_recipe": true,
+        "1.body": true,
+        "1.source_owner": true,
+        "1.context_id": true,
+        "1.namespace": true,
+        "optional_body_summary_default_equality": true,
+        "422.distinct_recipe_record_ids": true,
+        "430.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "sha256": "c0dc2d006081c9891f3d9b4a5086e0e32f158746724d78b1780029bda85c6626",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 334,
+            "owner_object_id": 330,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 337,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 36135,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 116,
+              "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 369,
+            "namespace_text": "6ae43388-50e0-4168-ad5f-faac945dfc1c",
+            "entity_guid_text": "f363a9dd-4274-4b5e-a82f-79ae0fbe6936",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 367,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 368,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 39314,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 138,
+                "payload_length": 116,
+                "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [
+          {
+            "descriptor_object_id": 341,
+            "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+            "record_offset": 36408,
+            "reason": "Topology context typed reference missing, ambiguous or wrong class"
+          }
+        ],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "native_body_object_id": true,
+        "source_owner_object_id": true,
+        "namespace_text": true,
+        "entity_guid_text": true,
+        "context_id": true,
+        "context_wrapper": true,
+        "context_recipe": true,
+        "optional_body_summary_default_equality": true,
+        "334.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "sha256": "5178062038e89784de3642fffaef5d816e5bf157cbdd636efaacbbf9e32a0f50",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 334,
+            "owner_object_id": 330,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 337,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 36135,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 116,
+              "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 369,
+            "namespace_text": "75a8ffd5-8b22-4d5a-aee8-3dd3be1fab2b",
+            "entity_guid_text": "a0c47818-d743-49b8-aa42-c8039ef6eab8",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 367,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 368,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 39322,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 138,
+                "payload_length": 116,
+                "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [
+          {
+            "descriptor_object_id": 341,
+            "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+            "record_offset": 36408,
+            "reason": "Topology context typed reference missing, ambiguous or wrong class"
+          }
+        ],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "native_body_object_id": true,
+        "source_owner_object_id": true,
+        "namespace_text": true,
+        "entity_guid_text": true,
+        "context_id": true,
+        "context_wrapper": true,
+        "context_recipe": true,
+        "optional_body_summary_default_equality": true,
+        "334.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "sha256": "961de909e9881a36cf5de9dd494a01d976bb9f3017645c618f4798d76747e9ee",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 334,
+            "owner_object_id": 330,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 337,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 36137,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 138,
+              "payload_length": 116,
+              "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff000000000000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 369,
+            "namespace_text": "97f5a4f0-92fa-488c-babf-5cf97bfdf279",
+            "entity_guid_text": "8074a71c-619b-4459-b1c2-7a9cbc9ca16c",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 367,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 368,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 39324,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "6",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 138,
+                "payload_length": 116,
+                "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [
+          {
+            "descriptor_object_id": 341,
+            "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+            "record_offset": 36410,
+            "reason": "Topology context typed reference missing, ambiguous or wrong class"
+          }
+        ],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "native_body_object_id": true,
+        "source_owner_object_id": true,
+        "namespace_text": true,
+        "entity_guid_text": true,
+        "context_id": true,
+        "context_wrapper": true,
+        "context_recipe": true,
+        "optional_body_summary_default_equality": true,
+        "334.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "sha256": "df1a5d22f382c5ffee15d8acc528b8368a3de8e5f197c65933dfc507f5764802",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 319,
+            "owner_object_id": 315,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 322,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 33181,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 346,
+            "namespace_text": "0cf8ab91-b320-4188-9858-452bc080eac5",
+            "entity_guid_text": "7abfa282-59d8-4855-8393-35d7ce2b6d87",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 344,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 345,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 35394,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "native_body_object_id": true,
+        "source_owner_object_id": true,
+        "namespace_text": true,
+        "entity_guid_text": true,
+        "context_id": true,
+        "context_wrapper": true,
+        "context_recipe": true,
+        "optional_body_summary_default_equality": true,
+        "319.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "sha256": "5c1ec92a2423ad4ce3aebf8dda62b03ff8d4d441ea4cf64e40f9132eb338ee09",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 319,
+            "owner_object_id": 315,
+            "stored_descriptor_flag_at_3": 1,
+            "descriptor_recipe": {
+              "object_id": 322,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 33213,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 114,
+              "payload_length": 120,
+              "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_object_id": 346,
+            "namespace_text": "eb35ab0a-c844-48ae-9d8d-40f5c19a7c6a",
+            "entity_guid_text": "78c20fd0-709f-41a3-b3d8-2abec8903e8a",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": {
+              "link_object_id": 344,
+              "link_class_guid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+              "recipe": {
+                "object_id": 345,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 35436,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "association": "Explicit context reference -> typed link -> typed edge recipe; relationship to descriptor recipe topology unresolved"
+            },
+            "body_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "source_owner_object_id": 234,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "native_body_object_id": true,
+        "source_owner_object_id": true,
+        "namespace_text": true,
+        "entity_guid_text": true,
+        "context_id": true,
+        "context_wrapper": true,
+        "context_recipe": true,
+        "optional_body_summary_default_equality": true,
+        "319.distinct_recipe_record_ids": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_emboss.f3d",
+      "sha256": "3ee7c481acbcc092f739930279a3d069ce5fad439f796b63a57bfe5cd20da94f",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 423,
+            "owner_object_id": 412,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 426,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 48021,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "context_object_id": 445,
+            "namespace_text": "acdd9fb2-7ed0-4ce6-b34e-837529131b44",
+            "entity_guid_text": "acb40c60-c4e5-4085-ae34-d5a6dd42385f",
+            "stored_context_index_field": 3,
+            "optional_context_recipe_route": null,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "context_id": true,
+        "native_body": true,
+        "source_owner": true,
+        "optional_body_summary_default_equality": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_deboss.f3d",
+      "sha256": "aec87d4aa59dc4e77e774c95e98b74d83651395697d57c921257d07219ca89c8",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 423,
+            "owner_object_id": 412,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 426,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 48021,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39445,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "context_object_id": 445,
+            "namespace_text": "ab2779ac-70d0-40ad-b550-3ed1613c03e2",
+            "entity_guid_text": "1c274096-4ff3-4dca-acef-3768d3a35b0f",
+            "stored_context_index_field": 3,
+            "optional_context_recipe_route": null,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "context_id": true,
+        "native_body": true,
+        "source_owner": true,
+        "optional_body_summary_default_equality": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+      "sha256": "fb7c791e057a0bce187978edb3ad5c104291fa25298d821b3896ec51dbb1ff0d",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 469,
+            "owner_object_id": 454,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 472,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 49340,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39621,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39621,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39621,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39621,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 39621,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "context_object_id": 491,
+            "namespace_text": "54f3cdbf-78ea-4577-999b-e0df3671ac0a",
+            "entity_guid_text": "df333728-d8da-40a4-a6a5-f49efcf34a4d",
+            "stored_context_index_field": 4,
+            "optional_context_recipe_route": null,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "context_id": true,
+        "native_body": true,
+        "source_owner": true,
+        "optional_body_summary_default_equality": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "sha256": "9a18f943b1819a248b60cc5c3fe83f031b34ad50f4829122eb87820cf7425f9f",
+      "expected_summary": {
+        "contexts": [
+          {
+            "descriptor_object_id": 498,
+            "owner_object_id": 483,
+            "stored_descriptor_flag_at_3": 0,
+            "descriptor_recipe": {
+              "object_id": 501,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 55564,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 42217,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 42217,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 42217,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 42217,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                        "record_offset": 42217,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "context_object_id": 520,
+            "namespace_text": "8e8ecea1-5131-4802-8559-42076340b602",
+            "entity_guid_text": "ff5e638c-130f-4208-b066-c2f74049f284",
+            "stored_context_index_field": 3,
+            "optional_context_recipe_route": null,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+      },
+      "api_checks": {
+        "API_type": true,
+        "API_body_name": true
+      },
+      "prior_representation_checks": {
+        "descriptor_recipe": true,
+        "context_id": true,
+        "native_body": true,
+        "source_owner": true,
+        "optional_body_summary_default_equality": true
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "name": "context namespace mismatch",
+      "rejected": true,
+      "reason": "Topology descriptor/context namespace or entity disagrees"
+    },
+    {
+      "name": "context entity mismatch",
+      "rejected": true,
+      "reason": "Topology descriptor/context namespace or entity disagrees"
+    },
+    {
+      "name": "wrong context association Q field",
+      "rejected": true,
+      "reason": "Unobserved topology context association field"
+    },
+    {
+      "name": "context link points to wrong typed class",
+      "rejected": true,
+      "reason": "Topology context typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "name": "link points to non-recipe",
+      "rejected": true,
+      "reason": "Topology context typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "name": "link suffix changed",
+      "rejected": true,
+      "reason": "Unobserved topology context recipe link framing"
+    },
+    {
+      "name": "descriptor historical anchor replaced by body ID",
+      "rejected": true,
+      "reason": "Topology context typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "name": "descriptor owner missing",
+      "rejected": true,
+      "reason": "Topology descriptor owner unresolved"
+    }
+  ],
+  "capture_errors": {
+    "loftfaces-055501f619c5": [
+      {
+        "case": "face_tangent_weight1",
+        "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftFaceModes.py\", line 181, in run\n    accepted = face_section.setTangentEndCondition(value(weight))\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46274, in setTangentEndCondition\n    return _fusion.LoftSection_setTangentEndCondition(self, weight)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nRuntimeError: 3 : Tangent endCondition can only be applied to BRepEdge.\n",
+        "partial_capture": {
+          "file": "face_tangent_weight1.f3d",
+          "case": "face_tangent_weight1",
+          "getter_errors": [],
+          "source_face_before_loft": {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPPUpGMRD0KNNZLWSTvLykVPA7gmDjI8nmgY1+iB7BK1hYeg8r7yFaWlrYuwlf8RRMAjuZnf0ZAwuGC3DGWs9rpNjqSl6mSkXKTBI41ioS0xpgVNv1piMbFTF8ZwKOL18uvl5Pnh4/Hz6e396/VWF735y5Cs9Mk5sL+RRZ+2YhV0z1fk5l4jS02uPozxnzDMY4DwdOARoUYCzS087wiPol8G9K4YYwKDf319JkWXNty22rV/u2SL7LON0BO0SVULd0hm6NxrMjYTvcKM4V/pvclpuDB3u4Y7MfIAeSf3UBAAA=",
+            "temp_id": 0,
+            "body": {
+              "name": "LoftFaceCylinderBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtA1huZGQAAzWGC/ogAAAA=",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 3.1415926535899286,
+              "face_count": 3,
+              "edge_count": 2,
+              "bounding_box_min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 3.141592653589793,
+            "centroid_world_cm": [
+              3.8981718325193755e-17,
+              0.0,
+              1.0
+            ],
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "is_param_reversed": false,
+            "loop_count": 1,
+            "edges": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4EMQyFOYo7Kku2k5lkSgo4AtI2rJI4g+gQ4gpcgYJy77EV91hBSUlBjx22WK1EEsmfnp9/QiDAEGYIJBJ5zZh7WzHq1LBqTagz59ZU87LOQOZ1PzlJNmKIrsxwebfffL9fvb1+vXzuDh8/5hDvWwo35cQ4hVQxLpmtb1EMlVqMaakTL8NrPS7OzphHMMZFCMApgAUDsAIcSVue/qLjuSAnAkHX+7596u3hsW+1PBe4hmwysj+BG/AfGTqIA8Ot4b/J03I6LivHO1b4BWOnsRJeAQAA",
+                "temp_id": 1,
+                "geometry_type": "adsk::core::Circle3D",
+                "body_name": "LoftFaceCylinderBody",
+                "start_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "end_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ]
+          },
+          "destination_profile_before_loft": {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U1CP2xv58bDjrGkvWx8uuvfgK1DcUMFYwcjCEswCqgHSQJaRBZBlqGCCU5eRgrGZQmKiYXKKobmhrqmxeZKuiaWFoW5SSmKKrnGSQbKJibllkqmhJcxmBjQAts9AAWydkYEJxD4oNDCFuAKkAgBZ6Y4RvgAAAA==",
+            "sketch_name": "LoftFaceDestinationSection",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtA1htZWAIA5/TdGYgAAAA=",
+            "profile_loop_count": 1,
+            "profile_loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtMDY3AtJGFpYKhgamCAQBh5/CvkgAAAA==",
+                    "center_world_cm": [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    "radius_cm": 0.6
+                  }
+                ]
+              }
+            ]
+          },
+          "source_section_before_loft": {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPPUpGMRD0KNNZLWSTvLykVPA7gmDjI8nmgY1+iB7BK1hYeg8r7yFaWlrYuwlf8RRMAjuZnf0ZAwuGC3DGWs9rpNjqSl6mSkXKTBI41ioS0xpgVNv1piMbFTF8ZwKOL18uvl5Pnh4/Hz6e396/VWF735y5Cs9Mk5sL+RRZ+2YhV0z1fk5l4jS02uPozxnzDMY4DwdOARoUYCzS087wiPol8G9K4YYwKDf319JkWXNty22rV/u2SL7LON0BO0SVULd0hm6NxrMjYTvcKM4V/pvclpuDB3u4Y7MfIAeSf3UBAAA=",
+            "temp_id": 0,
+            "body": {
+              "name": "LoftFaceCylinderBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtA1huZGQAAzWGC/ogAAAA=",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 3.1415926535899286,
+              "face_count": 3,
+              "edge_count": 2,
+              "bounding_box_min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 3.141592653589793,
+            "centroid_world_cm": [
+              3.8981718325193755e-17,
+              0.0,
+              1.0
+            ],
+            "plane_origin_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "is_param_reversed": false,
+            "loop_count": 1,
+            "edges": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4EMQyFOYo7Kku2k5lkSgo4AtI2rJI4g+gQ4gpcgYJy77EV91hBSUlBjx22WK1EEsmfnp9/QiDAEGYIJBJ5zZh7WzHq1LBqTagz59ZU87LOQOZ1PzlJNmKIrsxwebfffL9fvb1+vXzuDh8/5hDvWwo35cQ4hVQxLpmtb1EMlVqMaakTL8NrPS7OzphHMMZFCMApgAUDsAIcSVue/qLjuSAnAkHX+7596u3hsW+1PBe4hmwysj+BG/AfGTqIA8Ot4b/J03I6LivHO1b4BWOnsRJeAQAA",
+                "temp_id": 1,
+                "geometry_type": "adsk::core::Circle3D",
+                "body_name": "LoftFaceCylinderBody",
+                "start_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "end_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ]
+          },
+          "requested_condition": {
+            "type": "Tangent",
+            "weight": 1.0
+          }
+        }
+      }
+    ],
+    "loftbrepends-e07e3859ed20": [],
+    "pipeedgecontrasts-5bd287323ae7": [],
+    "embosstext-cd769aa41cdf": []
+  },
+  "summary": {
+    "archives": 18,
+    "decoded_topology_contexts": 19,
+    "populated_secondary_recipe_routes": 13,
+    "absent_routes": 6,
+    "retained_unresolved_auxiliary_contexts": 3,
+    "independent_api_comparisons": 38,
+    "prior_representation_and_default_summary_comparisons": 147,
+    "malformed_checks": 8,
+    "all_passed": true
+  }
+}

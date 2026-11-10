@@ -1,0 +1,347 @@
+{
+  "scope": "Focused main-reader integration of corrected cone/cylinder radius and Boundary Fill sculpt source provenance",
+  "cylinder_checks": [
+    {
+      "file": "threadmodes-d51d2ae60564/internal.f3d",
+      "history_surface_index": 10,
+      "physical_radius_cm": 0.513675,
+      "stored_u_parameter_scale": 0.6,
+      "U_reversal_field_named_correctly": true,
+      "former_radius_conflict_cleared": true
+    },
+    {
+      "file": "analytic-86a12b291d0a/analytic.f3d",
+      "cone_radius_and_half_angle_match_saved_API_getters": true,
+      "surface_cache_comparisons": 2
+    }
+  ],
+  "boundary_sculpt_checks": [
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 34,
+      "unresolved_signed_literals": 0
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "main_summary_and_feature_annotation_match_report": true,
+      "positive_source_correspondences": 24,
+      "unresolved_signed_literals": 1
+    }
+  ],
+  "summary": {
+    "cylinder_archive_controls": 2,
+    "Boundary_Fill_archive_controls": 9,
+    "positive_source_correspondences": 296,
+    "unresolved_signed_literals": 1,
+    "new_live_exports": 0,
+    "historical_component_archives": 3,
+    "new_historical_cache_contexts": 6,
+    "unchanged_component_controls": 4,
+    "selection_source_archives": 10,
+    "new_cached_selection_sources": 7
+  },
+  "wire_regression_after_analytic_schema_correction": {
+    "summary": {
+      "wire_files": 2,
+      "new_auxiliary_wire_body_graphs": 2,
+      "native_mappings_recovered": 2,
+      "unassociated_BODY_minus_one_roots_retained": 2,
+      "actual_API_line_geometry_controls": 2,
+      "prior_body_graphs_preserved_after_analytic_field_correction": 15,
+      "prior_complete_body_graphs_preserved_exact": 13,
+      "prior_control_streams": 7,
+      "malformed_guards": 6
+    },
+    "graph_comparisons": [
+      {
+        "file": "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c69b3cdc-6962-4034-89d7-ad69c19c15cb.smbh",
+        "body_graph_indices": [
+          1
+        ],
+        "body_graphs_sha256": "f6ea56db3bcd3cfdf741d841b0abb98bebc4673beac8dceb7f88dd22c50f6528",
+        "current_body_graphs_sha256": "f6ea56db3bcd3cfdf741d841b0abb98bebc4673beac8dceb7f88dd22c50f6528",
+        "comparison_body_graphs_sha256": "f6ea56db3bcd3cfdf741d841b0abb98bebc4673beac8dceb7f88dd22c50f6528",
+        "complete_prior_graph_outputs_exact": true,
+        "preserved_after_documented_analytic_field_correction": true
+      },
+      {
+        "file": "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.04a3c405-b857-4add-a7f1-9cd57ed40008.smbh",
+        "body_graph_indices": [
+          1
+        ],
+        "body_graphs_sha256": "74591c809786996eaab515d5d4f2980228fad901d6d0f26425245a321f420942",
+        "current_body_graphs_sha256": "74591c809786996eaab515d5d4f2980228fad901d6d0f26425245a321f420942",
+        "comparison_body_graphs_sha256": "74591c809786996eaab515d5d4f2980228fad901d6d0f26425245a321f420942",
+        "complete_prior_graph_outputs_exact": true,
+        "preserved_after_documented_analytic_field_correction": true
+      },
+      {
+        "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7b997e0d-2793-43b5-8582-f7fcf71bb137.smbh",
+        "body_graph_indices": [
+          1
+        ],
+        "body_graphs_sha256": "6137cc50d8901b73b334a1c63ecc3bf3f45f58b7d59767d1ecfd756458a14e89",
+        "current_body_graphs_sha256": "6137cc50d8901b73b334a1c63ecc3bf3f45f58b7d59767d1ecfd756458a14e89",
+        "comparison_body_graphs_sha256": "6137cc50d8901b73b334a1c63ecc3bf3f45f58b7d59767d1ecfd756458a14e89",
+        "complete_prior_graph_outputs_exact": true,
+        "preserved_after_documented_analytic_field_correction": true
+      },
+      {
+        "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.361461b0-e464-4894-9a19-e7ca2e0f1b57.smbh",
+        "body_graph_indices": [
+          1,
+          2
+        ],
+        "body_graphs_sha256": "109a61730c1d238ee5788cad415592c82e6e88ad0a09c31543e216d93c662088",
+        "current_body_graphs_sha256": "b70842820706126e21a7664bb4fddf98e0e56dc091e743233361facc20c49444",
+        "comparison_body_graphs_sha256": "109a61730c1d238ee5788cad415592c82e6e88ad0a09c31543e216d93c662088",
+        "complete_prior_graph_outputs_exact": false,
+        "preserved_after_documented_analytic_field_correction": true
+      },
+      {
+        "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9a02998f-0c92-4e84-94e2-4b64ecccc9b7.smbh",
+        "body_graph_indices": [
+          1
+        ],
+        "body_graphs_sha256": "93836b375aa8edea39703ab53612b42ce3cfe9da046cac375ccdac33cbb5d849",
+        "current_body_graphs_sha256": "93836b375aa8edea39703ab53612b42ce3cfe9da046cac375ccdac33cbb5d849",
+        "comparison_body_graphs_sha256": "93836b375aa8edea39703ab53612b42ce3cfe9da046cac375ccdac33cbb5d849",
+        "complete_prior_graph_outputs_exact": true,
+        "preserved_after_documented_analytic_field_correction": true
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.fec0bed1-646d-4264-90c4-5835146f5a6c.smbh",
+        "body_graph_indices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "body_graphs_sha256": "d9a198471336d07c9b65dbabb954e585e62e3226552a8fc3c54cf66c8c86f0bd",
+        "current_body_graphs_sha256": "d9a198471336d07c9b65dbabb954e585e62e3226552a8fc3c54cf66c8c86f0bd",
+        "comparison_body_graphs_sha256": "d9a198471336d07c9b65dbabb954e585e62e3226552a8fc3c54cf66c8c86f0bd",
+        "complete_prior_graph_outputs_exact": true,
+        "preserved_after_documented_analytic_field_correction": true
+      },
+      {
+        "file": "bodymodes-405fbd002680/shell_both.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f04ed0b3-365c-43ec-9c2b-c90857a8440d.smbh",
+        "body_graph_indices": [
+          1
+        ],
+        "body_graphs_sha256": "027ea5c91160ebc97e28ca94da458691f4c1e6465aa8ea83a517acb01d6ef210",
+        "current_body_graphs_sha256": "027ea5c91160ebc97e28ca94da458691f4c1e6465aa8ea83a517acb01d6ef210",
+        "comparison_body_graphs_sha256": "027ea5c91160ebc97e28ca94da458691f4c1e6465aa8ea83a517acb01d6ef210",
+        "complete_prior_graph_outputs_exact": true,
+        "preserved_after_documented_analytic_field_correction": true
+      }
+    ]
+  },
+  "historical_component_checks": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "summary_matches_report": true,
+      "previous_body_placements_exact": true,
+      "new_historical_cache_contexts": 2,
+      "body_properties_and_membership_unchanged": true,
+      "new_contexts_have_no_world_placement_claim": true,
+      "joint_cache_label_composition_guard_passed": true
+    },
+    {
+      "file": "surfacetools-856ca50cf4c7/stitch_tight.f3d",
+      "summary_matches_report": true,
+      "previous_body_placements_exact": true,
+      "new_historical_cache_contexts": 2,
+      "body_properties_and_membership_unchanged": true,
+      "new_contexts_have_no_world_placement_claim": true,
+      "joint_cache_label_composition_guard_passed": true
+    },
+    {
+      "file": "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+      "summary_matches_report": true,
+      "previous_body_placements_exact": true,
+      "new_historical_cache_contexts": 2,
+      "body_properties_and_membership_unchanged": true,
+      "new_contexts_have_no_world_placement_claim": true,
+      "joint_cache_label_composition_guard_passed": true
+    }
+  ],
+  "historical_component_unchanged_controls": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "binding_properties_placement_unchanged": true
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "binding_properties_placement_unchanged": true
+    },
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "binding_properties_placement_unchanged": true
+    },
+    {
+      "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+      "binding_properties_placement_unchanged": true
+    }
+  ],
+  "selection_recipe_checks": [
+    {
+      "file": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
+      "descriptor_ids": [
+        350
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "revolveaxes-a83b542c4a07/brep_edge.f3d",
+      "descriptor_ids": [
+        350
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d",
+      "descriptor_ids": [
+        366
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "silhouettedirections-805c2eaa2411/faces_custom_axis_x.f3d",
+      "descriptor_ids": [
+        287
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "sketchprojections-67c0c4531b8f/body_edge.f3d",
+      "descriptor_ids": [
+        311
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "holeplacements-04adf73afe93/center_edge.f3d",
+      "descriptor_ids": [
+        303
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+      "descriptor_ids": [
+        330
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 1,
+      "unresolved_historical_or_incomplete_sources": 0,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "edgemodes-52695761f185/chamfer_multiple.f3d",
+      "descriptor_ids": [
+        286,
+        298
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 0,
+      "unresolved_historical_or_incomplete_sources": 2,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+      "descriptor_ids": [
+        287
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 0,
+      "unresolved_historical_or_incomplete_sources": 1,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    },
+    {
+      "file": "edgemodes-87edbf67527b/chamfer_angle.f3d",
+      "descriptor_ids": [
+        286
+      ],
+      "main_associations_match_report": true,
+      "cached_sources": 0,
+      "unresolved_historical_or_incomplete_sources": 1,
+      "prior_secondary_context_outputs_and_failures_unchanged": true
+    }
+  ],
+  "existing_joint_control": {
+    "file": "jointmodes-20d3aef2a07d/revolute.f3d",
+    "stored_cache_placement_output_unchanged": true
+  }
+}

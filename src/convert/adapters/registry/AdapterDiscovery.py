@@ -15,8 +15,8 @@ from convert.adapters.base.AdapterProtocols import CadReaderAdapter
 from convert.adapters.base.AdapterProtocols import CadWriterAdapter
 from convert.adapters.registry.RegistryErrors import DiscoveryError
 
-# infrastructure package names stay centralized so discovery only visits concrete format integrations
-KInternalPackages = frozenset({"base", "registry", "staging"})
+# internal and research packages stay out of production adapter discovery
+KInternalPackages = frozenset({"base", "registry", "staging", "Fusion"})
 
 
 # internal filtering applies only to the built in root so third party package names remain unrestricted

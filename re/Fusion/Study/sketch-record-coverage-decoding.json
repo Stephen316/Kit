@@ -1,0 +1,156 @@
+{
+  "status": "pass",
+  "detached_line_cases": [
+    {
+      "file": "sketchprojections-8fedd685854a/unlinked_line.f3d",
+      "checks": {
+        "start": true,
+        "end": true,
+        "is_fixed": true,
+        "no_inferred_provenance": true
+      },
+      "line": {
+        "object_id": 287,
+        "sketch_object_id": 258,
+        "record_offset": 31730,
+        "entity_genesis": 64,
+        "kind": "Line",
+        "start_point_id": 283,
+        "end_point_id": 285,
+        "start_cm": [
+          0.5,
+          0.7,
+          0.0
+        ],
+        "end_cm": [
+          2.0,
+          1.3,
+          0.0
+        ],
+        "entity_tag": 107,
+        "is_fixed": false,
+        "is_construction": false,
+        "component_start_cm": [
+          0.5,
+          0.7,
+          0.0
+        ],
+        "component_end_cm": [
+          2.0,
+          1.3,
+          0.0
+        ]
+      },
+      "api_is_reference": false
+    },
+    {
+      "file": "sketchprojections-8fedd685854a/broken_line.f3d",
+      "checks": {
+        "start": true,
+        "end": true,
+        "is_fixed": true,
+        "no_inferred_provenance": true
+      },
+      "line": {
+        "object_id": 324,
+        "sketch_object_id": 258,
+        "record_offset": 31745,
+        "entity_genesis": 2048,
+        "kind": "Line",
+        "start_point_id": 320,
+        "end_point_id": 322,
+        "start_cm": [
+          0.5,
+          0.7,
+          0.0
+        ],
+        "end_cm": [
+          2.0,
+          1.3,
+          0.0
+        ],
+        "entity_tag": 107,
+        "is_fixed": false,
+        "is_construction": false,
+        "component_start_cm": [
+          0.5,
+          0.7,
+          0.0
+        ],
+        "component_end_cm": [
+          2.0,
+          1.3,
+          0.0
+        ]
+      },
+      "api_is_reference": false
+    }
+  ],
+  "class_family_audit": {
+    "archives": 358,
+    "candidate_record_counts": {
+      "SketchOwnedGeometry": 3490,
+      "ConstraintOrRelationship": 57,
+      "Dimension": 26
+    },
+    "accounted_record_counts": {
+      "SketchOwnedGeometry": 3490,
+      "ConstraintOrRelationship": 57,
+      "Dimension": 26
+    },
+    "unhandled_records": 0,
+    "scope": "Observed specialized class families and explicit sketch ownership only; record accounting is not full feature/field support"
+  },
+  "negative_reporting_checks": [
+    {
+      "case": "geometry_genesis",
+      "reported": true,
+      "unhandled": {
+        "object_id": 287,
+        "class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+        "class_namespace": "Geometry",
+        "record_offset": 31730,
+        "family": "SketchOwnedGeometry",
+        "sketch_object_id": 258,
+        "scope_status": "Explicit decoded sketch ownership/arguments",
+        "scope_reason": null,
+        "reason": "Recognized record family has no decoded output or validated tool-support association"
+      }
+    },
+    {
+      "case": "constraint_code",
+      "reported": true,
+      "unhandled": {
+        "object_id": 260,
+        "class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+        "class_namespace": "MSketch",
+        "record_offset": 26982,
+        "family": "ConstraintOrRelationship",
+        "sketch_object_id": 202,
+        "scope_status": "Explicit decoded sketch ownership/arguments",
+        "scope_reason": null,
+        "reason": "Unrecognized stored constraint code: 3735928559"
+      }
+    },
+    {
+      "case": "dimension_code",
+      "reported": true,
+      "unhandled": {
+        "object_id": 296,
+        "class_guid": "8EDAC24D-35D4-4591-B8E7-B3EA081C9DF0",
+        "class_namespace": "Fusion",
+        "record_offset": 27598,
+        "family": "Dimension",
+        "sketch_object_id": 202,
+        "scope_status": "Explicit decoded sketch ownership/arguments",
+        "scope_reason": null,
+        "reason": "Unsupported dimension code or target kinds: 3735928559"
+      }
+    }
+  ],
+  "limitations": [
+    "EntityGenesis64/2048 are admitted only for observed171-byte line geometry; provenance/history/reference state is not inferred.",
+    "Unknown class families and unreadable geometry ownership remain outside the class-family audit; an empty report does not prove comprehensive decoding.",
+    "Counts are native records, not API geometric entity/constraint counts."
+  ]
+}

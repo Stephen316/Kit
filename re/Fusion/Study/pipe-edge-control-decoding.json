@@ -1,0 +1,2752 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "status": "PartialProvenanceAndControls",
+      "checks": {
+        "distance_one_matches_actual": true,
+        "operation_section_hollow_match_actual": true,
+        "section_size_matches_actual": true,
+        "stored_thickness_matches_actual": true,
+        "body_name_matches_independent_actual": true,
+        "native_closure_geometry_and_distance_two_remain_unknown": true,
+        "actual_api_closedness_contrasts_selector_presence": true,
+        "context_contains_second_edge_recipe_not_curve_geometry": true,
+        "open_along_is_copy_and_actual_distance_two_null": true,
+        "stored_point_cache_matches_actual_source_start_vertex": true
+      },
+      "partial": {
+        "feature_object_id": 330,
+        "feature_class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+        "status": "PartialBRepSourceAndExtentEvidence",
+        "tool_settings_status": "Unresolved; separate provenance/control evidence only",
+        "decoded_controls": {
+          "operation": "NewBody",
+          "stored_operation_code": 4,
+          "section_type": "Circular",
+          "stored_section_type_code": 0,
+          "is_hollow": false,
+          "section_size_cm": 0.4,
+          "stored_section_thickness_cm": 0.0,
+          "active_section_thickness_cm": null
+        },
+        "native_has_auxiliary_point_selector": true,
+        "native_parameter_controls": {
+          "AgainstDistance": {
+            "binding_object_id": 353,
+            "stored_value": 1.0
+          },
+          "AlongDistance": {
+            "binding_object_id": 350,
+            "stored_value": 1.0
+          },
+          "SectionSize": {
+            "binding_object_id": 356,
+            "stored_value": 0.4
+          },
+          "SectionThickness": {
+            "binding_object_id": 359,
+            "stored_value": 0.0
+          }
+        },
+        "distance_one_fraction": 1.0,
+        "distance_one_scope": "AgainstDistance matches actual API distanceOne across full/partial open lines and full/two-sided closed circles; native role retained",
+        "distance_two_fraction": null,
+        "distance_two_status": "Closure-dependent API availability unresolved natively; AlongDistance preserved without universal API mapping",
+        "path": {
+          "kind": "BRepEdgeRecipe",
+          "selection_object_id": 331,
+          "descriptor_object_id": 334,
+          "descriptor_class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "stored_descriptor_flag_byte3": 0,
+          "stored_descriptor_flag_scope": "Opaque: value1 occurs for both open negative-direction line and closed circle",
+          "recipe": {
+            "object_id": 337,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36135,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_object_id": 369,
+          "context_recipe_wrapper_object_id": 367,
+          "context_recipe": {
+            "object_id": 368,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 39314,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "namespace_text": "6ae43388-50e0-4168-ad5f-faac945dfc1c",
+          "entity_guid_text": "f363a9dd-4274-4b5e-a82f-79ae0fbe6936",
+          "body_anchor_object_id": 281,
+          "native_body_object_id": 275,
+          "source_owner_object_id": 243,
+          "is_closed": null,
+          "path_is_opposed_to_entity": null,
+          "curve_geometry": null,
+          "scope": "Explicit owned recipes/context and historical body; persistent ASM edge mapping, closure and curve geometry unresolved"
+        },
+        "auxiliary_point_selection": {
+          "selection_object_id": 346,
+          "descriptor_object_id": 341,
+          "stored_xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "stored_method_code": 1,
+          "vertex_recipe": {
+            "object_id": 344,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36843,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "vertex_recipe_data",
+            "payload_relative_offset": 115,
+            "payload_length": 40,
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "coordinate_scope": "Stored point cache agrees with actual root-component source start vertex in captured open-line cases; exact Pipe role/persistent vertex identity unresolved"
+        },
+        "branch_evidence_scope": "Selector populated in actual open-line captures and absent in actual closed-circle captures. This correlation is retained without asserting a general closure flag or reconstructing edge geometry."
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "result_bounding_boxes_cm": [
+          {
+            "min": [
+              -0.2,
+              -0.2,
+              0.0
+            ],
+            "max": [
+              0.2,
+              0.2,
+              3.0
+            ]
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OPU4EMQyFOQiFLxDJsb2ZpKRgayo6NPJsEn6qFeIQHGCPAXei4BSIAju7EuyIKJJfXj4/G4EgAiegHdHUUwuElYOQ5KA8aShlEc0ZN10F0Fjn0RVlUxHEnQRPn/x683H18D5/vR3uvi+NIM/tnFhLrRY5SZBl04Jm6mEq2rAvLRWD8JhxsTpjHsIYJ8BAmMCKmOtLj2/GOOrYZGXEtUF/DIRW79v83HaP+zZXfVG4hgwhni7B1p7o0sXJuz0i/OudUeTCs//n+KzBuB9Pw/FpfwEAAA==",
+                "body_name": "PipePathSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtYT446AB44Za+N/rZkS+0cGqMJIwdhMIc3YzDjRMiVF18TI3ETXJMk0VTfRwihN19wyMdUgLSnVzBKoyABiBgMaANtnoAC2DmS9kbkpAEneE+CIAAAA",
+                "natural_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    }
+                  ],
+                  "start_point_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_point_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ]
+                },
+                "trimmed_edge_evaluator": {
+                  "parameter_extents": [
+                    0.0,
+                    3.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 1.5,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 2.25,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 3.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    }
+                  ]
+                },
+                "is_param_reversed": false,
+                "start_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PMQ7CMAxFOQiDLxDJtUOajCzMTGyocttEwIQQQhyBA3AMuBMDp0AM2K2QEFn89PPzv4NAUAEHoI6oLiE7wp6dJx+dcC0updZLjDgr4gHVa340oqhUgTclwO7Jl+Vjvrk3r9t1/Z6qgyy3cGBJfa+RtXe+nWUnkYqrk2QsbQ5JTThmTP7O0Icw1HlgqNSjQwGGartmHOewyZ/APwLCKR+O+dwccrfd56aXo8AKIjjzLcA+o2hAX0ADffoBe6lqMiUBAAA="
+                },
+                "end_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OvW0DMQxGPYgLLiCAInX6Kd2kTpUuOPDuJNipAuNgZIQMkDGSnVJkiiBFSBkGjFPDh09P/IRA4IEj0EyUWqyOcGEXKGQnnMSVMgXJGYcmAVBd89GIspKHYEmElx9+f/w+HL/G38+P57+9GmR7G0eWsiy6MgUXpqE6ydRcKlKxTTUWlfC6Y7c5vQ+h1wVg8OroUIBebNeMvs/+s03AdwHCpZ7X+jae63x6reMiq8ATZHDmPSigoYG/ARno0382cyQuJQEAAA=="
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "length_cm": 3.0000000000000004,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.75
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      2.25
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "main_reader_partial_exact_and_full_tool_remains_unresolved": true
+    },
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "status": "PartialProvenanceAndControls",
+      "checks": {
+        "distance_one_matches_actual": true,
+        "operation_section_hollow_match_actual": true,
+        "section_size_matches_actual": true,
+        "stored_thickness_matches_actual": true,
+        "body_name_matches_independent_actual": true,
+        "native_closure_geometry_and_distance_two_remain_unknown": true,
+        "actual_api_closedness_contrasts_selector_presence": true,
+        "context_contains_second_edge_recipe_not_curve_geometry": true,
+        "open_along_is_copy_and_actual_distance_two_null": true,
+        "stored_point_cache_matches_actual_source_start_vertex": true
+      },
+      "partial": {
+        "feature_object_id": 330,
+        "feature_class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+        "status": "PartialBRepSourceAndExtentEvidence",
+        "tool_settings_status": "Unresolved; separate provenance/control evidence only",
+        "decoded_controls": {
+          "operation": "NewBody",
+          "stored_operation_code": 4,
+          "section_type": "Circular",
+          "stored_section_type_code": 0,
+          "is_hollow": false,
+          "section_size_cm": 0.4,
+          "stored_section_thickness_cm": 0.0,
+          "active_section_thickness_cm": null
+        },
+        "native_has_auxiliary_point_selector": true,
+        "native_parameter_controls": {
+          "AgainstDistance": {
+            "binding_object_id": 353,
+            "stored_value": 0.4
+          },
+          "AlongDistance": {
+            "binding_object_id": 350,
+            "stored_value": 0.4
+          },
+          "SectionSize": {
+            "binding_object_id": 356,
+            "stored_value": 0.4
+          },
+          "SectionThickness": {
+            "binding_object_id": 359,
+            "stored_value": 0.0
+          }
+        },
+        "distance_one_fraction": 0.4,
+        "distance_one_scope": "AgainstDistance matches actual API distanceOne across full/partial open lines and full/two-sided closed circles; native role retained",
+        "distance_two_fraction": null,
+        "distance_two_status": "Closure-dependent API availability unresolved natively; AlongDistance preserved without universal API mapping",
+        "path": {
+          "kind": "BRepEdgeRecipe",
+          "selection_object_id": 331,
+          "descriptor_object_id": 334,
+          "descriptor_class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "stored_descriptor_flag_byte3": 0,
+          "stored_descriptor_flag_scope": "Opaque: value1 occurs for both open negative-direction line and closed circle",
+          "recipe": {
+            "object_id": 337,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36135,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_object_id": 369,
+          "context_recipe_wrapper_object_id": 367,
+          "context_recipe": {
+            "object_id": 368,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 39322,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "namespace_text": "75a8ffd5-8b22-4d5a-aee8-3dd3be1fab2b",
+          "entity_guid_text": "a0c47818-d743-49b8-aa42-c8039ef6eab8",
+          "body_anchor_object_id": 281,
+          "native_body_object_id": 275,
+          "source_owner_object_id": 243,
+          "is_closed": null,
+          "path_is_opposed_to_entity": null,
+          "curve_geometry": null,
+          "scope": "Explicit owned recipes/context and historical body; persistent ASM edge mapping, closure and curve geometry unresolved"
+        },
+        "auxiliary_point_selection": {
+          "selection_object_id": 346,
+          "descriptor_object_id": 341,
+          "stored_xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "stored_method_code": 1,
+          "vertex_recipe": {
+            "object_id": 344,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36843,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "vertex_recipe_data",
+            "payload_relative_offset": 115,
+            "payload_length": 40,
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "coordinate_scope": "Stored point cache agrees with actual root-component source start vertex in captured open-line cases; exact Pipe role/persistent vertex identity unresolved"
+        },
+        "branch_evidence_scope": "Selector populated in actual open-line captures and absent in actual closed-circle captures. This correlation is retained without asserting a general closure flag or reconstructing edge geometry."
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "result_bounding_boxes_cm": [
+          {
+            "min": [
+              -0.2,
+              -0.2,
+              0.0
+            ],
+            "max": [
+              0.2,
+              0.2,
+              1.2000000000000002
+            ]
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OQUpEMQyGvYnBrQTSJPOmb+FSd25duBnS1zxxJzJzCi8iDMwRvIR4B2+hTR3QeVgK+fn6NQkBQwIZwNVNVmaozBm1zIbjvKpohZMUquZZgZobPkXi3FICDTLA7vXr4+Xi9v7wefX+dr6/bAZHX6NJ1zllrGsV1LFkNFPGKZOMPg9uJXe39ThbnD6PoI9TEGAaoBVtNJbuz0Kp177JAqQl4D+AwOuDb559enzyTbWtwTVkwHS8DDcQm7UY4cjufhT5ZScWR4je/3ty8qF539/JI39/AQAA",
+                "body_name": "PipePathSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQumK/1e7lXyj1r2wvbxPfrU2UIWRgrGZQqJBsom5haGFboq5ibGuiWWShW5ioomRbrKFgbFlappZamKSBVgt0AwGNAC2z0ABbB1YkbkpAL9q4jSIAAAA",
+                "natural_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    }
+                  ],
+                  "start_point_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_point_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ]
+                },
+                "trimmed_edge_evaluator": {
+                  "parameter_extents": [
+                    0.0,
+                    3.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 1.5,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 2.25,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 3.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    }
+                  ]
+                },
+                "is_param_reversed": false,
+                "start_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PQWpCQQyGvUlDtyWQmYnPvEW33XXrohvJvJcH3YmoeIdepCB4hF6ieIfeQpMRoTibfPzzTZIhyJCgdGBsWuaqyDkLcp0U+2k+otacSqVRTRjI3fApKItTAo6kg9335fz1/P5x+nv9/Xk6vriRo6/SwAtJguOCC3JfBVU54yBUeps60yrN9R6zh9PmEbRxDAWSO14coI2O60K32jZ5CMq/gGBvm60dVhsbPte2GnWrsAQBDO8N4jOOAfkOFOBPr0cqgwolAQAA"
+                },
+                "end_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWpCQQyGexNDtxLIzMRn3sKtu267cCOZ9/KguyK2eAcvIgg9Qi9RvIO30GRAKM4mH3++SUKQIUHpwNi0LFSRcxbkOin202JErTmVSqOaMJC74VNQFqcEHEkHX6fb5fj6tvm5rv5+Z+e5GznmKg28lCQ4Lrkg91VQlTMOQqW3qTOt0lyf8fL02j6Cto6hQHLHiwO0xdEulFptlz0F5V9A8G27vR22Oxs+Pm076l7hHQQwvDXEEY4B6QE5wL/eAQrwzRYlAQAA"
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "length_cm": 3.0000000000000004,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.75
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      2.25
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 0.4,
+        "distance_two": null
+      },
+      "main_reader_partial_exact_and_full_tool_remains_unresolved": true
+    },
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "status": "PartialProvenanceAndControls",
+      "checks": {
+        "distance_one_matches_actual": true,
+        "operation_section_hollow_match_actual": true,
+        "section_size_matches_actual": true,
+        "stored_thickness_matches_actual": true,
+        "body_name_matches_independent_actual": true,
+        "native_closure_geometry_and_distance_two_remain_unknown": true,
+        "actual_api_closedness_contrasts_selector_presence": true,
+        "context_contains_second_edge_recipe_not_curve_geometry": true,
+        "open_along_is_copy_and_actual_distance_two_null": true,
+        "stored_point_cache_matches_actual_source_start_vertex": true
+      },
+      "partial": {
+        "feature_object_id": 330,
+        "feature_class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+        "status": "PartialBRepSourceAndExtentEvidence",
+        "tool_settings_status": "Unresolved; separate provenance/control evidence only",
+        "decoded_controls": {
+          "operation": "NewBody",
+          "stored_operation_code": 4,
+          "section_type": "Circular",
+          "stored_section_type_code": 0,
+          "is_hollow": false,
+          "section_size_cm": 0.4,
+          "stored_section_thickness_cm": 0.0,
+          "active_section_thickness_cm": null
+        },
+        "native_has_auxiliary_point_selector": true,
+        "native_parameter_controls": {
+          "AgainstDistance": {
+            "binding_object_id": 353,
+            "stored_value": 0.4
+          },
+          "AlongDistance": {
+            "binding_object_id": 350,
+            "stored_value": 0.4
+          },
+          "SectionSize": {
+            "binding_object_id": 356,
+            "stored_value": 0.4
+          },
+          "SectionThickness": {
+            "binding_object_id": 359,
+            "stored_value": 0.0
+          }
+        },
+        "distance_one_fraction": 0.4,
+        "distance_one_scope": "AgainstDistance matches actual API distanceOne across full/partial open lines and full/two-sided closed circles; native role retained",
+        "distance_two_fraction": null,
+        "distance_two_status": "Closure-dependent API availability unresolved natively; AlongDistance preserved without universal API mapping",
+        "path": {
+          "kind": "BRepEdgeRecipe",
+          "selection_object_id": 331,
+          "descriptor_object_id": 334,
+          "descriptor_class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "stored_descriptor_flag_byte3": 1,
+          "stored_descriptor_flag_scope": "Opaque: value1 occurs for both open negative-direction line and closed circle",
+          "recipe": {
+            "object_id": 337,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36137,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff000000000000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_object_id": 369,
+          "context_recipe_wrapper_object_id": 367,
+          "context_recipe": {
+            "object_id": 368,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 39324,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "namespace_text": "97f5a4f0-92fa-488c-babf-5cf97bfdf279",
+          "entity_guid_text": "8074a71c-619b-4459-b1c2-7a9cbc9ca16c",
+          "body_anchor_object_id": 281,
+          "native_body_object_id": 275,
+          "source_owner_object_id": 243,
+          "is_closed": null,
+          "path_is_opposed_to_entity": null,
+          "curve_geometry": null,
+          "scope": "Explicit owned recipes/context and historical body; persistent ASM edge mapping, closure and curve geometry unresolved"
+        },
+        "auxiliary_point_selection": {
+          "selection_object_id": 346,
+          "descriptor_object_id": 341,
+          "stored_xyz_cm": [
+            2.0,
+            -1.0,
+            0.0
+          ],
+          "stored_method_code": 1,
+          "vertex_recipe": {
+            "object_id": 344,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36845,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "vertex_recipe_data",
+            "payload_relative_offset": 115,
+            "payload_length": 40,
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "coordinate_scope": "Stored point cache agrees with actual root-component source start vertex in captured open-line cases; exact Pipe role/persistent vertex identity unresolved"
+        },
+        "branch_evidence_scope": "Selector populated in actual open-line captures and absent in actual closed-circle captures. This correlation is retained without asserting a general closure flag or reconstructing edge geometry."
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "result_bounding_boxes_cm": [
+          {
+            "min": [
+              1.8,
+              -1.2,
+              -1.2000000000000002
+            ],
+            "max": [
+              2.2,
+              -0.8,
+              0.0
+            ]
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OT0oFMQyHPUouEEjS2GkOoHgCV8Kj7cyIOxE38q7gyo0X8BRu3pUewls8QbCp4x8GSyC/fv1ISiDAECKMNmuJEnAelFGDJUw2G6YilrXUPIoBNdd98iSpJQZ1EuH58LJ/er94fN1dHbcfbw/NEJ+baNA8cMXIVlD11LBwFRyy1VKtZo61u23Gyer0fQR9nUIAoQitaaP+6f4ciHtvFdeA10D+AIJpvJ42d1O9uZ02Y77PcAYJkJcSOG9X8uhhYZdfSvhlHuQ7dN1n/+/9TAuL9wnH/MttfwEAAA==",
+                "body_name": "PipePathSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvSvSz5M+uXRs2t/zM/qv58qgSqMFIzNFCwMzE0SzQ2Tdc0MLZN0TUxMLXWTDJONdM0TLZOTki2TEw3NksFqgWYwoAGwfQYKYOtA1huZmwIAudMxAIgAAAA=",
+                "natural_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -3.0
+                      ]
+                    }
+                  ],
+                  "start_point_cm": [
+                    2.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "end_point_cm": [
+                    2.0,
+                    -1.0,
+                    -3.0
+                  ]
+                },
+                "trimmed_edge_evaluator": {
+                  "parameter_extents": [
+                    0.0,
+                    3.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 1.5,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 2.25,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 3.0,
+                      "point_cm": [
+                        2.0,
+                        -1.0,
+                        -3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        -1.0
+                      ]
+                    }
+                  ]
+                },
+                "is_param_reversed": false,
+                "start_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    2.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PQYpCMQyG5yi5QKBpY19zAZkTuBp4tH3vwewGEVG8gis3XmBOMZu5kgguFASTgiCWQD7+/v3TOPBAECIMMnGJPuDUMSEHSZhkEkzFS+ZS8+AFnHrN74x8UiJgUyIcL7+nw+1z//f/dd3dz1t1eMtNruPcUcVIUpB5Jlioeuyy1FKlZoq1eTXj4+20eQ7aOIYApB5tCmCfbtfBUeta8V2gF8HBelyuxk2/HOv3z9gPeZVhAQnQkuZgyyga+Cc4A336AJXOtLElAQAA"
+                },
+                "end_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    2.0,
+                    -1.0,
+                    -3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWoDMQxFcxRdQGDZim1doOQEWQWC7ZmB7MIwlJZcIatueoGcIptcKRS6aKFQyVAo0UaPr68vOfBAECIMMnGNPuCUmJCDZMwyCebqpXBtZfACTr3md0Y+KxGwKRHePy/3t+/N+XrbfZ1+Pl7V4S03u8QlUcNIUpF5LVipeUxFWm3SCsXWvZqxeqh+z0E/xxCA1KNNAezpPg6Oeu+fPQjxn+DgeZyX8WU/j+1wHPdDWQpsIQNa0pOCNzRwf0AGuvoLO7Un7CUBAAA="
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "length_cm": 3.0000000000000004,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      2.0,
+                      -1.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      2.0,
+                      -1.0,
+                      -0.75
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      2.0,
+                      -1.0,
+                      -1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "point_cm": [
+                      2.0,
+                      -1.0,
+                      -2.25
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "point_cm": [
+                      2.0,
+                      -1.0,
+                      -3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      -1.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 0.4,
+        "distance_two": null
+      },
+      "main_reader_partial_exact_and_full_tool_remains_unresolved": true
+    },
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "status": "PartialProvenanceAndControls",
+      "checks": {
+        "distance_one_matches_actual": true,
+        "operation_section_hollow_match_actual": true,
+        "section_size_matches_actual": true,
+        "stored_thickness_matches_actual": true,
+        "body_name_matches_independent_actual": true,
+        "native_closure_geometry_and_distance_two_remain_unknown": true,
+        "actual_api_closedness_contrasts_selector_presence": true,
+        "context_contains_second_edge_recipe_not_curve_geometry": true,
+        "stored_along_matches_actual_active_distance_two": true,
+        "actual_circle_geometry": true
+      },
+      "partial": {
+        "feature_object_id": 315,
+        "feature_class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+        "status": "PartialBRepSourceAndExtentEvidence",
+        "tool_settings_status": "Unresolved; separate provenance/control evidence only",
+        "decoded_controls": {
+          "operation": "NewBody",
+          "stored_operation_code": 4,
+          "section_type": "Circular",
+          "stored_section_type_code": 0,
+          "is_hollow": false,
+          "section_size_cm": 0.4,
+          "stored_section_thickness_cm": 0.0,
+          "active_section_thickness_cm": null
+        },
+        "native_has_auxiliary_point_selector": false,
+        "native_parameter_controls": {
+          "AgainstDistance": {
+            "binding_object_id": 330,
+            "stored_value": 1.0
+          },
+          "AlongDistance": {
+            "binding_object_id": 327,
+            "stored_value": 0.0
+          },
+          "SectionSize": {
+            "binding_object_id": 333,
+            "stored_value": 0.4
+          },
+          "SectionThickness": {
+            "binding_object_id": 336,
+            "stored_value": 0.0
+          }
+        },
+        "distance_one_fraction": 1.0,
+        "distance_one_scope": "AgainstDistance matches actual API distanceOne across full/partial open lines and full/two-sided closed circles; native role retained",
+        "distance_two_fraction": null,
+        "distance_two_status": "Closure-dependent API availability unresolved natively; AlongDistance preserved without universal API mapping",
+        "path": {
+          "kind": "BRepEdgeRecipe",
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "descriptor_class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "stored_descriptor_flag_byte3": 1,
+          "stored_descriptor_flag_scope": "Opaque: value1 occurs for both open negative-direction line and closed circle",
+          "recipe": {
+            "object_id": 322,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 33181,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 114,
+            "payload_length": 120,
+            "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_object_id": 346,
+          "context_recipe_wrapper_object_id": 344,
+          "context_recipe": {
+            "object_id": 345,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 35394,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 114,
+            "payload_length": 120,
+            "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "namespace_text": "0cf8ab91-b320-4188-9858-452bc080eac5",
+          "entity_guid_text": "7abfa282-59d8-4855-8393-35d7ce2b6d87",
+          "body_anchor_object_id": 266,
+          "native_body_object_id": 260,
+          "source_owner_object_id": 234,
+          "is_closed": null,
+          "path_is_opposed_to_entity": null,
+          "curve_geometry": null,
+          "scope": "Explicit owned recipes/context and historical body; persistent ASM edge mapping, closure and curve geometry unresolved"
+        },
+        "auxiliary_point_selection": null,
+        "branch_evidence_scope": "Selector populated in actual open-line captures and absent in actual closed-circle captures. This correlation is retained without asserting a general closure flag or reconstructing edge geometry."
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "result_bounding_boxes_cm": [
+          {
+            "min": [
+              -2.2,
+              -2.2,
+              2.8
+            ],
+            "max": [
+              2.2,
+              2.2,
+              3.2
+            ]
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": true,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPW4CMRCFcwAO8Xo0kj2217MlBRwhSoe8tonoUMQBKGnpuAMlF0jDZXKClBkbCoQU29J8evPmxwYMCzcge7eZchGqIWfyUYQSx4Gi9cGwrXYcDYx6m78Ti5KFb8qA2e/ldMXieP5Yzr8PPzd1cOsb07RJLExh1OZeQiBxoyMXSsyVp6FI7F7t8fZy+jyDPs7DwUYHDQrQAupJXd7cY8NXgZ8Eg1o+6/qr5u2urkvaJywhKpNtj7FC+5FiA25g8a74b/K53DyW5cftK/wBKl+4Fl4BAAA=",
+                "body_name": "PipePathSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAs+P1RM3Kzh2zIhw1T7Q8OooUIWRgrGZgnliUlqikYWRrqllioWuiYWpqa6FsaWxrrFpinlyqlGSWYqFOVgt0AwGNAC2z0ABbB3IeiMzAwBixk5fiAAAAA==",
+                "natural_geometry": {
+                  "geometry_type": "adsk::core::Circle3D",
+                  "parameter_extents": [
+                    0.0,
+                    6.283185307179586
+                  ],
+                  "length_cm": 12.566370614359172,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        2.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 1.5707963267948966,
+                      "point_cm": [
+                        1.2246467991473532e-16,
+                        2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.0,
+                        1.2246467991473532e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 3.141592653589793,
+                      "point_cm": [
+                        -2.0,
+                        2.4492935982947064e-16,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.4492935982947064e-16,
+                        -2.0,
+                        -0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 4.71238898038469,
+                      "point_cm": [
+                        -3.6739403974420594e-16,
+                        -2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.0,
+                        -3.6739403974420594e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 6.283185307179586,
+                      "point_cm": [
+                        2.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "radius_cm": 2.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "trimmed_edge_evaluator": {
+                  "parameter_extents": [
+                    -3.141592653589793,
+                    3.141592653589793
+                  ],
+                  "length_cm": 12.566370614359172,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": -3.141592653589793,
+                      "point_cm": [
+                        -2.0,
+                        -2.4492935982947064e-16,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.4492935982947064e-16,
+                        -2.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": -1.5707963267948966,
+                      "point_cm": [
+                        1.2246467991473532e-16,
+                        -2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.0,
+                        1.2246467991473532e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        2.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 1.5707963267948966,
+                      "point_cm": [
+                        1.2246467991473532e-16,
+                        2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.0,
+                        1.2246467991473532e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 3.141592653589793,
+                      "point_cm": [
+                        -2.0,
+                        2.4492935982947064e-16,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.4492935982947064e-16,
+                        -2.0,
+                        -0.0
+                      ]
+                    }
+                  ]
+                },
+                "is_param_reversed": false,
+                "start_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    -2.0,
+                    -2.4492935982947064e-16,
+                    3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PMU4EMQxFOQCH+D2yFDvJxFNSLEdAdKtMJivRodVqRUlJu93egZIL0HAZTkCJHSiAuPDTz9e3HSBgxAktxd3SVqWeW6NUVKlKmahwykG48zwHBPO6f5CoESO5MuHy8+X0iuvn893m6u3p490c4rmlLrsqKpRnC0+aM2mcI8W8ltZlmVYtw2sZF//emBcwxiVEcGJYM8BYxL9j4NEd/woCAv+SAo59f+iP231v9w99u9ZDxS0U5Fk38HMMHYIDY2MojvRz8lj0u0byF1AEOE8+AQAA"
+                },
+                "end_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    -2.0,
+                    -2.4492935982947064e-16,
+                    3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PMU4EMQxFOQCH+D2yFDvJxFNSLEdAdKtMJivRodVqRUlJu93egZIL0HAZTkCJHSiAuPDTz9e3HSBgxAktxd3SVqWeW6NUVKlKmahwykG48zwHBPO6f5CoESO5MuHy8+X0iuvn893m6u3p490c4rmlLrsqKpRnC0+aM2mcI8W8ltZlmVYtw2sZF//emBcwxiVEcGJYM8BYxL9j4NEd/woCAv+SAo59f+iP231v9w99u9ZDxS0U5Fk38HMMHYIDY2MojvRz8lj0u0byF1AEOE8+AQAA"
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  6.283185307179586
+                ],
+                "length_cm": 12.566370614486463,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      2.0,
+                      -4.898587196589413e-16,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      1.8006326323142123,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 1.5707963267948966,
+                    "point_cm": [
+                      1.2246467991473532e-16,
+                      2.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      -1.8006326323142123,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 3.141592653589793,
+                    "point_cm": [
+                      -2.0,
+                      2.4492935982947064e-16,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      -1.8006326323142123,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 4.71238898038469,
+                    "point_cm": [
+                      -3.6739403974420594e-16,
+                      -2.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      1.800632632314213,
+                      -1.1102230246251565e-16,
+                      2.220446049250313e-16
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 6.283185307179586,
+                    "point_cm": [
+                      2.0,
+                      -4.718082670960085e-16,
+                      3.0
+                    ],
+                    "tangent": [
+                      1.1102230246251565e-16,
+                      1.800632632314212,
+                      -2.220446049250313e-16
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 1.0,
+        "distance_two": 0.0
+      },
+      "main_reader_partial_exact_and_full_tool_remains_unresolved": true
+    },
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "status": "PartialProvenanceAndControls",
+      "checks": {
+        "distance_one_matches_actual": true,
+        "operation_section_hollow_match_actual": true,
+        "section_size_matches_actual": true,
+        "stored_thickness_matches_actual": true,
+        "body_name_matches_independent_actual": true,
+        "native_closure_geometry_and_distance_two_remain_unknown": true,
+        "actual_api_closedness_contrasts_selector_presence": true,
+        "context_contains_second_edge_recipe_not_curve_geometry": true,
+        "stored_along_matches_actual_active_distance_two": true,
+        "actual_circle_geometry": true
+      },
+      "partial": {
+        "feature_object_id": 315,
+        "feature_class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+        "status": "PartialBRepSourceAndExtentEvidence",
+        "tool_settings_status": "Unresolved; separate provenance/control evidence only",
+        "decoded_controls": {
+          "operation": "NewBody",
+          "stored_operation_code": 4,
+          "section_type": "Circular",
+          "stored_section_type_code": 0,
+          "is_hollow": false,
+          "section_size_cm": 0.4,
+          "stored_section_thickness_cm": 0.0,
+          "active_section_thickness_cm": null
+        },
+        "native_has_auxiliary_point_selector": false,
+        "native_parameter_controls": {
+          "AgainstDistance": {
+            "binding_object_id": 330,
+            "stored_value": 0.35
+          },
+          "AlongDistance": {
+            "binding_object_id": 327,
+            "stored_value": 0.2
+          },
+          "SectionSize": {
+            "binding_object_id": 333,
+            "stored_value": 0.4
+          },
+          "SectionThickness": {
+            "binding_object_id": 336,
+            "stored_value": 0.0
+          }
+        },
+        "distance_one_fraction": 0.35,
+        "distance_one_scope": "AgainstDistance matches actual API distanceOne across full/partial open lines and full/two-sided closed circles; native role retained",
+        "distance_two_fraction": null,
+        "distance_two_status": "Closure-dependent API availability unresolved natively; AlongDistance preserved without universal API mapping",
+        "path": {
+          "kind": "BRepEdgeRecipe",
+          "selection_object_id": 316,
+          "descriptor_object_id": 319,
+          "descriptor_class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "stored_descriptor_flag_byte3": 1,
+          "stored_descriptor_flag_scope": "Opaque: value1 occurs for both open negative-direction line and closed circle",
+          "recipe": {
+            "object_id": 322,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 33213,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 114,
+            "payload_length": 120,
+            "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_object_id": 346,
+          "context_recipe_wrapper_object_id": 344,
+          "context_recipe": {
+            "object_id": 345,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 35436,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 114,
+            "payload_length": 120,
+            "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "namespace_text": "eb35ab0a-c844-48ae-9d8d-40f5c19a7c6a",
+          "entity_guid_text": "78c20fd0-709f-41a3-b3d8-2abec8903e8a",
+          "body_anchor_object_id": 266,
+          "native_body_object_id": 260,
+          "source_owner_object_id": 234,
+          "is_closed": null,
+          "path_is_opposed_to_entity": null,
+          "curve_geometry": null,
+          "scope": "Explicit owned recipes/context and historical body; persistent ASM edge mapping, closure and curve geometry unresolved"
+        },
+        "auxiliary_point_selection": null,
+        "branch_evidence_scope": "Selector populated in actual open-line captures and absent in actual closed-circle captures. This correlation is retained without asserting a general closure flag or reconstructing edge geometry."
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "result_bounding_boxes_cm": [
+          {
+            "min": [
+              -2.2,
+              -2.0923243358493377,
+              2.8
+            ],
+            "max": [
+              1.2931275550434411,
+              2.2000000000000006,
+              3.2
+            ]
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": true,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPP06DMQzFmTnFu4Alx06bdGOgiBOwVvmcfAgmVDFyBS5QiRNU6h3YuEvn7jihQ1WJJJJ/en7+E4YgQJeQyWINyShNtqBokalobqSWtVW2MJcZ7N7u506SnQJiV5Y4Lva3P/ePh6/Pu9P37uPVHdL7pmzCc2VKvJophqI0ac0kZWqWV6wtl+H1HjdXZ8xjjHERipAUHhzgBTSSvjz/xY7XglwIjFaf22bb7OWtbWp5L1gju0yhP8ED+o8cO0iHgCfHf5OX5XxeVs53rPAL2rTj+l4BAAA=",
+                "body_name": "PipePathSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmvT1VwnXDzWze11+HpwVk0WUIWRgrGZgrlFspFBWoqBrrmBZZquiWGisW6ScYqFrlFiUmqyhaWBcapFIlgt0AwGNAC2z0ABbB3IeiMzAwDgZFtyiAAAAA==",
+                "natural_geometry": {
+                  "geometry_type": "adsk::core::Circle3D",
+                  "parameter_extents": [
+                    0.0,
+                    6.283185307179586
+                  ],
+                  "length_cm": 12.566370614359172,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        2.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 1.5707963267948966,
+                      "point_cm": [
+                        1.2246467991473532e-16,
+                        2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.0,
+                        1.2246467991473532e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 3.141592653589793,
+                      "point_cm": [
+                        -2.0,
+                        2.4492935982947064e-16,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.4492935982947064e-16,
+                        -2.0,
+                        -0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 4.71238898038469,
+                      "point_cm": [
+                        -3.6739403974420594e-16,
+                        -2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.0,
+                        -3.6739403974420594e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 6.283185307179586,
+                      "point_cm": [
+                        2.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "radius_cm": 2.0,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "trimmed_edge_evaluator": {
+                  "parameter_extents": [
+                    -3.141592653589793,
+                    3.141592653589793
+                  ],
+                  "length_cm": 12.566370614359172,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": -3.141592653589793,
+                      "point_cm": [
+                        -2.0,
+                        -2.4492935982947064e-16,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.4492935982947064e-16,
+                        -2.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": -1.5707963267948966,
+                      "point_cm": [
+                        1.2246467991473532e-16,
+                        -2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        2.0,
+                        1.2246467991473532e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        2.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 1.5707963267948966,
+                      "point_cm": [
+                        1.2246467991473532e-16,
+                        2.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.0,
+                        1.2246467991473532e-16,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 3.141592653589793,
+                      "point_cm": [
+                        -2.0,
+                        2.4492935982947064e-16,
+                        3.0
+                      ],
+                      "tangent": [
+                        -2.4492935982947064e-16,
+                        -2.0,
+                        -0.0
+                      ]
+                    }
+                  ]
+                },
+                "is_param_reversed": false,
+                "start_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    -2.0,
+                    -2.4492935982947064e-16,
+                    3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PMU6DMQyFmTnFu4AlO077pxsDrThB1yq/k18qE6qqiqFX4AJIPQFS79Ctd2FmJw4M0Hjwp5enZ5sRINA5wmixyGA0jDajaJEpa6qklrQWNpnyBG5e97NTSI0E0ZU5Pmcf99fHp/Pp7eHr8n58bo7guUOywFNhGngxUZSsNGpJFPJYLS1Ya8rd2zLubl6fx+jjIhQSBa01QF/Ev5Wld8f/QgBB/kiMQ93t6+tmV237Ujcl7zPWSCDPWsHPaejADoJlw+BIvyf3RX+qJ38De+HC8j4BAAA="
+                },
+                "end_vertex": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "point_cm": [
+                    -2.0,
+                    -2.4492935982947064e-16,
+                    3.0
+                  ],
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PMU6DMQyFmTnFu4AlO077pxsDrThB1yq/k18qE6qqiqFX4AJIPQFS79Ctd2FmJw4M0Hjwp5enZ5sRINA5wmixyGA0jDajaJEpa6qklrQWNpnyBG5e97NTSI0E0ZU5Pmcf99fHp/Pp7eHr8n58bo7guUOywFNhGngxUZSsNGpJFPJYLS1Ya8rd2zLubl6fx+jjIhQSBa01QF/Ev5Wld8f/QgBB/kiMQ93t6+tmV237Ujcl7zPWSCDPWsHPaejADoJlw+BIvyf3RX+qJ38De+HC8j4BAAA="
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  6.283185307179586
+                ],
+                "length_cm": 12.566370614486463,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      2.0,
+                      -4.898587196589413e-16,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      1.8006326323142123,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 1.5707963267948966,
+                    "point_cm": [
+                      1.2246467991473532e-16,
+                      2.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      -1.8006326323142123,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 3.141592653589793,
+                    "point_cm": [
+                      -2.0,
+                      2.4492935982947064e-16,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      -1.8006326323142123,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 4.71238898038469,
+                    "point_cm": [
+                      -3.6739403974420594e-16,
+                      -2.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      1.800632632314213,
+                      -1.1102230246251565e-16,
+                      2.220446049250313e-16
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 6.283185307179586,
+                    "point_cm": [
+                      2.0,
+                      -4.718082670960085e-16,
+                      3.0
+                    ],
+                    "tangent": [
+                      1.1102230246251565e-16,
+                      1.800632632314212,
+                      -2.220446049250313e-16
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 0.35,
+        "distance_two": 0.2
+      },
+      "main_reader_partial_exact_and_full_tool_remains_unresolved": true
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Descriptor wrong owner",
+      "passed": true,
+      "reason": "Pipe topology descriptor prefix/count/owner mismatch"
+    },
+    {
+      "check": "Context UUID/source mismatch",
+      "passed": true,
+      "reason": "Pipe context UUID/source correspondence mismatch"
+    },
+    {
+      "check": "Auxiliary wrong owner",
+      "passed": true,
+      "reason": "Pipe auxiliary point selection layout/count/owner mismatch"
+    },
+    {
+      "check": "Wrong edge recipe kind",
+      "passed": true,
+      "reason": "Pipe source recipe kind mismatch"
+    }
+  ],
+  "interface": "inspect_pipe_edge_controls(data,records,body,feature,features): separate partial source/extent summary only; never full tool_settings",
+  "validation_command": "python3 decode_pipe_edge_controls.py --validate --zstd-library <local libzstd path>",
+  "closure_flag_counterexample": {
+    "line_full.f3d": {
+      "native_descriptor_byte3": 0,
+      "actual_api_closed": false
+    },
+    "line_partial.f3d": {
+      "native_descriptor_byte3": 0,
+      "actual_api_closed": false
+    },
+    "line_offset_negative_partial.f3d": {
+      "native_descriptor_byte3": 1,
+      "actual_api_closed": false
+    },
+    "circle_full.f3d": {
+      "native_descriptor_byte3": 1,
+      "actual_api_closed": true
+    },
+    "circle_partial_two_sided.f3d": {
+      "native_descriptor_byte3": 1,
+      "actual_api_closed": true
+    }
+  },
+  "limitations": [
+    "No full Pipe settings accepted from topology recipes: native closure/curve geometry and persistent ASM identity remain unresolved.",
+    "Auxiliary selector presence correlates with actual closure in these cases, but no general closure bit is established.",
+    "AgainstDistance is now independently contrasted across open/closed full/partial cases; AlongDistance remains raw in production because API availability depends on unresolved closure.",
+    "Root-component solid circular NewBody only; hollow/other sections, occurrence contexts, opposed flags and regeneration are outside these contrasts."
+  ]
+}

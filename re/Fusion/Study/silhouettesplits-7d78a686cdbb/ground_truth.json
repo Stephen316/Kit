@@ -1,0 +1,518 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "faces_axis_x.f3d",
+      "getter_errors": [],
+      "requested": {
+        "operation": 0,
+        "direction_type": "adsk::fusion::ConstructionAxis",
+        "direction_name": "X"
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::ConstructionAxis",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsN7YEAH/U25GHAAAA",
+        "name": "X",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsNzIzAACgHqqyiAAAAA==",
+        "name": "SilhouetteTarget",
+        "is_solid": true,
+        "faces": 3,
+        "edges": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsNzIzAACgHqqyiAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsNzIzAACgHqqyiAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteCylinder"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteCylinder"
+        }
+      ]
+    },
+    {
+      "file": "faces_axis_y.f3d",
+      "getter_errors": [],
+      "requested": {
+        "operation": 0,
+        "direction_type": "adsk::fusion::ConstructionAxis",
+        "direction_name": "Y"
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::ConstructionAxis",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1psYAAD/yOixhwAAAA==",
+        "name": "Y",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1huZGQAAUAO/i4gAAAA=",
+        "name": "SilhouetteTarget",
+        "is_solid": true,
+        "faces": 3,
+        "edges": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1huZGQAAUAO/i4gAAAA=",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 8,
+          "volume_cm3": 50.2654824574367,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1huZGQAAUAO/i4gAAAA=",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 8,
+          "volume_cm3": 50.2654824574367,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteCylinder"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteCylinder"
+        }
+      ]
+    },
+    {
+      "file": "solid_axis_x.f3d",
+      "getter_errors": [],
+      "requested": {
+        "operation": 2,
+        "direction_type": "adsk::fusion::ConstructionAxis",
+        "direction_name": "X"
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::ConstructionAxis",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2wJAMJ8yJuHAAAA",
+        "name": "X",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RmAAA5wnAHiAAAAA==",
+        "name": "SilhouetteTarget",
+        "is_solid": true,
+        "faces": 3,
+        "edges": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 2,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RmAAA5wnAHiAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 4,
+          "edges": 6,
+          "volume_cm3": 25.132741228718352,
+          "bounding_box_cm": [
+            [
+              1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RpAQDEVjOOiAAAAA==",
+          "name": "SilhouetteTarget (1)",
+          "is_solid": true,
+          "faces": 4,
+          "edges": 6,
+          "volume_cm3": 25.132741228718345,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              1.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RmAAA5wnAHiAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 4,
+          "edges": 6,
+          "volume_cm3": 25.132741228718352,
+          "bounding_box_cm": [
+            [
+              1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RpAQDEVjOOiAAAAA==",
+          "name": "SilhouetteTarget (1)",
+          "is_solid": true,
+          "faces": 4,
+          "edges": 6,
+          "volume_cm3": 25.132741228718345,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              1.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteCylinder"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteCylinder"
+        }
+      ]
+    },
+    {
+      "file": "faces_plane_yz.f3d",
+      "getter_errors": [],
+      "requested": {
+        "operation": 0,
+        "direction_type": "adsk::fusion::ConstructionPlane",
+        "direction_name": "YZ"
+      },
+      "actual_direction": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sQEACQwU66HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_target": {
+        "entity_type": "adsk::fusion::BRepBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sjMAADwds3+iAAAAA==",
+        "name": "SilhouetteTarget",
+        "is_solid": true,
+        "faces": 3,
+        "edges": 2,
+        "volume_cm3": 50.265482457434544,
+        "bounding_box_cm": [
+          [
+            -1.0,
+            -1.5,
+            0.0
+          ],
+          [
+            3.0,
+            2.5,
+            4.0
+          ]
+        ]
+      },
+      "feature_type": "adsk::fusion::SilhouetteSplitFeature",
+      "settings": {
+        "operation": 0,
+        "is_suppressed": false,
+        "health_state": 0,
+        "warning": ""
+      },
+      "feature_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sjMAADwds3+iAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "root_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sjMAADwds3+iAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 10,
+          "volume_cm3": 50.265482457436704,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 4.0,
+          "created_by": "SilhouetteCylinder"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "SilhouetteCylinder"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "case": "shelled_axis_x",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSilhouetteSplitModes.py\", line 72, in run\n    feature = root.features.silhouetteSplitFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 68343, in add\n    return _fusion.SilhouetteSplitFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : SilhouetteSplit1 / Compute Failed // SILHOUETTE_SPLIT_SHEET_FAIL - Failed to create splitting surface\n",
+      "partial": {
+        "file": "shelled_axis_x.f3d",
+        "getter_errors": [],
+        "requested": {
+          "operation": 1,
+          "direction_type": "adsk::fusion::ConstructionAxis",
+          "direction_name": "X"
+        }
+      }
+    }
+  ]
+}

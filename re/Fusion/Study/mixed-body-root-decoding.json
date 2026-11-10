@@ -1,0 +1,744 @@
+{
+  "status": "Observed bounded mixed initial BODY/detached-edge roots decoded",
+  "cases": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "mapping": {
+        "mapping_record_object_id": 8,
+        "owner_object_id": 7,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6e54ac-a55e-4352-9610-0e846d97cc10.smbh",
+        "body_count": 2,
+        "bindings": [
+          {
+            "native_body_object_id": 275,
+            "stored_handle": 20,
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 20,
+            "asm_body_record_offset": 186,
+            "asm_identifier_token_offset": 201,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          },
+          {
+            "native_body_object_id": 380,
+            "stored_handle": 21,
+            "asm_body_index": 3,
+            "asm_stored_entity_id": 21,
+            "asm_body_record_offset": 345,
+            "asm_identifier_token_offset": 360,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          }
+        ],
+        "auxiliary_declared_roots": [
+          {
+            "asm_record_index": 2,
+            "kind": "edge",
+            "stored_entity_id": -1,
+            "endpoint_vertex_indices": [
+              6,
+              7
+            ],
+            "endpoint_point_indices": [
+              13,
+              14
+            ],
+            "curve_index": 8,
+            "curve_kind": "straight-curve",
+            "ownership_status": "Detached initial-geometry auxiliary edge; no native body/edge identity association inferred",
+            "body_graph_membership": []
+          }
+        ],
+        "root_table_status": "Mixed initial BODY and bounded detached-edge roots; BODY association uses stored IDs only"
+      },
+      "declared_root_kinds": [
+        "asmheader",
+        "body",
+        "edge",
+        "body"
+      ],
+      "body_graph_indices": [
+        1,
+        3
+      ],
+      "old_ordinal_candidate_count": 0,
+      "api_corroboration": {
+        "actual_root_body_count": 2,
+        "actual_result_body_count": 1,
+        "typed_pipe_source_native_body_object_id": 275,
+        "source_native_name_agrees_actual_api": true,
+        "auxiliary_cached_endpoint_points_match_saved_api": true,
+        "cached_endpoint_points_cm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            3.0
+          ]
+        ],
+        "source_body_graph_contains_saved_api_endpoint_points": true,
+        "auxiliary_primitive_kind_agrees_saved_api_geometry": true,
+        "auxiliary_curve_samples_match_actual_trimmed_edge_evaluator": [
+          {
+            "parameter": 0.0,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "parameter": 0.75,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              0.75
+            ]
+          },
+          {
+            "parameter": 1.5,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              1.5
+            ]
+          },
+          {
+            "parameter": 2.25,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              2.25
+            ]
+          },
+          {
+            "parameter": 3.0,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "persistent_auxiliary_edge_identity": "Unresolved; shape agreement does not establish identity"
+      },
+      "body_graph_vertex_counts": {
+        "1": 8,
+        "3": 2
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "mapping": {
+        "mapping_record_object_id": 8,
+        "owner_object_id": 7,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+        "body_count": 2,
+        "bindings": [
+          {
+            "native_body_object_id": 260,
+            "stored_handle": 3,
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 3,
+            "asm_body_record_offset": 186,
+            "asm_identifier_token_offset": 201,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          },
+          {
+            "native_body_object_id": 360,
+            "stored_handle": 4,
+            "asm_body_index": 3,
+            "asm_stored_entity_id": 4,
+            "asm_body_record_offset": 345,
+            "asm_identifier_token_offset": 360,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          }
+        ],
+        "auxiliary_declared_roots": [
+          {
+            "asm_record_index": 2,
+            "kind": "edge",
+            "stored_entity_id": -1,
+            "endpoint_vertex_indices": [
+              7,
+              7
+            ],
+            "endpoint_point_indices": [
+              13,
+              13
+            ],
+            "curve_index": 8,
+            "curve_kind": "ellipse-curve",
+            "ownership_status": "Detached initial-geometry auxiliary edge; no native body/edge identity association inferred",
+            "body_graph_membership": []
+          }
+        ],
+        "root_table_status": "Mixed initial BODY and bounded detached-edge roots; BODY association uses stored IDs only"
+      },
+      "declared_root_kinds": [
+        "asmheader",
+        "body",
+        "edge",
+        "body"
+      ],
+      "body_graph_indices": [
+        1,
+        3
+      ],
+      "old_ordinal_candidate_count": 0,
+      "api_corroboration": {
+        "actual_root_body_count": 2,
+        "actual_result_body_count": 1,
+        "typed_pipe_source_native_body_object_id": 260,
+        "source_native_name_agrees_actual_api": true,
+        "auxiliary_cached_endpoint_points_match_saved_api": true,
+        "cached_endpoint_points_cm": [
+          [
+            -2.0,
+            -2.4492935982947064e-16,
+            3.0
+          ],
+          [
+            -2.0,
+            -2.4492935982947064e-16,
+            3.0
+          ]
+        ],
+        "source_body_graph_contains_saved_api_endpoint_points": true,
+        "auxiliary_primitive_kind_agrees_saved_api_geometry": true,
+        "auxiliary_curve_samples_match_actual_trimmed_edge_evaluator": [
+          {
+            "parameter": -3.141592653589793,
+            "cached_curve_point_cm": [
+              -2.0,
+              -2.4492935982947064e-16,
+              3.0
+            ]
+          },
+          {
+            "parameter": -1.5707963267948966,
+            "cached_curve_point_cm": [
+              1.2246467991473532e-16,
+              -2.0,
+              3.0
+            ]
+          },
+          {
+            "parameter": 0.0,
+            "cached_curve_point_cm": [
+              2.0,
+              0.0,
+              3.0
+            ]
+          },
+          {
+            "parameter": 1.5707963267948966,
+            "cached_curve_point_cm": [
+              1.2246467991473532e-16,
+              2.0,
+              3.0
+            ]
+          },
+          {
+            "parameter": 3.141592653589793,
+            "cached_curve_point_cm": [
+              -2.0,
+              2.4492935982947064e-16,
+              3.0
+            ]
+          }
+        ],
+        "persistent_auxiliary_edge_identity": "Unresolved; shape agreement does not establish identity"
+      },
+      "body_graph_vertex_counts": {
+        "1": 2,
+        "3": 0
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "mapping": {
+        "mapping_record_object_id": 8,
+        "owner_object_id": 7,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.450ca4e7-360a-45c1-aa4c-a78ed6be53c3.smbh",
+        "body_count": 2,
+        "bindings": [
+          {
+            "native_body_object_id": 275,
+            "stored_handle": 20,
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 20,
+            "asm_body_record_offset": 186,
+            "asm_identifier_token_offset": 201,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          },
+          {
+            "native_body_object_id": 380,
+            "stored_handle": 21,
+            "asm_body_index": 3,
+            "asm_stored_entity_id": 21,
+            "asm_body_record_offset": 345,
+            "asm_identifier_token_offset": 360,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          }
+        ],
+        "auxiliary_declared_roots": [
+          {
+            "asm_record_index": 2,
+            "kind": "edge",
+            "stored_entity_id": -1,
+            "endpoint_vertex_indices": [
+              6,
+              7
+            ],
+            "endpoint_point_indices": [
+              13,
+              14
+            ],
+            "curve_index": 8,
+            "curve_kind": "straight-curve",
+            "ownership_status": "Detached initial-geometry auxiliary edge; no native body/edge identity association inferred",
+            "body_graph_membership": []
+          }
+        ],
+        "root_table_status": "Mixed initial BODY and bounded detached-edge roots; BODY association uses stored IDs only"
+      },
+      "declared_root_kinds": [
+        "asmheader",
+        "body",
+        "edge",
+        "body"
+      ],
+      "body_graph_indices": [
+        1,
+        3
+      ],
+      "old_ordinal_candidate_count": 0,
+      "api_corroboration": {
+        "actual_root_body_count": 2,
+        "actual_result_body_count": 1,
+        "typed_pipe_source_native_body_object_id": 275,
+        "source_native_name_agrees_actual_api": true,
+        "auxiliary_cached_endpoint_points_match_saved_api": true,
+        "cached_endpoint_points_cm": [
+          [
+            2.0,
+            -1.0,
+            0.0
+          ],
+          [
+            2.0,
+            -1.0,
+            -3.0
+          ]
+        ],
+        "source_body_graph_contains_saved_api_endpoint_points": true,
+        "auxiliary_primitive_kind_agrees_saved_api_geometry": true,
+        "auxiliary_curve_samples_match_actual_trimmed_edge_evaluator": [
+          {
+            "parameter": 0.0,
+            "cached_curve_point_cm": [
+              2.0,
+              -1.0,
+              0.0
+            ]
+          },
+          {
+            "parameter": 0.75,
+            "cached_curve_point_cm": [
+              2.0,
+              -1.0,
+              -0.75
+            ]
+          },
+          {
+            "parameter": 1.5,
+            "cached_curve_point_cm": [
+              2.0,
+              -1.0,
+              -1.5
+            ]
+          },
+          {
+            "parameter": 2.25,
+            "cached_curve_point_cm": [
+              2.0,
+              -1.0,
+              -2.25
+            ]
+          },
+          {
+            "parameter": 3.0,
+            "cached_curve_point_cm": [
+              2.0,
+              -1.0,
+              -3.0
+            ]
+          }
+        ],
+        "persistent_auxiliary_edge_identity": "Unresolved; shape agreement does not establish identity"
+      },
+      "body_graph_vertex_counts": {
+        "1": 8,
+        "3": 2
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "mapping": {
+        "mapping_record_object_id": 8,
+        "owner_object_id": 7,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9567852f-6f54-4a8f-a8d8-88009da4deb9.smbh",
+        "body_count": 2,
+        "bindings": [
+          {
+            "native_body_object_id": 260,
+            "stored_handle": 3,
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 3,
+            "asm_body_record_offset": 186,
+            "asm_identifier_token_offset": 201,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          },
+          {
+            "native_body_object_id": 360,
+            "stored_handle": 4,
+            "asm_body_index": 3,
+            "asm_stored_entity_id": 4,
+            "asm_body_record_offset": 345,
+            "asm_identifier_token_offset": 360,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          }
+        ],
+        "auxiliary_declared_roots": [
+          {
+            "asm_record_index": 2,
+            "kind": "edge",
+            "stored_entity_id": -1,
+            "endpoint_vertex_indices": [
+              7,
+              7
+            ],
+            "endpoint_point_indices": [
+              13,
+              13
+            ],
+            "curve_index": 8,
+            "curve_kind": "ellipse-curve",
+            "ownership_status": "Detached initial-geometry auxiliary edge; no native body/edge identity association inferred",
+            "body_graph_membership": []
+          }
+        ],
+        "root_table_status": "Mixed initial BODY and bounded detached-edge roots; BODY association uses stored IDs only"
+      },
+      "declared_root_kinds": [
+        "asmheader",
+        "body",
+        "edge",
+        "body"
+      ],
+      "body_graph_indices": [
+        1,
+        3
+      ],
+      "old_ordinal_candidate_count": 0,
+      "api_corroboration": {
+        "actual_root_body_count": 2,
+        "actual_result_body_count": 1,
+        "typed_pipe_source_native_body_object_id": 260,
+        "source_native_name_agrees_actual_api": true,
+        "auxiliary_cached_endpoint_points_match_saved_api": true,
+        "cached_endpoint_points_cm": [
+          [
+            -2.0,
+            -2.4492935982947064e-16,
+            3.0
+          ],
+          [
+            -2.0,
+            -2.4492935982947064e-16,
+            3.0
+          ]
+        ],
+        "source_body_graph_contains_saved_api_endpoint_points": true,
+        "auxiliary_primitive_kind_agrees_saved_api_geometry": true,
+        "auxiliary_curve_samples_match_actual_trimmed_edge_evaluator": [
+          {
+            "parameter": -3.141592653589793,
+            "cached_curve_point_cm": [
+              -2.0,
+              -2.4492935982947064e-16,
+              3.0
+            ]
+          },
+          {
+            "parameter": -1.5707963267948966,
+            "cached_curve_point_cm": [
+              1.2246467991473532e-16,
+              -2.0,
+              3.0
+            ]
+          },
+          {
+            "parameter": 0.0,
+            "cached_curve_point_cm": [
+              2.0,
+              0.0,
+              3.0
+            ]
+          },
+          {
+            "parameter": 1.5707963267948966,
+            "cached_curve_point_cm": [
+              1.2246467991473532e-16,
+              2.0,
+              3.0
+            ]
+          },
+          {
+            "parameter": 3.141592653589793,
+            "cached_curve_point_cm": [
+              -2.0,
+              2.4492935982947064e-16,
+              3.0
+            ]
+          }
+        ],
+        "persistent_auxiliary_edge_identity": "Unresolved; shape agreement does not establish identity"
+      },
+      "body_graph_vertex_counts": {
+        "1": 2,
+        "3": 2
+      }
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "mapping": {
+        "mapping_record_object_id": 8,
+        "owner_object_id": 7,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b6eb5dba-03d3-4fc1-8c9e-ff9446a6e261.smbh",
+        "body_count": 2,
+        "bindings": [
+          {
+            "native_body_object_id": 275,
+            "stored_handle": 20,
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 20,
+            "asm_body_record_offset": 186,
+            "asm_identifier_token_offset": 201,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          },
+          {
+            "native_body_object_id": 356,
+            "stored_handle": 21,
+            "asm_body_index": 3,
+            "asm_stored_entity_id": 21,
+            "asm_body_record_offset": 345,
+            "asm_identifier_token_offset": 360,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "previous_ordinal_candidate": null,
+            "ordinal_candidate_conflict": false
+          }
+        ],
+        "auxiliary_declared_roots": [
+          {
+            "asm_record_index": 2,
+            "kind": "edge",
+            "stored_entity_id": -1,
+            "endpoint_vertex_indices": [
+              6,
+              7
+            ],
+            "endpoint_point_indices": [
+              13,
+              14
+            ],
+            "curve_index": 8,
+            "curve_kind": "straight-curve",
+            "ownership_status": "Detached initial-geometry auxiliary edge; no native body/edge identity association inferred",
+            "body_graph_membership": []
+          }
+        ],
+        "root_table_status": "Mixed initial BODY and bounded detached-edge roots; BODY association uses stored IDs only"
+      },
+      "declared_root_kinds": [
+        "asmheader",
+        "body",
+        "edge",
+        "body"
+      ],
+      "body_graph_indices": [
+        1,
+        3
+      ],
+      "old_ordinal_candidate_count": 0,
+      "api_corroboration": {
+        "actual_root_body_count": 2,
+        "actual_result_body_count": 1,
+        "typed_pipe_source_native_body_object_id": 275,
+        "source_native_name_agrees_actual_api": true,
+        "auxiliary_cached_endpoint_points_match_saved_api": true,
+        "cached_endpoint_points_cm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            3.0
+          ]
+        ],
+        "source_body_graph_contains_saved_api_endpoint_points": true,
+        "auxiliary_primitive_kind_agrees_saved_api_geometry": true,
+        "auxiliary_curve_samples_match_actual_trimmed_edge_evaluator": [
+          {
+            "parameter": 0.0,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "parameter": 0.75,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              0.75
+            ]
+          },
+          {
+            "parameter": 1.5,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              1.5
+            ]
+          },
+          {
+            "parameter": 2.25,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              2.25
+            ]
+          },
+          {
+            "parameter": 3.0,
+            "cached_curve_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "persistent_auxiliary_edge_identity": "Unresolved; shape agreement does not establish identity"
+      },
+      "body_graph_vertex_counts": {
+        "1": 8,
+        "3": 2
+      }
+    }
+  ],
+  "guards": [
+    {
+      "guard": "A BODY outside the shortened declared root table cannot be silently ignored",
+      "rejected": true,
+      "reason": "ASM initial BODY table is not exactly the declared root table"
+    },
+    {
+      "guard": "Unsupported extra declared root kind cannot masquerade as the observed detached edge",
+      "rejected": true,
+      "reason": "Unsupported ASM mixed declared root kind or section"
+    },
+    {
+      "guard": "Detached edge endpoint vertex must point reciprocally back to that edge",
+      "rejected": true,
+      "reason": "Mixed-root auxiliary edge/vertex ownership is not reciprocal"
+    },
+    {
+      "guard": "Auxiliary endpoint pointer cannot escape into a history-section record",
+      "rejected": true,
+      "reason": "Mixed-root edge lacks decoded initial geometry"
+    },
+    {
+      "guard": "Keyed mixed-root BODY must retain an actual reciprocal initial geometry body graph",
+      "rejected": true,
+      "reason": "Mixed-root keyed BODY lacks a decoded initial geometry body graph"
+    }
+  ],
+  "limitations": [
+    "The auxiliary edge has no coedge and belongs to neither decoded BODY graph; no owning body is assigned.",
+    "API curve/endpoints corroborate its cached shape only, never identify it as a selected persistent BRep edge.",
+    "BODY matches use exact same-blob stored IDs and typed native references, independently of auxiliary-root ordering or shape.",
+    "Every initial BODY must be declared, IDs must be unique and bijective, and mixed-layout bodies must have decoded initial geometry graphs.",
+    "Mixed roots other than BODY and the bounded detached Line/Ellipse edge variant remain unsupported.",
+    "History and trailing snapshots, closure controls, current visibility, final lifecycle and joint solving remain unresolved.",
+    "Bodies with no vertices remain associated by typed ID; curved extrema are not inferred from vertex bounds."
+  ],
+  "prior_fixture_preservation": {
+    "files": 7,
+    "populated_mappings": 11,
+    "body_associations": 18,
+    "empty_tables_left_empty": 4,
+    "ordinal_counterexamples": 2,
+    "actual_api_corroborations": 5,
+    "malformed_guards": 5,
+    "diverse_prior_success_files": 4,
+    "diverse_prior_candidates_preserved": 17,
+    "diverse_prior_candidates_withdrawn": 0,
+    "existing_unsupported_files_with_no_prior_candidate": 1
+  },
+  "historical_seven_focused_case_outputs_exact": true,
+  "summary": {
+    "mixed_files": 5,
+    "new_body_associations": 10,
+    "detached_auxiliary_roots": 5,
+    "api_shape_and_source_body_corroborations": 5,
+    "malformed_guards": 5,
+    "prior_focused_body_associations_preserved": 18,
+    "prior_diverse_candidates_preserved": 17
+  }
+}

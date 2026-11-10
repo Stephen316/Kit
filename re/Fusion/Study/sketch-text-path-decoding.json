@@ -1,0 +1,2743 @@
+{
+  "scope": "Editable AlongPath/FitOnPath SketchText source, above flag, Along alignment/spacing and explicit same-sketch Line/Arc paths; glyph caches preserved without font reconstruction.",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateSketchTextPathModes.py",
+  "capture_folder": "sketchtextpaths-63fe53b89eed",
+  "summary": {
+    "archives": 6,
+    "case_errors": 0,
+    "getter_errors": 0,
+    "api_comparisons": 136,
+    "all_passed": true,
+    "rectangle_exact_regressions": 13,
+    "malformed_checks": 8,
+    "main_entrypoint_exact_matches": 6
+  },
+  "integration": {
+    "function": "decode_sketch_text_paths(data, records, features)",
+    "returns": "Same texts/unresolved/scope summary shape as shared text readers; each samples[].expected_texts is complete helper output for main-entrypoint equality.",
+    "merge": "Merge texts by native object_id with rectangle reader. Remove unresolved entries only when that same ID is successfully decoded by either reader; preserve unknown Text failures. New helper rejects rectangle tails and rectangle helper rejects path tails.",
+    "shared_hook": "Authorized optional definition_decoder(data,records,features,text_record,sketch,layout_marker) in decode_sketch_texts. Default behavior/output remains rectangle. Opt-in permits marker0/1 and last11-byte owner; path controls enforce55-tail. Callback fields merge only into nested definition; common source, reciprocal bindings, exact roles/values and sketch feature binding-list validation remain shared.",
+    "callback": "decode_path_text_definition plus decode_path_text_controls; no full source/parameter reader duplication."
+  },
+  "layout": {
+    "source": "E061 Text attributes EntityGenesis0/textex_tag; common font/height/content/parameter bindings. New55-byte suffix vs rectangle183; explicit owner is last11 bytes. Prefix first byte stores above/below, double@1 stores spacing multiplier. Byte immediately after font UTF16 stores Along0/Fit1, proven with both Line and Arc.",
+    "alignment_spacing": "Captured path horizontal native1->API left0, native3->center1. Nonnegative percentage=(multiplier-1)*100, captured1->0 and1.2->20. Fit has no active alignment/spacing getters; return null canonical values with raw native fields retained.",
+    "controller": "9D30FCDC constraint inputs[curveID,TextID], repeated Text reference, counted16-value finite caches, explicit owning sketch reference, observed8-byte guard, count1 and repeated source curve reference. Three cache blocks in KIT captures; character/glyph association is not inferred.",
+    "curve_identity": "Direct source object ID resolves a typed primary Line337 or Arc348 cache, same decoded sketch membership and explicit cache owner. Native curve tag comes from decoded cache, never from token parsing or geometric proximity."
+  },
+  "contrasts": {
+    "line_along_below": {
+      "source_record_byte_differences": [
+        107
+      ]
+    },
+    "line_fit_above": {
+      "source_record_byte_differences": [
+        146
+      ]
+    },
+    "line_along_center_spacing": {
+      "source_record_byte_differences": [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        166
+      ]
+    }
+  },
+  "findings": [
+    "Line Above/Below source records differ only atbyte107. Along/Fit Line source records differ only atbyte146; Arc pair independently confirms Fit flag at corresponding post-font position. Controller cache positions also change but are not used as layout flags.",
+    "Center alignment and20% spacing map to separate integer and float64 controls; common rectangle controls use corresponding native encodings, while this path reader admits only captured left/center values.",
+    "All six captures have zero case/getter failures. Text content/font/plain style/height, reciprocal parameter names/roles/expressions/values and actual path definitions agree with independent API getters.",
+    "Thirteen prior rectangle outputs match committed source exactly under both default and expanded controls callbacks.",
+    "FitOnPathTextDefintion preserves the installed SDK actual class spelling; no undocumented alternative class is invented."
+  ],
+  "limitations": [
+    "Only one explicit same-sketch Line or Arc source; BRep edge, cross-sketch, composite path and other curve families unverified.",
+    "Only captured plain style, unset flip source flags, nonnegative spacing, left/center Along alignment, Above/Below Along and Above Fit. Path flips/styles/right alignment/Below Fit combinations unverified.",
+    "Horizontal/vertical flip, underline, fixed/reference fields remain null where not independently established; actual API false values retained as observations.",
+    "Cached matrix frame, character/glyph association, font metrics/outlines/rendering, constraints regeneration and native writer unresolved.",
+    "API tokens are opaque evidence; numeric IDs/tags come only from typed native references/caches."
+  ],
+  "samples": [
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_along_above.f3d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 260,
+          "record_offset": 25668,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 202,
+          "sketch_feature_object_id": 207,
+          "entity_tag": 104,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "text_style": 0,
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "text_style_status": "Captured plain path Text with native weight400 and unset italic flag; other path styles unverified",
+          "underline": null,
+          "is_horizontal_flip": null,
+          "is_vertical_flip": null,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 265,
+            "binding_object_id": 266,
+            "parameter_name": "d2",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 2,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 262,
+            "binding_object_id": 263,
+            "parameter_name": "d1",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 1
+          },
+          "definition": {
+            "is_above_path": true,
+            "horizontal_alignment": 0,
+            "native_horizontal_alignment": 1,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "vertical_alignment": null,
+            "kind": "AlongPathTextDefinition",
+            "controller_object_id": 261,
+            "source_layout_marker": 0,
+            "path": {
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "sketch_object_id": 202,
+              "sketch_name": "SketchTextPathProbe",
+              "record_offset": 25312,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "association": "Controller input and repeated path reference select typed curve cache with matching explicit sketch owner",
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            "cached_transform_count": 3,
+            "uninterpreted_cached_transform_values": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.4658935964107513,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.659959077835083,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "cache_status": "Counted finite sixteen-value caches retained; character/glyph mapping and matrix frame semantics unclaimed",
+            "status": "Explicit path/Text dependency and reciprocal source/sketch references; source flags decode layout/above/alignment/spacing",
+            "spacing_status": "Observed nonnegative percentage from native multiplier:1->0%,1.2->20%; right alignment/negative spacing unverified"
+          },
+          "uninterpreted": {
+            "prefix_hex": "01000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "0100000000010000000100000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed editable AlongPath/FitOnPath Text on explicit Line/Arc source; source/bindings shared, glyph regeneration unavailable"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "text_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "text",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "font_name",
+          "decoded": "Arial",
+          "api": "Arial",
+          "passed": true
+        },
+        {
+          "field": "height_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "text_style",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "text_parameter.parameter_name",
+          "decoded": "d2",
+          "api": "d2",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.role",
+          "decoded": "Text1-Text",
+          "api": "Text1-Text",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.expression",
+          "decoded": "'KIT'",
+          "api": "'KIT'",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.text_value",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.parameter_name",
+          "decoded": "d1",
+          "api": "d1",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.role",
+          "decoded": "Text1-Height",
+          "api": "Text1-Height",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.value_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "height_parameter.expression_present",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.kind",
+          "decoded": "adsk::fusion::AlongPathTextDefinition",
+          "api": "adsk::fusion::AlongPathTextDefinition",
+          "passed": true
+        },
+        {
+          "field": "definition.is_above_path",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.horizontal_alignment",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "definition.character_spacing_percent",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "path.kind",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SketchTextPathProbe",
+          "api": "SketchTextPathProbe",
+          "passed": true
+        },
+        {
+          "field": "path.start_sketch_cm",
+          "decoded": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_sketch_cm",
+          "decoded": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        }
+      ],
+      "api_observations": {
+        "entity_type": "adsk::fusion::SketchText",
+        "sketch_name": "SketchTextPathProbe",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_fixed": false,
+        "is_reference": false,
+        "is_2d": true,
+        "text_parameter": {
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "entity_type": "adsk::fusion::AlongPathTextDefinition",
+          "is_above_path": true,
+          "path": {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SketchTextPathProbe",
+            "is_construction": false,
+            "is_fixed": false,
+            "is_reference": false,
+            "is_2d": true,
+            "start_sketch_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_sketch_cm": [
+              9.0,
+              1.0,
+              0.0
+            ],
+            "start_world_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_world_cm": [
+              9.0,
+              1.0,
+              0.0
+            ]
+          },
+          "horizontal_alignment": 0,
+          "character_spacing_percent": 0.0
+        },
+        "sketch_text_count": 1,
+        "bounding_box_sketch_cm": [
+          [
+            1.0511596165597439,
+            0.9989999403953552,
+            -0.001
+          ],
+          [
+            2.0736466476917266,
+            1.5009999403953551,
+            0.001
+          ]
+        ],
+        "source_curve_after_text": {
+          "entity_type": "adsk::fusion::SketchLine",
+          "sketch_name": "SketchTextPathProbe",
+          "is_construction": false,
+          "is_fixed": false,
+          "is_reference": false,
+          "is_2d": true,
+          "start_sketch_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_sketch_cm": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "start_world_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_world_cm": [
+            9.0,
+            1.0,
+            0.0
+          ]
+        }
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_along_below.f3d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 260,
+          "record_offset": 25668,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 202,
+          "sketch_feature_object_id": 207,
+          "entity_tag": 104,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "text_style": 0,
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "text_style_status": "Captured plain path Text with native weight400 and unset italic flag; other path styles unverified",
+          "underline": null,
+          "is_horizontal_flip": null,
+          "is_vertical_flip": null,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 265,
+            "binding_object_id": 266,
+            "parameter_name": "d2",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 2,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 262,
+            "binding_object_id": 263,
+            "parameter_name": "d1",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 1
+          },
+          "definition": {
+            "is_above_path": false,
+            "horizontal_alignment": 0,
+            "native_horizontal_alignment": 1,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "vertical_alignment": null,
+            "kind": "AlongPathTextDefinition",
+            "controller_object_id": 261,
+            "source_layout_marker": 0,
+            "path": {
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "sketch_object_id": 202,
+              "sketch_name": "SketchTextPathProbe",
+              "record_offset": 25312,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "association": "Controller input and repeated path reference select typed curve cache with matching explicit sketch owner",
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            "cached_transform_count": 3,
+            "uninterpreted_cached_transform_values": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                1.1323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.4658935964107513,
+                0.0,
+                1.0,
+                0.0,
+                1.1323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.659959077835083,
+                0.0,
+                1.0,
+                0.0,
+                1.1323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "cache_status": "Counted finite sixteen-value caches retained; character/glyph mapping and matrix frame semantics unclaimed",
+            "status": "Explicit path/Text dependency and reciprocal source/sketch references; source flags decode layout/above/alignment/spacing",
+            "spacing_status": "Observed nonnegative percentage from native multiplier:1->0%,1.2->20%; right alignment/negative spacing unverified"
+          },
+          "uninterpreted": {
+            "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "0100000000010000000100000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed editable AlongPath/FitOnPath Text on explicit Line/Arc source; source/bindings shared, glyph regeneration unavailable"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "text_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "text",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "font_name",
+          "decoded": "Arial",
+          "api": "Arial",
+          "passed": true
+        },
+        {
+          "field": "height_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "text_style",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "text_parameter.parameter_name",
+          "decoded": "d2",
+          "api": "d2",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.role",
+          "decoded": "Text1-Text",
+          "api": "Text1-Text",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.expression",
+          "decoded": "'KIT'",
+          "api": "'KIT'",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.text_value",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.parameter_name",
+          "decoded": "d1",
+          "api": "d1",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.role",
+          "decoded": "Text1-Height",
+          "api": "Text1-Height",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.value_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "height_parameter.expression_present",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.kind",
+          "decoded": "adsk::fusion::AlongPathTextDefinition",
+          "api": "adsk::fusion::AlongPathTextDefinition",
+          "passed": true
+        },
+        {
+          "field": "definition.is_above_path",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "definition.horizontal_alignment",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "definition.character_spacing_percent",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "path.kind",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SketchTextPathProbe",
+          "api": "SketchTextPathProbe",
+          "passed": true
+        },
+        {
+          "field": "path.start_sketch_cm",
+          "decoded": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_sketch_cm",
+          "decoded": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        }
+      ],
+      "api_observations": {
+        "entity_type": "adsk::fusion::SketchText",
+        "sketch_name": "SketchTextPathProbe",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_fixed": false,
+        "is_reference": false,
+        "is_2d": true,
+        "text_parameter": {
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "entity_type": "adsk::fusion::AlongPathTextDefinition",
+          "is_above_path": false,
+          "path": {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SketchTextPathProbe",
+            "is_construction": false,
+            "is_fixed": false,
+            "is_reference": false,
+            "is_2d": true,
+            "start_sketch_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_sketch_cm": [
+              9.0,
+              1.0,
+              0.0
+            ],
+            "start_world_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_world_cm": [
+              9.0,
+              1.0,
+              0.0
+            ]
+          },
+          "horizontal_alignment": 0,
+          "character_spacing_percent": 0.0
+        },
+        "sketch_text_count": 1,
+        "bounding_box_sketch_cm": [
+          [
+            1.0511596165597439,
+            0.4989999403953552,
+            -0.001
+          ],
+          [
+            2.0736466476917266,
+            1.0009999403953551,
+            0.001
+          ]
+        ],
+        "source_curve_after_text": {
+          "entity_type": "adsk::fusion::SketchLine",
+          "sketch_name": "SketchTextPathProbe",
+          "is_construction": false,
+          "is_fixed": false,
+          "is_reference": false,
+          "is_2d": true,
+          "start_sketch_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_sketch_cm": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "start_world_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_world_cm": [
+            9.0,
+            1.0,
+            0.0
+          ]
+        }
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_along_center_spacing.f3d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 260,
+          "record_offset": 25668,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 202,
+          "sketch_feature_object_id": 207,
+          "entity_tag": 104,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "text_style": 0,
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "text_style_status": "Captured plain path Text with native weight400 and unset italic flag; other path styles unverified",
+          "underline": null,
+          "is_horizontal_flip": null,
+          "is_vertical_flip": null,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 265,
+            "binding_object_id": 266,
+            "parameter_name": "d2",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 2,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 262,
+            "binding_object_id": 263,
+            "parameter_name": "d1",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 1
+          },
+          "definition": {
+            "is_above_path": true,
+            "horizontal_alignment": 1,
+            "native_horizontal_alignment": 3,
+            "character_spacing_percent": 19.999999999999996,
+            "native_character_spacing_multiplier": 1.2,
+            "vertical_alignment": null,
+            "kind": "AlongPathTextDefinition",
+            "controller_object_id": 261,
+            "source_layout_marker": 0,
+            "path": {
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "sketch_object_id": 202,
+              "sketch_name": "SketchTextPathProbe",
+              "record_offset": 25312,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "association": "Controller input and repeated path reference select typed curve cache with matching explicit sketch owner",
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            "cached_transform_count": 3,
+            "uninterpreted_cached_transform_values": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                4.386834912002087,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                4.922578454017639,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                5.186493881046772,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "cache_status": "Counted finite sixteen-value caches retained; character/glyph mapping and matrix frame semantics unclaimed",
+            "status": "Explicit path/Text dependency and reciprocal source/sketch references; source flags decode layout/above/alignment/spacing",
+            "spacing_status": "Observed nonnegative percentage from native multiplier:1->0%,1.2->20%; right alignment/negative spacing unverified"
+          },
+          "uninterpreted": {
+            "prefix_hex": "01333333333333f33f0000000000000000000000000000803f",
+            "style_flags_hex": "03000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "0100000000010000000100000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed editable AlongPath/FitOnPath Text on explicit Line/Arc source; source/bindings shared, glyph regeneration unavailable"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "text_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "text",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "font_name",
+          "decoded": "Arial",
+          "api": "Arial",
+          "passed": true
+        },
+        {
+          "field": "height_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "text_style",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "text_parameter.parameter_name",
+          "decoded": "d2",
+          "api": "d2",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.role",
+          "decoded": "Text1-Text",
+          "api": "Text1-Text",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.expression",
+          "decoded": "'KIT'",
+          "api": "'KIT'",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.text_value",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.parameter_name",
+          "decoded": "d1",
+          "api": "d1",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.role",
+          "decoded": "Text1-Height",
+          "api": "Text1-Height",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.value_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "height_parameter.expression_present",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.kind",
+          "decoded": "adsk::fusion::AlongPathTextDefinition",
+          "api": "adsk::fusion::AlongPathTextDefinition",
+          "passed": true
+        },
+        {
+          "field": "definition.is_above_path",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.horizontal_alignment",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "definition.character_spacing_percent",
+          "decoded": 19.999999999999996,
+          "api": 19.999999999999996,
+          "passed": true
+        },
+        {
+          "field": "path.kind",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SketchTextPathProbe",
+          "api": "SketchTextPathProbe",
+          "passed": true
+        },
+        {
+          "field": "path.start_sketch_cm",
+          "decoded": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_sketch_cm",
+          "decoded": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        }
+      ],
+      "api_observations": {
+        "entity_type": "adsk::fusion::SketchText",
+        "sketch_name": "SketchTextPathProbe",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_fixed": false,
+        "is_reference": false,
+        "is_2d": true,
+        "text_parameter": {
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "entity_type": "adsk::fusion::AlongPathTextDefinition",
+          "is_above_path": true,
+          "path": {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SketchTextPathProbe",
+            "is_construction": false,
+            "is_fixed": false,
+            "is_reference": false,
+            "is_2d": true,
+            "start_sketch_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_sketch_cm": [
+              9.0,
+              1.0,
+              0.0
+            ],
+            "start_world_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_world_cm": [
+              9.0,
+              1.0,
+              0.0
+            ]
+          },
+          "horizontal_alignment": 1,
+          "character_spacing_percent": 19.999999999999996
+        },
+        "sketch_text_count": 1,
+        "bounding_box_sketch_cm": [
+          [
+            4.437994714826345,
+            0.9989999403953552,
+            -0.001
+          ],
+          [
+            5.600181443452835,
+            1.5009999403953551,
+            0.001
+          ]
+        ],
+        "source_curve_after_text": {
+          "entity_type": "adsk::fusion::SketchLine",
+          "sketch_name": "SketchTextPathProbe",
+          "is_construction": false,
+          "is_fixed": false,
+          "is_reference": false,
+          "is_2d": true,
+          "start_sketch_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_sketch_cm": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "start_world_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_world_cm": [
+            9.0,
+            1.0,
+            0.0
+          ]
+        }
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/line_fit_above.f3d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 260,
+          "record_offset": 25668,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 202,
+          "sketch_feature_object_id": 207,
+          "entity_tag": 104,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "text_style": 0,
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "text_style_status": "Captured plain path Text with native weight400 and unset italic flag; other path styles unverified",
+          "underline": null,
+          "is_horizontal_flip": null,
+          "is_vertical_flip": null,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 265,
+            "binding_object_id": 266,
+            "parameter_name": "d2",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 2,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 262,
+            "binding_object_id": 263,
+            "parameter_name": "d1",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 1
+          },
+          "definition": {
+            "is_above_path": true,
+            "horizontal_alignment": null,
+            "native_horizontal_alignment": 1,
+            "character_spacing_percent": null,
+            "native_character_spacing_multiplier": 1.0,
+            "vertical_alignment": null,
+            "kind": "FitOnPathTextDefintion",
+            "controller_object_id": 261,
+            "source_layout_marker": 1,
+            "path": {
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "sketch_object_id": 202,
+              "sketch_name": "SketchTextPathProbe",
+              "record_offset": 25312,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "association": "Controller input and repeated path reference select typed curve cache with matching explicit sketch owner",
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                9.0,
+                1.0,
+                0.0
+              ]
+            },
+            "cached_transform_count": 3,
+            "uninterpreted_cached_transform_values": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                4.922578454017639,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                8.573328793048859,
+                0.0,
+                1.0,
+                0.0,
+                1.6323328614234924,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "cache_status": "Counted finite sixteen-value caches retained; character/glyph mapping and matrix frame semantics unclaimed",
+            "status": "Explicit path/Text dependency and reciprocal source/sketch references; source flags decode layout/above/alignment/spacing",
+            "spacing_status": "Fit mode has no alignment/spacing getters; raw stored source controls retained without claiming activity"
+          },
+          "uninterpreted": {
+            "prefix_hex": "01000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "0100000000010000000100000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed editable AlongPath/FitOnPath Text on explicit Line/Arc source; source/bindings shared, glyph regeneration unavailable"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "text_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "text",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "font_name",
+          "decoded": "Arial",
+          "api": "Arial",
+          "passed": true
+        },
+        {
+          "field": "height_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "text_style",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "text_parameter.parameter_name",
+          "decoded": "d2",
+          "api": "d2",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.role",
+          "decoded": "Text1-Text",
+          "api": "Text1-Text",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.expression",
+          "decoded": "'KIT'",
+          "api": "'KIT'",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.text_value",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.parameter_name",
+          "decoded": "d1",
+          "api": "d1",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.role",
+          "decoded": "Text1-Height",
+          "api": "Text1-Height",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.value_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "height_parameter.expression_present",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.kind",
+          "decoded": "adsk::fusion::FitOnPathTextDefintion",
+          "api": "adsk::fusion::FitOnPathTextDefintion",
+          "passed": true
+        },
+        {
+          "field": "definition.is_above_path",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.horizontal_alignment",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "definition.character_spacing_percent",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "path.kind",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SketchTextPathProbe",
+          "api": "SketchTextPathProbe",
+          "passed": true
+        },
+        {
+          "field": "path.start_sketch_cm",
+          "decoded": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_sketch_cm",
+          "decoded": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        }
+      ],
+      "api_observations": {
+        "entity_type": "adsk::fusion::SketchText",
+        "sketch_name": "SketchTextPathProbe",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_fixed": false,
+        "is_reference": false,
+        "is_2d": true,
+        "text_parameter": {
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "entity_type": "adsk::fusion::FitOnPathTextDefintion",
+          "is_above_path": true,
+          "path": {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SketchTextPathProbe",
+            "is_construction": false,
+            "is_fixed": false,
+            "is_reference": false,
+            "is_2d": true,
+            "start_sketch_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_sketch_cm": [
+              9.0,
+              1.0,
+              0.0
+            ],
+            "start_world_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "end_world_cm": [
+              9.0,
+              1.0,
+              0.0
+            ]
+          },
+          "horizontal_alignment": null,
+          "character_spacing_percent": null
+        },
+        "sketch_text_count": 1,
+        "bounding_box_sketch_cm": [
+          [
+            1.0511596165597439,
+            0.9989999403953552,
+            -0.001
+          ],
+          [
+            8.987016541719436,
+            1.5009999403953551,
+            0.001
+          ]
+        ],
+        "source_curve_after_text": {
+          "entity_type": "adsk::fusion::SketchLine",
+          "sketch_name": "SketchTextPathProbe",
+          "is_construction": false,
+          "is_fixed": false,
+          "is_reference": false,
+          "is_2d": true,
+          "start_sketch_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_sketch_cm": [
+            9.0,
+            1.0,
+            0.0
+          ],
+          "start_world_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "end_world_cm": [
+            9.0,
+            1.0,
+            0.0
+          ]
+        }
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/arc_along_above.f3d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 262,
+          "record_offset": 25959,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 202,
+          "sketch_feature_object_id": 207,
+          "entity_tag": 105,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "text_style": 0,
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "text_style_status": "Captured plain path Text with native weight400 and unset italic flag; other path styles unverified",
+          "underline": null,
+          "is_horizontal_flip": null,
+          "is_vertical_flip": null,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 267,
+            "binding_object_id": 268,
+            "parameter_name": "d2",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 2,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 264,
+            "binding_object_id": 265,
+            "parameter_name": "d1",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 1
+          },
+          "definition": {
+            "is_above_path": true,
+            "horizontal_alignment": 0,
+            "native_horizontal_alignment": 1,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "vertical_alignment": null,
+            "kind": "AlongPathTextDefinition",
+            "controller_object_id": 263,
+            "source_layout_marker": 0,
+            "path": {
+              "curve_object_id": 234,
+              "curve_entity_tag": 104,
+              "kind": "Arc",
+              "sketch_object_id": 202,
+              "sketch_name": "SketchTextPathProbe",
+              "record_offset": 25592,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "association": "Controller input and repeated path reference select typed curve cache with matching explicit sketch owner",
+              "start_cm": [
+                1.0,
+                5.0,
+                0.0
+              ],
+              "end_cm": [
+                5.0,
+                1.0,
+                0.0
+              ],
+              "center_cm": [
+                5.0,
+                5.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "start_angle_radians": 0.0,
+              "end_angle_radians": 1.5707963267948966
+            },
+            "cached_transform_count": 3,
+            "uninterpreted_cached_transform_values": [
+              [
+                0.05820378671076041,
+                0.9983047226235726,
+                0.0,
+                1.624483605577159,
+                -0.9983047226235728,
+                0.058203786710760395,
+                0.0,
+                5.036540908921923,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                0.14026750369415017,
+                0.9901136436830934,
+                0.0,
+                1.6520162783959,
+                -0.9901136436830934,
+                0.14026750369415017,
+                0.0,
+                4.623699177662131,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                0.21659339137417397,
+                0.9762619027766237,
+                0.0,
+                1.666067789517361,
+                -0.9762619027766237,
+                0.21659339137417397,
+                0.0,
+                4.478856975615414,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "cache_status": "Counted finite sixteen-value caches retained; character/glyph mapping and matrix frame semantics unclaimed",
+            "status": "Explicit path/Text dependency and reciprocal source/sketch references; source flags decode layout/above/alignment/spacing",
+            "spacing_status": "Observed nonnegative percentage from native multiplier:1->0%,1.2->20%; right alignment/negative spacing unverified"
+          },
+          "uninterpreted": {
+            "prefix_hex": "01000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "0100000000010000000100000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed editable AlongPath/FitOnPath Text on explicit Line/Arc source; source/bindings shared, glyph regeneration unavailable"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "text_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "text",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "font_name",
+          "decoded": "Arial",
+          "api": "Arial",
+          "passed": true
+        },
+        {
+          "field": "height_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "text_style",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "text_parameter.parameter_name",
+          "decoded": "d2",
+          "api": "d2",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.role",
+          "decoded": "Text1-Text",
+          "api": "Text1-Text",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.expression",
+          "decoded": "'KIT'",
+          "api": "'KIT'",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.text_value",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.parameter_name",
+          "decoded": "d1",
+          "api": "d1",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.role",
+          "decoded": "Text1-Height",
+          "api": "Text1-Height",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.value_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "height_parameter.expression_present",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.kind",
+          "decoded": "adsk::fusion::AlongPathTextDefinition",
+          "api": "adsk::fusion::AlongPathTextDefinition",
+          "passed": true
+        },
+        {
+          "field": "definition.is_above_path",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.horizontal_alignment",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "definition.character_spacing_percent",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "path.kind",
+          "decoded": "adsk::fusion::SketchArc",
+          "api": "adsk::fusion::SketchArc",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SketchTextPathProbe",
+          "api": "SketchTextPathProbe",
+          "passed": true
+        },
+        {
+          "field": "path.start_sketch_cm",
+          "decoded": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_sketch_cm",
+          "decoded": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.center_cm",
+          "decoded": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "api": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.radius_cm",
+          "decoded": 4.0,
+          "api": 4.0,
+          "passed": true
+        },
+        {
+          "field": "path.start_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "path.end_angle_radians",
+          "decoded": 1.5707963267948966,
+          "api": 1.5707963267948966,
+          "passed": true
+        },
+        {
+          "field": "path.normal",
+          "decoded": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "passed": true
+        }
+      ],
+      "api_observations": {
+        "entity_type": "adsk::fusion::SketchText",
+        "sketch_name": "SketchTextPathProbe",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_fixed": false,
+        "is_reference": false,
+        "is_2d": true,
+        "text_parameter": {
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "entity_type": "adsk::fusion::AlongPathTextDefinition",
+          "is_above_path": true,
+          "path": {
+            "entity_type": "adsk::fusion::SketchArc",
+            "sketch_name": "SketchTextPathProbe",
+            "is_construction": false,
+            "is_fixed": false,
+            "is_reference": false,
+            "is_2d": true,
+            "start_sketch_cm": [
+              1.0,
+              5.0,
+              0.0
+            ],
+            "end_sketch_cm": [
+              5.0,
+              1.0,
+              0.0
+            ],
+            "start_world_cm": [
+              1.0,
+              5.0,
+              0.0
+            ],
+            "end_world_cm": [
+              5.0,
+              1.0,
+              0.0
+            ],
+            "center_sketch_cm": [
+              5.0,
+              5.0,
+              0.0
+            ],
+            "center_world_cm": [
+              5.0,
+              5.0,
+              0.0
+            ],
+            "radius_cm": 4.0,
+            "start_angle_radians": 0.0,
+            "end_angle_radians": 1.5707963267948966,
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          "horizontal_alignment": 0,
+          "character_spacing_percent": 0.0
+        },
+        "sketch_text_count": 1,
+        "bounding_box_sketch_cm": [
+          [
+            0.9962003856251331,
+            3.9380067689255216,
+            -0.001
+          ],
+          [
+            1.6272617037165227,
+            4.977765824554343,
+            0.001
+          ]
+        ],
+        "source_curve_after_text": {
+          "entity_type": "adsk::fusion::SketchArc",
+          "sketch_name": "SketchTextPathProbe",
+          "is_construction": false,
+          "is_fixed": false,
+          "is_reference": false,
+          "is_2d": true,
+          "start_sketch_cm": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "end_sketch_cm": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "start_world_cm": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "end_world_cm": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "center_sketch_cm": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "center_world_cm": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "radius_cm": 4.0,
+          "start_angle_radians": 0.0,
+          "end_angle_radians": 1.5707963267948966,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "sketchtextpaths-63fe53b89eed/arc_fit_above.f3d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 262,
+          "record_offset": 25959,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 202,
+          "sketch_feature_object_id": 207,
+          "entity_tag": 105,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "text_style": 0,
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "text_style_status": "Captured plain path Text with native weight400 and unset italic flag; other path styles unverified",
+          "underline": null,
+          "is_horizontal_flip": null,
+          "is_vertical_flip": null,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 267,
+            "binding_object_id": 268,
+            "parameter_name": "d2",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 2,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 264,
+            "binding_object_id": 265,
+            "parameter_name": "d1",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 1
+          },
+          "definition": {
+            "is_above_path": true,
+            "horizontal_alignment": null,
+            "native_horizontal_alignment": 1,
+            "character_spacing_percent": null,
+            "native_character_spacing_multiplier": 1.0,
+            "vertical_alignment": null,
+            "kind": "FitOnPathTextDefintion",
+            "controller_object_id": 263,
+            "source_layout_marker": 1,
+            "path": {
+              "curve_object_id": 234,
+              "curve_entity_tag": 104,
+              "kind": "Arc",
+              "sketch_object_id": 202,
+              "sketch_name": "SketchTextPathProbe",
+              "record_offset": 25592,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "association": "Controller input and repeated path reference select typed curve cache with matching explicit sketch owner",
+              "start_cm": [
+                1.0,
+                5.0,
+                0.0
+              ],
+              "end_cm": [
+                5.0,
+                1.0,
+                0.0
+              ],
+              "center_cm": [
+                5.0,
+                5.0,
+                0.0
+              ],
+              "radius_cm": 4.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "start_angle_radians": 0.0,
+              "end_angle_radians": 1.5707963267948966
+            },
+            "cached_transform_count": 3,
+            "uninterpreted_cached_transform_values": [
+              [
+                0.05820378671076041,
+                0.9983047226235726,
+                0.0,
+                1.624483605577159,
+                -0.9983047226235728,
+                0.058203786710760395,
+                0.0,
+                5.036540908921923,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                0.7105650709932855,
+                0.703631494380622,
+                0.0,
+                2.5614552624140856,
+                -0.703631494380622,
+                0.7105650709932855,
+                0.0,
+                2.675328652946778,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                0.9985780846107806,
+                0.053308619706992605,
+                0.0,
+                4.607442054911969,
+                -0.053308619706992605,
+                0.9985780846107806,
+                0.0,
+                1.6484940257092437,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "cache_status": "Counted finite sixteen-value caches retained; character/glyph mapping and matrix frame semantics unclaimed",
+            "status": "Explicit path/Text dependency and reciprocal source/sketch references; source flags decode layout/above/alignment/spacing",
+            "spacing_status": "Fit mode has no alignment/spacing getters; raw stored source controls retained without claiming activity"
+          },
+          "uninterpreted": {
+            "prefix_hex": "01000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "0100000000010000000100000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed editable AlongPath/FitOnPath Text on explicit Line/Arc source; source/bindings shared, glyph regeneration unavailable"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "text_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "text",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "font_name",
+          "decoded": "Arial",
+          "api": "Arial",
+          "passed": true
+        },
+        {
+          "field": "height_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "text_style",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "text_parameter.parameter_name",
+          "decoded": "d2",
+          "api": "d2",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.role",
+          "decoded": "Text1-Text",
+          "api": "Text1-Text",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.expression",
+          "decoded": "'KIT'",
+          "api": "'KIT'",
+          "passed": true
+        },
+        {
+          "field": "text_parameter.text_value",
+          "decoded": "KIT",
+          "api": "KIT",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.parameter_name",
+          "decoded": "d1",
+          "api": "d1",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.role",
+          "decoded": "Text1-Height",
+          "api": "Text1-Height",
+          "passed": true
+        },
+        {
+          "field": "height_parameter.value_cm",
+          "decoded": 0.5,
+          "api": 0.5,
+          "passed": true
+        },
+        {
+          "field": "height_parameter.expression_present",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.kind",
+          "decoded": "adsk::fusion::FitOnPathTextDefintion",
+          "api": "adsk::fusion::FitOnPathTextDefintion",
+          "passed": true
+        },
+        {
+          "field": "definition.is_above_path",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "definition.horizontal_alignment",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "definition.character_spacing_percent",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "path.kind",
+          "decoded": "adsk::fusion::SketchArc",
+          "api": "adsk::fusion::SketchArc",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SketchTextPathProbe",
+          "api": "SketchTextPathProbe",
+          "passed": true
+        },
+        {
+          "field": "path.start_sketch_cm",
+          "decoded": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_sketch_cm",
+          "decoded": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "api": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.center_cm",
+          "decoded": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "api": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.radius_cm",
+          "decoded": 4.0,
+          "api": 4.0,
+          "passed": true
+        },
+        {
+          "field": "path.start_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "path.end_angle_radians",
+          "decoded": 1.5707963267948966,
+          "api": 1.5707963267948966,
+          "passed": true
+        },
+        {
+          "field": "path.normal",
+          "decoded": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "passed": true
+        }
+      ],
+      "api_observations": {
+        "entity_type": "adsk::fusion::SketchText",
+        "sketch_name": "SketchTextPathProbe",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "is_fixed": false,
+        "is_reference": false,
+        "is_2d": true,
+        "text_parameter": {
+          "name": "d2",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "text_value": "KIT"
+        },
+        "height_parameter": {
+          "name": "d1",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "value_cm": 0.5
+        },
+        "definition": {
+          "entity_type": "adsk::fusion::FitOnPathTextDefintion",
+          "is_above_path": true,
+          "path": {
+            "entity_type": "adsk::fusion::SketchArc",
+            "sketch_name": "SketchTextPathProbe",
+            "is_construction": false,
+            "is_fixed": false,
+            "is_reference": false,
+            "is_2d": true,
+            "start_sketch_cm": [
+              1.0,
+              5.0,
+              0.0
+            ],
+            "end_sketch_cm": [
+              5.0,
+              1.0,
+              0.0
+            ],
+            "start_world_cm": [
+              1.0,
+              5.0,
+              0.0
+            ],
+            "end_world_cm": [
+              5.0,
+              1.0,
+              0.0
+            ],
+            "center_sketch_cm": [
+              5.0,
+              5.0,
+              0.0
+            ],
+            "center_world_cm": [
+              5.0,
+              5.0,
+              0.0
+            ],
+            "radius_cm": 4.0,
+            "start_angle_radians": 0.0,
+            "end_angle_radians": 1.5707963267948966,
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          "horizontal_alignment": null,
+          "character_spacing_percent": null
+        },
+        "sketch_text_count": 1,
+        "bounding_box_sketch_cm": [
+          [
+            0.9962003856251331,
+            0.9940604705642188,
+            -0.001
+          ],
+          [
+            5.013488177477059,
+            4.977765824554343,
+            0.001
+          ]
+        ],
+        "source_curve_after_text": {
+          "entity_type": "adsk::fusion::SketchArc",
+          "sketch_name": "SketchTextPathProbe",
+          "is_construction": false,
+          "is_fixed": false,
+          "is_reference": false,
+          "is_2d": true,
+          "start_sketch_cm": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "end_sketch_cm": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "start_world_cm": [
+            1.0,
+            5.0,
+            0.0
+          ],
+          "end_world_cm": [
+            5.0,
+            1.0,
+            0.0
+          ],
+          "center_sketch_cm": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "center_world_cm": [
+            5.0,
+            5.0,
+            0.0
+          ],
+          "radius_cm": 4.0,
+          "start_angle_radians": 0.0,
+          "end_angle_radians": 1.5707963267948966,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      },
+      "getter_errors": []
+    }
+  ],
+  "rectangle_controls": [
+    {
+      "file": "sketchtexts-a16af12c28bf/bold.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/content_height.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/italic.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/multiline.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/plain.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/center.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/middle.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/right_bottom.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/spacing.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/underline.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/vertical_flip.f3d",
+      "expanded_rectangle_dictionary_exact": true,
+      "default_dictionary_exact": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "unknown Along/Fit source marker",
+      "rejected": true,
+      "reason": "Unsupported SketchText font/height marker"
+    },
+    {
+      "case": "unknown above flag",
+      "rejected": true,
+      "reason": "Unobserved path Text source controls or layout suffix"
+    },
+    {
+      "case": "unverified negative path spacing",
+      "rejected": true,
+      "reason": "Unobserved path Text spacing/alignment"
+    },
+    {
+      "case": "repeated path reference mismatch",
+      "rejected": true,
+      "reason": "Path Text owner or repeated curve reference disagrees"
+    },
+    {
+      "case": "cross-sketch text owner",
+      "rejected": true,
+      "reason": "SketchText owning sketch reference unresolved"
+    },
+    {
+      "case": "text binding value contradicts source",
+      "rejected": true,
+      "reason": "SketchText binding value or suffix mismatch"
+    },
+    {
+      "case": "parameter reciprocal binding mismatch",
+      "rejected": true,
+      "reason": "Text model parameter index/binding mismatch"
+    },
+    {
+      "case": "cached matrix element count malformed",
+      "rejected": true,
+      "reason": "Unsupported path Text cached matrix element count"
+    }
+  ],
+  "capture_errors": []
+}
