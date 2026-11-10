@@ -21,4 +21,6 @@ Read this log before working in an affected area. Keep entries short, searchable
 
 - **Published CI artifacts can briefly return 404:** Expected the artifact ID returned by a successful upload to be immediately readable; PR #53's immediate metadata request returned 404, but the same artifact later became readable and one justified rerun passed. Verify the exact artifact ID and run before retrying once; investigate recurring failures without relaxing digest or provenance verification. See [the evidence and workaround](../Changes/ArtifactPublication.md).
 
+- **PR aggregation reads trusted base code:** Expected a reporter change on a PR branch to change that PR's `CI Agg`; `pull_request_target` loads the base revision. Merge the reporter change through its own reviewed PR before relying on the new exclusions in another PR. See [review provider exclusions](../Changes/ReviewProviderExclusions.md).
+
 If you discover a new gotcha, unexpected API behavior, wrong assumption, or undocumented quirk while working on this codebase, you MUST add it to the bullet list above before finishing your task. This is mandatory, not optional. Future you (or a different agent) will thank you. Format: - Short description of the gotcha, what you expected vs what actually happened, and the fix or workaround.

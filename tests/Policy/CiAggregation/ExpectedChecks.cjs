@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+// SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
+
+module.exports = [
+  "Ruff",
+  "Black",
+  "Pyright",
+  "Mypy",
+  "Python steering",
+  "Reject Python wildcard imports",
+  "Verify path policies",
+  "Verify repository skill",
+  "Verify immutable workflow dependencies",
+  "Verify changed file headers",
+  "Verify rationale comments on changed sources",
+  "Zizmor",
+  "actionlint",
+  "Verify CI policy and pytest compatibility",
+  "Reject unresolved SPDX header failure",
+  "Merge queue acceptance",
+  "Analyze (python)",
+  "Analyze (java-kotlin)",
+  "Label CI changes",
+  "Label test changes",
+  "Label dependency changes",
+  "Label documentation changes",
+  "Label changed LOC ratio",
+  "Label declared breaking changes",
+  "Label dominant change direction",
+];

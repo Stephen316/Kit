@@ -33,7 +33,7 @@ jobs:
           persist-credentials: false
           ref: ${{ github.event_name == 'merge_group' && github.event.merge_group.base_sha || github.sha }}
 
-      - name: Aggregate all applicable CI except Cubic
+      - name: Aggregate all applicable CI
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
