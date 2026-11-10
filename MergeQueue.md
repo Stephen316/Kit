@@ -9,6 +9,14 @@ Kit uses GitHub's native merge queue for `main`. The desired settings live in
 [`.github/MergeQueue.json`](.github/MergeQueue.json). Repository settings are
 outside Git history: merging this configuration PR does not activate them.
 
+The live `Protect` ruleset requires both `CI Agg` and `Merge queue acceptance`
+from GitHub Actions (`15368`). Its direct `Greptile Review` requirement was
+removed because GitHub also applies it to synthetic queue commits, where the app
+does not report. Instead, `CI Agg` requires the native Greptile result on PR
+heads, as described below. The checked-in desired ruleset and live rules must
+still be inspected separately. Existing approvals, bypass actors, and other live
+settings were preserved.
+
 ## Validation phases
 
 PRs run Python lint, formatting, types, steering, import, SPDX, path, skill, and
@@ -21,16 +29,23 @@ must submit an actual `APPROVED` review on that exact head. No human or code-own
 approval is required by the agent workflow; independently enforced GitHub
 requirements must still be inspected and reported separately.
 
-Use the configured reviewer's native review and status indicator. Do not add a
-duplicate approval workflow. Review evidence and approval remain separate from CI.
+Use the configured reviewer's native review and status indicator. Review evidence
+and approval remain separate from the independently enforced Greptile PR check.
 Changing the review comment does not change existing integrations, the wildcard
 owner in [CODEOWNERS](.github/CODEOWNERS), CI provider exclusions, or live rulesets.
 
 [`Pull Request / CI Agg`](.github/workflows/PullRequest.yml) reports overall CI
-health for the exact PR revision, excluding automated review providers by their
-GitHub app or status-creator identity. Cubic, Greptile, CodeRabbit, and the
-configured reviewer are excluded from both check runs and legacy commit statuses,
-including pending, neutral, failed, and successful review reports. The identities
+health for the exact PR revision. General review reports are excluded by their
+GitHub app or status-creator identity. Cubic, CodeRabbit, the configured reviewer,
+and unrelated Greptile reports remain excluded from both check runs and legacy
+commit statuses. A separate, explicit PR requirement selects only the native
+`Greptile Review` check from app ID `867647` on the current PR head SHA. Missing
+or pending results keep the aggregate pending; only a completed `success` passes.
+Failed, neutral, skipped, cancelled, or timed-out reviews fail the aggregate.
+Stale results, matching display names from another app, and test-merge results
+cannot substitute. Queue aggregation does not require Greptile on the synthetic
+candidate; PR evidence reuse rechecks Greptile on each contributing PR head.
+The identities
 live in [ReviewProviders.cjs](.github/scripts/ReviewProviders.cjs); additional
 review integrations must be registered there when introduced. Display names and
 report URLs never exclude unrelated CI. The same filtering applies during PR
@@ -87,19 +102,29 @@ not match, static checks execute on the candidate instead. Missing or expired
 evidence never produces a cached success. Header and change-range checks, acceptance, and heavy security always
 execute on the actual merge group. No acceptance result is inferred from PR CI.
 
-On merge groups, `CI Agg` covers static validation and verified reuse. The
-existing required `Merge queue acceptance` gate combines that result with every
-heavy job, so missing or failing aggregate evidence blocks acceptance too. This
-avoids a dependency cycle: the static aggregate does not wait for heavy jobs on
-the queue. No additional live ruleset changes are needed for this dependency.
-The gate verifies the latest merge-group run from `PullRequest.yml`, its check
-suite, exact candidate SHA, and successful workflow completion. A passing check
-with the same display name from another workflow cannot substitute.
+On merge groups, `Merge queue acceptance` requires every heavy job to succeed.
+`CI Agg` then combines static validation, verified reuse, every heavy check and
+the completed queue workflow. It explicitly expects `Merge queue acceptance`
+and fails immediately when any heavy check or the queue workflow fails. Missing
+or pending acceptance keeps the aggregate pending. Acceptance does not wait on
+the aggregate, so there is no dependency cycle. Both contexts are required by
+the live ruleset. The previous combination of excluding the queue workflow from
+`CI Agg` and not requiring acceptance allowed PR #42 to merge with failed
+CodeQL, dlint, Scorecard, and tests; both gaps are repaired here.
 
 [MergeQueue.yml](.github/workflows/MergeQueue.yml) reports the required
 `Merge queue acceptance` context on PRs with an explicit deferral summary. Its
 acceptance jobs are deliberately skipped at this stage, so green PR checks
 establish eligibility for queue enrollment, not acceptance success.
+
+The `Scorecard` job uses the checksum-pinned OpenSSF Scorecard CLI instead of
+`ossf/scorecard-action`, which rejects `merge_group` events. It runs the complete
+default repository scan and then the commit-compatible checks against the exact
+`merge_group.head_sha`. The second scan supplements the repository scan because
+commit-specific mode omits checks that cannot evaluate arbitrary commits. Both
+SARIF reports are summarized in the job log, command failures fail the job, and
+`Merge queue acceptance` still requires it. Results are not published to the
+Scorecard API. See [the repair and verification entry](Documentation/Changes/QueueScorecard.md).
 
 On `merge_group.checks_requested`, the same workflow runs the complete pytest
 suite, both CodeQL language analyses, and every existing heavy security/SBOM scanner
@@ -110,12 +135,15 @@ timeouts, and unexpected skips fail the gate. Fast CI additionally runs the exis
 process checks, catching stale workflow references before enrollment. Static checks retain their required
 contexts on the merge group and either execute or use verified equivalent PR evidence.
 
-The queue has no bypass actors, uses squash merges, requires `ALLGREEN`, builds
+The checked-in desired queue has no bypass actors, uses squash merges, requires `ALLGREEN`, builds
 at most two candidates concurrently, and merges one entry at a time. Its
 90-minute response timeout allows the existing 60-minute analyses plus runner
 scheduling. Each candidate has its own concurrency group; a later PR update
 cannot cancel a different queue candidate. Heavy workflows do not repeat on
-the subsequent `main` push.
+the subsequent `main` push. The observed live `Protect` settings differ: five
+concurrent builds, up to five merged entries, a five-minute minimum wait, a
+60-minute response timeout, and an existing organization-admin bypass. These
+were preserved; only the required status contexts were changed for this repair.
 
 ## Activate after this PR merges
 

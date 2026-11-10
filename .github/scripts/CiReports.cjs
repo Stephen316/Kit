@@ -6,6 +6,7 @@ const Path = require("node:path");
 const Crypto = require("node:crypto");
 const Process = require("node:child_process");
 const { IsReviewApp, IsReviewUser } = require("./ReviewProviders.cjs");
+const { BuildReport } = require("./GreptileReport.cjs");
 
 const StaticChecks = [
   "Ruff",
@@ -51,7 +52,14 @@ const ReusableChecks = StaticChecks.filter(
 );
 const WorkflowPath = ".github/workflows/PullRequest.yml";
 
-async function ReadReports(Github, Context, Refs, Expected, Reused = false) {
+async function ReadReports(
+  Github,
+  Context,
+  Refs,
+  Expected,
+  Reused = false,
+  ReviewSha = null,
+) {
   const Repository = Context.repo;
   const Runs = [];
   const Checks = [];
@@ -96,11 +104,6 @@ async function ReadReports(Github, Context, Refs, Expected, Reused = false) {
     if (Seen.has(Check.id) || IsReviewApp(Check.app)) continue;
     Seen.add(Check.id);
     const Run = RunsBySuite.get(Check.check_suite.id);
-    if (
-      Run?.event === "merge_group" &&
-      Run.path?.split("@")[0] === ".github/workflows/MergeQueue.yml"
-    )
-      continue;
     if (Run && (!LatestIds.has(Run.id) || Run.id === Context.runId)) continue;
     if (Check.details_url?.includes(`/actions/runs/${Context.runId}/`))
       continue;
@@ -148,11 +151,6 @@ async function ReadReports(Github, Context, Refs, Expected, Reused = false) {
     });
   for (const Run of LatestRuns.values()) {
     if (Run.id === Context.runId) continue;
-    if (
-      Run.event === "merge_group" &&
-      Run.path?.split("@")[0] === ".github/workflows/MergeQueue.yml"
-    )
-      continue;
     const InactiveBootstrap =
       Run.event === "pull_request" &&
       Run.path?.split("@")[0] === WorkflowPath &&
@@ -184,6 +182,7 @@ async function ReadReports(Github, Context, Refs, Expected, Reused = false) {
       });
     }
   }
+  if (ReviewSha) Rows.push(BuildReport(Checks, ReviewSha));
   return Rows;
 }
 
@@ -336,12 +335,14 @@ async function FindReuse(Github, Context, Core) {
         continue;
       HealthRefs.push(Evidence.report_merge_sha);
     }
-    const Health = await ReadReports(Github, Context, HealthRefs, [
-      ...StaticChecks,
-      ...PrChecks,
-      "CI Agg",
-      "Merge queue acceptance",
-    ]);
+    const Health = await ReadReports(
+      Github,
+      Context,
+      HealthRefs,
+      [...StaticChecks, ...PrChecks, "CI Agg", "Merge queue acceptance"],
+      false,
+      Pull.headRefOid,
+    );
     if (Health.some((Row) => Row.state !== "pass")) {
       return {
         reuse: false,
@@ -455,7 +456,8 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
     : [Context.sha];
   const Expected = [
     ...StaticChecks,
-    ...(IsPull ? ["Merge queue acceptance", ...PrChecks] : []),
+    "Merge queue acceptance",
+    ...(IsPull ? PrChecks : []),
   ];
   let Reuse = { reuse: false };
   if (!IsPull) {
@@ -483,7 +485,14 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
       )
         throw new Error("The PR head changed during CI aggregation");
     }
-    Rows = await ReadReports(Github, Context, Refs, Expected, Reuse.reuse);
+    Rows = await ReadReports(
+      Github,
+      Context,
+      Refs,
+      Expected,
+      Reuse.reuse,
+      IsPull ? Context.payload.pull_request.head.sha : null,
+    );
     const Failed = Rows.filter((Row) => Row.state === "fail");
     if (Failed.length) {
       await Core.summary
@@ -511,7 +520,7 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
   await Core.summary
     .addHeading("CI passed")
     .addRaw(
-      "All applicable CI passed; automated reviews are reported separately.\n",
+      "All applicable CI passed; PR heads also require a successful native Greptile check.\n",
     )
     .addTable([
       ["Check", "Conclusion", "Report"],

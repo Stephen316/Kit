@@ -56,6 +56,8 @@ jobs:
         env:
           PR_CI_ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
         with:
+          retries: 4
+          retry-exempt-status-codes: 400,401,403,422
           script: |
             const Reports = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CiReports.cjs`);
             await Reports.VerifyEvidence({ github, context, core });
