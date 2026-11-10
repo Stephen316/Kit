@@ -16,4 +16,6 @@ Read this log before working in an affected area. Keep entries short, searchable
 
 - **Skipped jobs can expose unevaluated names:** Expected a conditional job name to resolve before a skipped bootstrap was reported; GitHub returned the expression text, causing the aggregate to reject it. Retire one-time bootstrap triggers after installation and use stable names for real gates. See [the repair entry](../Changes/AggregateBootstrap.md).
 
+- **Published CI artifacts can briefly return 404:** Expected the artifact ID returned by a successful upload to be immediately readable; PR #53's immediate metadata request returned 404, but the same artifact later became readable and one justified rerun passed. Verify the exact artifact ID and run before retrying once; investigate recurring failures without relaxing digest or provenance verification. See [the evidence and workaround](../Changes/ArtifactPublication.md).
+
 If you discover a new gotcha, unexpected API behavior, wrong assumption, or undocumented quirk while working on this codebase, you MUST add it to the bullet list above before finishing your task. This is mandatory, not optional. Future you (or a different agent) will thank you. Format: - Short description of the gotcha, what you expected vs what actually happened, and the fix or workaround.
