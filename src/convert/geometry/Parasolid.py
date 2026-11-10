@@ -4909,16 +4909,14 @@ def RecordStart(
 def ReadShort(DataValue: KReadBuffer, OffsetData: int) -> int | None:
     if OffsetData < 0 or OffsetData + 2 > len(DataValue):
         return None
-    ValueData = Struct.unpack_from(">H", DataValue, OffsetData)[0]
-    return ValueData if isinstance(ValueData, int) else None
+    return int(Struct.unpack_from(">H", DataValue, OffsetData)[0])
 
 
 # this declaration exists because focused behavior needs one stable owner
 def ReadUnsigned(DataValue: KReadBuffer, OffsetData: int) -> int | None:
     if OffsetData < 0 or OffsetData + 4 > len(DataValue):
         return None
-    ValueData = Struct.unpack_from(">I", DataValue, OffsetData)[0]
-    return ValueData if isinstance(ValueData, int) else None
+    return int(Struct.unpack_from(">I", DataValue, OffsetData)[0])
 
 
 # this declaration exists because focused behavior needs one stable owner
