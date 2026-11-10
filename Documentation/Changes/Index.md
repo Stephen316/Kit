@@ -11,3 +11,4 @@ Every new feature, API, adapter, command, configuration option, workflow, tool, 
 - [Retire the aggregate bootstrap](AggregateBootstrap.md)
 - [Review bot configuration and required skill activation](ReviewBotConfiguration.md)
 - [Transient CI artifact publication errors](ArtifactPublication.md)
+- [Pyright compatibility](PyrightCompatibility.md)
