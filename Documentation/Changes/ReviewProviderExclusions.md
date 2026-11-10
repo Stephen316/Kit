@@ -8,7 +8,11 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 `Pull Request / CI Agg` aggregates CI independently from automated review. Cubic,
 Greptile, CodeRabbit, and the reviewer named in `ReviewBot.json` are excluded from
 check runs and legacy commit statuses, regardless of their report state. The
-shared reporter applies these exclusions to PRs, merge groups, and evidence reuse.
+shared reporter applies these general exclusions to PRs, merge groups, and evidence reuse.
+The later [queue enforcement repair](QueueScorecard.md) adds one explicit exception:
+PR aggregation and PR evidence reuse require the native `Greptile Review` check
+from app ID `867647` on the current PR head. Queue candidates remain exempt from
+that PR-only requirement. No other automated review report becomes CI.
 
 `ReviewProviders.cjs` identifies the installed providers by verified GitHub app IDs
 and bot user IDs, with exact app slugs and normalized bot logins as identity

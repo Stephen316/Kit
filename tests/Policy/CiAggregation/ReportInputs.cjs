@@ -3,8 +3,10 @@
 
 const Expected = require("./ExpectedChecks.cjs");
 const { BuildReviews } = require("./ReviewReports.cjs");
+const { BuildGreptile } = require("./GreptileInputs.cjs");
+const { BuildQueue } = require("./QueueInputs.cjs");
 
-function BuildReports(CaseMode, Verdict) {
+function BuildReports(CaseMode, Verdict, CheckName = "Scorecard") {
   const Checks = Expected.map((CheckName, Index) => ({
     id: Index + 1,
     name: CheckName,
@@ -16,7 +18,10 @@ function BuildReports(CaseMode, Verdict) {
   const Reviews = BuildReviews(Verdict);
   Checks.push(
     ...Reviews.Checks.map((Check) => ({ ...Check, id: Check.id + 100 })),
+    ...BuildGreptile(CaseMode, Verdict),
   );
+  const QueueData = BuildQueue(CaseMode, Verdict, CheckName);
+  Checks.push(...QueueData.Checks);
   const Statuses = Reviews.Statuses;
   if (CaseMode === "check") Checks[0].conclusion = "failure";
   if (CaseMode === "status")
@@ -35,7 +40,14 @@ function BuildReports(CaseMode, Verdict) {
       status: "completed",
       conclusion: "neutral",
     });
-  return { Checks, Statuses };
+  return {
+    Checks: Checks.filter(
+      (Check) =>
+        CaseMode !== "queue-missing" || Check.name !== "Merge queue acceptance",
+    ),
+    Statuses,
+    Runs: QueueData.Runs,
+  };
 }
 
 module.exports = { BuildReports };

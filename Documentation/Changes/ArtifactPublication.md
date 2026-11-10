@@ -24,7 +24,20 @@ do not skip artifact verification or relax its digest, revision, and provenance
 checks. This observation does not establish a general consistency guarantee or
 explain every artifact 404.
 
-This entry records an operational workaround, with no workflow or protection
-changes. Verification used remote workflow logs, artifact metadata, and the
-successful rerun. No local tests ran. See the [gotchas log](../Gotchas/README.md)
-and [merge queue operations](../../MergeQueue.md).
+The race recurred in [PR #67, attempt 1](https://github.com/TryUniCAD/Kit/actions/runs/42903472751/attempts/1)
+for metadata of artifact `13804166793`, then in [attempt 2](https://github.com/TryUniCAD/Kit/actions/runs/42903472751/attempts/2)
+for downloading artifact `13804172032`. Both artifacts became readable after
+the immediate verification failed. The upload-to-download boundary therefore
+needs bounded retries rather than repeated workflow reruns.
+
+The evidence verification step now allows four retries through
+[`actions/github-script`](https://github.com/actions/github-script#retries),
+including 404 responses. Authentication and validation failures remain exempt
+from retries. Permanent API failures still fail the step after the retry limit;
+digest, size, expiry, revision, and provenance verification remain unchanged.
+Only the immediate post-upload verification client gets this retry policy.
+
+Verification used remote workflow logs and subsequent reads of the exact
+artifact IDs. No local tests ran. This workflow executes from trusted base code,
+so the retry setting takes effect after the repair PR merges. See the
+[gotchas log](../Gotchas/README.md) and [merge queue operations](../../MergeQueue.md).

@@ -69,7 +69,10 @@ jobs:
         run: uv sync --frozen --all-groups --all-extras --python 3.11
 
       - name: Verify repository CI contracts at process boundaries
-        run: uv run pytest tests/Policy/CodeqlPolicyTests.py tests/Policy/CiReportsTests.py tests/steering/AgentSkillsMigrationTests.py
+        run: >-
+          uv run pytest tests/Policy/CodeqlPolicyTests.py
+          tests/Policy/CiReportsTests.py tests/Policy/QueueAggregationTests.py
+          tests/Policy/GreptileAggregationTests.py tests/steering/AgentSkillsMigrationTests.py
 
       - name: Exercise native file reading and writing
         run: >-

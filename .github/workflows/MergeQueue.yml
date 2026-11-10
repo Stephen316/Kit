@@ -503,18 +503,41 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pinned Scorecard
+        env:
+          ScorecardVersion: "5.4.0"
+          ScorecardSha256: e5183aeaa5aa548fbb7318a6deb3e1038be0ef9aca24e655422ae88dfbe67502
+        run: |
+          set -euo pipefail
+          ArchivePath="${RUNNER_TEMP}/scorecard_${ScorecardVersion}_linux_amd64.tar.gz"
+          curl --fail --silent --show-error --location \
+            --output "${ArchivePath}" \
+            "https://github.com/ossf/scorecard/releases/download/v${ScorecardVersion}/scorecard_${ScorecardVersion}_linux_amd64.tar.gz"
+          echo "${ScorecardSha256}  ${ArchivePath}" | sha256sum --check --
+          tar --extract --gzip --file "${ArchivePath}" --directory "${RUNNER_TEMP}" scorecard
+          chmod u+x "${RUNNER_TEMP}/scorecard"
+
       - name: Run OSSF Scorecard supply-chain audit
-        uses: ossf/scorecard-action@fa7117db83c52d787ae5a89f350999701505d78e # v2.5.0
-        with:
-          results_file: Scorecard.sarif
-          results_format: sarif
-          publish_results: false
-          repo_token: ${{ github.token }}
+        env:
+          GITHUB_AUTH_TOKEN: ${{ github.token }}
+          ENABLE_SARIF: "true"
+          RepositoryName: ${{ github.repository }}
+          CandidateSha: ${{ github.event.merge_group.head_sha }}
+        run: |
+          set -euo pipefail
+          "${RUNNER_TEMP}/scorecard" --repo="github.com/${RepositoryName}" \
+            --format=sarif --show-details > Scorecard.sarif
+          "${RUNNER_TEMP}/scorecard" --repo="github.com/${RepositoryName}" \
+            --commit="${CandidateSha}" --format=sarif --show-details > ScorecardCandidate.sarif
 
       - name: Summarize Scorecard results
         run: |
           set -euo pipefail
-          jq -r '.runs[0].results[] | [.ruleId, (.message.text // "")] | @tsv' Scorecard.sarif
+          for ReportPath in Scorecard.sarif ScorecardCandidate.sarif; do
+            jq --slurp --exit-status 'length == 1 and all(.[]; (.runs | type == "array") and (.runs | length > 0))' "${ReportPath}"
+          done
+          jq -r '.runs[0].results[] | [.ruleId, (.message.text // "")] | @tsv' \
+            Scorecard.sarif ScorecardCandidate.sarif
 
   trivy:
     if: github.event_name == 'merge_group'
@@ -616,8 +639,6 @@ jobs:
     timeout-minutes: 90
     permissions:
       contents: read
-      actions: read # Correlates the aggregate with its originating workflow run.
-      checks: read # Requires the queue's static CI aggregate before acceptance passes.
     env:
       EVENT_NAME: ${{ github.event_name }}
       JOB_RESULTS: ${{ toJSON(needs) }}
@@ -636,39 +657,3 @@ jobs:
             echo "::error::Unsupported validation phase"
             exit 1
           fi
-
-      - name: Require the queue candidate CI aggregate
-        if: github.event_name == 'merge_group'
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            const Deadline = Date.now() + 85 * 60000;
-            for (;;) {
-              const HeadSha = context.payload.merge_group.head_sha;
-              const Runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {
-                ...context.repo, head_sha: HeadSha, event: "merge_group", per_page: 100,
-              });
-              const Run = Runs.filter((Item) => Item.path?.split("@")[0] === ".github/workflows/PullRequest.yml")
-                .sort((Left, Right) => Right.id - Left.id)[0];
-              if (Run) {
-                if (Run.status === "completed" && Run.conclusion !== "success") {
-                  throw new Error(`The aggregate workflow did not pass: ${Run.conclusion}`);
-                }
-                const Checks = await github.paginate(github.rest.checks.listForSuite, {
-                  ...context.repo, check_suite_id: Run.check_suite_id,
-                  filter: "latest", per_page: 100,
-                });
-                const Aggregate = Checks.filter((Check) => Check.name === "CI Agg" &&
-                  Check.app?.id === 15368 && Check.head_sha === HeadSha)
-                  .sort((Left, Right) => Right.id - Left.id)[0];
-                if (Aggregate?.status === "completed" && Aggregate.conclusion !== "success") {
-                  throw new Error(`CI Agg did not pass: ${Aggregate.conclusion}`);
-                }
-                if (Aggregate?.conclusion === "success" && Run.status === "completed" && Run.conclusion === "success") {
-                  await core.summary.addRaw(`Candidate static CI aggregate passed: ${Run.html_url}\n`).write();
-                  break;
-                }
-              }
-              if (Date.now() >= Deadline) throw new Error("Missing or pending candidate CI Agg");
-              await new Promise((Resolve) => setTimeout(Resolve, 30000));
-            }

@@ -3,7 +3,7 @@
 
 const { Aggregate } = require("../../../.github/scripts/CiReports.cjs");
 const { BuildReports } = require("./ReportInputs.cjs");
-const Inputs = BuildReports(process.argv[2], process.argv[3]);
+const Inputs = BuildReports(process.argv[2], process.argv[3], process.argv[4]);
 const PullData = {
   number: 42,
   state: "open",
@@ -11,17 +11,25 @@ const PullData = {
   base: { sha: "b".repeat(40) },
 };
 const Context = {
-  eventName: "pull_request_target",
+  eventName: process.argv[2].startsWith("queue")
+    ? "merge_group"
+    : "pull_request_target",
+  sha: "a".repeat(40),
   runId: 500,
   repo: { owner: "TryUniCAD", repo: "Kit" },
-  payload: { pull_request: PullData, repository: { id: 1 } },
+  payload: {
+    pull_request: PullData,
+    repository: { id: 1 },
+    merge_group: { base_ref: "refs/heads/main", head_sha: "a".repeat(40) },
+  },
 };
 const Responses = {
-  listWorkflowRunsForRepo: [],
+  listWorkflowRunsForRepo: Inputs.Runs,
   listForRef: Inputs.Checks,
   listCommitStatusesForRef: Inputs.Statuses,
 };
 const Github = {
+  graphql: async () => ({ repository: { mergeQueue: null } }),
   rest: {
     actions: { listWorkflowRunsForRepo: "listWorkflowRunsForRepo" },
     checks: { listForRef: "listForRef" },
