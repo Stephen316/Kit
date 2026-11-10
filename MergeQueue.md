@@ -27,7 +27,14 @@ Changing the review comment does not change existing integrations, the wildcard
 owner in [CODEOWNERS](.github/CODEOWNERS), CI provider exclusions, or live rulesets.
 
 [`Pull Request / CI Agg`](.github/workflows/PullRequest.yml) reports overall CI
-health for the exact PR revision, excluding Cubic by verified app identity. It
+health for the exact PR revision, excluding automated review providers by their
+GitHub app or status-creator identity. Cubic, Greptile, CodeRabbit, and the
+configured reviewer are excluded from both check runs and legacy commit statuses,
+including pending, neutral, failed, and successful review reports. The identities
+live in [ReviewProviders.cjs](.github/scripts/ReviewProviders.cjs); additional
+review integrations must be registered there when introduced. Display names and
+report URLs never exclude unrelated CI. The same filtering applies during PR
+aggregation, merge-group aggregation, and PR evidence reuse. The aggregate
 waits for every expected static, policy, label, and GitHub-managed Code Quality
 check, and inventories additional check runs and commit statuses. Failed,
 cancelled, timed-out, missing, and unexpectedly skipped reports cannot pass.

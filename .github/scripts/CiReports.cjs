@@ -5,6 +5,7 @@ const Fs = require("node:fs");
 const Path = require("node:path");
 const Crypto = require("node:crypto");
 const Process = require("node:child_process");
+const { IsReviewApp, IsReviewUser } = require("./ReviewProviders.cjs");
 
 const StaticChecks = [
   "Ruff",
@@ -92,7 +93,7 @@ async function ReadReports(Github, Context, Refs, Expected, Reused = false) {
   const Rows = [];
   const Seen = new Set();
   for (const Check of Checks) {
-    if (Seen.has(Check.id) || Check.app?.id === 1082092) continue;
+    if (Seen.has(Check.id) || IsReviewApp(Check.app)) continue;
     Seen.add(Check.id);
     const Run = RunsBySuite.get(Check.check_suite.id);
     if (
@@ -128,7 +129,7 @@ async function ReadReports(Github, Context, Refs, Expected, Reused = false) {
   }
   const LatestStatuses = new Map();
   for (const Status of Statuses) {
-    if (Status.creator?.id === 191113872) continue;
+    if (IsReviewUser(Status.creator)) continue;
     const Key = `${Status.ref}:${Status.context}`;
     if (!LatestStatuses.has(Key) || LatestStatuses.get(Key).id < Status.id)
       LatestStatuses.set(Key, Status);
@@ -509,7 +510,9 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
   }
   await Core.summary
     .addHeading("CI passed")
-    .addRaw("All applicable CI passed; Cubic review is reported separately.\n")
+    .addRaw(
+      "All applicable CI passed; automated reviews are reported separately.\n",
+    )
     .addTable([
       ["Check", "Conclusion", "Report"],
       ...Rows.map((Row) => [Row.name, Row.conclusion || "unknown", Row.url]),
