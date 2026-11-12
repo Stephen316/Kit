@@ -12,7 +12,7 @@ This procedure covers reviewed imports and authorized wiki publication.
 A documentation PR does not itself publish the wiki.
 
 The reference set began with a generated wiki snapshot.
-The `DocumentationSources.InitialWiki.Wiki` and `DocumentationSources.InitialWiki.WikiSettings` fields in [ReviewBot.json](../.agents/skills/standard-pr-practice/ReviewBot.json) identify the optional source and its settings.
+The [archived source configuration](https://github.com/TryUniCAD/Kit/blob/0ac42013dc8bdf4679c2732d12fd009b2e9c26ab/.agents/skills/standard-pr-practice/ReviewBot.json#L40-L46) records the original wiki and its settings.
 The [provenance record](Reference/Provenance.json) retains the original export metadata.
 Its original content hash does not describe later edited Markdown.
 

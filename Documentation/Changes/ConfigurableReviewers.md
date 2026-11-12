@@ -43,12 +43,10 @@ Statuses match creator ID and the commit queried from GitHub.
 The newest matching report determines its state.
 Identity names, brands, numeric IDs, and triggers belong only in the JSON.
 
-`ExcludedReports` preserves identities of other installed review-report providers.
-Those entries are not requested reviewers.
-Their existing integration-owned settings remain in place.
+The configuration reader requires `ExcludedReports` to be an array. It is now empty.
+The CI allowlist keeps automated review reports out of CI aggregation.
 Adding metadata does not install or enable an app, link a triggering account, or alter live GitHub protections.
-Historical generator metadata uses the stable `DocumentationSources.InitialWiki` key.
-Reordering reviewer or exclusion arrays cannot change that provenance reference.
+The [provenance record](../Reference/Provenance.json) references generator metadata at a fixed repository revision.
 
 The previously approved README badge and integration-owned settings remain preserved.
 The change removes CODEOWNERS as requested.

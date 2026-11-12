@@ -55,10 +55,8 @@ When adding or renaming CI, update the allowlist alongside the workflow and
 register each job under the event that runs it. Keep automated review outside
 those workflows and verify its reports during PR review follow-up.
 
-The existing provider settings file identified by `SettingsFile` in the JSON is
-preserved. Its approval policy allows no open findings and is read from the
-default branch; feature-branch changes do not activate it. Provider documentation
-links also live in the JSON. Do not change live rulesets as part of this workflow.
+Removing metadata from the JSON does not change integration-owned settings.
+Do not change live rulesets as part of this workflow.
 
 ## Reuse healthy PR CI
 
