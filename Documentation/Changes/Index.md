@@ -18,3 +18,4 @@ Every new feature, API, adapter, command, configuration option, workflow, tool, 
 - [Merge queue candidate validation repairs](QueueCandidateValidation.md)
 - [README presentation](ReadmePresentation.md)
 - [Configurable PR reviewers](ConfigurableReviewers.md): one reviewer list, all-reviewer readiness, and removal of CODEOWNERS
+- [Commit releases and PyPI publishing](CommitReleases.md)

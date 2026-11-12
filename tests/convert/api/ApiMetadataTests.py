@@ -11,20 +11,19 @@ from tests.convert.api.ApiTestPaths import KRootPath
 
 # one sdk entry point prevents competing command surfaces from drifting apart
 def CheckEntryPoint() -> None:
-    EntryPoints = GetPackage("kit").entry_points
+    EntryPoints = GetPackage("unicad-kit").entry_points
     assert [
         (ItemData.group, ItemData.name, ItemData.value) for ItemData in EntryPoints
     ] == [("kit", "convert", "convert:convert")]
     assert next(iter(EntryPoints)).load() is ConvertLegacy
 
 
-# package metadata must remain private and complete because this sdk is internally distributed
 def CheckMetadata() -> None:
     MetadataData = TomlLib.loads(
         (KRootPath / "pyproject.toml").read_text(encoding="utf-8")
     )
     ProjectData = MetadataData["project"]
-    assert ProjectData["name"] == "kit"
+    assert ProjectData["name"] == "unicad-kit"
     assert ProjectData["entry-points"] == {"kit": {"convert": "convert:convert"}}
     assert "scripts" not in ProjectData
     assert "gui-scripts" not in ProjectData
@@ -36,7 +35,7 @@ def CheckMetadata() -> None:
     assert {"Odin Glynn-Martin", "Stephen Harcourt"} <= {
         AuthorData["name"] for AuthorData in ProjectData["authors"]
     }
-    assert ProjectData["urls"]["Repository"] == "https://github.com/TryParashell/Kit"
+    assert ProjectData["urls"]["Repository"] == "https://github.com/TryUniCAD/Kit"
     assert MetadataData["tool"]["hatch"]["build"]["targets"]["sdist"]["include"] == [
         "/LICENSE",
         "/README.md",

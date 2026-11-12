@@ -12,6 +12,7 @@ Start with [Getting started](GettingStarted.md), [API reference](Reference/Overv
 
 - [GitHub wiki](https://github.com/TryUniCAD/Kit/wiki)
 - [Documentation maintenance and publishing](Publishing.md)
+- [GitHub releases and PyPI publishing](Changes/CommitReleases.md)
 - [Change entries](Changes/Index.md)
 - [Mandatory gotchas log](Gotchas/README.md)
 
