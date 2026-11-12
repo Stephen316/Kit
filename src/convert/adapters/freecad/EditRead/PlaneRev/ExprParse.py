@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from decimal import Decimal
 
 from convert.adapters.freecad.EditRead.PlaneRev.ExprToken import (

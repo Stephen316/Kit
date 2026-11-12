@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.kiro/steering/NoUnrequestedStyling.md`
 
 # No Unrequested Styling — Do Only What Was Asked

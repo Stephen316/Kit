@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from pathlib import Path as FilePath
 
 # one repository anchor prevents split api tests from duplicating path traversal logic

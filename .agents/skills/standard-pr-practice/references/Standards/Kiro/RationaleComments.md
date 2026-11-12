@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.kiro/steering/RationaleComments.md`
 
 # Rationale Comment Convention — One "Why" Comment Above Every Definition

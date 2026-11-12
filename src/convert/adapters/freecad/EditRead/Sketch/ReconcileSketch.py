@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.records.RecordParameter import Parameter
 from interchange.geometry.models.Transform import Transform
 from convert.adapters.freecad.Native import NativeObject

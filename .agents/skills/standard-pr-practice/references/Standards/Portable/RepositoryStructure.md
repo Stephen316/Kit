@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.agents/skills/repository-structure/SKILL.md`
 
 ---
@@ -84,7 +79,6 @@ Standard repository governance names and copied third party assets may retain ex
 
 ## Required comments
 
-- Start every new non exempt text file with the exact repository SPDX notice
 - Put the required rationale comment above every Python class function lambda and module binding exactly as defined by `RationaleComments.md`
 - Document public contracts when the language tooling requires API documentation
 - Do not add mechanical narration inline explanations or blanket comments beyond required license rationale pragma and public contract documentation

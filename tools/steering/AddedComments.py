@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 import ast as AstLib
 from collections import Counter
 from io import StringIO
@@ -11,7 +8,6 @@ from tools.steering.SteeringCompliance import (
     BuildParents,
     Finding,
     GetReasonLines,
-    IsHeaderComment,
     IsPragmaComment,
 )
 
@@ -26,11 +22,10 @@ def AddedComments(SourcePath: FilePath, BaseText: str, HeadText: str) -> list[Fi
     SyntaxTree = AstLib.parse(HeadText, filename=SourcePath.as_posix())
     ReasonLines = GetReasonLines(SyntaxTree, BuildParents(SyntaxTree))
     Findings: list[Finding] = []
-    StartLine = 2 if HeadText.startswith("#!") else 1
     for TokenInfo in GenerateTokens(StringIO(HeadText).readline):
         if TokenInfo.type != COMMENT:
             continue
-        if IsHeaderComment(TokenInfo, StartLine) or IsPragmaComment(TokenInfo):
+        if IsPragmaComment(TokenInfo):
             continue
         if Prior[TokenInfo.string] > 0:
             Prior[TokenInfo.string] -= 1

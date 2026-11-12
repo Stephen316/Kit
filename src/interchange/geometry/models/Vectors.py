@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.geometry.models.BoundingBox import BoundingBox
 from interchange.geometry.models.Transform import Transform
 from interchange.geometry.models.VectorPlane import PlaneVector

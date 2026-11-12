@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # CI allowlist for PRs and merge groups
 
 `CI Agg` reads the [CI allowlist](../../.github/scripts/CiAllowlist.cjs). A

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import atan2 as ArcTan, hypot as Hypot, isfinite as IsFinite
 from math import pi as HalfTurn, sqrt as SquareRoot
 

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `Contents/Definition` — field map, and an emitted one that opens
 
 Status: **confirmed**. A constructively emitted `Contents/Definition` was measured opening in

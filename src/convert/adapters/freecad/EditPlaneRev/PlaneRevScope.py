@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.freecad.EditExtScope import ReadSketchInput
 from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 from interchange.document.models.DocumentModel import CadDocument

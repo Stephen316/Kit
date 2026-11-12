@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Extrudes.ExtrudeControl import ReadExtControls
 from convert.formats.Fusion.Extrudes.ExtrudeProfile import ReadExtProfile
 from convert.formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid

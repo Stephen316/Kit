@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Disjoint boss and full revolution closure record
 
 Status: **source semantics and oracle acceptance target confirmed; first-principles stream

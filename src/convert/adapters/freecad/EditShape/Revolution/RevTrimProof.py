@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from math import pi as PiValue, tau as FullTurn
 
 from convert.adapters.freecad.EditShape.CylinderRims import (

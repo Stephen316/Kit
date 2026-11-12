@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from zlib import crc32 as CrcValue
 
 from convert.formats.Fusion.ArchiveRead.ArchiveMember import ArchiveMember

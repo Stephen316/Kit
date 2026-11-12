@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from typing import Mapping as TypeMap
 
 # historical api identity set 1 keeps pickle globals stable after module splits

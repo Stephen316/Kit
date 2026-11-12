@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from os import PathLike as PathLikeValue
 from os.path import abspath as AbsolutePath
 from pathlib import Path as PathInfo

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.FormulaDeps.FormulaGraph import GetFormulaGraph
 from convert.formats.Fusion.FormulaDeps.FormulaOrder import GetProvenLinks
 from convert.formats.Fusion.SourceProof.Parameters.NumberProofRow import NumberProofRow

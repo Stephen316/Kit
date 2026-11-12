@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from unicodedata import normalize as NormalizeText
 
 from convert.formats.Fusion.AssetCodec.Zip.ZipLimits import (

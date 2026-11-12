@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.geometry.Formula.Arithmetic import EvalFormula, ReadFormula
 from convert.geometry.Formula.FormulaUnits import IsMatchingQty
 from interchange.enums.EnumValues import ParameterRole

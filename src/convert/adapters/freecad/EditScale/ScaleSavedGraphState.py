@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from xml.etree.ElementTree import Element
 
 from convert.adapters.freecad.EditRead.EditExtrusion import (

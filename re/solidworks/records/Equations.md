@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `moRelMgr_c` — the equation list in `Contents/Config-0`
 
 Read-only analysis of a licensed SOLIDWORKS 2025 install and of the `examples/` corpus. No

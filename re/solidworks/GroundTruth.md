@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Real-world SOLIDWORKS corpus: ground truth
 
 Source corpus: `Kit/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Revolve donors for `src/convert/adapters/solidworks/donor_library.py`
 
 Written for the implementation agent. Field evidence is in `Revolve.md`; part-level evidence is in

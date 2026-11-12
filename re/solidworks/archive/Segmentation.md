@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Runtime object segmentation of `Contents/Config-0-ResolvedFeatures`
 
 Executes the trace scripted in `.rescratch/grammar/Windbg.md` §6.1. Everything here is

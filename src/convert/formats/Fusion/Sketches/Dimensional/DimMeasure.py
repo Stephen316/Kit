@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import atan2 as ArcTangent, hypot as Hypot, isclose as IsClose, pi as HalfTurn
 
 from interchange.enums.EnumGeometry import ConstraintKind

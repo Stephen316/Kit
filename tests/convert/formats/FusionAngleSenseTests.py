@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from pytest import raises as Raises
 
 from convert.formats.Fusion.Revolves.MeridianCoords import CleanMeridian

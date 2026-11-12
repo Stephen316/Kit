@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 $ErrorActionPreference = "Stop"
 $env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-21.0.12.8-hotspot"
 $env:GHIDRA_HEADLESS_MAXMEM = "12G"
@@ -14,5 +11,3 @@ $sw = [System.Diagnostics.Stopwatch]::StartNew()
     -scriptPath (Join-Path $root "scripts") `
     -analysisTimeoutPerFile 21600 *>&1 | Out-File -Encoding utf8 -Append $log
 "EXIT $LASTEXITCODE ELAPSED_SEC $($sw.Elapsed.TotalSeconds)" | Out-File -Encoding utf8 -Append $log
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt

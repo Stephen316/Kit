@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 import argparse as Argparse
 from pathlib import Path as PathInfo
@@ -36,8 +33,6 @@ def GenerateScript(StreamBytes: int) -> str:
         raise ValueError("resolved stream length must be positive")
     GuardText = hex(StreamBytes)
     LinesData = [
-        "$$ SPDX-License-Identifier: MIT",
-        "$$ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt",
         ".symopt+0x4000",
         ".symopt-0x20000",
         ".exepath+ C:\\Program Files\\SOLIDWORKS Corp\\SOLIDWORKS",

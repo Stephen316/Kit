@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from ast import Add, BinOp, Div, Mult, Name, Sub, UAdd, UnaryOp, USub
 from ast import expr as ExprNode, operator as OperatorNode
 from collections.abc import Mapping

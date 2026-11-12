@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.solidworks.core.Adapter import (
     SldprtAdapter as SldprtAdapter,
     read_sldprt as ReadSldprt,

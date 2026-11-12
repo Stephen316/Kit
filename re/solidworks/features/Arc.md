@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Sketch arcs in `Contents/Config-0-ResolvedFeatures`
 
 Scope: can a **partial** arc (an arc segment with a start and an end, as opposed to a full circle) be

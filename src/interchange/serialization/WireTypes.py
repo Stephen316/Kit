@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from typing import Mapping as TypeMap
 
 # renamed models retain historical wire tags so stored documents remain readable

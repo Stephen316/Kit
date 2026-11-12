@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Revolves.MeridianSense import ChooseMeridian
 from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Transform import Transform

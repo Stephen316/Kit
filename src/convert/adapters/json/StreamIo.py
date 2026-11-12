@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from io import TextIOBase as TextIoBase
 from pathlib import Path as FilePath
 from typing import Protocol

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from dataclasses import is_dataclass as IsDataClass
 from typing import cast as CastValue
 from typing import get_args as GetTypeArgs

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.freecad.EditBodyRev.BodyRevModels import GetBodyTopology
 from convert.adapters.freecad.EditBodyRev.BodyRevParams import ReadSeedDepth
 from convert.adapters.freecad.EditExtRing import GetEditRing

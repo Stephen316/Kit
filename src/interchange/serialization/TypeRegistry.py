@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.serialization.Wire import GetWireType
 
 # registered types allow wire data to reconstruct concrete immutable records safely

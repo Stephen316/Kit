@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import hypot as Hypot, sqrt as SquareRoot
 
 from convert.geometry.Extrude.Polygon.RingPredicates import RingTurn, ToRingGrid

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.FeatureLabels import ReadFeatLabel
 from convert.formats.Fusion.FeatureState import ReadFeatState
 from convert.formats.Fusion.HistoryGroup import KGroupGuid

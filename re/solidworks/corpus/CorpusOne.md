@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # SOLIDWORKS `Contents/Config-0-ResolvedFeatures` — corpus + differential layout analysis
 
 SOLIDWORKS 2025, pywin32 311, `.venv\Scripts\python.exe`.

@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.geometry.Revolve.FullFaces import BuildFullFaces
 from convert.geometry.Revolve.FullRings import BuildFullRings
 from convert.geometry.Revolve.SweepInput import CheckSweepFrame, OrientMeridian

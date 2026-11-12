@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.formats.Fusion.Topology.AsmEdge.AsmPoints import ReadAsmPoints
 from convert.formats.Fusion.Topology.AsmEdge.AsmPrism import ReadAsmBody, ReadAsmPrism
 from convert.formats.Fusion.Topology.AsmEdge.AsmPrismEdges import ReadAsmEdges

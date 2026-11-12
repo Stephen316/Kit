@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Documentation entries
 
 [Browse change entries](./).
@@ -20,3 +15,4 @@ They do not establish the current CI, deployment, or publication state.
 Record later behavior in a new entry and the current guide.
 Correct an existing entry if it misstates the original change or its evidence.
 Pure documentation corrections can update their existing entry.
+- [File notice retirement](FileNoticeRetirement.md)

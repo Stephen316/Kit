@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import cos as Cosine, radians as Radians, sin as SineValue
 
 from pytest import approx as Approx, raises as Raises

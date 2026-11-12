@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.freecad.EditRing.RingEndpoints import CheckRingEnds, ReadRingEnds
 from convert.geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
 from interchange.brep.topology.BrepMath import IsFinitePlane

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from dataclasses import asdict as AsDict
 from dataclasses import is_dataclass as IsDataclass
 from enum import Enum as EnumBase

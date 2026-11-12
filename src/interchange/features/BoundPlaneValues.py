@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from dataclasses import replace as Replace
 from math import cos as Cosine, sin as SineValue
 from typing import Mapping as TypeMap

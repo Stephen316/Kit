@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from pathlib import Path as FilePath
 from xml.etree.ElementTree import fromstring as ParseXml, tostring as XmlBytes
 from zipfile import ZipFile

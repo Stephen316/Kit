@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from dataclasses import dataclass as MakeDataClass
 from math import cos as Cosine, sin as SinValue, tau as FullTurn
 

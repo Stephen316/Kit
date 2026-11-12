@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from tests.convert.freecad.AxisProbe import KAxisProbe
 from io import BytesIO
 from math import radians as Radians

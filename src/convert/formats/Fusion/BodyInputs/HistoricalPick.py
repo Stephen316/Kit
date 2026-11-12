@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Assembly.Solids.CreatorScopes import CreatorScope
 from convert.formats.Fusion.BodyInputs.BodyInput import BodyInput
 from convert.formats.Fusion.BodyInputs.InputContext import InputContext

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # openswx attribution
 
 `RotateBytes.py` adapts the byte rotation in `libopenswx/src/internal/rol_codec.h`

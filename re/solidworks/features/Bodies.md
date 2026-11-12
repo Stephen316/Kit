@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Multi-body FreeCAD documents and the SOLIDWORKS donor path
 
 `donor_match` used to decline outright whenever a document built more than one solid body. That is

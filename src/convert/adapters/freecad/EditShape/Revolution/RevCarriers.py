@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from math import cos as Cosine, pi as PiValue, sin as SineValue
 
 from convert.adapters.freecad.EditShape.CylinderRims import KAngleTolerance

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxFrame import KActivePrefix
 
 # the active asset stores both configuration json members under the same directory

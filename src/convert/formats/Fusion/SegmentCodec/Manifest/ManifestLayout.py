@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 # the fixed root format labels distinguish this document layout from other containers
 KRootFormat = ("3-2-0-0", "FusionDocType", ".f3d")
 

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Profiles.Trimmed.CirclePortions import ReadCircleTrim
 from convert.formats.Fusion.Profiles.Trimmed.LinePortions import ReadLineTrim
 from convert.formats.Fusion.Profiles.Trimmed.MixedPortions import ReadMixedTrim

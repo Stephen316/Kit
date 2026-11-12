@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 
 import subprocess as Subprocess
@@ -10,11 +7,6 @@ import unittest as Unittest
 from pathlib import Path as FilePath
 
 from tools.steering.SteeringCompliance import CheckPaths
-
-# fixtures reuse the production notice so tests isolate every other compliance rule
-KPythonHeader = """# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-"""
 
 # command tests need the checked in entry point because fixtures use temporary directories
 KCheckerPath = (
@@ -26,11 +18,6 @@ KCheckerPath = (
 
 # static test methods need standard assertion behavior without violating receiver naming policy
 KAssertions = Unittest.TestCase()
-
-
-# source assembly exists because each focused test fixture still needs a complete header
-def MakeSource(BodyText: str) -> str:
-    return KPythonHeader + "\n" + BodyText
 
 
 # isolated writes prevent leakage because compliance cases require independent fixture state
@@ -52,7 +39,7 @@ KValidValue = 1
 """
         with Tempfile.TemporaryDirectory() as TmpPath:
             FolderPath = FilePath(TmpPath)
-            ValidPath = WriteSample(FolderPath, MakeSource(BodyText))
+            ValidPath = WriteSample(FolderPath, BodyText)
             ValidResult = Subprocess.run(
                 [System.executable, str(KCheckerPath), str(ValidPath)],
                 capture_output=True,

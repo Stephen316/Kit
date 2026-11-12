@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # SOLIDWORKS revolve — `Contents/Config-0-ResolvedFeatures` field map
 
 Static corpus analysis only. **SOLIDWORKS was never launched**; no COM, no `tests/oracle`, no

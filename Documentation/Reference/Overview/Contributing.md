@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Contribute a documented change
 
 ## Purpose
@@ -70,7 +65,6 @@ Use the [writing rules](../../Standards/WritingRules.md).
 Include prerequisites, steps, expected results, and failure recovery in task pages.
 Use exact public API names in examples.
 Do not add explanatory code comments or comment-oriented docstrings.
-Preserve the exact license notice in new comment-capable files.
 
 Use Python and `uv` for backend dependencies outside exempt workspaces.
 Use React for frontend work.

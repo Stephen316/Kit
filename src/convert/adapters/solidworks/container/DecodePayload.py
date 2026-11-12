@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from zlib import crc32 as Checksum
 from convert.adapters.solidworks.container.InflateStream import InflateStream
 from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat

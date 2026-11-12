@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.features.FeatureStep import FeatureStep
 from convert.formats.Fusion.NativeParam import NativeParam
 from dataclasses import replace as Replace

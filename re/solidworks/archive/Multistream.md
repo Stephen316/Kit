@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Runtime object segmentation of the remaining feature-count streams
 
 Extends `REPORT.md` from `Contents/Config-0-ResolvedFeatures` to `Contents/CMgr`,

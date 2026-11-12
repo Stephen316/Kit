@@ -1,14 +1,4 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.agents/README.md`
-
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
 
 # Portable agent skills
 
@@ -69,7 +59,6 @@ drifting.
 | `.kiro/steering/RepositoryStructure.md`     | `.agents/skills/repository-structure/SKILL.md`      |
 | `.kiro/steering/ShadcnPages.md`             | `.agents/skills/shadcn-pages/SKILL.md`              |
 | `.kiro/steering/SplitLargeDefinitions.md`   | `.agents/skills/split-large-definitions/SKILL.md`   |
-| `.kiro/steering/SpdxHeader.md`              | `.agents/skills/spdx-header/SKILL.md`               |
 | `.kiro/steering/WorkosTokenVerification.md` | `.agents/skills/workos-token-verification/SKILL.md` |
 
 The migration keeps each source body verbatim after removing only Kiro-specific

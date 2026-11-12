@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.kiro/steering/FixErrorsDontAsk.md`
 
 # WHEN THE USER TALKS ABOUT AN ERROR, FIX IT — DO NOT ASK

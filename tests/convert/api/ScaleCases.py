@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 # real saved controls exercise every supported parameter and center route
 KScaleCases = (
     ("tools-fda3948848f4/Scale.f3d", (1.25,) * 3, (0, 0, 0), 46875, 8125, 1),

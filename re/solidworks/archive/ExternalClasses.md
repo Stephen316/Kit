@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # The four externally defined classes referenced by `Contents/Config-0-ResolvedFeatures`
 
 Closes the gap `Segmentation.md` §3 opened. That work established that the `su_CArchive` map

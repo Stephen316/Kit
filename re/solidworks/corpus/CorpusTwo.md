@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # SOLIDWORKS multi-feature and cut-extrude ground truth
 
 Extends `.rescratch/corpus/REPORT.md`. SOLIDWORKS 2025, pywin32, `.venv\Scripts\python.exe`.

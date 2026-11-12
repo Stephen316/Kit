@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from math import degrees as Degrees, isclose as IsClose
 
 from convert.adapters.freecad.EditableRev import EditRevolve

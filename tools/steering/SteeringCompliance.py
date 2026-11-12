@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 
 import argparse as Argparse
@@ -11,11 +8,6 @@ import sys as System
 import tokenize as Tokenize
 from dataclasses import dataclass as DataClass
 from pathlib import Path as FilePath
-
-# exact notice stays embedded so checks remain independent from local repository state
-KPythonHeader = """# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-"""
 
 # generated and third party folders stay excluded because repository scans must remain actionable
 KSkipFolders = frozenset(
@@ -832,17 +824,6 @@ def IsPragmaComment(TokenInfo: Tokenize.TokenInfo) -> bool:
     return any(CommentText.startswith(PrefixText) for PrefixText in KPragmaPrefixes)
 
 
-# exact license token positions protect only the required notice instead of exempting arbitrary spdx commentary
-def IsHeaderComment(TokenInfo: Tokenize.TokenInfo, StartLine: int) -> bool:
-    HeaderLines = KPythonHeader.splitlines()
-    LineOffset = TokenInfo.start[0] - StartLine
-    return (
-        TokenInfo.start[1] == 0
-        and 0 <= LineOffset < len(HeaderLines)
-        and TokenInfo.line.rstrip("\r\n") == HeaderLines[LineOffset]
-    )
-
-
 # rationale positions identify the single comments that may explain required declarations
 def GetReasonLines(
     SyntaxTree: AstLib.Module, ParentMap: dict[AstLib.AST, AstLib.AST]
@@ -854,7 +835,6 @@ def GetReasonLines(
     }
 
 
-# comment enforcement preserves only steering mandated rationales license text and parser pragmas
 def CheckComments(
     SourcePath: FilePath,
     SourceText: str,
@@ -863,20 +843,14 @@ def CheckComments(
 ) -> list[Finding]:
     TokenList = list(Tokenize.generate_tokens(IoStream.StringIO(SourceText).readline))
     ReasonLines = GetReasonLines(SyntaxTree, ParentMap)
-    SourceLines = SourceText.splitlines()
-    StartLine = 2 if SourceLines and SourceLines[0].startswith("#!") else 1
     FindingList: list[Finding] = []
     for TokenInfo in TokenList:
         if TokenInfo.type != Tokenize.COMMENT:
             continue
         TokenPos = (TokenInfo.start[0], TokenInfo.start[1])
-        if (
-            TokenPos in ReasonLines
-            or IsHeaderComment(TokenInfo, StartLine)
-            or IsPragmaComment(TokenInfo)
-        ):
+        if TokenPos in ReasonLines or IsPragmaComment(TokenInfo):
             continue
-        MsgText = "code comment is not an allowed rationale license line or type pragma"
+        MsgText = "code comment is not an allowed rationale or type pragma"
         FindingList.append(
             Finding(
                 SourcePath,
@@ -1227,36 +1201,16 @@ def CheckSplits(
     return FindingList
 
 
-# path based exemptions exist because license steering explicitly excludes two repository areas
-def IsHeaderExempt(SourcePath: FilePath) -> bool:
-    return any(PartText in {".kiro", "examples"} for PartText in SourcePath.parts)
-
-
-# exact prefix comparison prevents invalid notices because altered licensing immediately breaks compliance
-def CheckHeader(SourcePath: FilePath, SourceText: str) -> list[Finding]:
-    if IsHeaderExempt(SourcePath):
-        return []
-    SourceLines = SourceText.splitlines()
-    HeaderLines = KPythonHeader.splitlines()
-    StartIndex = 1 if SourceLines and SourceLines[0].startswith("#!") else 0
-    ActualLines = SourceLines[StartIndex : StartIndex + len(HeaderLines)]
-    if ActualLines == HeaderLines:
-        return []
-    MsgText = "file must begin with the exact HEADER_NOTICE python comment block"
-    return [Finding(SourcePath, StartIndex + 1, 1, "SPX001", MsgText)]
-
-
 # encoded source loading uses python rules because source files may declare alternate encodings
 def ReadSource(SourcePath: FilePath) -> str:
     with Tokenize.open(SourcePath) as SourceFile:
         return SourceFile.read()
 
 
-# one source pipeline preserves header diagnostics even when python syntax is invalid
 def CheckSource(SourcePath: FilePath, SourceText: str) -> list[Finding]:
     if HasSkippedPart(SourcePath, SourcePath.parent):
         return []
-    FindingList = CheckHeader(SourcePath, SourceText)
+    FindingList: list[Finding] = []
     try:
         SyntaxTree = AstLib.parse(SourceText, filename=str(SourcePath))
     except SyntaxError as ErrorInfo:

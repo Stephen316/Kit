@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Sketch arc layout in `Contents/Config-0-ResolvedFeatures` — recovered by runtime differential
 
 Supersedes the negative result in `Arc.md` §3/§4. `Arc.md` concluded a partial arc could not be

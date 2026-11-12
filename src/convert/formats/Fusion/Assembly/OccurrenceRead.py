@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Assembly.OccurAttributes import ReadOccurAttrs
 from convert.formats.Fusion.Assembly.OccurRecord import OccurRecord
 from convert.formats.Fusion.Assembly.OccurTransform import ReadOccurMatrix

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.core.Common import FreezeMapping, KJsonScalar, KJsonValue
 from interchange.enums.EnumDocument import Capability, Severity
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.NativePlane import KPlaneObject
 from convert.formats.Fusion.PlaneAxes import ReadPlaneAxes

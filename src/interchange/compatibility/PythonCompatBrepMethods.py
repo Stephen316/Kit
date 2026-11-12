@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from inspect import Signature as FuncSig
 
 from interchange.compatibility.PythonCompatMethods import BindAliasMut, MakeParam

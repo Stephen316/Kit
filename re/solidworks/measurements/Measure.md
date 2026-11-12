@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Donors awaiting a SOLIDWORKS measurement
 
 `Donor.measured` is flipped by hand only after a part written from that donor has been opened in

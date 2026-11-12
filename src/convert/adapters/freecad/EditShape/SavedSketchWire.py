@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.freecad.EditShape.Sketch.MatchWireEdges import IsEdgeMatch
 from convert.adapters.freecad.EditShape.Sketch.SavedWireData import ReadSavedWire
 from convert.adapters.freecad.EditShape.Sketch.WireMatch import KSketchCurve

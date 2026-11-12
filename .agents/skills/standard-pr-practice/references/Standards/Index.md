@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Complete repository standards
 
 These are active parts of standard-pr-practice, not separately installed skills.
@@ -13,14 +8,13 @@ copies of Kiro steering; their original source versions remain available for
 provenance. Read each rule set relevant to the task, using the routing table in
 `../../SKILL.md`.
 
-The content of each original file is preserved byte for byte after its notice
-and provenance wrapper. The original files, paths, modes, and bytes also exist
-in [OriginalStandards.zip](../../assets/OriginalStandards.zip), which is a
-provenance artifact and is never extracted or installed as additional skills.
+The readable files retain the original content except for the retired file
+notice policy. The pinned Git commit preserves the original files, paths,
+modes, and bytes.
 [Manifest.json](Manifest.json) records the original Git blob, SHA-256, size, and
 current location for every file, pinned to source commit
 `bc47bd1a43916f664a11e3be9698b36ec723d8d2`. Remote CI verifies the complete source
-inventory against that commit and checks both the archive and readable copies.
+inventory against that commit and checks the remaining readable copies.
 
 ## Precedence and path resolution
 
@@ -94,7 +88,6 @@ have been invented or represented as available.
 | `react-doctor`              | [ReactDoctor](Portable/ReactDoctor.md)                         | [ReactDoctor](Kiro/ReactDoctor.md)                         |
 | `repository-structure`      | [RepositoryStructure](Portable/RepositoryStructure.md)         | [RepositoryStructure](Kiro/RepositoryStructure.md)         |
 | `shadcn-pages`              | [ShadcnPages](Portable/ShadcnPages.md)                         | [ShadcnPages](Kiro/ShadcnPages.md)                         |
-| `spdx-header`               | [SpdxHeader](Portable/SpdxHeader.md)                           | [SpdxHeader](Kiro/SpdxHeader.md)                           |
 | `split-large-definitions`   | [SplitLargeDefinitions](Portable/SplitLargeDefinitions.md)     | [SplitLargeDefinitions](Kiro/SplitLargeDefinitions.md)     |
 | `user-owned-workspace`      | [UserOwnedWorkspace](Portable/UserOwnedWorkspace.md)           | [UserOwnedWorkspace](Kiro/UserOwnedWorkspace.md)           |
 | `workos-token-verification` | [WorkosTokenVerification](Portable/WorkosTokenVerification.md) | [WorkosTokenVerification](Kiro/WorkosTokenVerification.md) |

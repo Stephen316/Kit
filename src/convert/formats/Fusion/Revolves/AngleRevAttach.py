@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from collections.abc import Callable
 from dataclasses import replace as Replace
 from math import isclose as IsClose, tau as FullTurn

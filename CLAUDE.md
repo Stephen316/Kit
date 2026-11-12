@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Agent guidance
 
 Follow [AGENTS.md](AGENTS.md). Agents MUST activate the repository's only skill,

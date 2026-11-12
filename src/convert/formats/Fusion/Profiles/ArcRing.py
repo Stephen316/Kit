@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from math import cos as Cosine, dist as Distance, isclose as IsClose
 from math import (
     isfinite as IsFinite,

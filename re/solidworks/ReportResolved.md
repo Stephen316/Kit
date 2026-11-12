@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `Core.py` findings: feature flag words and the arc/circle record
 
 Scope: `src/convert/adapters/solidworks/resolved/Core.py` and `tests/convert/solidworks/resolved/SolidworksResolvedTests.py` only.

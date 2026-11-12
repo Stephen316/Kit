@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from tests.convert.api.InputCases import KInputCases
 from typing import cast as CastValue
 from io import BytesIO as ByteStream

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 import ast as AstLib
 
 from tests.convert.runtime.RuntimeAstRules import CheckNode
@@ -26,17 +23,6 @@ def CheckNoPass() -> None:
         assert not any(
             isinstance(NodeData, AstLib.Pass) for NodeData in AstLib.walk(SyntaxTree)
         ), SourcePath
-
-
-# every production module retains the legal notice required by repository licensing
-def CheckHeaders() -> None:
-    ExpectedLines = (
-        "# SPDX-License-Identifier: MIT",
-        "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt",
-    )
-    for SourcePath in KSourcePath.rglob("*.py"):
-        SourceLines = SourcePath.read_text(encoding="utf-8").splitlines()
-        assert tuple(SourceLines[: len(ExpectedLines)]) == ExpectedLines, SourcePath
 
 
 # wheel source stays limited to the two intentional public production packages
