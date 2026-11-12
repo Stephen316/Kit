@@ -118,6 +118,10 @@ Use the existing SOLIDWORKS segmentation and signature findings before attemptin
 Trace unfamiliar layouts only when existing evidence cannot establish their boundaries.
 Apply the matching Fusion record/metadata tools to Fusion inputs.
 Program decomposition is an existing building block, not a complete inferred-grammar compiler.
+Research generators produce isolated candidate artifacts only.
+Promote verified source and format vocabulary through the normal production review gates.
+Production build, installation and conversion must not execute generators under `re/` or import research modules.
+Place any required production generator outside `re/` before using it in a shipped build.
 
 Preserve raw observations and normalize only independently established incidental differences.
 Repeated saves help identify noise but do not authorize masking an unexplained span.
@@ -190,6 +194,11 @@ Keep same-format fixed points and normalized-byte comparisons as supporting diag
 Qualify both initial cross-format routes independently.
 Measure body count, volume, center of mass, feature history, units and applicable tolerances.
 Change a driving dimension, rebuild, save and reopen the generated output.
+For claimed complete parametric support, exercise every independent driving parameter within the qualified source scope.
+Restore each parameter and verify the original geometry after its edit.
+Independently compare all source sketch constraints, expression dependencies, references and feature states against their target counterparts.
+A single successful dimension edit cannot qualify omitted dimensions or relationships.
+Any missing required relationship blocks the affected route, even when both neutral readers omit it.
 For assemblies, verify references, placements and constraint behavior.
 Use healthy controls before and after each isolated acceptance batch.
 Missing measurements remain unavailable evidence.
