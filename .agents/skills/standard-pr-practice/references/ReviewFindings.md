@@ -27,18 +27,18 @@ Reply inside an existing review thread, then resolve it only after the finding i
 
 ## Request review for the current head
 
-After opening the PR and after each accepted push that changes its head, post one top-level PR comment whose entire body is the current `Comment` string loaded from [ReviewBot.json](../ReviewBot.json), unless that revision already has a request to or a review from the configured reviewer. Record the accepted head SHA and the request URL separately. A posted comment or reaction does not establish that a review ran. Verify the responding GitHub account or app and the revision it reviewed. Do not send a duplicate request for the same head or fall back to another reviewer.
-
-Tag the initial PR once. On later heads, a verified native run from the configured reviewer already
-queued or in progress on that exact SHA counts as an existing automatic review
-request. Follow it without posting a duplicate full re-review trigger. It remains
-pending evidence until the current-head verdict and findings are available.
+After opening the PR and after each accepted push that changes its head, submit
+each entry's Comment from [ReviewBot.json](../ReviewBot.json) verbatim as a
+separate top-level PR comment unless that reviewer already has a request or
+review for the current head. A verified native run queued or in progress on that
+SHA counts as an existing request on later heads. Record the accepted SHA and
+request URL for each reviewer. Verify the responding account or app and revision.
 
 Poll in responsive intervals around 30–60 seconds and inspect new findings promptly. Do not manufacture commits to provoke a review. Report missing integration, inaccessible evidence, or a persistently unavailable result; do not install or reconfigure the service as part of repair.
 
 ## Verify completion
 
-Require the configured reviewer's actual approval attributable to the current head, all reported findings fixed or answered with evidence, no unresolved review threads from the configured reviewer including outdated ones, and no outstanding blocking verdict. Track human-authored concerns and independently enforced conversation-resolution requirements separately; do not resolve someone else's threads through this bot-review workflow. Read the substance of the configured reviewer's own report and status indicator: a successful or neutral check with actionable findings is not a clean review. Keep approval and review evidence separate from `Pull Request / CI Agg`, whose existing provider exclusions are documented in [MergeQueue.md](../../../../MergeQueue.md). Do not add a duplicate reviewer approval workflow or invent a numeric score requirement.
+Require every configured reviewer's actual approval attributable to the current head, all reported findings fixed or answered with evidence, no unresolved review threads from the configured reviewer including outdated ones, and no outstanding blocking verdict. Track human-authored concerns and independently enforced conversation-resolution requirements separately; do not resolve someone else's threads through this bot-review workflow. Read the substance of the configured reviewer's own report and status indicator: a successful or neutral check with actionable findings is not a clean review. Keep approval and review evidence separate from `Pull Request / CI Agg`, whose existing provider exclusions are documented in [MergeQueue.md](../../../../MergeQueue.md). Do not add a duplicate reviewer approval workflow or invent a numeric score requirement.
 
 Verify the responding GitHub account or app against the integration named by
 `Comment` in [ReviewBot.json](../ReviewBot.json). Record its observed login, immutable

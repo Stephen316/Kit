@@ -73,12 +73,14 @@ from convert.adapters.freecad.Archive import (
     native_brep_key as ManifestNativeBrepKey,
     validated_archive_members as ValidatedArchiveMembers,
     validated_document_xml as ValidatedDocXml,
-    build_fcstd_archive as BuildFcstdArchive,
     extract_manifest_from_fcstd as ExtractManifestFromFcstd,
     native_expression_parts as NativeExpressionParts,
     native_shape_feature_count as NativeShapeFeatureCount,
     native_sketch_carrier_reasons as NativeSketchCarrier,
     native_sketch_parts as NativeSketchParts,
+)
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import (
+    build_fcstd_archive as BuildFcstdArchive,
 )
 from convert.adapters.freecad.Brep import (
     FreeCADBrepWriteError as FreeCadBrepWriteError,

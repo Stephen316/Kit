@@ -21,7 +21,9 @@ def BuildRevolve(
         or Operation.angle_degrees is None
     ):
         return None
-    AxisId = AxisSketchId(Operation)
+    AxisId = AxisSketchId(
+        Operation.profile_id, Operation.axis_source_kind, Operation.axis_source_id
+    )
     AxisSketch = Sketches.get(AxisId) if AxisId is not None else None
     if (
         AxisSketch is not None

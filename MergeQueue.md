@@ -21,11 +21,11 @@ settings were preserved.
 
 PRs run Python lint, formatting, types, steering, import, SPDX, path, skill, and
 workflow policies, including actionlint and Zizmor. Existing metadata labeling
-continues. Read the exact review request from `Comment` in
-[ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the only source
-of truth for the reviewer to mention. Request it once per head and address every
-finding from its verified account or app on that revision. The configured reviewer
-must submit an actual `APPROVED` review on that exact head. No human or code-owner
+continues. Read the reviewer identities, exact requests, and required reports from the
+Reviewers array in
+[ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json).
+Request each reviewer once per head and verify its native reports and actual
+APPROVED review on that head. Address every finding. No human or code-owner
 approval is required by the agent workflow; independently enforced GitHub
 requirements must still be inspected and reported separately.
 
@@ -46,8 +46,7 @@ Stale results, matching display names from another app, and test-merge results
 cannot substitute. Queue aggregation does not require Greptile on the synthetic
 candidate; PR evidence reuse rechecks Greptile on each contributing PR head.
 The identities
-live in [ReviewProviders.cjs](.github/scripts/ReviewProviders.cjs); additional
-review integrations must be registered there when introduced. Display names and
+live in [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json). Display names and
 report URLs never exclude unrelated CI. The same filtering applies during PR
 aggregation, merge-group aggregation, and PR evidence reuse. The aggregate
 waits for every expected static, policy, label, and GitHub-managed Code Quality
@@ -122,7 +121,7 @@ The `Scorecard` job uses the checksum-pinned OpenSSF Scorecard CLI instead of
 default repository scan and then the commit-compatible checks against the exact
 `merge_group.head_sha`. The second scan supplements the repository scan because
 commit-specific mode omits checks that cannot evaluate arbitrary commits. Both
-SARIF reports are summarized in the job log, command failures fail the job, and
+JSON reports are summarized in the job log, command failures fail the job, and
 `Merge queue acceptance` still requires it. Results are not published to the
 Scorecard API. See [the repair and verification entry](Documentation/Changes/QueueScorecard.md).
 

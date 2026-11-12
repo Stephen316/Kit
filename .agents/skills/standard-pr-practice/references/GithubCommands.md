@@ -85,13 +85,13 @@ GitHub review submissions carry `commit_id`, comments can link their original/cu
 ## Trigger, answer, and resolve
 
 ```sh
-jq -je '.Comment | select(type == "string" and length > 0)' .agents/skills/standard-pr-practice/ReviewBot.json > /tmp/kit-review-comment.txt
+jq -je --argjson Index 0 '.Reviewers[$Index].Comment | select(type == "string" and length > 0)' .agents/skills/standard-pr-practice/ReviewBot.json > /tmp/kit-review-comment.txt
 gh pr comment 123 --repo owner/repo --body-file /tmp/kit-review-comment.txt
 gh api --method POST repos/owner/repo/pulls/123/comments/456789/replies -f body='Addressed in the accepted commit; the referenced path now enforces the documented contract'
 gh api graphql -f query='mutation($threadId:ID!){resolveReviewThread(input:{threadId:$threadId}){thread{id isResolved}}}' -F threadId=PRRT_exampleNodeId
 ```
 
-Run the example commands separately from the repository root. The first loads `Comment` from [ReviewBot.json](../ReviewBot.json); proceed only if it succeeds, and use a task-owned temporary file. Submit that loaded string as the entire top-level comment to request review after opening the PR and after each new head. Check for an existing request or result first. Use [ReviewFindings.md](ReviewFindings.md) for revision attribution and completion rules. Finding replies must contain observed evidence rather than blindly copying the example. For a top-level report without review threads, post one concise finding-by-finding response linking the report, accepted fix SHA, and verification evidence; do not pretend an issue comment has a thread-resolution API. Resolve only threads from the configured reviewer with genuinely addressed findings; do not dismiss a blocking review or use resolution to hide a defect.
+Run the example commands separately from the repository root. The first loads one reviewer comment by array index from [ReviewBot.json](../ReviewBot.json); proceed only if it succeeds, and use a task-owned temporary file. Submit that loaded string as the entire top-level comment to request review after opening the PR and after each new head. Repeat for each configured index, checking for an existing request or result on that head first. Use [ReviewFindings.md](ReviewFindings.md) for revision attribution and completion rules. Finding replies must contain observed evidence rather than blindly copying the example. For a top-level report without review threads, post one concise finding-by-finding response linking the report, accepted fix SHA, and verification evidence; do not pretend an issue comment has a thread-resolution API. Resolve only threads from the configured reviewer with genuinely addressed findings; do not dismiss a blocking review or use resolution to hide a defect.
 
 ## Conflict mechanics and read-only merge state
 

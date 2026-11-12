@@ -35,10 +35,10 @@ jobs:
           cache-dependency-glob: uv.lock
 
       - name: Synchronize the locked environment
-        run: uv sync --frozen --all-groups --all-extras --python 3.11
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
 
       - name: Run all tests
-        run: uv run pytest
+        run: uv run --no-sync --python 3.14 pytest
 
   analyze:
     if: github.event_name == 'merge_group'
@@ -520,24 +520,27 @@ jobs:
       - name: Run OSSF Scorecard supply-chain audit
         env:
           GITHUB_AUTH_TOKEN: ${{ github.token }}
-          ENABLE_SARIF: "true"
           RepositoryName: ${{ github.repository }}
           CandidateSha: ${{ github.event.merge_group.head_sha }}
         run: |
           set -euo pipefail
           "${RUNNER_TEMP}/scorecard" --repo="github.com/${RepositoryName}" \
-            --format=sarif --show-details > Scorecard.sarif
+            --format=json --show-details > Scorecard.json
           "${RUNNER_TEMP}/scorecard" --repo="github.com/${RepositoryName}" \
-            --commit="${CandidateSha}" --format=sarif --show-details > ScorecardCandidate.sarif
+            --commit="${CandidateSha}" --format=json --show-details > ScorecardCandidate.json
 
       - name: Summarize Scorecard results
+        env:
+          CandidateSha: ${{ github.event.merge_group.head_sha }}
         run: |
           set -euo pipefail
-          for ReportPath in Scorecard.sarif ScorecardCandidate.sarif; do
-            jq --slurp --exit-status 'length == 1 and all(.[]; (.runs | type == "array") and (.runs | length > 0))' "${ReportPath}"
+          for ReportPath in Scorecard.json ScorecardCandidate.json; do
+            jq --slurp --exit-status 'length == 1 and all(.[]; (.checks | type == "array") and (.checks | length > 0))' "${ReportPath}"
           done
-          jq -r '.runs[0].results[] | [.ruleId, (.message.text // "")] | @tsv' \
-            Scorecard.sarif ScorecardCandidate.sarif
+          jq --exit-status --arg CandidateSha "$CandidateSha" \
+            '.repo.commit == $CandidateSha' ScorecardCandidate.json
+          jq -r '.checks[] | [.name, .score, .reason, ((.details // []) | join("\n"))] | @tsv' \
+            Scorecard.json ScorecardCandidate.json
 
   trivy:
     if: github.event_name == 'merge_group'

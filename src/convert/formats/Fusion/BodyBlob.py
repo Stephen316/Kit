@@ -7,10 +7,12 @@ from contextlib import ExitStack
 from convert.formats.Fusion.ArchiveRead.ArchiveBounds import KArchiveLimit
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import (
-    KHistoryPrefix as KHistoryPrefix,
+    KHistoryPrefix as HistoryPrefix,
 )
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import KMaxAsmSize as KMaxAsmSize
 from convert.formats.Fusion.Topology.BodyAsmMap import KAsmName
+
+KHistoryPrefix = HistoryPrefix
 
 
 # standalone body lookups retain their own error mapping for bad archive framing

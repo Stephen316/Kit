@@ -24,9 +24,12 @@ from convert.geometry.Formula.FormulaTokens import FormulaAtom, KNamePattern, Re
 from convert.geometry.Formula.FormulaUnits import (
     KFormulaUnits,
     KQuantity,
-    IsMatchingQty as IsMatchingQty,
+    IsMatchingQty as MatchesQuantity,
 )
 from interchange.records.RecordParameter import ParameterValue
+
+IsMatchingQty = MatchesQuantity
+
 
 # built in constants and unit names cannot serve as unambiguous parameter names
 KReservedNames = frozenset((*KFormulaUnits, "pi", "e", "true", "false"))

@@ -9,7 +9,7 @@ from dataclasses import replace as Replace
 from json import loads as LoadJson
 from xml.etree.ElementTree import fromstring as ParseXml  # noqa: DUO107
 
-from convert.adapters.freecad.Archive import BuildDocXmlMut
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildDocXmlMut
 from convert.adapters.freecad.EditDatum.DatumBinding import KDatumBinding, KDatumGroup
 from convert.adapters.freecad.EditDatum.DatumPlan import ReadDatumPlan
 from interchange.features.FeatureBoundPlane import BoundDatum
