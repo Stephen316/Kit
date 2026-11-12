@@ -30,6 +30,14 @@ jobs:
           persist-credentials: false
           ref: ${{ github.event_name == 'merge_group' && github.event.merge_group.base_sha || github.sha }}
 
+      - name: Verify package version authorization from the base branch
+        if: github.event_name == 'pull_request_target'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { CheckPullBase } = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CheckPullBase.cjs`);
+            await CheckPullBase(github, context);
+
       - name: Aggregate all applicable CI
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
