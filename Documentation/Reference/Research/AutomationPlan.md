@@ -135,7 +135,9 @@ Use Python with uv and an initial Python 3.14 research environment for ZIP Zstan
 Keep the existing SDK compatibility requirements unchanged.
 Research orchestration belongs under proposed `re/Automation/`; the production SDK must not import it.
 
-Use SQLite for transactional job metadata and content-addressed files for large immutable artifacts.
+SQLite and content-addressed artifacts are proposed implementation choices for A01 and A03, not new repository-wide standards.
+Record any evidence-based revision to those choices in the step register and PR comments.
+The proposed controller uses SQLite for transactional job metadata and files for large immutable artifacts.
 A single controller owns database writes and workers return structured results.
 Bind SQL parameters and validate all external job records.
 
