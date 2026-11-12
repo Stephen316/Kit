@@ -1,8 +1,10 @@
 from importlib.metadata import distribution as GetPackage
+import re as RegexLib
 
 import tomllib as TomlLib
 
 from convert import convert as ConvertLegacy
+from convert.api.ApiContext import KAdapterRegistry
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
@@ -51,6 +53,23 @@ def CheckReadme() -> None:
     assert "convert(source, destination)" in ReadmeText
     assert "allow_carrier=False" in ReadmeText
     assert "without requiring CAD software" in ReadmeText
+
+    ReadmeSuffixes = {
+        SuffixText.casefold()
+        for RowText in ReadmeText.splitlines()
+        if RowText.startswith("|")
+        and RowText.split("|")[-2].strip() == "Reader and writer"
+        for SuffixText in RegexLib.findall(r"`(\.[A-Za-z0-9]+)`", RowText)
+    }
+    ReaderSuffixes, WriterSuffixes = (
+        {
+            SuffixText.casefold()
+            for AdapterData in AdapterSet
+            for SuffixText in AdapterData.info.extensions
+        }
+        for AdapterSet in (KAdapterRegistry.readers(), KAdapterRegistry.writers())
+    )
+    assert ReadmeSuffixes == ReaderSuffixes & WriterSuffixes
 
     LicenseText = (KRootPath / "LICENSE").read_text(encoding="utf-8")
     assert "MIT License" in LicenseText

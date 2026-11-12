@@ -22,6 +22,7 @@ Use meaningful integration, compatibility, smoke, end-to-end, and repository pol
 ## PR and queue evidence
 
 PR checks cover the configured static and policy scope.
+The workflow quality job checks README API examples and format claims on PRs and pushes to `main`.
 The merge queue runs heavy acceptance and security checks on its candidate revision.
 A green PR acceptance check can record deferral.
 It does not mean that the heavy candidate checks ran.
