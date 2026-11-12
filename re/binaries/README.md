@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # The four SOLIDWORKS binaries every finding in `re/solidworks/` was derived from
 
 ## The binaries in this directory are tracked — read this first

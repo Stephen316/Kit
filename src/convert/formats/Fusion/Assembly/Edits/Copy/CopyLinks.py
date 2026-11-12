@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Assembly.Edits.AsmEditIndex import AsmEditIndex
 from convert.formats.Fusion.Assembly.Edits.AsmEditOccur import HasSameMatrix
 from convert.formats.Fusion.Assembly.OccurTransform import ReadOccurMatrix

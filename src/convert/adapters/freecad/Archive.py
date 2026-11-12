@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations as Annotations
 from interchange.geometry.models.VectorSpace import SpaceVector
 from collections.abc import Callable, Sequence as ValueSequence

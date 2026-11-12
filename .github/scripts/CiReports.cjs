@@ -1,6 +1,3 @@
-// SPDX-License-Identifier: MIT
-// SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 const Fs = require("node:fs");
 const Path = require("node:path");
 const Crypto = require("node:crypto");

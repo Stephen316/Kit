@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Read-path defects: revolves in `src/convert/adapters/solidworks/`
 
 **Nothing in `src/` was modified.** This is a defect list for the agent that owns `src/`.

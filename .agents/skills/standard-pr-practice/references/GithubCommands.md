@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # GitHub and Git mechanics
 
 Use observed owners, repositories, PR numbers, refs, SHAs, paths, IDs, and the actual Git host in place of examples. Use first-party tools when preferred and available; otherwise run each `gh` command in its own shell call containing only that command. No pipes, redirects, shell variables, command substitution, or chained commands. Parse outputs separately. `gh api` uses explicit repository paths and accepts `--hostname` for GitHub Enterprise; ordinary `gh pr` commands use the correct `--repo` target. Consult installed help and current official docs for unfamiliar flags or schemas.

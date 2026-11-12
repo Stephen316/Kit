@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.freecad.EditExtSolid import BuildEditSolid, KEditProfile
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.features.FeatureBody import DesignBody

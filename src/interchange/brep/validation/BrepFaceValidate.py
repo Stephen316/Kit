@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.brep.topology.BrepMath import IsValidTol
 from interchange.brep.validation.BrepView import BrepView
 from interchange.brep.validation.BrepWholeFaces import GetWholeFaces

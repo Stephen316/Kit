@@ -1,6 +1,3 @@
-// SPDX-License-Identifier: MIT
-// SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 const { Aggregate } = require("../../../.github/scripts/CiReports.cjs");
 const { BuildReports } = require("./ReportInputs.cjs");
 const Inputs = BuildReports(process.argv[2], process.argv[3], process.argv[4]);

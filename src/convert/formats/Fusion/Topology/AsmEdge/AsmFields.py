@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, AsmTable
 from interchange.geometry.models.VectorSpace import SpaceVector
 

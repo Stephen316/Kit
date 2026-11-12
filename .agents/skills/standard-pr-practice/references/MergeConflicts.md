@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Conflict follow-up
 
 Read this when the task's opened PR becomes conflicting or an explicitly targeted existing Git operation needs completion. Keep working in the task's isolated worktree. Use [GithubCommands.md](GithubCommands.md) for exact target and verification queries.

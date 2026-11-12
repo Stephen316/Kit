@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from typing import Mapping as TypeMap
 
 from interchange.assembly.AssemblyData import AssemblyData  # lgtm[py/cyclic-import]

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Assembly.Solids.CreatorScopes import ReadAsmScopes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtAttach import AttachPlaneExt
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtRead import ReadPlaneExt

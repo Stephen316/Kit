@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import cos as Cosine, hypot as Hypot, isclose as IsClose, sin as SineValue
 
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditFloat

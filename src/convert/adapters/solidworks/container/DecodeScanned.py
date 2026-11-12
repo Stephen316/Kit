@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from struct import unpack_from as UnpackFrom
 from convert.adapters.solidworks.container.DecodeName import DecodeName
 from convert.adapters.solidworks.container.DecodePayload import DecodePayload

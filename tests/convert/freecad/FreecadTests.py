@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations as Annotations
 import base64 as BaseSixFour
 from collections.abc import Callable as FuncCall, Mapping, Sequence

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from base64 import b64decode as DecodeBase
 from binascii import Error as BaseError
 from collections.abc import Mapping

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Reverse-engineering a proprietary CAD format — the reusable playbook
 
 Distilled from cracking the SOLIDWORKS 2025 part format well enough to write files SOLIDWORKS opens

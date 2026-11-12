@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from collections.abc import Iterator
 from contextlib import contextmanager as ContextManager
 from pathlib import Path as FilePath

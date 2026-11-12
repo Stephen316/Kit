@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.brep.surfaces.BrepSurfaces import BrepSurface
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.brep.topology.BrepTopology import (

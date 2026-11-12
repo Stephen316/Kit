@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Follow up on automated reviews
 
 Address every finding from every verified account or app listed in `Reviewers` loaded from [ReviewBot.json](../ReviewBot.json), including advisory findings, top-level comments, and findings in neutral checks. Every listed reviewer must pass and approve; one reviewer cannot clear another reviewer’s gate. Use [GithubCommands.md](GithubCommands.md) for paginated inventory, replies, and thread resolution.

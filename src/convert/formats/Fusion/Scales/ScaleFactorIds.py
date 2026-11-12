@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.BodyInputs.ScaleControls import ScaleControls
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.BoundScaleValues import ReadScaleFactor

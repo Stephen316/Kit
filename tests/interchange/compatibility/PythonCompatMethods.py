@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 # historical method identities stay explicit because reflection includes defining class and module
 KPythonCompatMethods = (
     (

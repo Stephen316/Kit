@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.brep.validation.BrepBodyValidate import GetBodyErrors
 from interchange.brep.validation.BrepCurveValidate import GetCurveErrors
 from interchange.brep.validation.BrepEdgeValidate import GetEdgeErrors

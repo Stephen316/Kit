@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Direct answers to the seven open questions
 
 Confidence words are used exactly as in `Serialize.md`: **confirmed** = decompiled _and_

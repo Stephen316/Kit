@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `Contents/Config-0-ResolvedFeatures` — serialization grammar
 
 SOLIDWORKS 2025 (`18000`), corpus `.rescratch/corpus/parts` (31 parts) + `.rescratch/corpus2/parts`

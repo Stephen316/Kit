@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.formats.Fusion.SegmentCodec.Metadata.CheckWireHead import CheckWireHead
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaHeader import MetaHeader
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSink import MetaSink

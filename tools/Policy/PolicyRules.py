@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 
 # large directories become hard to navigate so direct ownership stays intentionally bounded
@@ -24,7 +21,6 @@ KToolPathSet = frozenset(
         ".gitleaksignore",
         ".hoplite/settings.json",
         ".kiro/settings/mcp.json",
-        "HEADER_NOTICE",
         "pyproject.toml",
         "uv.lock",
         "typings/defusedxml/__init__.pyi",

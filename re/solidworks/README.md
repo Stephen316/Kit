@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # The SOLIDWORKS story: what was cracked, what was not
 
 SOLIDWORKS 2025 (`33.5.0.0053`), `.SLDPRT` / `.SLDASM`. Everything here was derived from a licensed

@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from interchange.records.RecordProvenance import ProvenanceSpan
 from convert.formats.Fusion.Revolves.RevolvePick import RevolvePick
 from dataclasses import replace as Replace

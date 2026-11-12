@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.geometry.Revolve.SweepVector import CrossVector
 from interchange.brep.curves.BrepCurves import BrepCurve, CircleCurve, LineCurve
 from interchange.brep.surfaces.BrepSurfaces import (

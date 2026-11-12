@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.SegmentCodec.Act.CheckActKey import CheckActKey
 from convert.formats.Fusion.SegmentCodec.Act.EmitActTokens import EmitActRolesMut
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSink import MetaSink

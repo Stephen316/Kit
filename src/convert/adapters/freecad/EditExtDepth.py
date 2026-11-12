@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.freecad.FormulaSheet.EditFormula import IsEditFormula
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from interchange.features.DistanceValues import GetDistValues

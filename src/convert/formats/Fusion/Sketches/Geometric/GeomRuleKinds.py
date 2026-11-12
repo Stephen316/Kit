@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from interchange.enums.EnumGeometry import ConstraintKind, GeometryKind
 
 # the recovered binary codes identify exact constraint semantics for supported roles

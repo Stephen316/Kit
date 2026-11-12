@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 # metadata follows the same member limit as the native fusion archive reader
 KMaxMetaSize = 64 * 1024 * 1024
 

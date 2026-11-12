@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from email.parser import BytesParser as MailParser
 from email.policy import default as DefaultPolicy
 from zipfile import ZipFile

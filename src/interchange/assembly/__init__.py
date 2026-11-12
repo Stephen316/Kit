@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.assembly.AssemblyData import AssemblyData
 from interchange.assembly.AssemblyEnums import (
     ComponentKind,

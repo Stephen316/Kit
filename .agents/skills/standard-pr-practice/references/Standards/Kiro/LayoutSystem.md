@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.kiro/steering/LayoutSystem.md`
 
 # Layout System — Use globals.css, Never Hand-Roll Layout

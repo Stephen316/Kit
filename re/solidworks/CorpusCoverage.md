@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # FCStd to SOLIDWORKS corpus coverage
 
 Status: **partial, measured, and fail-closed**. Kit does not yet translate every FCStd in the

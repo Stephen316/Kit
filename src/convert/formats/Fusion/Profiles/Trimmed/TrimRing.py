@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import cos as Cosine, dist as Distance, sin as SineValue
 
 from convert.formats.Fusion.Profiles.Trimmed.TrimPortion import TrimPortion

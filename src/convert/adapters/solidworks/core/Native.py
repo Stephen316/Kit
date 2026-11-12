@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations as Annotations
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from collections.abc import Callable

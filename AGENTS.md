@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Agent guidance
 
 ## Documentation and gotchas
@@ -51,8 +46,7 @@ read its complete standards index and every applicable rule before coding.
 - Use `Pull Request / CI Agg` for overall CI health. Register every applicable
   PR and merge-queue CI job in the [CI allowlist](.github/scripts/CiAllowlist.cjs).
   Keep automated review out of the allowlist and its workflows. Reuse healthy
-  PR reports in the queue only with verified identical inputs. Header and
-  change-range verification and heavy acceptance always execute on the candidate.
+  PR reports in the queue only with verified identical inputs. Change-range verification and heavy acceptance always execute on the candidate.
 - Read every entry in `Reviewers` from
   [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the sole
   source of reviewer identities, report names, and exact request comments.
@@ -72,15 +66,14 @@ read its complete standards index and every applicable rule before coding.
 - Use Python for backend work, React for frontend work, and `uv` for Python
   dependencies outside `Parashell/` and `modules/`.
 - Do not add code comments or comment-oriented docstrings. Preserve required
-  license notices. Use `license: MIT` in skill frontmatter, the exact
-  `HEADER_NOTICE` for other comment-capable new files, and pinned Actions and
-  runner versions.
+  standalone licenses and third-party attribution. Use `license: MIT` in skill
+  frontmatter and pin Actions and runner versions.
 - Keep chat lowercase, extremely concise, without emojis or terminal full
   stops. These response rules do not constrain artifacts.
 
 The repository-root `re/` tree remains an unrestricted research workspace,
 exempt from code standards and unit-test requirements, including naming,
-formatting, typing, imports, rationale comments, SPDX headers, declaration
+formatting, typing, imports, rationale comments, declaration
 splitting, architecture, and directory density. This applies only to `re/` and
 its descendants; code promoted into other directories follows their normal
 rules. Git isolation and preservation of user-owned work still apply.

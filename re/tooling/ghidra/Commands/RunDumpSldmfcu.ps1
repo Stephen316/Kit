@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 $ErrorActionPreference = "Stop"
 $env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-21.0.12.8-hotspot"
 $env:GHIDRA_HEADLESS_MAXMEM = "8G"
@@ -14,5 +11,3 @@ $log = Join-Path $root "logs\dump_sldmfcu.log"
     -postScript DumpRefs.java (Join-Path $root "out\SldmfcuSigtableRefs.txt") 3cf5a440 3cf5b3f0 240 `
     *>&1 | Out-File -Encoding utf8 -Append $log
 "EXIT $LASTEXITCODE" | Out-File -Encoding utf8 -Append $log
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt

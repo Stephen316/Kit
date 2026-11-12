@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # SOLIDWORKS measurements
 
 Every number below is `IModelDocExtension::GetMassProperties(1, status)[3] × 1e9` (volume, mm³)

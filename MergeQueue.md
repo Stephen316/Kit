@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Merge queue operations
 
 Kit uses GitHub's native merge queue for `main`. The desired settings live in
@@ -17,7 +12,7 @@ checked-in desired ruleset and live rules separately.
 
 ## Validation phases
 
-PRs run Python lint, formatting, types, steering, import, SPDX, path, skill, and
+PRs run Python lint, formatting, types, steering, import, path, skill, and
 workflow policies, including actionlint and Zizmor. Existing metadata labeling
 continues. Load every entry in `Reviewers` from
 [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the sole source
@@ -90,7 +85,7 @@ When that proof succeeds, eligible static jobs retain their check names but expl
 skip duplicate execution. The aggregate independently verifies reuse before
 accepting those skips. If a head, base, tree, report, or evidence artifact does
 not match, static checks execute on the candidate instead. Missing or expired
-evidence never produces a cached success. Header and change-range checks, acceptance, and heavy security always
+evidence never produces a cached success. Change-range checks, acceptance, and heavy security always
 execute on the actual merge group. No acceptance result is inferred from PR CI.
 
 On merge groups, `Merge queue acceptance` requires every heavy job to succeed.
@@ -169,8 +164,7 @@ checks as completed acceptance.
 3. Read back the returned ruleset ID and
    `gh api repos/TryUniCAD/Kit/rules/branches/main --paginate`. Verify the native
    queue is active, has no bypass actors, and requires `Merge queue acceptance`
-   and every listed static check, including the final SPDX
-   failure gate from the GitHub Actions integration (`15368`).
+   and every listed static check from the GitHub Actions integration (`15368`).
    The manifest is additive; do not replace unrelated protections.
 4. With explicit merge authorization from a verified administrator, enqueue a
    ready normal PR. Verify that GitHub creates a `merge_group` run on its

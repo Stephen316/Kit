@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `Contents/Config-0-ResolvedFeatures` — segmentation, header semantics, and the field-program debt
 
 Status: **partial by feature-family coverage, closed for the shipped programs**. The stream's tag

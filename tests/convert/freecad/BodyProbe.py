@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 # native checks distinguish cached edge order and sweep phase from volume alone
 KBodyProbe = """
 import os

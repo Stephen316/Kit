@@ -1,6 +1,3 @@
-// SPDX-License-Identifier: MIT
-// SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 const Fs = require("node:fs");
 const Path = require("node:path");
 
@@ -67,8 +64,6 @@ function BuildExpected(IsQueue, HeadSha) {
     });
     for (const Name of Workflow.jobs) {
       const Skipped =
-        Name === "Remediate missing SPDX headers" ||
-        Name === "Reject unresolved SPDX header failure" ||
         (!IsQueue && Name.startsWith("PR CI reuse (")) ||
         (!IsQueue &&
           Workflow.name === "Merge queue" &&

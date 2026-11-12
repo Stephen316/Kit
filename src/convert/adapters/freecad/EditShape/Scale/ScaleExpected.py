@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.freecad.Cylinder.CylinderFrame import NormCylinder
 from convert.adapters.freecad.EditShape.Prism.PrismExpected import (
     ExpectedPrism,

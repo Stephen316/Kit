@@ -1,12 +1,9 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 import ast as AstLib
 import hashlib as Hashlib
 from typing import Any as AnyInfo
 import black as Black
-from ProgramModel import KHeaderText, MethodData, ProgramData
+from ProgramModel import MethodData, ProgramData
 
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
@@ -52,8 +49,6 @@ def MakeAlias(ItemIndex: int) -> str:
 # needed to keep reverse engineering responsibilities isolated and maintainable
 def RenderOwner(OwnerSites: tuple[tuple[object, str], ...]) -> str:
     SourceLines = [
-        KHeaderText.rstrip(),
-        "",
         "from __future__ import annotations",
         "",
         "",
@@ -77,8 +72,6 @@ def RenderOwner(OwnerSites: tuple[tuple[object, str], ...]) -> str:
 # needed to keep reverse engineering responsibilities isolated and maintainable
 def RenderMethod(OwnerModule: str, MethodData: MethodData) -> str:
     SourceLines = [
-        KHeaderText.rstrip(),
-        "",
         "from __future__ import annotations",
         "",
         "from convert.adapters.solidworks.programs.Common.ProgramContract import KMethodProgram as KMethodProgramType",
@@ -153,8 +146,6 @@ def RenderRegistry(ProgramData: ProgramData, ModulePaths: tuple[str, ...]) -> st
     )
     OwnerConst, OpsConst = GetConstNames(ProgramData)
     SourceLines = [
-        KHeaderText.rstrip(),
-        "",
         "from __future__ import annotations",
         "",
         f"from convert.adapters.solidworks.programs.Common.ProgramComposer import {BuildName}",
@@ -382,8 +373,6 @@ def RenderManifest(
     GlobalStats: tuple[int, int, int, int, int, int],
 ) -> str:
     SourceLines = [
-        KHeaderText.rstrip(),
-        "",
         "from __future__ import annotations",
         "",
         "",

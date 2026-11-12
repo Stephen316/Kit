@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.geometry.Revolve.SweepSides import BuildSide
 from interchange.brep.surfaces.BrepSurfaces import BrepSurface, PlaneSurface
 from interchange.brep.topology.BrepTopology import (

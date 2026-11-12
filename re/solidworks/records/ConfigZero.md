@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `Contents/Config-0` — node plan, the `moDetailDefs_c` tree, and an emitted one that opens
 
 Status: **confirmed**. A constructively emitted `Contents/Config-0` was measured opening in

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Publish commit releases on pushes
 
 `Release.yml` starts when a push updates `main`. It publishes a GitHub release and its six assets for the SHA at the tip of that push. Distinct SHAs use separate concurrency groups, so a later push does not displace another commit's pending release. Manual dispatch remains available from `main` for a commit without a GitHub release.

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Writing equations, reference planes and direction axes into a donor-backed part
 
 Read-only analysis of a licensed SOLIDWORKS 2025 install. No SOLIDWORKS binary was modified.

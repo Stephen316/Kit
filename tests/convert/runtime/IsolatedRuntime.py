@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 # isolated execution proves the wheel needs no cad application or external runtime hook
 KIsolatedRuntime = r"""
 import io

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 """Hardened untrusted-XML parsing shared by every CAD adapter."""
 
 from __future__ import annotations as Annotations

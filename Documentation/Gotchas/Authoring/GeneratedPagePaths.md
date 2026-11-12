@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Generated page paths
 
 A generated export might appear ready for repository import. Numbered or lowercase project-owned stems can fail `PTH001`. Normalize the export into maintained PascalCase paths. Preserve provenance and repair links. See [publishing](../../Publishing.md).

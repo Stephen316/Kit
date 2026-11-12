@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 import argparse as Argparse
 import json as JsonData
@@ -298,9 +295,6 @@ def RenderSource(
     OwnerNames = tuple(sorted({Operation[2] for Operation in Operations}))
     OwnerIndex = {OwnerText: Index for Index, OwnerText in enumerate(OwnerNames)}
     SourceLines = [
-        "# SPDX-License-Identifier: MIT",
-        "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt",
-        "",
         "from __future__ import annotations",
         "",
         "from collections.abc import Mapping",
@@ -447,9 +441,6 @@ def FixedSourceInfo(
     OwnerNames = tuple(sorted({Operation[2] for Operation in Operations}))
     OwnerIndex = {OwnerText: Index for Index, OwnerText in enumerate(OwnerNames)}
     SourceLines = [
-        "# SPDX-License-Identifier: MIT",
-        "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt",
-        "",
         "from __future__ import annotations",
         "",
         "from collections.abc import Mapping",
@@ -521,9 +512,6 @@ def RangeSourceInfo(
     OwnerNames = tuple(sorted({Operation[2] for Operation in SelectedOperations}))
     OwnerIndex = {OwnerText: Index for Index, OwnerText in enumerate(OwnerNames)}
     SourceLines = [
-        "# SPDX-License-Identifier: MIT",
-        "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt",
-        "",
         "from __future__ import annotations",
         "",
         "from .config0_program import EncodeField",

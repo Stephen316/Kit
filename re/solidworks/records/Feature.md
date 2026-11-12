@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # The `moNode_c` / `moFeature_c` / `moModelFeature_c` base chain
 
 The record that every feature in `Contents/Config-0-ResolvedFeatures` opens with, recovered from

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.MetaIndex import SegmentKind

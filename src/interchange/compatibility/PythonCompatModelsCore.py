@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from typing import Mapping as TypeMap
 
 # historical core model identity keeps pickle globals stable across internal splits

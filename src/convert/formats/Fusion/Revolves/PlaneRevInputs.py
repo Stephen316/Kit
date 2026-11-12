@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.base.WriteValidate import IsObjectTuple
 from convert.formats.Fusion.Revolves.RevProfile import ReadRevProfile
 from interchange.features.FeatureStep import FeatureStep

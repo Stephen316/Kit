@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `re/` — reverse-engineering workspace
 
 Durable reverse-engineering findings and tooling for native CAD formats. The SOLIDWORKS

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.document.models.DocumentCaps import GetRetainedCaps, InferCaps
 from interchange.document.models.DocumentError import DocumentError
 from interchange.document.models.DocumentFilter import FilterDocument

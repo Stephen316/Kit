@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from collections import Counter
 
 from convert.formats.Fusion.Assembly.AssemblyHistory import KContainerGuid, HistoryLink

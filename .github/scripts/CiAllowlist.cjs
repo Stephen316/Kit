@@ -1,6 +1,3 @@
-// SPDX-License-Identifier: MIT
-// SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 const WorkflowRoot = ".github/workflows/";
 const WorkflowPath = WorkflowRoot + "PullRequest.yml";
 const QueuePath = WorkflowRoot + "MergeQueue.yml";
@@ -46,17 +43,6 @@ const StaticChecks = {
   "WorkflowPins.yml": {
     required: ["Verify immutable workflow dependencies"],
     preflight: "PR CI reuse (Workflow pins)",
-  },
-  "SpdxHeaders.yml": {
-    required: [
-      "Verify changed file headers",
-      "Reject unresolved SPDX header failure",
-    ],
-    optional: ["Remediate missing SPDX headers"],
-    skip: [
-      "Remediate missing SPDX headers",
-      "Reject unresolved SPDX header failure",
-    ],
   },
   "RationaleComments.yml": {
     required: ["Verify rationale comments on changed sources"],

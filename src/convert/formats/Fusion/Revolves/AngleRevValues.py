@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.RevolveSpan import GetAngleSpan
 from interchange.records.RecordParameter import Parameter

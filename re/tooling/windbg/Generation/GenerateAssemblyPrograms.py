@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 import argparse as Argparse
 import json as JsonData
@@ -356,9 +353,6 @@ def RenderSource(Programs: dict[str, list[tuple[int, int, str, str, AnyInfo]]]) 
     )
     OwnerIndex = {OwnerText: Index for Index, OwnerText in enumerate(OwnerNames)}
     SourceLines = [
-        "# SPDX-License-Identifier: MIT",
-        "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt",
-        "",
         "from __future__ import annotations",
         "",
         "from collections.abc import Mapping",

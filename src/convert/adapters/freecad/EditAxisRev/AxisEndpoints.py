@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from math import hypot as Hypot, isfinite as IsFinite
 
 from convert.adapters.freecad.EditAxisRev.AxisPrimitives import (

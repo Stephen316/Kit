@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from math import isfinite as IsFinite
 from re import fullmatch as MatchFull
 from struct import unpack as Unpack

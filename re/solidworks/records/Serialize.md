@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Per-class field layouts of `Contents/Config-0-ResolvedFeatures`, recovered from the code
 
 Source: Ghidra 12.1.2 headless decompilation of `swccu.dll`, `sldarchiveu.dll`, `sldmodu.dll` and

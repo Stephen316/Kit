@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 original source: `.kiro/steering/LosslessTranslation.md`
 
 # THE ONLY ACCEPTANCE CRITERION: LOSSLESS, VENDOR LOADABLE, APPLICATION USABLE, PARAMETRIC

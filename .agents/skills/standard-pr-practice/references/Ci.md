@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # CI follow-up
 
 Read this when inventorying an opened PR's CI or repairing a failure. [GithubCommands.md](GithubCommands.md) contains the exact queries. Acceptance and heavy security workflows are deferred on PRs and required on merge-group candidates. Deferred jobs are not missing PR checks and are not passing acceptance evidence. The scope is this task's PR head and its applicable test-merge or merge-group revisions, never direct repair of main.

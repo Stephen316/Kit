@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from pathlib import Path as FilePath
 from tempfile import TemporaryDirectory as TempDirectory
 from xml.etree.ElementTree import Element, fromstring as ParseXml

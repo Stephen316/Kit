@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from collections.abc import Iterable as IterableBase
 from typing import cast as CastValue
 from typing import Iterable as ValueIterable

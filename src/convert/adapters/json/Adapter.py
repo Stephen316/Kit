@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.base.AdapterInfo import AdapterInfo
 from convert.adapters.base.ContractTypes import KSourceType as Source
 from convert.adapters.base.ContractTypes import KTargetType as Destination

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Revolve donors authored at swVersion 18000, and what the graded family pinned
 
 This document records a SOLIDWORKS 2025 (`RevisionNumber` 33.5.0) authoring session that replaces

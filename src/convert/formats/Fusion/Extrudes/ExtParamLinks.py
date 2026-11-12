@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.Extrudes.NativeExtrude import NativeExtrude
 from interchange.features.FeatureStep import FeatureStep
 from interchange.records.RecordParameter import Parameter

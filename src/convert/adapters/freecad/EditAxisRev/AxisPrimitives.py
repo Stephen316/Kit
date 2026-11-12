@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.formats.Fusion.DesignZip import KDesignPrefix
 from convert.formats.Fusion.Sketches.SketchPrimitive import KSketchKinds
 from interchange.brep.topology.BrepMath import IsFinitePlane

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from re import compile as CompilePattern
 
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive

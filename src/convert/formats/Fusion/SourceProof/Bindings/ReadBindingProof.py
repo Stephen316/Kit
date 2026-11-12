@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.NativeParam import NativeParam
 from convert.formats.Fusion.NumericParam import KParamGuid
 from convert.formats.Fusion.ParamProjection import ParamOrigin, ParamQuantity

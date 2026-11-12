@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
 
 # saved contrasts distinguish input order from body inventory and creator order

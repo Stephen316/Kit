@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from __future__ import annotations
 import json as JsonData
 from pathlib import Path as PathInfo
@@ -49,7 +46,7 @@ KVisualStates = "ThirdPtyStore/VisualStates"
 KStreams = (KResolved, KCmgrInfo, KModelHeader, KConfigZero, KVisualStates)
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
-KPreamble = "$$ SPDX-License-Identifier: MIT\n$$ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt\n.symopt+0x4000\n.symopt-0x20000\n.exepath+ {solidworks}\n.reload /f swccu.dll\n"
+KPreamble = ".symopt+0x4000\n.symopt-0x20000\n.exepath+ {solidworks}\n.reload /f swccu.dll\n"
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
 KBreakpoint = 'bp swccu!su_CArchive::{routine} ".if ({guard}) {{ .printf \\"{tag} %p %x %d %p %x\\\\n\\", poi(@rcx+{start:#x}), poi(@rcx+{cur:#x})-poi(@rcx+{start:#x}), dwo(@rcx+{map:#x}), @rsp, poi(@rcx+{max:#x})-poi(@rcx+{start:#x}) }}; gc"\n'

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.geometry.models.VectorPlane import PlaneVector
 
 # binary sketch coordinates share a power of two denominator for exact predicates

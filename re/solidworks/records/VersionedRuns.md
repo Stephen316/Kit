@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Version-gated and absorption-hidden runs
 
 PARA-417. This records the per-class serialized field layouts recovered for the classes that carried

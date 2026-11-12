@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import ReadPrismRaw
 from convert.adapters.freecad.EditShape.PrismShape import IsPrismMatch, KMaxPrismBytes
 from convert.adapters.freecad.EditShape.Scale.ScaleExpected import ScaleExpected

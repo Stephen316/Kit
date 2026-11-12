@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from tests.convert.freecad.BodyProbe import KBodyProbe
 from os import environ as Environment
 from pathlib import Path as FilePath

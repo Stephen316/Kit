@@ -1,7 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
-
 from convert.adapters.freecad.Archive import JsonProp
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from convert.adapters.freecad.EditRead.Formula.SheetScaffold import (

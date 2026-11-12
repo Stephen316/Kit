@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.freecad.EditRead.EditObjects import RequireEditObj
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from convert.adapters.freecad.EditRead.EditSketch import CheckEditSketch

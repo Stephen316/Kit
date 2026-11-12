@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # `sg*` sketch-geometry record layouts
 
 Source: Ghidra 12.1.2 headless decompilation of `sldmodu.dll` from the licensed SOLIDWORKS 2025

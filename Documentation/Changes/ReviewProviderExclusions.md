@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Review provider exclusions
 
 [The CI allowlist](CiReviewerExclusions.md) supersedes this provider-based implementation.

@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Runtime instrumentation of the SOLIDWORKS feature-stream reader
 
 Goal: confirm the record boundaries and field order derived statically in `Grammar.md`, and

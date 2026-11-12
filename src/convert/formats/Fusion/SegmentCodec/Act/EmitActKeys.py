@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from struct import pack as PackValue
 
 from convert.formats.Fusion.SegmentCodec.Act.CheckActKey import CheckActKey

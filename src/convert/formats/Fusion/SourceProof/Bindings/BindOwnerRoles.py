@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.BodyInputs.ScaleControls import ReadScaleData
 from convert.formats.Fusion.NativePlane import KPlaneFeature
 from convert.formats.Fusion.RecordSpan import RecordSpan

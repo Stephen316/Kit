@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from collections.abc import Callable
 from struct import unpack_from as UnpackFrom
 from zipfile import ZipInfo

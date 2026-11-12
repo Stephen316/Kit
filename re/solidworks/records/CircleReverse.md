@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Reversed dimensioned circular boss
 
 Status: **confirmed and vendor measured** for an origin-centred diameter-driven circle followed by

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from interchange.geometry.models.Sketch import SketchEntity
 from interchange.brep.topology.BrepModel import BrepModel
 from convert.formats.Fusion.Topology.TopologyPick import TopologyPick

@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.RecordSpan import RecordSpan

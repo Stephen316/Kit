@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.adapters.freecad.EditShape.CylinderRims import IsNearPoint
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import KLocationChain, PrismRaw
 from convert.geometry.Opencascade import (

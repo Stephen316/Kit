@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from collections.abc import Mapping
 from dataclasses import dataclass as MakeDataClass
 from math import hypot as Hypot, isfinite as IsFinite

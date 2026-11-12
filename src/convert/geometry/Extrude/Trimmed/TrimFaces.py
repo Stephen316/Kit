@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.geometry.Extrude.Trimmed.TrimFace import GetTrimWall, MakeTrimFace
 from convert.geometry.Extrude.Trimmed.TrimOperand import KTrimUse
 from convert.geometry.Revolve.SweepVector import OffsetVector

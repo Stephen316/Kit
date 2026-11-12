@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # Commit releases and PyPI publishing
 
 [Release.yml](../../.github/workflows/Release.yml) builds artifacts from the exact commit that triggered the workflow. Each push to `main` publishes a GitHub release with the full SHA as its title, a `commit-<sha>` tag pointing at that commit, and the commit's author, committer, dates, and message as the description. It attaches `Kit-<sha>.zip` and `Kit-<sha>.tar.gz`, plus one `.SHA256` and one `.SHA512` file per archive. The source archives omit the research workspace, including its proprietary SOLIDWORKS DLLs, and the SOLIDWORKS donor fixtures. Use a Git checkout for research or tests that need those inputs.

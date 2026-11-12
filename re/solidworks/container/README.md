@@ -1,8 +1,3 @@
-<!--
-SPDX-License-Identifier: MIT
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
--->
-
 # The container: file framing and the `file_id` -> signature table
 
 This is the outermost layer and the first one that was **completely** inverted. Nothing else matters

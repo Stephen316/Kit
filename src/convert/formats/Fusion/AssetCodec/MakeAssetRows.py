@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
-
 from convert.formats.Fusion.AssetCodec.ConfigLayout import KConfigPrefix
 from convert.formats.Fusion.AssetCodec.SegmentFrame import SegmentFrame
 from convert.formats.Fusion.AssetCodec.Zip.ZipAssetRow import ZipAssetRow
