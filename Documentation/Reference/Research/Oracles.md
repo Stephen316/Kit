@@ -3,111 +3,96 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Oracle evidence and research fixtures
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-- [re/solidworks/archive/Grammar.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)
-- [re/solidworks/features/RevolveDonorSpec.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/features/RevolveDonorSpec.md)
-- [re/solidworks/archive/Segmentation.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Segmentation.md)
-- [tests/convert/solidworks/core/SolidworksOracleTests.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tests/convert/solidworks/core/SolidworksOracleTests.py)
-</details>
+An oracle measures generated output through an isolated vendor application.
+The measurement supports acceptance only for the recorded input, output, and application version.
+Production conversion does not invoke the oracle.
 
-# Oracle Validation & Donor Fixtures
+## Before an oracle batch
 
-This page describes isolated research and validation tooling. Donor fixtures and vendor automation are research inputs only; they must not enter production conversion paths. Observations depend on the documented corpus and vendor version, and do not establish production acceptance.
+Identify the source and candidate hashes.
+Identify the vendor application build and required license.
+Select known control documents with expected measurements.
+Define units and tolerances before evaluating candidates.
+Keep execution in the authorized remote validation environment.
 
-The Oracle Validation system provides an unattended, quantitative mechanism to verify the correctness of CAD file translations by querying the original vendor application. It measures physical properties like solid volume and center of mass to provide numerical verdicts instead of simple boolean "opens" checks. This system ensures that reverse-engineered file structures maintain geometric integrity when rebuilt by the vendor software.
+## Measurement sequence
 
-Donor Fixtures are known-good CAD documents used as skeletons or templates for generating new files. They provide the necessary feature topology and class definitions that are not yet fully serializable from first principles. By patching specific parameters within these donor structures, the system can author valid CAD files for subsequent measurement in the vendor application.
+Control measurements must also follow a rebuild.
 
-## Measurement Oracle
+1. Measure the starting control.
+2. Start a fresh application process for the candidate.
+3. Open the candidate file.
+4. Record load errors.
+5. Rebuild the unchanged candidate.
+6. Record rebuild errors.
+7. Measure body count, volume, and center of mass.
+8. Record the feature tree.
+9. Change a driving dimension.
+10. Rebuild the edited model.
+11. Record rebuild errors.
+12. Measure the resulting geometry change.
+13. Close the candidate process.
+14. Measure the final control.
 
-The measurement oracle acts as the ultimate ground truth for verification. It uses the vendor's own API (such as SOLIDWORKS COM) to open files and extract quantitative physical data.
-
-### Oracle Requirements
-
-To ensure reliable results, the oracle follows these constraints:
-
-- **Quantitative Metrics**: You must use numerical values like solid volume (m³) and center of mass. Volume alone is insufficient as it cannot distinguish between plane swaps or direction flips.
-- **Process Isolation**: You must launch one fresh application process per candidate file. Malformed files can crash the application or poison the session, leading to phantom failures in subsequent batches.
-- **Control Batches**: You must run a known-good control file at the start and end of every batch. If the control fails, you must discard the entire batch.
-- **Process Hygiene**: You must sweep orphaned helper and crash-reporter processes between batches to prevent installation degradation.
-
-### Logic Flow of Oracle Verification
-
-The following diagram illustrates the verification cycle:
+Expected result: the report contains quantitative and editable-history evidence with healthy controls.
+If either control fails, discard the affected batch results.
+A file-open return value alone is insufficient.
 
 ```mermaid
 flowchart TD
-    Start[Start Batch] --> Control1[Measure Good Control]
-    Control1 --> Process{Control Valid?}
-    Process -- No --> Error[Abort Batch]
-    Process -- Yes --> Launch[Launch Fresh Vendor Process]
-    Launch --> Open[Open Candidate File]
-    Open --> Rebuild[Force Geometry Rebuild]
-    Rebuild --> Measure[Extract Mass Properties]
-    Measure --> Close[Close Process]
-    Close --> Next{More Files?}
-    Next -- Yes --> Launch
-    Next -- No --> Control2[Measure Good Control]
-    Control2 --> Final{Final Control Valid?}
-    Final -- Yes --> Success[Report Results]
-    Final -- No --> Error
+    Start[Rebuilt starting control] --> Healthy{Control valid?}
+    Healthy -- No --> Reject[Reject batch evidence]
+    Healthy -- Yes --> Candidate[Fresh candidate process]
+    Candidate --> Rebuild[Rebuild unchanged candidate]
+    Rebuild --> Measure[Geometry and history measurements]
+    Measure --> Edit[Dimension edit and rebuild]
+    Edit --> Remeasure[Measure geometry change]
+    Remeasure --> Final[Rebuilt final control]
+    Final --> Valid{Control valid?}
+    Valid -- No --> Reject
+    Valid -- Yes --> Report[Record case result]
 ```
 
-## Donor Fixture System
+The report can contain a failed candidate with healthy controls.
+Healthy controls validate the measurement environment, not the candidate itself.
 
-Donor fixtures are used when a format is not yet fully inverted. They provide a "skeleton" containing base classes and feature topologies that the system can grow, shrink, or patch.
+## Research fixtures
 
-### Patching and Topology
+A fixture can isolate one feature or field for research.
+A donor-patching experiment can help identify relationships in an undocumented record.
+That experiment is not a production writer strategy.
+Unrelated vendor bytes must not be embedded, copied, or patched into production output.
 
-A donor is essentially a one-parameter or multi-parameter template. For example, a revolve donor allows patching the revolve angle while inheriting complex properties like the centerline selection or thin-feature settings that remain opaque to the writer.
+The source document's own data can support an implemented replay path.
+Replay is still distinct from cross-format native generation.
+Keep the provenance of each byte source explicit.
 
-| Parameter      | Status       | Requirement                                                                               |
-| :------------- | :----------- | :---------------------------------------------------------------------------------------- |
-| **Geometry**   | Patchable    | Coordinate pairs can be written into coordinate records.                                  |
-| **Dimensions** | Patchable    | Scalars like depth or angle are patchable in dimension-scalar records.                    |
-| **Topology**   | Inherit Only | Boss-versus-cut operations and class sets must be inherited from a donor.                 |
-| **Caches**     | Stale Safe   | Derived caches (e.g., bounding boxes) can be left stale; the application recomputes them. |
+## Invalid conclusions
 
-### Donor Selection and Upgrade Path
+| Observation                  | Conclusion that remains unsupported           |
+| ---------------------------- | --------------------------------------------- |
+| The file opens               | Geometry and history are correct              |
+| Volume matches               | Placement and topology match                  |
+| A carrier roundtrips         | The target can edit the retained information  |
+| Bytes match the source       | A different target format preserves semantics |
+| One version rebuilds a cache | Every vendor version safely rebuilds it       |
+| Static CI passes             | Licensed vendor acceptance ran                |
 
-Donors are categorized by a topology key consisting of `(operation, profile, support, end_condition)`. When a donor from an older version is used (e.g., SOLIDWORKS version 13000 used in a version 18000 environment), the vendor application typically performs an upgrade on open, which rewrites the stream.
+## Evidence retention
 
-## Object Segmentation and Renumbering
+Store input identities, output identities, options, logs, measurements, and controls together.
+Record the actual oracle result, including unavailable measurements.
+Do not replace a failed or missing measurement with a claimed default.
+Preserve the environment version so later investigators can assess drift.
 
-Authoring structural changes in donor-based files requires understanding object boundaries within the binary stream. Many proprietary formats use MFC-style `CArchive` serialization, where class definitions and object instances are indexed.
+## Sources
 
-### Map Counter Rules
-
-The reader maintains a map counter that increments based on the type of record encountered.
-
-- **Class Definition**: Increments counter by **+2** (one for the class, one for the object).
-- **Class Reference**: Increments counter by **+1**.
-- **Object Reference**: Increments counter by **0**.
-- **Null Tag**: Increments counter by **0**.
-
-Inserting or deleting objects shifts the index of every subsequent definition. You must renumber every class-reference token to match the new map.
-
-### Structural Modification Flow
-
-```mermaid
-sequenceDiagram
-    participant Writer as File Writer
-    participant Model as Symbolic Model
-    participant Stream as Binary Stream
-    Writer->>Model: Duplicate/Remove Feature Block
-    Note right of Model: Update node pointers
-    Model->>Model: Recalculate Map Indices
-    Model->>Stream: Emit Recomputed Tokens
-    Stream-->>Writer: Return Byte-Identical Re-emit
-```
-
-## Integration with Testing
-
-The project uses automated tests to verify that generated files are "Application Usable" and "Vendor Loadable."
-
-Consult the linked source file for the exact implementation; this reference does not duplicate executable code.
+- [Research methodology](../../../re/Methodology.md)
+- [Oracle integration tests](../../../tests/convert/solidworks/core/SolidworksOracleTests.py)
+- [Oracle inspection sequence](../../../tests/oracle/Session.py)
+- [Historical donor experiment](../../../re/solidworks/features/RevolveDonorSpec.md)
+- [Lossless acceptance rule](../../../.agents/skills/standard-pr-practice/references/Standards/Portable/LosslessTranslation.md)

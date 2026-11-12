@@ -5,17 +5,25 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Retire the aggregate bootstrap
 
-After the aggregate workflow landed in PR #49, later PRs still scheduled its
-one-time `pull_request` preview. GitHub skipped that job with the unevaluated
-name expression instead of `Inactive aggregate bootstrap`, so the trusted
-aggregate rejected it as an unexpected skipped check and workflow.
+## Problem
 
-Remove the obsolete preview trigger and give the aggregate its stable `CI Agg`
-name. Normal PR aggregation continues through `pull_request_target`, executing
-the trusted base reporter with read-only permissions and no PR code checkout.
-Merge-group aggregation and every component validation workflow remain active.
-No expected checks or failure criteria are weakened.
+PR #49 added the aggregate workflow.
+Later PRs still scheduled its one-time `pull_request` preview.
+GitHub reported the skipped job with an unevaluated name expression.
+The trusted aggregate rejected the unexpected skipped check and workflow.
 
-The failure was observed in [PR #50 CI](https://github.com/TryUniCAD/Kit/actions/runs/42560078342).
-Remote CI verifies the repaired event inventory and workflow policies; no local
-tests run. See [merge queue operations](../../MergeQueue.md).
+## Change
+
+The repair removes the obsolete preview trigger and uses the stable `CI Agg` name.
+Normal PR aggregation continues through `pull_request_target`.
+The reporter uses trusted base code with read-only permissions and no PR code checkout.
+Merge-group aggregation and component validation remain active.
+The repair does not weaken expected checks or failure criteria.
+
+## Recorded verification
+
+The failure occurred in [PR #50 CI](https://github.com/TryUniCAD/Kit/actions/runs/42560078342).
+The original change assigned event-inventory and workflow-policy verification to remote CI.
+No local tests ran.
+This historical record does not establish the current PR or queue result.
+See [merge queue operations](../../MergeQueue.md).

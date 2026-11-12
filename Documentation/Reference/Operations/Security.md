@@ -3,92 +3,79 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Security boundaries
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [src/convert/Security/PathBoundary.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/Security/PathBoundary.py)
-- [src/convert/Security/ProgramBoundary.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/Security/ProgramBoundary.py)
-- [SECURITY.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/SECURITY.md)
-- [src/convert/adapters/freecad/Archive.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py)
-- [AGENTS.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/AGENTS.md)
-- [Standard PR Practice](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/.agents/skills/standard-pr-practice/SKILL.md)
-</details>
+This reference identifies input, filesystem, and validation boundaries.
+It does not claim that static checks prove freedom from vulnerabilities.
+Use the [security policy](../../../.github/SECURITY.md) to report a vulnerability privately.
 
-# Security Boundaries & Validation
+## Untrusted input
 
-Security boundaries and validation logic protect the Kit project by enforcing strict constraints on file system access, external program execution, and data integrity during CAD format conversion. These systems prevent path traversal attacks, execution of unauthorized binaries, and resource exhaustion from malformed archives.
+Treat CAD archives, XML, JSON, paths, and embedded payloads as untrusted data.
+Format identification does not validate all contents.
+The relevant reader must validate sizes, structure, and references.
 
-The project defines security scope within `src/`, `tools/`, and `.github/` directories, while excluding vendor tooling and local CAD installations from the primary security perimeter. Continuous integration scans for secrets, dependency vulnerabilities, and static-analysis findings; a passing scan is bounded by its configured coverage and revision.
+Production conversion must not invoke a vendor application to handle an unsupported input.
+Oracle tools belong to isolated validation environments.
+The existence of an oracle path helper does not authorize a production runtime dependency.
 
-## Path and Program Boundaries
+## Archive limits
 
-The security system isolates file operations and program execution through dedicated boundary modules. These modules ensure that the application only interacts with verified paths and authorized external binaries.
+The FreeCAD archive reader checks member sizes, total expanded size, compression ratio, and entry count.
+It also checks unsafe paths and unsupported archive entry types.
+See [the exact limits](../Adapters/Freecad.md#resource-limits).
 
-### Path Resolution and Validation
+XML parsing has depth and node limits.
+Embedded manifest parsing has a separate depth limit.
+These controls address different forms of resource consumption.
+Do not describe one limit as complete protection against every malicious input.
 
-The `PathBoundary` module provides functions to resolve and validate paths for inputs, temporary files, and labels. It prevents access outside of designated workspaces.
+## Filesystem boundaries
 
-- `ResolveInput`: Resolves and verifies paths for source CAD documents.
-- `ResolveTemp`: Manages the creation and resolution of temporary file paths for conversion artifacts.
-- `ValidateLabel`: Enforces naming conventions on labels to ensure they are safe for use as identifiers.
+The security path helpers validate their designated input and temporary paths.
+Their guarantees apply only where callers use them correctly.
+Output staging has its own destination behavior.
+Do not infer a universal sandbox around every public API call.
 
-### External Program Isolation
+The caller controls source and destination locations.
+Use task-owned output directories and preserve original inputs.
+A stream failure can leave partial bytes in a caller-owned stream.
+B-rep extraction can leave earlier files after a later failure.
 
-The `ProgramBoundary` module identifies the location of authorized external tools, such as the FreeCAD oracle used for verification. Functions like `GetFreecadPath` ensure that the system executes only the intended version of external applications.
+## Program boundary
 
-## Archive and Content Validation
+Program-selection helpers support controlled tooling contexts.
+They do not make arbitrary executable paths safe.
+Keep vendor programs outside the production conversion path.
+Record the actual binary and version for an oracle experiment.
 
-The conversion adapters implement deep validation for proprietary and open CAD containers. The `Archive` module for FreeCAD (FCStd) serves as a primary example of enforcing safety limits on ZIP structures and XML content.
+## CI evidence
 
-### Archive Security Gates
+PR checks and merge-group checks cover different scopes.
+Static analysis, dependency analysis, secret scanning, and integration checks each provide bounded evidence.
+A successful scan describes its revision, configuration, and tool coverage.
+It does not prove vendor usability or complete standards conformance.
 
-The system validates ZIP archive members before extraction to prevent "zip bomb" attacks and path traversal.
+Follow [merge queue operations](../../../MergeQueue.md) for the current check architecture.
+Keep all applicable gates enabled.
+Do not suppress a finding merely to make a status green.
 
-| Constraint             | Limit / Logic | Purpose                                                     |
-| :--------------------- | :------------ | :---------------------------------------------------------- |
-| `KMaxEntries`          | 16,384        | Prevents resource exhaustion from excessive file counts.    |
-| `KMaxEntrySize`        | 512 MB        | Limits the size of any single file within an archive.       |
-| `KMaxTotalSize`        | 1 GB          | Limits the aggregate size of the processed archive.         |
-| `KMaxCompressionRatio` | 500           | Detects and rejects potential "zip bombs."                  |
-| Encryption             | Rejected      | Rejects encrypted entries to ensure content inspectability. |
-| Symbolic Links         | Rejected      | Prevents path traversal via link redirection.               |
+## Report a problem
 
-### XML Validation
+1. Preserve the affected revision and error evidence.
+2. Remove secrets and private design content from public material.
+3. Use the private reporting route for vulnerabilities.
+4. Record ordinary documentation defects through the feedback procedure.
 
-CAD metadata stored in XML format (e.g., `Document.xml`) is subject to node and depth limits to prevent parser exploits.
+Expected result: the report reaches the appropriate channel with enough evidence for investigation.
+This procedure does not authorize an agent to send a report without a user request.
 
-```mermaid
-flowchart TD
-    Start[XML Parsing] --> Parse[Parse Document.xml]
-    Parse --> NodeCount{Node Count > 2M?}
-    NodeCount -- Yes --> Fail[Raise ValueError]
-    NodeCount -- No --> DepthCheck{Depth > 256?}
-    DepthCheck -- Yes --> Fail
-    DepthCheck -- No --> SchemaCheck{Schema Version < 2?}
-    SchemaCheck -- Yes --> Fail
-    SchemaCheck -- No --> Success[Return Validated Root]
-```
+## Sources
 
-The logic walks the XML tree, incrementing counters for nodes and tracking nesting depth. It requires a minimum schema version to ensure compatibility with modern security structures.
-
-## Automated Security Posture
-
-The repository employs an extensive set of automated tools within the CI pipeline to maintain its security posture.
-
-### Security Toolchain
-
-Automated monitoring covers secret auditing, dependency scanning, and static analysis.
-
-- **Secret Auditing**: Gitleaks, TruffleHog, and detect-secrets scan for leaked credentials.
-- **Dependency Scanning**: `pip-audit`, Safety, OSV-Scanner, Grype, and Trivy check for known vulnerabilities in the `uv.lock` dependency set.
-- **Static Analysis**: Bandit, Semgrep, CodeQL, and dlint analyze Python code for security flaws.
-- **Infrastructure & Workflow**: Checkov audits IaC, while `zizmor` and `actionlint` verify GitHub Actions safety.
-
-### Agent Constraints
-
-The project enforces strict workflow boundaries for delegated agents to prevent unauthorized modifications to the repository history.
-
-- **Branch Protection**: Agents are prohibited from committing directly to the `main` branch.
-- **Worktree Isolation**: Every delegated agent must run in its own isolated worktree.
+- [Path boundary](../../../src/convert/Security/PathBoundary.py)
+- [Program boundary](../../../src/convert/Security/ProgramBoundary.py)
+- [Archive validation](../../../src/convert/adapters/freecad/Archive.py)
+- [Write boundaries](../Architecture/Engine.md)
+- [Feedback](../../Maintenance/Feedback.md)

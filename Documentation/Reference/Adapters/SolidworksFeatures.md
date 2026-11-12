@@ -3,136 +3,105 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# SOLIDWORKS feature resolution
 
-The following files were used as context for generating this wiki page:
+## Purpose and evidence boundary
 
-- [src/convert/adapters/solidworks/resolved/Core.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/resolved/Core.py)
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-- [re/solidworks/archive/Grammar.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)
-- [re/solidworks/archive/Segmentation.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Segmentation.md)
-- [re/solidworks/features/Revolve.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/features/Revolve.md)
-- [src/convert/adapters/solidworks/core/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/core/Adapter.py)
-</details>
+This reference describes feature-record interpretation and selected research observations.
+The observations apply to their recorded source families and vendor builds.
+They are not universal offsets for all SOLIDWORKS documents.
 
-# SOLIDWORKS Feature Resolution
+## Archive tags
 
-SOLIDWORKS Feature Resolution identifies and extracts geometric modeling history from proprietary `.SLDPRT` and `.SLDASM` files. The system processes the `Contents/Config-0-ResolvedFeatures` stream to reconstruct a feature timeline, support planes, and sketches. It bypasses the Parasolid geometry cache (`Contents/Config-0-Partition`) to ensure that the extracted history represents the authoritative source of the model's design intent.
+The documented `su_CArchive` grammar uses class and object map entries.
+A new class definition and a new object affect the map differently from a reference.
 
-The resolution process relies on a cracked MFC-style `su_CArchive` serialization grammar. This grammar allows the project to perform object segmentation and map-index renumbering, which are necessary for structural edits such as inserting, deleting, or reordering features within the tree.
+| Tag                                         | Meaning                         | Map increment |
+| ------------------------------------------- | ------------------------------- | ------------- |
+| `00 00`                                     | Null object                     | 0             |
+| `ff ff`                                     | New class definition and object | 2             |
+| `0x8000 \| i`                               | Object using class index `i`    | 1             |
+| Nonzero object-reference tag below `0x8000` | Reference to an existing object | 0             |
 
-## Serialization Architecture
+The table describes the short-tag grammar in the linked research.
+Consult the implementation for extended tags and version-specific handling.
+Initial map indices depend on records that precede the observed stream.
+Do not assume that an arbitrary fragment starts at index 1.
 
-The SOLIDWORKS feature stream uses `su_CArchive`, a byte-compatible clone of Microsoft Foundation Class (MFC) `CArchive` object serialization. The archive tracks a running map counter for every class definition and object instance.
+## Feature order
 
-### Tag Grammar
+The `moCompFeature_c` array records tree-node relationships in the studied families.
+The array order matters for rebuild behavior.
+Moving physical bytes without correcting those relationships can produce an invalid tree.
 
-The archive categorizes data using specific 2-byte tags:
+The earlier study recorded the following entry-tail fields for a SOLIDWORKS 2025 family:
 
-| Bytes        | Meaning                                               |
-| :----------- | :---------------------------------------------------- | -------------------------------------------------- |
-| `00 00`      | `wNullTag` — Represents a null object pointer.        |
-| `ff ff`      | `wNewClassTag` — Signals a new class definition.      |
-| `0x8000      | i`                                                    | Class Reference — Points to a class map index `i`. |
-| `t < 0x8000` | Object Reference — Points to an object map index `t`. |
+| Relative offset | Encoding | Recorded meaning       |
+| --------------- | -------- | ---------------------- |
+| `End - 12`      | `u32`    | Version value `18000`  |
+| `End - 8`       | `u32`    | Node identifier        |
+| `End - 4`       | `u32`    | Modification timestamp |
 
-### Map Counter Increment Rules
+These offsets require the documented entry boundary.
+Do not apply them as unchecked patches to an unknown file.
 
-Maintaining the integrity of the archive during modification requires following precise increment rules for the map counter:
+## Extrusion observations
 
-```mermaid
-flowchart TD
-    Start[Read Object Tag] --> ClassDef{Is ff ff?}
-    ClassDef -- Yes --> Inc2[Increment Map +2]
-    ClassDef -- No --> ClassRef{Is Tag & 0x8000?}
-    ClassRef -- Yes --> Inc1[Increment Map +1]
-    ClassRef -- No --> NullObj{Is Tag 0?}
-    NullObj -- Yes --> Inc0[Increment Map +0]
-    NullObj -- No --> Inc0
-```
+The research links extrusion dimensions to scalar records and related end-condition data.
+Boss and cut behavior involves class bodies and face-identity information.
+The recorded flags `0x40000140` and `0x400201CA` alone do not define a safe conversion.
 
-The map counter does not start at 1; it begins at a base value (e.g., 109, 110, or 111) depending on the number of features. These early indices represent objects and classes defined in preceding streams like `CMgr` or `ModelHeader`.
+Selected study offsets include an end-condition byte at `scalar - 818` and a direction byte at `scalar - 824`.
+Those values are family-specific observations.
+Use the decoded grammar and validation before emitting production records.
 
-## Feature Tree Structure (`moCompFeature_c`)
+## Revolution observations
 
-The `moCompFeature_c` record acts as the primary authority for the feature tree. It is a fixed-stride array that defines the sequence of features and links them to the `swXmlContents/KeyWords` oracle.
+The studied classes include `moRevolution_c`, `moRevCut_c`, and `moRevEndSpec_c`.
+Changing the operation can change the class set and subsequent map indices.
+An angle scalar can use radians while presentation metadata uses degrees.
+Keep the unit conversion explicit.
 
-### Entry Layout
+The study recorded axis references at `token - 145` and `token - 131` for different axis kinds.
+Those locations depend on the documented family and token boundary.
+See [revolution research](../../../re/solidworks/features/Revolve.md).
 
-Each entry in the array typically represents two nodes per feature: one for the sketch and one for the extrusion.
+## Trace calibration
 
-| Offset     | Width | Field     | Description                             |
-| :--------- | :---- | :-------- | :-------------------------------------- |
-| `End - 12` | `u32` | Version   | Constant `18000` (SOLIDWORKS 2025).     |
-| `End - 8`  | `u32` | Node ID   | Unique identifier matching `KeyWords`.  |
-| `End - 4`  | `u32` | Timestamp | Unix `time_t` of the last modification. |
+The historical trace study recorded these archive fields:
 
-### Tree Rebuilding
+| Field          | Recorded offset |
+| -------------- | --------------- |
+| `m_lpBufCur`   | `0x38`          |
+| `m_lpBufMax`   | `0x40`          |
+| `m_lpBufStart` | `0x48`          |
+| `m_nMapCount`  | `0x50`          |
 
-The order of entries in the `moCompFeature_c` array determines the model's rebuild order. Swapping entry pairs in this array effectively reorders the feature tree in SOLIDWORKS, regardless of their physical positions in the binary stream.
+Recalibrate debugger layouts for a different binary build.
+A field name does not establish a stable application binary interface.
 
-## Geometric Feature Resolution
+## Structural verification
 
-The system resolves specific feature types by mapping binary markers to neutral geometric parameters.
+1. Record the source file hash and vendor build.
+2. Identify object boundaries from the trace and grammar.
+3. Resolve map references symbolically.
+4. Recompute indices after a structural change.
+5. Compare the re-emitted stream with the expected structure.
+6. Obtain remote target-application acceptance evidence.
 
-### Extrusion (Boss/Cut)
+Byte-identical re-emission supports the segmentation result for that input.
+It does not prove complete grammar coverage or editable cross-format translation.
 
-Extrusions are distinguished by their tree-node flag words and derived face-identity records. While `0x40000140` indicates a boss and `0x400201CA` indicates a cut, the flag word alone is insufficient to change the operation; the operation is also implied by internal class bodies (`moExtrusion_c` vs `moICE_c`).
+## Cache restrictions
 
-| Feature Parameter | Binary Representation                                               |
-| :---------------- | :------------------------------------------------------------------ |
-| Depth             | Dimension-scalar record named `D1` as `float64` in meters.          |
-| End Condition     | 1-byte field at `scalar - 818` (Blind=0, ThroughAll=1, MidPlane=6). |
-| Reverse Direction | 1-byte flag at `scalar - 824`.                                      |
+Bounding boxes, display data, and geometry caches can depend on feature parameters.
+Do not assume that a stale cache is safe.
+Record vendor-version evidence for regeneration before relying on it.
+An incorrect cache can invalidate geometry or application behavior.
 
-### Revolution
+## Sources
 
-Revolutions use `moRevolution_c` (boss) or `moRevCut_c` (cut) classes. Unlike extrusions, switching between boss and cut for a revolve requires changing the class set, which alters all subsequent archive map indices.
-
-```mermaid
-sequenceDiagram
-    participant D as Decoder
-    participant S as Stream
-    participant K as KeyWords
-    D->>S: Find moRevEndSpec_c
-    S-->>D: Constant 52-byte record
-    D->>S: Resolve Axis at token - 131 or - 145
-    S-->>D: Node ID + Timestamp
-    D->>K: Validate Angle
-    K-->>D: Angle in Degrees (e.g. 360°)
-    D->>S: Read D1 Scalar
-    S-->>D: Angle in Radians (float64)
-```
-
-The revolution axis is identified by a `<u32 feature id><u32 time_t>` pair found at a fixed offset relative to the `moRevEndSpec_c` object token:
-
-- `token - 145`: Axis is a construction line inside a sketch.
-- `token - 131`: Axis is a reference-axis feature.
-
-## Object Segmentation Logic
-
-Segmentation is performed by tracing `su_CArchive::ReadObject` and `su_CArchive::ReadClass` calls in the `swccu.dll` module. This process recovers object boundaries by differencing consecutive buffer positions.
-
-### `su_CArchive` Internal Layout
-
-Field offsets derived through runtime calibration:
-
-- `m_lpBufCur`: `0x38` (Current buffer pointer)
-- `m_lpBufMax`: `0x40` (Buffer end pointer)
-- `m_lpBufStart`: `0x48` (Buffer start pointer)
-- `m_nMapCount`: `0x50` (Archive map counter)
-
-### Validation of Segmentation
-
-The correctness of the segmentation is proven by a symbolic re-emit process. The stream is parsed into a node list where all index references are converted to pointers. The model then re-computes indices and emits a new binary stream. If the emitted stream is byte-identical to the original input, the segmentation is verified as correct.
-
-## Summary of Derived Caches
-
-SOLIDWORKS stores redundant geometric caches that are derived from authored parameters. These caches can often be left stale as the application recomputes them upon opening.
-
-| Cache Type         | Binary Class         | Responsibility                          |
-| :----------------- | :------------------- | :-------------------------------------- |
-| Bounding Box       | `moBBoxCenterData_c` | Stores center coordinates and diameter. |
-| Display Rectangles | `moRefPlane_c`       | Stores UI visualization of planes.      |
-| Parasolid Blob     | (Embedded)           | Represents the supporting face surface. |
+- [Resolved-feature implementation](../../../src/convert/adapters/solidworks/resolved/Core.py)
+- [Archive grammar](../../../re/solidworks/archive/Grammar.md)
+- [Segmentation study](../../../re/solidworks/archive/Segmentation.md)
+- [Historical imported reference](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)

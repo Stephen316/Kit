@@ -3,102 +3,94 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Conversion engine and write boundaries
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [src/convert/api/ApiConvert.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/api/ApiConvert.py)
-- [README.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/README.md)
-- [src/convert/adapters/freecad/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Adapter.py)
-- [src/convert/adapters/catia/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-- [tools/steering/SteeringBaseline.txt](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tools/steering/SteeringBaseline.txt)
-</details>
+This reference explains conversion options, capability checks, and destination behavior.
+Use the public [API reference](../Overview/ApiReference.md) for callable signatures.
 
-# Conversion Engine
+## Read and write sequence
 
-The Conversion Engine provides the core pipeline for translating CAD data between different proprietary formats. It operates by abstracting source files into a neutral `CadDocument` format before writing them to a target format. This architecture ensures that adapters for different CAD systems remain independent and decoupled.
+1. The API constructs reader options and writer options.
+2. The engine selects a reader and obtains a `CadDocument`.
+3. The registry selects a writer for the destination.
+4. The writer produces staged output and a `WriteResult`.
+5. The registry checks transfers and output policy.
+6. The staging layer writes the accepted output to the destination.
 
-## Conversion Pipeline Architecture
+These are implementation stages, not instructions to invoke internal functions.
 
-The engine follows a linear route for every conversion task. It first identifies the correct reader adapter for the source file, extracts the data into a neutral `CadDocument`, and then dispatches the document to a writer adapter for the destination format.
+## Independent policies
 
-```mermaid
-flowchart TD
-    A[Source File] --> B[Reader Adapter]
-    B --> C[Neutral CadDocument]
-    C --> D[Writer Adapter]
-    D --> E[Destination File]
+| Policy            | Public option                          | Scope                                 |
+| ----------------- | -------------------------------------- | ------------------------------------- |
+| Reader validation | `strict`                               | Input interpretation and validation   |
+| Data selection    | `include_brep`, `include_tessellation` | Information requested from the reader |
+| Model validation  | `validate` on `write_document`         | Neutral document validation           |
+| Replacement       | `overwrite`                            | Existing destination handling         |
+| Output usability  | `allow_carrier`                        | Result acceptance in the registry     |
 
-    subgraph Conversion_Engine
-    B
-    C
-    D
-    end
-```
+`convert` constructs writer options with validation enabled.
+`write_document` exposes `validate=True` as a separate option.
+Adapter-specific values use `write_values` on `convert` and `values` on `write_document`.
 
-The diagram shows the standard flow of data from a source format to a destination format through the neutral document boundary.
+## Capability accounting
 
-## Core Components
+The registry compares reported transfers with source capabilities.
+Reported dropped capabilities cause a capability-loss error.
+Transfer records must account for the source capability set.
+The registry can normalize unsupported usability claims for carrier-only output.
 
-### API Layer
+The default public API permits carriers.
+The registry still requires self-contained output by default.
+`allow_carrier=False` adds usability and blocker checks.
+The implementation distinguishes `target_unsupported` from `writer_unimplemented` and `source_opaque`.
+Do not describe this option as a universal ban on every carrier transfer.
 
-The public `convert` API delegates to the internal `ConvertFile` function. It configures `ReadOptions` and `WriteOptions` based on user input and triggers the conversion process via the internal engine.
+## Path destinations
 
-| Parameter      | Type          | Description                                                    |
-| :------------- | :------------ | :------------------------------------------------------------- |
-| `SourceData`   | `Source`      | Path, bytes, or stream of the input file.                      |
-| `TargetData`   | `Destination` | Path or stream for the output file.                            |
-| `SourceFormat` | `str`         | Optional explicit format ID for the source.                    |
-| `DestFormat`   | `str`         | Optional explicit format ID for the target.                    |
-| `AllowCarrier` | `bool`        | Whether to allow "carrier" results if native conversion fails. |
+The path writer creates temporary storage beside the final destination.
+The adapter writes into that storage.
+The registry checks the result before output commitment.
+The commit includes the requested file and any staged companion outputs.
 
-### Registry and Adapters
+With `overwrite=False`, a conflict in the destination set raises `FileExistsError`.
+With replacement enabled, the staging code attempts to save existing targets for rollback.
+Backup creation can fail after moving an earlier target.
+The caller does not receive that partial backup list.
+Temporary storage cleanup can then remove the saved original.
+Automatic rollback therefore does not guarantee recovery from handled failures.
+Keep independent backups of existing outputs and companion files before replacement.
+Prefer an unused destination with `overwrite=False`.
+Multi-file commitment is not a universal crash-atomic filesystem transaction.
+Do not promise recovery from power loss or every external filesystem change.
 
-The engine uses a registry to manage available adapters. Each adapter (e.g., FreeCAD, CATIA, SOLIDWORKS) implements a common interface for probing, reading, and writing files.
+## Stream destinations
 
-- **Probing**: The engine asks adapters to inspect a source to determine if they can handle the format.
-- **Reading**: The reader adapter converts the binary source into a `CadDocument` object.
-- **Writing**: The writer adapter takes a `CadDocument` and produces the target binary format.
+The stream writer first writes to an in-memory staging stream.
+The policy check runs before the caller's stream receives data.
+The final write checks the count when `write()` returns a value other than `None`.
+A returned count that differs from the payload length raises `OSError`.
+The caller's stream can already contain partial data at that point.
+If `write()` returns `None`, the count check does not run.
+Successful return does not prove complete output for that stream.
 
-## Conversion Logic and Options
+Use a stream that reports an accurate count, or verify the written content independently.
+Use a fresh stream after an unsuccessful final write.
+Do not infer filesystem rollback behavior for an arbitrary stream.
 
-### Strict Mode and Carriers
+## Replay and reconstruction
 
-By default, the engine attempts reversible swaps. If a full native conversion is not possible, it may produce a "carrier" result—a file that embeds the original data or a neutral representation. Reader `StrictMode` is independent of carrier policy. If `allow_carrier=False` is set, the engine refuses carrier results and throws an `ApplicationUsabilityError` if the output is not fully usable by the target vendor application.
+An adapter can replay the source document's own native data when its checks permit that path.
+An edited document can require reconstruction or carrier representation.
+A compatibility label reports the selected path.
+It does not establish that an independent application accepted the output.
 
-### Replay vs. Reconstruction
+## Sources
 
-Adapters like the `FreeCadAdapter` and `CatiaAdapter` implement logic to decide between "exact native roundtrip" (replay) and "reconstruction."
-
-- **Exact Replay**: If the `CadDocument` has not changed semantically, the engine writes the original native bytes back to the target.
-- **Reconstruction**: If changes are detected, the engine rebuilds the archive from the neutral `CadDocument` data.
-
-```mermaid
-sequenceDiagram
-    participant E as Conversion Engine
-    participant A as Adapter
-    participant D as CadDocument
-
-    E->>A: write(Doc, Target, Options)
-    A->>A: Check if semantic change exists
-    alt No Semantic Change
-        A-->>E: Write original native bytes (Replay)
-    else Semantic Change Detected
-        A->>D: Extract neutral data
-        A->>A: Build new archive (Reconstruction)
-        A-->>E: Write generated bytes
-    end
-```
-
-The sequence shows the decision path an adapter takes during the write phase to preserve native fidelity.
-
-## Reverse Engineering Methodology
-
-The engine's ability to read and write proprietary formats is based on a structured reverse-engineering playbook. This includes:
-
-1.  **Container Framing**: Cracking the file envelope (e.g., ZIP, CFBF).
-2.  **Measurement Oracle**: Using vendor APIs to verify correctness quantitatively (e.g., comparing mass properties).
-3.  **Differential Analysis**: Comparing files that differ by a single property to locate fields.
-4.  **Decompilation**: Analyzing vendor serialization code to determine field types and version gates.
+- [API option construction](../../../src/convert/api/ApiConvert.py)
+- [Output policy](../../../src/convert/adapters/base/WritePolicy.py)
+- [Path staging](../../../src/convert/adapters/staging/PathStaging.py)
+- [Stream staging](../../../src/convert/adapters/staging/StreamStaging.py)
+- [Result evaluation](../../Tasks/InspectResult.md)

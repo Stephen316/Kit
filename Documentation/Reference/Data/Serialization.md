@@ -3,107 +3,95 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Serialization and payload records
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [src/interchange/serialization/WireData.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/interchange/serialization/WireData.py)
-- [src/interchange/serialization/WireFields.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/interchange/serialization/WireFields.py)
-- [src/convert/adapters/freecad/Archive.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py)
-- [src/convert/adapters/catia/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
-- [re/solidworks/archive/Grammar.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)
-- [src/interchange/enums/EnumDocument.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/interchange/enums/EnumDocument.py)
-</details>
+Serialization converts model records into portable data.
+Payload records retain associated bytes and their meaning.
+This reference is for integrators who store or inspect neutral documents.
 
-# Wire Serialization & Payloads
+## Data boundary
 
-Wire Serialization & Payloads manages the translation of CAD document structures into a neutral, portable data format and handles the associated binary data (payloads) required for proprietary formats. The system ensures that complex data graphs, such as parametric history and B-Rep geometry, remain valid across different CAD environments by enforcing strict data contracts and using standardized serialization techniques.
+The wire layer accepts defined primitive and collection types.
+The decoder reconstructs recognized model records from that representation.
+Field mappings retain compatibility with historical public names.
 
-The architecture separates logical metadata (the "wire") from physical binary data (the "payload"). This separation allows the project to support multiple CAD formats—including FreeCAD, CATIA, and SOLIDWORKS—while maintaining a single, consistent internal representation for conversion and interoperability tasks.
+| Element           | Responsibility                                          |
+| ----------------- | ------------------------------------------------------- |
+| `KWireData`       | Recursive wire-data contract                            |
+| `CheckWireData`   | Validation of wire values                               |
+| `KWireFields`     | Common field-name mapping                               |
+| `KTypeWireFields` | Type-specific field mapping                             |
+| JSON codec        | Text encoding and decoding through the model serializer |
 
-## Wire Data Architecture
+An accepted wire value is not automatically a valid CAD document.
+Model validation must also check references and domain constraints.
 
-The "wire" layer defines the recursive data contract for all serialized documents. It utilizes a centralized mapping system to ensure that identifiers and fields remain byte-compatible across different versions of the software.
+## JSON encoding
 
-### Recursive Data Contract
+The JSON codec uses sorted keys and preserves non-ASCII text.
+The JSON adapter writes UTF-8 output.
+Type markers allow the decoder to identify model records.
+Do not edit type markers or field names as ordinary prose.
 
-The `KWireData` type alias establishes the foundation for all serialized data. It allows for primitive types (bool, int, float, str) as well as recursive structures like lists and dictionaries. The system validates untrusted parser output against this contract before any further processing occurs.
+See [JSON adapter](../Adapters/Json.md) for stream and file behavior.
+See [read and write](../../Tasks/ReadWrite.md) for the public API procedure.
 
-```mermaid
-graph TD
-    WD[KWireData] --> P[Primitives]
-    WD --> C[Collections]
-    P --> B[bool]
-    P --> I[int/float]
-    P --> S[str]
-    C --> L[list of KWireData]
-    C --> D[dict of str to KWireData]
-```
+## Payload roles
 
-The `CheckWireData` function recursively traverses inputs to verify they satisfy these constraints.
+| Role           | Information                      |
+| -------------- | -------------------------------- |
+| `BREP`         | Boundary representation data     |
+| `TESSELLATION` | Display mesh data                |
+| `DOCUMENT`     | Native source document data      |
+| `VERIFICATION` | Verification-related information |
+| `AUXILIARY`    | Additional resources or metadata |
 
-### Field Mapping and Compatibility
+A role describes purpose.
+It does not guarantee that the target application can use the bytes.
+A document payload can retain private source data.
+Inspect payloads before distributing a serialized model.
 
-To maintain backward compatibility, the system employs a field mapping table (`KWireFields`). This table translates historical internal keys into current standardized field names. Specific records, such as `BrepVertex` or `Selection`, use refined mappings (`KTypeWireFields`) to resolve identifier collisions without weakening the overall wire contract.
+## Embedded manifests
 
-## Proprietary Serialization Grammars
-
-Each supported CAD format uses specific serialization grammars to store its internal object graphs. The project reverse-engineers these grammars to enable first-principles writing and accurate reading.
-
-### su_CArchive (SOLIDWORKS)
-
-SOLIDWORKS uses a proprietary object serialization system known as `su_CArchive`. It is byte-compatible with MFC `CArchive` but exported from vendor-specific DLLs. It uses a tag-based grammar to define and reference classes and objects.
-
-| Tag     | Meaning          | Data Structure                              |
-| :------ | :--------------- | :------------------------------------------ | ------------------------------- |
-| `00 00` | Null Object      | Null pointer sentinel                       |
-| `FF FF` | New Class        | `u16 schema` + `u16 nameLen` + `ascii name` |
-| `0x8000 | i`               | Class Reference                             | 15-bit index into the class map |
-| `i`     | Object Reference | Index into the object map                   |
-
-### V5_CFV2 (CATIA)
-
-CATIA utilizes the `V5_CFV2` container format. This format organizes data into an envelope containing multiple streams and records. Serialization involves defining class ordinals and base-class relationships within the container's directory structure.
-
-## Payload Management
-
-Payloads are binary blobs associated with a CAD document, such as BREP models or tessellation meshes. Each payload is assigned a role and verified via cryptographic hashes.
-
-### Payload Roles
-
-The system categorizes payloads based on their semantic purpose in the document.
-
-| Role           | Description                      | Typical Formats        |
-| :------------- | :------------------------------- | :--------------------- |
-| `BREP`         | Boundary Representation geometry | Parasolid, OpenCASCADE |
-| `TESSELLATION` | Discrete surface mesh data       | CGR, MeshKernel        |
-| `DOCUMENT`     | The primary native document file | FCStd, CATPart, SLDPRT |
-| `VERIFICATION` | Checksums or signatures          | SHA256                 |
-| `AUXILIARY`    | Supporting metadata or sidecars  | JSON, XML              |
-
-### FreeCAD Archive Integration
-
-FreeCAD archives (`.FCStd`) serve as a primary container for neutral Kit documents. The archive includes a specific entry, `interchange/document.json`, which holds the serialized manifest.
+FreeCAD output can contain `interchange/document.json`.
+CATIA output can contain `KitInterchange`.
+These representations let Kit retain neutral information.
+Their presence does not establish native target interpretation of all retained information.
 
 ```mermaid
 flowchart TD
-    A[FCStd ZIP Archive] --> B[Document.xml]
-    A --> C[interchange/document.json]
-    A --> D[Binary Payloads]
-    C --> E[Kit Manifest]
-    E --> F[Feature Timeline]
-    E --> G[Parameters]
-    D --> H[B-Rep .brp]
-    D --> I[Mesh .bms]
+    Container[Target container] --> Native[Native records]
+    Container --> Manifest[Neutral manifest]
+    Container --> Payloads[Payload bytes]
+    Manifest --> Model[Kit document]
 ```
 
-The `Archive` module enforces safety limits on these payloads, such as a maximum entry size of 512 MB and strict validation of file paths to prevent directory traversal.
+The native records and manifest can describe different levels of editability.
+Inspect the writer's transfer report before acceptance.
 
-## Integrity and Verification
+## Integrity and provenance
 
-The serialization system maintains data integrity through multi-level validation and measurement oracles.
+A digest detects a mismatch relative to the expected digest.
+An attacker who controls both bytes and digest can replace both.
+Do not describe an unsigned hash as proof of authorship or authenticity.
 
-1.  **JSON Depth Limits:** Embedded manifests are restricted to a maximum depth (e.g., 256) to prevent recursion-based attacks during deserialization. Sources: [src/convert/adapters/freecad/Archive.py:136](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py), [src/convert/adapters/catia/Adapter.py:53](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
-2.  **SHA256 Checksums:** Every binary payload and the neutral manifest itself are hashed. The system refuses to load documents if the current data does not match the attested hash. Sources: [src/convert/adapters/freecad/Archive.py:1571-1582](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py), [src/convert/adapters/catia/Adapter.py:270-305](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
-3.  **Semantic Digests:** High-level semantic summaries are generated to determine if edits made to a document can be replayed natively or if they require a carrier-only fallback. Sources: [src/convert/adapters/catia/Adapter.py:1185-1235](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
+Semantic digests can support replay decisions.
+They can exclude designated envelope or source-dependent fields.
+Record which digest and comparison scope support a claim.
+Do not substitute a semantic match for target-application measurements.
+
+## Input limits
+
+Archive readers apply format-specific size, depth, and resource limits.
+The FreeCAD manifest depth limit is 256 in the inspected revision.
+That value is not a universal limit for every decoder.
+See [security boundaries](../Operations/Security.md).
+
+## Sources
+
+- [Wire data](../../../src/interchange/serialization/WireData.py)
+- [Field mappings](../../../src/interchange/serialization/WireFields.py)
+- [JSON codec](../../../src/interchange/serialization/JsonCodec.py)
+- [Payload model](../../../src/interchange/payloads/PayloadRecord.py)

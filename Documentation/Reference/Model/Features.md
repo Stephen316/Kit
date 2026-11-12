@@ -3,145 +3,90 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Parametric feature model
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [src/convert/adapters/freecad/Native.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Native.py)
-- [src/convert/adapters/solidworks/core/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/core/Adapter.py)
-- [src/convert/adapters/freecad/Archive.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py)
-- [re/solidworks/archive/Grammar.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)
-- [re/solidworks/features/RevolveDonorSpec.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/features/RevolveDonorSpec.md)
-- [tests/convert/freecad/FreecadTests.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tests/convert/freecad/FreecadTests.py)
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-</details>
+The feature model represents modeling operations and their dependencies.
+It preserves information needed for editable history.
+A shape or mesh alone cannot supply that history.
 
-# Parametric Features Model
+## Feature records
 
-The Parametric Features Model provides a neutral intermediate representation for CAD feature histories, enabling translation between proprietary formats like SOLIDWORKS, FreeCAD, and CATIA. It captures the design intent through a timeline of operations, sketches, parameters, and geometric relationships rather than just static boundary representation (B-rep) geometry.
+| Field                  | Meaning                                        |
+| ---------------------- | ---------------------------------------------- |
+| `id`, `name`           | Stable identity and display name               |
+| `kind`                 | Feature category                               |
+| `order`                | Position in the timeline                       |
+| `input_feature_ids`    | Dependencies on earlier features               |
+| `sketch_id`            | Associated sketch                              |
+| `parameter_ids`        | Parameters used by the feature                 |
+| `operation`            | Boolean operation where applicable             |
+| `definition`           | Typed feature parameters                       |
+| `selection_ids`        | Referenced selections                          |
+| `suppressed`           | Suppression state                              |
+| `configuration_states` | State and parameter overrides by configuration |
+| `provenance`           | Source evidence for the record                 |
+| `attributes`           | Additional information                         |
 
-## Architecture and Components
+The definition contract validates the supplied feature definition.
+It does not prove that every writer can emit that feature.
 
-The model organizes a CAD document into a structured hierarchy. Every parametric document contains a feature timeline, which is an ordered sequence of operations that build the solid model.
+## Supporting records
 
-### Data Hierarchy
-
-The following diagram illustrates the relationship between the primary components of the parametric model:
-
-```mermaid
-classDiagram
-    class CadDocument {
-        +CadSource source
-        +tuple configurations
-        +tuple parameters
-        +tuple support_planes
-        +tuple sketches
-        +tuple feature_timeline
-        +tuple bodies
-        +AssemblyData assembly
-    }
-    class FeatureStep {
-        +str id
-        +str name
-        +FeatureKind kind
-        +int order
-        +tuple input_feature_ids
-        +str sketch_id
-        +tuple parameter_ids
-        +BooleanOp operation
-        +FeatureDefinition definition
-    }
-    class Sketch {
-        +str id
-        +str support_plane_id
-        +tuple entities
-        +tuple constraints
-    }
-    CadDocument --> FeatureStep : feature_timeline
-    CadDocument --> Sketch : sketches
-    FeatureStep --> Sketch : references
-```
-
-### Key Data Structures
-
-| Component         | Description                                                                 |
-| :---------------- | :-------------------------------------------------------------------------- |
-| **FeatureStep**   | Represents a single operation in the model history (e.g., Extrude, Fillet). |
-| **Sketch**        | Defines 2D geometry and constraints on a specific support plane.            |
-| **Parameter**     | Stores driving values, units, and expressions for features and sketches.    |
-| **SupportPlane**  | Defines the 3D coordinate system and transform for a sketch or reference.   |
-| **Configuration** | Manages sets of parameter overrides and feature suppression states.         |
-
-## Feature Operations
-
-The model supports various standard CAD operations, categorized into additive, subtractive, and decorative features.
-
-### Extrusion (Pad/Pocket)
-
-Extrusions define a profile projected along a vector. The `ExtrudeFeature` class captures parameters such as:
-
-- **Length**: Primary projection distance.
-- **End Condition**: Blind, Through All, Up To Last, Up To Face, etc.
-- **Symmetry**: Whether the extrusion projects equally in both directions.
-- **Draft Angle**: Tapering of the side faces.
-
-### Revolution
-
-Revolutions sweep a profile around an axis. This requires:
-
-- **Angle**: The sweep extent in degrees or radians.
-- **Axis**: A reference to a sketch centerline or a 3D reference axis.
-
-### Boolean Operations
-
-Operations combine features using logic such as:
-
-- **Join/Add**: Merges two solids.
-- **Cut/Sub**: Removes the tool volume from the base solid.
-- **Intersect**: Retains only the shared volume.
-
-## Parameters and Expressions
-
-Design intent is preserved through parameters and mathematical relationships.
-
-- **Parameters**: Each parameter carries a `ValueKind` (Length, Angle, Boolean, Integer, String) and optional units (mm, deg, rad).
-- **Expressions**: The system translates proprietary expression formats into a neutral "Kit" language or preserves them as "native" strings.
-- **Spreadsheet Integration**: In FreeCAD, parameters are often mapped to `Spreadsheet::Sheet` aliases for global control.
+A sketch contains geometry and constraints on a support plane.
+A parameter contains a value and its associated meaning or units.
+A selection identifies geometry used by an operation.
+Configurations can change parameter values and suppression states.
 
 ```mermaid
 flowchart TD
-    A[Native Expression] --> B{Translator}
-    B -->|Success| C[Neutral Kit Expression]
-    B -->|Fallback| D[Native String Expression]
-    C --> E[Spreadsheet Alias]
-    D --> E
+    Feature[Feature step] --> Inputs[Input features]
+    Feature --> Sketch[Sketch]
+    Feature --> Parameters[Parameters]
+    Feature --> Selections[Selections]
+    Sketch --> Plane[Support plane]
+    Config[Configuration state] --> Feature
 ```
 
-## Implementation and Translation Logic
+Preserve these references when changing a feature.
+An identifier can remain syntactically valid while referring to the wrong entity.
 
-Translation involves mapping proprietary binary or XML records to the neutral model and back.
+## Operation families
 
-### Adapter Data Flow
+Extrusion uses a profile, direction, extent, and end condition.
+Revolution uses a profile, axis, and angle.
+Boolean operations define how geometry combines with existing bodies.
+Other families use their own typed definitions.
 
-```mermaid
-sequenceDiagram
-    participant S as Source File
-    participant R as Reader Adapter
-    participant N as Neutral Document
-    participant W as Writer Adapter
-    participant D as Destination File
+Do not infer complete family coverage from the presence of an enumeration value.
+Check the source reader, neutral definition, target writer, and acceptance evidence separately.
 
-    S->>R: Binary/XML Data
-    R->>R: Object Segmentation
-    R->>R: Decode Native Records
-    R->>>N: Build CadDocument
-    N->>W: Neutral Model
-    W->>W: Select Supported Native Writer
-    W->>W: Emit Derived Native Records
-    W->>D: Write Compound File
-```
+## Expressions and units
 
-### Native reconstruction and source edits
+A parameter can contain an expression or a literal value.
+Preserve its language and unit context.
+A retained native expression is not necessarily executable in another application.
+A translated expression requires evidence that its references and evaluation retain the intended result.
 
-Adapters can emit supported feature families from decoded grammar or preserve and edit the source document's own streams where supported. An unrelated donor skeleton is not a valid production substitute for missing grammar. Consult [the SOLIDWORKS writer boundary](../Adapters/Solidworks.md#writing-and-acceptance) and verify feature editability and rebuilds in the target application.
+Distinguish a driving parameter from a measured or driven value.
+Do not substitute a final measurement for an editable design relationship.
+
+## Review an edit
+
+1. Identify the changed driving parameter or feature definition.
+2. Check every dependent feature reference.
+3. Check the selected configuration.
+4. Check unit conversions.
+5. Inspect the writer's capability report.
+6. Obtain the required remote oracle evidence.
+
+Expected result: the target feature tree retains the required history and changes correctly after a dimension edit.
+A successful initial load is insufficient.
+
+## Sources
+
+- [Feature step](../../../src/interchange/features/FeatureStep.py)
+- [Feature definitions](../../../src/interchange/features/)
+- [Feature validation](../../../src/interchange/document/validation/DocumentFeatureValidate.py)
+- [SOLIDWORKS feature records](../Adapters/SolidworksFeatures.md)

@@ -3,117 +3,103 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# FreeCAD adapter
 
-The following files were used as context for generating this wiki page:
+## Purpose and scope
 
-- [src/convert/adapters/freecad/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Adapter.py)
-- [src/convert/adapters/freecad/Archive.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py)
-- [src/convert/adapters/freecad/Brep.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Brep.py)
-- [src/convert/adapters/freecad/Native.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Native.py)
-- [src/convert/adapters/freecad/Protocol.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Protocol.py)
-- [tests/convert/freecad/FreecadTests.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tests/convert/freecad/FreecadTests.py)
-</details>
+The `freecad.fcstd` adapter handles `.FCStd` files through direct archive parsing and writing.
+Production conversion does not require a FreeCAD application or module.
+Feature coverage depends on the implemented reader and writer families.
 
-# FreeCAD Format Adapter
+## Archive structure
 
-The FreeCAD Format Adapter is a core component of the Kit interchange system. It provides bidirectional translation between FreeCAD's native `.FCStd` format and the neutral Kit `CadDocument` model. The adapter operates by directly parsing and generating FreeCAD ZIP-based archives without requiring a FreeCAD installation or vendor runtime.
-
-## Architecture Overview
-
-The adapter follows a layered architecture to handle the complexities of the FreeCAD file format. It decomposes the conversion process into archive handling, object graph parsing, and geometry reconstruction.
+A FreeCAD document is a ZIP archive with `Document.xml` and related resources.
+Shape data can reside in `.brp` members.
+Mesh data can reside in `.bms` members.
+Kit can also store a neutral manifest in `interchange/document.json`.
 
 ```mermaid
-flowchart TD
-    Source[Source .FCStd] --> Archive[Archive Layer]
-    Archive --> XML[Document.xml Parser]
-    XML --> Graph[Object Graph]
-    Graph --> Translator[Adapter Translator]
-    Translator --> Neutral[CadDocument]
-
-    Neutral --> Builder[Rebuild / Replay Logic]
-    Builder --> ArchiveOut[Archive Builder]
-    ArchiveOut --> Destination[.FCStd Output]
+flowchart LR
+    Archive[FCStd archive] --> XML[Document.xml]
+    Archive --> Geometry[Geometry resources]
+    Archive --> Manifest[Kit manifest]
+    XML --> Model[Neutral document]
+    Geometry --> Model
+    Manifest --> Model
 ```
 
-The diagram above shows the data flow from a native FreeCAD file through the parsing layers to a neutral document, and the subsequent path back to a generated FreeCAD file.
+An embedded manifest and a native object graph are different representations.
+The vendor application does not necessarily interpret the neutral manifest.
 
-### Component Roles
+## Resource limits
 
-| Component        | Responsibility                                                        |
-| :--------------- | :-------------------------------------------------------------------- |
-| `FreeCadAdapter` | Entry point implementing `probe`, `read`, and `write` interfaces.     |
-| `Archive.py`     | Handles ZIP structure, resource limits, and XML extraction.           |
-| `Native.py`      | Decodes native FreeCAD object graphs, sketches, and features.         |
-| `Brep.py`        | Translates OpenCASCADE B-Rep data between FreeCAD and neutral models. |
-| `Protocol.py`    | Defines type IDs, constraint codes, and feature family mappings.      |
+The archive implementation uses these limits:
 
-## Archive Handling
+| Item                   | Limit     |
+| ---------------------- | --------- |
+| Archive members        | 16,384    |
+| Individual member      | 512 MiB   |
+| Total expanded members | 1 GiB     |
+| `Document.xml`         | 512 MiB   |
+| Compression ratio      | 500       |
+| External files         | 256       |
+| Manifest JSON depth    | 256       |
+| XML depth              | 256       |
+| XML nodes              | 2,000,000 |
 
-FreeCAD files are ZIP archives containing a primary `Document.xml` and auxiliary sidecar files like `.brp` (OpenCASCADE B-Rep) or `.bms` (Binary Mesh). The adapter enforces strict security and resource limits during archive extraction to prevent exploits like compression bombs or unsafe path traversals.
+These values use binary byte units.
+The archive checks also reject unsafe paths and unsupported entry types.
+A limit failure is not permission to disable validation.
 
-### Resource Limits
+## Native interpretation
 
-| Limit                   | Value   | Description                                       |
-| :---------------------- | :------ | :------------------------------------------------ |
-| `MAX_ENTRY_SIZE`        | 512 MB  | Maximum size of a single file within the archive. |
-| `MAX_TOTAL_SIZE`        | 1024 MB | Maximum aggregate size of all entries.            |
-| `MAX_ENTRIES`           | 16,384  | Maximum number of files in one archive.           |
-| `MAX_COMPRESSION_RATIO` | 500     | Prevents "ZIP bomb" attacks.                      |
+The native reader maps object declarations, properties, sketches, and feature dependencies into neutral records.
+The protocol tables identify recognized type families.
+A recognized type identifier does not prove complete reconstruction of every instance.
 
-## Object Graph Translation
+| Component     | Responsibility                                    |
+| ------------- | ------------------------------------------------- |
+| `Archive.py`  | Archive resources and document representation     |
+| `Native.py`   | Native object graph interpretation                |
+| `Protocol.py` | Type and property vocabulary                      |
+| `Brep.py`     | B-rep handling                                    |
+| `Adapter.py`  | Public adapter operations and result construction |
 
-The adapter parses the `Document.xml` to reconstruct the parametric history. It maps native FreeCAD types to neutral `FeatureKind` and `GeometryKind` enums.
+## Write paths
 
-### Supported Feature Types
+The writer can replay suitable unchanged source data.
+For other inputs, it constructs native records for implemented features and retains additional information as required.
+Inspect the resulting transfers and usability flags.
+Do not infer losslessness from a generated `Document.xml` file.
 
-The adapter recognizes over 90 native feature types. Key families include:
+The `portable` writer option defaults to true in the inspected adapter revision.
+For assemblies, portable output can include companion component files.
+The final destination identifies the base location for those files.
+Keep the output bundle together when moving it.
 
-- **PartDesign**: Pads, Pockets, Revolutions, Grooves, Fillets, Chamfers.
-- **App**: Planes, Links, Parts.
-- **Assembly**: Assembly Objects, Joint Groups, Joints.
+## Assembly behavior
 
-### Sketch and Constraint Parsing
+The adapter maps native assembly objects and links to neutral definitions and instances.
+Constraint mappings depend on the implemented native joint representation.
+A matching joint name does not establish equal motion or constraint behavior.
+Inspect the [assembly model](../Model/Assembly.md) and acceptance evidence.
 
-Native sketches are translated by mapping `Sketcher::PropertyConstraintList` to neutral `SketchConstraint` objects.
+## Use and recovery
 
-```mermaid
-sequenceDiagram
-    participant N as Native Sketch
-    participant G as Geometry Parser
-    participant C as Constraint Resolver
-    participant I as Interchange Model
-    N->>G: Extract PropertyGeometryList
-    G-->>N: Resolve Point/Line/Circle/Conic/Spline
-    N->>C: Extract PropertyConstraintList
-    C->>C: Map Code (e.g., 1=Coincident)
-    C->>C: Resolve Entity Indices to IDs
-    C-->>N: Build Neutral Constraints
-    N->>I: Assemble SketchData
-```
+1. Keep the source and destination paths separate.
+2. Check the requested feature families before conversion.
+3. Inspect the writer's transfer records.
+4. Preserve companion outputs with the main file.
+5. Obtain the required remote target-application evidence.
 
-## Write Logic: Rebuild vs. Replay
+If archive validation fails, record the limit or invalid member.
+If native output is incomplete, retain the structured failure.
+Do not load FreeCAD as a production fallback.
 
-The adapter implements two distinct write strategies: **Exact Replay** and **Reconstruction**.
+## Sources
 
-### Exact Replay
-
-If the `CadDocument` contains metadata proving it was originally read from a FreeCAD file and has not undergone semantic changes, the adapter performs an `exact_native_roundtrip`. This re-emits the original binary streams and XML to ensure 100% fidelity.
-
-### Reconstruction (Rebuild)
-
-If the document was modified or originated from another CAD system (e.g., SOLIDWORKS), the adapter synthesizes a new `Document.xml` and generates the necessary sidecar files.
-
-1. **Manifest Generation**: Converts the document to a JSON manifest embedded in the archive.
-2. **XML Synthesis**: Builds an object graph using `PartDesign` and `Part` workbench objects.
-3. **Geometry Generation**: Converts neutral B-Rep models into OpenCASCADE `.brp` strings.
-
-## Assembly Support
-
-The adapter handles FreeCAD assemblies by mapping `App::Part` and `App::Link` objects to neutral `ComponentDefinition` and `ComponentInstance` records. It supports external references by resolving relative paths within the document root.
-
-### External Document Handling
-
-- **Portability**: If the `portable` option is set, the adapter bundles referenced `.FCStd` files into a subfolder named after the main assembly.
-- **Link Mapping**: Re-maps `XLink` attributes in the generated XML to point to the new bundled locations.
+- [Adapter](../../../src/convert/adapters/freecad/Adapter.py)
+- [Archive validation](../../../src/convert/adapters/freecad/Archive.py)
+- [Native interpretation](../../../src/convert/adapters/freecad/Native.py)
+- [Protocol tables](../../../src/convert/adapters/freecad/Protocol.py)
+- [FreeCAD integration coverage](../../../tests/convert/freecad/)
