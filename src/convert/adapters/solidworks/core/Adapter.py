@@ -7206,7 +7206,9 @@ def DirectionAxis(Model: NativeModel) -> tuple[Selection, ...]:
     SketchById = {Sketch.object_id: Sketch for Sketch in Model.sketches}
     Result: list[Selection] = []
     for Operation in Model.operations:
-        AxisId = AxisSketchId(Operation)
+        AxisId = AxisSketchId(
+            Operation.profile_id, Operation.axis_source_kind, Operation.axis_source_id
+        )
         if AxisId is None:
             continue
         Sketch = SketchById.get(AxisId)

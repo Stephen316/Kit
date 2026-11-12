@@ -50,15 +50,13 @@ read its complete standards index and every applicable rule before coding.
   exclusions documented in [MergeQueue.md](MergeQueue.md). Reuse healthy PR reports
   in the queue only with verified identical inputs; otherwise rerun. Header and
   change-range verification and heavy acceptance always execute on the candidate.
-- Read `Comment` from
-  [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the only
-  source of truth for the automated reviewer and its exact request comment.
-  Request it once per accepted head unless that head already has a request or
-  review. Verify the responding account/app and reviewed SHA, address all findings,
-  and require its actual `APPROVED` review on the current head. Comments and a green
-  reviewer check do not substitute for approval. No human or code-owner approval
-  is required by this workflow. Report unavailable review evidence and independently
-  enforced repository requirements separately.
+- Read the reviewers from
+  [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json). Submit
+  each configured comment verbatim as a separate top-level request once per
+  accepted head unless that reviewer already has a request or review on it.
+  Verify every listed native report and an actual current-head approval from
+  each configured account. Address all findings and report unavailable evidence
+  separately from independently enforced repository requirements.
 - Only an explicit merge request from a verified repository administrator
   authorizes an agent to enroll a PR in the queue, enable auto-merge, or merge.
   Verify the requester's identity and current repository `admin` permission.

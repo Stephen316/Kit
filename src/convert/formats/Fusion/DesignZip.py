@@ -4,10 +4,12 @@
 from collections.abc import Callable
 
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import (
-    KDesignPrefix as KDesignPrefix,
+    KDesignPrefix as DesignPrefix,
 )
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
 from convert.formats.Fusion.RecordSpan import RecordSpan
+
+KDesignPrefix = DesignPrefix
 
 
 # standalone design readers retain their compact data and span return contract

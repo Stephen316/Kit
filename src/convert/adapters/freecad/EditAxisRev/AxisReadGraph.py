@@ -6,7 +6,7 @@ from dataclasses import dataclass as MakeDataClass
 from xml.etree.ElementTree import Element
 
 from convert.adapters.base import ParseUntrusted
-from convert.adapters.freecad.Archive import BuildDocXmlMut
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildDocXmlMut
 from convert.adapters.freecad.EditAxisRev.AxisRevPlan import AxisRevPlan
 from convert.adapters.freecad.EditRead.EditObjects import RequireEditObj
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame

@@ -9,6 +9,8 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 Read this log before working in an affected area. Keep entries short, searchable, and specific. Add a source or verification link when available. Move a growing topic into a focused PascalCase page in this folder and link it here; keep the bullet format.
 
+- **Reviewer mentions can target regular users:** Expected the configured mention to request automated review; the previous value resolved to [a regular GitHub user](https://api.github.com/users/67). Use the corrected [review configuration](../../.agents/skills/standard-pr-practice/ReviewBot.json), verify the responding account and app identity, and match its review to the current head SHA.
+
 - **Header remediation can leave dependency CI awaiting approval:** Expected the automated SPDX commit to complete PR validation; its current-head workflows can await maintainer approval while the aggregate remains on an older head. Approve the exact current-head runs and restart validation from a maintainer-authored commit when the aggregate did not start. See [PR 61's blocked run](https://github.com/TryUniCAD/Kit/actions/runs/42783888706).
 - **Pyright infers literal integer struct formats:** Expected `isinstance` to narrow an unpacked value; Pyright 1.1.414 already knows `H` and `I` return integers and rejects those checks as unnecessary. Return an explicit integer after the existing buffer bounds check. See [the compatibility entry](../Changes/PyrightCompatibility.md).
 
@@ -26,5 +28,12 @@ Read this log before working in an affected area. Keep entries short, searchable
 - **PR aggregation reads trusted base code:** Expected a reporter change on a PR branch to change that PR's `CI Agg`; `pull_request_target` loads the base revision. Merge the reporter change through its own reviewed PR before relying on the new exclusions in another PR. See [review provider exclusions](../Changes/ReviewProviderExclusions.md).
 
 - **Scorecard Action rejects merge groups:** Expected `publish_results: false` to permit queue scans; the action still rejects `merge_group` before analysis. Use the pinned CLI for both the full repository scan and the exact candidate's commit-compatible checks. Required Greptile statuses also apply to queue commits where that app reports no status; require the native app result through `CI Agg` on PR heads instead. See [the failure and repair](../Changes/QueueScorecard.md).
+
+- **Scorecard can exit successfully after a SARIF formatting error:** Version 5.4.0 printed a missing Binary-Artifacts policy error and produced no report. Use the JSON formatter and verify both reports, including the exact candidate SHA. See [the queue failure](https://github.com/TryUniCAD/Kit/actions/runs/43155805818/job/130975329860).
+- **Fusion fixture ZIPs need a Zstandard-capable standard library:** Python 3.11 raises NotImplementedError when the complete suite reads those ZIP members. The queue suite uses Python 3.14, which provides ZIP Zstandard support. See [the queue test failure](https://github.com/TryUniCAD/Kit/actions/runs/43155805818/job/130975329739).
+
+- **The scanner group blocks Python 3.14 test setup on Linux:** The locked scanner dependency had no compatible wheel, so installing every dev group failed before pytest. Sync the project dev extra for the full test job and keep the scanners in their existing jobs. See [the setup failure](https://github.com/TryUniCAD/Kit/actions/runs/43161600774/job/130993867779).
+
+- **The generator test needs Black in its own environment:** The project dev extra appeared to cover pytest, but the program generation check launches a subprocess that imports Black. Include the pinned formatter in that extra when isolating the suite from scanner dependencies. See [the review finding](https://github.com/TryUniCAD/Kit/pull/72#discussion_r4546730884).
 
 If you discover a new gotcha, unexpected API behavior, wrong assumption, or undocumented quirk while working on this codebase, you MUST add it to the bullet list above before finishing your task. This is mandatory, not optional. Future you (or a different agent) will thank you. Format: - Short description of the gotcha, what you expected vs what actually happened, and the fix or workaround.

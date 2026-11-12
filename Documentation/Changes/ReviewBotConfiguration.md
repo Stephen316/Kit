@@ -10,12 +10,9 @@ comment across agent guidance, skill metadata, and follow-up examples. Changing
 reviewers required editing multiple files, and the skill exempted its own edits
 from activation.
 
-The sole review request value is now `Comment` in
-[ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json).
-Edit that field to change the reviewer mention and exact top-level PR comment.
-Agents reload it before requesting review and submit its contents verbatim once
-per head unless that revision already has a request or review. Other guidance
-links to the configuration instead of duplicating the trigger.
+The original request pointed at a regular GitHub user and did not invoke the
+installed app. The corrected configuration and current approval requirements
+are documented in [Configurable PR reviewers](ConfigurableReviewers.md).
 
 Both [AGENTS.md](../../AGENTS.md) and [CLAUDE.md](../../CLAUDE.md) require activating
 [standard-pr-practice](../../.agents/skills/standard-pr-practice/SKILL.md) before

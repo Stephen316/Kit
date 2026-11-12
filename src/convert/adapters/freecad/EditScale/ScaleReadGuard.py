@@ -3,12 +3,12 @@
 
 from collections.abc import Mapping
 from xml.etree.ElementTree import Element
-from xml.etree.ElementTree import tostring as XmlBytes
 
 from zipfile import ZipFile, ZipInfo
 
 from convert.adapters.base.SafeParsing import ParseUntrusted
-from convert.adapters.freecad.Archive import BuildDocXmlMut
+from convert.adapters.freecad.Archive import ET
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildDocXmlMut
 from convert.adapters.freecad.EditBinding import ReadEditBinding
 from convert.adapters.freecad.EditScale.ScaleBinding import KScaleBinding
 from convert.adapters.freecad.EditScale.ScaleWritePlan import ReadScalePlan
@@ -19,12 +19,12 @@ from interchange.features.FeatureBoundScale import BoundScale
 # compare generated native data independently of the embedded manifest carrier text
 def ScaleGraph(RootValue: Element) -> tuple[bytes, ...]:
     Sections = tuple(
-        XmlBytes(Value)
+        ET.tostring(Value)
         for TagValue in ("Objects", "ObjectDeps")
         if (Value := RootValue.find(TagValue)) is not None
     )
     return Sections + tuple(
-        XmlBytes(Value)
+        ET.tostring(Value)
         for Value in RootValue.findall("./ObjectData/Object")
         if Value.get("name") != "KitMetadata"
     )

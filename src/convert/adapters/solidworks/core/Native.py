@@ -11356,7 +11356,9 @@ def NativeAxis(Model: NativeModel) -> frozenset[tuple[int, int, str]]:
     Sketches = {Sketch.object_id: Sketch for Sketch in Model.sketches}
     Result: set[tuple[int, int, str]] = set()
     for Operation in Model.operations:
-        AxisId = AxisSketchId(Operation)
+        AxisId = AxisSketchId(
+            Operation.profile_id, Operation.axis_source_kind, Operation.axis_source_id
+        )
         if AxisId is None:
             continue
         Sketch = Sketches.get(AxisId)
@@ -14035,7 +14037,13 @@ def RevolutionAxisA(
 def OperationAxis(
     Operation: NativeOperation, Sketch: NativeSketch | None
 ) -> str | None:
-    if Sketch is None or AxisSketchId(Operation) != Sketch.object_id:
+    if (
+        Sketch is None
+        or AxisSketchId(
+            Operation.profile_id, Operation.axis_source_kind, Operation.axis_source_id
+        )
+        != Sketch.object_id
+    ):
         return None
     if Operation.kind in KExtrusionOperationKinds:
         return KNormalAxisSubElem

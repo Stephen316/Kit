@@ -10,8 +10,10 @@ from convert.adapters.freecad.Adapter import (
     write_freecad as WriteFreecad,
 )
 from convert.adapters.freecad.Archive import (
-    build_fcstd_archive as BuildFcstdArchive,
     extract_manifest_from_fcstd as ExtractManifestFromFcstd,
+)
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import (
+    build_fcstd_archive as BuildFcstdArchive,
 )
 
 # this binding exists because shared behavior needs one stable value

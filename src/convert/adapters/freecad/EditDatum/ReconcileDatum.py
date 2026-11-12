@@ -7,7 +7,7 @@ from xml.etree.ElementTree import Element
 from zipfile import ZipFile, ZipInfo
 
 from convert.adapters.base import ParseUntrusted
-from convert.adapters.freecad.Archive import BuildDocXmlMut
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildDocXmlMut
 from convert.adapters.freecad.EditBinding import ReadEditBinding
 from convert.adapters.freecad.EditDatum.DatumBinding import KDatumBinding, KDatumGroup
 from convert.adapters.freecad.EditDatum.DatumPlan import ReadDatumPlan

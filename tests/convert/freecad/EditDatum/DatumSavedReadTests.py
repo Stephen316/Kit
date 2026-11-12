@@ -12,7 +12,8 @@ from pytest import raises as Raises
 
 from convert.adapters.base import ParseUntrusted
 from convert.adapters.freecad.Adapter import DocToManifest
-from convert.adapters.freecad.Archive import BuildFcstdMut, MakePlacement
+from convert.adapters.freecad.Archive import MakePlacement
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildFcstdMut
 from convert.adapters.freecad.EditDatum.DatumBinding import KDatumBinding
 from convert.adapters.freecad.EditDatum.ReconcileDatum import ReconcileDatum
 from interchange.document.models.DocumentModel import CadDocument
