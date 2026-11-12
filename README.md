@@ -8,7 +8,7 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 Kit is a Python SDK for CAD interchange.
 Readers build a neutral `CadDocument` from source files.
 Writers produce target files and report how they represented the source information.
-Production conversion does not use a CAD application.
+Production conversion runs without requiring CAD software.
 
 [Wiki](https://github.com/TryUniCAD/Kit/wiki)
 
@@ -41,6 +41,7 @@ The [Fusion reader](re/Fusion/README.md#research-reader) remains an explicit res
 
 ## Conversion example
 
+Call `convert(source, destination)` with the input and output paths.
 Supply a real `bracket.SLDPRT` file and an unused output path before running this example.
 
 ```python
@@ -49,7 +50,8 @@ from convert import convert as ConvertDoc
 Result = ConvertDoc("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
 ```
 
-The distribution name is `unicad-kit` and the public import is `convert`.
+Install [`unicad-kit`](#distribution) in the Python environment that runs your script.
+The public import is `convert`.
 The default `allow_carrier=True` permits preservation results subject to the registry policy.
 Set `allow_carrier=False` for conversion acceptance work.
 This option is independent of the reader's `strict` option.
@@ -87,15 +89,14 @@ Run tests only in remote CI.
 ## Distribution
 
 Use Python 3.11 or later.
-For a new application project, run `uv init` first.
-Install a published release from PyPI:
+Activate your project's virtual environment and install Kit from PyPI.
 
 ```sh
-uv add unicad-kit
+pip install unicad-kit
 ```
 
 If no release is available, follow [repository installation](Documentation/Tasks/Install.md).
-See [getting started](Documentation/GettingStarted.md) for examples and output limits.
+See [getting started](Documentation/GettingStarted.md) for uv project setup and output limits.
 See [release publishing](Documentation/Changes/CommitReleases.md) for the release process.
 
 ## License
