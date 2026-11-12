@@ -11,16 +11,18 @@ Every new feature, API, adapter, command, configuration option, workflow, tool,
 or other repository addition MUST include a new PascalCase Markdown entry in
 `Documentation/Changes/` in the same PR. Describe behavior, usage or configuration,
 limitations, and actual verification evidence. Update the relevant guide and
-[change index](Documentation/Changes/Index.md), and link the entry in the PR. An update
-to an existing reference page does not replace the required new entry. Pure
-documentation corrections may update their existing entry.
+link the entry directly in the PR. The [change directory](Documentation/Changes/Index.md)
+explains how to find entries without a manual index update. An existing reference-page update
+does not replace the required new entry. Pure documentation corrections may
+update their existing entry.
 
-Read [Documentation/Gotchas/README.md](Documentation/Gotchas/README.md) before working in an
-affected area. If you discover a new gotcha, unexpected API behavior, wrong
-assumption, or undocumented quirk while working on this codebase, you MUST add
-it to that bullet list before finishing your task. This is mandatory, not
-optional. Format: a short description of the gotcha, what you expected vs what
-actually happened, and the fix or workaround. Link evidence when available.
+Find and read the relevant pages in the [gotchas directory](Documentation/Gotchas/README.md)
+before working in an affected area. If you discover a new gotcha, unexpected API
+behavior, wrong assumption, or undocumented quirk, you MUST record it before
+finishing. Add a separate, specific PascalCase Markdown file in the appropriate
+topic under `Documentation/Gotchas/` and link it in the PR. Describe the expectation,
+actual behavior, and workaround. Link evidence when available. Do not append
+entries to the directory's README.
 
 Maintained documentation lives in `Documentation/`. Follow
 [the publishing guide](Documentation/Publishing.md) for generated imports and GitHub wiki

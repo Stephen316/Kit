@@ -47,4 +47,4 @@ Do not skip artifact verification to obtain a passing status.
 The original investigation used remote logs and subsequent reads of the exact artifact identifiers.
 No local tests ran.
 The reporter uses trusted base code, so feature-branch changes take effect after merge.
-See [the gotchas log](../Gotchas/README.md) and [queue operations](../../MergeQueue.md).
+See [the artifact publication gotcha](../Gotchas/Ci/ArtifactPublication.md) and [queue operations](../../MergeQueue.md).

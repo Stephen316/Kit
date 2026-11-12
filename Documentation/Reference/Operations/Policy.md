@@ -23,8 +23,9 @@ Unit tests are prohibited by repository policy.
 ## Documentation
 
 Each repository addition requires a new [change entry](../../Changes/Index.md).
-Update the related guide and navigation in the same PR.
-Record new gotchas before completion.
+Update the related guide in the same PR.
+Record each new [gotcha](../../Gotchas/README.md) in a separate file.
+Link new entries in the PR. The directory listings include them automatically.
 Use the [writing rules](../../Standards/WritingRules.md) for maintained documentation.
 Record standards gaps without claiming unsupported conformance.
 

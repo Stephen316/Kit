@@ -79,7 +79,7 @@ Vendor applications run only in isolated validation workflows after output gener
 Activate [standard-pr-practice](.agents/skills/standard-pr-practice/SKILL.md) before repository work.
 Use an isolated worktree and a separate PR.
 Add a [change entry](Documentation/Changes/Index.md) for each repository addition.
-Record new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
+Record each new discovery as a separate [gotcha](Documentation/Gotchas/README.md).
 Run tests only in remote CI.
 
 ## Star history

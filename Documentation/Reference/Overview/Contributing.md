@@ -15,7 +15,7 @@ The repository has one discoverable skill.
 
 Read [AGENTS.md](../../../AGENTS.md), the skill, and its complete standards index.
 Current user instructions override conflicting repository defaults.
-Read the [gotchas log](../../Gotchas/README.md).
+Read the [gotchas](../../Gotchas/README.md) for the affected area.
 Identify the repository, base branch, and task-owned worktree.
 Preserve unrelated changes.
 
@@ -26,8 +26,8 @@ Preserve unrelated changes.
 3. Implement the complete scoped change.
 4. Update the relevant task and reference pages.
 5. Add a new [change entry](../../Changes/Index.md) for each repository addition.
-6. Update the documentation index and terminology when needed.
-7. Record new gotchas.
+6. Update navigation for new or moved guides. Update terminology when it changes.
+7. Record each new [gotcha](../../Gotchas/README.md) in a separate file.
 8. Format only the changed files with the required tools.
 9. Inspect the outgoing diff and commit range.
 10. Commit the task-owned files.
