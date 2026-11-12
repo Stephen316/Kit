@@ -5,9 +5,9 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # README presentation
 
-The [README](../../README.md) now places a direct GitHub wiki link and the Greptile badge below the project introduction, removes the legacy Parashell banner, and embeds a linked star history graph for `TryUniCAD/Kit`.
+The [README](../../README.md) now places a direct GitHub wiki link and the review-service badge below the project introduction, removes the legacy Parashell banner, and embeds a linked star history graph for `TryUniCAD/Kit`.
 
-The badge uses Greptile's hosted SVG and links to its website with the supplied open-source badge campaign parameters.
+The badge uses the review service's hosted SVG and links to its website with the supplied open-source badge campaign parameters.
 
 The graph uses the hosted Star History SVG endpoint in date mode. Clicking it opens the interactive chart. No repository credentials or setup are needed. Image availability and freshness depend on Star History and GitHub's image cache; the graph is not stored in this repository.
 

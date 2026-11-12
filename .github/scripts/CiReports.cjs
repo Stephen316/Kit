@@ -6,7 +6,7 @@ const Path = require("node:path");
 const Crypto = require("node:crypto");
 const Process = require("node:child_process");
 const { IsReviewApp, IsReviewUser } = require("./ReviewProviders.cjs");
-const { BuildReport } = require("./GreptileReport.cjs");
+const { BuildRequired } = require("./ReviewerReports.cjs");
 
 const StaticChecks = [
   "Ruff",
@@ -182,7 +182,7 @@ async function ReadReports(
       });
     }
   }
-  if (ReviewSha) Rows.push(BuildReport(Checks, ReviewSha));
+  if (ReviewSha) Rows.push(...BuildRequired(Checks, Statuses, ReviewSha));
   return Rows;
 }
 
@@ -520,7 +520,7 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
   await Core.summary
     .addHeading("CI passed")
     .addRaw(
-      "All applicable CI passed; PR heads also require a successful native Greptile check.\n",
+      "All applicable CI passed; PR heads also require successful native reports from every configured reviewer.\n",
     )
     .addTable([
       ["Check", "Conclusion", "Report"],

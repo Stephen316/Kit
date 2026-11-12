@@ -15,7 +15,7 @@ Start with [Getting started](GettingStarted.md), [API reference](Reference/Overv
 - [Change entries](Changes/Index.md)
 - [Mandatory gotchas log](Gotchas/README.md)
 
-These reference pages began with [Cubic wiki version 1](https://www.cubic.dev/wiki/TryUniCAD/Kit/1) and were curated against `aeff047c355622e812ab5d79b665d8f64c4075bb`. The [provenance record](Reference/Provenance.json) preserves original page paths. Maintained docs live in `Documentation/`; future Cubic sync PRs must be reviewed and normalized before import.
+These reference pages began with a generated wiki snapshot and were curated against `aeff047c355622e812ab5d79b665d8f64c4075bb`. The [provenance record](Reference/Provenance.json) preserves original page paths. Maintained docs live in `Documentation/`; future generated sync PRs must be reviewed and normalized before import.
 
 The pages describe implementation and research, not blanket format support or acceptance results. Carrier preservation, native replay, and successful API calls do not establish lossless editable output. Research donor experiments are not production-writing guidance. Follow the [acceptance standard](../.agents/skills/standard-pr-practice/references/Standards/Portable/LosslessTranslation.md).
 

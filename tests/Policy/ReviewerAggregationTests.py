@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 # SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
+import json as JsonCodec
 import os as SystemEnv
 import subprocess as Subprocess
 import tempfile as Tempfile
@@ -8,16 +9,22 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
+KRootPath = FilePath(__file__).resolve().parents[2]
+KReviewers = JsonCodec.loads(
+    (KRootPath / ".agents/skills/standard-pr-practice/ReviewBot.json").read_text()
+)["Reviewers"]
+
 
 @Pytest.mark.parametrize(
     "Verdict", ("success", "failure", "neutral", "skipped", "cancelled", "timed_out")
 )
-def TestPrReview(Verdict: str) -> None:
+@Pytest.mark.parametrize("ReviewerIndex", tuple(map(str, range(len(KReviewers)))))
+def TestPrReview(Verdict: str, ReviewerIndex: str) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     ScriptPath = RootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
     with Tempfile.TemporaryDirectory() as TempPath:
         ResultInfo = Subprocess.run(
-            ["node", str(ScriptPath), "greptile", Verdict],
+            ["node", str(ScriptPath), "review", Verdict, ReviewerIndex],
             cwd=RootPath,
             env={**SystemEnv.environ, "RUNNER_TEMP": TempPath},
             capture_output=True,
@@ -35,23 +42,30 @@ def TestPrReview(Verdict: str) -> None:
 
 
 @Pytest.mark.parametrize(
-    "CaseMode,Verdict",
-    (
-        ("greptile", "pending"),
-        ("greptile-stale", "success"),
-        ("greptile-spoof", "success"),
-        ("greptile-missing", "success"),
-        ("queue", "pending"),
-        ("queue-missing", "success"),
+    "CaseMode,Verdict,ReviewerIndex",
+    tuple(
+        (CaseMode, Verdict, str(Index))
+        for Index, Reviewer in enumerate(KReviewers)
+        for CaseMode, Verdict in (
+            ("review", "pending"),
+            ("review-stale", "success"),
+            ("review-spoof", "success"),
+            ("review-missing", "success"),
+            ("review-partial", "success"),
+            ("queue", "pending"),
+            ("queue-missing", "success"),
+        )
+        if CaseMode != "review-partial"
+        or len(Reviewer["Checks"]) + len(Reviewer["Statuses"]) > 1
     ),
 )
-def TestPendingGate(CaseMode: str, Verdict: str) -> None:
+def TestPendingGate(CaseMode: str, Verdict: str, ReviewerIndex: str) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     ScriptPath = RootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
     with Tempfile.TemporaryDirectory() as TempPath:
         with Pytest.raises(Subprocess.TimeoutExpired) as ErrorInfo:
             ResultInfo = Subprocess.run(
-                ["node", str(ScriptPath), CaseMode, Verdict],
+                ["node", str(ScriptPath), CaseMode, Verdict, ReviewerIndex],
                 cwd=RootPath,
                 env={**SystemEnv.environ, "RUNNER_TEMP": TempPath},
                 capture_output=True,

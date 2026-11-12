@@ -4,4 +4,4 @@
 interface:
   display_name: "Standard PR Practice"
   short_description: "Open PRs, clear gates, require admin merge authorization"
-  default_prompt: "Use $standard-pr-practice for this task, read the review comment from ReviewBot.json, and carry authorized changes through an isolated worktree, their own PR, remote CI, and review follow-up"
+  default_prompt: "Use $standard-pr-practice for this task, load every reviewer from ReviewBot.json, and carry authorized changes through an isolated worktree, their own PR, remote CI, and approval from every configured reviewer"

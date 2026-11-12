@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 // SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
-const {
-  ReadReviewers,
-} = require("../../../.github/scripts/ReviewConfig.cjs");
+const { ReadReviewers } = require("../../../.github/scripts/ReviewConfig.cjs");
 const { Reviewers, ExcludedReports } = ReadReviewers();
 const KProviders = [...Reviewers, ...ExcludedReports];
 

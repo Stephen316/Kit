@@ -15,9 +15,13 @@ remote CI verifies that no original bytes or resources disappear.
 Codex and Claude Code must activate this skill before every repository task,
 including investigation, documentation, and edits to the skill itself.
 
-Read the exact review request from the `Comment` field in
+Read every entry in `Reviewers` from
 [ReviewBot.json](skills/standard-pr-practice/ReviewBot.json), the only source of
-truth for the reviewer to mention. Request it once per head. Only an explicit
+reviewer identities, native report names, and exact request comments. Submit each
+entry's `Comment` verbatim once per head unless that reviewer already has a
+request or review for that head. Every configured reviewer must pass its native
+reports and submit an actual current-head `APPROVED` review before the PR is
+ready. Only an explicit
 request from a verified repository administrator authorizes agent queue
 enrollment, auto-merge, or merging.
 
