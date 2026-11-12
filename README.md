@@ -83,6 +83,14 @@ result = convert("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
 
 ## Distribution
 
+In a uv project with Python 3.11 or later, install the SDK:
+
+```sh
+uv add unicad-kit
+```
+
+For a new project, run `uv init` first. See [getting started](Documentation/GettingStarted.md) for an example and output compatibility limits.
+
 Kit is licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt.
