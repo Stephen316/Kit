@@ -26,9 +26,9 @@ Record standards gaps from the [conformance matrix](Standards/Conformance.md).
 ## Maintain repository pages
 
 1. Update the relevant task and reference pages together.
-2. Add the required change entry.
-3. Update the index and term register where applicable.
-4. Record new gotchas.
+2. Add the required [change entry](Changes/Index.md).
+3. Update navigation for new or moved guides. Update terminology when it changes.
+4. Record each new [gotcha](Gotchas/README.md) in a separate file.
 5. Preserve license notices and source attribution.
 6. Format the changed Markdown.
 7. Submit the files through an isolated worktree and PR.
@@ -96,6 +96,11 @@ If the user requests an unmerged preview, identify its source SHA prominently.
 6. Convert documentation links to wiki page links.
 7. Convert source links to GitHub URLs pinned to the source SHA.
 8. Update `_Sidebar.md` with navigation.
+
+   Replace the repository directory links on the change and gotcha landing pages with wiki page lists.
+   Build each list from the matching source directory and its subdirectories at the selected revision.
+   Exclude the landing page itself. Keep these lists in the wiki output.
+
 9. Update `_Footer.md` with the source SHA and maintenance link.
 10. Inspect every changed rendered page and anchor.
 11. Commit only the intended wiki files.

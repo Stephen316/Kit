@@ -5,59 +5,17 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Known gotchas
 
-Read this log before working in an affected area.
-Each entry records an expectation, observed behavior, and corrective action.
-Add a new entry when repository work reveals an undocumented condition.
-Keep source links and historical evidence.
+[Browse gotchas by topic](./).
+In a checkout, search the files under `Documentation/Gotchas/`.
+Read the pages relevant to your work before you start.
 
-- **Fusion discovery:** A packaged reader might appear production-ready. Public discovery excludes the partial Fusion reader. Use the explicit research interface. Do not infer lossless output from a partial read. See [the import record](../Changes/FusionResearchImport.md).
-- **Header remediation and CI:** An automated SPDX commit might appear to complete validation. Its new workflows can await approval while the aggregate covers an older head. Approve the exact current-head runs. If aggregation did not start, restart validation through the authorized maintainer workflow. See [the blocked run](https://github.com/TryUniCAD/Kit/actions/runs/42783888706).
-- **Pyright integer inference:** An `isinstance` check might appear necessary after unpacking. Pyright 1.1.414 already infers integer values for literal `H` and `I` formats. Keep bounds checks and return an explicit integer. See [the compatibility record](../Changes/PyrightCompatibility.md).
-- **Distribution and import names:** A distribution name might suggest an identical import. The distribution is `unicad-kit` because `kit` names an [unrelated PyPI project](https://pypi.org/project/kit/). The wheel packages `convert` and `interchange`. Use `from convert import convert`. See [package metadata](../../pyproject.toml).
-- **README images in distributions:** A relative image can work in the repository but fail in a source distribution. The package manifest excludes `files/`. Use an absolute image URL pinned to a repository revision. See [the distribution manifest](../../pyproject.toml).
-- **Strict reading and carrier policy:** `strict=True` might appear to require usable target output. It controls reader validation. Set output policy separately with `allow_carrier=False`. Inspect the attestation and vendor evidence. See [result evaluation](../Tasks/InspectResult.md).
-- **Target-limit carriers:** `allow_carrier=False` might appear to reject every carrier transfer. The registry treats `target_unsupported` differently from implementation and decoding gaps. Inspect each transfer reason when applying acceptance requirements. See [the write policy](../../src/convert/adapters/base/WritePolicy.py).
-- **Partial stream writes:** Staging might appear to provide rollback for every destination. The final caller-stream write can fail after writing some bytes. Use a fresh stream after a failed write. See [stream staging](../../src/convert/adapters/staging/StreamStaging.py).
-- **Partial B-rep extraction:** Extraction might appear to use the conversion output transaction. It writes payloads in sequence. A later error can leave earlier files. Use a separate directory for each attempt. See [extraction](../Tasks/ExtractGeometry.md).
-- **Hash meaning:** A matching digest might appear to authenticate a source. An untrusted sender can replace both the bytes and digest. Use hashes for the documented integrity comparison. Do not claim authorship from an unsigned hash. See [serialization](../Reference/Data/Serialization.md).
-- **Generated page paths:** A generated export might appear ready for repository import. Numbered or lowercase project-owned stems can fail `PTH001`. Normalize the export into maintained PascalCase paths. Preserve provenance and repair links. See [publishing](../Publishing.md).
-- **Wiki initialization:** Enabling the wiki might appear to create its Git remote. The remote remains unavailable until the first web page is saved. Initialize that page before cloning the wiki. See [GitHub's procedure](https://docs.github.com/en/communities/documenting-your-project-with-wikis/adding-or-editing-wiki-pages).
-- **Case-only directories:** `Docs/` and `docs/` might appear distinct. A case-insensitive filesystem treats them as the same directory. Use `Documentation/` for maintained pages. Preserve the separate generated `docs/` path.
-- **Queue configuration and enforcement:** A checked-in manifest might appear to establish live protection. The historical ruleset allowed PR #42 to merge despite failed heavy jobs. Verify live enforcement before enrollment. Settings changes require explicit authorization. See [the incident record](../Changes/QueueScorecard.md).
-- **Skipped job names:** A conditional job name might appear resolved before reporting. GitHub reported the expression text for a skipped bootstrap. The aggregate rejected that unexpected check. Retire obsolete bootstrap triggers and use stable gate names. See [the repair](../Changes/AggregateBootstrap.md).
-- **Artifact publication:** A successful upload might appear immediately readable. Later reads succeeded after immediate metadata and ZIP requests returned 404. The verification client now permits four retries while retaining digest and provenance checks. See [the recorded failures](../Changes/ArtifactPublication.md).
-- **Trusted-base aggregation:** A reporter change on a PR might appear to affect that PR's aggregate. `pull_request_target` loads trusted base code. Merge the reviewed reporter change before relying on its behavior elsewhere. See [the CI allowlist](../Changes/CiReviewerExclusions.md).
-- **Scorecard and queue commits:** Disabling publication might appear sufficient for the Scorecard action on `merge_group`. The action rejects that event before analysis. Use the pinned CLI and both required scan modes. Native reviewer evidence belongs to PR heads, not synthetic queue commits. See [the repair](../Changes/QueueScorecard.md).
-- **Public standards summaries:** Short sentences might appear sufficient for standards conformance. Full ASD language assessment also needs dictionary usage checks. ISO conformance needs complete applicable requirements and evidence. Keep full conformance unverified when those inputs are unavailable. See [the evidence matrix](../Standards/Conformance.md).
+Record each new discovery in its own PascalCase Markdown file under the relevant topic.
+Use a focused subdirectory for a new topic.
+Use a specific name that includes the affected behavior or component.
+State the expectation, observed behavior, and workaround.
+Link the source or evidence when available.
+Link the new page directly in the PR.
 
-- **Review trigger syntax:** An account mention might appear sufficient for every integration. Some require a slash command and a linked account with write access. Read each exact `Comment` and official source in [ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json). Submit it verbatim and verify the responding identity and reviewed SHA.
-
-- **Provenance references:** An array position might appear to identify a generator permanently. Reordering exclusion entries changes that target. Use the stable `DocumentationSources.InitialWiki.Generator` key in [the configuration](../../.agents/skills/standard-pr-practice/ReviewBot.json).
-
-- **Commit-status attribution:** A status fixture might appear to need a commit reference. The real response omits that reference. The [status-list API](https://docs.github.com/en/rest/commits/statuses#list-commit-statuses-for-a-reference) selects the commit through the request path. Remove fixture routing metadata before returning statuses. Verify native review status against the commit used in the API request.
-
-- **Review restarts on unchanged heads:** A passing report might appear final while the head stays unchanged. PR metadata changes can restart native reports without changing the head. Finish metadata edits before final verification. Read the latest reports even when the head is unchanged. An older pass cannot replace a newer pending result.
-
-- **Analysis on a snapshot base:** A PR into a snapshot branch might appear to run the same checks as a PR into `main`. In [PR #73](https://github.com/TryUniCAD/Kit/pull/73), two expected analysis jobs had no runs on the snapshot base. The aggregate remained pending. Check expected job names as well as reported results after a base change. Revalidate the current head against the intended target. Do not remove missing jobs from the required inventory.
-
-- **Reviewer account type:** A configured mention might appear to invoke an installed app. The earlier request named a regular GitHub user. Use the corrected [configuration](../../.agents/skills/standard-pr-practice/ReviewBot.json). Verify the responding account type, immutable identity, and reviewed SHA. See [the correction](../Changes/ReviewBotConfiguration.md).
-- **Scorecard output:** A successful exit might appear to prove that a report exists. Version 5.4.0 printed a SARIF formatting error and produced no report. Use JSON and verify both reports, including the exact candidate SHA. See [the failure](https://github.com/TryUniCAD/Kit/actions/runs/43155805818/job/130975329860).
-- **Fusion fixture compression:** Python 3.11 might appear sufficient for every repository fixture. It raises `NotImplementedError` for ZIP members that use Zstandard. The queue suite uses Python 3.14 for this standard-library support. See [the failure](https://github.com/TryUniCAD/Kit/actions/runs/43155805818/job/130975329739).
-- **Scanner dependencies in suite setup:** Installing every development group might appear suitable for Python 3.14. A locked scanner dependency had no compatible Linux wheel. Sync the project dev extra for the full suite. Keep scanner tools in their separate jobs. See [the setup failure](https://github.com/TryUniCAD/Kit/actions/runs/43161600774/job/130993867779).
-- **Generator formatter dependency:** The dev extra might appear complete for pytest. The generation check starts a subprocess that imports Black. Include the pinned formatter in that extra when separating scanner dependencies. See [the finding](https://github.com/TryUniCAD/Kit/pull/72#discussion_r4546730884).
-
-- **Queued branch updates:** A conflict repair might appear ready for a normal push. GitHub rejects updates while that PR is in the merge queue. During an authorized merge repair, remove only the affected entry before publishing. Verify the new head, every applicable check, and review evidence before queue enrollment. Preserve other entries and their order. See [PR #73](https://github.com/TryUniCAD/Kit/pull/73).
-
-- **Partial backup failure:** Exception handling might appear to guarantee recovery during replacement. A later backup failure can leave the caller without records of earlier moved targets. Temporary storage cleanup can delete those originals. Keep independent backups and prefer unused destinations. See [path boundaries](../Reference/Architecture/Engine.md#path-destinations).
-- **Missing stream count:** A successful return might appear to prove that the complete payload was written. A `write()` result of `None` bypasses the final count check. Use a reliable count or independently verify output. See [stream boundaries](../Reference/Architecture/Engine.md#stream-destinations).
-- **Saved geometry measurements:** Opening a candidate might appear to expose geometry from the current feature tree. Saved body geometry can remain until rebuild. Rebuild the unchanged candidate before measuring it. See [oracle measurements](../Reference/Research/Oracles.md#measurement-sequence).
-- **Wiki publication branch:** Pushing a publication branch might appear to update the live wiki. Only the serving default branch publishes those pages. Identify remote `HEAD` and explicitly push the reviewed revision there. See [wiki publication](../Publishing.md#publish-an-authorized-revision).
-
-- **GitHub release tags:** A raw commit SHA might appear valid as a tag. GitHub rejects that form. Use `commit-<sha>` as the tag and the full SHA as the title. Download attached archives and matching checksums. Automatic source archives can have different compressed bytes. See [tag restrictions](https://docs.github.com/en/get-started/using-git/dealing-with-special-characters-in-branch-and-tag-names) and [archive guarantees](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives).
-- **Skipped publishing jobs:** Skipped publication jobs might appear irrelevant to PR validation. [CI aggregation treated them as failures](https://github.com/TryUniCAD/Kit/actions/runs/43160137110). Use a separate publication workflow. Share its build script with PR validation.
-- **Workflow reference syntax:** A local reusable workflow reference might appear acceptable to both linters. One requires `$/`, while [actionlint 1.7.12 rejects that syntax](https://github.com/rhysd/actionlint/issues/760). Share the build script while retaining both checks.
-- **Installation prerequisites:** One setup list might appear suitable for both package users and contributors. Requiring a repository checkout makes the published-package route misleading. State shared prerequisites first. Give each route its own setup procedure. See [getting started](../GettingStarted.md).
-
-- **Release concurrency:** A branch-wide group might appear to serialize every release. The default queue replaces a pending run when another enters that group. Group GitHub releases by commit SHA. Group PyPI uploads by package version. See [concurrency rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency).
-
-- **Managed Code Quality workflow path:** Its workflow might appear to live under `.github/workflows/`. GitHub reports it under `dynamic/github-code-quality/codeql` with event `dynamic`. Register that path and event in the PR allowlist. See [a managed run](https://github.com/TryUniCAD/Kit/actions/runs/43169749076).
+Correct an existing page when it describes the same issue.
+Keep this page for navigation and writing instructions.
+The topic directories list new entries automatically.

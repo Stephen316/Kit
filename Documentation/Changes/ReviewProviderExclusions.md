@@ -40,4 +40,4 @@ The original integration coverage executes the reporter in a Node subprocess aga
 It checks summary and filesystem evidence, including unrelated CI failures and every configured reviewer's reports.
 No local tests ran.
 The original record left current-head CI and review pending until GitHub reported them.
-See [merge queue operations](../../MergeQueue.md) and [the trusted-base gotcha](../Gotchas/README.md).
+See [merge queue operations](../../MergeQueue.md) and [the trusted-base gotcha](../Gotchas/Ci/TrustedBaseAggregation.md).

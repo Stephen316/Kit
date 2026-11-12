@@ -58,7 +58,7 @@ The configured automated review and repository gates remain in force.
 1. Identify the changed user task.
 2. Record the affected audience and product revision.
 3. Update the task and reference pages together.
-4. Add a change entry for each repository addition.
+4. Add a separate [change entry](../Changes/Index.md) for each repository addition.
 5. Update the term register when terminology changes.
 6. Complete the review procedure on the proposed revision.
 7. Publish only the authorized document set.

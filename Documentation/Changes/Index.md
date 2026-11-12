@@ -5,27 +5,18 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Documentation entries
 
+[Browse change entries](./).
+In a checkout, look for the relevant files under `Documentation/Changes/`.
+
 Each repository addition requires a new PascalCase Markdown entry in the same PR.
+Choose a filename that describes the specific change.
+Use focused subdirectories as needed to stay within the repository path limit.
 Describe behavior, usage, limits, and actual verification evidence.
-Update the affected guide and this index.
-An existing reference-page update does not replace the new entry.
-Pure documentation corrections can update their existing entry.
+Update the affected guide and link the entry directly in the PR.
+The directory listings include new entries automatically.
 
-Historical entries describe evidence at the time of their change.
+Historical entries describe behavior and evidence at the time of their change.
 They do not establish the current CI, deployment, or publication state.
-
-- [Documentation and wiki foundation](DocumentationFoundation.md)
-- [Retire the aggregate bootstrap](AggregateBootstrap.md)
-- [Review bot configuration and required skill activation](ReviewBotConfiguration.md)
-- [Fusion research import and explicit reader](FusionResearchImport.md)
-- [Review provider exclusions from CI aggregation](ReviewProviderExclusions.md)
-- [CI allowlist for PRs and merge groups](CiReviewerExclusions.md)
-- [Transient CI artifact publication errors](ArtifactPublication.md)
-- [Pyright compatibility](PyrightCompatibility.md)
-- [Merge queue Scorecard execution and review requirements](QueueScorecard.md)
-- [Documentation expansion and standards evidence](DocumentationStandards.md)
-- [Merge queue candidate validation repairs](QueueCandidateValidation.md)
-- [README presentation](ReadmePresentation.md)
-- [Configurable PR reviewers](ConfigurableReviewers.md): one reviewer list, all-reviewer readiness, and removal of CODEOWNERS
-- [Commit releases and PyPI publishing](CommitReleases.md)
-- [Publish commit releases on pushes](PushReleases.md)
+Record later behavior in a new entry and the current guide.
+Correct an existing entry if it misstates the original change or its evidence.
+Pure documentation corrections can update their existing entry.

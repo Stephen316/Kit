@@ -66,7 +66,7 @@ A sentence counter cannot establish ASD-STE100 conformance.
 ## Presentation review
 
 1. Open the rendered document set.
-2. Follow the index links to each changed page.
+2. Find each changed page through its directory listing, guide index, or direct PR link.
 3. Check heading order and link labels.
 4. Check code fences and table column alignment.
 5. Check diagrams with their text explanations.
