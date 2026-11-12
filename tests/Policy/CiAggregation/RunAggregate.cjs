@@ -18,6 +18,7 @@ const Context = {
   runId: 500,
   repo: { owner: "TryUniCAD", repo: "Kit" },
   payload: {
+    action: "opened",
     pull_request: PullData,
     repository: { id: 1 },
     merge_group: { base_ref: "refs/heads/main", head_sha: "a".repeat(40) },
@@ -53,6 +54,7 @@ const Github = {
         })
       : Responses[Method],
 };
+let SummaryRows = [];
 const Summary = {
   addHeading(Value) {
     process.stdout.write(`${Value}\n`);
@@ -63,6 +65,7 @@ const Summary = {
     return this;
   },
   addTable(Value) {
+    SummaryRows = Value;
     process.stdout.write(`${JSON.stringify(Value)}\n`);
     return this;
   },
@@ -77,7 +80,18 @@ Aggregate({
     summary: Summary,
     info: (Value) => process.stdout.write(`${Value}\n`),
   },
-}).catch((Failure) => {
-  process.stderr.write(`${Failure.message}\n`);
-  process.exitCode = 1;
-});
+})
+  .then(() => {
+    const Reported = new Set(SummaryRows.slice(1).map((Row) => Row[2]));
+    const Missing = Inputs.Expected.filter(
+      (Check) => !Reported.has(Check.html_url),
+    );
+    if (Missing.length)
+      throw new Error(
+        `CI jobs missing from the aggregate: ${Missing.map((Check) => Check.name).join(", ")}`,
+      );
+  })
+  .catch((Failure) => {
+    process.stderr.write(`${Failure.message}\n`);
+    process.exitCode = 1;
+  });

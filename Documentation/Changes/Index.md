@@ -19,6 +19,7 @@ They do not establish the current CI, deployment, or publication state.
 - [Review bot configuration and required skill activation](ReviewBotConfiguration.md)
 - [Fusion research import and explicit reader](FusionResearchImport.md)
 - [Review provider exclusions from CI aggregation](ReviewProviderExclusions.md)
+- [CI allowlist for PRs and merge groups](CiReviewerExclusions.md)
 - [Transient CI artifact publication errors](ArtifactPublication.md)
 - [Pyright compatibility](PyrightCompatibility.md)
 - [Merge queue Scorecard execution and review requirements](QueueScorecard.md)

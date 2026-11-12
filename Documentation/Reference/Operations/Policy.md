@@ -43,6 +43,8 @@ Missing or invalid configuration blocks readiness.
 Do not guess a trigger or use an unconfigured fallback.
 
 All applicable CI must pass on the current revision.
+Register each CI workflow and job in the [CI allowlist](../../../.github/scripts/CiAllowlist.cjs) for its validation phase.
+Keep automated review out of those workflows and the allowlist.
 Reviewer approval and CI health are separate facts.
 Every configured reviewer must pass all its native reports and submit an actual `APPROVED` review on the current head.
 Missing, pending, failed, stale, or dismissed evidence blocks readiness.

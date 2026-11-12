@@ -9,14 +9,26 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 
-@Pytest.mark.parametrize("Verdict", ("pending", "neutral", "failure", "success"))
-@Pytest.mark.parametrize("CaseMode", ("reviews", "check", "status", "external"))
-def CheckReportFlow(CaseMode: str, Verdict: str) -> None:
+@Pytest.mark.parametrize(
+    "CaseMode,CheckName",
+    (
+        ("status", "Ruff"),
+        ("external", "Ruff"),
+        ("unlisted-job", "Unlisted job"),
+        ("unlisted-run", "Unlisted workflow"),
+        ("check", "Ruff"),
+        ("check", "Analyze (javascript-typescript)"),
+        ("check", "Build and verify release artifacts"),
+        ("check", "Label first-time contributors"),
+    ),
+)
+def CheckReportFlow(CaseMode: str, CheckName: str) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     ScriptPath = RootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
+    ExpectedPass = CaseMode != "check"
     with Tempfile.TemporaryDirectory() as TempPath:
         ResultInfo = Subprocess.run(
-            ["node", str(ScriptPath), CaseMode, Verdict],
+            ["node", str(ScriptPath), CaseMode, "failure", CheckName],
             cwd=RootPath,
             env={**SystemEnv.environ, "RUNNER_TEMP": TempPath},
             capture_output=True,
@@ -25,12 +37,13 @@ def CheckReportFlow(CaseMode: str, Verdict: str) -> None:
             timeout=20,
         )
         EvidencePath = FilePath(TempPath) / "PrCiEvidence/Evidence.json"
-        assert EvidencePath.exists() == (CaseMode == "reviews"), ResultInfo.stderr
-    assert ResultInfo.returncode == (0 if CaseMode == "reviews" else 1)
+        assert EvidencePath.exists() == ExpectedPass, ResultInfo.stderr
+    assert ResultInfo.returncode == (0 if ExpectedPass else 1)
     assert "Review report" not in ResultInfo.stdout
-    assert "review-" not in ResultInfo.stdout
-    if CaseMode == "reviews":
+    assert "Unlisted job" not in ResultInfo.stdout
+    assert "Unlisted workflow" not in ResultInfo.stdout
+    if ExpectedPass:
         assert "CI passed" in ResultInfo.stdout
         assert "Ruff" in ResultInfo.stdout
     else:
-        assert "CI failed" in ResultInfo.stderr
+        assert f"CI failed: {CheckName}" in ResultInfo.stderr

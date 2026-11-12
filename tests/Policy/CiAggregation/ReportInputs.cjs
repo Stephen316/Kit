@@ -1,56 +1,89 @@
 // SPDX-License-Identifier: MIT
 // SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
-const Expected = require("./ExpectedChecks.cjs");
+const { BuildExpected } = require("./ExpectedChecks.cjs");
 const { BuildReviews } = require("./ReviewReports.cjs");
-const { BuildRequired } = require("./ReviewerInputs.cjs");
-const {
-  Reviewers,
-} = require("../../../.agents/skills/standard-pr-practice/ReviewBot.json");
-const { BuildQueue } = require("./QueueInputs.cjs");
 
-function BuildReports(CaseMode, Verdict, CheckName = "Scorecard") {
-  const Checks = Expected.map((CheckName, Index) => ({
-    id: Index + 1,
-    name: CheckName,
-    app: { id: 15368, slug: "github-actions" },
-    check_suite: { id: 1 },
-    status: "completed",
-    conclusion: "success",
-  }));
+function BuildReports(CaseMode, Verdict, CheckName) {
+  const IsQueue = CaseMode.startsWith("queue");
+  const HeadSha = "a".repeat(40);
+  const { Checks, Runs } = BuildExpected(IsQueue, HeadSha);
+  const Expected = Checks.map(({ name, html_url }) => ({ name, html_url }));
   const Reviews = BuildReviews(Verdict);
-  const Required = BuildRequired(CaseMode, Verdict, CheckName);
-  Checks.push(
-    ...Reviews.Checks.map((Check) => ({ ...Check, id: Check.id + 100 })),
-    ...Required.Checks,
-  );
-  const QueueData = BuildQueue(CaseMode, Verdict, CheckName);
-  Checks.push(...QueueData.Checks);
-  const Statuses = [...Reviews.Statuses, ...Required.Statuses];
-  if (CaseMode === "check") Checks[0].conclusion = "failure";
+  const Statuses = Reviews.Statuses;
+
+  if (CaseMode === "check")
+    Checks.find((Check) => Check.name === CheckName).conclusion = "failure";
   if (CaseMode === "status")
     Statuses.push({
       id: 900,
-      context: Reviewers[0].Checks[0] || Reviewers[0].Statuses[0],
+      context: "Ruff",
       creator: { id: 900, login: "build-service" },
       state: "failure",
     });
+
+  const Ruff = Checks.find((Check) => Check.name === "Ruff");
   if (CaseMode === "external")
     Checks.push({
+      ...Ruff,
       id: 901,
-      name: Reviewers[0].Checks[0] || Reviewers[0].Statuses[0],
       app: { id: 901, slug: "external-ci" },
-      check_suite: { id: 3 },
-      status: "completed",
-      conclusion: "neutral",
+      conclusion: "failure",
     });
+  if (CaseMode === "unlisted-job")
+    Checks.push({
+      ...Ruff,
+      id: 902,
+      name: "Unlisted job",
+      conclusion: "failure",
+    });
+  if (CaseMode === "unlisted-run" || CaseMode === "spoof") {
+    Runs.push({
+      id: 903,
+      check_suite_id: 903,
+      head_sha: HeadSha,
+      event: "pull_request",
+      path: ".github/workflows/Unlisted.yml",
+      name: "Unlisted workflow",
+      status: "completed",
+      conclusion: "failure",
+    });
+    Checks.push({
+      ...Ruff,
+      id: 903,
+      check_suite: { id: 903 },
+      conclusion: CaseMode === "spoof" ? "success" : "failure",
+    });
+  }
+
+  if (CaseMode === "queue" || CaseMode === "queue-run") {
+    const Run = Runs.find((Item) => Item.name === "Merge queue");
+    const Target =
+      CaseMode === "queue-run"
+        ? Run
+        : Checks.find(
+            (Check) =>
+              Check.check_suite.id === Run.check_suite_id &&
+              Check.name === CheckName,
+          );
+    Target.status = Verdict === "pending" ? "in_progress" : "completed";
+    Target.conclusion = Verdict;
+  }
+
   return {
-    Checks: Checks.filter(
-      (Check) =>
-        CaseMode !== "queue-missing" || Check.name !== "Merge queue acceptance",
-    ),
+    Checks: [
+      ...Checks.filter(
+        (Check) =>
+          !(
+            CaseMode === "queue-missing" &&
+            Check.name === "Merge queue acceptance"
+          ) && !(CaseMode === "spoof" && Check === Ruff),
+      ),
+      ...Reviews.Checks,
+    ],
     Statuses,
-    Runs: QueueData.Runs,
+    Runs,
+    Expected,
   };
 }
 

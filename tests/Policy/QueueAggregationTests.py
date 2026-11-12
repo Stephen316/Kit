@@ -34,3 +34,5 @@ def TestQueueGate(CheckName: str, Verdict: str, CaseMode: str) -> None:
         0 if Verdict == "success" else 1
     ), ResultInfo.stderr
     assert ("CI passed" in ResultInfo.stdout) == (Verdict == "success")
+    if Verdict != "success":
+        assert "CI failed" in ResultInfo.stderr
