@@ -3,7 +3,7 @@
 ## Behavior
 
 [ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json) defines requested reviewer identities, exact request text, native report names, and report exclusions.
-The `Reviewers` array includes both requested integrations.
+The `Reviewers` array includes requested integrations.
 This change originally used that array in instructions, CI aggregation, and process-boundary fixtures.
 [The CI allowlist](CiReviewerExclusions.md) supersedes the original aggregation behavior.
 
