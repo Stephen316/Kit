@@ -5,31 +5,73 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Configurable PR reviewers
 
-The Reviewers array in
-[ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json)
-defines every required reviewer. Each entry declares the app and account
-identities, the exact top-level request, and the expected native checks and
-commit statuses. Both entries from the configuration proposed in
-[PR #74](https://github.com/TryUniCAD/Kit/pull/74) are enabled.
+## Behavior
 
-After opening a PR or publishing a revision, request each configured reviewer
-once per head unless that reviewer already has a request or a review on that
-revision. A PR is ready when every configured reviewer passes its listed
-reports, submits a GitHub approval for the current head, and has no outstanding
-findings. The GitHub ruleset and the merge queue evaluate their own required
-checks separately.
+[ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json) is the
+single source for requested reviewer identities, wake words, native report names,
+and existing report-exclusion metadata. The `Reviewers` array includes both
+requested integrations. Instructions, CI aggregation, and process-boundary
+fixtures read that array without embedding provider identifiers.
 
-To configure a reviewer, supply Comment, AppId, AppSlug, UserId, UserLogin,
-Checks, and Statuses in a Reviewers entry. Include both report arrays and at
-least one report. Keep other installed review integrations in ExcludedReports
-if their reports should be excluded from the CI aggregate. Config changes
-require the matching integration to be enabled and able to report on the repo.
+A PR is ready only when every listed reviewer has successful native reports and
+an actual `APPROVED` review on the current head, with every finding fixed or
+answered with evidence. Missing, pending, failed, stale, or dismissed evidence
+blocks readiness. A green check or comment does not replace approval. All other
+applicable CI and independently enforced repository requirements must also pass.
 
-For verification, match the native check app IDs, commit status creator IDs,
-and GitHub review author IDs to the configured entries, then compare every
-report and approval with the current head SHA.
+The agent workflow requests each entry's exact `Comment` as a separate top-level
+comment once per accepted head unless that reviewer already has a request or
+review for that revision. Native queued runs count as existing requests on later
+heads. It verifies the responding account/app and reviewed SHA separately for
+every reviewer. Unconfigured fallbacks are not allowed.
 
-## Observed verification
+## Configuration
+
+To add a reviewer, append one object to `Reviewers` in the JSON:
+
+- `Comment`: the exact, nonempty, single-line trigger accepted by the integration
+- `AppId` and `UserId`: verified positive immutable GitHub identity IDs
+- `AppSlug` and `UserLogin`: observed identity names for human verification
+- `Checks`: exact native check names produced by that app on PR heads
+- `Statuses`: exact native commit-status contexts produced by that user
+- `Documentation`: optional official trigger documentation URL
+
+Supply both report arrays, with at least one required report overall. Every
+listed report must succeed; multiple contexts are an all-of requirement. Duplicate
+reviewer accounts, duplicate triggers, invalid IDs, and invalid report names fail
+configuration loading. Checks match app ID and head SHA; statuses match creator
+ID and the commit queried from GitHub. The newest matching report determines its
+state. Identity names, brands, numeric IDs, and triggers belong only in the JSON.
+
+`ExcludedReports` preserves identities of other installed review-report providers;
+those entries are not requested reviewers. Their existing integration-owned
+settings remain in place. Adding metadata does not install or enable an app,
+link a triggering account, or alter live GitHub protections. Historical generator
+metadata uses the stable `DocumentationSources.InitialWiki` key so reordering
+reviewer or exclusion arrays cannot change the recorded provenance.
+
+The previously approved README badge and integration-owned settings remain preserved.
+CODEOWNERS is removed as requested. Repository rules are managed independently;
+removing the file does not edit live branch-protection settings.
+
+## Verification and limitations
+
+Process-boundary coverage runs the full aggregate in a Node subprocess for each
+configured reviewer, exercising success, failure, non-success conclusions,
+missing reports, pending reports, stale revisions, spoofed identities, and partial
+multi-report results. Existing unrelated-CI and queue-acceptance cases remain.
+All test execution belongs to remote PR CI; no tests were run locally.
+
+The PR reporter executes trusted default-branch code through
+`pull_request_target`. The new all-reviewer report requirement activates after
+merge; this PR's own readiness is checked against every configured reviewer
+separately. Approval remains a native review gate in the agent instructions,
+not a duplicate approval workflow. Synthetic queue commits do not require PR
+review reports, but PR evidence reuse rechecks every configured report on each
+contributing PR head. Heavy acceptance remains deferred until authorized queue
+enrollment.
+
+## Earlier rollout verification
 
 On [PR #72 at 04ec7acc6](https://github.com/TryUniCAD/Kit/pull/72/checks?sha=04ec7acc69efafb183be48e457b32c5a837cb882),
 the configured check-based reviewer passed its native check and

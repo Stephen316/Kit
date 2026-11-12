@@ -10,9 +10,9 @@ Kit uses GitHub's native merge queue for `main`. The desired settings live in
 outside Git history: merging this configuration PR does not activate them.
 
 The live `Protect` ruleset requires both `CI Agg` and `Merge queue acceptance`
-from GitHub Actions (`15368`). Its direct `Greptile Review` requirement was
+from GitHub Actions (`15368`). Its direct native-review requirement was
 removed because GitHub also applies it to synthetic queue commits, where the app
-does not report. Instead, `CI Agg` requires the native Greptile result on PR
+does not report. Instead, `CI Agg` requires the configured native reviewer results on PR
 heads, as described below. The checked-in desired ruleset and live rules must
 still be inspected separately. Existing approvals, bypass actors, and other live
 settings were preserved.
@@ -21,32 +21,37 @@ settings were preserved.
 
 PRs run Python lint, formatting, types, steering, import, SPDX, path, skill, and
 workflow policies, including actionlint and Zizmor. Existing metadata labeling
-continues. Read the reviewer identities, exact requests, and required reports from the
-Reviewers array in
-[ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json).
-Request each reviewer once per head and verify its native reports and actual
-APPROVED review on that head. Address every finding. No human or code-owner
-approval is required by the agent workflow; independently enforced GitHub
-requirements must still be inspected and reported separately.
+continues. Load every entry in `Reviewers` from
+[ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the sole source
+of reviewer identities, report names, and exact request comments. Submit each
+`Comment` verbatim once per head unless that reviewer already has a request or
+review for that revision. Every configured reviewer must pass all its native
+reports and submit an actual `APPROVED` review on the current head. Address every
+finding from its verified account or app. Missing, pending, failed, stale, or
+dismissed evidence blocks readiness. No human or code-owner approval is required
+by the agent workflow; independently enforced GitHub requirements must still be
+inspected and reported separately. The repository's CODEOWNERS file is removed.
 
-Use the configured reviewer's native review and status indicator. Review evidence
-and approval remain separate from the independently enforced Greptile PR check.
-Changing the review comment does not change existing integrations, the wildcard
-owner in [CODEOWNERS](.github/CODEOWNERS), CI provider exclusions, or live rulesets.
+Use each reviewer's native review and status indicator. Approval and findings
+remain separate from CI health. Changing the JSON does not install integrations
+or modify live rulesets.
 
 [`Pull Request / CI Agg`](.github/workflows/PullRequest.yml) reports overall CI
-health for the exact PR revision. General review reports are excluded by their
-GitHub app or status-creator identity. Cubic, CodeRabbit, the configured reviewer,
-and unrelated Greptile reports remain excluded from both check runs and legacy
-commit statuses. A separate, explicit PR requirement selects only the native
-`Greptile Review` check from app ID `867647` on the current PR head SHA. Missing
-or pending results keep the aggregate pending; only a completed `success` passes.
-Failed, neutral, skipped, cancelled, or timed-out reviews fail the aggregate.
-Stale results, matching display names from another app, and test-merge results
-cannot substitute. Queue aggregation does not require Greptile on the synthetic
-candidate; PR evidence reuse rechecks Greptile on each contributing PR head.
-The identities
-live in [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json). Display names and
+health for the exact PR revision. General review reports are excluded by the
+immutable GitHub app and status-creator IDs in `Reviewers` and `ExcludedReports`.
+Only `Reviewers` entries are requested reviewers with readiness requirements;
+`ExcludedReports` records existing unrelated review integrations, not additional
+review requests. Every check in each reviewer's `Checks` and every status in
+`Statuses` is explicitly required on PR heads and during PR evidence reuse.
+Missing or pending reports keep the aggregate pending; only completed `success`
+results pass. Failed, neutral, skipped, cancelled, or timed-out reports fail.
+Stale results, matching names from another identity, and test-merge results cannot
+substitute. The newest matching report controls the result. Queue aggregation
+does not require reviewer reports on synthetic candidates; evidence reuse checks
+every required report on each contributing PR head.
+
+[ReviewProviders.cjs](.github/scripts/ReviewProviders.cjs) reads identities from the
+JSON rather than maintaining a separate registry. Display names, logins, and
 report URLs never exclude unrelated CI. The same filtering applies during PR
 aggregation, merge-group aggregation, and PR evidence reuse. The aggregate
 waits for every expected static, policy, label, and GitHub-managed Code Quality
@@ -58,13 +63,10 @@ check context. Both actual check names are explicitly expected by the aggregate.
 The summary links the individual reports. CI execution stays in the existing
 workflows; the aggregate does not replace their assertions or thresholds.
 
-[`cubic.yaml`](cubic.yaml) enables live approval for every clean PR and allows no
-open Cubic issues. Cubic reads this file only from the default branch; feature
-branch configuration does not take effect until merged. Before then, a repository
-administrator manages the equivalent approval setting in Cubic. Do not change
-live rulesets as part of this workflow. GitHub requires the named user to have repository write
-access before it recognizes ownership; the installed review app's access does
-not grant that separate user write permission.
+The existing provider settings file identified by `SettingsFile` in the JSON is
+preserved. Its approval policy allows no open findings and is read from the
+default branch; feature-branch changes do not activate it. Provider documentation
+links also live in the JSON. Do not change live rulesets as part of this workflow.
 
 ## Reuse healthy PR CI
 
@@ -213,5 +215,3 @@ Do not describe this configuration as active until the settings are read back.
 - [GitHub merge queue and coupled PR/merge-group checks](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue)
 - [Repository rulesets API](https://docs.github.com/en/rest/repos/rules)
 - [Trusted pull-request metadata workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request_target)
-- [Cubic live approval](https://docs.cubic.dev/ai-review/auto-approval)
-- [Cubic default-branch configuration](https://docs.cubic.dev/configure/cubic-yaml)

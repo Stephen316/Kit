@@ -37,10 +37,10 @@ An evidenced transient runner/service error allows one justified rerun. Record t
 
 ## Publication and final evidence
 
-Before publishing a fix, review the staged paths and outgoing commits, preserve unrelated work, perform permitted non-test validation, and refetch head/base. Integrate concurrent work without rewriting published history. Use a conventional commit and a normal push with the user's required `--no-verify`, read back the accepted SHA, and request review with the `Comment` loaded from [ReviewBot.json](../ReviewBot.json) for the accepted head as described in [ReviewFindings.md](ReviewFindings.md).
+Before publishing a fix, review the staged paths and outgoing commits, preserve unrelated work, perform permitted non-test validation, and refetch head/base. Integrate concurrent work without rewriting published history. Use a conventional commit and a normal push with the user's required `--no-verify`, read back the accepted SHA, and request review with each entry’s `Comment` loaded from `Reviewers` from [ReviewBot.json](../ReviewBot.json) for the accepted head as described in [ReviewFindings.md](ReviewFindings.md).
 
 Wait for checks to schedule for that revision, rediscovering them as they appear. Use yielding sessions or discrete reads separated by responsive 30–60 second waits. `gh pr checks` may initially report no checks after a push; that means wait and investigate scheduling. A watcher is an intermediate signal, not the complete inventory.
 
 Before calling CI green, refresh the exact head/base and every applicable latest attempt, check, and status again. All expected applicable CI must be successful, with no failed, pending, queued, cancelled, timed-out, action-required, or missing expected result. Explain genuine non-applicable conditional skips/neutrals from unchanged configuration. If head/base moves during verification, re-evaluate the affected evidence.
 
-CI health alone proves neither a clean review from the configured reviewer nor merge readiness. Continue the combined workflow after green CI until its other gates are also verified.
+CI health alone proves neither a clean review from each configured reviewer nor merge readiness. Continue the combined workflow after green CI until its other gates are also verified.

@@ -7,11 +7,11 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 ## Ownership
 
-`Documentation/` is the source of truth for maintained documentation. `Documentation/Reference/` began as a reviewed import of Cubic wiki version 1; its [provenance record](Reference/Provenance.json) preserves original paths, generation time, source revision, and the original content hash. That hash describes the original export, not the edited Markdown.
+`Documentation/` is the source of truth for maintained documentation. `Documentation/Reference/` began as a reviewed import of generated wiki version 1; its [provenance record](Reference/Provenance.json) preserves original paths, generation time, source revision, and the original content hash. That hash describes the original export, not the edited Markdown.
 
-Cubic's configured repository sync destination is `docs/`. Do not put hand-maintained guides or gotchas there. Future sync PRs must be reviewed and normalized into the existing PascalCase reference paths, with source references checked and provenance updated. The distinct `Documentation/` name avoids collisions with `docs/` on case-insensitive filesystems. Do not merge a duplicate generated tree or relax path policy to accommodate it.
+The generator's configured repository sync destination is `docs/`. Do not put hand-maintained guides or gotchas there. Future sync PRs must be reviewed and normalized into the existing PascalCase reference paths, with source references checked and provenance updated. The distinct `Documentation/` name avoids collisions with `docs/` on case-insensitive filesystems. Do not merge a duplicate generated tree or relax path policy to accommodate it.
 
-[The hosted Cubic wiki](https://www.cubic.dev/wiki/TryUniCAD/Kit/1) is optional source material. Generation and auto-refresh settings are managed through [Cubic settings](https://www.cubic.dev/wiki/TryUniCAD/Kit); repository import does not enable scheduled refresh, and no scheduled refresh is claimed here. Keep generation separate from the authorized PR reviewer.
+The optional hosted wiki and generation settings are linked through the `DocumentationSources.InitialWiki.Wiki` and `DocumentationSources.InitialWiki.WikiSettings` fields in [ReviewBot.json](../.agents/skills/standard-pr-practice/ReviewBot.json). Repository import does not enable scheduled refresh, and no scheduled refresh is claimed here. Keep generation separate from the authorized PR reviewers.
 
 ## Updating documentation
 

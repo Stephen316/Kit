@@ -23,7 +23,7 @@ optional. Format: a short description of the gotcha, what you expected vs what
 actually happened, and the fix or workaround. Link evidence when available.
 
 Maintained documentation lives in `Documentation/`. Follow
-[the publishing guide](Documentation/Publishing.md) for Cubic imports and GitHub wiki
+[the publishing guide](Documentation/Publishing.md) for generated imports and GitHub wiki
 updates; generated docs must be reviewed and must not overwrite manual entries.
 
 ## Repository workflow
@@ -50,13 +50,18 @@ read its complete standards index and every applicable rule before coding.
   exclusions documented in [MergeQueue.md](MergeQueue.md). Reuse healthy PR reports
   in the queue only with verified identical inputs; otherwise rerun. Header and
   change-range verification and heavy acceptance always execute on the candidate.
-- Read the reviewers from
-  [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json). Submit
-  each configured comment verbatim as a separate top-level request once per
-  accepted head unless that reviewer already has a request or review on it.
-  Verify every listed native report and an actual current-head approval from
-  each configured account. Address all findings and report unavailable evidence
-  separately from independently enforced repository requirements.
+- Read every entry in `Reviewers` from
+  [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the sole
+  source of reviewer identities, report names, and exact request comments.
+  Submit each entry's `Comment` verbatim once per accepted head unless that
+  reviewer already has a request or review for that head. Verify every responding
+  account/app and reviewed SHA, and address all findings. Every configured
+  reviewer must pass all its native reports and submit an actual `APPROVED`
+  review on the current head before the PR is ready. Missing, pending, failed,
+  stale, or dismissed evidence blocks readiness. Comments and green checks do
+  not substitute for approval. Keep reviewer names and identifiers only in that
+  JSON. No human or code-owner approval is required by this workflow. Report
+  unavailable review evidence and independently enforced requirements separately.
 - Only an explicit merge request from a verified repository administrator
   authorizes an agent to enroll a PR in the queue, enable auto-merge, or merge.
   Verify the requester's identity and current repository `admin` permission.
