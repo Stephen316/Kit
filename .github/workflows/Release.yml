@@ -27,7 +27,15 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
+
+      - name: Verify release version authorization
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { CheckPushBase } = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CheckPushBase.cjs`);
+            await CheckPushBase(github, context);
 
       - name: Set up uv
         uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
@@ -49,7 +57,7 @@ jobs:
           name: source-${{ github.run_attempt }}
           path: |
             ${{ runner.temp }}/source/
-            ${{ runner.temp }}/CommitDetails.md
+            ${{ runner.temp }}/ReleaseNotes.md
           if-no-files-found: error
           compression-level: 0
 
@@ -80,6 +88,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          PackageVersion: ${{ needs.build.outputs.package-version }}
         shell: bash
         run: |
           ReleaseTag="commit-${GITHUB_SHA}"
@@ -93,7 +102,7 @@ jobs:
             exit 1
           fi
           gh release create "${ReleaseTag}" "${RUNNER_TEMP}"/release/source/* \
-            --verify-tag --title "${GITHUB_SHA}" --notes-file "${RUNNER_TEMP}/release/CommitDetails.md"
+            --verify-tag --title "Kit v${PackageVersion}" --notes-file "${RUNNER_TEMP}/release/ReleaseNotes.md"
 
   pypi:
     name: Publish to PyPI
