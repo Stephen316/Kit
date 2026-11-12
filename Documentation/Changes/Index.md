@@ -19,3 +19,4 @@ Every new feature, API, adapter, command, configuration option, workflow, tool, 
 - [README presentation](ReadmePresentation.md)
 - [Configurable PR reviewers](ConfigurableReviewers.md): one reviewer list, all-reviewer readiness, and removal of CODEOWNERS
 - [Commit releases and PyPI publishing](CommitReleases.md)
+- [Publish commit releases on pushes](PushReleases.md)
