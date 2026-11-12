@@ -36,6 +36,9 @@ job name. The aggregate also checks the outcome of each listed workflow run.
 It reads check runs and workflow runs. Commit statuses and unlisted reports
 cannot satisfy a required CI job.
 
+The [breaking change label check](Documentation/Changes/BreakingChangeLabelChecks.md)
+separates PR event types into different concurrency groups and reads current metadata.
+
 PR aggregation includes lint, formatting, types, repository policies, metadata
 labels, release artifact validation, and GitHub-managed Code Quality for Python,
 Java/Kotlin, and JavaScript/TypeScript. The first-time contributor label applies
