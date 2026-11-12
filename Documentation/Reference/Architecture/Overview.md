@@ -3,99 +3,77 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# SDK architecture
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-- [src/convert/adapters/solidworks/core/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/core/Adapter.py)
-- [src/convert/adapters/freecad/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Adapter.py)
-- [README.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/README.md)
-- [re/solidworks/archive/Grammar.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)
-</details>
+This reference describes the boundary between the public API, adapters, and neutral model.
+It is for integrators and adapter developers.
+It does not specify complete format support.
 
-# Architecture Overview
+## Components
 
-Kit is an open-source CAD interchange SDK that translates geometry, feature trees, and assemblies between proprietary binary formats. It reads and writes these formats natively, eliminating the requirement for local CAD software installations during the conversion process.
+| Component     | Responsibility                                          | Source                                                                      |
+| ------------- | ------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Public API    | Accept caller options and return public result types    | [API](../../../src/convert/api/__init__.py)                                 |
+| Engine        | Coordinate the read and write operations                | [Engine](../../../src/convert/engine/EngineConvert.py)                      |
+| Registry      | Discover adapters and apply selection and output policy | [Registry](../../../src/convert/adapters/registry/)                         |
+| Reader        | Decode source information into the neutral model        | [Adapter protocols](../../../src/convert/adapters/base/AdapterProtocols.py) |
+| Neutral model | Represent document information and validate references  | [Document model](../../../src/interchange/document/models/DocumentModel.py) |
+| Writer        | Produce target structures and transfer evidence         | [Writer result](../../../src/convert/adapters/base/WriteResult.py)          |
+| Staging       | Separate policy checks from final destination writes    | [Staging](../../../src/convert/adapters/staging/)                           |
 
-The system utilizes a modular adapter-based architecture. Every conversion follows a linear pipeline where a reader adapter parses a source file into a neutral `CadDocument` model, which a writer adapter then serializes into the destination format. This architecture enables bidirectional interoperability between supported formats like SOLIDWORKS (`.SLDPRT`, `.SLDASM`) and FreeCAD (`.FCStd`).
-
-## Core Conversion Pipeline
-
-The conversion process is structured as a unidirectional data flow mediated by an internal neutral representation. The `convert(source, destination)` function manages this pipeline by selecting the appropriate adapters based on file extensions.
+## Conversion boundary
 
 ```mermaid
 flowchart TD
-    A[Source File] --> B[Reader Adapter]
-    B --> C[CadDocument - Neutral Model]
-    C --> D[Writer Adapter]
-    D --> E[Destination File]
-
-    subgraph "Internal Processing"
-    C
-    end
+    Caller[Python caller] --> API[Public API]
+    API --> Engine[Conversion engine]
+    Engine --> Registry[Adapter registry]
+    Registry --> Reader[Selected reader]
+    Reader --> Model[Neutral document]
+    Model --> Writer[Selected writer]
+    Writer --> Policy[Transfer and usability policy]
+    Policy --> Destination[Final destination]
 ```
 
-_This diagram illustrates the standard route for format translation within the Kit SDK._
+The registry checks writer results before committing staged output.
+The caller receives an attestation about the representation.
+The attestation does not execute an independent vendor measurement.
 
-### Components and Responsibilities
+## Dependency direction
 
-| Component          | Responsibility                                                             | Key Classes/Functions                    |
-| :----------------- | :------------------------------------------------------------------------- | :--------------------------------------- |
-| **Reader Adapter** | Parses proprietary binary containers and streams into the neutral model.   | `probe()`, `read()`                      |
-| **CadDocument**    | Acts as the neutral intermediate representation for geometry and metadata. | `CadDocument`, `CadSource`               |
-| **Writer Adapter** | Serializes the neutral model into a specific target format.                | `supports()`, `write()`                  |
-| **Registry**       | Manages the lookup and instantiation of available adapters.                | `Registry.reader()`, `Registry.writer()` |
+Readers and writers share the neutral model contract.
+A source adapter does not need to call a destination adapter directly.
+The public API translates compatibility names into implementation options.
+Keep external callers on the public API unless they own an adapter integration.
 
-## Reverse Engineering Methodology
+## Production and research
 
-Kit's ability to handle proprietary formats like SOLIDWORKS 2025 is derived from a systematic reverse-engineering playbook. This methodology moves from container framing to static decompilation to ensure floating-point exactness in reconstructed files.
+Production modules must not depend on a CAD installation, vendor service, or oracle harness.
+Research tooling can use vendor applications in isolated environments.
+Research evidence can inform a parser or writer.
+Recorded donor bytes must not become production templates.
 
-### The Measurement Oracle
+## Extension workflow
 
-A critical component of the architecture is the **measurement oracle**. This is an unattended verification loop that uses vendor APIs (like SOLIDWORKS COM) to quantitatively validate the correctness of generated files by comparing mass properties such as volume and center of mass.
+1. Identify the owning adapter or model contract.
+2. Read the applicable repository standards.
+3. Add behavior in focused modules.
+4. Preserve the declared input and output contracts.
+5. Add integration coverage at the real component boundary.
+6. Document capability limits and acceptance evidence.
 
-### Serialization Layers
+Run tests in remote CI.
+See [contribution workflow](../Overview/Contributing.md).
 
-Proprietary formats are addressed through a layered approach:
+## Failure boundaries
 
-1.  **Container Framing**: Cracking the file envelope (e.g., modified ZIP or OLE/CFBF).
-2.  **Archive Layer**: Decoding object serialization protocols, such as MFC-style `CArchive` or the vendor's specialized `su_CArchive`.
-3.  **Stream Mapping**: Locating specific records like feature trees (`moCompFeature_c`) and sketch coordinates.
+Selection errors identify missing or ambiguous adapters.
+Reader errors identify unsupported or invalid input.
+Model validation errors identify inconsistent records or references.
+Writer policy errors identify unacceptable output claims or capability loss.
+Destination errors identify filesystem or stream failures.
 
-## Adapter Implementation
-
-Each format adapter implements a standard protocol to ensure they can be plugged into the conversion engine.
-
-### SOLIDWORKS Adapter (`sldprt`/`sldasm`)
-
-The SOLIDWORKS adapter handles complex compound streams. It includes logic to process `swXmlContents` for metadata and binary lanes for resolved geometry. It supports both "exact" replay mode—where source bytes are preserved if no semantic changes occur—and "generated" mode for new geometry.
-
-```mermaid
-sequenceDiagram
-    participant S as Source File
-    participant A as SldprtAdapter
-    participant M as NativeModel
-    participant D as CadDocument
-
-    S->>A: read(source)
-    A->>A: SldprtArchive.from_bytes()
-    A->>M: decode_native_model(Keywords, Resolved)
-    M-->>A: model fields (planes, sketches, features)
-    A->>D: CadDocument(...)
-```
-
-_This sequence shows how the SOLIDWORKS adapter reconstructs a neutral document from binary streams._
-
-### FreeCAD Adapter (`fcstd`)
-
-The FreeCAD adapter manages `.FCStd` files, which are ZIP containers holding `Document.xml` and sidecar B-rep files. It translates FreeCAD-specific object types (e.g., `PartDesign::Pad`) into neutral feature steps.
-
-## Capability and Attestation
-
-Kit uses an **attestation system** to track which features survive a round-trip conversion. This is necessary because different formats have varying levels of support for complex features like parametric history or assembly mates.
-
-- **Native Mode**: The feature was reconstructed using the target's native records.
-- **Carrier Mode**: The feature data is preserved as an opaque blob (carrier) to prevent data loss even if the target application cannot edit it.
-- **Mixed Mode**: A combination where some parts of a feature are native and others are carried.
+Keep these categories separate in application logs.
+See [error recovery](../../Tasks/Troubleshoot.md).

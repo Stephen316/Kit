@@ -3,106 +3,72 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Geometry translation and payloads
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [src/convert/adapters/solidworks/container/Parasolid.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/container/Parasolid.py)
-- [src/convert/adapters/freecad/Archive.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Archive.py)
-- [src/convert/adapters/solidworks/core/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/core/Adapter.py)
-- [re/solidworks/README.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/README.md)
-- [re/solidworks/archive/Grammar.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/archive/Grammar.md)
-- [re/solidworks/features/Revolve.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/solidworks/features/Revolve.md)
-</details>
+Kit translates implemented geometry representations through the neutral B-rep model.
+This page distinguishes geometry decoding, payload extraction, and parametric acceptance.
 
-# Geometry Translation (Parasolid & OpenCASCADE)
+## Representations
 
-Kit provides bidirectional translation between CAD-neutral B-rep models and vendor-specific geometry formats, primarily focusing on Parasolid (used by SOLIDWORKS) and OpenCASCADE (used by FreeCAD). The system handles the extraction, transformation, and re-injection of B-rep data into proprietary containers.
+| Format                  | Common container          | Kit information                                        |
+| ----------------------- | ------------------------- | ------------------------------------------------------ |
+| Parasolid transmit data | SOLIDWORKS streams        | Payload bytes and implemented neutral B-rep structures |
+| OpenCASCADE ASCII B-rep | FreeCAD archive members   | Curves, surfaces, and topology                         |
+| Tessellation            | Format-specific resources | Display meshes                                         |
 
-## Parasolid Translation
+A payload can exist without complete neutral decoding.
+A neutral geometry model can exist without an editable feature history.
+Keep those states separate in reports.
 
-Parasolid translation manages the extraction and encoding of `.x_t` (text) and `.x_b` (binary) geometry data within SOLIDWORKS `.SLDPRT` and `.SLDASM` files.
+## Parasolid path
 
-### Geometry Extraction
+The source reader locates geometry in the implemented SOLIDWORKS container records.
+The partition stream is one important source of cached body data.
+The geometry code handles its supported framing and transmit records.
+Unsupported grammar must remain an explicit limitation.
 
-Kit identifies Parasolid payloads by scanning compound stream records for specific magic numbers or headers. It identifies native Parasolid content within raw-deflate streams. The decoder extracts compressed Parasolid transmit blobs and converts them into neutral `BrepModel` structures.
+Do not infer a universal Parasolid decoder from one successful payload extraction.
+Do not infer a vendor-loadable target from a successful encoder return.
 
-### Payload Management
+## OpenCASCADE path
 
-The following diagram illustrates the flow of Parasolid data during a SOLIDWORKS part read:
+The FreeCAD geometry path uses ASCII B-rep data and related archive members.
+The format includes the literal header `CASCADE Topology V1, (c) Matra-Datavision` in the documented representation.
+A matching header identifies a format candidate.
+It does not validate the complete shape.
 
-```mermaid
-flowchart TD
-    A[SLDPRT Archive] --> B{Scan Records}
-    B -->|Match Magic| C[Extract Partition Stream]
-    C --> D[Decompress Zlib Blob]
-    D --> E[Parse Parasolid Transmit File]
-    E --> F[Neutral BrepModel]
-```
+The archive can also contain element maps that relate geometry to native object names.
+Preserve those relationships when the target workflow depends on selections.
 
-The system identifies `Contents/Config-0-Partition` as the primary Parasolid body cache in SOLIDWORKS files.
+## Cache behavior
 
-### Feature-Based Rebuilds
+Feature history and geometry caches have different roles.
+Some vendor versions can regenerate particular caches from valid authored records.
+That behavior requires evidence for the exact feature family and build.
 
-Kit can drop the Parasolid geometry cache entirely in SOLIDWORKS files. If the cache is absent, SOLIDWORKS rebuilds the identical solid geometry from the feature history records (`Contents/Config-0-ResolvedFeatures`) and XML metadata.
+Do not omit a cache solely because another sample rebuilt successfully.
+Do not write plausible geometry values without a derivation.
+Incorrect caches can cause failed loads, empty bodies, or incorrect geometry.
 
-## OpenCASCADE Translation
+## Units and identity
 
-OpenCASCADE translation facilitates B-rep interchange for FreeCAD `.FCStd` files, typically using the BREP format.
+Keep units explicit when comparing geometry.
+Record transforms and body identifiers with the payload.
+A matching volume does not establish matching center of mass or orientation.
+A matching body count does not establish matching topology.
 
-### BREP Serialization
+## Extract or translate
 
-The system converts neutral B-rep models into OpenCASCADE-compatible ASCII BREP strings. These strings start with the standard header: `CASCADE Topology V1, (c) Matra-Datavision`.
+Use [B-rep extraction](../../Tasks/ExtractGeometry.md) to copy available payload files.
+Use [conversion](../../Tasks/ConvertDocument.md) to request a target document.
+Use [result evaluation](../../Tasks/InspectResult.md) to evaluate the output.
+These tasks have different success conditions.
 
-### FreeCAD Geometry Logic
+## Sources
 
-FreeCAD adapters handle geometry through `Part::PropertyPartShape` properties. Kit manages primary `.brp` (BREP) files and associated sidecar files like `.Map.txt` (Element Maps) to preserve topological naming and entity mappings.
-
-## Comparison of Geometry Formats
-
-| Format          | Native CAD | Storage Method              | Neutral Representation           |
-| :-------------- | :--------- | :-------------------------- | :------------------------------- |
-| **Parasolid**   | SOLIDWORKS | Compressed blobs in streams | `BrepModel` / `ParasolidPayload` |
-| **OpenCASCADE** | FreeCAD    | ASCII `.brp` files in ZIP   | `BrepModel` / `ProvenAsciiBrep`  |
-
-## Cross-Format Data Flow
-
-Conversion between formats utilizes a central neutral model.
-
-```mermaid
-sequenceDiagram
-    participant S as SOLIDWORKS (.SLDPRT)
-    participant K as Kit Neutral (BrepModel)
-    participant F as FreeCAD (.FCStd)
-
-    S->>K: Extract Parasolid Blob
-    Note over K: Convert to Neutral Topology
-    K->>F: Serialize to OCC BREP (.brp)
-    Note over F: Insert into FCStd ZIP
-```
-
-### Geometry Consistency Rules
-
-- **Stale Caches**: Stale derived caches (like bounding boxes or Parasolid face blobs) are generally safe to leave in the document; the vendor application recomputes them on load.
-- **Incorrect Caches**: Writing plausible but mathematically incorrect geometry caches often leads to application crashes or zero-volume bodies.
-- **Feature Identity**: SOLIDWORKS identifies bodies via a `final_feature_id` which must correlate with the B-rep bodies stored in the Parasolid partition.
-
-## Implementation Details
-
-### Parasolid Payload Schema
-
-The `BrepPayload` object for Parasolid data includes specific attributes used for reconstruction:
-
-| Attribute         | Type    | Description                         |
-| :---------------- | :------ | :---------------------------------- |
-| `format_id`       | string  | Set to `"parasolid"`                |
-| `kind`            | string  | e.g., `"partition"` or `"shape"`    |
-| `wrapper_offset`  | integer | Byte offset of the vendor wrapper   |
-| `compressed_size` | integer | Size of the zlib-compressed payload |
-
-### Code Snippet: OpenCASCADE BREP Header Validation
-
-Kit validates OpenCASCADE ASCII BREP strings by checking for the structural header.
-
-Consult the linked source file for the exact implementation; this reference does not duplicate executable code.
+- [Parasolid geometry](../../../src/convert/geometry/Parasolid.py)
+- [OpenCASCADE geometry](../../../src/convert/geometry/Opencascade.py)
+- [FreeCAD B-rep handling](../../../src/convert/adapters/freecad/Brep.py)
+- [Neutral B-rep model](../Model/Brep.md)

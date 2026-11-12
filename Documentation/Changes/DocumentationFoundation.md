@@ -5,10 +5,30 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Documentation and wiki foundation
 
-The initial generated wiki export used filenames rejected by repository path policy and included stale steering instructions, broken source links, and incorrect public API and production-acceptance guidance.
+## Problem
 
-The documentation now lives in `Documentation/`, with a getting-started guide, 22 curated reference pages, an import provenance record, this change-entry index, and a mandatory gotchas log. Root agent instructions and the PR template require documentation entries for additions and discovery notes before a task finishes. The GitHub wiki is a separately published reading surface.
+The initial generated wiki export used filenames that repository policy rejected.
+It also contained stale workflow guidance, broken links, and incorrect API and acceptance claims.
 
-Use [the index](../Index.md) to navigate and [the publishing guide](../Publishing.md) to refresh the wiki. The generator remains an optional generation source; its `docs/` sync output must be reviewed and normalized before importing, and must not overwrite maintained documentation.
+## Change
 
-Verification consists of static formatting and source/link inspection plus remote PR CI. No local tests were run. Publishing documentation does not establish CAD runtime acceptance or a successful PR merge; consult the PR and queue results for those states.
+The foundation established `Documentation/` as the maintained source.
+It added a getting-started guide, 22 curated reference pages, and an import provenance record.
+It also added the change index and mandatory gotchas log.
+Agent instructions and the PR template require documentation for repository additions.
+The GitHub wiki remains a separate publication surface.
+
+## Use
+
+Use [the index](../Index.md) for navigation.
+Use [the publishing procedure](../Publishing.md) for reviewed wiki updates.
+Review and normalize generated `docs/` content before importing it.
+Do not overwrite maintained pages with an unchecked export.
+
+## Recorded verification
+
+The foundation record identifies static formatting and source/link inspection.
+It assigns repository validation to remote PR CI.
+No local tests ran.
+Documentation publication does not establish CAD acceptance or PR merge status.
+See the later [documentation expansion](DocumentationStandards.md) for the current information structure.

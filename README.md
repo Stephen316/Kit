@@ -5,77 +5,80 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Kit
 
-Kit by Parashell is an open-source CAD interchange SDK for translating geometry, feature trees, assemblies and more between proprietary formats.
+Kit is a Python SDK for CAD interchange.
+Readers build a neutral `CadDocument` from source files.
+Writers produce target files and report how they represented the source information.
+Production conversion does not use a CAD application.
 
 [Wiki](https://github.com/TryUniCAD/Kit/wiki)
 
 [![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
 
-## Documentation
+## Start here
 
-Read the [documentation index](Documentation/Index.md) and [getting-started guide](Documentation/GettingStarted.md). Contributors must add
-[documentation entries](Documentation/Changes/Index.md) for new additions and record
-new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
+1. Read the [installation guide](Documentation/Tasks/Install.md).
+2. Select a [registered format](Documentation/Tasks/SelectFormat.md).
+3. Follow the [conversion procedure](Documentation/Tasks/ConvertDocument.md).
+4. Evaluate the [result and acceptance evidence](Documentation/Tasks/InspectResult.md).
 
-## _Currently_ supported CAD software
+The [documentation index](Documentation/Index.md) includes API, model, adapter, research, and maintenance references.
+The [standards scope](Documentation/Standards/Scope.md) identifies the writing rules and current conformance limits.
 
-- SOLIDWORKS
-- Parashell
-- FreeCAD
+## Formats and limits
 
-## _Planned_ (in-order)
+| Format               | Suffixes                  | Registration      |
+| -------------------- | ------------------------- | ----------------- |
+| SOLIDWORKS part      | `.SLDPRT`                 | Reader and writer |
+| SOLIDWORKS assembly  | `.SLDASM`                 | Reader and writer |
+| FreeCAD              | `.FCStd`                  | Reader and writer |
+| CATIA V5             | `.CATPart`, `.CATProduct` | Reader and writer |
+| Kit interchange JSON | `.json`                   | Reader and writer |
 
-1. Fusion (full translation)
-2. CATIA
-3. NX
-4. Rhino
-5. Creo
-6. AutoCAD
+Registration does not establish complete feature coverage or lossless translation.
+Native replay and carrier preservation have different meanings from editable cross-format output.
+Check the format reference and result for each input.
+The [Fusion reader](re/Fusion/README.md#research-reader) remains an explicit research interface outside production adapter discovery.
 
-## Supported formats
+## Conversion example
 
-| CAD        | Suffixes                  | Registered adapters |
-| ---------- | ------------------------- | ------------------- |
-| SOLIDWORKS | `.SLDPRT`, `.SLDASM`      | Reader and writer   |
-| FreeCAD    | `.FCStd`                  | Reader and writer   |
-| CATIA      | `.CATPart`, `.CATProduct` | Reader and writer   |
+Supply a real `bracket.SLDPRT` file and an unused output path before running this example.
 
-Kit adapters run without requiring CAD software. The partial Fusion reader is
-available for [format research](re/Fusion/README.md#research-reader).
+```python
+from convert import convert as ConvertDoc
+
+Result = ConvertDoc("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
+```
+
+The distribution name is `unicad-kit` and the public import is `convert`.
+The default `allow_carrier=True` permits preservation results subject to the registry policy.
+Set `allow_carrier=False` for conversion acceptance work.
+This option is independent of the reader's `strict` option.
+The default does not waive the repository's lossless and parametric acceptance requirements.
+
+A successful return reports writer evidence.
+It does not prove that a target application can open, edit, and rebuild the output.
+See [result evaluation](Documentation/Tasks/InspectResult.md) before making an acceptance claim.
 
 ## Architecture
 
-Every conversion follows one route:
-
-```text
-source file -> reader adapter -> (ORACLE) -> writer adapter -> destination file
+```mermaid
+flowchart LR
+    Source[Source file] --> Reader[Reader adapter]
+    Reader --> Model[CadDocument]
+    Model --> Writer[Writer adapter]
+    Writer --> Output[Output and attestation]
 ```
 
-## Converting
+The neutral document separates readers from writers.
+Vendor applications run only in isolated validation workflows after output generation.
 
-`convert(source, destination)` reads the source, builds a `CadDocument`, and writes the destination format inferred from its suffix:
+## Contribute
 
-```python
-from convert import convert
-
-result = convert("bracket.SLDPRT", "bracket.FCStd")
-```
-
-The returned `ConversionResult` carries the document, the write result, and the attestation describing which capabilities survived the round trip.
-
-### Default reversible swaps
-
-By default a conversion is reversible.
-
-### Strict mode
-
-Pass `allow_carrier=False` to refuse a carrier result. The write then fails with
-`ApplicationUsabilityError` unless the attestation reports the output as application usable and
-vendor loadable, with nothing dropped and no unmet requirements:
-
-```python
-result = convert("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
-```
+Activate [standard-pr-practice](.agents/skills/standard-pr-practice/SKILL.md) before repository work.
+Use an isolated worktree and a separate PR.
+Add a [change entry](Documentation/Changes/Index.md) for each repository addition.
+Record new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
+Run tests only in remote CI.
 
 ## Star history
 
@@ -83,16 +86,21 @@ result = convert("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
 
 ## Distribution
 
-In a uv project with Python 3.11 or later, install the SDK:
+Use Python 3.11 or later.
+For a new application project, run `uv init` first.
+Install a published release from PyPI:
 
 ```sh
 uv add unicad-kit
 ```
 
-For a new project, run `uv init` first. See [getting started](Documentation/GettingStarted.md) for an example and output compatibility limits.
+If no release is available, follow [repository installation](Documentation/Tasks/Install.md).
+See [getting started](Documentation/GettingStarted.md) for examples and output limits.
+See [release publishing](Documentation/Changes/CommitReleases.md) for the release process.
 
-Kit is licensed under the [MIT License](LICENSE).
+## License
 
+Kit uses the [MIT License](LICENSE).
 Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt.
-
-Third-party materials retain their respective licenses; see [the vendor binary notice](re/binaries/README.md).
+Third-party materials retain their own licenses.
+See the [vendor binary notice](re/binaries/README.md).

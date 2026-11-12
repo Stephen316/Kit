@@ -7,64 +7,74 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 ## Behavior
 
-The merge queue's `Scorecard` job installs OpenSSF Scorecard 5.4.0 from its
-official Linux AMD64 release, verifying the archive's SHA-256 before extraction.
-The CLI replaces `ossf/scorecard-action`, whose event validation rejects
-`merge_group` even when publication is disabled.
+The queue's `Scorecard` job installs OpenSSF Scorecard 5.4.0 from its official Linux AMD64 release.
+It verifies the archive's SHA-256 before extraction.
+The CLI replaces `ossf/scorecard-action`, which rejects `merge_group` before analysis even with publication disabled.
 
-The job first runs every default repository check, then scans the exact
-`merge_group.head_sha` with all commit-compatible checks. Commit mode alone
-filters out repository-only checks, so both scans are required. It produces
-`Scorecard.sarif` and `ScorecardCandidate.sarif`, validates that both contain a
-SARIF run, and prints their findings. Execution failures fail the job. Findings
-retain the existing advisory summary behavior without a new score threshold.
-Results are not published to the Scorecard API. The stable `Scorecard` job and
-its dependency in `Merge queue acceptance` remain in place.
+The job runs all default repository checks.
+It then scans the exact `merge_group.head_sha` with commit-compatible checks.
+Both scans are required because commit mode omits repository-only checks.
+The outputs are `Scorecard.sarif` and `ScorecardCandidate.sarif`.
+Each output must contain a SARIF run.
+The job prints the findings and fails on execution errors.
+Findings retain the existing advisory treatment without a new score threshold.
+The job does not publish results to the Scorecard API.
 
-`CI Agg` now includes the queue workflow's checks and overall result instead of
-excluding them. It also requires a reported `Merge queue acceptance` result.
-Acceptance waits only for its heavy jobs; the aggregate waits for acceptance
-and static validation, avoiding a dependency cycle. Failures, unexpected skips,
-cancellations, and timeouts block the aggregate; missing or pending acceptance
-cannot pass.
+## Aggregate behavior
 
-For PRs, `CI Agg` additionally requires successful configured native reviewer reports on the current head SHA. A matching name from another
-app, an older head, or a test-merge SHA cannot satisfy it. Other review providers
-remain excluded. Queue candidates do not need native reviewer reports; reuse of PR
-evidence checks the native result on each contributing PR's own head. This does
-not change the configured reviewer or request another automated review.
+`CI Agg` includes queue workflow checks and their overall result.
+It requires a reported `Merge queue acceptance` result.
+Acceptance waits for its heavy jobs.
+The aggregate waits for acceptance and static validation.
+This dependency direction avoids a cycle.
+Failures, unexpected skips, cancellations, timeouts, and missing or pending acceptance block the aggregate.
 
-The immediate artifact verification client also retries transient 404 responses
-up to four times. [Repeated publication races](ArtifactPublication.md) occurred
-at both metadata and ZIP download boundaries in this PR. Permanent errors still
-fail verification, and every digest and provenance check remains enabled.
+PR aggregation requires every configured native reviewer report on the current head SHA.
+A matching name from another app or revision cannot satisfy that requirement.
+Other review providers remain excluded.
+Queue candidates do not require native reviewer reports on the synthetic commit.
+PR evidence reuse checks the native result on each contributing PR head.
+This enforcement does not request another review or change the configured reviewer.
+
+The immediate artifact-verification client also permits four retries for transient 404 responses.
+The [publication record](ArtifactPublication.md) documents failures at metadata and ZIP download boundaries.
+Permanent errors still fail verification.
+Digest and provenance checks remain enabled.
 
 ## Configuration
 
-No new secret is needed. The CLI reads the existing job token from
-`GITHUB_AUTH_TOKEN`; `ENABLE_SARIF` enables its SARIF formatter. The version and
-archive digest live together in the install step. Update both when upgrading.
+No new secret is required.
+The CLI reads the existing job token from `GITHUB_AUTH_TOKEN`.
+`ENABLE_SARIF` enables its SARIF formatter.
+The install step stores the version and archive digest together.
+Update both for an authorized upgrade.
 
-The live `Protect` ruleset was separately updated on November 10, 2026 to remove
-the direct native-review required status and require `Merge queue acceptance`
-alongside `CI Agg`, both from GitHub Actions (`15368`). It retains review rules,
-queue settings, bypass actors, and every other rule. GitHub applies required
-status checks to queue candidates as well as PRs, so requiring a review app that
-does not report on queue commits leaves them waiting indefinitely. This live
-settings change is independent of merging the workflow PR.
+## Historical live settings
 
-The direct acceptance requirement is active now. The revised aggregate behavior
-requires merging this PR because the reporter intentionally executes trusted
-base code, not the PR's implementation.
+On 2026-11-10, the separate `Protect` ruleset update removed the direct native-review required status.
+It required `Merge queue acceptance` and `CI Agg` from GitHub Actions app `15368`.
+The update retained review rules, queue settings, bypass actors, and other rules.
 
-## Verification and limits
+Required statuses also apply to queue candidates.
+A directly required app status can block a synthetic commit when that app never reports there.
+The settings change was independent of the workflow PR merge.
+The reporter's revised behavior required merge because it executes trusted base code.
+These historical observations do not prove the current live settings.
 
-- Confirmed the original action failure on [the queue candidate's Scorecard job](https://github.com/TryUniCAD/Kit/actions/runs/42899921136/job/130122848089).
-- Verified the official [5.4.0 release and archive digest](https://github.com/ossf/scorecard/releases/tag/v5.4.0) and [CLI commit filtering](https://github.com/ossf/scorecard/blob/v5.4.0/cmd/root.go).
-- Read back [live ruleset 25490615](https://github.com/TryUniCAD/Kit/rules/25490615) after the update: `CI Agg` and `Merge queue acceptance` are required; native reviewer reporting is not directly required on synthetic queue commits.
-- Inspected [PR 42's completed queue run](https://github.com/TryUniCAD/Kit/actions/runs/42899921136): Python CodeQL reported 26 blocking findings, dlint reported an insecure XML import, and acceptance tests failed on unsupported ZIP Zstandard compression. These are genuine failed queue results, not evidence of successful acceptance. This enforcement repair does not remediate those separate source/runtime defects.
-- Added process-boundary aggregation coverage for heavy-job and queue-workflow failures, non-success conclusions, pending checks, native reviewer identity and head matching, and the queue's native-review exemption. These execute in PR CI, not locally.
-- No local tests were run. PR CI verifies workflow syntax, pinning, and policies; heavy scans remain deferred until a merge-group candidate executes this revision.
-- PR success does not prove queue acceptance. The new CLI path still needs a successful live queue run after this workflow is merged.
+## Recorded verification and limits
 
-See [merge queue operations](../../MergeQueue.md), the [Scorecard Action's supported events](https://github.com/ossf/scorecard-action#readme), and [Scorecard CLI usage](https://github.com/ossf/scorecard/tree/v5.4.0#scorecard-command-line-interface).
+- The [original queue job](https://github.com/TryUniCAD/Kit/actions/runs/42899921136/job/130122848089) confirmed the Scorecard action failure.
+- The investigation checked the [5.4.0 release and digest](https://github.com/ossf/scorecard/releases/tag/v5.4.0).
+- It also checked [CLI commit filtering](https://github.com/ossf/scorecard/blob/v5.4.0/cmd/root.go).
+- The investigator read back [ruleset 25490615](https://github.com/TryUniCAD/Kit/rules/25490615) after the update.
+- [PR #42's queue run](https://github.com/TryUniCAD/Kit/actions/runs/42899921136) reported 26 blocking Python CodeQL findings.
+- That run also reported an insecure XML import through dlint and acceptance failures for unsupported ZIP Zstandard compression.
+- Those were failed queue results, not successful acceptance evidence.
+- This enforcement repair did not remediate the separate source and runtime defects.
+- Process-boundary coverage checks heavy failures, non-success conclusions, pending checks, reviewer identity, head matching, and the synthetic-commit exception.
+- No local tests ran.
+- PR CI checks workflow syntax, pins, and policies.
+- Heavy scans require a merge-group candidate on the relevant revision.
+- The original record left the new CLI path awaiting a successful live queue run.
+
+See [queue operations](../../MergeQueue.md), [supported action events](https://github.com/ossf/scorecard-action#readme), and [CLI usage](https://github.com/ossf/scorecard/tree/v5.4.0#scorecard-command-line-interface).

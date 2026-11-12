@@ -3,144 +3,89 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# CATIA adapter
 
-The following files were used as context for generating this wiki page:
+## Purpose and scope
 
-- [src/convert/adapters/catia/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
-- [src/convert/adapters/catia/Container.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Container.py)
-- [tests/convert/catia/CatiaTests.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tests/convert/catia/CatiaTests.py)
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-- [src/convert/adapters/catia/Format.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Format.py)
-</details>
+The `catia.v5` adapter reads and writes `.CATPart` and `.CATProduct` containers.
+It supports source replay and neutral-data preservation paths.
+Registration does not establish complete native CATIA feature reconstruction.
 
-# CATIA Format Adapter
+## Container
 
-The CATIA Format Adapter enables the Kit SDK to read and write CATIA V5 files. It handles the extraction of geometry, feature history, and assembly structures from `.CATPart` and `.CATProduct` containers. The adapter treats these files as CFBF (Compound File Binary Format) envelopes containing various binary streams and records.
+The adapter handles the `V5_CFV2` container.
+Do not describe this container as a generic CFBF archive.
+Its directory and stream rules belong to the CATIA container implementation.
 
-## Architecture Overview
+| Stream or marker        | Use                                 |
+| ----------------------- | ----------------------------------- |
+| `1000_00000002_2`       | Part data                           |
+| `1000_00000001_1`       | Product data                        |
+| `Format`                | Document type information           |
+| `KitInterchange`        | Embedded neutral document           |
+| `CATSummaryInformation` | Application and version metadata    |
+| `OSMX`                  | Native object information           |
+| `CGM`, `MFBRP`          | Geometry payload identification     |
+| `CGR`                   | Tessellation payload identification |
 
-The adapter consists of four primary components that implement the standard Kit adapter interface. These components handle metadata identification, source probing, document reading, and destination writing.
+Markers identify candidate content.
+Their presence does not establish complete decoding of every referenced record.
 
-```mermaid
-classDiagram
-    class CatiaAdapter {
-        +probe(Source) ProbeResult
-        +read(Source, ReadOptions) CadDocument
-        +write(CadDocument, Destination, WriteOptions) WriteResult
-        +supports(CadDocument, Destination) bool
-    }
-    class CatiaMetadata {
-        +info AdapterInfo
-    }
-    class CatiaReader {
-        +read(Source, ReadOptions)
-    }
-    class CatiaWriter {
-        +write(Doc, Target, Options)
-    }
-    class CatiaSupport {
-        +CanSupport(Doc, Target)
-    }
-    CatiaAdapter --|> CatiaMetadata
-    CatiaAdapter --|> CatiaReader
-    CatiaAdapter --|> CatiaWriter
-    CatiaAdapter --|> CatiaSupport
-```
+## Reading
 
-The diagram shows the class hierarchy of the CATIA adapter, combining metadata, reading, writing, and support logic.
-
-## Container Structure
-
-CATIA V5 files utilize the `V5_CFV2` container format. This format organizes data into an outer directory and optional nested directories, each containing multiple data streams. The adapter parses these streams to identify the document type and extract payloads.
-
-### Supported Streams
-
-| Stream Name             | Purpose                      | Role               |
-| ----------------------- | ---------------------------- | ------------------ |
-| `1000_00000002_2`       | Primary Part Data            | Feature History    |
-| `1000_00000001_1`       | Primary Product Data         | Assembly Structure |
-| `Format`                | Document Type Marker         | Metadata           |
-| `KitInterchange`        | Embedded Kit Manifest        | Document           |
-| `CATSummaryInformation` | Version and Application Info | Metadata           |
-
-## Read Logic
-
-The `CatiaReader` processes `V5_CFV2` archives by detecting the document type and extracting native payloads. If a `KitInterchange` stream exists, it restores the neutral document from the embedded manifest.
+The reader checks for an embedded Kit manifest.
+When that manifest exists, it can restore the neutral document.
+Otherwise, the reader examines native streams and available payloads.
+Read filters then control the requested output information.
 
 ```mermaid
 flowchart TD
-    A[Start Read] --> B{Manifest Present?}
-    B -- Yes --> C[Read Embedded Document]
-    B -- No --> D[Detect Document Type]
-    D --> E[Identify OSMX Graphs]
-    E --> F[Extract Brep/Tessellation]
-    F --> G[Build CadDocument]
-    C --> H[Apply Read Filters]
-    H --> G
+    Container[V5_CFV2 input] --> Manifest{Kit manifest present?}
+    Manifest -- Yes --> Restore[Restore neutral document]
+    Manifest -- No --> Native[Read native records and payloads]
+    Restore --> Filter[Apply read options]
+    Native --> Filter
+    Filter --> Document[CadDocument]
 ```
 
-The flow diagram illustrates the decision path between reading a native CATIA file and restoring an embedded Kit document.
+The manifest path and native decoding path provide different evidence.
+Do not report manifest recovery as complete native feature decoding.
 
-### Payload Identification
+## Writing
 
-The adapter classifies binary streams based on signatures and declarations:
+| Metadata mode                    | Representation                         | Limit                                                                   |
+| -------------------------------- | -------------------------------------- | ----------------------------------------------------------------------- |
+| `exact_native_roundtrip`         | Source native replay                   | Does not prove cross-format translation                                 |
+| `exact_carrier_roundtrip`        | Replay of a carrier source             | Does not establish native editability                                   |
+| `native_base_with_neutral_edits` | Native base with a neutral overlay     | CATIA can retain the original native state instead of the neutral edits |
+| `generated_cfv2`                 | New container with neutral information | Container generation does not establish usable native features          |
 
-- **OSMX**: Native feature history or assembly structure.
-- **CGM**: Native B-Rep geometry.
-- **MFBRP**: B-Rep topology data.
-- **CGR**: Native tessellation (SceneGraph/SurfacicReps).
+The native-base path uses the input document's own data.
+An unrelated donor file is not an authorized substitute.
+The writer can add `KitInterchange` information to retain neutral edits.
+A target application need not interpret that information.
 
-## Write Logic
+## Semantic comparison
 
-The `CatiaWriter` supports three primary write modes based on the availability of the source document's own native data and the target configuration.
+The adapter uses a semantic digest to decide whether a replay path applies.
+The comparison excludes designated source-dependent or envelope information.
+A matching semantic digest is not an independent vendor acceptance result.
+It is also not authentication of the source author.
 
-### Write Modes
+## Use and recovery
 
-| Mode                             | Description                                                             | Compatibility                 |
-| -------------------------------- | ----------------------------------------------------------------------- | ----------------------------- |
-| `exact_native_roundtrip`         | Replays original native bytes for unmodified documents.                 | `native-exact`                |
-| `native_base_with_neutral_edits` | Preserves native streams but adds a neutral manifest for edits.         | `native-base-neutral-overlay` |
-| `generated_cfv2`                 | Generates a new CFV2 container from scratch with embedded neutral data. | `kit-neutral-only`            |
+1. Select `catia.v5` when the destination cannot identify its format.
+2. Keep the part or product suffix consistent with the intended document type.
+3. Set `allow_carrier=False` when the task requires the stricter policy.
+4. Inspect every transfer and compatibility value.
+5. Record the target application's actual behavior.
 
-### Native Base Preservation
+If the result retains only neutral edits, do not claim native CATIA editability.
+Use [error recovery](../../Tasks/Troubleshoot.md) for rejected output.
 
-When `native-base-neutral-overlay` is active, the adapter appends a `KitInterchange` stream to an existing CATIA file. This preserves the original native features for CATIA while allowing Kit to store changes in a neutral format.
+## Sources
 
-```mermaid
-sequenceDiagram
-    participant W as CatiaWriter
-    participant D as Donor Bytes
-    participant M as Manifest
-    participant T as Target File
-    W->>D: Load Native Base
-    W->>M: Pack Neutral Document
-    M->>M: Compress (Zlib Level 9)
-    W->>D: Append Cfv2 Stream "KitInterchange"
-    D->>T: Write Combined Bytes
-```
-
-This sequence shows how the adapter overlays neutral Kit data onto native source-document bytes.
-
-## Semantic Validation
-
-To ensure data integrity, the adapter calculates a `catia.roundtrip_sha256` digest. This digest is a hash of the document's semantic content, excluding specific source-dependent metadata and the native envelope payloads themselves.
-
-## Implementation Details
-
-The adapter uses standard Python libraries for low-level data handling:
-
-- `struct`: For parsing binary headers and extent offsets.
-- `hashlib`: For generating SHA256 digests of streams and manifests.
-- `zlib`: For compressing and decompressing the embedded Kit manifest.
-
-### OSMX Graph Extraction
-
-The adapter identifies native features by searching for `OSMX` markers within the container. It maps these graphs to `FeatureStep` and `Body` records in the `CadDocument`, allowing for basic structural representation of the part history.
-
-### Conclusion
-
-The CATIA Format Adapter provides a robust bridge between CATIA V5 files and the Kit neutral model. By supporting both native byte replay and generated neutral carriers, it ensures maximum interoperability while preserving original proprietary data whenever possible.
-
-Carrier and neutral-overlay modes preserve data but do not establish editable native CATIA features. Inspect the output attestation and require target-application acceptance; see [Getting started](../../GettingStarted.md).
+- [Adapter](../../../src/convert/adapters/catia/Adapter.py)
+- [Container](../../../src/convert/adapters/catia/Container.py)
+- [Format metadata](../../../src/convert/adapters/catia/Format.py)
+- [CATIA integration coverage](../../../tests/convert/catia/)

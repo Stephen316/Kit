@@ -5,39 +5,46 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Transient CI artifact publication errors
 
-The CI aggregate can finish every component check and upload its evidence, then
-fail when GitHub's artifact metadata endpoint briefly returns 404 for the newly
-published artifact. A successful upload alone does not establish that subsequent
-evidence verification passed.
+## Problem
 
-In [PR #53, attempt 1](https://github.com/TryUniCAD/Kit/actions/runs/42744787892/attempts/1),
-the upload completed at 02:50:43 UTC on November 10, 2026, but the immediate request
-for artifact `13731316590` returned 404. A later metadata request returned that
-same artifact, unexpired, with its SHA-256 digest and workflow run
-`42744787892`, bound to head `10902787d9b3c0879e1d5fd16303ae0d8d4fdd79`.
-[Attempt 2](https://github.com/TryUniCAD/Kit/actions/runs/42744787892/attempts/2)
-then passed without a source change.
+The aggregate can upload evidence successfully and then fail to read the new artifact.
+A successful upload does not prove that later verification passed.
 
-For this evidenced transient failure, verify the exact artifact ID and owning
-run, then rerun the failed workflow once. A repeated failure needs investigation;
-do not skip artifact verification or relax its digest, revision, and provenance
-checks. This observation does not establish a general consistency guarantee or
-explain every artifact 404.
+## Recorded incidents
 
-The race recurred in [PR #67, attempt 1](https://github.com/TryUniCAD/Kit/actions/runs/42903472751/attempts/1)
-for metadata of artifact `13804166793`, then in [attempt 2](https://github.com/TryUniCAD/Kit/actions/runs/42903472751/attempts/2)
-for downloading artifact `13804172032`. Both artifacts became readable after
-the immediate verification failed. The upload-to-download boundary therefore
-needs bounded retries rather than repeated workflow reruns.
+| Incident                                                                                  | Observed evidence                                                                                                                                  |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [PR #53, attempt 1](https://github.com/TryUniCAD/Kit/actions/runs/42744787892/attempts/1) | Upload completed at 02:50:43 UTC on 2026-11-10. Immediate metadata access returned 404 for artifact `13731316590`.                                 |
+| Later PR #53 read                                                                         | The same unexpired artifact became readable with its digest and owning run `42744787892`. Its head was `10902787d9b3c0879e1d5fd16303ae0d8d4fdd79`. |
+| [PR #53, attempt 2](https://github.com/TryUniCAD/Kit/actions/runs/42744787892/attempts/2) | The run passed without a source change.                                                                                                            |
+| [PR #67, attempt 1](https://github.com/TryUniCAD/Kit/actions/runs/42903472751/attempts/1) | Immediate metadata access failed for artifact `13804166793`.                                                                                       |
+| [PR #67, attempt 2](https://github.com/TryUniCAD/Kit/actions/runs/42903472751/attempts/2) | Immediate ZIP download failed for artifact `13804172032`.                                                                                          |
 
-The evidence verification step now allows four retries through
-[`actions/github-script`](https://github.com/actions/github-script#retries),
-including 404 responses. Authentication and validation failures remain exempt
-from retries. Permanent API failures still fail the step after the retry limit;
-digest, size, expiry, revision, and provenance verification remain unchanged.
-Only the immediate post-upload verification client gets this retry policy.
+Both recorded PR #67 artifacts became readable after the immediate failure.
+These observations do not explain every artifact 404.
+They do not establish a general consistency guarantee.
 
-Verification used remote workflow logs and subsequent reads of the exact
-artifact IDs. No local tests ran. This workflow executes from trusted base code,
-so the retry setting takes effect after the repair PR merges. See the
-[gotchas log](../Gotchas/README.md) and [merge queue operations](../../MergeQueue.md).
+## Repair
+
+The immediate verification client permits four retries through [actions/github-script](https://github.com/actions/github-script#retries).
+The retry policy includes 404 responses.
+Authentication and validation failures remain exempt from retries.
+Permanent API failures still fail after the retry limit.
+Digest, size, expiry, revision, and provenance checks remain enabled.
+Only the immediate post-upload verification client uses this policy.
+
+## Recovery
+
+1. Identify the exact artifact and owning run.
+2. Confirm evidence of a transient publication failure.
+3. Rerun the failed workflow once when justified.
+4. Investigate recurrence before another retry.
+
+Do not skip artifact verification to obtain a passing status.
+
+## Recorded verification
+
+The original investigation used remote logs and subsequent reads of the exact artifact identifiers.
+No local tests ran.
+The reporter uses trusted base code, so feature-branch changes take effect after merge.
+See [the gotchas log](../Gotchas/README.md) and [queue operations](../../MergeQueue.md).

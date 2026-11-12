@@ -3,130 +3,88 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Assembly and constraint model
 
-The following files were used as context for generating this wiki page:
+## Purpose
 
-- [src/convert/adapters/solidworks/assembly/Assembly.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/assembly/Assembly.py)
-- [src/convert/adapters/solidworks/core/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/solidworks/core/Adapter.py)
-- [src/convert/adapters/freecad/Native.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Native.py)
-- [src/convert/adapters/freecad/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Adapter.py)
-- [tests/interchange/fixtures/AssemblyFixture.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tests/interchange/fixtures/AssemblyFixture.py)
-</details>
+The assembly model represents reusable components and their occurrences.
+It also records constraints between component entities.
+Use this reference when inspecting assembly preservation or portability.
 
-# Assembly & Constraints Model
+## Structure
 
-The Assembly & Constraints Model defines the structured representation of multi-part CAD assemblies and the kinematic relationships (mates) between their components. This model enables the project to preserve hierarchical structures, component instances, and geometric constraints across different CAD formats such as SOLIDWORKS and FreeCAD.
+| Record or field      | Responsibility                                    |
+| -------------------- | ------------------------------------------------- |
+| `root_definition_id` | Identifies the top-level definition               |
+| `definitions`        | Contains shared part or subassembly descriptions  |
+| `instances`          | Contains occurrences with placement and ownership |
+| `documents`          | Contains referenced neutral documents             |
+| `mate_entities`      | Identifies entities used by constraints           |
+| `mates`              | Contains constraints between entities             |
+| `mate_groups`        | Groups related constraints                        |
+| `attributes`         | Retains additional assembly information           |
 
-The model captures component definitions, instances with spatial transforms, and mate constraints. It serves as the primary neutral structure for transferring assembly data while accounting for format-specific limitations like opaque source records or unsupported joint types.
-
-## Assembly Structure
-
-An assembly consists of a root definition and a collection of definitions, instances, and documents. The hierarchy is defined by parent-child relationships between instances and definitions.
-
-### Component Definitions and Instances
-
-A `ComponentDefinition` represents a unique part or sub-assembly blueprint. A `ComponentInstance` represents a specific occurrence of a definition within an assembly, positioned by a `Matrix4` transform.
-
-```mermaid
-classDiagram
-    class AssemblyData {
-        +str root_definition_id
-        +tuple definitions
-        +tuple instances
-        +tuple documents
-        +tuple mate_entities
-        +tuple mates
-    }
-    class ComponentDefinition {
-        +str id
-        +str name
-        +ComponentKind kind
-        +str document_id
-        +tuple body_ids
-        +tuple mesh_ids
-    }
-    class ComponentInstance {
-        +str id
-        +str definition_id
-        +str owner_definition_id
-        +Matrix4 transform
-        +int order
-        +bool suppressed
-    }
-    AssemblyData "1" *-- "many" ComponentDefinition
-    AssemblyData "1" *-- "many" ComponentInstance
-    ComponentInstance "many" --> "1" ComponentDefinition : instantiates
-```
-
-### Hierarchical Resolution
-
-The model resolves complex hierarchies by tracking `owner_definition_id` for every instance. In SOLIDWORKS, this is stored in the `COMPONENT_TREE_STREAM`, while FreeCAD uses `App::Link` objects.
-
-| Component      | Description                                                                       |
-| :------------- | :-------------------------------------------------------------------------------- |
-| **Definition** | The master record for a part or assembly, containing geometry or nested children. |
-| **Instance**   | A specific occurrence of a definition with unique position and visibility state.  |
-| **Root**       | The top-level definition that contains all other components.                      |
-
-## Constraints and Mates
-
-Constraints (mates) define how components are restricted in space relative to each other. These are modeled as `MateConstraint` objects referencing `MateEntity` objects.
-
-### Mate Model
-
-A mate links two or more entities. Each entity defines a path to a specific component occurrence and the source geometry identifier (e.g., a face or edge name).
+A definition describes a shared component.
+An instance describes one occurrence of that component.
+Several instances can refer to one definition.
+Do not duplicate a definition merely because its instances have different placements.
 
 ```mermaid
-graph TD
-    A[MateConstraint] --> B[MateEntity 1]
-    A --> C[MateEntity 2]
-    B --> D[Instance Path]
-    C --> E[Instance Path]
-    B --> F[Source Geometry ID]
-    C --> G[Source Geometry ID]
+flowchart LR
+    Root[Root definition] --> Instance[Component instance]
+    Instance --> Definition[Referenced definition]
+    Definition --> Document[Component document]
+    Mate[Mate constraint] --> Entity[Mate entity]
+    Entity --> Instance
 ```
 
-### Supported Mate Kinds
+The instance owner identifies its place in the assembly hierarchy.
+A component path and a definition identifier serve different purposes.
 
-The project maps format-specific joints to a neutral `MateKind`.
+## Placements
 
-| Kind           | Description             | SOLIDWORKS Native | FreeCAD Native           |
-| :------------- | :---------------------- | :---------------- | :----------------------- |
-| **Coincident** | Faces or edges touching | `coincident`      | `Fixed` (JointType 0)    |
-| **Concentric** | Shared axes or centers  | `concentric`      | `Revolute` (JointType 1) |
-| **Hinge**      | Revolute movement       | `revolute`        | `Revolute`               |
-| **Distance**   | Fixed offset            | `distance`        | `Distance` property      |
-| **Angle**      | Fixed rotational offset | `angle`           | `Angle` property         |
+Instances use a 4-by-4 transform representation.
+Keep coordinate frames and length units consistent across the assembly.
+Do not compare raw translation values from different unit systems.
+An apparently correct viewport does not establish correct placement or mass properties.
 
-## Transformation and Encodings
+## Constraints
 
-Assemblies require precise coordinate transformations and encoding logic to move between binary formats and the neutral model.
+A mate refers to component entities and their geometry.
+Supported neutral kinds include relationships such as coincident, concentric, distance, and angle.
+A target format can express a different subset or interpretation.
+Do not equate constraint names without checking behavior.
 
-### Coordinate Systems
+A missing entity reference can make a constraint unusable even when its kind is supported.
+Inspect capability transfers and the adapter's constraint mapping.
+For acceptance, verify component motion and constraint behavior where the task requires them.
 
-The model uses 16-value 4x4 matrices (`Matrix4`) to define component positions.
+## External documents
 
-- **SOLIDWORKS**: Matrices are stored in the `COMPONENT_TREE_STREAM` XML attributes. Lengths are converted from meters to millimeters.
-- **FreeCAD**: Uses `App::PropertyPlacement` which combines a position vector and a rotation quaternion.
+Assemblies can refer to external source documents.
+A portable output must preserve the required component data and usable references.
+The FreeCAD writer can create companion output files.
+Those files form part of the deliverable.
 
-### Capability and Loss Tracking
+Do not distribute only the top-level file when its result requires companion files.
+Do not treat embedded opaque bytes as proof of a complete native assembly.
+See [FreeCAD output](../Adapters/Freecad.md) and [write staging](../Architecture/Engine.md).
 
-When transferring assemblies, the model tracks "Loss Reasons" if native records cannot be fully reproduced.
+## Inspection procedure
 
-```mermaid
-flowchart TD
-    Start[Encode Mate] --> Check[Is Kind Supported?]
-    Check -- No --> Loss[Mark KMateLossKind]
-    Check -- Yes --> Entities[Check Entities]
-    Entities -- Missing --> Reject[Mark KMateLossEntityMissing]
-    Entities -- Valid --> Build[Build Native Record]
-```
+1. Identify the root definition.
+2. Resolve each instance's definition and owner.
+3. Check placements with explicit units.
+4. Resolve the required component documents.
+5. Inspect mate entities and constraints.
+6. Compare the output transfer records with the source assembly.
 
-## External Reference Management
+Expected result: every required occurrence, reference, and constraint has an identified representation.
+Report unresolved component paths and constraint losses before acceptance.
 
-Assemblies often reference external files. The model manages these through "Portable Bundles" or "Carrier Envelopes".
+## Sources
 
-1.  **Portable Bundle**: Re-writes component paths to relative locations within a sub-folder to ensure the assembly opens on another machine.
-2.  **Carrier Envelope**: Embeds the original source bytes inside the destination file to prevent data loss even if the translator cannot fully express the assembly structure.
+- [Assembly model](../../../src/interchange/document/models/DocumentModel.py)
+- [Component instance](../../../src/interchange/assembly/ComponentInstance.py)
+- [Mate constraint](../../../src/interchange/assembly/MateConstraint.py)
+- [Assembly validation](../../../src/interchange/document/validation/DocumentAssemblyValidate.py)

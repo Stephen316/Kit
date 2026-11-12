@@ -5,42 +5,90 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Kit documentation
 
-The [Fusion research import](Changes/FusionResearchImport.md) records the explicit
-reader boundary, SDK changes, supported research scope, and acceptance limits.
+## Start here
 
-Start with [Getting started](GettingStarted.md), [API reference](Reference/Overview/ApiReference.md), and [architecture](Reference/Architecture/Overview.md).
+This document set describes the Kit revision stored with these pages.
+Use the Git commit to identify the exact revision.
+The package version alone does not identify every source change.
 
-- [GitHub wiki](https://github.com/TryUniCAD/Kit/wiki)
-- [Documentation maintenance and publishing](Publishing.md)
+Start with [getting started](GettingStarted.md).
+Read [the standards scope](Standards/Scope.md) for the language and conformance boundary.
+Public sources support this revision's standards mapping.
+Complete ASD-STE100 and ISO/IEC/IEEE 2651x conformance remains unverified.
+
+## User tasks
+
+| Task                                | Guide                                               |
+| ----------------------------------- | --------------------------------------------------- |
+| Prepare a Python environment        | [Install Kit](Tasks/Install.md)                     |
+| Identify input and output formats   | [Select a reader and writer](Tasks/SelectFormat.md) |
+| Convert a source file               | [Convert a document](Tasks/ConvertDocument.md)      |
+| Evaluate preservation and usability | [Evaluate a result](Tasks/InspectResult.md)         |
+| Inspect a model before writing      | [Read and write a document](Tasks/ReadWrite.md)     |
+| Copy available geometry bytes       | [Extract B-rep payloads](Tasks/ExtractGeometry.md)  |
+| Diagnose an exception               | [Error recovery](Tasks/Troubleshoot.md)             |
+
+## API and architecture
+
+- [SDK overview](Reference/Overview/Introduction.md)
+- [Public API reference](Reference/Overview/ApiReference.md)
+- [SDK architecture](Reference/Architecture/Overview.md)
+- [Conversion engine and write boundaries](Reference/Architecture/Engine.md)
+- [Contribution workflow](Reference/Overview/Contributing.md)
+
+## Model and data
+
+- [Neutral document](Reference/Model/Document.md)
+- [Assembly and constraints](Reference/Model/Assembly.md)
+- [Parametric features](Reference/Model/Features.md)
+- [Boundary representation](Reference/Model/Brep.md)
+- [Geometry translation](Reference/Data/Geometry.md)
+- [Serialization and payloads](Reference/Data/Serialization.md)
+
+## Format references
+
+- [SOLIDWORKS adapter](Reference/Adapters/Solidworks.md)
+- [SOLIDWORKS feature resolution](Reference/Adapters/SolidworksFeatures.md)
+- [FreeCAD adapter](Reference/Adapters/Freecad.md)
+- [CATIA adapter](Reference/Adapters/Catia.md)
+- [JSON adapter and registry](Reference/Adapters/Json.md)
+
+Adapter registration does not prove complete format coverage.
+Carrier preservation and source replay do not prove editable output in another format.
+Use the result procedure before making a product acceptance claim.
+
+## Operations and research
+
+- [Security boundaries](Reference/Operations/Security.md)
+- [Repository policy](Reference/Operations/Policy.md)
+- [Translation verification](Reference/Operations/Testing.md)
+- [Research method](Reference/Research/Methodology.md)
+- [Research tools](Reference/Research/Tooling.md)
+- [Oracle evidence and fixtures](Reference/Research/Oracles.md)
+
+## Documentation standards
+
+- [Scope and edition register](Standards/Scope.md)
+- [Writing rules](Standards/WritingRules.md)
+- [Technical terms](Standards/Terminology.md)
+- [Conformance evidence and gaps](Standards/Conformance.md)
+
+## Maintenance
+
+- [Information plan](Maintenance/InformationPlan.md)
+- [Documentation review](Maintenance/Review.md)
+- [Delivery and correction records](Maintenance/Delivery.md)
+- [Documentation feedback](Maintenance/Feedback.md)
+- [Publishing and generated imports](Publishing.md)
 - [GitHub releases and PyPI publishing](Changes/CommitReleases.md)
 - [Change entries](Changes/Index.md)
-- [Mandatory gotchas log](Gotchas/README.md)
+- [Known gotchas](Gotchas/README.md)
 
-These reference pages began with a generated wiki snapshot and were curated against `aeff047c355622e812ab5d79b665d8f64c4075bb`. The [provenance record](Reference/Provenance.json) preserves original page paths. Maintained docs live in `Documentation/`; future generated sync PRs must be reviewed and normalized before import.
+## Provenance and reading surfaces
 
-The pages describe implementation and research, not blanket format support or acceptance results. Carrier preservation, native replay, and successful API calls do not establish lossless editable output. Research donor experiments are not production-writing guidance. Follow the [acceptance standard](../.agents/skills/standard-pr-practice/references/Standards/Portable/LosslessTranslation.md).
-
-## Reference
-
-- [Introduction to Kit SDK](Reference/Overview/Introduction.md)
-- [API reference](Reference/Overview/ApiReference.md)
-- [Contribution workflow](Reference/Overview/Contributing.md)
-- [Architecture Overview](Reference/Architecture/Overview.md)
-- [Conversion Engine](Reference/Architecture/Engine.md)
-- [Neutral Document Model](Reference/Model/Document.md)
-- [Assembly & Constraints Model](Reference/Model/Assembly.md)
-- [Parametric Features Model](Reference/Model/Features.md)
-- [Boundary Representation (B-Rep)](Reference/Model/Brep.md)
-- [SOLIDWORKS Format Adapter](Reference/Adapters/Solidworks.md)
-- [SOLIDWORKS Feature Resolution](Reference/Adapters/SolidworksFeatures.md)
-- [FreeCAD Format Adapter](Reference/Adapters/Freecad.md)
-- [CATIA Format Adapter](Reference/Adapters/Catia.md)
-- [JSON & Registry Adapter](Reference/Adapters/Json.md)
-- [Geometry Translation (Parasolid & OpenCASCADE)](Reference/Data/Geometry.md)
-- [Wire Serialization & Payloads](Reference/Data/Serialization.md)
-- [Reverse Engineering Methodology](Reference/Research/Methodology.md)
-- [Reverse Engineering Tooling](Reference/Research/Tooling.md)
-- [Oracle Validation & Donor Fixtures](Reference/Research/Oracles.md)
-- [Security Boundaries & Validation](Reference/Operations/Security.md)
-- [Policy and governance](Reference/Operations/Policy.md)
-- [Translation Testing Strategies](Reference/Operations/Testing.md)
+The reference set began with a generated wiki snapshot.
+The generator and hosted wiki are identified in [ReviewBot.json](../.agents/skills/standard-pr-practice/ReviewBot.json).
+The [provenance record](Reference/Provenance.json) retains original export paths and hashes.
+Those hashes describe the original export, not the current edited text.
+The [GitHub wiki](https://github.com/TryUniCAD/Kit/wiki) is a separate publication surface.
+A repository documentation change does not establish that the wiki contains that revision.

@@ -5,8 +5,21 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Pyright compatibility
 
-Pyright 1.1.414 recognizes the integer result of literal `struct.unpack_from` formats. The Parasolid unsigned 16-bit and 32-bit readers now return an explicit integer instead of applying redundant `isinstance` checks. Their existing bounds checks and `None` result for invalid offsets are preserved. No configuration or caller changes are required.
+## Behavior
 
-Python's [format table](https://docs.python.org/3/library/struct.html#format-characters) specifies integer results for `H` and `I`. Explicit conversion also preserves compatibility with analyzers that infer a less precise unpacked type.
+Pyright 1.1.414 infers integer results for literal `struct.unpack_from` integer formats.
+The Parasolid unsigned readers now return an explicit integer instead of redundant `isinstance` checks.
+Existing buffer bounds checks and `None` results for invalid offsets remain unchanged.
+No caller configuration change is required.
 
-The original [remote Pyright job](https://github.com/TryUniCAD/Kit/actions/runs/42888941281/job/130084609266) reported two `reportUnnecessaryIsInstance` errors. Verification of this correction runs in PR CI; no local tests were run. Merge-group acceptance and vendor-application validation are separate and are not established by this compatibility correction.
+## Basis
+
+Python's [format table](https://docs.python.org/3/library/struct.html#format-characters) specifies integer results for `H` and `I`.
+Explicit conversion also supports analyzers with less precise inferred types.
+
+## Recorded verification
+
+The [original remote job](https://github.com/TryUniCAD/Kit/actions/runs/42888941281/job/130084609266) reported two `reportUnnecessaryIsInstance` errors.
+The correction assigned verification to PR CI.
+No local tests ran.
+This correction does not establish merge-group or vendor-application acceptance.

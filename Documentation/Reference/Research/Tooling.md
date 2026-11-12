@@ -3,112 +3,82 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<details>
-<summary>Relevant source files</summary>
+# Research tools
 
-The following files were used as context for generating this wiki page:
+## Purpose and scope
 
-- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
-- [re/README.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/README.md)
-- [re/tooling/ghidra/Setup.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/tooling/ghidra/Setup.md)
-- [re/tooling/windbg/Multitrace.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/tooling/windbg/Multitrace.py)
-- [re/tooling/harness/Serialize.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/tooling/harness/Serialize.py)
-- [re/tooling/ProgramDecomposition/GeneratePrograms.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/tooling/ProgramDecomposition/GeneratePrograms.py)
-</details>
+The research tools support decompilation, runtime tracing, and controlled vendor measurements.
+They belong to research or validation workflows.
+They are not production conversion dependencies.
 
-# Reverse Engineering Tooling
+## Tool map
 
-This page describes isolated research and validation tooling. Donor fixtures and vendor automation are research inputs only; they must not enter production conversion paths. Observations depend on the documented corpus and vendor version, and do not establish production acceptance.
+| Location                           | Purpose                                       | Required context                       |
+| ---------------------------------- | --------------------------------------------- | -------------------------------------- |
+| `re/tooling/ghidra/`               | Static analysis and decompilation             | Exact binary hash and analysis project |
+| `re/tooling/windbg/`               | Runtime traces                                | Compatible debugger and vendor build   |
+| `re/tooling/harness/`              | Vendor measurement and sample creation        | Isolated licensed environment          |
+| `re/tooling/ProgramDecomposition/` | Recovered program organization and generation | Recorded grammar and generation inputs |
+| `re/binaries/`                     | Research binary evidence                      | License and provenance records         |
 
-The reverse engineering tooling provides a structured framework for analyzing proprietary CAD formats, specifically targeting the SOLIDWORKS part format. This system enables developers to read, patch, and re-emit binary streams by combining static decompilation, runtime tracing, and differential analysis of authored corpora. The tooling is designed to be format-agnostic, allowing the same methodology to be applied to other CAD systems like AutoCAD, CATIA, NX, or Creo.
+Read each tool's source and setup guide before executing it.
+Do not assume that historical command paths match a new machine.
 
-The primary goal of these tools is to build a **measurement oracle** and perform automated segmentation of binary records. By automating the extraction of serialization logic and object boundaries, the tooling minimizes manual byte-level inference and ensures that all findings are numerically verified against the vendor application.
+## Ghidra workflow
 
-## Core Methodology and Phase Order
+The [setup guide](../../../re/tooling/ghidra/Setup.md) describes the research environment.
+Analysis scripts can rename archive overloads and map serializer functions.
+Typed names help distinguish integer, floating-point, and string operations.
+A recovered function name alone does not prove its field semantics.
 
-Reverse engineering proceeds through six distinct phases. Each phase provides the ground truth required for subsequent steps.
+Record binary identity, function address, version branch, and output artifact.
+Keep decompiler output tied to the source binary.
+Do not copy a build-specific address into a different build without verification.
 
-| #   | Phase                    | Primary Tooling         | Objective                                                         |
-| :-- | :----------------------- | :---------------------- | :---------------------------------------------------------------- |
-| 1   | **Container Framing**    | Custom Python scripts   | Enumerate streams and identify the file envelope.                 |
-| 2   | **Measurement Oracle**   | `re/tooling/harness/`   | Obtain quantitative correctness verdicts (e.g., mass properties). |
-| 3   | **Differential Corpus**  | Vendor API (COM/.NET)   | Locate fields by diffing files with single-property variations.   |
-| 4   | **Runtime Trace**        | `re/tooling/windbg/`    | Recover object boundaries and index arithmetic.                   |
-| 5   | **Static Decompilation** | `re/tooling/ghidra/`    | Identify field types, version gates, and enum branches.           |
-| 6   | **Write Path**           | `src/convert/adapters/` | Implement the final converter logic.                              |
+## Runtime tracing
 
-## Static Analysis with Ghidra
+The tracing tools observe serializer and reader behavior.
+Recorded state can include stream position, map count, and buffer boundaries.
+Use the trace to check a proposed grammar.
+Do not treat missing trace events as proof that a field is unused.
 
-Static analysis utilizes Ghidra 12.x to decompile vendor DLLs (e.g., `sldmodu.dll`, `swccu.dll`). The process is entirely headless, driven by PowerShell wrappers and Java scripts to ensure reproducibility and handle large binaries that exceed the GUI's practical limits.
+Debugger structure offsets require calibration.
+A trace from one process can be invalid after a crash or build change.
+Record process and control health with the results.
 
-### Decompilation Pipeline
+## Oracle harness
 
-The pipeline automates the transformation of raw binaries into readable C code with context-aware naming.
+The harness uses vendor APIs only in isolated validation.
+It measures output geometry and feature behavior.
+It requires the controls described in [oracle evidence](Oracles.md).
 
-```mermaid
-flowchart TD
-    A[Raw Vendor DLLs] --> B[analyzeHeadless Import]
-    B --> C[RenameArchiveApi.java]
-    C --> D[DumpVtableSlot.java]
-    D --> E[DumpFunctions.java]
-    E --> F[Decompiled C Dumps]
+Dialog handling can keep an experiment moving.
+It must not silently convert a failed load into a successful measurement.
+Record application errors and missing measurements.
 
-    subgraph Transformation
-    C -- Renames overloads to --> C1[get_double, get_int]
-    D -- Maps RTTI to --> D1[Serialize vtable slot]
-    end
-```
+## Generated programs
 
-The diagram shows the automated flow from raw DLLs to structured decompiled output.
+Program-decomposition tools organize recovered serializer logic.
+Generated tables must retain their source evidence and deterministic inputs.
+A generated file is not automatically correct or complete.
+Production promotion still requires the repository's validation and acceptance gates.
 
-### Key Ghidra Components
+## Prepare a research task
 
-- **RenameArchiveApi.java**: Renames `operator>>` overloads based on parameter types (e.g., `double`, `char`) to make field widths unambiguous in decompiled code.
-- **DumpVtableSlot.java**: Identifies the specific virtual table slots used for serialization (e.g., slot 5 for SOLIDWORKS `Serialize`).
-- **SerializeMap.py**: Generates a mapping of RTTI-named classes to their corresponding `Serialize` function addresses.
+1. Identify the unanswered format question.
+2. Select the smallest controlled sample family.
+3. Record the vendor and tool versions.
+4. Define the expected observation.
+5. Run the authorized remote experiment.
+6. Record confirmed, partial, and refuted findings.
 
-## Runtime Tracing with WinDbg/CDB
+The task result must distinguish observations from interpretations.
+Do not publish an unmeasured hypothesis as product support.
 
-Runtime tracing captures the behavior of the vendor's reader at the binary level. This phase is critical for identifying object boundaries and renumbering map indices, which static diffing cannot resolve.
+## Sources
 
-### Multitrace Architecture
-
-The `Multitrace.py` script automates the attachment of the `cdb` debugger to a vendor process. It sets breakpoints on serialization routines like `ReadObject` and `ReadClass` to log stream positions and map counters.
-
-```mermaid
-sequenceDiagram
-    participant P as Multitrace.py
-    participant CDB as CDB Debugger
-    participant APP as Vendor Application
-    P->>CDB: Launch with cdb_multi.txt script
-    CDB->>APP: Attach & Set Breakpoints
-    APP->>CDB: Breakpoint hit (ReadObject)
-    CDB-->>P: Log: Stream Pos, Map Index, Length
-    P->>P: Build Segmentation Model
-    P->>P: Verify with Symbolic Re-emit
-```
-
-The sequence shows how the tracing tool interacts with the debugger to extract stream metadata.
-
-### Verification Discipline
-
-Tracing results are verified by reparsing the stream into a symbolic model. If the tool can re-emit a byte-identical stream while recomputing all indices from scratch, the segmentation is considered **confirmed**.
-
-## Measurement Harness and Oracle
-
-The measurement harness (found in `re/tooling/harness/`) provides the "Measurement Oracle." It uses the vendor's COM API to verify that generated or patched files are numerically correct.
-
-### Oracle Requirements
-
-1.  **Quantitative Validation**: Uses solid volume (m³) and center of mass to verify geometry to a relative precision of ≤6e-16.
-2.  **Process Hygiene**: Launches a fresh application process for every candidate to prevent crash-poisoning.
-3.  **Control Batches**: Measures a known-good file at the start and end of every batch to detect silent installation degradation.
-4.  **Dialog Suppression**: Uses a watchdog thread (`re/tooling/harness/Dismiss.py`) to automatically dismiss blocking UI modals.
-
-## Program Decomposition and Generation
-
-The `re/tooling/ProgramDecomposition/` toolset handles the high-level organization of recovered serialization logic. It converts extracted data into Python "programs" that can be used by the converter's write path.
-
-- **GeneratePrograms.py**: Coordinates the build process, rendering owners, methods, and registries into the source tree.
-- **ProgramBuilder.py**: Catalogs identified serialization sites and groups them by variant path.
-- **ProgramRenderer.py**: Generates the final Python source files, including a manifest for tracking global stats such as total operations and stream counts.
+- [Research index](../../../re/README.md)
+- [Ghidra setup](../../../re/tooling/ghidra/Setup.md)
+- [Runtime trace tool](../../../re/tooling/windbg/Multitrace.py)
+- [Serialization harness](../../../re/tooling/harness/Serialize.py)
+- [Program generation](../../../re/tooling/ProgramDecomposition/GeneratePrograms.py)

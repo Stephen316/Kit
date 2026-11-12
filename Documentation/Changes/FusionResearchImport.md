@@ -5,38 +5,41 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Fusion research import and explicit reader
 
-The Fusion study and saved evidence are imported under `re/Fusion/Study`, with
-feature notes and reproduction guidance under `re/Fusion/Notes`. Historical
-research files retain their original bytes and provenance. The research exemption
-applies only beneath `re/`; it does not establish production acceptance.
+## Change
 
-The complete PR also adds Fusion parsing and projection modules, shared feature
-models, and FreeCAD native feature writing and edit reconciliation under `src/`,
-with corresponding integration coverage. These SDK changes are part of the PR;
-the change is larger than a standalone corpus import.
+The import adds the Fusion study under `re/Fusion/Study`.
+Feature notes and reproduction guidance reside under `re/Fusion/Notes`.
+Historical research files retain their bytes and provenance.
+The research exemption does not establish production acceptance.
 
-Production adapter discovery excludes `Fusion`, and public registry discovery
-must not advertise or resolve `fusion.f3d` or its `f3d` alias. Research callers
-explicitly instantiate `FusionReader` with `ReadOptions`, as described in the
-[research reader guide](../../re/Fusion/Notes/SdkReader.md). Tests opt in through
-`tests/convert/FusionRead.py`; this is not a production registration mechanism.
+The same change adds SDK parsing and projection modules, shared feature models, and FreeCAD feature writing and edit reconciliation.
+It also includes corresponding integration coverage.
+The change is larger than a research-corpus import.
 
-The explicit reader projects qualified history, parameter, sketch, body, and
-assembly data. Unsupported history selection, feature coverage, and archive
-compression variants have documented limits in the reader and feature notes.
-FreeCAD writing and readback cover selected feature families; this PR does not
-establish full parametric translation, complete native Fusion writing, or
-target-application acceptance for arbitrary input.
+## Availability
 
-Verification for the compliance repair consists of Black, Prettier, and diff
-whitespace checks. Remote CI must verify the complete changed revision. The two
-reported steering failures are corrected by extracting catalog alias assertions
-and shortening the rationale-policy integration test name, preserving the
-assertions. No tests were executed locally during this repair. Earlier study
-audit results are historical evidence, not newly executed acceptance checks.
-Heavy acceptance remains deferred to the merge-group candidate, and review
-approval remains a separate current-head requirement.
+Production discovery excludes `Fusion`.
+It must not advertise or resolve `fusion.f3d` or the `f3d` alias.
+Research callers instantiate `FusionReader` explicitly with `ReadOptions`.
+See [the research reader guide](../../re/Fusion/Notes/SdkReader.md).
+Tests opt in through `tests/convert/FusionRead.py`.
+That opt-in is not a production registration mechanism.
 
-See the [Fusion feature index](../../re/Fusion/README.md),
-[saved-file workflow](../../re/Fusion/Notes/Workflow.md), and
-[merge queue operations](../../MergeQueue.md).
+## Limits
+
+The reader projects qualified history, parameters, sketches, bodies, and assembly data.
+History selection, feature coverage, and compression variants have documented limits.
+FreeCAD writing and readback cover selected feature families.
+The change does not establish full parametric translation or complete native Fusion writing.
+It also does not establish target-application acceptance for arbitrary input.
+
+## Recorded verification
+
+The compliance repair used Black, Prettier, and whitespace checks.
+It extracted catalogue alias assertions and shortened a rationale-policy integration test name.
+The assertions remain in place.
+No local tests ran during that repair.
+Earlier study audits remain historical evidence.
+Remote CI, current-head review, and merge-group acceptance require their own results.
+
+See [the feature index](../../re/Fusion/README.md), [saved-file workflow](../../re/Fusion/Notes/Workflow.md), and [queue guide](../../MergeQueue.md).

@@ -108,6 +108,17 @@ Use each configured reviewer's own review and status indicator; do not add a dup
 
 The repository-root `re/` workspace remains exempt from code standards and unit-test requirements. Git isolation and preservation of user-owned work still apply. Prefer Python for backend work and React for frontend work. Preserve the repository MIT notices. New skill frontmatter uses `license: MIT`.
 
+## Maintained documentation
+
+Use [the documentation writing rules](../../../Documentation/Standards/WritingRules.md)
+for maintained prose. Follow the [information plan](../../../Documentation/Maintenance/InformationPlan.md)
+and [review procedure](../../../Documentation/Maintenance/Review.md) when adding or changing
+user information. Record the exact standards editions and evidence gaps through
+[the conformance matrix](../../../Documentation/Standards/Conformance.md).
+Do not claim complete ASD-STE100 or ISO/IEC/IEEE 2651x conformance from sentence
+length, formatting, public abstracts, or green CI alone. Preserve the byte-exact
+historical standards payloads and legal notices.
+
 ## Local execution rules
 
 **DO NOT RUN ANY LOCAL TESTS. All test execution belongs in remote CI; heavy acceptance runs on merge-group candidates.** This applies during implementation, failure diagnosis, review fixes, conflict resolution, and final verification. Do not run unit, integration, end-to-end, smoke, or regression tests locally, including for reproduction, debugging, test discovery/collection, or coverage. Do not substitute ad hoc local test scripts or execute tests indirectly through validation wrappers, builds, dependency lifecycle scripts, or Git hooks.
