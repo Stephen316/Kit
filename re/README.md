@@ -15,7 +15,8 @@ new agent can pick it up, trust the right parts, and repeat the exercise on a di
 
 `Methodology.md` is the reusable playbook — read it first if your target is AutoCAD, CATIA, NX or
 Creo. Everything else in this directory is the SOLIDWORKS worked example that the playbook was
-distilled from.
+distilled from. [`AutomationPlan.md`](AutomationPlan.md) designs the scripted pipeline that
+automates that playbook across SOLIDWORKS and Fusion.
 
 ## Size
 
