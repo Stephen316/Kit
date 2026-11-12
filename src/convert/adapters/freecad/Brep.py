@@ -1,15 +1,7 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
 from collections import deque as Deque
 from collections.abc import Sequence
-from dataclasses import dataclass as Dataclass
+from dataclasses import dataclass as Dataclass, replace as Replace
 import math as MathValue
 from typing import (
     Mapping,
@@ -53,11 +45,16 @@ from interchange import (
     Vector2 as VectorTwo,
     Vector3 as VectorThree,
 )
+from interchange.geometry.models.VectorSpace import SpaceVector
 from convert.adapters.freecad.BrepGraph import (
     FreeCadBrep,
     ModelGraph,
     Unsupported,
 )
+from convert.adapters.freecad.Cylinder.CylinderFrame import RuledRadius
+from convert.adapters.freecad.CurvedSense import CheckCurvedUse
+from convert.adapters.freecad.RuledLoop import IsRuledLoop
+from convert.adapters.freecad.PlanarRing import CapRingArea
 
 # this binding exists because shared behavior needs one stable value
 KPoint = tuple[float, float, float]
@@ -963,7 +960,7 @@ def PcurveRecord(Value: BrepPcurve) -> tuple[str, float]:
     Unsupported(f"pcurve type {type(Value).__name__} is unsupported")
 
 
-# elementary surface encoding stays isolated because analytic frames share one compact dispatch
+# analytic frames use the native radius growth convention when encoding cones
 def EncodeBasic(Value: BrepSurface) -> str | None:
     if isinstance(Value, PlaneSurface):
         AxisValue, RefValue, YDirection = Frame(
@@ -981,7 +978,7 @@ def EncodeBasic(Value: BrepSurface) -> str | None:
         )
         if not 0.0 < abs(Value.half_angle) < MathValue.pi / 2.0:
             Unsupported(f"cone surface {Value.id} has an invalid half angle")
-        return f"3 {Values(VectorThreeA(Value.origin) + AxisValue + RefValue + YDirection + (Value.radius, Value.half_angle))} "
+        return f"3 {Values(VectorThreeA(Value.origin) + AxisValue + RefValue + YDirection + (Value.radius, -Value.half_angle))} "
     if isinstance(Value, SphereSurface):
         AxisValue, RefValue, YDirection = Frame(
             Value.axis, Value.reference_direction, f"sphere surface {Value.id}"
@@ -1245,7 +1242,7 @@ def SurfaceUv(Value: BrepSurface, Point: Point) -> tuple[float, float] | None:
     return None
 
 
-# this definition exists because focused behavior needs one stable owner
+# surface residuals compare points against the neutral analytic carriers
 def SurfaceResidual(Value: BrepSurface, Point: Point) -> float | None:
     if isinstance(Value, PlaneSurface):
         AxisValue, _, _ = Frame(
@@ -1261,13 +1258,7 @@ def SurfaceResidual(Value: BrepSurface, Point: Point) -> float | None:
             DotAction(Delta, RefValue), DotAction(Delta, YDirection)
         )
         Axial = DotAction(Delta, AxisValue)
-        if isinstance(Value, CylinderSurface):
-            return abs(Radial - Value.radius)
-        Cosine = MathValue.cos(Value.half_angle)
-        if abs(Cosine) <= 1e-15:
-            return None
-        Expected = Value.radius + Axial / Cosine * MathValue.sin(Value.half_angle)
-        return abs(Radial - abs(Expected))
+        return abs(Radial - abs(RuledRadius(Value, Axial)))
     if isinstance(Value, SphereSurface):
         return abs(
             GetLength(Subtract(Point, VectorThreeA(Value.center))) - Value.radius
@@ -1929,7 +1920,7 @@ def GetPlanarPoints(
     return (tuple(Points), Allowed) if len(Points) >= 3 else None
 
 
-# planar cross products stay centralized because convexity and intersection tests share exact arithmetic
+# planar cross products stay centralized because corner and intersection tests share arithmetic
 def GetCrossValue(
     LeftPoint: tuple[float, float],
     RightPoint: tuple[float, float],
@@ -1940,17 +1931,15 @@ def GetCrossValue(
     ) * (TestPoint[0] - LeftPoint[0])
 
 
-# convexity checking remains a predicate because only consistently signed nonzero turns are proven
-def IsConvexLoop(Points: tuple[tuple[float, float], ...], Epsilon: float) -> bool:
-    Turns: list[bool] = []
+# nondegenerate corners establish a boundary even when some turns reverse on a concave face
+def HasPlanarTurns(Points: tuple[tuple[float, float], ...], Epsilon: float) -> bool:
     for Index, MiddlePoint in enumerate(Points):
         LeftPoint = Points[Index - 1]
         RightPoint = Points[(Index + 1) % len(Points)]
         TurnValue = GetCrossValue(LeftPoint, MiddlePoint, RightPoint)
-        if abs(TurnValue) <= Epsilon:
+        if not MathValue.isfinite(TurnValue) or abs(TurnValue) <= Epsilon:
             return False
-        Turns.append(TurnValue > 0.0)
-    return not any(Value != Turns[0] for Value in Turns[1:])
+    return True
 
 
 # intersection detection remains a predicate because self crossing loops cannot prove planar topology
@@ -1981,7 +1970,7 @@ def HasCrossings(Points: tuple[tuple[float, float], ...], Epsilon: float) -> boo
     return False
 
 
-# planar loop proof composes point convexity and crossing evidence because each can reject independently
+# planar loop proof requires nondegenerate corners and rejects ambiguous crossings independently
 def IsPlanarLoop(
     Graph: ModelGraph, FaceValue: BrepFace, LoopValue: BrepLoop, Tolerance: float
 ) -> bool:
@@ -1995,7 +1984,7 @@ def IsPlanarLoop(
         for AxisValue in (0, 1)
     )
     Epsilon = Allowed * max(1.0, SpanValue)
-    return IsConvexLoop(Points, Epsilon) and not HasCrossings(Points, Epsilon)
+    return HasPlanarTurns(Points, Epsilon) and not HasCrossings(Points, Epsilon)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -2034,23 +2023,36 @@ def PlanarCircle(
     return (Center, Curve.radius)
 
 
-# this definition exists because focused behavior needs one stable owner
-def FaceIsProven(
+# face topology must be proven before orientation and serialization can use its boundary
+def ProveFace(
     Graph: ModelGraph,
     FaceValue: BrepFace,
     Tolerance: float,
     SeamBands: Mapping[str, SeamBand],
-) -> None:
+) -> dict[str, bool] | None:
     if FaceValue.id in SeamBands:
-        return
+        return None
     Surface = Graph.surfaces[FaceValue.surface_id]
+    Loops = tuple((Graph.loops[LoopId] for LoopId in FaceValue.loop_ids))
+    if (
+        isinstance(Surface, (CylinderSurface, ConeSurface))
+        and len(Loops) == 1
+        and IsRuledLoop(Graph, FaceValue, Surface, Loops[0], Tolerance)
+    ):
+        return KFaceLoop(Graph, FaceValue, Tolerance)
     if not isinstance(Surface, PlaneSurface):
         Unsupported(
             f"face {FaceValue.id} on {type(Surface).__name__} lacks a proven native topology"
         )
-    Loops = tuple((Graph.loops[LoopId] for LoopId in FaceValue.loop_ids))
-    if len(Loops) == 1 and IsPlanarLoop(Graph, FaceValue, Loops[0], Tolerance):
-        return
+    if len(Loops) == 1:
+        if IsPlanarLoop(Graph, FaceValue, Loops[0], Tolerance):
+            return None
+        if len(Loops[0].coedge_ids) >= 2:
+            AreaValue = CapRingArea(
+                Graph, FaceValue, Surface, Loops[0], Tolerance, Frame
+            )
+            if AreaValue is not None:
+                return {Loops[0].id: AreaValue < 0.0}
     Circles = tuple(
         (PlanarCircle(Graph, FaceValue, LoopValue, Tolerance) for LoopValue in Loops)
     )
@@ -2064,6 +2066,7 @@ def FaceIsProven(
             or abs(Concrete[0][1] - Concrete[1][1]) <= Allowed
         ):
             Unsupported(f"planar face {FaceValue.id} has unproven circle containment")
+    return None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -2349,7 +2352,7 @@ def EdgeGeom(
 
 # this definition exists because focused behavior needs one stable owner
 def ShapeLines(
-    Records: Sequence[ShapeRecord], RootValue: tuple[str, bool]
+    Records: Sequence[ShapeRecord], RootValue: tuple[str, bool], RootLocation: int
 ) -> list[str]:
     Ordinals = {Record.key: Index for Index, Record in enumerate(Records, 1)}
     Count = len(Records)
@@ -2377,7 +2380,12 @@ def ShapeLines(
             + (" " if Record.children else "")
             + "*"
         )
-    Lines.extend(["", f"{('-' if RootValue[1] else '+')}{RefAction(RootValue[0])} 0 "])
+    Lines.extend(
+        [
+            "",
+            f"{('-' if RootValue[1] else '+')}{RefAction(RootValue[0])} {RootLocation} ",
+        ]
+    )
     return Lines
 
 
@@ -2398,7 +2406,9 @@ def ValidateBrep(Model: BrepModel, Tolerance: float) -> None:
 
 
 # write state construction stays isolated because every shape phase consumes the same proven indexes
-def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
+def BuildBrepState(
+    Model: BrepModel, Tolerance: float, LocationLines: tuple[str, ...]
+) -> BrepWriteState:
     Graph = ModelGraph(Model)
     BaseCurves = tuple(CurveRecord(Value) for Value in Model.curves)
     SurfaceRecords = tuple(
@@ -2406,9 +2416,13 @@ def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
     )
     PcurveRecords, EdgePcurves, SeamBands = EdgePcurveA(Model, Graph, Tolerance)
     LoopReversals: dict[str, bool] = {}
+    CurvedFaces: set[str] = set()
     for FaceValue in Model.faces:
-        FaceIsProven(Graph, FaceValue, Tolerance, SeamBands)
-        if FaceValue.id not in SeamBands:
+        CurvedLoops = ProveFace(Graph, FaceValue, Tolerance, SeamBands)
+        if CurvedLoops is not None:
+            CurvedFaces.add(FaceValue.id)
+            LoopReversals.update(CurvedLoops)
+        elif FaceValue.id not in SeamBands:
             LoopReversals.update(KFaceLoop(Graph, FaceValue, Tolerance))
     FaceEdges = {
         FaceValue.id: FaceEdge(Graph, FaceValue, LoopReversals, SeamBands)
@@ -2416,6 +2430,7 @@ def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
     }
     FaceUseReversals = ShellFace(Model, Graph, FaceEdges)
     ShellUseReversals = ShellUse(Model, Graph)
+    CheckCurvedUse(Model, Graph, CurvedFaces, FaceUseReversals, ShellUseReversals)
     CurveRecords = BaseCurves + tuple(
         (BandValue.curve_record, 1.0) for BandValue in SeamBands.values()
     )
@@ -2428,7 +2443,7 @@ def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
         "DBRep_DrawableShape",
         "",
         "CASCADE Topology V1, (c) Matra-Datavision",
-        "Locations 0",
+        *LocationLines,
         f"Curve2ds {len(PcurveRecords)}",
         *PcurveRecords,
         f"Curves {len(CurveRecords)}",
@@ -2712,10 +2727,54 @@ def AddBodiesMut(
     return RootKey, False
 
 
+# native subelement indices depend on the traversal of existing topology children
+def OrderShapesMut(
+    Shapes: list[ShapeRecord], ChildOrders: Mapping[str, tuple[int, ...]]
+) -> None:
+    Remaining = set(ChildOrders)
+    for Index, Shape in enumerate(Shapes):
+        Order = ChildOrders.get(Shape.key)
+        if Order is None:
+            continue
+        if sorted(Order) != list(range(len(Shape.children))):
+            Unsupported(f"native topology order does not preserve {Shape.key} children")
+        Shapes[Index] = Replace(
+            Shape, children=tuple(Shape.children[Child] for Child in Order)
+        )
+        Remaining.remove(Shape.key)
+    if Remaining:
+        Unsupported("native topology order references an unknown shape")
+
+
+# one shared location keeps local shape geometry separate from its root placement
+def RootLocFields(Translation: SpaceVector | None) -> tuple[tuple[str, ...], int]:
+    if Translation is None:
+        return ("Locations 0",), 0
+    Shift = VectorThreeA(Translation)
+    if not all(MathValue.isfinite(Value) for Value in Shift):
+        raise ValueError("BREP root translation must contain finite coordinates")
+    if Shift == (0.0, 0.0, 0.0):
+        return ("Locations 0",), 0
+    return (
+        "Locations 1",
+        "1",
+        Values((1.0, 0.0, 0.0, Shift[0])),
+        Values((0.0, 1.0, 0.0, Shift[1])),
+        Values((0.0, 0.0, 1.0, Shift[2])),
+    ), 1
+
+
 # this definition exists because focused behavior needs one stable owner
-def BrepModelBrep(Model: BrepModel, Tolerance: float = 1e-07) -> bytes:
+def BrepModelBrep(
+    Model: BrepModel,
+    Tolerance: float = 1e-07,
+    *,
+    ChildOrders: Mapping[str, tuple[int, ...]] | None = None,
+    RootTranslation: SpaceVector | None = None,
+) -> bytes:
     ValidateBrep(Model, Tolerance)
-    State = BuildBrepState(Model, Tolerance)
+    LocationLines, RootLocation = RootLocFields(RootTranslation)
+    State = BuildBrepState(Model, Tolerance, LocationLines)
     Lines = list(State.HeaderLines)
     Shapes: list[ShapeRecord] = []
     AddVerticesMut(Shapes, Model, Tolerance)
@@ -2728,7 +2787,9 @@ def BrepModelBrep(Model: BrepModel, Tolerance: float = 1e-07) -> bytes:
     AddShellRecsMut(Shapes, Model, State)
     RegionRoots = AddRegionsMut(Shapes, Model, State)
     RootValue = AddBodiesMut(Shapes, Model, RegionRoots)
-    Lines.extend(ShapeLines(Shapes, RootValue))
+    if ChildOrders:
+        OrderShapesMut(Shapes, ChildOrders)
+    Lines.extend(ShapeLines(Shapes, RootValue, RootLocation))
     return ("\n".join(Lines) + "\n").encode("ascii")
 
 

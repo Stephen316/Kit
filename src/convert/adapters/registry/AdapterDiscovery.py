@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 from importlib import import_module as ImportModule
@@ -20,8 +12,8 @@ from convert.adapters.base.AdapterProtocols import CadReaderAdapter
 from convert.adapters.base.AdapterProtocols import CadWriterAdapter
 from convert.adapters.registry.RegistryErrors import DiscoveryError
 
-# infrastructure package names stay centralized so discovery only visits concrete format integrations
-KInternalPackages = frozenset({"base", "registry", "staging"})
+# internal and research packages stay out of production adapter discovery
+KInternalPackages = frozenset({"base", "registry", "staging", "Fusion"})
 
 
 # internal filtering applies only to the built in root so third party package names remain unrestricted

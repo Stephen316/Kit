@@ -1,0 +1,99 @@
+{
+  "active": false,
+  "reason": "Known pre-add witness aliases recovered and owned document closed; corrected concrete SDK equality then passed two complete Rule cases with sixteen witnesses and clean owned closes, same process alive and no newer local CER.",
+  "investigation": "fusion-trim-crash-investigation.json",
+  "scope": "All study live API generators and automatic resume; offline readers and validators continue.",
+  "resume_requirement": "Continue only reviewed owned-document lifecycle captures. Suspend again on process loss or uncertain transaction; no automatic restart or blind retry.",
+  "repair_authorization": "Can you fix the crashes, and continue onusing fusion",
+  "authorized_validation": {},
+  "single_case_validation": {
+    "capture_directory": "surfacetrimtools-560510587441",
+    "status": "Complete",
+    "fusion_pid": 5619,
+    "same_process_alive_after_completion": true,
+    "rolled_cell_read_exercised": true,
+    "all_owned_closes_succeeded": true
+  },
+  "prior_reason": "Two native TrimFeature cleanup crashes during live captures; user reports repeated Fusion crashes.",
+  "verified_validation": {
+    "evidence_file": "fusion-trim-native-lifecycle-validation.json",
+    "sha256": "1864f6e7a91c9157bdc76f7bba3ca37ee6f852aa11bd97a57ac023e4fe31366d",
+    "completed_batches": 2,
+    "healthy_exports": 3,
+    "successful_owned_closes": 3,
+    "fusion_pid": 5619,
+    "same_process_alive": true
+  },
+  "verified_rule_capture": {
+    "directory": "rulefilletsurfaces-7b26b40f98f7",
+    "status": "Complete",
+    "executed_generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+    "ground_truth_sha256": "3a4c0ffeda19e6189aaf2538aa1c0517d3bfc56a95a4f501ad31d03e80307376",
+    "journal_sha256": "cf53b92605c055042665b9b723cde0083e10e4cdd735b66f9f57e8ec3e9616f0",
+    "complete_marker_sha256": "f8c8c6d012d1c79f4842f086df4fc918f59c28a628be559c07c25395ed22cf9a",
+    "healthy_source_exports": 2,
+    "witness_archives": 2,
+    "witness_features_created": 16,
+    "successful_owned_closes": 2,
+    "case_errors": 0,
+    "same_Fusion_pid_alive": 5619,
+    "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+    "API_native_entity_readbacks_verified": true,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  },
+  "verified_rule_recovery": {
+    "directory": "recoverrulesurfacewitness-f013800ce846",
+    "status": "RecoveredClosed",
+    "report_sha256": "72169cd461be1f84af9163e2433caceb9581815a8de63787a58342a9cbf8fe45",
+    "owned_close_returned": true,
+    "both_alias_quarantines_released_while_document_open": true,
+    "unrelated_documents_touched": false
+  },
+  "rule_witness_native_validation": {
+    "report": "rule-surface-witness-native-validation.json",
+    "sha256": "af15200c2f3a17b5292eecf3079772b6c7b4e30a7bd70656126c1628aef07211",
+    "healthy_owned_captures": 2,
+    "witnesses": 16,
+    "actual_exports": 4,
+    "focused_saved_trace_checks": 93,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  },
+  "last_recovered_halt": {
+    "observed_at_utc": "2026-10-21T20:42:35.174945+00:00",
+    "directory": "rulefilletsurfaces-9dd46198ca8a",
+    "phase": "create_witness before offsets.add",
+    "error": "TypeError: NotImplemented should not be used in a boolean context",
+    "ground_truth_sha256": "4f12bfdb0d52834236cb43f046d38ad0ac5efe5ffcc4a459f15f37628efd3b21",
+    "healthy_pre_witness_archive": "offsets_one_two.f3d",
+    "automatic_retry": false,
+    "owned_document_retained": true,
+    "native_witness_handles_quarantined": true,
+    "fusion_pid": 5619,
+    "process_confirmed_alive": true,
+    "recovery_attempt": {
+      "directory": "recoverrulesurfacewitness-b0a35766ba60",
+      "status": "HaltedRetained",
+      "error": "Concrete native wrappers refer to different objects",
+      "release_frame_completed": false,
+      "evidence_sha256": "df282bfea4fc22061c24ea77fb1ae8b77d7a83c45d5e56d18967969657bf0dc9",
+      "fusion_pid_confirmed_alive": 5619,
+      "next_action": "Read-only concrete-wrapper comparison diagnostic; no cleanup or capture retry"
+    },
+    "read_only_diagnostic": {
+      "directory": "inspectrulewitnessquarantine-151086054fb5",
+      "status": "InspectionComplete",
+      "report_sha256": "6ae9f013c5b410200aa4ca7d3ae173e4b179375514121065a8f19c10c07e8899",
+      "model_entity_equalities": true,
+      "fresh_and_retained_OffsetFeatures_compare_equal": false,
+      "quarantine_mutated": false,
+      "next_action": "Verify additional Component/BRepBody ownership checks before revised bounded cleanup"
+    },
+    "recovery_verified": {
+      "directory": "recoverrulesurfacewitness-f013800ce846",
+      "status": "RecoveredClosed",
+      "report_sha256": "72169cd461be1f84af9163e2433caceb9581815a8de63787a58342a9cbf8fe45",
+      "same_fusion_pid_alive": 5619,
+      "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00"
+    }
+  }
+}

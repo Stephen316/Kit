@@ -1,0 +1,190 @@
+{
+  "scope": "Fixed eight saved archives against b6691d2; one separately scoped named initial planar FACE cache and two precise status-string refinements",
+  "baseline_commit": "b6691d2",
+  "files": [
+    "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
+    "mirrorfeatures-1ffa1b15c612/feature_optimized.f3d",
+    "mirrorfeatures-1ffa1b15c612/feature_identical.f3d",
+    "mirrorfeatures-1ffa1b15c612/feature_adjust.f3d",
+    "tools-fda3948848f4/Mirror.f3d",
+    "surfacebounds-ac801bb00fae/untrim_all.f3d",
+    "surfacetools-856ca50cf4c7/offset_positive.f3d",
+    "pathpatterns-de9857f6a1bc/spacing.f3d"
+  ],
+  "summary": {
+    "qualified_face_plane_caches": 1,
+    "receiving_feature_annotations": 1,
+    "bounded_status_string_refinements": 2,
+    "independent_API_plane_comparisons": 2,
+    "independent_prior_Mirror_settings_checks": 4,
+    "saved_files": 8,
+    "whole_output_unchanged_controls": 7,
+    "unexpected_changes": 0,
+    "comparator_baseline_main_calls": 0,
+    "comparator_current_main_calls": 0,
+    "live_API_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
+      "archive_sha256": "b72a387e28fee597471ce99b2ff9740596079f92f394fc7f53cd95ee0ccad255",
+      "qualified_face_plane_caches": 1,
+      "receiving_feature_annotations": 1,
+      "bounded_status_string_refinements": 2,
+      "independent_API_plane_comparisons": 2,
+      "independent_prior_Mirror_settings_checks": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "462932f8c9d6afccdaee3e7889c62e30f8579cda2d29528d83a2127027787792",
+      "current_output_sha256": "7a7271afd9e3ed0a5b5080560c1a1fee870fa0cbb72adde2a1861a807ff042ed",
+      "qualified_difference_paths": [
+        "/streams/0/features/4/mirror_face_plane_cache",
+        "/streams/0/features/4/tool_settings/plane_selection_status",
+        "/streams/0/features/4/tool_settings/plane_source/geometry_status",
+        "/streams/0/mirror_face_planes"
+      ]
+    },
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/feature_optimized.f3d",
+      "archive_sha256": "89fb3ac91fa4ca8a1f04eadc4d8203b7d432f5e705159dbae28f7c3f13ac3d04",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 1,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "a72a200c21b384d8cd6cf2b0c3547d5d845231be18e3867bbd1e6c949ec67a44",
+      "current_output_sha256": "a72a200c21b384d8cd6cf2b0c3547d5d845231be18e3867bbd1e6c949ec67a44",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/feature_identical.f3d",
+      "archive_sha256": "2a27f2f51777916994c88d96bb06a0914cf6554e07219d66dd1dd637ab3e833b",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 1,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "76705bf2ef95287e06e78891e183037d308dbfeae52c5dd938a395699bb8a7d4",
+      "current_output_sha256": "76705bf2ef95287e06e78891e183037d308dbfeae52c5dd938a395699bb8a7d4",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/feature_adjust.f3d",
+      "archive_sha256": "b89c6038c4f0dbadf5792a3baeadd2d1a288e60a0f69a08b9f766a895be3e82a",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 1,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "549f2f155721c517c4d72d4767d543a95cfc9b786478c3c54e1ae82bba68dca6",
+      "current_output_sha256": "549f2f155721c517c4d72d4767d543a95cfc9b786478c3c54e1ae82bba68dca6",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "tools-fda3948848f4/Mirror.f3d",
+      "archive_sha256": "44d074b0dfc76a27081f0c24fc5fa0e35c8bc8111b77b2edf0a76ecd8e6d9274",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "26f72c36dd6d9ddd4ba375d5deae2c48360b6112127bdc0edbf5f4c611992f85",
+      "current_output_sha256": "26f72c36dd6d9ddd4ba375d5deae2c48360b6112127bdc0edbf5f4c611992f85",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_all.f3d",
+      "archive_sha256": "4fb209ac268b43eaa657f40432e6c21dba65365059b857d92f194fcfb9e4c29a",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "ec01b5d9f29f194f18d2e718045d33bac5cb0de60cdfcfc221d4c96a3a0af48e",
+      "current_output_sha256": "ec01b5d9f29f194f18d2e718045d33bac5cb0de60cdfcfc221d4c96a3a0af48e",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_positive.f3d",
+      "archive_sha256": "6df9a1ba1cb825e0edee881d65763da70e573d34d7157c67de89af7b09429f3b",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "2a3969c14b44d0eb4dfefdca7f73d28299f1562586b4516eaf23302f9b3e4a31",
+      "current_output_sha256": "2a3969c14b44d0eb4dfefdca7f73d28299f1562586b4516eaf23302f9b3e4a31",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "pathpatterns-de9857f6a1bc/spacing.f3d",
+      "archive_sha256": "04d02cd79623a9acbf5ebce9a91307615500eb6c2128d63a408a14597fd807b9",
+      "qualified_face_plane_caches": 0,
+      "receiving_feature_annotations": 0,
+      "bounded_status_string_refinements": 0,
+      "independent_API_plane_comparisons": 0,
+      "independent_prior_Mirror_settings_checks": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_only_qualified_additions_and_two_status_restorations": true,
+      "old_plane_geometry_None_all_other_settings_warnings_geometry_and_ASM_exact": true,
+      "baseline_output_sha256": "cbedee9aeedc2a258d89266763ed860eab2abf92c5c35da37d631545aa206e3c",
+      "current_output_sha256": "cbedee9aeedc2a258d89266763ed860eab2abf92c5c35da37d631545aa206e3c",
+      "qualified_difference_paths": []
+    }
+  ],
+  "fixed_manifest_acquisition": {
+    "baseline_main_calls": 8,
+    "current_main_calls": 8,
+    "baseline_passes": 1,
+    "current_passes": 1,
+    "scope": "Original fixed-manifest acquisition; cached comparison does not repeat either pass"
+  },
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-mirror-face-plane-baseline.json",
+      "sha256": "afcfe41f80853064d75606c3abce172ffedf87b7ddf07ef0b940f36fbefb156e"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-mirror-face-plane-current.json",
+      "sha256": "7ced13b434f032b6cd5ccf069835c6746a36141e143cb261f6d9a7b0c5efb8ce"
+    }
+  },
+  "evidence_sha256": {
+    "mirror-face-plane-decoding.json": "5f4e79781d031ce2bdebd1f27ae97039950d061c36338bcc38d75816f02e482c",
+    "mirrorfeatures-1ffa1b15c612/ground_truth.json": "cc4475ed0828ea063095dd6a6c1d0d237ac017a502f75db7f23f96f99890715c"
+  },
+  "source_sha256": {
+    "validate_mirror_face_planes_integration.py": "ea56505f15b093554f5931bfacc00f4879e3eaf05b4b88a64e0ff5cc208f9561",
+    "validate_rectangular_cache_evidence_integration.py": "7f6b18e63bb039aeebbd3051307761c76a2f775ac905c307e1e06ae7bc6d9214",
+    "decode_mirror_face_planes.py": "f7904c16fc3ab0a563962ac51551cb716b7092614f74197e5a8374de6fb9088e",
+    "decode_mirror_modes.py": "680d751c4a1bff5bd64efbcacd89339f7eb94bc9353b1c746b18d26140a8a570",
+    "decode_basics.py": "a50e10c1fbf7714aae359c9744f2ce9da9f148512f50fef5341b50435860470d"
+  },
+  "limitations": [
+    "Only one saved planar BRepFace support contrast; the original tool Mirror uses a ConstructionPlane",
+    "Native descriptor/anchor/BODY mapping and complete names choose the FACE before inspecting its plane",
+    "An initial-cache plane is distinct from qualified before-feature/current geometry and persistent/API face identity",
+    "Both existing plane fields remain None; no normal-sign convention, arbitrary plane-origin rule or reflection result identity inferred",
+    "Complete independent helper goldens qualify additions; all previous unqualified fields stay exact",
+    "No live calls, broader corpus decoding or regeneration"
+  ]
+}

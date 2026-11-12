@@ -1,0 +1,5177 @@
+{
+  "file": "dimensions-f83a2edd2f72/dimensions.f3d",
+  "status": "experimental partial decoder",
+  "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+  "limitations": [
+    "Version-8 MetaStream indexes validate record boundaries; field semantics remain inferred from a small corpus.",
+    "Type codes are local to the document and not treated as universal feature identifiers.",
+    "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
+    "Profile membership is partial; no general trimmed-contour reconstruction, topology, sketch solver or native writer.",
+    "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+    "No general feature history, suppression, all end conditions, arbitrary axis selection, or body reconstruction."
+  ],
+  "streams": [
+    {
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "features": [
+        {
+          "kind": "Sketch",
+          "object_id": 207,
+          "native_kind_label": "Sketch",
+          "stored_index": 1,
+          "record_offset": 27447,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d1",
+              "display_units": "mm",
+              "raw_float64": 4.30116263352,
+              "role_offset": 30340,
+              "value_offset": 30400,
+              "expression_candidates": [
+                "43.0116263352 mm"
+              ],
+              "parameter_object_id": 237,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 238,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 43.0116263352,
+              "binding_object_id": 238,
+              "binding_offset": 30420,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionAligned",
+          "sketch_object_id": 202,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 205,
+              "sketch_object_id": 202,
+              "record_offset": 27189,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 100,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 228,
+              "sketch_object_id": 202,
+              "record_offset": 28815,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 101,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 230,
+              "sketch_object_id": 202,
+              "record_offset": 29084,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 102,
+              "position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "component_position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            },
+            {
+              "object_id": 232,
+              "sketch_object_id": 202,
+              "record_offset": 29353,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 228,
+              "end_point_id": 230,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "entity_tag": 103,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "Linear",
+              "object_id": 236,
+              "entity_ids": [
+                228,
+                230
+              ],
+              "parameter_name": "d1",
+              "raw_value": 4.30116263352,
+              "expression_candidates": [
+                "43.0116263352 mm"
+              ],
+              "binding_object_id": 238,
+              "record_offset": 29709,
+              "stored_kind_code": 16384,
+              "driving_status": "Observed dimension reference flag decoded",
+              "orientation": "Aligned",
+              "is_driving": true,
+              "value_cm": 4.30116263352,
+              "value_mm": 43.0116263352
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 204,
+            "record_offset": 27155,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 247,
+          "native_kind_label": "Sketch",
+          "stored_index": 2,
+          "record_offset": 31384,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d2",
+              "display_units": "mm",
+              "raw_float64": 3.5,
+              "role_offset": 34245,
+              "value_offset": 34305,
+              "expression_candidates": [
+                "35.00 mm"
+              ],
+              "parameter_object_id": 277,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 278,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 35.0,
+              "binding_object_id": 278,
+              "binding_offset": 34325,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionHorizontal",
+          "sketch_object_id": 243,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 245,
+              "sketch_object_id": 243,
+              "record_offset": 31126,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 104,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 268,
+              "sketch_object_id": 243,
+              "record_offset": 32752,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 105,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 270,
+              "sketch_object_id": 243,
+              "record_offset": 33021,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 106,
+              "position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "component_position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            },
+            {
+              "object_id": 272,
+              "sketch_object_id": 243,
+              "record_offset": 33290,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 268,
+              "end_point_id": 270,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "entity_tag": 107,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "Linear",
+              "object_id": 276,
+              "entity_ids": [
+                268,
+                270
+              ],
+              "parameter_name": "d2",
+              "raw_value": 3.5,
+              "expression_candidates": [
+                "35.00 mm"
+              ],
+              "binding_object_id": 278,
+              "record_offset": 33646,
+              "stored_kind_code": 4194304,
+              "driving_status": "Observed dimension reference flag decoded",
+              "orientation": "Horizontal",
+              "is_driving": true,
+              "value_cm": 3.5,
+              "value_mm": 35.0
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 244,
+            "record_offset": 31092,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 287,
+          "native_kind_label": "Sketch",
+          "stored_index": 3,
+          "record_offset": 35285,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d3",
+              "display_units": "mm",
+              "raw_float64": 2.5,
+              "role_offset": 38146,
+              "value_offset": 38206,
+              "expression_candidates": [
+                "25.00 mm"
+              ],
+              "parameter_object_id": 317,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 318,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 25.0,
+              "binding_object_id": 318,
+              "binding_offset": 38226,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionVertical",
+          "sketch_object_id": 283,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 285,
+              "sketch_object_id": 283,
+              "record_offset": 35027,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 108,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 308,
+              "sketch_object_id": 283,
+              "record_offset": 36653,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 109,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 310,
+              "sketch_object_id": 283,
+              "record_offset": 36922,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 110,
+              "position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "component_position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            },
+            {
+              "object_id": 312,
+              "sketch_object_id": 283,
+              "record_offset": 37191,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 308,
+              "end_point_id": 310,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "entity_tag": 111,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "Linear",
+              "object_id": 316,
+              "entity_ids": [
+                308,
+                310
+              ],
+              "parameter_name": "d3",
+              "raw_value": 2.5,
+              "expression_candidates": [
+                "25.00 mm"
+              ],
+              "binding_object_id": 318,
+              "record_offset": 37547,
+              "stored_kind_code": 8388608,
+              "driving_status": "Observed dimension reference flag decoded",
+              "orientation": "Vertical",
+              "is_driving": true,
+              "value_cm": 2.5,
+              "value_mm": 25.0
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 284,
+            "record_offset": 34993,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 327,
+          "native_kind_label": "Sketch",
+          "stored_index": 4,
+          "record_offset": 39196,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d4",
+              "display_units": "mm",
+              "raw_float64": 4.30116263352,
+              "role_offset": 42089,
+              "value_offset": 42149,
+              "expression_candidates": [
+                "43.0116263352 mm"
+              ],
+              "parameter_object_id": 357,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 358,
+              "expression_metadata_hex": "00000000000001000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 43.0116263352,
+              "binding_object_id": 358,
+              "binding_offset": 42169,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionDrivenAligned",
+          "sketch_object_id": 323,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 325,
+              "sketch_object_id": 323,
+              "record_offset": 38938,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 112,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 348,
+              "sketch_object_id": 323,
+              "record_offset": 40564,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 113,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 350,
+              "sketch_object_id": 323,
+              "record_offset": 40833,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 114,
+              "position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "component_position_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            },
+            {
+              "object_id": 352,
+              "sketch_object_id": 323,
+              "record_offset": 41102,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 348,
+              "end_point_id": 350,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ],
+              "entity_tag": 115,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                4.2,
+                3.6,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "Linear",
+              "object_id": 356,
+              "entity_ids": [
+                348,
+                350
+              ],
+              "parameter_name": "d4",
+              "raw_value": 4.30116263352,
+              "expression_candidates": [
+                "43.0116263352 mm"
+              ],
+              "binding_object_id": 358,
+              "record_offset": 41458,
+              "stored_kind_code": 16384,
+              "driving_status": "Observed dimension reference flag decoded",
+              "orientation": "Aligned",
+              "is_driving": false,
+              "value_cm": 4.30116263352,
+              "value_mm": 43.0116263352
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 324,
+            "record_offset": 38904,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 367,
+          "native_kind_label": "Sketch",
+          "stored_index": 5,
+          "record_offset": 43158,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d5",
+              "display_units": "mm",
+              "raw_float64": 2.0,
+              "role_offset": 46913,
+              "value_offset": 46973,
+              "expression_candidates": [
+                "20.00 mm"
+              ],
+              "parameter_object_id": 405,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 406,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 20.0,
+              "binding_object_id": 406,
+              "binding_offset": 46993,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionOffset",
+          "sketch_object_id": 363,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 365,
+              "sketch_object_id": 363,
+              "record_offset": 42900,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 116,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 388,
+              "sketch_object_id": 363,
+              "record_offset": 44526,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 117,
+              "position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 390,
+              "sketch_object_id": 363,
+              "record_offset": 44795,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 118,
+              "position_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 396,
+              "sketch_object_id": 363,
+              "record_offset": 45420,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 120,
+              "position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 398,
+              "sketch_object_id": 363,
+              "record_offset": 45689,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 121,
+              "position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "component_position_cm": [
+                4.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 392,
+              "sketch_object_id": 363,
+              "record_offset": 45064,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 388,
+              "end_point_id": 390,
+              "start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "entity_tag": 119,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "component_end_cm": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 400,
+              "sketch_object_id": 363,
+              "record_offset": 45958,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 396,
+              "end_point_id": 398,
+              "start_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "entity_tag": 122,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_start_cm": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "component_end_cm": [
+                4.0,
+                3.0,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "Offset",
+              "object_id": 404,
+              "entity_ids": [
+                392,
+                400
+              ],
+              "parameter_name": "d5",
+              "raw_value": 2.0,
+              "expression_candidates": [
+                "20.00 mm"
+              ],
+              "binding_object_id": 406,
+              "record_offset": 46314,
+              "stored_kind_code": 16384,
+              "driving_status": "Observed dimension reference flag decoded",
+              "orientation": "PerpendicularToFirstLine",
+              "is_driving": true,
+              "value_cm": 2.0,
+              "value_mm": 20.0
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 364,
+            "record_offset": 42866,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 415,
+          "native_kind_label": "Sketch",
+          "stored_index": 6,
+          "record_offset": 48060,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d6",
+              "display_units": "mm",
+              "raw_float64": 3.0,
+              "role_offset": 53085,
+              "value_offset": 53145,
+              "expression_candidates": [
+                "30.00 mm"
+              ],
+              "parameter_object_id": 469,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 470,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 30.0,
+              "binding_object_id": 470,
+              "binding_offset": 53165,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionEllipseMajor",
+          "sketch_object_id": 411,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 413,
+              "sketch_object_id": 411,
+              "record_offset": 47802,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 123,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 436,
+              "sketch_object_id": 411,
+              "record_offset": 49428,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 124,
+              "position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 439,
+              "sketch_object_id": 411,
+              "record_offset": 50074,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 126,
+              "position_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 441,
+              "sketch_object_id": 411,
+              "record_offset": 50343,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 127,
+              "position_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 444,
+              "sketch_object_id": 411,
+              "record_offset": 50979,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 129,
+              "position_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "object_id": 446,
+              "sketch_object_id": 411,
+              "record_offset": 51248,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 130,
+              "position_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ]
+            },
+            {
+              "object_id": 438,
+              "sketch_object_id": 411,
+              "record_offset": 49697,
+              "entity_genesis": 2,
+              "kind": "Ellipse",
+              "center_point_id": 436,
+              "center_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "major_radius_cm": 3.0,
+              "minor_radius_cm": 1.5,
+              "stored_major_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "stored_minor_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "major_axis_entity_id": 443,
+              "minor_axis_entity_id": 448,
+              "entity_tag": 125,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_center_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "component_stored_major_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "component_stored_minor_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 443,
+              "sketch_object_id": 411,
+              "record_offset": 50612,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 439,
+              "end_point_id": 441,
+              "start_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "auxiliary_parent_id": 438,
+              "entity_tag": 128,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ],
+              "component_end_cm": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 448,
+              "sketch_object_id": 411,
+              "record_offset": 51517,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 444,
+              "end_point_id": 446,
+              "start_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ],
+              "auxiliary_parent_id": 438,
+              "entity_tag": 131,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "component_end_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [
+            {
+              "kind": "Coincident",
+              "object_id": 452,
+              "entity_ids": [
+                439,
+                438
+              ],
+              "dependency_entity_ids": [
+                438,
+                439
+              ],
+              "stored_code": 1,
+              "record_offset": 51884,
+              "evidence": "explicit stored constraint and repeated entity references"
+            },
+            {
+              "kind": "Coincident",
+              "object_id": 456,
+              "entity_ids": [
+                441,
+                438
+              ],
+              "dependency_entity_ids": [
+                438,
+                441
+              ],
+              "stored_code": 1,
+              "record_offset": 52041,
+              "evidence": "explicit stored constraint and repeated entity references"
+            },
+            {
+              "kind": "Coincident",
+              "object_id": 460,
+              "entity_ids": [
+                444,
+                438
+              ],
+              "dependency_entity_ids": [
+                438,
+                444
+              ],
+              "stored_code": 1,
+              "record_offset": 52198,
+              "evidence": "explicit stored constraint and repeated entity references"
+            },
+            {
+              "kind": "Coincident",
+              "object_id": 464,
+              "entity_ids": [
+                446,
+                438
+              ],
+              "dependency_entity_ids": [
+                438,
+                446
+              ],
+              "stored_code": 1,
+              "record_offset": 52355,
+              "evidence": "explicit stored constraint and repeated entity references"
+            }
+          ],
+          "dimensions": [
+            {
+              "kind": "EllipseMajorRadius",
+              "object_id": 468,
+              "entity_ids": [
+                438
+              ],
+              "parameter_name": "d6",
+              "raw_value": 3.0,
+              "expression_candidates": [
+                "30.00 mm"
+              ],
+              "binding_object_id": 470,
+              "record_offset": 52512,
+              "stored_kind_code": 16777216,
+              "driving_status": "Observed dimension reference flag decoded",
+              "is_driving": true,
+              "value_cm": 3.0,
+              "value_mm": 30.0,
+              "entity_id": 438
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 412,
+            "record_offset": 47768,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 479,
+          "native_kind_label": "Sketch",
+          "stored_index": 7,
+          "record_offset": 54232,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d7",
+              "display_units": "mm",
+              "raw_float64": 1.5,
+              "role_offset": 59257,
+              "value_offset": 59317,
+              "expression_candidates": [
+                "15.00 mm"
+              ],
+              "parameter_object_id": 533,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 534,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 15.0,
+              "binding_object_id": 534,
+              "binding_offset": 59337,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionEllipseMinor",
+          "sketch_object_id": 475,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 477,
+              "sketch_object_id": 475,
+              "record_offset": 53974,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 132,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 500,
+              "sketch_object_id": 475,
+              "record_offset": 55600,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 133,
+              "position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 503,
+              "sketch_object_id": 475,
+              "record_offset": 56246,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 135,
+              "position_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 505,
+              "sketch_object_id": 475,
+              "record_offset": 56515,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 136,
+              "position_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "component_position_cm": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 508,
+              "sketch_object_id": 475,
+              "record_offset": 57151,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 138,
+              "position_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "object_id": 510,
+              "sketch_object_id": 475,
+              "record_offset": 57420,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 139,
+              "position_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ],
+              "component_position_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ]
+            },
+            {
+              "object_id": 502,
+              "sketch_object_id": 475,
+              "record_offset": 55869,
+              "entity_genesis": 2,
+              "kind": "Ellipse",
+              "center_point_id": 500,
+              "center_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "major_radius_cm": 3.0,
+              "minor_radius_cm": 1.5,
+              "stored_major_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "stored_minor_axis": [
+                -0.0,
+                -1.0,
+                -0.0
+              ],
+              "major_axis_entity_id": 507,
+              "minor_axis_entity_id": 512,
+              "entity_tag": 134,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_center_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "component_stored_major_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "component_stored_minor_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 507,
+              "sketch_object_id": 475,
+              "record_offset": 56784,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 503,
+              "end_point_id": 505,
+              "start_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "auxiliary_parent_id": 502,
+              "entity_tag": 137,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                -2.0,
+                1.0,
+                0.0
+              ],
+              "component_end_cm": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 512,
+              "sketch_object_id": 475,
+              "record_offset": 57689,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 508,
+              "end_point_id": 510,
+              "start_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ],
+              "auxiliary_parent_id": 502,
+              "entity_tag": 140,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "component_end_cm": [
+                1.0,
+                -0.5,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [
+            {
+              "kind": "Coincident",
+              "object_id": 516,
+              "entity_ids": [
+                503,
+                502
+              ],
+              "dependency_entity_ids": [
+                502,
+                503
+              ],
+              "stored_code": 1,
+              "record_offset": 58056,
+              "evidence": "explicit stored constraint and repeated entity references"
+            },
+            {
+              "kind": "Coincident",
+              "object_id": 520,
+              "entity_ids": [
+                505,
+                502
+              ],
+              "dependency_entity_ids": [
+                502,
+                505
+              ],
+              "stored_code": 1,
+              "record_offset": 58213,
+              "evidence": "explicit stored constraint and repeated entity references"
+            },
+            {
+              "kind": "Coincident",
+              "object_id": 524,
+              "entity_ids": [
+                508,
+                502
+              ],
+              "dependency_entity_ids": [
+                502,
+                508
+              ],
+              "stored_code": 1,
+              "record_offset": 58370,
+              "evidence": "explicit stored constraint and repeated entity references"
+            },
+            {
+              "kind": "Coincident",
+              "object_id": 528,
+              "entity_ids": [
+                510,
+                502
+              ],
+              "dependency_entity_ids": [
+                502,
+                510
+              ],
+              "stored_code": 1,
+              "record_offset": 58527,
+              "evidence": "explicit stored constraint and repeated entity references"
+            }
+          ],
+          "dimensions": [
+            {
+              "kind": "EllipseMinorRadius",
+              "object_id": 532,
+              "entity_ids": [
+                502
+              ],
+              "parameter_name": "d7",
+              "raw_value": 1.5,
+              "expression_candidates": [
+                "15.00 mm"
+              ],
+              "binding_object_id": 534,
+              "record_offset": 58684,
+              "stored_kind_code": 33554432,
+              "driving_status": "Observed dimension reference flag decoded",
+              "is_driving": true,
+              "value_cm": 1.5,
+              "value_mm": 15.0,
+              "entity_id": 502
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 476,
+            "record_offset": 53940,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 543,
+          "native_kind_label": "Sketch",
+          "stored_index": 8,
+          "record_offset": 60312,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d8",
+              "display_units": "mm",
+              "raw_float64": 1.8,
+              "role_offset": 63511,
+              "value_offset": 63571,
+              "expression_candidates": [
+                "18.00 mm"
+              ],
+              "parameter_object_id": 577,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 578,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 18.0,
+              "binding_object_id": 578,
+              "binding_offset": 63591,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionConcentric",
+          "sketch_object_id": 539,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 541,
+              "sketch_object_id": 539,
+              "record_offset": 60054,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 141,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 564,
+              "sketch_object_id": 539,
+              "record_offset": 61680,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 142,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 570,
+              "sketch_object_id": 539,
+              "record_offset": 62296,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 144,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 566,
+              "sketch_object_id": 539,
+              "record_offset": 61949,
+              "entity_genesis": 2,
+              "kind": "Circle",
+              "center_point_id": 564,
+              "center_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "radius_mm": 10.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "entity_tag": 143,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_center_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "component_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 572,
+              "sketch_object_id": 539,
+              "record_offset": 62565,
+              "entity_genesis": 2,
+              "kind": "Circle",
+              "center_point_id": 570,
+              "center_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "radius_cm": 2.8,
+              "radius_mm": 28.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "entity_tag": 145,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_center_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "component_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "ConcentricCircle",
+              "object_id": 576,
+              "entity_ids": [
+                566,
+                572
+              ],
+              "parameter_name": "d8",
+              "raw_value": 1.8,
+              "expression_candidates": [
+                "18.00 mm"
+              ],
+              "binding_object_id": 578,
+              "record_offset": 62912,
+              "stored_kind_code": 134217728,
+              "driving_status": "Observed dimension reference flag decoded",
+              "is_driving": true,
+              "value_cm": 1.8,
+              "value_mm": 18.0
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 540,
+            "record_offset": 60020,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 587,
+          "native_kind_label": "Sketch",
+          "stored_index": 9,
+          "record_offset": 64576,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Tangent Dimension-2",
+              "parameter_name": "d9",
+              "display_units": "mm",
+              "raw_float64": 5.7,
+              "role_offset": 67973,
+              "value_offset": 68035,
+              "expression_candidates": [
+                "57.00 mm"
+              ],
+              "parameter_object_id": 621,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 622,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 57.0,
+              "binding_object_id": 622,
+              "binding_offset": 68055,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionTangentDistance",
+          "sketch_object_id": 583,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 585,
+              "sketch_object_id": 583,
+              "record_offset": 64318,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 146,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 608,
+              "sketch_object_id": 583,
+              "record_offset": 65944,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 147,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 614,
+              "sketch_object_id": 583,
+              "record_offset": 66560,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 149,
+              "position_cm": [
+                5.0,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                5.0,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 610,
+              "sketch_object_id": 583,
+              "record_offset": 66213,
+              "entity_genesis": 2,
+              "kind": "Circle",
+              "center_point_id": 608,
+              "center_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "radius_cm": 0.5,
+              "radius_mm": 5.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "entity_tag": 148,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_center_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "component_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 616,
+              "sketch_object_id": 583,
+              "record_offset": 66829,
+              "entity_genesis": 2,
+              "kind": "Circle",
+              "center_point_id": 614,
+              "center_cm": [
+                5.0,
+                1.1,
+                0.0
+              ],
+              "radius_cm": 0.9000000000000004,
+              "radius_mm": 9.000000000000004,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "entity_tag": 150,
+              "is_fixed": false,
+              "is_construction": false,
+              "component_center_cm": [
+                5.0,
+                1.1,
+                0.0
+              ],
+              "component_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "component_reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "TangentDistance",
+              "object_id": 620,
+              "entity_ids": [
+                610,
+                616
+              ],
+              "parameter_name": "d9",
+              "raw_value": 5.7,
+              "expression_candidates": [
+                "57.00 mm"
+              ],
+              "binding_object_id": 622,
+              "record_offset": 67176,
+              "stored_kind_code": 274877906944,
+              "driving_status": "Undecoded for this dimension class",
+              "tangent_sides_status": "Tangent-side choices remain undecoded",
+              "value_cm": 5.7,
+              "value_mm": 57.0
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 584,
+            "record_offset": 64284,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 631,
+          "native_kind_label": "Sketch",
+          "stored_index": 10,
+          "record_offset": 69038,
+          "type_code": "341",
+          "parameters": [
+            {
+              "role": "Linear Dimension-2",
+              "parameter_name": "d10",
+              "display_units": "mm",
+              "raw_float64": 6.0,
+              "role_offset": 72159,
+              "value_offset": 72221,
+              "expression_candidates": [
+                "60.00 mm"
+              ],
+              "parameter_object_id": 669,
+              "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "declared_binding_object_id": 670,
+              "expression_metadata_hex": "00000000000000000000",
+              "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+              "internal_units": "cm",
+              "hypothesized_value_mm": 60.0,
+              "binding_object_id": 670,
+              "binding_offset": 72241,
+              "binding_value_representation": "float64",
+              "association": "explicit owner and parameter references with matching numeric payload"
+            }
+          ],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionLinearDiameter",
+          "sketch_object_id": 627,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 629,
+              "sketch_object_id": 627,
+              "record_offset": 68780,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 151,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 652,
+              "sketch_object_id": 627,
+              "record_offset": 70406,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 152,
+              "position_cm": [
+                0.0,
+                -2.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                -2.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 654,
+              "sketch_object_id": 627,
+              "record_offset": 70675,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 153,
+              "position_cm": [
+                0.0,
+                5.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                5.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 663,
+              "sketch_object_id": 627,
+              "record_offset": 71300,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 155,
+              "position_cm": [
+                3.0,
+                2.0,
+                0.0
+              ],
+              "component_position_cm": [
+                3.0,
+                2.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 656,
+              "sketch_object_id": 627,
+              "record_offset": 70944,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 652,
+              "end_point_id": 654,
+              "start_cm": [
+                0.0,
+                -2.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                5.0,
+                0.0
+              ],
+              "entity_tag": 154,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                0.0,
+                -2.0,
+                0.0
+              ],
+              "component_end_cm": [
+                0.0,
+                5.0,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [
+            {
+              "kind": "LinearDiameter",
+              "object_id": 668,
+              "entity_ids": [
+                656,
+                663
+              ],
+              "parameter_name": "d10",
+              "raw_value": 6.0,
+              "expression_candidates": [
+                "60.00 mm"
+              ],
+              "binding_object_id": 670,
+              "record_offset": 71558,
+              "stored_kind_code": 8589934592,
+              "driving_status": "Observed dimension reference flag decoded",
+              "is_driving": true,
+              "value_cm": 6.0,
+              "value_mm": 60.0
+            }
+          ],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 628,
+            "record_offset": 68746,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 679,
+          "native_kind_label": "Sketch",
+          "stored_index": 11,
+          "record_offset": 73252,
+          "type_code": "341",
+          "parameters": [],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionSmooth",
+          "sketch_object_id": 675,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 677,
+              "sketch_object_id": 675,
+              "record_offset": 72994,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 156,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 700,
+              "sketch_object_id": 675,
+              "record_offset": 74579,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 157,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 702,
+              "sketch_object_id": 675,
+              "record_offset": 74848,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 158,
+              "position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 704,
+              "sketch_object_id": 675,
+              "record_offset": 75117,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 159,
+              "position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 706,
+              "sketch_object_id": 675,
+              "record_offset": 75386,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 160,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "object_id": 715,
+              "sketch_object_id": 675,
+              "record_offset": 77093,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 162,
+              "position_cm": [
+                6.0,
+                4.0,
+                0.0
+              ],
+              "component_position_cm": [
+                6.0,
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 717,
+              "sketch_object_id": 675,
+              "record_offset": 77362,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 163,
+              "position_cm": [
+                7.0,
+                3.0,
+                0.0
+              ],
+              "component_position_cm": [
+                7.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 719,
+              "sketch_object_id": 675,
+              "record_offset": 77631,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 164,
+              "position_cm": [
+                8.0,
+                5.0,
+                0.0
+              ],
+              "component_position_cm": [
+                8.0,
+                5.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "FittedSpline",
+              "object_id": 708,
+              "entity_tag": 161,
+              "sketch_object_id": 675,
+              "record_offset": 75666,
+              "geometry_record_offset": 75859,
+              "start_point_id": 700,
+              "end_point_id": 706,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 5,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.06666666666666667,
+                  0.13333333333333333,
+                  0.2,
+                  0.26666666666666666,
+                  0.3333333333333333,
+                  0.39999999999999997,
+                  0.4666666666666666,
+                  0.5333333333333333,
+                  0.6,
+                  0.6666666666666666,
+                  0.7333333333333333,
+                  0.7999999999999999,
+                  0.8666666666666666,
+                  0.9333333333333332,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    0.7318794275551522,
+                    1.4487777022466688,
+                    0.0
+                  ],
+                  [
+                    0.798934749296598,
+                    2.084433244753284,
+                    0.0
+                  ],
+                  [
+                    0.9094070631675552,
+                    2.8522191929323717,
+                    0.0
+                  ],
+                  [
+                    1.0766265159152644,
+                    3.5018187337050684,
+                    0.0
+                  ],
+                  [
+                    1.3196258592692525,
+                    3.6939163773317096,
+                    0.0
+                  ],
+                  [
+                    1.597396715537097,
+                    3.305634719254137,
+                    0.0
+                  ],
+                  [
+                    1.9102914273349305,
+                    2.4407130881738053,
+                    0.0
+                  ],
+                  [
+                    2.2576597974995907,
+                    1.2968424838054307,
+                    0.0
+                  ],
+                  [
+                    2.636744499868307,
+                    0.11852449832120887,
+                    0.0
+                  ],
+                  [
+                    3.041534644635398,
+                    -0.8460944444491332,
+                    0.0
+                  ],
+                  [
+                    3.461281127460361,
+                    -1.3906426553027063,
+                    0.0
+                  ],
+                  [
+                    3.879284909441176,
+                    -1.392792517933192,
+                    0.0
+                  ],
+                  [
+                    4.270482526258838,
+                    -0.8697775613661922,
+                    0.0
+                  ],
+                  [
+                    4.601861440911448,
+                    -0.008344664242852868,
+                    0.0
+                  ],
+                  [
+                    4.8474811384437695,
+                    0.9465033934718967,
+                    0.0
+                  ],
+                  [
+                    4.9709769924898435,
+                    1.6144082109680584,
+                    0.0
+                  ],
+                  [
+                    5.035920275173907,
+                    2.0235986814656735,
+                    0.0
+                  ],
+                  [
+                    5.077635245290342,
+                    2.2747122660822163,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "is_rational": true,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "fit_point_ids": [
+                700,
+                702,
+                704,
+                706
+              ],
+              "fit_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ],
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  0.7318794275551522,
+                  1.4487777022466688,
+                  0.0
+                ],
+                [
+                  0.798934749296598,
+                  2.084433244753284,
+                  0.0
+                ],
+                [
+                  0.9094070631675552,
+                  2.8522191929323717,
+                  0.0
+                ],
+                [
+                  1.0766265159152644,
+                  3.5018187337050684,
+                  0.0
+                ],
+                [
+                  1.3196258592692525,
+                  3.6939163773317096,
+                  0.0
+                ],
+                [
+                  1.597396715537097,
+                  3.305634719254137,
+                  0.0
+                ],
+                [
+                  1.9102914273349305,
+                  2.4407130881738053,
+                  0.0
+                ],
+                [
+                  2.2576597974995907,
+                  1.2968424838054307,
+                  0.0
+                ],
+                [
+                  2.636744499868307,
+                  0.11852449832120887,
+                  0.0
+                ],
+                [
+                  3.041534644635398,
+                  -0.8460944444491332,
+                  0.0
+                ],
+                [
+                  3.461281127460361,
+                  -1.3906426553027063,
+                  0.0
+                ],
+                [
+                  3.879284909441176,
+                  -1.392792517933192,
+                  0.0
+                ],
+                [
+                  4.270482526258838,
+                  -0.8697775613661922,
+                  0.0
+                ],
+                [
+                  4.601861440911448,
+                  -0.008344664242852868,
+                  0.0
+                ],
+                [
+                  4.8474811384437695,
+                  0.9465033934718967,
+                  0.0
+                ],
+                [
+                  4.9709769924898435,
+                  1.6144082109680584,
+                  0.0
+                ],
+                [
+                  5.035920275173907,
+                  2.0235986814656735,
+                  0.0
+                ],
+                [
+                  5.077635245290342,
+                  2.2747122660822163,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "kind": "FittedSpline",
+              "object_id": 721,
+              "entity_tag": 165,
+              "sketch_object_id": 675,
+              "record_offset": 77900,
+              "geometry_record_offset": 78093,
+              "start_point_id": 706,
+              "end_point_id": 719,
+              "start_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "end_cm": [
+                8.0,
+                5.0,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 5,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.06666666666666667,
+                  0.13333333333333333,
+                  0.2,
+                  0.26666666666666666,
+                  0.3333333333333333,
+                  0.39999999999999997,
+                  0.4666666666666666,
+                  0.5333333333333333,
+                  0.6,
+                  0.6666666666666666,
+                  0.7333333333333333,
+                  0.7999999999999999,
+                  0.8666666666666666,
+                  0.9333333333333332,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ],
+                  [
+                    5.116326856314823,
+                    2.491463325050564,
+                    0.0
+                  ],
+                  [
+                    5.1505871321390995,
+                    2.674103192155066,
+                    0.0
+                  ],
+                  [
+                    5.211313227804614,
+                    2.9481320545319196,
+                    0.0
+                  ],
+                  [
+                    5.32209078010414,
+                    3.3064714875843983,
+                    0.0
+                  ],
+                  [
+                    5.513109999292084,
+                    3.6925574550625737,
+                    0.0
+                  ],
+                  [
+                    5.743558936015002,
+                    3.956028482747645,
+                    0.0
+                  ],
+                  [
+                    5.992901580259221,
+                    4.047064886683952,
+                    0.0
+                  ],
+                  [
+                    6.241393661948417,
+                    3.9485854016382493,
+                    0.0
+                  ],
+                  [
+                    6.4785318165452175,
+                    3.700169661842187,
+                    0.0
+                  ],
+                  [
+                    6.700734864807159,
+                    3.378092659822108,
+                    0.0
+                  ],
+                  [
+                    6.908834735873625,
+                    3.074385346683095,
+                    0.0
+                  ],
+                  [
+                    7.105969360518565,
+                    2.8789425791556913,
+                    0.0
+                  ],
+                  [
+                    7.295116157272778,
+                    2.8562565757022975,
+                    0.0
+                  ],
+                  [
+                    7.4781902696450056,
+                    3.0409150682827923,
+                    0.0
+                  ],
+                  [
+                    7.656464586810089,
+                    3.449082359170547,
+                    0.0
+                  ],
+                  [
+                    7.795788828499481,
+                    3.957244611369612,
+                    0.0
+                  ],
+                  [
+                    7.898559709954253,
+                    4.439559197537516,
+                    0.0
+                  ],
+                  [
+                    7.9663132795718425,
+                    4.805745586801311,
+                    0.0
+                  ],
+                  [
+                    8.0,
+                    5.0,
+                    0.0
+                  ]
+                ],
+                "weights": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "is_rational": true,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "fit_point_ids": [
+                706,
+                715,
+                717,
+                719
+              ],
+              "fit_points_cm": [
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ],
+                [
+                  6.0,
+                  4.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  8.0,
+                  5.0,
+                  0.0
+                ]
+              ],
+              "component_start_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_end_cm": [
+                8.0,
+                5.0,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ],
+                [
+                  5.116326856314823,
+                  2.491463325050564,
+                  0.0
+                ],
+                [
+                  5.1505871321390995,
+                  2.674103192155066,
+                  0.0
+                ],
+                [
+                  5.211313227804614,
+                  2.9481320545319196,
+                  0.0
+                ],
+                [
+                  5.32209078010414,
+                  3.3064714875843983,
+                  0.0
+                ],
+                [
+                  5.513109999292084,
+                  3.6925574550625737,
+                  0.0
+                ],
+                [
+                  5.743558936015002,
+                  3.956028482747645,
+                  0.0
+                ],
+                [
+                  5.992901580259221,
+                  4.047064886683952,
+                  0.0
+                ],
+                [
+                  6.241393661948417,
+                  3.9485854016382493,
+                  0.0
+                ],
+                [
+                  6.4785318165452175,
+                  3.700169661842187,
+                  0.0
+                ],
+                [
+                  6.700734864807159,
+                  3.378092659822108,
+                  0.0
+                ],
+                [
+                  6.908834735873625,
+                  3.074385346683095,
+                  0.0
+                ],
+                [
+                  7.105969360518565,
+                  2.8789425791556913,
+                  0.0
+                ],
+                [
+                  7.295116157272778,
+                  2.8562565757022975,
+                  0.0
+                ],
+                [
+                  7.4781902696450056,
+                  3.0409150682827923,
+                  0.0
+                ],
+                [
+                  7.656464586810089,
+                  3.449082359170547,
+                  0.0
+                ],
+                [
+                  7.795788828499481,
+                  3.957244611369612,
+                  0.0
+                ],
+                [
+                  7.898559709954253,
+                  4.439559197537516,
+                  0.0
+                ],
+                [
+                  7.9663132795718425,
+                  4.805745586801311,
+                  0.0
+                ],
+                [
+                  8.0,
+                  5.0,
+                  0.0
+                ]
+              ]
+            }
+          ],
+          "constraints": [
+            {
+              "kind": "Smooth",
+              "object_id": 728,
+              "entity_ids": [
+                708,
+                721
+              ],
+              "dependency_entity_ids": [
+                708,
+                721
+              ],
+              "stored_code": 512,
+              "record_offset": 79327,
+              "evidence": "explicit stored constraint and repeated entity references"
+            }
+          ],
+          "dimensions": [],
+          "internal_associations": [],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 676,
+            "record_offset": 72960,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        },
+        {
+          "kind": "Sketch",
+          "object_id": 736,
+          "native_kind_label": "Sketch",
+          "stored_index": 12,
+          "record_offset": 80311,
+          "type_code": "341",
+          "parameters": [],
+          "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "class_namespace": "Fusion",
+          "name": "DimensionControlPolygon",
+          "sketch_object_id": 732,
+          "coordinate_system": "sketch-local",
+          "coordinate_units": "cm",
+          "geometry": [
+            {
+              "object_id": 734,
+              "sketch_object_id": 732,
+              "record_offset": 80053,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 166,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "object_id": 757,
+              "sketch_object_id": 732,
+              "record_offset": 81638,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 167,
+              "position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_position_cm": [
+                0.7,
+                1.1,
+                0.0
+              ]
+            },
+            {
+              "object_id": 759,
+              "sketch_object_id": 732,
+              "record_offset": 81918,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 168,
+              "position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_position_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 761,
+              "sketch_object_id": 732,
+              "record_offset": 82198,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 169,
+              "position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_position_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 763,
+              "sketch_object_id": 732,
+              "record_offset": 82478,
+              "entity_genesis": 2,
+              "kind": "Point",
+              "entity_tag": 170,
+              "position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_position_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            },
+            {
+              "kind": "ControlPointSpline",
+              "object_id": 768,
+              "entity_tag": 174,
+              "sketch_object_id": 732,
+              "record_offset": 83826,
+              "geometry_record_offset": 84019,
+              "start_point_id": 757,
+              "end_point_id": 763,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "nurbs": {
+                "degree": 3,
+                "knots": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "control_points_cm": [
+                  [
+                    0.7,
+                    1.1,
+                    0.0
+                  ],
+                  [
+                    1.6,
+                    3.2,
+                    0.0
+                  ],
+                  [
+                    3.8,
+                    -1.3,
+                    0.0
+                  ],
+                  [
+                    5.1,
+                    2.4,
+                    0.0
+                  ]
+                ],
+                "weights": [],
+                "is_rational": false,
+                "is_periodic": false,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+              },
+              "state_status": "Spline construction/fixed state not decoded",
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "component_control_points_cm": [
+                [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                [
+                  1.6,
+                  3.2,
+                  0.0
+                ],
+                [
+                  3.8,
+                  -1.3,
+                  0.0
+                ],
+                [
+                  5.1,
+                  2.4,
+                  0.0
+                ]
+              ]
+            },
+            {
+              "object_id": 765,
+              "sketch_object_id": 732,
+              "record_offset": 82758,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 757,
+              "end_point_id": 759,
+              "start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "end_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "entity_tag": 171,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                0.7,
+                1.1,
+                0.0
+              ],
+              "component_end_cm": [
+                1.6,
+                3.2,
+                0.0
+              ]
+            },
+            {
+              "object_id": 766,
+              "sketch_object_id": 732,
+              "record_offset": 83114,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 759,
+              "end_point_id": 761,
+              "start_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "end_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "entity_tag": 172,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                1.6,
+                3.2,
+                0.0
+              ],
+              "component_end_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ]
+            },
+            {
+              "object_id": 767,
+              "sketch_object_id": 732,
+              "record_offset": 83470,
+              "entity_genesis": 2,
+              "kind": "Line",
+              "start_point_id": 761,
+              "end_point_id": 763,
+              "start_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ],
+              "entity_tag": 173,
+              "is_fixed": false,
+              "is_construction": true,
+              "component_start_cm": [
+                3.8,
+                -1.3,
+                0.0
+              ],
+              "component_end_cm": [
+                5.1,
+                2.4,
+                0.0
+              ]
+            }
+          ],
+          "constraints": [],
+          "dimensions": [],
+          "internal_associations": [
+            {
+              "kind": "SplineControlPolygon",
+              "object_id": 772,
+              "stored_code": 2147483648,
+              "entity_ids": [
+                765,
+                766,
+                767,
+                768
+              ],
+              "spline_entity_id": 768,
+              "scope": "Internal spline/control polygon membership; not a user geometric constraint"
+            }
+          ],
+          "placement": {
+            "sketch_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_order": "row-major; column-vector multiplication",
+            "translation_units": "cm",
+            "encoding": "ImplicitIdentity",
+            "transform_object_id": 733,
+            "record_offset": 80019,
+            "scope": "Parent component; assembly occurrences unresolved"
+          },
+          "placement_status": "Observed rigid transform decoded"
+        }
+      ],
+      "unbound_parameters": [],
+      "rejected_parameters": [],
+      "candidate_record_headers": 691,
+      "record_index": {
+        "source": "MetaStream version-8 class registry and object-offset tables",
+        "status": "Indexed headers validated against object IDs, primary classes and continuation inheritance",
+        "primary_objects": 589,
+        "continuations": 102,
+        "indexed_records": 691,
+        "next_object_id": 776,
+        "class_registry": [
+          {
+            "type_code": "256",
+            "class_guid": "736DEAAF-2425-405E-B871-003AAB726295",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Scene",
+            "stored_version_or_flags": 5,
+            "primary_object_count": 4,
+            "record_count": 4
+          },
+          {
+            "type_code": "257",
+            "class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "258",
+            "class_guid": "2972A3B8-3627-49BC-8C3D-18707605EC44",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "259",
+            "class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 4
+          },
+          {
+            "type_code": "260",
+            "class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "DataModel",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 0,
+            "record_count": 9
+          },
+          {
+            "type_code": "261",
+            "class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "DataModel",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 61
+          },
+          {
+            "type_code": "262",
+            "class_guid": "7E84430B-74C7-4B67-92D0-4131A0B79109",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "263",
+            "class_guid": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
+            "base_class_guid": "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9",
+            "namespace": "MSketch",
+            "stored_version_or_flags": 18,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "264",
+            "class_guid": "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 0,
+            "record_count": 12
+          },
+          {
+            "type_code": "265",
+            "class_guid": "F81C561A-B091-40F8-A875-BA72FD2FBFE8",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "266",
+            "class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 1
+          },
+          {
+            "type_code": "267",
+            "class_guid": "d9554b4f-2333-42c2-9495-2148d96f7437",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 11,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "268",
+            "class_guid": "47C245A2-2DBE-4B1F-9C56-762F373BB0C8",
+            "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "269",
+            "class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 1
+          },
+          {
+            "type_code": "270",
+            "class_guid": "D50DCC35-42CC-4E7D-9B81-4EB8252712D0",
+            "base_class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "271",
+            "class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+            "base_class_guid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "272",
+            "class_guid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "DataModel",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "273",
+            "class_guid": "5D15E992-1E93-4D79-A553-10D2624148AE",
+            "base_class_guid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "274",
+            "class_guid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+            "base_class_guid": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "275",
+            "class_guid": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "276",
+            "class_guid": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+            "base_class_guid": "B24D5130-8751-4272-8143-D230D8757873",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 10,
+            "record_count": 10
+          },
+          {
+            "type_code": "277",
+            "class_guid": "B24D5130-8751-4272-8143-D230D8757873",
+            "base_class_guid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "278",
+            "class_guid": "C6EE7300-667E-4ea5-9F61-71F98412DE8B",
+            "base_class_guid": "199B8352-4C51-4cb3-9756-26722AE44E76",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 96,
+            "record_count": 96
+          },
+          {
+            "type_code": "279",
+            "class_guid": "199B8352-4C51-4cb3-9756-26722AE44E76",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "280",
+            "class_guid": "2C54F6D6-5C2B-4C4A-89A2-2AB486EF152D",
+            "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "281",
+            "class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "282",
+            "class_guid": "90055C05-546C-4EE7-B3C9-3DD922AD0C9C",
+            "base_class_guid": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 24,
+            "record_count": 24
+          },
+          {
+            "type_code": "283",
+            "class_guid": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "284",
+            "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 36,
+            "record_count": 36
+          },
+          {
+            "type_code": "285",
+            "class_guid": "0DBF95ED-82D2-4CC4-936D-642370679CBB",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Component",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "286",
+            "class_guid": "AD3F9695-7FDF-4708-AE05-B21309CDE969",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "287",
+            "class_guid": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+            "base_class_guid": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "288",
+            "class_guid": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+            "base_class_guid": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "289",
+            "class_guid": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+            "base_class_guid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "290",
+            "class_guid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+            "base_class_guid": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "291",
+            "class_guid": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+            "base_class_guid": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "292",
+            "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 9,
+            "primary_object_count": 10,
+            "record_count": 10
+          },
+          {
+            "type_code": "293",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "base_class_guid": "0C3F3829-F0DB-4379-9479-CFEF71087971",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 9,
+            "record_count": 9
+          },
+          {
+            "type_code": "294",
+            "class_guid": "0C3F3829-F0DB-4379-9479-CFEF71087971",
+            "base_class_guid": "855F0A64-6286-4FFC-B918-BC394F600107",
+            "namespace": "MSketch",
+            "stored_version_or_flags": 6,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "295",
+            "class_guid": "855F0A64-6286-4FFC-B918-BC394F600107",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Dimension",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 10
+          },
+          {
+            "type_code": "296",
+            "class_guid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A",
+            "base_class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "297",
+            "class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+            "base_class_guid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 5,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "298",
+            "class_guid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+            "base_class_guid": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "299",
+            "class_guid": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "300",
+            "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+            "base_class_guid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 15,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "301",
+            "class_guid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+            "base_class_guid": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "302",
+            "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Body",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 2,
+            "record_count": 2
+          },
+          {
+            "type_code": "303",
+            "class_guid": "0FAF9824-8ECA-45ED-B199-589022ED5F6D",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 10,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "304",
+            "class_guid": "878C70A7-15B8-4B0B-B1B7-C2A7A23CC45C",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "305",
+            "class_guid": "074F9459-89C2-4B7D-8AB4-DCE67AE944FE",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "306",
+            "class_guid": "B65B5682-9355-44C7-8AFC-823058C4A36B",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "307",
+            "class_guid": "362B7EC3-0F09-47C8-A3BE-DC066715CDAE",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 52,
+            "record_count": 52
+          },
+          {
+            "type_code": "308",
+            "class_guid": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06573",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 4,
+            "record_count": 4
+          },
+          {
+            "type_code": "309",
+            "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "310",
+            "class_guid": "AE9F7FB5-2798-4BE4-8905-F8FB42A07193",
+            "base_class_guid": "CC33853A-069B-4292-BC1B-059FE3A08E09",
+            "namespace": "Scene",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "311",
+            "class_guid": "CC33853A-069B-4292-BC1B-059FE3A08E09",
+            "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+            "namespace": "Scene",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "312",
+            "class_guid": "A8635B5F-1E2C-45FD-8BA9-0173B0FEB75E",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "313",
+            "class_guid": "2DF7DA30-A4E4-4260-AFD1-D9C7154CB44B",
+            "base_class_guid": "872045B4-F653-4691-9752-ABC7684834BF",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "314",
+            "class_guid": "872045B4-F653-4691-9752-ABC7684834BF",
+            "base_class_guid": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "315",
+            "class_guid": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "316",
+            "class_guid": "BF7A6B8B-6E56-4C84-8882-1E8A1C1FE487",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "317",
+            "class_guid": "1E650EA7-07C5-4111-B639-7DEE3A659799",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "318",
+            "class_guid": "FA21074E-32D2-4DC9-9E77-8F53D7E7D96B",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "319",
+            "class_guid": "77EF6384-409E-498D-8167-BCA537533B35",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Component",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "320",
+            "class_guid": "FCB17D75-8538-4E8E-BDBE-CB4FE2120DB7",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Component",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "321",
+            "class_guid": "8A348869-9B0E-442C-A795-8F446256F157",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "322",
+            "class_guid": "73762C3B-82DC-4632-93B0-B8FE1CC5282F",
+            "base_class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "namespace": "MSketch",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "323",
+            "class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "MSketch",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 8,
+            "record_count": 8
+          },
+          {
+            "type_code": "324",
+            "class_guid": "49B2AA69-7655-4C36-A14E-9582CCF1283C",
+            "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "325",
+            "class_guid": "3185B924-6C84-4804-BE77-9105B09209DA",
+            "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "326",
+            "class_guid": "372234A0-2A6C-4122-8047-E74DBA04F326",
+            "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+            "namespace": "Body",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "327",
+            "class_guid": "B4CDE096-07DE-4272-BA4A-B257EFE0B470",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "328",
+            "class_guid": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "329",
+            "class_guid": "74CA4562-59F8-4C97-8AD1-F8297C21F9AA",
+            "base_class_guid": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+            "namespace": "Body",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "330",
+            "class_guid": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+            "base_class_guid": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+            "namespace": "Body",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "331",
+            "class_guid": "30DCFC57-8E13-405B-9295-5CF74AC1FB39",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "332",
+            "class_guid": "F9CB8717-EB86-47F2-AAA7-39E142C57A09",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "333",
+            "class_guid": "FF23079A-D99C-47AB-940E-2F4E18F022AB",
+            "base_class_guid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 2,
+            "record_count": 2
+          },
+          {
+            "type_code": "334",
+            "class_guid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+            "base_class_guid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 9,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "335",
+            "class_guid": "F279874A-17AB-43DA-BF8E-80259802D06E",
+            "base_class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "336",
+            "class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "base_class_guid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 7,
+            "record_count": 7
+          },
+          {
+            "type_code": "337",
+            "class_guid": "8EF00D65-F18D-4179-A644-FE0CA39943D6",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 5,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "338",
+            "class_guid": "5275CBA4-3D7D-40DC-A651-1DFF3FC8AFBF",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "339",
+            "class_guid": "CC039B2C-C546-4F97-B1EA-2EFF4470D3E6",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "340",
+            "class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "341",
+            "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+            "base_class_guid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 5,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "342",
+            "class_guid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+            "base_class_guid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "343",
+            "class_guid": "1787C882-91E2-4363-9C18-80C98EBE4C77",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 4,
+            "record_count": 4
+          },
+          {
+            "type_code": "344",
+            "class_guid": "F670456D-872C-4818-95E9-DE115B264ACA",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "345",
+            "class_guid": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "346",
+            "class_guid": "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B",
+            "base_class_guid": "EE518F9E-9CC3-4424-9CAB-2B92426E5312",
+            "namespace": "MSketch",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "347",
+            "class_guid": "EE518F9E-9CC3-4424-9CAB-2B92426E5312",
+            "base_class_guid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 0,
+            "record_count": 3
+          },
+          {
+            "type_code": "348",
+            "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "349",
+            "class_guid": "E276745D-D84E-40D5-88BC-8C94DD4ACCDF",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "350",
+            "class_guid": "88A5C187-5E68-4318-8A33-3AAA72F9DDB1",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "351",
+            "class_guid": "3978701C-58EC-401A-8D24-A6FF4103DC24",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "352",
+            "class_guid": "3A7E4411-2E8A-4FA8-96A3-9902E1ACAF2F",
+            "base_class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "353",
+            "class_guid": "64435F6E-077A-4f6b-A7B6-537BF84BA414",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "354",
+            "class_guid": "BC84911E-A581-4E51-ABE4-B0F681CFED06",
+            "base_class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "355",
+            "class_guid": "0E18EEF2-0D6F-480C-997E-5EBC7369AE5F",
+            "base_class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "356",
+            "class_guid": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+            "base_class_guid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 11,
+            "primary_object_count": 52,
+            "record_count": 52
+          },
+          {
+            "type_code": "357",
+            "class_guid": "D572415C-6C2C-460B-8C84-265C52D89EDF",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "358",
+            "class_guid": "19031004-3AB6-4D13-ABBF-C51EE214688D",
+            "base_class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "359",
+            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+            "base_class_guid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "360",
+            "class_guid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "361",
+            "class_guid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+            "base_class_guid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "362",
+            "class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "base_class_guid": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 23,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "363",
+            "class_guid": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+            "base_class_guid": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+            "namespace": "Component",
+            "stored_version_or_flags": 16,
+            "primary_object_count": 0,
+            "record_count": 1
+          },
+          {
+            "type_code": "364",
+            "class_guid": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 8,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "365",
+            "class_guid": "24DB790E-3DCD-4336-AFA3-6F119EF2239B",
+            "base_class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "namespace": "MSketch",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "366",
+            "class_guid": "2F4C1849-1A5A-4F6C-A086-8DD445CBF94B",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "367",
+            "class_guid": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 47,
+            "record_count": 47
+          },
+          {
+            "type_code": "368",
+            "class_guid": "21086CE0-C398-4b1b-9CD6-86F092429833",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 6,
+            "record_count": 6
+          },
+          {
+            "type_code": "369",
+            "class_guid": "B61F1D39-4984-47b0-9248-3A1113E86FC1",
+            "base_class_guid": "199B8352-4C51-4cb3-9756-26722AE44E76",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "370",
+            "class_guid": "A1675506-5D2D-47a5-8AD2-8FD5CE946DA0",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "371",
+            "class_guid": "3A6D1E62-99F8-4E32-BAAA-DBA0A2CFB27C",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "372",
+            "class_guid": "2243F105-E1CA-40F2-A3D7-24507E61AC5E",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "373",
+            "class_guid": "4224E565-F64F-4532-93F4-ABE3AB9CA574",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 3,
+            "record_count": 3
+          },
+          {
+            "type_code": "374",
+            "class_guid": "AC202226-A700-462A-BC41-13631C9E95D5",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Component",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "375",
+            "class_guid": "0C5DAB90-715E-49EA-A56E-E30F2328F43E",
+            "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "376",
+            "class_guid": "40DCC3F41D-E94F-B3B1-3E95-9B6ABE572C",
+            "base_class_guid": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+            "namespace": "Body",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "377",
+            "class_guid": "91461D14-4F77-44B2-9E79-8B052566D9CE",
+            "base_class_guid": "B5B50E5B-EDC8-4309-82A3-C53B3E82033D",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "378",
+            "class_guid": "E55D0457-898F-4A8E-B1A5-C85BDBA8794F",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Body",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "379",
+            "class_guid": "C170F594-38B1-4C2A-B649-7FE0164C44E3",
+            "base_class_guid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "380",
+            "class_guid": "3B9288E7-E1DE-414D-90BD-1C0CDAC77EB1",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "381",
+            "class_guid": "12D00AC0-B828-48C8-9740-80C4D992DB65",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "382",
+            "class_guid": "B13113CC-031E-4F93-8240-C4C10728869F",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "383",
+            "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
+            "base_class_guid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 4,
+            "record_count": 4
+          },
+          {
+            "type_code": "384",
+            "class_guid": "58751243-FEA8-41E6-BBC9-37960EB8164B",
+            "base_class_guid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+            "namespace": "Geometry",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 4,
+            "record_count": 4
+          },
+          {
+            "type_code": "385",
+            "class_guid": "778FECF0-46E7-4EB8-A8D0-52C950CCEAAE",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "386",
+            "class_guid": "CC54ECAD-6DE8-4DE1-803D-BBE0E751975B",
+            "base_class_guid": "9A171A9A-5599-4872-987C-9B5E8E2A6C9C",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 12,
+            "record_count": 12
+          },
+          {
+            "type_code": "387",
+            "class_guid": "9A171A9A-5599-4872-987C-9B5E8E2A6C9C",
+            "base_class_guid": "872045B4-F653-4691-9752-ABC7684834BF",
+            "namespace": "EntityTracking",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "388",
+            "class_guid": "CE2913AA-CFE0-4F04-9102-24424ED3BCFA",
+            "base_class_guid": "D4CBC599-0FFB-4d32-BF14-A7F0AFA25013",
+            "namespace": "Component",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "389",
+            "class_guid": "D4CBC599-0FFB-4d32-BF14-A7F0AFA25013",
+            "base_class_guid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 10,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "390",
+            "class_guid": "904F885E-D859-4755-A7EF-6EBED8732FAD",
+            "base_class_guid": "21F379C8-CAFD-4985-B461-767673A4C502",
+            "namespace": "Component",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "391",
+            "class_guid": "21F379C8-CAFD-4985-B461-767673A4C502",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "392",
+            "class_guid": "60F93DE2-6329-4598-A6AF-096AC63E627C",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "393",
+            "class_guid": "549FBB80-B890-473E-A5C0-415D3D9BF4E6",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "394",
+            "class_guid": "596C8B98-D176-4E40-B294-6404BAD566BC",
+            "base_class_guid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+            "namespace": "Component",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "395",
+            "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+            "base_class_guid": "0C3F3829-F0DB-4379-9479-CFEF71087971",
+            "namespace": "Fusion",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "396",
+            "class_guid": "23FD63FB-4EBE-4c85-A42B-5D9809AA3499",
+            "base_class_guid": "3C822807-C6B1-4ffc-9AE4-769A487EC7B3",
+            "namespace": "CommonData",
+            "stored_version_or_flags": 18,
+            "primary_object_count": 1,
+            "record_count": 1
+          },
+          {
+            "type_code": "397",
+            "class_guid": "3C822807-C6B1-4ffc-9AE4-769A487EC7B3",
+            "base_class_guid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "398",
+            "class_guid": "CDACB430-543C-40b2-A275-2070D34FCD66",
+            "base_class_guid": "4C835764-5BAB-4421-B5D2-06015BEF6EB2",
+            "namespace": "",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "399",
+            "class_guid": "4C835764-5BAB-4421-B5D2-06015BEF6EB2",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 4,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "400",
+            "class_guid": "98F3955C-FE39-404A-8724-36D0C15A456C",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "401",
+            "class_guid": "E9F2168E-EB4D-4547-9B47-449B294FA81C",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "402",
+            "class_guid": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "403",
+            "class_guid": "AFA00E8E-2FE6-4C9E-A494-4131BE3BF8A4",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "404",
+            "class_guid": "AD96048D-3F96-4C03-A8AA-D7639F672447",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "405",
+            "class_guid": "5852F708-9AA6-47F7-BD5A-2A5A6B56B327",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "406",
+            "class_guid": "0F97B226-5384-46FD-8A4D-FE418E735F8E",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "407",
+            "class_guid": "FCFA11CB-9D87-41D6-9FD8-92E23427386D",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "408",
+            "class_guid": "CA4D1989-5940-421E-9472-6EC13C9655A9",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "409",
+            "class_guid": "45BC3A57-B585-4245-A04C-130090F875CA",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "410",
+            "class_guid": "C9898782-7161-4519-8F36-6F7C317AEA29",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "411",
+            "class_guid": "8EB02C29-F2C0-477A-8FAF-1B764DCFA9E8",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "412",
+            "class_guid": "B728301A-AB43-43A5-A612-8A1F6D5014E4",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 0,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "413",
+            "class_guid": "1666C0B1-46B3-45b7-8AA1-C618F7CFA703",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "414",
+            "class_guid": "735FD678-4ADD-4F4B-A8B1-88CAA010394E",
+            "base_class_guid": "C2C193F2-E833-4842-8C93-A5B903F3A345",
+            "namespace": "",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "415",
+            "class_guid": "C2C193F2-E833-4842-8C93-A5B903F3A345",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 3,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "416",
+            "class_guid": "9F412B74-4FC8-400B-B922-29E7DB86DD33",
+            "base_class_guid": "735FD678-4ADD-4F4B-A8B1-88CAA010394E",
+            "namespace": "",
+            "stored_version_or_flags": 1,
+            "primary_object_count": 0,
+            "record_count": 0
+          },
+          {
+            "type_code": "417",
+            "class_guid": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+            "base_class_guid": "",
+            "namespace": "",
+            "stored_version_or_flags": 2,
+            "primary_object_count": 0,
+            "record_count": 0
+          }
+        ],
+        "limitations": "Class GUIDs are opaque identifiers, not decoded field schemas."
+      },
+      "feature_discovery": {
+        "method": "Observed feature class ancestry from MetaStream",
+        "recognized_named_feature_count": 12,
+        "unsupported_feature_count": 0,
+        "unsupported_features": [],
+        "scope": "Observed feature base class only; unsupported fields and unknown ancestry remain undecoded"
+      },
+      "sketch_decoding": {
+        "unsupported_curves": [],
+        "unknown_constraint_codes": [],
+        "unsupported_dimensions": [],
+        "scope": "Observed primitives, NURBS, conics, geometric constraints and dimensions; not a constraint solver"
+      },
+      "profile_decoding": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed selected loop/curve membership only; no general trimmed-profile reconstruction"
+      },
+      "modeling_decoding": {
+        "unresolved": [],
+        "scope": "Observed extrusion starts/end conditions and revolve angles; no body regeneration"
+      },
+      "placement_decoding": {
+        "decoded_sketch_placements": 12,
+        "unresolved_sketches": [],
+        "decoded_construction_planes": 0,
+        "scope": "Observed rigid sketch transforms and offset/angle plane geometry"
+      },
+      "construction_decoding": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed named axis/point native geometry; parametric input definitions remain partial"
+      },
+      "selection_decoding": {
+        "resolved": [],
+        "unresolved": [],
+        "scope": "Observed native construction-plane and origin-axis selection chains; no face/edge topology"
+      },
+      "tool_decoding": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed settings only; no general input body/face/edge reconstruction"
+      }
+    }
+  ],
+  "focused_validation": {
+    "checks": [
+      {
+        "name": "DimensionAligned",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": true,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionHorizontal",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": true,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionVertical",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": true,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionDrivenAligned",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": true,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionOffset",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": true,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionEllipseMajor",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": false,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionEllipseMinor",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": false,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionConcentric",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": false,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionTangentDistance",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": false,
+        "driving_state_matches_api": false,
+        "undecoded_fields": [
+          "tangent_sides_status"
+        ]
+      },
+      {
+        "name": "DimensionLinearDiameter",
+        "kind_and_value_match_api": true,
+        "orientation_matches_api_input": false,
+        "driving_state_matches_api": true,
+        "undecoded_fields": []
+      },
+      {
+        "name": "DimensionSmooth",
+        "user_constraint_kinds_match_api": true,
+        "internal_association_count": 0
+      },
+      {
+        "name": "DimensionControlPolygon",
+        "user_constraint_kinds_match_api": true,
+        "internal_association_count": 1
+      }
+    ],
+    "previous_control_polygon_associations_recovered": 2,
+    "prior_radial_diameter_angle_types_preserved": true,
+    "scope": "Ten dimensions and two spline cases. Tangent distance driving flag/tangent-side choices remain undecoded; no general solver."
+  }
+}

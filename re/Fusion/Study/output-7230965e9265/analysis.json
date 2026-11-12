@@ -1,0 +1,88 @@
+{
+  "scope": "Five newly API-generated Fusion 2705.1.30 archives; one parametric cylinder with varied extrusion depths.",
+  "zip_encrypted_members": 0,
+  "zip_compression_methods": [
+    0,
+    93
+  ],
+  "method93": "Zstandard; all member decompressions and ZIP CRC checks succeeded without passwords or keys.",
+  "design_stream_feature_labels": [
+    "DcExtrudeFeatureMetaType",
+    "DcSketchMetaType",
+    "SketchesRoot",
+    "SketchesRoot"
+  ],
+  "depth_float64_candidate_offsets": {
+    "depth07_a": [
+      27410,
+      27470
+    ],
+    "depth13": [
+      27412,
+      27472
+    ],
+    "depth29": [
+      27412,
+      27472
+    ]
+  },
+  "comparisons": [
+    {
+      "sample": "depth07_b",
+      "changed_members": [
+        "Manifest.dat",
+        "FusionAssetName[Active]/Manifest.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/MetaStream.dat",
+        "FusionAssetName[Active]/FusionACTSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/world"
+      ],
+      "design_stream_size": 30914,
+      "different_aligned_design_bytes": 500
+    },
+    {
+      "sample": "depth13",
+      "changed_members": [
+        "Manifest.dat",
+        "FusionAssetName[Active]/Manifest.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/MetaStream.dat",
+        "FusionAssetName[Active]/FusionACTSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/Previews/small.png",
+        "FusionAssetName[Active]/Previews/big.png",
+        "FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/world"
+      ],
+      "design_stream_size": 30916,
+      "different_aligned_design_bytes": 1883
+    },
+    {
+      "sample": "depth29",
+      "changed_members": [
+        "Manifest.dat",
+        "FusionAssetName[Active]/Manifest.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/MetaStream.dat",
+        "FusionAssetName[Active]/FusionACTSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/Previews/small.png",
+        "FusionAssetName[Active]/Previews/big.png",
+        "FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/world"
+      ],
+      "design_stream_size": 30916,
+      "different_aligned_design_bytes": 1874
+    },
+    {
+      "sample": "depth07_return",
+      "changed_members": [
+        "Manifest.dat",
+        "FusionAssetName[Active]/Manifest.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/FusionDesignSegmentType1/MetaStream.dat",
+        "FusionAssetName[Active]/FusionACTSegmentType1/BulkStream.dat",
+        "FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/world"
+      ],
+      "design_stream_size": 30914,
+      "different_aligned_design_bytes": 502
+    }
+  ],
+  "conclusion": "No ZIP encryption; inspected manifest, feature streams, and ASM headers contain interpretable plaintext or binary data. This does not rule out encryption in every internal field or other Fusion files. Candidate depth fields are not a decoded extrusion schema."
+}

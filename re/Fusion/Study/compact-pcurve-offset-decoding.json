@@ -1,0 +1,1175 @@
+{
+  "stage": "Bounded compact pcurve UV seam translation",
+  "interface": "decode_compact_pcurve_offsets(record, records, nodes, subtype_catalog) -> UV cache; same call shape as existing compact reader",
+  "integration": "Keep original compact reader first. Dispatch here only after its nonzero-offset diagnostic; call before assembly/body graph consumers. Existing zero-offset reader remains unchanged. No recursive shared dispatch from the derived zero-offset proof.",
+  "validation": {
+    "checks": 109,
+    "saved_files": 16,
+    "blobs": 32,
+    "prior_UV_caches_retained": 6,
+    "zero_offset_defaults_exact": 2,
+    "new_nonzero_caches": 2,
+    "malformed_guards": [
+      {
+        "guard": "Opposite stored shift sign",
+        "reason": "Unobserved compact offset selector/vector"
+      },
+      {
+        "guard": "Nonfinite stored shift",
+        "reason": "Nonfinite/invalid pcurve cache numeric value"
+      },
+      {
+        "guard": "Selector disagrees with captured shifted slot",
+        "reason": "Unobserved compact offset selector/vector"
+      },
+      {
+        "guard": "Partner no longer reciprocal",
+        "reason": "Compact offset seam lacks captured reciprocal same-loop partner"
+      },
+      {
+        "guard": "Stored support chart changed",
+        "reason": "Unobserved compact offset parent/cache chart layout"
+      },
+      {
+        "guard": "Neighbor chart endpoint no longer closes the UV ring",
+        "reason": "Compact offset does not close the literal four-corner UV chart"
+      },
+      {
+        "guard": "Stale namespace target fingerprint",
+        "reason": "Compact pcurve namespace host is stale or belongs to another blob catalog"
+      }
+    ],
+    "API_UV_or_surface_evaluator_getters_captured": false
+  },
+  "findings": [
+    "Two nonzero caches in the saved spline Pipe recover by explicit topology and matching blob-local surface definition, followed direct addition of the stored [-2*pi,0] vector.",
+    "The upper and lower chart boundaries produce the same XYZ seam; world-coordinate agreement alone cannot determine which chart a coedge uses.",
+    "The full explicit four-coedge ring has four UV corners of degree two only with the stored shift applied. Dropping it gives two degree-one and two degree-three corners.",
+    "Five samples per cache independently compare translated UV evaluated on the typed parent surface with the stored parent XYZ curve; complete boundary control rows independently corroborate coincident seam geometry.",
+    "The 15 related saved Pipe/closed-circle controls contain no further nonzero compact offset layout. Prepared captures or arbitrary periodic extrapolation supply no evidence here."
+  ],
+  "limitations": [
+    "Nonzero support is bounded to captured selector -1, offset [-2*pi,0], slot0 par_int_cur, circular sweep U=[-pi,pi]/V=[0,1], reciprocal same-loop seam partners and four-segment UV chart.",
+    "No general period, modulo wrapping, sign reversal or unknown axis-flag semantics are inferred. Positive V shifts, other charts/degrees/support families and ambiguous native support identities remain rejected.",
+    "All comparisons evaluate stored approximation caches only. No live API evaluator, exact procedural surface or lifecycle claim is made.",
+    "Two blobs of the same archive are corroborating stored representations, not two independent API experiments."
+  ],
+  "samples": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6898e22c-63fb-48a4-bc1a-7d2f5ab9ccd5.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9567852f-6f54-4a8f-a8d8-88009da4deb9.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.162ba464-163b-4fc3-9a86-98c1fefdb5da.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c4ab103-6704-422d-a86a-23b7be81ed43.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6e54ac-a55e-4352-9610-0e846d97cc10.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.89e33696-5064-41a3-b54e-42dabfb4c9ae.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.450ca4e7-360a-45c1-aa4c-a78ed6be53c3.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6be85fa6-4695-4089-a1a1-409537f8835f.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ff9f5a01-5028-47a8-bbf7-91e25d645962.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipemodes-87cfa7d8d82b/circular.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.3374a71d-9f38-4af9-971b-517d67cab8aa.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.10e4762b-74f5-4796-bd9e-0f19d7745e8a.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipemodes-87cfa7d8d82b/hollow.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.98d2f420-29f0-420f-a918-c6279e445f0b.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b5b6f5f5-c9bf-4c4c-b3c9-896fc7b83397.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipemodes-87cfa7d8d82b/partial_closed.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2a1f522e-e02d-4eb7-81ea-06400039bad6.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2f81063e-1e07-424b-9ecd-3a8bca1ef95f.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipemodes-87cfa7d8d82b/partial_open.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d110946d-7d56-4da2-b4bd-a8d33ed0a19a.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.648d6e48-bb30-48f4-ba9d-9d8b8c151e1c.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipemodes-87cfa7d8d82b/square.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e682bf1b-afd5-4fda-86f7-1f5d16012804.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.560a2bad-b310-4d3d-a799-c099e9b1b43a.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipemodes-87cfa7d8d82b/triangular.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.038e0fee-eddd-4a0d-ad88-3cc6cc1bcbbc.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.5f695d2d-07d5-4b77-ae52-b5fdcb52f8c4.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4a4c5aa6-7144-4269-87e2-1d82bff64804.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b6eb5dba-03d3-4fc1-8c9e-ff9446a6e261.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipepaths-3d11bd427946/composite_circular.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.49b3597e-00b0-41b8-a205-9fe8163a634b.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7ed9f9b9-288b-4a6c-ab8f-1dd5aa7d99d4.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipepaths-3d11bd427946/composite_square_hollow_partial.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f5b001e9-f6be-437d-b0ea-342a6e13c04e.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.043c9b90-18d6-4592-9ca7-26da60a08b55.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "pipepaths-3d11bd427946/spline_circular.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e9ec5e3-2506-48e5-a559-bd4aba9cbe44.smb",
+          "decoded_offsets": [
+            {
+              "record_index": 27,
+              "expected_uv_cache": {
+                "degree": 1,
+                "knots": [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0
+                ],
+                "stored_compact_knots": [
+                  [
+                    0.0,
+                    1
+                  ],
+                  [
+                    1.0,
+                    1
+                  ]
+                ],
+                "raw_control_points_uv": [
+                  [
+                    3.141592653589793,
+                    0.0
+                  ],
+                  [
+                    3.141592653589793,
+                    1.0
+                  ]
+                ],
+                "parameter_offset_uv": [
+                  -6.283185307179586,
+                  0.0
+                ],
+                "control_points_uv": [
+                  [
+                    -3.141592653589793,
+                    0.0
+                  ],
+                  [
+                    -3.141592653589793,
+                    1.0
+                  ]
+                ],
+                "weights": [],
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "stored_form_code": 0,
+                "stored_prefix_integer": -1,
+                "stored_selected_support_slot": 0,
+                "stored_intcurve_record_pointer": 33,
+                "owning_coedge_index": 19,
+                "parent_loop_index": 7,
+                "parent_face_index": 4,
+                "parent_surface_record_index": 8,
+                "parent_surface_namespace": {
+                  "source_block": {
+                    "record_index": 8,
+                    "record_kind": "spline-surface",
+                    "section": "geometry",
+                    "token_start": 4,
+                    "token_end": 2820,
+                    "byte_start": 858,
+                    "byte_end": 26186,
+                    "subtype_name": "sweep_sur",
+                    "context_kind": "surface",
+                    "context_evidence": "Typed top-level spline-surface wrapper",
+                    "parent_definition_index": null,
+                    "definition_index": 0,
+                    "reference_id": null
+                  },
+                  "target_definition": {
+                    "record_index": 8,
+                    "record_kind": "spline-surface",
+                    "section": "geometry",
+                    "token_start": 4,
+                    "token_end": 2820,
+                    "byte_start": 858,
+                    "byte_end": 26186,
+                    "subtype_name": "sweep_sur",
+                    "context_kind": "surface",
+                    "context_evidence": "Typed top-level spline-surface wrapper",
+                    "parent_definition_index": null,
+                    "definition_index": 0,
+                    "reference_id": null
+                  },
+                  "source_blob_sha256": "3359ef54e272c8319a9e1c8ff72887861a80fa5f174bbf6995f8c3d802ec5a27",
+                  "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                },
+                "parent_intcurve_support_namespaces": [
+                  {
+                    "slot": 0,
+                    "namespace_proof": {
+                      "source_block": {
+                        "record_index": 33,
+                        "record_kind": "intcurve-curve",
+                        "section": "geometry",
+                        "token_start": 141,
+                        "token_end": 144,
+                        "byte_start": 30176,
+                        "byte_end": 30192,
+                        "subtype_name": "ref",
+                        "context_kind": "surface",
+                        "context_evidence": "Literal inline spline wrapper",
+                        "parent_definition_index": 4,
+                        "definition_index": null,
+                        "reference_id": 0
+                      },
+                      "target_definition": {
+                        "record_index": 8,
+                        "record_kind": "spline-surface",
+                        "section": "geometry",
+                        "token_start": 4,
+                        "token_end": 2820,
+                        "byte_start": 858,
+                        "byte_end": 26186,
+                        "subtype_name": "sweep_sur",
+                        "context_kind": "surface",
+                        "context_evidence": "Typed top-level spline-surface wrapper",
+                        "parent_definition_index": null,
+                        "definition_index": 0,
+                        "reference_id": null
+                      },
+                      "source_blob_sha256": "3359ef54e272c8319a9e1c8ff72887861a80fa5f174bbf6995f8c3d802ec5a27",
+                      "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                    }
+                  }
+                ],
+                "selected_support_definition_index": 0,
+                "representation": "Stored embedded UV cache plus literal compact offset; bounded circular sweep seam chart",
+                "flag_scope": "Magnitude of observed selector agrees support slot1/2; sign retained literally, without reversal/orientation/parameter remapping semantics",
+                "coordinate_system": "Qualified support UV chart; stored offsets are added directly without modulo or domain wrapping",
+                "cache_status": "Stored UV cache recovered by typed topology and namespace identity; exact coedge/cache parameterization and API evaluator equivalence unresolved",
+                "scope": "Strict observed compact circular-sweep seam offset with existing typed topology and blob-local subtype identity proof",
+                "compact_offset_evidence": {
+                  "rule": "control_points_uv = raw_control_points_uv + parameter_offset_uv",
+                  "qualification": "Observed selector -1, [-2*pi,0] offset, par_int_cur support slot0, circular sweep U=[-pi,pi], V=[0,1] and reciprocal same-loop seam partner",
+                  "partner_coedge_index": 18,
+                  "partner_pcurve_index": 26,
+                  "owning_ring_indices": [
+                    13,
+                    18,
+                    23,
+                    19
+                  ],
+                  "neighbor_support_namespaces": [
+                    {
+                      "coedge_index": 13,
+                      "pcurve_index": 22,
+                      "namespace_proof": {
+                        "source_block": {
+                          "record_index": 22,
+                          "record_kind": "pcurve",
+                          "section": "geometry",
+                          "token_start": 22,
+                          "token_end": 25,
+                          "byte_start": 27826,
+                          "byte_end": 27842,
+                          "subtype_name": "ref",
+                          "context_kind": "surface",
+                          "context_evidence": "Literal inline spline wrapper",
+                          "parent_definition_index": 2,
+                          "definition_index": null,
+                          "reference_id": 0
+                        },
+                        "target_definition": {
+                          "record_index": 8,
+                          "record_kind": "spline-surface",
+                          "section": "geometry",
+                          "token_start": 4,
+                          "token_end": 2820,
+                          "byte_start": 858,
+                          "byte_end": 26186,
+                          "subtype_name": "sweep_sur",
+                          "context_kind": "surface",
+                          "context_evidence": "Typed top-level spline-surface wrapper",
+                          "parent_definition_index": null,
+                          "definition_index": 0,
+                          "reference_id": null
+                        },
+                        "source_blob_sha256": "3359ef54e272c8319a9e1c8ff72887861a80fa5f174bbf6995f8c3d802ec5a27",
+                        "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                      }
+                    },
+                    {
+                      "coedge_index": 23,
+                      "pcurve_index": 30,
+                      "namespace_proof": {
+                        "source_block": {
+                          "record_index": 30,
+                          "record_kind": "pcurve",
+                          "section": "geometry",
+                          "token_start": 22,
+                          "token_end": 25,
+                          "byte_start": 28681,
+                          "byte_end": 28697,
+                          "subtype_name": "ref",
+                          "context_kind": "surface",
+                          "context_evidence": "Literal inline spline wrapper",
+                          "parent_definition_index": 3,
+                          "definition_index": null,
+                          "reference_id": 0
+                        },
+                        "target_definition": {
+                          "record_index": 8,
+                          "record_kind": "spline-surface",
+                          "section": "geometry",
+                          "token_start": 4,
+                          "token_end": 2820,
+                          "byte_start": 858,
+                          "byte_end": 26186,
+                          "subtype_name": "sweep_sur",
+                          "context_kind": "surface",
+                          "context_evidence": "Typed top-level spline-surface wrapper",
+                          "parent_definition_index": null,
+                          "definition_index": 0,
+                          "reference_id": null
+                        },
+                        "source_blob_sha256": "3359ef54e272c8319a9e1c8ff72887861a80fa5f174bbf6995f8c3d802ec5a27",
+                        "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                      }
+                    }
+                  ],
+                  "shifted_corner_incidence_counts": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "offset_dropped_corner_incidence_counts": [
+                    1,
+                    1,
+                    3,
+                    3
+                  ],
+                  "source_record_is_unchanged": true,
+                  "source_pcurve_record_index": 27,
+                  "source_byte_offset": 28234,
+                  "stored_offset_tokens": [
+                    {
+                      "tag": 6,
+                      "kind": "double",
+                      "value": -6.283185307179586,
+                      "offset": 28287
+                    },
+                    {
+                      "tag": 6,
+                      "kind": "double",
+                      "value": 0.0,
+                      "offset": 28296
+                    }
+                  ],
+                  "derived_zero_offset_view_scope": "Used only to reuse independent topology/support qualification; not a serialized record or modified source",
+                  "scope": "Literal UV chart translation only; no general periodic evaluator, sign-based reversal or exact procedural geometry claim"
+                }
+              },
+              "independent_geometry_samples": [
+                {
+                  "fraction": 0.0,
+                  "stored_parameter": 0.0,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.0
+                  ],
+                  "stored_XYZ_cache": [
+                    -0.034325905711779264,
+                    -0.1970323125709741,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    -0.034325905711779264,
+                    -0.1970323125709741,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.0
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0,
+                  "typed_vertex_position": [
+                    -0.03432590571177927,
+                    -0.19703231257097414,
+                    -2.4492935982947075e-17
+                  ],
+                  "typed_vertex_deviation_raw": 7.435893901803759e-17
+                },
+                {
+                  "fraction": 0.25,
+                  "stored_parameter": 0.25,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.25
+                  ],
+                  "stored_XYZ_cache": [
+                    2.0086435362975674,
+                    -0.20121881784564802,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    2.0086435362975674,
+                    -0.20121881784564802,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.25
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0
+                },
+                {
+                  "fraction": 0.5,
+                  "stored_parameter": 0.5,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.5
+                  ],
+                  "stored_XYZ_cache": [
+                    4.034343889137235,
+                    0.7396654109847562,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    4.034343889137235,
+                    0.7396654109847562,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.5
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0
+                },
+                {
+                  "fraction": 0.75,
+                  "stored_parameter": 0.75,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.75
+                  ],
+                  "stored_XYZ_cache": [
+                    5.063142433927547,
+                    2.6607362136559183,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    5.063142433927547,
+                    2.6607362136559183,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.75
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0
+                },
+                {
+                  "fraction": 1.0,
+                  "stored_parameter": 1.0,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    1.0
+                  ],
+                  "stored_XYZ_cache": [
+                    6.071026376415585,
+                    3.813036758015722,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    6.071026376415585,
+                    3.813036758015722,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    1.0
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0,
+                  "typed_vertex_position": [
+                    6.071026376415585,
+                    3.813036758015722,
+                    -2.4492935982947075e-17
+                  ],
+                  "typed_vertex_deviation_raw": 4.898587196589415e-17
+                }
+              ],
+              "entire_stored_U_seam_control_pair_count": 34,
+              "maximum_stored_U_seam_control_pair_deviation_raw": 4.898587196589415e-17,
+              "opposite_offset_application_outside_stored_chart": true,
+              "scope": "Both unshifted and shifted charts evaluate to the same seam XYZ. Literal four-corner incidence, not coordinates, distinguishes retained chart translation."
+            }
+          ],
+          "compact_zero_controls": [
+            26
+          ],
+          "previous_explicit_UV_cache_count": 3,
+          "prior_topology_unresolved": [
+            {
+              "index": 27,
+              "kind": "pcurve",
+              "reason": "Nonzero compact pcurve offset semantics uncontrasted"
+            }
+          ]
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.99553c28-4881-4666-b43c-5ebc9c354290.smbh",
+          "decoded_offsets": [
+            {
+              "record_index": 29,
+              "expected_uv_cache": {
+                "degree": 1,
+                "knots": [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0
+                ],
+                "stored_compact_knots": [
+                  [
+                    0.0,
+                    1
+                  ],
+                  [
+                    1.0,
+                    1
+                  ]
+                ],
+                "raw_control_points_uv": [
+                  [
+                    3.141592653589793,
+                    0.0
+                  ],
+                  [
+                    3.141592653589793,
+                    1.0
+                  ]
+                ],
+                "parameter_offset_uv": [
+                  -6.283185307179586,
+                  0.0
+                ],
+                "control_points_uv": [
+                  [
+                    -3.141592653589793,
+                    0.0
+                  ],
+                  [
+                    -3.141592653589793,
+                    1.0
+                  ]
+                ],
+                "weights": [],
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "stored_form_code": 0,
+                "stored_prefix_integer": -1,
+                "stored_selected_support_slot": 0,
+                "stored_intcurve_record_pointer": 35,
+                "owning_coedge_index": 21,
+                "parent_loop_index": 9,
+                "parent_face_index": 6,
+                "parent_surface_record_index": 10,
+                "parent_surface_namespace": {
+                  "source_block": {
+                    "record_index": 10,
+                    "record_kind": "spline-surface",
+                    "section": "geometry",
+                    "token_start": 4,
+                    "token_end": 2820,
+                    "byte_start": 1162,
+                    "byte_end": 26490,
+                    "subtype_name": "sweep_sur",
+                    "context_kind": "surface",
+                    "context_evidence": "Typed top-level spline-surface wrapper",
+                    "parent_definition_index": null,
+                    "definition_index": 0,
+                    "reference_id": null
+                  },
+                  "target_definition": {
+                    "record_index": 10,
+                    "record_kind": "spline-surface",
+                    "section": "geometry",
+                    "token_start": 4,
+                    "token_end": 2820,
+                    "byte_start": 1162,
+                    "byte_end": 26490,
+                    "subtype_name": "sweep_sur",
+                    "context_kind": "surface",
+                    "context_evidence": "Typed top-level spline-surface wrapper",
+                    "parent_definition_index": null,
+                    "definition_index": 0,
+                    "reference_id": null
+                  },
+                  "source_blob_sha256": "8c02fddc9a653d198da9d23466dc04ce4eaf722cb1005040e8fa93ca2078b069",
+                  "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                },
+                "parent_intcurve_support_namespaces": [
+                  {
+                    "slot": 0,
+                    "namespace_proof": {
+                      "source_block": {
+                        "record_index": 35,
+                        "record_kind": "intcurve-curve",
+                        "section": "geometry",
+                        "token_start": 141,
+                        "token_end": 144,
+                        "byte_start": 30480,
+                        "byte_end": 30496,
+                        "subtype_name": "ref",
+                        "context_kind": "surface",
+                        "context_evidence": "Literal inline spline wrapper",
+                        "parent_definition_index": 4,
+                        "definition_index": null,
+                        "reference_id": 0
+                      },
+                      "target_definition": {
+                        "record_index": 10,
+                        "record_kind": "spline-surface",
+                        "section": "geometry",
+                        "token_start": 4,
+                        "token_end": 2820,
+                        "byte_start": 1162,
+                        "byte_end": 26490,
+                        "subtype_name": "sweep_sur",
+                        "context_kind": "surface",
+                        "context_evidence": "Typed top-level spline-surface wrapper",
+                        "parent_definition_index": null,
+                        "definition_index": 0,
+                        "reference_id": null
+                      },
+                      "source_blob_sha256": "8c02fddc9a653d198da9d23466dc04ce4eaf722cb1005040e8fa93ca2078b069",
+                      "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                    }
+                  }
+                ],
+                "selected_support_definition_index": 0,
+                "representation": "Stored embedded UV cache plus literal compact offset; bounded circular sweep seam chart",
+                "flag_scope": "Magnitude of observed selector agrees support slot1/2; sign retained literally, without reversal/orientation/parameter remapping semantics",
+                "coordinate_system": "Qualified support UV chart; stored offsets are added directly without modulo or domain wrapping",
+                "cache_status": "Stored UV cache recovered by typed topology and namespace identity; exact coedge/cache parameterization and API evaluator equivalence unresolved",
+                "scope": "Strict observed compact circular-sweep seam offset with existing typed topology and blob-local subtype identity proof",
+                "compact_offset_evidence": {
+                  "rule": "control_points_uv = raw_control_points_uv + parameter_offset_uv",
+                  "qualification": "Observed selector -1, [-2*pi,0] offset, par_int_cur support slot0, circular sweep U=[-pi,pi], V=[0,1] and reciprocal same-loop seam partner",
+                  "partner_coedge_index": 20,
+                  "partner_pcurve_index": 28,
+                  "owning_ring_indices": [
+                    15,
+                    20,
+                    25,
+                    21
+                  ],
+                  "neighbor_support_namespaces": [
+                    {
+                      "coedge_index": 15,
+                      "pcurve_index": 24,
+                      "namespace_proof": {
+                        "source_block": {
+                          "record_index": 24,
+                          "record_kind": "pcurve",
+                          "section": "geometry",
+                          "token_start": 22,
+                          "token_end": 25,
+                          "byte_start": 28130,
+                          "byte_end": 28146,
+                          "subtype_name": "ref",
+                          "context_kind": "surface",
+                          "context_evidence": "Literal inline spline wrapper",
+                          "parent_definition_index": 2,
+                          "definition_index": null,
+                          "reference_id": 0
+                        },
+                        "target_definition": {
+                          "record_index": 10,
+                          "record_kind": "spline-surface",
+                          "section": "geometry",
+                          "token_start": 4,
+                          "token_end": 2820,
+                          "byte_start": 1162,
+                          "byte_end": 26490,
+                          "subtype_name": "sweep_sur",
+                          "context_kind": "surface",
+                          "context_evidence": "Typed top-level spline-surface wrapper",
+                          "parent_definition_index": null,
+                          "definition_index": 0,
+                          "reference_id": null
+                        },
+                        "source_blob_sha256": "8c02fddc9a653d198da9d23466dc04ce4eaf722cb1005040e8fa93ca2078b069",
+                        "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                      }
+                    },
+                    {
+                      "coedge_index": 25,
+                      "pcurve_index": 32,
+                      "namespace_proof": {
+                        "source_block": {
+                          "record_index": 32,
+                          "record_kind": "pcurve",
+                          "section": "geometry",
+                          "token_start": 22,
+                          "token_end": 25,
+                          "byte_start": 28985,
+                          "byte_end": 29001,
+                          "subtype_name": "ref",
+                          "context_kind": "surface",
+                          "context_evidence": "Literal inline spline wrapper",
+                          "parent_definition_index": 3,
+                          "definition_index": null,
+                          "reference_id": 0
+                        },
+                        "target_definition": {
+                          "record_index": 10,
+                          "record_kind": "spline-surface",
+                          "section": "geometry",
+                          "token_start": 4,
+                          "token_end": 2820,
+                          "byte_start": 1162,
+                          "byte_end": 26490,
+                          "subtype_name": "sweep_sur",
+                          "context_kind": "surface",
+                          "context_evidence": "Typed top-level spline-surface wrapper",
+                          "parent_definition_index": null,
+                          "definition_index": 0,
+                          "reference_id": null
+                        },
+                        "source_blob_sha256": "8c02fddc9a653d198da9d23466dc04ce4eaf722cb1005040e8fa93ca2078b069",
+                        "scope": "Observed blob-local source-preorder non-ref subtype allocations and class-compatible prior-definition backreferences; structural payload reuse only, without persistent topology/native identity or procedural evaluator claims"
+                      }
+                    }
+                  ],
+                  "shifted_corner_incidence_counts": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "offset_dropped_corner_incidence_counts": [
+                    1,
+                    1,
+                    3,
+                    3
+                  ],
+                  "source_record_is_unchanged": true,
+                  "source_pcurve_record_index": 29,
+                  "source_byte_offset": 28538,
+                  "stored_offset_tokens": [
+                    {
+                      "tag": 6,
+                      "kind": "double",
+                      "value": -6.283185307179586,
+                      "offset": 28591
+                    },
+                    {
+                      "tag": 6,
+                      "kind": "double",
+                      "value": 0.0,
+                      "offset": 28600
+                    }
+                  ],
+                  "derived_zero_offset_view_scope": "Used only to reuse independent topology/support qualification; not a serialized record or modified source",
+                  "scope": "Literal UV chart translation only; no general periodic evaluator, sign-based reversal or exact procedural geometry claim"
+                }
+              },
+              "independent_geometry_samples": [
+                {
+                  "fraction": 0.0,
+                  "stored_parameter": 0.0,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.0
+                  ],
+                  "stored_XYZ_cache": [
+                    -0.034325905711779264,
+                    -0.1970323125709741,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    -0.034325905711779264,
+                    -0.1970323125709741,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.0
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0,
+                  "typed_vertex_position": [
+                    -0.03432590571177927,
+                    -0.19703231257097414,
+                    -2.4492935982947075e-17
+                  ],
+                  "typed_vertex_deviation_raw": 7.435893901803759e-17
+                },
+                {
+                  "fraction": 0.25,
+                  "stored_parameter": 0.25,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.25
+                  ],
+                  "stored_XYZ_cache": [
+                    2.0086435362975674,
+                    -0.20121881784564802,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    2.0086435362975674,
+                    -0.20121881784564802,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.25
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0
+                },
+                {
+                  "fraction": 0.5,
+                  "stored_parameter": 0.5,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.5
+                  ],
+                  "stored_XYZ_cache": [
+                    4.034343889137235,
+                    0.7396654109847562,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    4.034343889137235,
+                    0.7396654109847562,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.5
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0
+                },
+                {
+                  "fraction": 0.75,
+                  "stored_parameter": 0.75,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    0.75
+                  ],
+                  "stored_XYZ_cache": [
+                    5.063142433927547,
+                    2.6607362136559183,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    5.063142433927547,
+                    2.6607362136559183,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    0.75
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0
+                },
+                {
+                  "fraction": 1.0,
+                  "stored_parameter": 1.0,
+                  "translated_UV": [
+                    -3.141592653589793,
+                    1.0
+                  ],
+                  "stored_XYZ_cache": [
+                    6.071026376415585,
+                    3.813036758015722,
+                    2.4492935982947075e-17
+                  ],
+                  "support_surface_XYZ": [
+                    6.071026376415585,
+                    3.813036758015722,
+                    -2.4492935982947075e-17
+                  ],
+                  "XYZ_cache_surface_deviation_raw": 4.898587196589415e-17,
+                  "unshifted_UV": [
+                    3.141592653589793,
+                    1.0
+                  ],
+                  "unshifted_surface_deviation_raw": 0.0,
+                  "typed_vertex_position": [
+                    6.071026376415585,
+                    3.813036758015722,
+                    -2.4492935982947075e-17
+                  ],
+                  "typed_vertex_deviation_raw": 4.898587196589415e-17
+                }
+              ],
+              "entire_stored_U_seam_control_pair_count": 34,
+              "maximum_stored_U_seam_control_pair_deviation_raw": 4.898587196589415e-17,
+              "opposite_offset_application_outside_stored_chart": true,
+              "scope": "Both unshifted and shifted charts evaluate to the same seam XYZ. Literal four-corner incidence, not coordinates, distinguishes retained chart translation."
+            }
+          ],
+          "compact_zero_controls": [
+            28
+          ],
+          "previous_explicit_UV_cache_count": 3,
+          "prior_topology_unresolved": [
+            {
+              "index": 29,
+              "kind": "pcurve",
+              "reason": "Nonzero compact pcurve offset semantics uncontrasted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "sweepguides-db118be14bfe/closed_circle.f3d",
+      "blobs": [
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.56510be9-220f-4bb6-b188-0dd42999bfa0.smbh",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        },
+        {
+          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b508ca05-4f78-4dd6-99f5-6a6a0c27af47.smb",
+          "decoded_offsets": [],
+          "compact_zero_controls": [],
+          "previous_explicit_UV_cache_count": 0,
+          "prior_topology_unresolved": []
+        }
+      ]
+    }
+  ]
+}

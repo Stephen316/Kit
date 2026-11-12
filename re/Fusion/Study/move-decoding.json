@@ -1,0 +1,1413 @@
+{
+  "scope": "Observed Move definitions and stored native-context rigid transforms; no body regeneration or cached-body double application",
+  "samples": [
+    {
+      "file": "movemodes-34cba3ced135/free.f3d",
+      "api": {
+        "file": "free.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            0.6579798566743313,
+            -0.5,
+            0.8
+          ],
+          "max_cm": [
+            2.879385241571817,
+            1.1237329074372457,
+            1.8
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureFreeMoveDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "transform": [
+            0.9396926207859084,
+            -0.34202014332566866,
+            0.0,
+            1.0,
+            0.34202014332566866,
+            0.9396926207859084,
+            0.0,
+            -0.5,
+            0.0,
+            0.0,
+            1.0,
+            0.8,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          0.9396926207859084,
+          -0.34202014332566866,
+          0.0,
+          1.0,
+          0.34202014332566866,
+          0.9396926207859084,
+          0.0,
+          -0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.8,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 290,
+        "stored_definition_code": 5,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 292,
+        "support_record_object_id": 291,
+        "uninterpreted_cached_scalar": 2.1669999999999947e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "FreeMove",
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "api_matrix",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/xyz_design.f3d",
+      "api": {
+        "file": "xyz_design.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            1.1,
+            -0.5,
+            0.7000000000000001
+          ],
+          "max_cm": [
+            3.1,
+            0.5,
+            1.7000000000000002
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureTranslateXYZDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "x_distance_cm": 1.1,
+          "y_distance_cm": -0.5,
+          "z_distance_cm": 0.7000000000000001,
+          "is_design_space": true
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "TranslateX",
+            "value": 1.1,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d4",
+            "role": "TranslateY",
+            "value": -0.5,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d5",
+            "role": "TranslateZ",
+            "value": 0.7000000000000001,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          1.1,
+          0.0,
+          1.0,
+          0.0,
+          -0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.7000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 290,
+        "stored_definition_code": 0,
+        "stored_translation_subtype": 1,
+        "helper_record_object_id": 292,
+        "support_record_object_id": 291,
+        "uninterpreted_cached_scalar": 8.333000000000003e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "TranslateXYZ",
+        "is_design_space": true,
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "x_distance_cm",
+        "y_distance_cm",
+        "z_distance_cm",
+        "coordinate_space_flag",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/xyz_component.f3d",
+      "api": {
+        "file": "xyz_component.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            1.1,
+            -0.5,
+            0.7000000000000001
+          ],
+          "max_cm": [
+            3.1,
+            0.5,
+            1.7000000000000002
+          ]
+        },
+        "component_name": "MovedComponent",
+        "occurrence_transform": [
+          0.7071067811865475,
+          -0.7071067811865476,
+          0.0,
+          4.0,
+          0.7071067811865476,
+          0.7071067811865475,
+          0.0,
+          -2.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureTranslateXYZDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "x_distance_cm": 1.1,
+          "y_distance_cm": -0.5,
+          "z_distance_cm": 0.7000000000000001,
+          "is_design_space": false
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "TranslateX",
+            "value": 1.1,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d4",
+            "role": "TranslateY",
+            "value": -0.5,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d5",
+            "role": "TranslateZ",
+            "value": 0.7000000000000001,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          1.1,
+          0.0,
+          1.0,
+          0.0,
+          -0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.7000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 353,
+        "stored_definition_code": 0,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 355,
+        "support_record_object_id": 354,
+        "uninterpreted_cached_scalar": 5.999999999999997e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "TranslateXYZ",
+        "is_design_space": false,
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "x_distance_cm",
+        "y_distance_cm",
+        "z_distance_cm",
+        "coordinate_space_flag",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/xyz_nested_design.f3d",
+      "api": {
+        "file": "xyz_nested_design.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            0.42426406871192857,
+            -1.131370849898476,
+            0.7000000000000001
+          ],
+          "max_cm": [
+            2.4242640687119286,
+            -0.13137084989847603,
+            1.7000000000000002
+          ]
+        },
+        "component_name": "MovedComponent",
+        "occurrence_transform": [
+          0.7071067811865475,
+          -0.7071067811865476,
+          0.0,
+          4.0,
+          0.7071067811865476,
+          0.7071067811865475,
+          0.0,
+          -2.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureTranslateXYZDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "x_distance_cm": 1.1,
+          "y_distance_cm": -0.5,
+          "z_distance_cm": 0.7000000000000001,
+          "is_design_space": true
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "TranslateX",
+            "value": 1.1,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d4",
+            "role": "TranslateY",
+            "value": -0.5,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d5",
+            "role": "TranslateZ",
+            "value": 0.7000000000000001,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.42426406871192857,
+          0.0,
+          1.0,
+          0.0,
+          -1.131370849898476,
+          0.0,
+          0.0,
+          1.0,
+          0.7000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 353,
+        "stored_definition_code": 0,
+        "stored_translation_subtype": 1,
+        "helper_record_object_id": 355,
+        "support_record_object_id": 354,
+        "uninterpreted_cached_scalar": 1.1042000000000007e-05,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "TranslateXYZ",
+        "is_design_space": true,
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "x_distance_cm",
+        "y_distance_cm",
+        "z_distance_cm",
+        "coordinate_space_flag",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/along_axis.f3d",
+      "api": {
+        "file": "along_axis.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            0.0,
+            -1.3,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            -0.30000000000000004,
+            1.0
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureTranslateAlongEntityDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "distance_cm": -1.3,
+          "linear_entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "TranslateDistance",
+            "value": -1.3,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.3,
+          0.0,
+          0.0,
+          1.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 290,
+        "stored_definition_code": 0,
+        "stored_translation_subtype": 2,
+        "helper_record_object_id": 292,
+        "support_record_object_id": 291,
+        "uninterpreted_cached_scalar": 5.749999999999991e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "TranslateAlongEntity",
+        "distance_cm": -1.3,
+        "linear_entity": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Y",
+            "object_id": 40,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 299,
+          "descriptor_object_id": 302,
+          "terminal_object_id": 305,
+          "namespace_text": "33d536cc-33e5-416e-98cc-bf305a7b53e0",
+          "entity_guid_text": "23cef14b-163e-4e24-823c-93cf0fcf7fa1",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "distance_cm",
+        "linear_entity",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/along_sketch_line.f3d",
+      "api": {
+        "file": "along_sketch_line.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            0.9000000000000001,
+            1.2000000000000002,
+            0.0
+          ],
+          "max_cm": [
+            2.9000000000000004,
+            2.2,
+            1.0
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureTranslateAlongEntityDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "distance_cm": 1.5,
+          "linear_entity": {
+            "kind": "SketchLine",
+            "start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_cm": [
+              3.0,
+              4.0,
+              0.0
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "TranslateDistance",
+            "value": 1.5,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.9000000000000001,
+          0.0,
+          1.0,
+          0.0,
+          1.2000000000000002,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 323,
+        "stored_definition_code": 0,
+        "stored_translation_subtype": 2,
+        "helper_record_object_id": 325,
+        "support_record_object_id": 324,
+        "uninterpreted_cached_scalar": 5.41599999999999e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "TranslateAlongEntity",
+        "distance_cm": 1.5,
+        "linear_entity": {
+          "selection_object_id": 332,
+          "descriptor_object_id": 335,
+          "terminal_object_id": 338,
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_object_id": 282,
+            "sketch_name": "MoveDirection",
+            "object_id": 311,
+            "entity_tag": 112
+          },
+          "association": "Explicit owned linear selection -> descriptor -> sketch ID and curve tag"
+        },
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "distance_cm",
+        "linear_entity",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/rotate_axis.f3d",
+      "api": {
+        "file": "rotate_axis.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            0.0,
+            -1.1471528727020923,
+            0.0
+          ],
+          "max_cm": [
+            2.21188052492903,
+            0.8191520442889919,
+            1.0000000000000002
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeatureRotateDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "angle_radians": -0.6108652381980153,
+          "axis_entity": {
+            "kind": "ConstructionAxis",
+            "name": "Z",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "RotateAngle",
+            "value": -0.6108652381980153,
+            "unit": "deg",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          0.8191520442889918,
+          0.573576436351046,
+          0.0,
+          0.0,
+          -0.573576436351046,
+          0.8191520442889918,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 290,
+        "stored_definition_code": 1,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 292,
+        "support_record_object_id": 291,
+        "uninterpreted_cached_scalar": 8.66699999999999e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "Rotate",
+        "angle_radians": -0.6108652381980153,
+        "axis_entity": {
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Z",
+            "object_id": 41,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "origin_container_object_id": 37,
+            "scope": "Native component origin axis; occurrence transforms unresolved"
+          },
+          "selection_object_id": 299,
+          "descriptor_object_id": 302,
+          "terminal_object_id": 305,
+          "namespace_text": "63d59836-9d14-465d-930c-0a0da0c097f2",
+          "entity_guid_text": "8d332fb1-bf44-4acd-8ee8-0d8b0b8dfe9b",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "stored_header_reference_slots": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "angle_radians",
+        "axis_entity",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 2.220446049250313e-16
+    },
+    {
+      "file": "movemodes-34cba3ced135/point_to_point.f3d",
+      "api": {
+        "file": "point_to_point.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            1.3,
+            -0.7,
+            0.0
+          ],
+          "max_cm": [
+            3.3,
+            0.30000000000000004,
+            1.0
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeaturePointToPointDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "origin_point": {
+            "kind": "ConstructionPoint",
+            "name": "O",
+            "point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "target_point": {
+            "kind": "ConstructionPoint",
+            "name": "DestinationPoint",
+            "point_cm": [
+              1.3,
+              -0.7,
+              0.0
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          1.3,
+          0.0,
+          1.0,
+          0.0,
+          -0.7,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 336,
+        "stored_definition_code": 2,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 338,
+        "support_record_object_id": 337,
+        "uninterpreted_cached_scalar": 1.1459000000000013e-05,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "PointToPoint",
+        "origin_point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "O",
+            "position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "object_id": 38,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "selection_object_id": 342,
+          "descriptor_object_id": 345,
+          "terminal_object_id": 348,
+          "namespace_text": "46503665-2f7d-4495-9566-0113c65b3413",
+          "entity_guid_text": "e6356bd6-58d4-4286-b9b8-3f8dba1ce4ba",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "target_point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "DestinationPoint",
+            "object_id": 312,
+            "feature_object_id": 313,
+            "position_cm": [
+              1.3,
+              -0.7,
+              0.0
+            ]
+          },
+          "selection_object_id": 355,
+          "descriptor_object_id": 358,
+          "terminal_object_id": 361,
+          "namespace_text": "46503665-2f7d-4495-9566-0113c65b3413",
+          "entity_guid_text": "e6356bd6-58d4-4286-b9b8-3f8dba1ce4ba",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "stored_header_reference_slots": [
+          352,
+          349,
+          362,
+          null,
+          null,
+          null,
+          null,
+          365
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "origin_point",
+        "target_point",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    },
+    {
+      "file": "movemodes-34cba3ced135/point_to_position.f3d",
+      "api": {
+        "file": "point_to_position.f3d",
+        "before_bounds": {
+          "min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_cm": [
+            2.0,
+            1.0,
+            1.0
+          ]
+        },
+        "after_bounds": {
+          "min_cm": [
+            0.7000000000000001,
+            -1.3,
+            0.7000000000000001
+          ],
+          "max_cm": [
+            2.7,
+            -0.30000000000000004,
+            1.7000000000000002
+          ]
+        },
+        "component_name": "(Unsaved)",
+        "occurrence_transform": null,
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "definition_type": "MoveFeaturePointToPositionDefinition",
+          "input_names": [
+            "MovedBody"
+          ],
+          "x_distance_cm": 1.1,
+          "y_distance_cm": -0.5,
+          "z_distance_cm": 0.7000000000000001,
+          "is_design_space": true,
+          "point": {
+            "kind": "ConstructionPoint",
+            "name": "MoveOrigin",
+            "point_cm": [
+              0.4,
+              0.8,
+              0.0
+            ]
+          }
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 1.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "PositionX",
+            "value": 1.1,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d4",
+            "role": "PositionY",
+            "value": -0.5,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          },
+          {
+            "name": "d5",
+            "role": "PositionZ",
+            "value": 0.7000000000000001,
+            "unit": "mm",
+            "created_by": "ProbeMove"
+          }
+        ]
+      },
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.7000000000000001,
+          0.0,
+          1.0,
+          0.0,
+          -1.3,
+          0.0,
+          0.0,
+          1.0,
+          0.7000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "matrix_order": "row-major; column-vector multiplication",
+        "translation_units": "cm",
+        "transform_record_object_id": 336,
+        "stored_definition_code": 6,
+        "stored_translation_subtype": 0,
+        "helper_record_object_id": 338,
+        "support_record_object_id": 337,
+        "uninterpreted_cached_scalar": 9.5e-06,
+        "transform_scope": "Stored rigid transform in native feature context; existing body caches already include the move",
+        "geometry_status": "Observed definitions, bindings and selected inputs; no body regeneration or general occurrence transform replay",
+        "definition": "PointToPosition",
+        "point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "MoveOrigin",
+            "object_id": 312,
+            "feature_object_id": 313,
+            "position_cm": [
+              0.4,
+              0.8,
+              0.0
+            ]
+          },
+          "selection_object_id": 346,
+          "descriptor_object_id": 342,
+          "terminal_object_id": 345,
+          "namespace_text": "702e5517-442c-43e6-8cf5-826f6d695aba",
+          "entity_guid_text": "20f59a37-4999-48c9-bbc6-bee567836524",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "x_distance_cm": 1.1,
+        "y_distance_cm": -0.5,
+        "z_distance_cm": 0.7000000000000001,
+        "is_design_space": null,
+        "coordinate_status": "Native coordinate-space encoding unresolved; stored parameters and transform retained",
+        "stored_header_reference_slots": [
+          358,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "checks_passed": [
+        "definition_type",
+        "x_distance_cm",
+        "y_distance_cm",
+        "z_distance_cm",
+        "point",
+        "native_input_body_name",
+        "stored_matrix_box_bounds"
+      ],
+      "max_box_bound_error_cm": 0.0
+    }
+  ],
+  "guard_rejections": [
+    {
+      "case": "definition enum",
+      "reason": "Unsupported Move definition/subtype"
+    },
+    {
+      "case": "matrix finite",
+      "reason": "Non-finite geometry"
+    },
+    {
+      "case": "owner mismatch",
+      "reason": "Move backend feature owner disagrees"
+    }
+  ],
+  "prior_free_move_controls": [
+    {
+      "file": "moretools-88a2cd6cad0b/MoveTranslate.f3d",
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        1.7,
+        0.0,
+        1.0,
+        0.0,
+        -0.8,
+        0.0,
+        0.0,
+        1.0,
+        2.3,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "api_transform_matches": true
+    },
+    {
+      "file": "moretools-88a2cd6cad0b/MoveRotate.f3d",
+      "transform": [
+        0.8191520442889918,
+        -0.573576436351046,
+        0.0,
+        1.7,
+        0.573576436351046,
+        0.8191520442889918,
+        0.0,
+        -0.8,
+        0.0,
+        0.0,
+        1.0,
+        2.3,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "api_transform_matches": true
+    }
+  ],
+  "unexecuted_probe_generator": {
+    "file": "GenerateMoveHoldouts.py",
+    "scope": "Two proposed point-to-position coordinate-space contrasts were not captured; UI foreground guard prevented dispatch. No coverage claimed."
+  },
+  "limitations": [
+    "Point-to-position native coordinate-space flag remains unresolved; API capturedtrue is observation only.",
+    "Point-to-point context frames are retained without occurrence route interpretation.",
+    "Only selected construction axes/points and a sketchline were captured; BRep edge/vertex and face moves remain unsupported.",
+    "Stored matrices are in native feature context; body caches already contain transformed geometry and must not have the move applied again.",
+    "No geometric regeneration, unit variants or general assembly motion replay."
+  ]
+}

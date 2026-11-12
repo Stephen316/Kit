@@ -1,0 +1,533 @@
+{
+  "scope": "One previously unsupported clamped degree-five exact_int_cur form1 cache, verified against existing API curve evaluations. No generic periodic or unclamped ASM spline interpretation.",
+  "source": "splines-9a18bae21127/splines.f3d",
+  "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+  "asm_record_index": 18,
+  "asm_record_offset": 1745,
+  "fusion_version": "2705.1.30",
+  "summary": {
+    "new_cache_records_decoded": 1,
+    "direct_api_evaluation_comparisons": 2,
+    "native_representation_cross_comparisons": 6,
+    "maximum_api_error_cm": 0.0,
+    "maximum_native_cross_error_cm": 4.440892098500626e-16,
+    "malformed_checks": 3
+  },
+  "integration": {
+    "function": "decode_exact_curve_form_one(record)",
+    "callsite": "In decode_bspline, dispatch intcurve-curve / exact_int_cur / form1 to this helper before the existing form0 rejection. Surface and form0 logic remain unchanged.",
+    "output": "Same curve-cache fields expected by evaluate_curve, retaining stored_form_code1 and is_periodic=null."
+  },
+  "evidence": {
+    "api_source_sketch": "ProbeFittedClosed",
+    "api_degree": 5,
+    "api_is_periodic": true,
+    "api_control_count": 25,
+    "api_knot_count_as_returned": 25,
+    "native_sketch_control_count": 25,
+    "native_sketch_expanded_knot_count": 31,
+    "asm_cache_control_count": 17,
+    "asm_cache_knot_count": 23,
+    "asm_cache_domain": [
+      0.3110092872929152,
+      0.8766951788322527
+    ],
+    "interpretation": "The ASM cache covers a smaller parameter interval than the full periodic sketch curve. It uses a clamped knot vector and different control grid, while evaluations at shared parameters agree. Form1 must not be equated with the API periodic boolean.",
+    "endpoint_distance_in_raw_coordinates": 2.428782237913288e-11
+  },
+  "decoded": {
+    "degree": 5,
+    "knots": [
+      0.3110092872929152,
+      0.3110092872929152,
+      0.3110092872929152,
+      0.3110092872929152,
+      0.3110092872929152,
+      0.3110092872929152,
+      0.35,
+      0.39999999999999997,
+      0.44999999999999996,
+      0.49999999999999994,
+      0.5499999999999999,
+      0.6,
+      0.65,
+      0.7000000000000001,
+      0.7500000000000001,
+      0.8000000000000002,
+      0.8500000000000002,
+      0.8766951788322527,
+      0.8766951788322527,
+      0.8766951788322527,
+      0.8766951788322527,
+      0.8766951788322527,
+      0.8766951788322527
+    ],
+    "stored_compact_knots": [
+      [
+        0.3110092872929152,
+        5
+      ],
+      [
+        0.35,
+        1
+      ],
+      [
+        0.39999999999999997,
+        1
+      ],
+      [
+        0.44999999999999996,
+        1
+      ],
+      [
+        0.49999999999999994,
+        1
+      ],
+      [
+        0.5499999999999999,
+        1
+      ],
+      [
+        0.6,
+        1
+      ],
+      [
+        0.65,
+        1
+      ],
+      [
+        0.7000000000000001,
+        1
+      ],
+      [
+        0.7500000000000001,
+        1
+      ],
+      [
+        0.8000000000000002,
+        1
+      ],
+      [
+        0.8500000000000002,
+        1
+      ],
+      [
+        0.8766951788322527,
+        5
+      ]
+    ],
+    "raw_control_points": [
+      [
+        2.5329502107743407,
+        1.5941790453595766,
+        0.0
+      ],
+      [
+        2.58371175073096,
+        1.41170606911015,
+        0.0
+      ],
+      [
+        2.697532975939122,
+        0.9817052765729934,
+        0.0
+      ],
+      [
+        2.8718192906987614,
+        0.283942194067036,
+        0.0
+      ],
+      [
+        3.1221818015585683,
+        -0.605853166062938,
+        0.0
+      ],
+      [
+        3.512942515522795,
+        -1.3375169088355034,
+        0.0
+      ],
+      [
+        4.030743524699328,
+        -1.426707276502865,
+        0.0
+      ],
+      [
+        4.608676560579476,
+        -0.8339724431846837,
+        0.0
+      ],
+      [
+        5.123995318031696,
+        0.2067413255356147,
+        0.0
+      ],
+      [
+        5.430713320838486,
+        1.3527156758901862,
+        0.0
+      ],
+      [
+        5.399440049883571,
+        2.250742283883525,
+        0.0
+      ],
+      [
+        4.956826615412211,
+        2.636581758014673,
+        0.0
+      ],
+      [
+        4.214777202480916,
+        2.4785424079968843,
+        0.0
+      ],
+      [
+        3.494826268560312,
+        2.1227602157005316,
+        0.0
+      ],
+      [
+        2.9602616431525317,
+        1.8280058682368956,
+        0.0
+      ],
+      [
+        2.642386884280177,
+        1.6536261391604965,
+        0.0
+      ],
+      [
+        2.532950210767832,
+        1.594179045382976,
+        0.0
+      ]
+    ],
+    "weights": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "is_rational": true,
+    "parameter_domain": [
+      0.3110092872929152,
+      0.8766951788322527
+    ],
+    "stored_form_code": 1,
+    "stored_parameter_interval": [
+      0.3110092872929152,
+      0.8766951788322527
+    ],
+    "stored_trailer_scalar_lists": [
+      [],
+      [],
+      [],
+      []
+    ],
+    "stored_cache_trailer": [
+      {
+        "tag": 6,
+        "kind": "double",
+        "value": 0.0,
+        "offset": 2704
+      },
+      {
+        "tag": 13,
+        "kind": "entity_name",
+        "value": "null_surface",
+        "offset": 2713
+      },
+      {
+        "tag": 13,
+        "kind": "entity_name",
+        "value": "null_surface",
+        "offset": 2727
+      },
+      {
+        "tag": 13,
+        "kind": "entity_name",
+        "value": "nullbs",
+        "offset": 2741
+      },
+      {
+        "tag": 13,
+        "kind": "entity_name",
+        "value": "nullbs",
+        "offset": 2749
+      },
+      {
+        "tag": 11,
+        "kind": "boolean_token",
+        "value": false,
+        "offset": 2757
+      },
+      {
+        "tag": 11,
+        "kind": "boolean_token",
+        "value": false,
+        "offset": 2758
+      },
+      {
+        "tag": 4,
+        "kind": "integer",
+        "value": 0,
+        "offset": 2759
+      },
+      {
+        "tag": 4,
+        "kind": "integer",
+        "value": 0,
+        "offset": 2768
+      },
+      {
+        "tag": 4,
+        "kind": "integer",
+        "value": 0,
+        "offset": 2777
+      },
+      {
+        "tag": 4,
+        "kind": "integer",
+        "value": 0,
+        "offset": 2786
+      },
+      {
+        "tag": 10,
+        "kind": "boolean_token",
+        "value": true,
+        "offset": 2795
+      },
+      {
+        "tag": 6,
+        "kind": "double",
+        "value": 1.0,
+        "offset": 2796
+      },
+      {
+        "tag": 10,
+        "kind": "boolean_token",
+        "value": true,
+        "offset": 2805
+      },
+      {
+        "tag": 6,
+        "kind": "double",
+        "value": 0.0,
+        "offset": 2806
+      },
+      {
+        "tag": 21,
+        "kind": "enum",
+        "value": 0,
+        "offset": 2815
+      },
+      {
+        "tag": 21,
+        "kind": "enum",
+        "value": 0,
+        "offset": 2824
+      },
+      {
+        "tag": 16,
+        "kind": "subtype_end",
+        "value": null,
+        "offset": 2833
+      },
+      {
+        "tag": 10,
+        "kind": "boolean_token",
+        "value": true,
+        "offset": 2834
+      },
+      {
+        "tag": 6,
+        "kind": "double",
+        "value": 0.3110092872929152,
+        "offset": 2835
+      },
+      {
+        "tag": 10,
+        "kind": "boolean_token",
+        "value": true,
+        "offset": 2844
+      },
+      {
+        "tag": 6,
+        "kind": "double",
+        "value": 0.8766951788322527,
+        "offset": 2845
+      }
+    ],
+    "is_periodic": null,
+    "periodicity_status": "Form code1 retained; periodicity enum meaning unresolved. The sampled clamped cache is a trim segment, not the full periodic sketch curve.",
+    "representation": "Observed clamped degree-five rational exact_int_cur form1 cache",
+    "coordinate_scope": "Raw ASM controls; body transforms and units/context are not applied"
+  },
+  "api_comparisons": [
+    {
+      "parameter": 0.5,
+      "expected_api_point_cm": [
+        4.045161208680206,
+        -1.2582234216710177,
+        0.0
+      ],
+      "decoded_cache_point": [
+        4.045161208680206,
+        -1.2582234216710177,
+        0.0
+      ],
+      "absolute_error_cm": 0.0
+    },
+    {
+      "parameter": 0.75,
+      "expected_api_point_cm": [
+        4.8638413491481085,
+        2.4985133485694226,
+        0.0
+      ],
+      "decoded_cache_point": [
+        4.8638413491481085,
+        2.4985133485694226,
+        0.0
+      ],
+      "absolute_error_cm": 0.0
+    }
+  ],
+  "source_comparisons": [
+    {
+      "parameter": 0.3110092872929152,
+      "decoded_source_sketch_point_cm": [
+        2.5329502107743407,
+        1.5941790453595766,
+        0.0
+      ],
+      "decoded_cache_point": [
+        2.5329502107743407,
+        1.5941790453595766,
+        0.0
+      ],
+      "absolute_error_cm": 0.0,
+      "scope": "Comparison between two independently stored native representations; not an additional API evaluation sample."
+    },
+    {
+      "parameter": 0.35,
+      "decoded_source_sketch_point_cm": [
+        2.782709781977204,
+        0.6503569821953157,
+        0.0
+      ],
+      "decoded_cache_point": [
+        2.7827097819772044,
+        0.6503569821953157,
+        0.0
+      ],
+      "absolute_error_cm": 4.440892098500626e-16,
+      "scope": "Comparison between two independently stored native representations; not an additional API evaluation sample."
+    },
+    {
+      "parameter": 0.5,
+      "decoded_source_sketch_point_cm": [
+        4.045161208680206,
+        -1.2582234216710177,
+        0.0
+      ],
+      "decoded_cache_point": [
+        4.045161208680206,
+        -1.2582234216710177,
+        0.0
+      ],
+      "absolute_error_cm": 0.0,
+      "scope": "Comparison between two independently stored native representations; not an additional API evaluation sample."
+    },
+    {
+      "parameter": 0.6,
+      "decoded_source_sketch_point_cm": [
+        5.071983429012849,
+        0.23296905452561883,
+        0.0
+      ],
+      "decoded_cache_point": [
+        5.071983429012849,
+        0.23296905452561883,
+        0.0
+      ],
+      "absolute_error_cm": 0.0,
+      "scope": "Comparison between two independently stored native representations; not an additional API evaluation sample."
+    },
+    {
+      "parameter": 0.75,
+      "decoded_source_sketch_point_cm": [
+        4.8638413491481085,
+        2.4985133485694226,
+        0.0
+      ],
+      "decoded_cache_point": [
+        4.8638413491481085,
+        2.4985133485694226,
+        0.0
+      ],
+      "absolute_error_cm": 0.0,
+      "scope": "Comparison between two independently stored native representations; not an additional API evaluation sample."
+    },
+    {
+      "parameter": 0.8766951788322527,
+      "decoded_source_sketch_point_cm": [
+        2.532950210767832,
+        1.594179045382976,
+        0.0
+      ],
+      "decoded_cache_point": [
+        2.532950210767832,
+        1.594179045382976,
+        0.0
+      ],
+      "absolute_error_cm": 0.0,
+      "scope": "Comparison between two independently stored native representations; not an additional API evaluation sample."
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "unobserved_form2",
+      "rejected": true,
+      "reason": "Unsupported observed degree-five exact curve form1 layout"
+    },
+    {
+      "case": "unclamped_compact_start",
+      "rejected": true,
+      "reason": "Only observed clamped-end compact knot layouts supported"
+    },
+    {
+      "case": "nonpositive_weight",
+      "rejected": true,
+      "reason": "Unsupported exact curve form1 nonpositive weight"
+    }
+  ],
+  "limitations": [
+    "Only degree-five rational exact_int_cur form1 with clamped compact knots and bounded matching parameter interval was captured.",
+    "Native form1 periodicity/closure enum meanings are unresolved; production is_periodic is null.",
+    "Two direct API sample parameters lie inside this trimmed cache interval. Additional native cross-comparisons do not increase that independent API sample count.",
+    "Raw coordinates happen to agree with the source sketch cm coordinates in this identity-context sample. No general transform or unit-context mapping is added.",
+    "Procedural support surfaces, unclamped forms and other degrees remain unsupported."
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "curve_index": 18,
+    "body_graph_curve_references": 1,
+    "cache_matches_stage_report": true,
+    "is_periodic_remains_null": true
+  }
+}

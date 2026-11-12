@@ -1,0 +1,263 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "patch_rectangle.f3d",
+      "kind": "PatchFeature",
+      "settings": {
+        "operation": "NewBody",
+        "boundary_curve_count": 4,
+        "is_group_edges": true,
+        "group_continuity": 0,
+        "group_weight": 0.5,
+        "group_direction_flipped": false,
+        "result_body_count": 1,
+        "result_solids": [
+          false
+        ]
+      },
+      "parameters": []
+    },
+    {
+      "file": "patch_circle.f3d",
+      "kind": "PatchFeature",
+      "settings": {
+        "operation": "NewBody",
+        "boundary_curve_count": 1,
+        "is_group_edges": true,
+        "group_continuity": 0,
+        "group_weight": 0.5,
+        "group_direction_flipped": false,
+        "result_body_count": 1,
+        "result_solids": [
+          false
+        ]
+      },
+      "parameters": []
+    },
+    {
+      "file": "offset_positive.f3d",
+      "kind": "OffsetFeature",
+      "settings": {
+        "offset_type": 0,
+        "distance_cm": 0.4,
+        "is_chain_selection": true,
+        "operation": "NewBody",
+        "selected_item_count": 1,
+        "result_body_count": 2,
+        "result_solids": [
+          false,
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "offset",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceTool"
+        }
+      ]
+    },
+    {
+      "file": "offset_negative.f3d",
+      "kind": "OffsetFeature",
+      "settings": {
+        "offset_type": 0,
+        "distance_cm": -0.30000000000000004,
+        "is_chain_selection": false,
+        "operation": "NewBody",
+        "selected_item_count": 1,
+        "result_body_count": 2,
+        "result_solids": [
+          false,
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "offset",
+          "value": -0.30000000000000004,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceTool"
+        }
+      ]
+    },
+    {
+      "file": "offset_rounded.f3d",
+      "kind": "OffsetFeature",
+      "settings": {
+        "offset_type": 1,
+        "distance_cm": 0.4,
+        "is_chain_selection": true,
+        "operation": "NewBody",
+        "selected_item_count": 1,
+        "result_body_count": 2,
+        "result_solids": [
+          false,
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "offset",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceTool"
+        }
+      ]
+    },
+    {
+      "file": "stitch_tight.f3d",
+      "kind": "StitchFeature",
+      "settings": {
+        "tolerance_cm": 0.001,
+        "selected_item_count": 2,
+        "result_body_count": 1,
+        "result_solids": [
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "StitchingTolerence",
+          "value": 0.001,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceTool"
+        }
+      ]
+    },
+    {
+      "file": "stitch_loose.f3d",
+      "kind": "StitchFeature",
+      "settings": {
+        "tolerance_cm": 0.005000000000000001,
+        "selected_item_count": 2,
+        "result_body_count": 1,
+        "result_solids": [
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "StitchingTolerence",
+          "value": 0.005000000000000001,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceTool"
+        }
+      ]
+    },
+    {
+      "file": "unstitch_face.f3d",
+      "kind": "UnstitchFeature",
+      "settings": {
+        "is_chain_selection": false,
+        "selected_item_count": 1,
+        "result_body_count": 2,
+        "result_solids": [
+          false,
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        }
+      ]
+    },
+    {
+      "file": "unstitch_chain.f3d",
+      "kind": "UnstitchFeature",
+      "settings": {
+        "is_chain_selection": true,
+        "selected_item_count": 1,
+        "result_body_count": 6,
+        "result_solids": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        }
+      ]
+    },
+    {
+      "file": "reverse_normal.f3d",
+      "kind": "ReverseNormalFeature",
+      "settings": {
+        "selected_item_count": 1,
+        "input_plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "result_body_count": 1,
+        "result_solids": [
+          false
+        ]
+      },
+      "parameters": []
+    },
+    {
+      "file": "delete_opening.f3d",
+      "kind": "SurfaceDeleteFaceFeature",
+      "settings": {
+        "selected_item_count": 1,
+        "result_body_count": 1,
+        "result_solids": [
+          false
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "Extrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "Extrude1"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,41 +1,40 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from importlib.metadata import distribution as GetPackage
+import re as RegexLib
 
 import tomllib as TomlLib
 
 from convert import convert as ConvertLegacy
+from convert.api.ApiContext import KAdapterRegistry
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
 # one sdk entry point prevents competing command surfaces from drifting apart
 def CheckEntryPoint() -> None:
-    EntryPoints = GetPackage("kit").entry_points
+    EntryPoints = GetPackage("unicad-kit").entry_points
     assert [
         (ItemData.group, ItemData.name, ItemData.value) for ItemData in EntryPoints
     ] == [("kit", "convert", "convert:convert")]
     assert next(iter(EntryPoints)).load() is ConvertLegacy
 
 
-# package metadata must remain private and complete because this sdk is internally distributed
 def CheckMetadata() -> None:
     MetadataData = TomlLib.loads(
         (KRootPath / "pyproject.toml").read_text(encoding="utf-8")
     )
     ProjectData = MetadataData["project"]
-    assert ProjectData["name"] == "kit"
+    assert ProjectData["name"] == "unicad-kit"
     assert ProjectData["entry-points"] == {"kit": {"convert": "convert:convert"}}
     assert "scripts" not in ProjectData
     assert "gui-scripts" not in ProjectData
-    assert ProjectData["license"] == "LicenseRef-PolyForm-Strict-1.0.0"
-    assert ProjectData["license-files"] == ["LICENSE"]
-    assert ProjectData["urls"]["Repository"] == "https://github.com/TryParashell/Kit"
+    assert ProjectData["license"] == "MIT"
+    assert ProjectData["license-files"] == [
+        "LICENSE",
+        "src/convert/adapters/solidworks/container/OpenSwxLicense.md",
+    ]
+    assert {"Odin Glynn-Martin", "Stephen Harcourt"} <= {
+        AuthorData["name"] for AuthorData in ProjectData["authors"]
+    }
+    assert ProjectData["urls"]["Repository"] == "https://github.com/TryUniCAD/Kit"
     assert MetadataData["tool"]["hatch"]["build"]["targets"]["sdist"]["include"] == [
         "/LICENSE",
         "/README.md",
@@ -54,3 +53,26 @@ def CheckReadme() -> None:
     assert "convert(source, destination)" in ReadmeText
     assert "allow_carrier=False" in ReadmeText
     assert "without requiring CAD software" in ReadmeText
+
+    ReadmeSuffixes = {
+        SuffixText.casefold()
+        for RowText in ReadmeText.splitlines()
+        if RowText.startswith("|")
+        and RowText.split("|")[-2].strip() == "Reader and writer"
+        for SuffixText in RegexLib.findall(r"`(\.[A-Za-z0-9]+)`", RowText)
+    }
+    ReaderSuffixes, WriterSuffixes = (
+        {
+            SuffixText.casefold()
+            for AdapterData in AdapterSet
+            for SuffixText in AdapterData.info.extensions
+        }
+        for AdapterSet in (KAdapterRegistry.readers(), KAdapterRegistry.writers())
+    )
+    assert ReadmeSuffixes == ReaderSuffixes & WriterSuffixes
+
+    LicenseText = (KRootPath / "LICENSE").read_text(encoding="utf-8")
+    assert "MIT License" in LicenseText
+    for AuthorName in ("Odin Glynn-Martin", "Stephen Harcourt"):
+        assert AuthorName in ReadmeText
+        assert AuthorName in LicenseText

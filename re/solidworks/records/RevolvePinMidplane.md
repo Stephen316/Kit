@@ -1,13 +1,3 @@
-<!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
--->
-
 # Canonical Top-plane midplane stepped-pin revolution
 
 ## Source contract
@@ -35,11 +25,11 @@ different profile fall outside this fixed family.
 
 The authored one-variable slab corpus isolates the native midplane structure:
 
-| Case                         | ResolvedFeatures bytes | `moRevEndSpec_c` `SingleEnd` | Angular dimensions        |
-| ---------------------------- | ---------------------: | ---------------------------: | ------------------------- |
-| one-direction 90 degrees     |                 12,247 |                            1 | `D1 = pi/2`               |
-| midplane 90 degrees          |                 13,975 |                            0 | `D1 = pi/2`, `D2 = 0`     |
-| two-direction 90 plus 45 deg |                 13,975 |                            0 | `D1 = pi/2`, `D2 = pi/4`  |
+| Case                         | ResolvedFeatures bytes | `moRevEndSpec_c` `SingleEnd` | Angular dimensions       |
+| ---------------------------- | ---------------------: | ---------------------------: | ------------------------ |
+| one-direction 90 degrees     |                 12,247 |                            1 | `D1 = pi/2`              |
+| midplane 90 degrees          |                 13,975 |                            0 | `D1 = pi/2`, `D2 = 0`    |
+| two-direction 90 plus 45 deg |                 13,975 |                            0 | `D1 = pi/2`, `D2 = pi/4` |
 
 For all three files, the `moRevEndSpec_c` class definition starts at offset
 10,327 and its payload starts at 10,347. The first payload `u32` is the

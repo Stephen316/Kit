@@ -1,0 +1,407 @@
+{
+  "fusion_version": "2705.1.30",
+  "components": [
+    {
+      "name": "ComponentA",
+      "sketch_name": "AProfile",
+      "feature_name": "AExtrusion",
+      "sketch_local_probe_cm": [
+        0.7,
+        1.2,
+        0
+      ],
+      "sketch_transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "body_count": 1
+    },
+    {
+      "name": "ComponentB",
+      "sketch_name": "BProfile",
+      "feature_name": "BExtrusion",
+      "sketch_local_probe_cm": [
+        -0.8,
+        0.5,
+        0
+      ],
+      "sketch_transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "body_count": 1
+    },
+    {
+      "name": "ComponentC",
+      "sketch_name": "CProfile",
+      "feature_name": "CExtrusion",
+      "sketch_local_probe_cm": [
+        2,
+        1,
+        0
+      ],
+      "sketch_transform": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        4.440892098500626e-16,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "body_count": 1
+    }
+  ],
+  "occurrences": [
+    {
+      "name": "ComponentB:1",
+      "path": "ComponentA:1+ComponentB:1",
+      "component_name": "ComponentB",
+      "transform2": [
+        0.8660254037844387,
+        -0.46984631039295416,
+        0.1710100716628343,
+        8.36602540378444,
+        0.49999999999999994,
+        0.8137976813493738,
+        -0.2961981327260238,
+        6.830127018922194,
+        0.0,
+        0.34202014332566866,
+        0.9396926207859084,
+        -0.30000000000000004,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "native_transform2": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.9396926207859084,
+        -0.34202014332566866,
+        5.0,
+        0.0,
+        0.34202014332566866,
+        0.9396926207859084,
+        0.7,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "sketch_probe_world_cm": [
+        7.438281925560411,
+        6.8370258595968805,
+        -0.12898992833716572
+      ]
+    },
+    {
+      "name": "ComponentA:1",
+      "path": "ComponentA:1",
+      "component_name": "ComponentA",
+      "transform2": [
+        0.8660254037844387,
+        -0.49999999999999994,
+        0.0,
+        10.0,
+        0.49999999999999994,
+        0.8660254037844387,
+        0.0,
+        2.0,
+        0.0,
+        0.0,
+        1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "native_transform2": [
+        0.8660254037844387,
+        -0.49999999999999994,
+        0.0,
+        10.0,
+        0.49999999999999994,
+        0.8660254037844387,
+        0.0,
+        2.0,
+        0.0,
+        0.0,
+        1.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "sketch_probe_world_cm": [
+        10.006217782649108,
+        3.3892304845413266,
+        -1.0
+      ]
+    },
+    {
+      "name": "ComponentC:1",
+      "path": "ComponentC:1",
+      "component_name": "ComponentC",
+      "transform2": [
+        0.8191520442889918,
+        0.0,
+        0.573576436351046,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        -4.0,
+        -0.573576436351046,
+        0.0,
+        0.8191520442889918,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "native_transform2": [
+        0.8191520442889918,
+        0.0,
+        0.573576436351046,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        -4.0,
+        -0.573576436351046,
+        0.0,
+        0.8191520442889918,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "sketch_probe_world_cm": [
+        -1.1471528727020919,
+        -3.0,
+        1.3616959114220168
+      ]
+    },
+    {
+      "name": "ComponentB:1",
+      "path": "ComponentA:2+ComponentB:1",
+      "component_name": "ComponentB",
+      "transform2": [
+        0.9659258262890682,
+        0.24321034680169396,
+        -0.08852132690137685,
+        -3.739978948198328,
+        -0.25881904510252074,
+        0.9076733711903686,
+        -0.33036608954935204,
+        7.57081008634282,
+        0.0,
+        0.34202014332566866,
+        0.9396926207859084,
+        2.7,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "native_transform2": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.9396926207859084,
+        -0.34202014332566866,
+        5.0,
+        0.0,
+        0.34202014332566866,
+        0.9396926207859084,
+        0.7,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "sketch_probe_world_cm": [
+        -4.391114435828736,
+        8.23170200802002,
+        2.8710100716628344
+      ]
+    },
+    {
+      "name": "ComponentA:2",
+      "path": "ComponentA:2",
+      "component_name": "ComponentA",
+      "transform2": [
+        0.9659258262890682,
+        0.25881904510252074,
+        0.0,
+        -6.0,
+        -0.25881904510252074,
+        0.9659258262890682,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "native_transform2": [
+        0.9659258262890682,
+        0.25881904510252074,
+        0.0,
+        -6.0,
+        -0.25881904510252074,
+        0.9659258262890682,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "sketch_probe_world_cm": [
+        -5.013269067474628,
+        3.977937659975117,
+        2.0
+      ]
+    }
+  ],
+  "errors": [],
+  "timeline": [
+    {
+      "name": " ComponentA:1",
+      "index": 0,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Occurrence"
+    },
+    {
+      "name": "AProfile",
+      "index": 1,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Sketch"
+    },
+    {
+      "name": "AExtrusion",
+      "index": 2,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "ExtrudeFeature"
+    },
+    {
+      "name": " ComponentB:1",
+      "index": 3,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Occurrence"
+    },
+    {
+      "name": "BProfile",
+      "index": 4,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Sketch"
+    },
+    {
+      "name": "BExtrusion",
+      "index": 5,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "ExtrudeFeature"
+    },
+    {
+      "name": "CopyPaste ComponentA:2",
+      "index": 6,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Occurrence"
+    },
+    {
+      "name": " ComponentC:1",
+      "index": 7,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Occurrence"
+    },
+    {
+      "name": "CProfile",
+      "index": 8,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "Sketch"
+    },
+    {
+      "name": "CExtrusion",
+      "index": 9,
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "is_group": false,
+      "entity_kind": "ExtrudeFeature"
+    }
+  ]
+}

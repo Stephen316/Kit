@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 from pathlib import Path as FilePath
@@ -18,6 +10,7 @@ from convert import convert as ConvertLegacy
 from convert import open_document as OpenLegacy
 from convert import write_document as WriteLegacy
 from convert.adapters import AdapterRegistry
+from convert.adapters.base.AdapterProtocols import CadReaderAdapter, CadWriterAdapter
 from interchange import Capability
 from tests.convert.api.ApiTestPaths import KCatPartPath
 from tests.convert.api.ApiTestPaths import KFcstdPath
@@ -29,9 +22,11 @@ def CheckApiBridge(TmpPath: FilePath) -> None:
     FormatNames = {AdapterData.format_id for AdapterData in GetAdapters()}
     RegistryData = AdapterRegistry()
     _ = RegistryData.introspect()
-    assert FormatNames == {
-        AdapterData.info.format_id for AdapterData in RegistryData.readers()
-    }
+    Adapters: tuple[CadReaderAdapter | CadWriterAdapter, ...] = (
+        *RegistryData.readers(),
+        *RegistryData.writers(),
+    )
+    assert FormatNames == {AdapterData.info.format_id for AdapterData in Adapters}
     DocumentData = OpenLegacy(KSamplePath)
     OutputPath = TmpPath / "example.json"
     ResultData = ConvertLegacy(KSamplePath, OutputPath)

@@ -1,0 +1,1422 @@
+{
+  "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology",
+  "samples": [
+    {
+      "archive": "moretools-88a2cd6cad0b/Thicken.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 234,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 243,
+                "opaque": 248,
+                "second_descriptor": null,
+                "taper": 246,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 235,
+              "descriptor_object_id": 238,
+              "loop_definition_object_id": 241,
+              "sketch_object_id": 202,
+              "sketch_name": "SeedProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001fd000000000000000000000200000001010000743a122d4ebc503f0101000001fc00000000000000000001000001fb0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "sweepprofiles-8d489fe02d2d/open_brep_edge_surface.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true,
+        "actual_source_body_getter_is_sheet": true,
+        "explicit_body_name_matches_actual_source_body": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 236,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 1.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  1.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 245,
+                "opaque": 250,
+                "second_descriptor": null,
+                "taper": 248,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "profile_kind": "SketchOpenProfile",
+              "selection_record_object_id": 237,
+              "descriptor_object_id": 240,
+              "terminal_object_id": 243,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false
+            },
+            "result_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001ff0000000000000000000002000000010100006f9d7fbbecd73d3f0101000001fe00000000000000000001000001fd0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "SweepProfileSurfaceSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SweepProfileSurfaceSeed"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "sweepprofiles-b2b7a2774752/open_brep_edge_surface.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true,
+        "actual_source_body_getter_is_sheet": true,
+        "explicit_body_name_matches_actual_source_body": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 236,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 1.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  1.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 245,
+                "opaque": 250,
+                "second_descriptor": null,
+                "taper": 248,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "profile_kind": "SketchOpenProfile",
+              "selection_record_object_id": 237,
+              "descriptor_object_id": 240,
+              "terminal_object_id": 243,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false
+            },
+            "result_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001ff00000000000000000000020000000101000057eed073b55c403f0101000001fe00000000000000000001000001fd0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "SweepProfileSurfaceSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SweepProfileSurfaceSeed"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "sweepprofiles-f20861d6c5c2/open_brep_edge_partial.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true,
+        "actual_source_body_getter_is_sheet": true,
+        "explicit_body_name_matches_actual_source_body": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 236,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 1.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  1.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 245,
+                "opaque": 250,
+                "second_descriptor": null,
+                "taper": 248,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "profile_kind": "SketchOpenProfile",
+              "selection_record_object_id": 237,
+              "descriptor_object_id": 240,
+              "terminal_object_id": 243,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false
+            },
+            "result_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001ff000000000000000000000200000001010000207671dea9c7403f0101000001fe00000000000000000001000001fd0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "SweepProfileSurfaceSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SweepProfileSurfaceSeed"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "sweepprofiles-f20861d6c5c2/open_brep_edge_reversed.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true,
+        "actual_source_body_getter_is_sheet": true,
+        "explicit_body_name_matches_actual_source_body": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 236,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 1.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  1.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 245,
+                "opaque": 250,
+                "second_descriptor": null,
+                "taper": 248,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "profile_kind": "SketchOpenProfile",
+              "selection_record_object_id": 237,
+              "descriptor_object_id": 240,
+              "terminal_object_id": 243,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false
+            },
+            "result_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001ff0000000000000000000002000000010100000d3a2174d0253c3f0101000001fe00000000000000000001000001fd0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "SweepProfileSurfaceSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SweepProfileSurfaceSeed"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-17612e4ff890/cut.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 313,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 322,
+                "opaque": 327,
+                "second_descriptor": null,
+                "taper": 325,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 314,
+              "descriptor_object_id": 317,
+              "loop_definition_object_id": 320,
+              "sketch_object_id": 282,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 309,
+                      "entity_kind": "Circle",
+                      "entity_tag": 111,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 343,
+            "native_body_object_id": 339,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "00000000000000014c01000000000000000000030000000101000048c07e0e47e5333f01010000014b010000000000000000010000014a0100000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-17612e4ff890/intersect.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 313,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 322,
+                "opaque": 327,
+                "second_descriptor": null,
+                "taper": 325,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 314,
+              "descriptor_object_id": 317,
+              "loop_definition_object_id": 320,
+              "sketch_object_id": 282,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 309,
+                      "entity_kind": "Circle",
+                      "entity_tag": 111,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 343,
+            "native_body_object_id": 339,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "00000000000000014c010000000000000000000300000001010000b4e0db7aa10e383f01010000014b010000000000000000010000014a0100000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-17612e4ff890/join.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 313,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 322,
+                "opaque": 327,
+                "second_descriptor": null,
+                "taper": 325,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 314,
+              "descriptor_object_id": 317,
+              "loop_definition_object_id": 320,
+              "sketch_object_id": 282,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 309,
+                      "entity_kind": "Circle",
+                      "entity_tag": 111,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 343,
+            "native_body_object_id": 339,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "00000000000000014c010000000000000000000300000001010000d620cced5eee333f01010000014b010000000000000000010000014a0100000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-552efbb83fca/body_input.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 234,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 243,
+                "opaque": 248,
+                "second_descriptor": null,
+                "taper": 246,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 235,
+              "descriptor_object_id": 238,
+              "loop_definition_object_id": 241,
+              "sketch_object_id": 202,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001fd000000000000000000000200000001010000b7dd6ec3d408403f0101000001fc00000000000000000001000001fb0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-552efbb83fca/negative.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 234,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 243,
+                "opaque": 248,
+                "second_descriptor": null,
+                "taper": 246,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 235,
+              "descriptor_object_id": 238,
+              "loop_definition_object_id": 241,
+              "sketch_object_id": 202,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001fd000000000000000000000200000001010000dcf3fc69a33a3d3f0101000001fc00000000000000000001000001fb0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-552efbb83fca/positive.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 234,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 243,
+                "opaque": 248,
+                "second_descriptor": null,
+                "taper": 246,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 235,
+              "descriptor_object_id": 238,
+              "loop_definition_object_id": 241,
+              "sketch_object_id": 202,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001fd0000000000000000000002000000010100003dec8502b683413f0101000001fc00000000000000000001000001fb0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-552efbb83fca/rounded.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 234,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 243,
+                "opaque": 248,
+                "second_descriptor": null,
+                "taper": 246,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 235,
+              "descriptor_object_id": 238,
+              "loop_definition_object_id": 241,
+              "sketch_object_id": 202,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001fd00000000000000000000020000000101000032fcd352e8d83b3f0101000001fc00000000000000000001000001fb0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    },
+    {
+      "archive": "thickenmodes-552efbb83fca/symmetric.f3d",
+      "checks": {
+        "two_native_bindings_match_actual_parameter_getters": true,
+        "profile_is_explicit_single_line_or_closed_circle": true,
+        "explicit_native_body_anchor_retained": true
+      },
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 234,
+            "settings": {
+              "operation": {
+                "stored_code": 4,
+                "kind": "NewBody"
+              },
+              "extent": {
+                "stored_code": 1,
+                "mode": "OneSided",
+                "side_one": {
+                  "stored_code": 1,
+                  "condition": "Distance",
+                  "uninterpreted_flags": 0,
+                  "taper_angle_radians": 0.0,
+                  "taper_angle_degrees": 0.0,
+                  "distance_cm": 2.0
+                },
+                "side_one_condition": "Distance",
+                "stored_direction_vector": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "direction_scope": "Stored vector; distance sign also affects extrusion direction",
+                "side_one_distance_cm": [
+                  2.0
+                ]
+              },
+              "start": {
+                "stored_code": 0,
+                "kind": "ProfilePlane"
+              },
+              "extrusion_reference_fields": {
+                "start": null,
+                "against": null,
+                "along": 243,
+                "opaque": 248,
+                "second_descriptor": null,
+                "taper": 246,
+                "target": null,
+                "offset": null,
+                "target_two": null,
+                "taper_two": null,
+                "offset_two": null
+              },
+              "stored_second_extent_enabled": 0,
+              "is_solid": false
+            },
+            "profile": {
+              "kind": "SketchProfile",
+              "selection_record_object_id": 235,
+              "descriptor_object_id": 238,
+              "loop_definition_object_id": 241,
+              "sketch_object_id": 202,
+              "sketch_name": null,
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "result_anchor_object_id": 266,
+            "native_body_object_id": 260,
+            "body_scope": "Explicit owned historical/result native body anchor; current visibility and persistent ASM topology not inferred",
+            "uninterpreted_feature_footer_hex": "0000000000000001fd000000000000000000000200000001010000dc85e63a8db4443f0101000001fc00000000000000000001000001fb0000000000000000000000",
+            "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed positive one-sided NewBody sheet extrusions from one closed sketch Circle or one open sketch Line; no surface generation, general extents or persistent result topology"
+      },
+      "actual_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ],
+      "default_solid_only_guard": true
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Unknown surface flag",
+      "rejected": true,
+      "reason": "Not an observed surface candidate"
+    },
+    {
+      "check": "Counted feature table contradicts profile reference",
+      "rejected": true,
+      "reason": "Surface extrusion repeated profile/parameter reference table disagrees"
+    },
+    {
+      "check": "Profile proxy owner mismatch",
+      "rejected": true,
+      "reason": "Surface extrusion profile proxy count/owner changed"
+    },
+    {
+      "check": "Profile descriptor owner mismatch",
+      "rejected": true,
+      "reason": "Sketch profile selection owner disagrees"
+    }
+  ],
+  "is_solid_evidence": "Four actual source-body isSolid getters in open-line Sweep captures; circle generators explicitly set isSolid=False. No actual completed Extrude.isSolid getter was saved.",
+  "parameter_evidence": "Actual model parameter name/role/value/createdBy getters, not display-unit converted requested strings",
+  "interface": "decode_surface_extrudes(data,records,features); no feature mutation",
+  "limitations": [
+    "Only positive NewBody/ProfilePlane/OneSided/Distance/no-taper and one Circle or open Line observed.",
+    "Solid-only parser defaults stay unchanged; new branch requires explicit opt-in after independent bounded source/owner validation.",
+    "Owned result anchors establish historical native body identity, not current final solids or persistent ASM mapping.",
+    "No surface generation, two-sided/symmetric/entity extents, thin extrusion, general profiles or history regeneration."
+  ]
+}

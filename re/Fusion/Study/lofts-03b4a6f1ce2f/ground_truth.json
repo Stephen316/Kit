@@ -1,0 +1,106 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "solid_three.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 3,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 2,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection3",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.5,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane2"
+        }
+      ]
+    },
+    {
+      "file": "centerline.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 1,
+        "is_centerline": true,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

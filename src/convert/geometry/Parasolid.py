@@ -1,12 +1,7 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
+from convert.geometry.ParaFormatError import ParaFormatError as ParaFormatError
+from convert.geometry.ParaFraming import KWrapperMagic, KMaxDecodedBytes
+from convert.geometry.ReadParaSection import ReadParaSection
 import builtins as Builtins
 from dataclasses import dataclass as Dataclass, field as Field, replace as Replace
 import hashlib as Hashlib
@@ -65,9 +60,6 @@ from interchange.geometry.models.VectorSpace import (
 
 # parser helpers accept immutable mutable and zero copy binary views
 KReadBuffer: TypeAlias = bytes | bytearray | memoryview
-
-# this constant exists because binary encoding requires stable protocol data
-KWrapperMagic = bytes.fromhex("231dd571da8148a2a85898b21b89ef99")
 
 # this constant exists because binary encoding requires stable protocol data
 KEntityMagic = bytes.fromhex("c2bc928f996e0000")
@@ -239,11 +231,6 @@ KNurbsSurfShapeData: TypeAlias = tuple[
 
 # record insertion shares duplicate detection across concrete decoded record families
 KRecordValue = TypeVar("KRecordValue")
-
-
-# this declaration exists because focused behavior needs one stable owner
-class ParaFormatError(ValueError):
-    locals()["__slots__"] = ()
 
 
 # this declaration exists because focused behavior needs one stable owner
@@ -3890,46 +3877,40 @@ class ParaPayload:
     compressed_offset: int
     compressed_size: int
     uncompressed_size: int
+    stored_size: int = 0
 
 
 # this declaration exists because focused behavior needs one stable owner
 def DecodePartData(DataValue: bytes, Stream: str = "") -> tuple[ParaPayload, ...]:
+    if DataValue.startswith(b"PS\x00\x00"):
+        if len(DataValue) > KMaxDecodedBytes:
+            raise ParaFormatError("Parasolid decoded size limit exceeded")
+        return (Payload(Stream, DataValue, 0, 0, 0, len(DataValue), len(DataValue)),)
     Results: list[ParaPayload] = []
     Cursor = 0
+    DecodedSize = 0
     while True:
         MagicOffset = DataValue.find(KWrapperMagic, Cursor)
         if MagicOffset < 0:
             break
-        Cursor = MagicOffset + 1
-        HeaderOffset = MagicOffset + len(KWrapperMagic)
-        if HeaderOffset + 8 > len(DataValue):
-            continue
-        RawSize, ZipSize = Struct.unpack_from("<II", DataValue, HeaderOffset)
-        ZipOffset = HeaderOffset + 8
-        ZipEnd = ZipOffset + ZipSize
-        if ZipEnd > len(DataValue):
-            continue
-        try:
-            PayloadData = ZlibLib.decompress(DataValue[ZipOffset:ZipEnd])
-        except ZlibLib.error:
-            continue
-        if len(PayloadData) != RawSize or not PayloadData.startswith(b"PS\x00\x00"):
+        Section = ReadParaSection(
+            DataValue, MagicOffset, KMaxDecodedBytes - DecodedSize
+        )
+        Cursor = Section.End
+        DecodedSize += len(Section.Data)
+        if not Section.Data.startswith(b"PS\x00\x00"):
             continue
         Results.append(
             Payload(
                 Stream,
-                PayloadData,
-                MagicOffset - 4 if MagicOffset >= 4 else MagicOffset,
+                Section.Data,
+                Section.Start,
                 MagicOffset,
-                ZipOffset,
-                ZipSize,
-                RawSize,
+                Section.CompressedOffset,
+                Section.CompressedSize,
+                len(Section.Data),
+                Section.End - Section.Start,
             )
-        )
-        Cursor = ZipEnd
-    if not Results and DataValue.startswith(b"PS\x00\x00"):
-        Results.append(
-            Payload(Stream, DataValue, 0, 0, 0, len(DataValue), len(DataValue))
         )
     if not Results:
         raise ParaFormatError(f"no Parasolid payload found in {Stream or 'stream'}")
@@ -3945,6 +3926,7 @@ def Payload(
     ZipOffset: int,
     ZipSize: int,
     RawSize: int,
+    StoredSize: int | None = None,
 ) -> ParaPayload:
     Header = DataValue[:8192]
     KindMatch = RegexLib.search(b"TRANSMIT FILE \\(([^)]+)\\)", Header)
@@ -3964,6 +3946,11 @@ def Payload(
         compressed_offset=ZipOffset,
         compressed_size=ZipSize,
         uncompressed_size=RawSize,
+        stored_size=(
+            StoredSize
+            if StoredSize is not None
+            else ZipOffset + ZipSize - WrapperOffset
+        ),
     )
 
 
@@ -4919,16 +4906,14 @@ def RecordStart(
 def ReadShort(DataValue: KReadBuffer, OffsetData: int) -> int | None:
     if OffsetData < 0 or OffsetData + 2 > len(DataValue):
         return None
-    ValueData = Struct.unpack_from(">H", DataValue, OffsetData)[0]
-    return ValueData if isinstance(ValueData, int) else None
+    return int(Struct.unpack_from(">H", DataValue, OffsetData)[0])
 
 
 # this declaration exists because focused behavior needs one stable owner
 def ReadUnsigned(DataValue: KReadBuffer, OffsetData: int) -> int | None:
     if OffsetData < 0 or OffsetData + 4 > len(DataValue):
         return None
-    ValueData = Struct.unpack_from(">I", DataValue, OffsetData)[0]
-    return ValueData if isinstance(ValueData, int) else None
+    return int(Struct.unpack_from(">I", DataValue, OffsetData)[0])
 
 
 # this declaration exists because focused behavior needs one stable owner

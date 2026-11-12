@@ -1,0 +1,4444 @@
+{
+  "scope": "Observed alternate Sweep profiles: planar-face recipe/body reference, open sketch Line and BRep edge recipe Paths, coplanar two-profile membership and controlled edge active extent. No Sweep geometry regeneration.",
+  "fusion_version": "2705.1.30",
+  "captures": {
+    "initial": "sweepprofiles-b2b7a2774752",
+    "actual_path_getter_retry": "sweepprofiles-8d489fe02d2d",
+    "edge_branch_holdouts": "sweepprofiles-f20861d6c5c2",
+    "generators": [
+      "GenerateSweepProfileModes.py",
+      "GenerateSweepProfileHoldouts.py",
+      "GenerateSweepProfileBranchModes.py"
+    ]
+  },
+  "summary": {
+    "archives": 8,
+    "api_comparisons": 153,
+    "all_passed": true,
+    "case_errors": 0,
+    "getter_errors_preserved": 32,
+    "prior_archives": 22,
+    "prior_output_compatibility": {
+      "default_exact": 16,
+      "extended_exact": 22,
+      "same_rejections": 6
+    },
+    "malformed_checks": 8
+  },
+  "integration": {
+    "function": "decode_sweep_profiles(data, records, body, feature, features)",
+    "dependency": "Imports shared decode_sweep_modes plus existing typed selection helpers; never imports public decode_sweep.",
+    "shared_opt_in": "profile_resolver=None, allowed_header_vectors=((1,0,0),), allowed_new_body_anchor_counts=(1,) retain strict defaults. Opt-in reader returns profiles list, neutral header vector, result context IDs and post-anchor cursor; profile=None for collection. Two-result control96/count2 validates typed distinct context IDs, matching owner copies/counts; these are context records, not native bodies.",
+    "default_compatibility": "16 default supported and22 extended supported prior outputs exactly equal committed source dictionaries. Six default unsupported cases remain rejected."
+  },
+  "layout": {
+    "closed_collection": "One4BD descriptor/0D57 with profile-set count2; existing shared resolver frames each profile set independently. Native result-anchor count2 and control context count2; singular profile field intentionally null.",
+    "open_sketch": "Owned2CA->5A1BF descriptor->E2CEFD leaf resolves one native sketch ID and Line tag. Input temporary Profile normalizes to actual API Path.",
+    "face": "Owned5662 descriptor with bounded_face_recipe_data, typed historical body anchor and feature owners; exact face-to-ASM mapping remains opaque.",
+    "edge": "Owned5662 descriptor with edge_recipe_data, one typed context and historical body anchor. Actual API profile Path contains one BRepEdge, independently owning the named source surface body; exact edge-to-ASM mapping remains opaque.",
+    "raw_header_vector": "float64[3] atbase+14: prior supported captures(1,0,0); new face/sketch/collection(0,0,1); captured edge variant(0,-1,0). Neutral raw field, no coordinate-frame meaning assigned.",
+    "edge_active_extent": "Observed NewBody surface edge-profile mode2, header(0,-1,0), zero angles and Along0 uses AgainstDistance as API distanceOne. Full/partial.4 and reversed source Line contrasts establish this narrow branch; other header frames/modes rejected."
+  },
+  "findings": [
+    "All four initial cases exported successfully. Open temporary Profile getters reject token/sketch/plane/loop access; the initial actual Path token getter also failed. Corrected retry captures actual Path count/ordered members/opposition flag while preserving original failure evidence.",
+    "Partial edge API distanceOne.4 stores AgainstDistance.4 and Along0; new sheet independent API y-span1.2 equals source length3*.4. Reversing source Line endpoints keeps Against1 and API distanceOne1 with y-span3. Source line direction therefore does not switch this captured activation.",
+    "API feature.bodies includes the existing named source surface plus the new sheet for edge cases. Native new-result-anchor list contains one. API collection count is retained as observation, not equated to new-anchor count.",
+    "Two closed profiles retain separate curve tags102/104 under one descriptor; both profile sets are exposed. Actual API ObjectCollection has two Profile members.",
+    "Counted result-control references are typed C46D context records, not native body IDs. Matching context/result counts is observed; a per-context body mapping is not claimed."
+  ],
+  "limitations": [
+    "Alternate variants currently only NewBody/mode2/straight single sketch Line/zero angles; face and collection solid, open variants surface. Only captured raw header vectors and profile combinations accepted.",
+    "Edge partial extent is supported only in observed Against-only branch/header combination; general profile frames, Along activation and two-sided/guide variants remain unsupported.",
+    "Exact BRep face/edge geometry, planarity reconstruction, trim curves and recipe-to-ASM topology identity unresolved; API source geometry is observational evidence.",
+    "Stored context payload meanings, header-vector frame, profile traversal/opposition flags, kernel regeneration and native writer unresolved.",
+    "API tokens/tempIds are opaque evidence and were not used as native IDs. Getter failures remain preserved in original ground_truth files."
+  ],
+  "samples": [
+    {
+      "file": "sweepprofiles-b2b7a2774752/planar_face.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::BRepFace",
+          "api": "adsk::fusion::BRepFace",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "profile.source_body_name",
+          "decoded": "SweepProfileSeedBody",
+          "api": "SweepProfileSeedBody",
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 562,
+          "AgainstRailDistance": 568,
+          "AlongDistance": 559,
+          "AlongRailDistance": 565,
+          "TaperAngle": 574,
+          "TwistAngle": 571
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 551,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 554,
+              "terminal_object_id": 557,
+              "sketch_object_id": 498,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 527,
+              "curve_entity_tag": 112,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "BRepFace",
+          "selection_record_object_id": 544,
+          "descriptor_object_id": 547,
+          "body_anchor_object_id": 281,
+          "native_body_object_id": 275,
+          "source_owner_object_id": 243,
+          "namespace_text": "0ba6d075-f9bb-453a-bcc1-e228b6b97dcb",
+          "entity_guid_text": "0e57fb27-39e9-4c56-8dd1-eff27efa4d8b",
+          "context_record_object_ids": [
+            598
+          ],
+          "recipe": {
+            "object_id": 550,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 40077,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 4,
+                "terms": [
+                  {
+                    "name": "5",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "bounded_face_recipe_data",
+            "payload_relative_offset": 171,
+            "payload_length": 476,
+            "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+            "uninterpreted_payload_int32": [
+              0,
+              -1,
+              4,
+              -1,
+              -1,
+              2,
+              1,
+              -1,
+              0,
+              -1,
+              2,
+              -1,
+              3,
+              2,
+              -1,
+              1,
+              -1,
+              0,
+              -1,
+              0,
+              0,
+              -1,
+              3,
+              3,
+              -1,
+              0,
+              -1,
+              1,
+              -1,
+              0,
+              0,
+              -1,
+              -1,
+              -1,
+              2,
+              3,
+              -1,
+              0,
+              -1,
+              2,
+              -1,
+              3,
+              3,
+              -1,
+              0,
+              -1,
+              1,
+              -1,
+              0,
+              0,
+              -1,
+              3,
+              4,
+              -1,
+              0,
+              -1,
+              3,
+              -1,
+              0,
+              0,
+              -1,
+              -1,
+              -1,
+              2,
+              4,
+              -1,
+              0,
+              -1,
+              2,
+              -1,
+              3,
+              4,
+              -1,
+              0,
+              -1,
+              3,
+              -1,
+              0,
+              0,
+              -1,
+              3,
+              2,
+              -1,
+              0,
+              -1,
+              4,
+              -1,
+              0,
+              0,
+              -1,
+              -1,
+              -1,
+              2,
+              2,
+              -1,
+              0,
+              -1,
+              2,
+              -1,
+              3,
+              2,
+              -1,
+              0,
+              -1,
+              4,
+              -1,
+              0,
+              0,
+              -1,
+              3,
+              2,
+              -1,
+              1,
+              -1,
+              0,
+              -1,
+              0,
+              0,
+              -1
+            ]
+          },
+          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+          "context_scope": "Context identities retained; no occurrence transform inferred",
+          "geometry_status": "Captured API selection is planar; exact native recipe-to-ASM face and plane reconstruction unresolved"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 576,
+        "uninterpreted_result_control_prefix_hex": "000000000100",
+        "result_body_anchors": [
+          {
+            "object_id": 634,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 630,
+            "source_owner_object_id": 543,
+            "native_uuid_text": "c1623496-ac78-4921-85d3-88a5aed6ea40",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 50097,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "BRepFace",
+            "selection_record_object_id": 544,
+            "descriptor_object_id": 547,
+            "body_anchor_object_id": 281,
+            "native_body_object_id": 275,
+            "source_owner_object_id": 243,
+            "namespace_text": "0ba6d075-f9bb-453a-bcc1-e228b6b97dcb",
+            "entity_guid_text": "0e57fb27-39e9-4c56-8dd1-eff27efa4d8b",
+            "context_record_object_ids": [
+              598
+            ],
+            "recipe": {
+              "object_id": 550,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 40077,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred",
+            "geometry_status": "Captured API selection is planar; exact native recipe-to-ASM face and plane reconstruction unresolved"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "result_control_context_record_object_ids": [
+          628
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "profile_input_kind": "BRepFace",
+        "profile_api_type": "adsk::fusion::BRepFace",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 2.4000000000000004,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -0.5,
+              -0.4,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              0.5,
+              0.4,
+              4.0
+            ]
+          },
+          {
+            "name": "SweepProfileSeedBody",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 0.8,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -0.5,
+              -0.4,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              0.5,
+              0.4,
+              1.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::BRepFace",
+          "temp_id": 0,
+          "body": {
+            "name": "SweepProfileSeedBody",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 0.8,
+            "face_count": 6,
+            "edge_count": 12,
+            "bounding_box_min_cm": [
+              -0.5,
+              -0.4,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              0.5,
+              0.4,
+              1.0
+            ]
+          },
+          "geometry_type": "adsk::core::Plane",
+          "area_cm2": 0.8,
+          "centroid_world_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_origin_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "edge_evidence": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "SweepProfileSeedBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 0.8,
+                "face_count": 6,
+                "edge_count": 12,
+                "bounding_box_min_cm": [
+                  -0.5,
+                  -0.4,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  0.5,
+                  0.4,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Line3D",
+              "start_world_cm": [
+                -0.5,
+                0.4,
+                1.0
+              ],
+              "end_world_cm": [
+                -0.5,
+                -0.4,
+                1.0
+              ],
+              "adjacent_faces": [
+                {
+                  "temp_id": 4
+                },
+                {
+                  "temp_id": 0
+                }
+              ]
+            },
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 5,
+              "body": {
+                "name": "SweepProfileSeedBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 0.8,
+                "face_count": 6,
+                "edge_count": 12,
+                "bounding_box_min_cm": [
+                  -0.5,
+                  -0.4,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  0.5,
+                  0.4,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Line3D",
+              "start_world_cm": [
+                -0.5,
+                -0.4,
+                1.0
+              ],
+              "end_world_cm": [
+                0.5,
+                -0.4,
+                1.0
+              ],
+              "adjacent_faces": [
+                {
+                  "temp_id": 7
+                },
+                {
+                  "temp_id": 0
+                }
+              ]
+            },
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 8,
+              "body": {
+                "name": "SweepProfileSeedBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 0.8,
+                "face_count": 6,
+                "edge_count": 12,
+                "bounding_box_min_cm": [
+                  -0.5,
+                  -0.4,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  0.5,
+                  0.4,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Line3D",
+              "start_world_cm": [
+                0.5,
+                -0.4,
+                1.0
+              ],
+              "end_world_cm": [
+                0.5,
+                0.4,
+                1.0
+              ],
+              "adjacent_faces": [
+                {
+                  "temp_id": 10
+                },
+                {
+                  "temp_id": 0
+                }
+              ]
+            },
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 11,
+              "body": {
+                "name": "SweepProfileSeedBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 0.8,
+                "face_count": 6,
+                "edge_count": 12,
+                "bounding_box_min_cm": [
+                  -0.5,
+                  -0.4,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  0.5,
+                  0.4,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Line3D",
+              "start_world_cm": [
+                0.5,
+                0.4,
+                1.0
+              ],
+              "end_world_cm": [
+                -0.5,
+                0.4,
+                1.0
+              ],
+              "adjacent_faces": [
+                {
+                  "temp_id": 12
+                },
+                {
+                  "temp_id": 0
+                }
+              ]
+            }
+          ]
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              4.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": []
+    },
+    {
+      "file": "sweepprofiles-b2b7a2774752/open_sketch_surface.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::Path",
+          "api": "adsk::fusion::Path",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 312,
+          "AgainstRailDistance": 318,
+          "AlongDistance": 309,
+          "AlongRailDistance": 315,
+          "TaperAngle": 324,
+          "TwistAngle": 321
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 301,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 304,
+              "terminal_object_id": 307,
+              "sketch_object_id": 248,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 277,
+              "curve_entity_tag": 107,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "SketchCurvePath",
+          "selection_record_object_id": 294,
+          "segments": [
+            {
+              "selection_record_object_id": 294,
+              "descriptor_object_id": 297,
+              "terminal_object_id": 300,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false,
+              "sketch_name": "SweepProfileSection"
+            }
+          ],
+          "count": 1,
+          "is_closed": false,
+          "scope": "Explicit one-Line sketch ID/tag; API returns a Path for this open profile"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 326,
+        "uninterpreted_result_control_prefix_hex": "000000000100",
+        "result_body_anchors": [
+          {
+            "object_id": 371,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 365,
+            "source_owner_object_id": 293,
+            "native_uuid_text": "211b0c69-d37f-48fd-b450-acaca35255ff",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 39342,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "SketchCurvePath",
+            "selection_record_object_id": 294,
+            "segments": [
+              {
+                "selection_record_object_id": 294,
+                "descriptor_object_id": 297,
+                "terminal_object_id": 300,
+                "sketch_object_id": 202,
+                "curve_object_id": 232,
+                "curve_entity_tag": 103,
+                "kind": "Line",
+                "is_closed": false,
+                "sketch_name": "SweepProfileSection"
+              }
+            ],
+            "count": 1,
+            "is_closed": false,
+            "scope": "Explicit one-Line sketch ID/tag; API returns a Path for this open profile"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "result_control_context_record_object_ids": [
+          363
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "profile_input_kind": "SketchOpenProfile",
+        "profile_api_type": "adsk::fusion::Path",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::Path"
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": [
+        "input_profile.entity_token",
+        "input_profile.sketch_name",
+        "input_profile.sketch_entity_token",
+        "input_profile.is_on_sketch_plane",
+        "input_profile.profile_loop_count",
+        "settings.profile.entity_token"
+      ]
+    },
+    {
+      "file": "sweepprofiles-b2b7a2774752/open_brep_edge_surface.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::Path",
+          "api": "adsk::fusion::Path",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "profile.source_body_name",
+          "decoded": "SweepProfileSurfaceBody",
+          "api": "SweepProfileSurfaceBody",
+          "passed": true
+        },
+        {
+          "field": "controlled_active_fraction_times_source_length_cm",
+          "decoded": 3.0,
+          "api": 3.0,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 1.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 1.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 361,
+          "AgainstRailDistance": 367,
+          "AlongDistance": 358,
+          "AlongRailDistance": 364,
+          "TaperAngle": 373,
+          "TwistAngle": 370
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 350,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 353,
+              "terminal_object_id": 356,
+              "sketch_object_id": 297,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 326,
+              "curve_entity_tag": 107,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "BRepEdgePath",
+          "selection_record_object_id": 343,
+          "descriptor_object_id": 346,
+          "body_anchor_object_id": 278,
+          "native_body_object_id": 272,
+          "source_owner_object_id": 236,
+          "recipe": {
+            "object_id": 349,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 37920,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "7",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "8",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 139,
+            "payload_length": 156,
+            "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_record_object_ids": [
+            389
+          ],
+          "namespace_text": "07459df1-22a1-47d7-b3c4-bd2d2e1c0505",
+          "entity_guid_text": "1ec5dcb2-76f6-469b-9b99-b49d19553889",
+          "count": 1,
+          "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+          "context_scope": "Typed context identity retained; no occurrence transform inferred"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 375,
+        "uninterpreted_result_control_prefix_hex": "000001000000",
+        "result_body_anchors": [
+          {
+            "object_id": 420,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 416,
+            "source_owner_object_id": 342,
+            "native_uuid_text": "c57e95b4-3613-4aa7-8c17-a3e613844b8f",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 46203,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "BRepEdgePath",
+            "selection_record_object_id": 343,
+            "descriptor_object_id": 346,
+            "body_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "source_owner_object_id": 236,
+            "recipe": {
+              "object_id": 349,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 37920,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "7",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "8",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 139,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_record_object_ids": [
+              389
+            ],
+            "namespace_text": "07459df1-22a1-47d7-b3c4-bd2d2e1c0505",
+            "entity_guid_text": "1ec5dcb2-76f6-469b-9b99-b49d19553889",
+            "count": 1,
+            "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+            "context_scope": "Typed context identity retained; no occurrence transform inferred"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "result_control_context_record_object_ids": [
+          414
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "active_distance_parameter_role": "AgainstDistance",
+        "distance_branch_status": "Observed BRep-edge open profile, raw header(0,-1,0), mode2, Along0: AgainstDistance matches API distanceOne for full/partial and reversed source-line captures; other profile frames unverified",
+        "profile_input_kind": "BRepEdgeOpenProfile",
+        "profile_api_type": "adsk::fusion::Path",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              3.0,
+              0.0
+            ]
+          },
+          {
+            "name": "SweepProfileSurfaceBody",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::Path"
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              3.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": [
+        "input_profile.entity_token",
+        "input_profile.sketch_name",
+        "input_profile.sketch_entity_token",
+        "input_profile.is_on_sketch_plane",
+        "input_profile.profile_loop_count",
+        "settings.profile.entity_token"
+      ]
+    },
+    {
+      "file": "sweepprofiles-b2b7a2774752/two_profile_collection.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::core::ObjectCollection",
+          "api": "adsk::core::ObjectCollection",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "profile_collection_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "profile0.type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "profile0.sketch_name",
+          "decoded": "SweepProfileSection",
+          "api": "SweepProfileSection",
+          "passed": true
+        },
+        {
+          "field": "profile0.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile0.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "profile0.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile0.curve.kind",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "profile1.type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "profile1.sketch_name",
+          "decoded": "SweepProfileSection",
+          "api": "SweepProfileSection",
+          "passed": true
+        },
+        {
+          "field": "profile1.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile1.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "profile1.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile1.curve.kind",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 376,
+          "AgainstRailDistance": 382,
+          "AlongDistance": 373,
+          "AlongRailDistance": 379,
+          "TaperAngle": 388,
+          "TwistAngle": 385
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 365,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 368,
+              "terminal_object_id": 371,
+              "sketch_object_id": 312,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 341,
+              "curve_entity_tag": 108,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": null,
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 390,
+        "uninterpreted_result_control_prefix_hex": "000000000100",
+        "result_body_anchors": [
+          {
+            "object_id": 426,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 420,
+            "source_owner_object_id": 357,
+            "native_uuid_text": "bd704dd5-6519-414b-8cea-e53385b9c038",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 39613,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          },
+          {
+            "object_id": 431,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 427,
+            "source_owner_object_id": 357,
+            "native_uuid_text": "a9bc241b-9600-4e8a-a8df-10a52237e3c4",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 41030,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "SketchProfile",
+            "selection_record_object_id": 358,
+            "descriptor_object_id": 361,
+            "loop_definition_object_id": 364,
+            "sketch_object_id": 202,
+            "sketch_name": "SweepProfileSection",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 230,
+                    "entity_kind": "Circle",
+                    "entity_tag": 102,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved",
+            "profile_set_index": 0,
+            "source_profile_set_count": 2
+          },
+          {
+            "kind": "SketchProfile",
+            "selection_record_object_id": 358,
+            "descriptor_object_id": 361,
+            "loop_definition_object_id": 364,
+            "sketch_object_id": 202,
+            "sketch_name": "SweepProfileSection",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 236,
+                    "entity_kind": "Circle",
+                    "entity_tag": 104,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved",
+            "profile_set_index": 1,
+            "source_profile_set_count": 2
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "result_control_context_record_object_ids": [
+          416,
+          417
+        ],
+        "result_anchor_list_end_relative_offset": 183,
+        "profile_input_kind": "SketchProfileCollection",
+        "profile_api_type": "adsk::core::ObjectCollection",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 0.589048622548061,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -0.95,
+              -0.25,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              -0.44999999999999996,
+              0.25,
+              3.0
+            ]
+          },
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 0.589048622548061,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              0.44999999999999996,
+              -0.25,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              0.95,
+              0.25,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::core::ObjectCollection",
+          "count": 2,
+          "items": [
+            {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "SweepProfileSection",
+              "is_on_sketch_plane": true,
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "geometry_type": "adsk::core::Circle3D",
+                      "sketch_entity": {
+                        "entity_type": "adsk::fusion::SketchCircle"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "SweepProfileSection",
+              "is_on_sketch_plane": true,
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "geometry_type": "adsk::core::Circle3D",
+                      "sketch_entity": {
+                        "entity_type": "adsk::fusion::SketchCircle"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": []
+    },
+    {
+      "file": "sweepprofiles-8d489fe02d2d/open_sketch_surface.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::Path",
+          "api": "adsk::fusion::Path",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "open_profile.count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "open_profile.member_type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "open_profile.sketch_name",
+          "decoded": "SweepProfileSection",
+          "api": "SweepProfileSection",
+          "passed": true
+        },
+        {
+          "field": "open_profile.start_world_cm",
+          "decoded": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "open_profile.end_world_cm",
+          "decoded": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 312,
+          "AgainstRailDistance": 318,
+          "AlongDistance": 309,
+          "AlongRailDistance": 315,
+          "TaperAngle": 324,
+          "TwistAngle": 321
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 301,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 304,
+              "terminal_object_id": 307,
+              "sketch_object_id": 248,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 277,
+              "curve_entity_tag": 107,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "SketchCurvePath",
+          "selection_record_object_id": 294,
+          "segments": [
+            {
+              "selection_record_object_id": 294,
+              "descriptor_object_id": 297,
+              "terminal_object_id": 300,
+              "sketch_object_id": 202,
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "is_closed": false,
+              "sketch_name": "SweepProfileSection"
+            }
+          ],
+          "count": 1,
+          "is_closed": false,
+          "scope": "Explicit one-Line sketch ID/tag; API returns a Path for this open profile"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 326,
+        "uninterpreted_result_control_prefix_hex": "000000000100",
+        "result_body_anchors": [
+          {
+            "object_id": 371,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 365,
+            "source_owner_object_id": 293,
+            "native_uuid_text": "74b94a50-1b36-46c3-a58a-7d5bf51d8b7d",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 39342,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "SketchCurvePath",
+            "selection_record_object_id": 294,
+            "segments": [
+              {
+                "selection_record_object_id": 294,
+                "descriptor_object_id": 297,
+                "terminal_object_id": 300,
+                "sketch_object_id": 202,
+                "curve_object_id": 232,
+                "curve_entity_tag": 103,
+                "kind": "Line",
+                "is_closed": false,
+                "sketch_name": "SweepProfileSection"
+              }
+            ],
+            "count": 1,
+            "is_closed": false,
+            "scope": "Explicit one-Line sketch ID/tag; API returns a Path for this open profile"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "result_control_context_record_object_ids": [
+          363
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "profile_input_kind": "SketchOpenProfile",
+        "profile_api_type": "adsk::fusion::Path",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              0.0,
+              3.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "sketch_name": "SweepProfileSection",
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            }
+          ]
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              3.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": [
+        "input_profile.entity_token",
+        "input_profile.sketch_name",
+        "input_profile.sketch_entity_token",
+        "input_profile.is_on_sketch_plane",
+        "input_profile.profile_loop_count"
+      ]
+    },
+    {
+      "file": "sweepprofiles-8d489fe02d2d/open_brep_edge_surface.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::Path",
+          "api": "adsk::fusion::Path",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "profile.source_body_name",
+          "decoded": "SweepProfileSurfaceBody",
+          "api": "SweepProfileSurfaceBody",
+          "passed": true
+        },
+        {
+          "field": "open_edge_profile.count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "open_edge_profile.member_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "controlled_active_fraction_times_source_length_cm",
+          "decoded": 3.0,
+          "api": 3.0,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 1.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 1.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 361,
+          "AgainstRailDistance": 367,
+          "AlongDistance": 358,
+          "AlongRailDistance": 364,
+          "TaperAngle": 373,
+          "TwistAngle": 370
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 350,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 353,
+              "terminal_object_id": 356,
+              "sketch_object_id": 297,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 326,
+              "curve_entity_tag": 107,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "BRepEdgePath",
+          "selection_record_object_id": 343,
+          "descriptor_object_id": 346,
+          "body_anchor_object_id": 278,
+          "native_body_object_id": 272,
+          "source_owner_object_id": 236,
+          "recipe": {
+            "object_id": 349,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 37920,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "7",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "8",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 139,
+            "payload_length": 156,
+            "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_record_object_ids": [
+            389
+          ],
+          "namespace_text": "141a0abc-afbe-4ab9-a1b7-c475810f62b6",
+          "entity_guid_text": "edc848e8-5e5e-48b4-8f8b-4d8669976d1d",
+          "count": 1,
+          "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+          "context_scope": "Typed context identity retained; no occurrence transform inferred"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 375,
+        "uninterpreted_result_control_prefix_hex": "000001000000",
+        "result_body_anchors": [
+          {
+            "object_id": 420,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 416,
+            "source_owner_object_id": 342,
+            "native_uuid_text": "0a182f5e-bd08-45f2-af91-2ea7ea1c210c",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 46203,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "BRepEdgePath",
+            "selection_record_object_id": 343,
+            "descriptor_object_id": 346,
+            "body_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "source_owner_object_id": 236,
+            "recipe": {
+              "object_id": 349,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 37920,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "7",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "8",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 139,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_record_object_ids": [
+              389
+            ],
+            "namespace_text": "141a0abc-afbe-4ab9-a1b7-c475810f62b6",
+            "entity_guid_text": "edc848e8-5e5e-48b4-8f8b-4d8669976d1d",
+            "count": 1,
+            "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+            "context_scope": "Typed context identity retained; no occurrence transform inferred"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "result_control_context_record_object_ids": [
+          414
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "active_distance_parameter_role": "AgainstDistance",
+        "distance_branch_status": "Observed BRep-edge open profile, raw header(0,-1,0), mode2, Along0: AgainstDistance matches API distanceOne for full/partial and reversed source-line captures; other profile frames unverified",
+        "profile_input_kind": "BRepEdgeOpenProfile",
+        "profile_api_type": "adsk::fusion::Path",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              3.0,
+              0.0
+            ]
+          },
+          {
+            "name": "SweepProfileSurfaceBody",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "temp_id": 0,
+                "body": {
+                  "name": "SweepProfileSurfaceBody",
+                  "component_name": "(Unsaved)",
+                  "is_solid": false,
+                  "volume_cm3": 0.0,
+                  "face_count": 1,
+                  "edge_count": 4,
+                  "bounding_box_min_cm": [
+                    -1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "bounding_box_max_cm": [
+                    1.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "adjacent_faces": [
+                  {
+                    "temp_id": 8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              3.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": [
+        "input_profile.entity_token",
+        "input_profile.sketch_name",
+        "input_profile.sketch_entity_token",
+        "input_profile.is_on_sketch_plane",
+        "input_profile.profile_loop_count"
+      ]
+    },
+    {
+      "file": "sweepprofiles-f20861d6c5c2/open_brep_edge_partial.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 0.4,
+          "api": 0.4,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::Path",
+          "api": "adsk::fusion::Path",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "profile.source_body_name",
+          "decoded": "SweepProfileSurfaceBody",
+          "api": "SweepProfileSurfaceBody",
+          "passed": true
+        },
+        {
+          "field": "open_edge_profile.count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "open_edge_profile.member_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "controlled_active_fraction_times_source_length_cm",
+          "decoded": 1.2000000000000002,
+          "api": 1.2000000000000002,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 0.4,
+        "stored_against_path_fraction": 0.4,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.4,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 361,
+          "AgainstRailDistance": 367,
+          "AlongDistance": 358,
+          "AlongRailDistance": 364,
+          "TaperAngle": 373,
+          "TwistAngle": 370
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 350,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 353,
+              "terminal_object_id": 356,
+              "sketch_object_id": 297,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 326,
+              "curve_entity_tag": 107,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "BRepEdgePath",
+          "selection_record_object_id": 343,
+          "descriptor_object_id": 346,
+          "body_anchor_object_id": 278,
+          "native_body_object_id": 272,
+          "source_owner_object_id": 236,
+          "recipe": {
+            "object_id": 349,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 37920,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "7",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "8",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 139,
+            "payload_length": 156,
+            "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_record_object_ids": [
+            389
+          ],
+          "namespace_text": "29f3fc5b-9ae8-4823-af59-5513ba57d4d1",
+          "entity_guid_text": "ca024ff2-fb1f-46e4-ae72-9ebf26f9c5ef",
+          "count": 1,
+          "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+          "context_scope": "Typed context identity retained; no occurrence transform inferred"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 375,
+        "uninterpreted_result_control_prefix_hex": "000001000000",
+        "result_body_anchors": [
+          {
+            "object_id": 420,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 416,
+            "source_owner_object_id": 342,
+            "native_uuid_text": "a746e42b-57ce-436d-9c30-d5f39738a08e",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 46239,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "BRepEdgePath",
+            "selection_record_object_id": 343,
+            "descriptor_object_id": 346,
+            "body_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "source_owner_object_id": 236,
+            "recipe": {
+              "object_id": 349,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 37920,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "7",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "8",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 139,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_record_object_ids": [
+              389
+            ],
+            "namespace_text": "29f3fc5b-9ae8-4823-af59-5513ba57d4d1",
+            "entity_guid_text": "ca024ff2-fb1f-46e4-ae72-9ebf26f9c5ef",
+            "count": 1,
+            "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+            "context_scope": "Typed context identity retained; no occurrence transform inferred"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "result_control_context_record_object_ids": [
+          414
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "active_distance_parameter_role": "AgainstDistance",
+        "distance_branch_status": "Observed BRep-edge open profile, raw header(0,-1,0), mode2, Along0: AgainstDistance matches API distanceOne for full/partial and reversed source-line captures; other profile frames unverified",
+        "profile_input_kind": "BRepEdgeOpenProfile",
+        "profile_api_type": "adsk::fusion::Path",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.2000000000000002,
+              0.0
+            ]
+          },
+          {
+            "name": "SweepProfileSurfaceBody",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 0.4,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "temp_id": 0,
+                "body": {
+                  "name": "SweepProfileSurfaceBody",
+                  "component_name": "(Unsaved)",
+                  "is_solid": false,
+                  "volume_cm3": 0.0,
+                  "face_count": 1,
+                  "edge_count": 4,
+                  "bounding_box_min_cm": [
+                    -1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "bounding_box_max_cm": [
+                    1.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "adjacent_faces": [
+                  {
+                    "temp_id": 8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              3.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": [
+        "input_profile.entity_token",
+        "input_profile.sketch_name",
+        "input_profile.sketch_entity_token",
+        "input_profile.is_on_sketch_plane",
+        "input_profile.profile_loop_count"
+      ]
+    },
+    {
+      "file": "sweepprofiles-f20861d6c5c2/open_brep_edge_reversed.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "orientation",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "path_fraction",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "distance_two_fraction",
+          "decoded": null,
+          "api": null,
+          "passed": true
+        },
+        {
+          "field": "taper_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "twist_angle_radians",
+          "decoded": 0.0,
+          "api": 0.0,
+          "passed": true
+        },
+        {
+          "field": "guide_rail_present",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "guide_surface_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "path_entity_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "profile_api_type",
+          "decoded": "adsk::fusion::Path",
+          "api": "adsk::fusion::Path",
+          "passed": true
+        },
+        {
+          "field": "path.type",
+          "decoded": "adsk::fusion::SketchLine",
+          "api": "adsk::fusion::SketchLine",
+          "passed": true
+        },
+        {
+          "field": "path.sketch_name",
+          "decoded": "SweepProfilePath",
+          "api": "SweepProfilePath",
+          "passed": true
+        },
+        {
+          "field": "path.start_world_cm",
+          "decoded": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "path.end_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "profile.source_body_name",
+          "decoded": "SweepProfileSurfaceBody",
+          "api": "SweepProfileSurfaceBody",
+          "passed": true
+        },
+        {
+          "field": "open_edge_profile.count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "open_edge_profile.member_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "controlled_active_fraction_times_source_length_cm",
+          "decoded": 3.0,
+          "api": 3.0,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 1.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 1.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 361,
+          "AgainstRailDistance": 367,
+          "AlongDistance": 358,
+          "AlongRailDistance": 364,
+          "TaperAngle": 373,
+          "TwistAngle": 370
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 350,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 353,
+              "terminal_object_id": 356,
+              "sketch_object_id": 297,
+              "sketch_name": "SweepProfilePath",
+              "curve_object_id": 326,
+              "curve_entity_tag": 107,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "kind": "BRepEdgePath",
+          "selection_record_object_id": 343,
+          "descriptor_object_id": 346,
+          "body_anchor_object_id": 278,
+          "native_body_object_id": 272,
+          "source_owner_object_id": 236,
+          "recipe": {
+            "object_id": 349,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 37920,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "-3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "6",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "7",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "8",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301,
+                    "matching_primary_record": {
+                      "object_id": 301,
+                      "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                      "record_offset": 34269,
+                      "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                    }
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 139,
+            "payload_length": 156,
+            "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_record_object_ids": [
+            389
+          ],
+          "namespace_text": "6f5f6e5a-a3fe-408f-b017-24d24586e8c4",
+          "entity_guid_text": "9662099c-efea-49c5-bb09-2ef2e7475955",
+          "count": 1,
+          "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+          "context_scope": "Typed context identity retained; no occurrence transform inferred"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 375,
+        "uninterpreted_result_control_prefix_hex": "000001000000",
+        "result_body_anchors": [
+          {
+            "object_id": 420,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 416,
+            "source_owner_object_id": 342,
+            "native_uuid_text": "e53ac92b-0ea9-45ad-915c-5fa370a391a7",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 46203,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit alternate profile membership/recipes and straight sketch path; BRep exact topology and profile traversal unresolved",
+        "profiles": [
+          {
+            "kind": "BRepEdgePath",
+            "selection_record_object_id": 343,
+            "descriptor_object_id": 346,
+            "body_anchor_object_id": 278,
+            "native_body_object_id": 272,
+            "source_owner_object_id": 236,
+            "recipe": {
+              "object_id": 349,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 37920,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "-3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "7",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "8",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                        "record_offset": 34269,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "edge_recipe_data",
+              "payload_relative_offset": 139,
+              "payload_length": 156,
+              "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff0000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            },
+            "context_record_object_ids": [
+              389
+            ],
+            "namespace_text": "6f5f6e5a-a3fe-408f-b017-24d24586e8c4",
+            "entity_guid_text": "9662099c-efea-49c5-bb09-2ef2e7475955",
+            "count": 1,
+            "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+            "context_scope": "Typed context identity retained; no occurrence transform inferred"
+          }
+        ],
+        "stored_header_vector": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "result_control_context_record_object_ids": [
+          414
+        ],
+        "result_anchor_list_end_relative_offset": 172,
+        "active_distance_parameter_role": "AgainstDistance",
+        "distance_branch_status": "Observed BRep-edge open profile, raw header(0,-1,0), mode2, Along0: AgainstDistance matches API distanceOne for full/partial and reversed source-line captures; other profile frames unverified",
+        "profile_input_kind": "BRepEdgeOpenProfile",
+        "profile_api_type": "adsk::fusion::Path",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "header_vector_status": "Observed raw header vector retained; coordinate-frame meaning not assigned"
+      },
+      "api_observations": {
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              3.0,
+              0.0
+            ]
+          },
+          {
+            "name": "SweepProfileSurfaceBody",
+            "component_name": "(Unsaved)",
+            "is_solid": false,
+            "volume_cm3": 0.0,
+            "face_count": 1,
+            "edge_count": 4,
+            "bounding_box_min_cm": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": false,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "guide_rail_present": false,
+        "guide_surface_count": 0,
+        "profile": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "temp_id": 0,
+                "body": {
+                  "name": "SweepProfileSurfaceBody",
+                  "component_name": "(Unsaved)",
+                  "is_solid": false,
+                  "volume_cm3": 0.0,
+                  "face_count": 1,
+                  "edge_count": 4,
+                  "bounding_box_min_cm": [
+                    -1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "bounding_box_max_cm": [
+                    1.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "adjacent_faces": [
+                  {
+                    "temp_id": 8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "path_entity_count": 1,
+        "path_entities": [
+          {
+            "entity_type": "adsk::fusion::SketchLine",
+            "sketch_name": "SweepProfilePath",
+            "start_world_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "end_world_cm": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "getter_error_fields": [
+        "input_profile.entity_token",
+        "input_profile.sketch_name",
+        "input_profile.sketch_entity_token",
+        "input_profile.is_on_sketch_plane",
+        "input_profile.profile_loop_count"
+      ]
+    }
+  ],
+  "compatibility": [
+    {
+      "file": "sweeps-5f87eff25e24/arc_parallel.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/arc_partial.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/arc_perpendicular.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_cut.f3d",
+      "default_exact": "unchanged rejection",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_perpendicular.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_surface.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_taper.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweeps-5f87eff25e24/line_twist.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-db118be14bfe/closed_circle.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-db118be14bfe/composite_line_arc.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-9887de71bf9e/guide_surface.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-9887de71bf9e/guide_surface_chain.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-9887de71bf9e/rail_full_extents.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-9887de71bf9e/rail_no_scaling.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-9887de71bf9e/rail_scale.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepguides-9887de71bf9e/rail_stretch.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/guided_cut.f3d",
+      "default_exact": "unchanged rejection",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/intersect.f3d",
+      "default_exact": "unchanged rejection",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/join.f3d",
+      "default_exact": "unchanged rejection",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/rail_flip_false.f3d",
+      "default_exact": "unchanged rejection",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/rail_flip_true.f3d",
+      "default_exact": "exact dictionary equality",
+      "extended_exact": "exact dictionary equality"
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/two_sided.f3d",
+      "default_exact": "unchanged rejection",
+      "extended_exact": "exact dictionary equality"
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "open profile proxy owner mismatch",
+      "rejected": true,
+      "reason": "Alternate Sweep profile proxy owner disagrees"
+    },
+    {
+      "case": "open sketch unknown curve tag",
+      "rejected": true,
+      "reason": "Sketch/curve tag missing, unsupported or ambiguous"
+    },
+    {
+      "case": "unverified alternate header vector",
+      "rejected": true,
+      "reason": "Unsupported observed Sweep mode control header"
+    },
+    {
+      "case": "incorrect profile-set count",
+      "rejected": true,
+      "reason": "Unparsed profile-set bytes"
+    },
+    {
+      "case": "collection result-anchor count contradicts control count",
+      "rejected": true,
+      "reason": "Sweep result control/context count disagrees with observed result-anchor count"
+    },
+    {
+      "case": "wrong typed result-control context",
+      "rejected": true,
+      "reason": "Sweep mode typed reference unresolved: C46D3EEB-40E1-43FA-83DC-9CB204335417"
+    },
+    {
+      "case": "edge recipe incorrectly claims face kind",
+      "rejected": true,
+      "reason": "Unsupported alternate Sweep topology profile recipe kind"
+    },
+    {
+      "case": "simultaneous edge Along/Against activation",
+      "rejected": true,
+      "reason": "Only observed straight default-angle alternate Sweep profile parameter branches supported"
+    }
+  ]
+}

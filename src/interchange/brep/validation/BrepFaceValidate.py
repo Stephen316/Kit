@@ -1,13 +1,6 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from interchange.brep.topology.BrepMath import IsValidTol
 from interchange.brep.validation.BrepView import BrepView
+from interchange.brep.validation.BrepWholeFaces import GetWholeFaces
 
 
 # face validation protects trimming and surface references before shell traversal
@@ -15,12 +8,17 @@ def GetFaceErrors(
     ModelValue: BrepView, IdentitySets: dict[str, frozenset[str]]
 ) -> tuple[str, ...]:
     ErrorValues: list[str] = []
+    WholeFaces: frozenset[str] = (
+        GetWholeFaces(ModelValue)
+        if any(not FaceValue.loop_ids for FaceValue in ModelValue.faces)
+        else frozenset()
+    )
     for FaceValue in ModelValue.faces:
         if FaceValue.SurfaceId not in IdentitySets["Surfaces"]:
             ErrorValues.append(
                 f"B-rep face {FaceValue.EntityId} references a missing surface"
             )
-        if not FaceValue.LoopIds:
+        if not FaceValue.LoopIds and FaceValue.EntityId not in WholeFaces:
             ErrorValues.append(f"B-rep face {FaceValue.EntityId} has no loops")
         for LoopId in FaceValue.LoopIds:
             if LoopId not in IdentitySets["Loops"]:

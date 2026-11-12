@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from pathlib import Path as PathInfo
 import re as Regex
 
@@ -110,7 +102,7 @@ def ModelRows(SourceText: str) -> frozenset[tuple[str, str, str]]:
 
 # workflow configuration must scan every suite and maintained repository language
 def TestFlowScope() -> None:
-    SourceText = LoadText(".github/workflows/CodeqlSecurity.yml")
+    SourceText = LoadText(".github/workflows/MergeQueue.yml")
     ConfigText = LoadText(".github/CodeQL/CodeqlConfig.yml")
     SuiteText = LoadText(".github/CodeQL/PythonMaximal.qls")
     assert "config-file: ./.github/CodeQL/CodeqlConfig.yml" in SourceText

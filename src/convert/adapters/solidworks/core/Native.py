@@ -1,12 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
+from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from collections.abc import Callable
 from dataclasses import dataclass as Dataclass, field as Field, replace as Replace
 import hashlib as Hashlib
@@ -630,6 +623,8 @@ def DecodeRevolve(
     )
     Family, OperationCode, Schema = OperationFields(StateData.Resolved, Record)
     Layout = StateData.Revolutions.get(Feature.object_id)
+    if Layout is not None and Layout.axis_feature_id is not None:
+        Dependencies = tuple(dict.fromkeys((*Dependencies, Layout.axis_feature_id)))
     AxisSketch = StateData.LatestSketch
     if Layout is not None and Layout.axis_kind == RevolutionAxisSketch:
         AxisSketch = next(
@@ -11358,9 +11353,12 @@ def NativeAxis(Model: NativeModel) -> frozenset[tuple[int, int, str]]:
     Sketches = {Sketch.object_id: Sketch for Sketch in Model.sketches}
     Result: set[tuple[int, int, str]] = set()
     for Operation in Model.operations:
-        if Operation.profile_id is None:
+        AxisId = AxisSketchId(
+            Operation.profile_id, Operation.axis_source_kind, Operation.axis_source_id
+        )
+        if AxisId is None:
             continue
-        Sketch = Sketches.get(Operation.profile_id)
+        Sketch = Sketches.get(AxisId)
         SubElem = OperationAxis(Operation, Sketch)
         if SubElem is None or Sketch is None:
             continue
@@ -14036,7 +14034,13 @@ def RevolutionAxisA(
 def OperationAxis(
     Operation: NativeOperation, Sketch: NativeSketch | None
 ) -> str | None:
-    if Sketch is None or Operation.profile_id != Sketch.object_id:
+    if (
+        Sketch is None
+        or AxisSketchId(
+            Operation.profile_id, Operation.axis_source_kind, Operation.axis_source_id
+        )
+        != Sketch.object_id
+    ):
         return None
     if Operation.kind in KExtrusionOperationKinds:
         return KNormalAxisSubElem

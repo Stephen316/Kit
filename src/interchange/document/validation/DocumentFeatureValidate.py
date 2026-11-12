@@ -1,16 +1,9 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from typing import Mapping as TypeMap
 
 from interchange.document.models.DocumentModel import (  # lgtm[py/cyclic-import]
     CadDocument,
 )
+from interchange.document.validation.DocumentDefValidate import GetDefErrors
 
 
 # timeline checks protect ordering and every feature dependency from invalid references
@@ -28,6 +21,10 @@ def GetFeatureErrs(
         {FeatureValue.order for FeatureValue in DocumentValue.feature_timeline}
     ) != len(DocumentValue.feature_timeline):
         ErrorValues.append("feature order values are not unique")
+    Selections = {Value.id: Value for Value in DocumentValue.selections}
+    Parameters = {Value.id: Value for Value in DocumentValue.parameters}
+    Frames = {Value.id: Value for Value in DocumentValue.support_planes}
+    Sketches = {Value.id: Value for Value in DocumentValue.sketches}
     for FeatureValue in DocumentValue.feature_timeline:
         if (
             FeatureValue.sketch_id
@@ -53,6 +50,11 @@ def GetFeatureErrs(
                 ErrorValues.append(
                     f"feature {FeatureValue.id} references missing selection"
                 )
+        ErrorValues.extend(
+            GetDefErrors(
+                FeatureValue, IdentitySets, Selections, Parameters, Frames, Sketches
+            )
+        )
     for BodyValue in DocumentValue.bodies:
         if BodyValue.final_feature_id not in IdentitySets["feature_timeline"]:
             ErrorValues.append(f"body {BodyValue.id} references missing final feature")

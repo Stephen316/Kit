@@ -1,13 +1,3 @@
-<!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
--->
-
 # SOLIDWORKS corpus static inventory
 
 Corpus: `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`
@@ -84,10 +74,10 @@ Corpus: `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`
 | `0x1BAFFE1C` | 1     |
 | `0x63D49643` | 1     |
 
-| _MO_VERSION generation | files |
-| ---------------------- | ----- |
-| `_MO_VERSION_14000`    | 62    |
-| `_MO_VERSION_11000`    | 1     |
+| \_MO_VERSION generation | files |
+| ----------------------- | ----- |
+| `_MO_VERSION_14000`     | 62    |
+| `_MO_VERSION_11000`     | 1     |
 
 | signature triplet (local, central, end) | files |
 | --------------------------------------- | ----- |

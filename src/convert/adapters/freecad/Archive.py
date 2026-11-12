@@ -1,13 +1,6 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
-from collections.abc import Sequence as ValueSequence
+from interchange.geometry.models.VectorSpace import SpaceVector
+from collections.abc import Callable, Sequence as ValueSequence
 import base64 as BaseSixFour
 import copy as CopyValue
 from dataclasses import dataclass as Dataclass, field as Field
@@ -25,15 +18,48 @@ import zipfile as Zipfile
 import zlib as ZlibValue
 from typing import Iterator, Mapping, TypeGuard
 from interchange import CadDocument as CadDoc
+from interchange.serialization.EncodeData import ToData
 from interchange.serialization.WireData import ValidateWireMap
 from convert.adapters.base import ParseUntrusted
+from convert.adapters.freecad.EditScale.ScaleBinding import KScaleBinding
 from convert.adapters.freecad.Brep import (
     FreeCADBrepWriteError as FreeCadBrepWriteError,
     brep_model_brep as BrepModelBrep,
     proven_ascii_brep as ProvenAsciiBrep,
     triangle_mesh_brep as TriangleMeshBrep,
 )
+from convert.adapters.freecad.ArchiveEditPlan import (
+    KEditableBinding,
+    KProfileBinding,
+    ReadArchiveEdit,
+)
+from convert.adapters.freecad.EditDatum.DatumBinding import KDatumGroup
+from convert.adapters.freecad.EditDatum.DatumPlan import ReadDatumPlan
+from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.serialization.Wire import GetWireType
+from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
+from convert.adapters.freecad.EditAxisRev.AxisRevExpr import AxisAngleExpr
+from convert.adapters.freecad.EditAxisRev.AxisRevPlan import AxisRevPlan, ReadAxisRev
+from convert.adapters.freecad.EditPlaneRev.PlanePoseExpr import PlanePoseExpr
+from convert.adapters.freecad.EditPlaneRev.PlaneRevBinding import KPlaneRevBinding
+from convert.adapters.freecad.EditPlaneRev.PlaneRevPlan import (
+    PlaneRevPlan,
+    ReadPlaneRev,
+)
+from convert.adapters.freecad.EditPlaneRev.PlaneSweepExpr import PlaneSweepExpr
+from convert.adapters.freecad.EditRev.RevBinding import KRevBinding
+from convert.adapters.freecad.EditRev.RevExpressions import RevExpressions
+from convert.adapters.freecad.EditRev.RevolveProps import MakeRevProps
+from convert.adapters.freecad.EditableExt import EditExtrude
+from convert.adapters.freecad.EditableRev import EditRevolve, ReadEditRevolve
+from convert.adapters.freecad.EditSketchPlan import IsSketchWire, KSketchEditBinding
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
+from convert.adapters.freecad.FormulaSheet.FormulaClosure import BuildFusionExpr
+from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
+from convert.adapters.freecad.FormulaSheet.SheetScope import CanEditSheet
+from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
+from convert.adapters.freecad.SketchIncidence import FindPointLinks
+from convert.adapters.freecad.SketchRuleValue import GetRuleSign, GetRuleValue
 from convert.adapters.freecad.Protocol import (
     ASSEMBLY_CONNECTOR_PROPERTY_PREFIXES as AsmConnectorPropPrefixes,
     ASSEMBLY_JOINT_GROUP_TYPE_ID as AsmJointGroupTypeId,
@@ -1017,6 +1043,7 @@ def InitCatalogMut(Instance: ParamCatalog, Parameters: list[dict[str, object]]) 
             Suffix += 1
         UsedValue.add(Alias)
         Instance.Aliases[ParamId] = Alias
+    Instance.FusionExpressions = BuildFusionExpr(Parameters, Instance.Aliases)
 
 
 # this definition exists because feature properties reference spreadsheet aliases
@@ -1125,6 +1152,21 @@ def NativeExpr(Instance: ParamCatalog, ItemValue: Mapping[str, object]) -> str |
     Language = TextAction(Expression.get("language"), "kit").casefold()
     if Language == "freecad":
         return Source
+    if Language in {"fusion", "kit"}:
+        ValueData = ItemValue.get("value")
+        if (
+            IsPayloadMap(ValueData)
+            and not Sequence(Expression.get("parameter_ids", []))
+            and IsLiteralQty(
+                Source,
+                TextAction(EnumAction(ValueData.get("kind"))),
+                ValueData.get("value"),
+                ValueData.get("unit"),
+            )
+        ):
+            return Source
+    if Language == "fusion":
+        return Instance.FusionExpressions.get(TextAction(ItemValue.get("id")))
     if Language != "kit":
         return None
     References = [
@@ -1236,6 +1278,7 @@ class ParamCatalog(PairProtocol):
         self.Parameters: list[dict[str, object]] = []
         self.ByIdentifier: dict[str, dict[str, object]] = {}
         self.Aliases: dict[str, str] = {}
+        self.FusionExpressions: dict[str, str] = {}
         InitCatalogMut(self, Parameters)
 
     # this definition exists because focused behavior needs one stable owner
@@ -2419,6 +2462,7 @@ def AddRuleExprMut(
     CodeValue: int,
     NameValue: str,
     NativeRule: bool,
+    Direction: int,
 ) -> None:
     Expression = (
         State.Parameters.expression(ParamId)
@@ -2435,6 +2479,8 @@ def AddRuleExprMut(
     PathValue = (
         f".{SourcePath}" if NativeRule and SourcePath else f".Constraints.{NameValue}"
     )
+    if Direction < 0:
+        Expression = f"-({Expression})"
     State.Expressions.append((PathValue, Expression))
     State.Dependencies.append("Parameters")
 
@@ -2509,7 +2555,12 @@ def AddEncodedMut(
         RuleValue.get("value"),
         Number(SourceAttrs.get("native_value"), Number(RawAttrs.get("Value"))),
     )
-    Value = State.Parameters.value(ParamId, DefaultValue)
+    Direction = GetRuleSign(KindValue, SourceAttrs)
+    Value = Direction * GetRuleValue(
+        CodeValue,
+        State.Parameters.ByIdentifier.get(ParamId),
+        State.Parameters.value(ParamId, DefaultValue),
+    )
     NameValue = RuleNameMut(RuleValue, RawAttrs, NativeRule, State.RuleNames)
     State.Encoded.append(
         RuleRecord(RuleValue, CodeValue, Value, NameValue, Resolved, RawAttrs)
@@ -2531,7 +2582,9 @@ def AddEncodedMut(
                 Composition[0],
             )
         )
-    AddRuleExprMut(State, RuleValue, ParamId, CodeValue, NameValue, NativeRule)
+    AddRuleExprMut(
+        State, RuleValue, ParamId, CodeValue, NameValue, NativeRule, Direction
+    )
 
 
 # this definition exists because fixed entities need a fallback block constraint
@@ -2636,10 +2689,34 @@ def ConstraintsProp(
     Indices: Mapping[str, int],
     Parameters: _Parameters,
     ProfileOnly: bool = False,
+    IncludeIncidence: bool = False,
+    ExtraIncidence: tuple[tuple[tuple[int, int], tuple[int, int]], ...] = (),
 ) -> tuple[XmlTree.Element, list[tuple[str, str]], list[str], list[dict[str, object]]]:
     State = CreateRuleState(Sketch, Indices, Parameters, ProfileOnly)
     for RuleValue in Items(Sketch.get("constraints", [])):
         AppendRuleMut(State, RuleValue)
+    Origin = Sketch.get("provenance")
+    if (
+        (State.Encoded or IncludeIncidence)
+        and IsPayloadMap(Origin)
+        and Origin.get("adapter") == "fusion.f3d"
+    ):
+        for CurveSlot, PointSlot in (
+            *FindPointLinks(State.EntityItems, Indices),
+            *ExtraIncidence,
+        ):
+            RuleId = f"incidence_{CurveSlot[0]}_{CurveSlot[1]}"
+            NameValue = RuleNameMut({"id": RuleId}, {}, False, State.RuleNames)
+            State.Encoded.append(
+                RuleRecord(
+                    {},
+                    RuleCodeByKind["coincident"],
+                    0.0,
+                    NameValue,
+                    [CurveSlot, PointSlot],
+                    {},
+                )
+            )
     AddFixedMut(State)
     return (
         BuildRuleProp(State.Encoded),
@@ -3889,7 +3966,7 @@ def ImportArchive(
         DocValue, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     )
     Digest = Hashlib.sha256(Canonical.encode("utf-8")).hexdigest()
-    DocXml, ChildPayloads = BuildDocXml(
+    DocXml, ChildPayloads = BuildDocCoreMut(
         DocValue, "", Digest, TrustedNativeBreps=TrustedNativeBreps
     )
     return (ParseUntrusted(DocXml), ChildPayloads)
@@ -6074,28 +6151,62 @@ def AddMeshesMut(
     return Result
 
 
-# this definition exists because focused behavior needs one stable owner
-def AddBrepMut(
-    Graph: _Graph,
-    Manifest: Mapping[str, object],
-    PayloadEntries: dict[str, bytes],
-    ParametricTarget: str,
-) -> tuple[list[str], str]:
+# decode and generate the neutral shape once for both representations
+def ReadNeutralBrep(Manifest: Mapping[str, object]) -> tuple[CadDoc | None, bytes]:
     if Manifest.get("brep") is None:
-        return ([], "")
+        return (None, b"")
     try:
         DocValue = CadDoc.from_dict(ValidateWireMap(Manifest))
     except (KeyError, TypeError, ValueError, RecursionError) as ErrorInfo:
         raise ValueError("neutral B-rep manifest data is invalid") from ErrorInfo
     if DocValue.brep is None:
-        return ([], "")
+        return (None, b"")
     try:
-        DataValue = BrepModelBrep(DocValue.brep)
+        return (DocValue, BrepModelBrep(DocValue.brep))
     except FreeCadBrepWriteError:
+        return (None, b"")
+
+
+# independent datum histories need typed decoding even though they have no solid representation
+def ReadSavedDatums(
+    Manifest: Mapping[str, object],
+) -> dict[str, BoundDatum]:
+    Steps = Items(Manifest.get("feature_timeline", []))
+    if (
+        not Steps
+        or Manifest.get("brep") is not None
+        or Items(FreecadMetaData(Manifest).get("objects", []))
+    ):
+        return {}
+    DefinitionType = GetWireType(BoundDatum)
+    for StepData in Steps:
+        Definition = StepData.get("definition")
+        if not IsPayloadMap(Definition) or Definition.get("$type") != DefinitionType:
+            return {}
+    return ReadDatumPlan(CadDoc.from_dict(ValidateWireMap(Manifest)))
+
+
+# shape entries belong to the freecad object that owns their property
+def AddBrepEntryMut(
+    PayloadEntries: dict[str, bytes], ObjectName: str, DataValue: bytes
+) -> str:
+    FileName = UniquePayload(PayloadEntries, f"{ObjectName}.Shape.brp")
+    PayloadEntries[FileName] = DataValue
+    return FileName
+
+
+# a standalone shape remains available when the source cannot execute
+def AddBrepMut(
+    Graph: _Graph,
+    DocValue: CadDoc | None,
+    ShapeData: bytes,
+    PayloadEntries: dict[str, bytes],
+    ParametricTarget: str,
+) -> tuple[list[str], str]:
+    if DocValue is None or DocValue.brep is None or not ShapeData:
         return ([], "")
     ObjValue = Graph.add("Part::Feature", "BRep", "NeutralBRep")
-    FileName = UniquePayload(PayloadEntries, f"{ObjValue.name}.Shape.brp")
-    PayloadEntries[FileName] = DataValue
+    FileName = AddBrepEntryMut(PayloadEntries, ObjValue.name, ShapeData)
     ObjValue.properties.extend(
         [
             StringProp("Label", "Neutral BRep"),
@@ -6272,7 +6383,7 @@ class DocGeometry:
 
 # this class exists because document feature phases share emitted names payloads and representations
 @Dataclass
-class DocFeatures:
+class DocInventory:
     FeatureItems: list[dict[str, object]]
     FeatureNames: dict[str, str]
     SolidNames: dict[str, str]
@@ -6294,6 +6405,20 @@ class DocFeatures:
     AssemblyItems: int
     AssemblyMates: int
     OuterTarget: str
+
+
+# editable feature bindings extend the emitted document inventory
+@Dataclass
+class DocFeatures(DocInventory):
+    EditableFeatureId: str = ""
+    EditableProfileId: str = ""
+    EditableRevId: str = ""
+    EditablePlaneSteps: tuple[str, ...] = ()
+    RevBinding: str = KRevBinding
+    EditableBodySeed: str = ""
+    BodyAxisTarget: tuple[str, str, str] | None = None
+    EditableScaleSteps: tuple[str, ...] = ()
+    ScaleBodyTips: dict[str, str] = Field(default_factory=dict[str, str])
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -6366,6 +6491,7 @@ def AddDocBaseMut(
     ManifestData: str,
     ManifestHash: str,
     Parameters: _Parameters,
+    TimelineName: str,
 ) -> tuple[Object, Object, Object, Object, Object, Object, Object, Object]:
     ParamSheet = Graph.add("Spreadsheet::Sheet", "Parameters", "Parameters")
     ParamSheet.properties.extend(Parameters.sheet_properties())
@@ -6387,7 +6513,7 @@ def AddDocBaseMut(
     SketchesGroup = Graph.add("App::DocumentObjectGroup", "Sketches", "Group")
     SelectionsGroup = Graph.add("App::DocumentObjectGroup", "Selections", "Group")
     ConfigsGroup = Graph.add("App::DocumentObjectGroup", "Configurations", "Group")
-    TimelineGroup = Graph.add("App::DocumentObjectGroup", "FeatureTimeline", "Group")
+    TimelineGroup = Graph.add("App::DocumentObjectGroup", TimelineName, "Group")
     BodiesGroup = Graph.add("App::DocumentObjectGroup", "Bodies", "Group")
     return (
         ParamSheet,
@@ -6410,6 +6536,7 @@ def BuildDocContext(
     NativeOuterLinks: Mapping[str, str] | None,
     Timestamp: str,
     TrustedBreps: frozenset[KNativeBrepKey],
+    TimelineName: str,
 ) -> DocContext:
     SourceData = Manifest.get("source", {})
     SourceFormat = (
@@ -6423,7 +6550,9 @@ def BuildDocContext(
     NativeTargets = {NameValue: Value.name for NameValue, Value in NativeGraph.items()}
     ParametersData = Items(Manifest.get("parameters", []))
     Parameters = ParamCatalog(ParametersData)
-    BaseObjects = AddDocBaseMut(Graph, Manifest, ManifestData, ManifestHash, Parameters)
+    BaseObjects = AddDocBaseMut(
+        Graph, Manifest, ManifestData, ManifestHash, Parameters, TimelineName
+    )
     return DocContext(
         Manifest,
         ManifestData,
@@ -6580,8 +6709,12 @@ def PlaneExprs(
 
 # this definition exists because one support plane coordinates native replay placement and indexes
 def AddPlaneMut(
-    Context: DocContext, Geometry: DocGeometry, Plane: Mapping[str, object]
-) -> None:
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Plane: Mapping[str, object],
+    *,
+    Grouped: bool = True,
+) -> Object:
     PlaneId = TextAction(Plane.get("id"))
     NativePlane = FreecadAttrs(Plane)
     NativeName = TextAction(NativePlane.get("name"))
@@ -6595,7 +6728,8 @@ def AddPlaneMut(
     if NativeName:
         Context.NativeTargets[NativeName] = ObjValue.name
     Geometry.PlaneNames[PlaneId] = ObjValue.name
-    Geometry.PlaneObjects.append(ObjValue.name)
+    if Grouped:
+        Geometry.PlaneObjects.append(ObjValue.name)
     TransformValue = Plane.get("transform")
     Transform: Mapping[str, object] = (
         TransformValue if IsPayloadMap(TransformValue) else {}
@@ -6631,12 +6765,13 @@ def AddPlaneMut(
         )
     if Expressions and not Context.NativeReplay:
         ObjValue.dependencies.append(Context.ParamSheet.name)
+    return ObjValue
 
 
 # this definition exists because support planes must preserve their source ordering
 def AddPlanesMut(Context: DocContext, Geometry: DocGeometry) -> None:
     for Plane in Geometry.PlaneItems:
-        AddPlaneMut(Context, Geometry, Plane)
+        _ = AddPlaneMut(Context, Geometry, Plane)
 
 
 # this definition exists because one sketch coordinates profile evidence support and native replay
@@ -6846,12 +6981,14 @@ def HasReplayMut(
     return True
 
 
-# this definition exists because unproven solidworks profiles require nonexecuting feature carriers
+# nonexecuting carriers preserve unsupported extrusion definitions and unproven profiles
 def IsRawExtrude(
     Context: DocContext, Geometry: DocGeometry, FeatureInfo: FeatureData
 ) -> bool:
     if FeatureInfo.KindValue != "extrusion":
         return False
+    if FeatureInfo.Definition.get("$type") in ("DistanceExtrude", "PlaneExtrude"):
+        return True
     ProfileCount = Geometry.SketchProfCounts.get(FeatureInfo.SketchId, 0)
     ProfileSound = Geometry.SketchProfSound.get(FeatureInfo.SketchId, False)
     return (
@@ -6864,6 +7001,10 @@ def IsRawExtrude(
 def ExtrudeReason(Geometry: DocGeometry, FeatureInfo: FeatureData) -> str:
     if bool(FeatureInfo.Source.get("suppressed")):
         return "suppressed"
+    if FeatureInfo.Definition.get("$type") == "DistanceExtrude":
+        return "linked_distance_definition_unsupported"
+    if FeatureInfo.Definition.get("$type") == "PlaneExtrude":
+        return "linked_plane_definition_unsupported"
     if not Geometry.SketchProfCounts.get(FeatureInfo.SketchId, 0):
         return "no_native_closed_profile"
     return "profile_topology_not_statically_sound"
@@ -7095,11 +7236,412 @@ def AddExtrudeMut(
         Context, FeatureInfo, Direction, Length, SecondLength, Symmetric, Expression
     )
     Final = AddBoolMut(Context, FeatureInfo, ToolValue)
+    TrackSolidMut(Features, FeatureInfo, Final)
+    return Final
+
+
+# later timeline steps and body tips depend on the emitted solid name
+def TrackSolidMut(
+    Features: DocFeatures, FeatureInfo: FeatureData, Final: Object
+) -> None:
     Features.FeatureNames[FeatureInfo.FeatureId] = Final.name
     Features.SolidNames[FeatureInfo.FeatureId] = Final.name
     Features.FeatureObjects.append(Final.name)
     Features.CurrentName = Final.name
-    return Final
+
+
+# an editable solid must link to the exact native source sketch
+def EditProfile(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    FeatureInfo: FeatureData,
+    SketchId: str,
+) -> Object | None:
+    if (
+        FeatureInfo.BaseName
+        or FeatureInfo.SketchId != SketchId
+        or Geometry.SketchProfCounts.get(SketchId) != 1
+        or not Geometry.SketchProfSound.get(SketchId)
+    ):
+        return None
+    return next(
+        (
+            Value
+            for Value in Context.Graph.Objects
+            if Value.name == FeatureInfo.SketchName and Value.type_id == SketchTypeId
+        ),
+        None,
+    )
+
+
+# verified source incidence keeps sketch endpoints joined during native editing
+def SetProfRulesMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Sketch: Object,
+    SketchId: str,
+    ProfilePairs: tuple[tuple[str, str], ...] = (),
+) -> None:
+    SourceSketch = next(
+        Value for Value in Geometry.SketchItems if Value.get("id") == SketchId
+    )
+    _, Indices, _ = GeomProp(SourceSketch)
+    ExtraIncidence = tuple(
+        ((Indices[First], 1), (Indices[Second], 1)) for First, Second in ProfilePairs
+    )
+    Rules, _, _, _ = ConstraintsProp(
+        SourceSketch,
+        Indices,
+        Context.Parameters,
+        IncludeIncidence=True,
+        ExtraIncidence=ExtraIncidence,
+    )
+    ReplaceNameMut(Sketch.properties, "Constraints", Rules)
+
+
+# a native extrusion must own the starting shape and editable dependencies
+def HasEditExtMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    FeatureInfo: FeatureData,
+    PlanValue: EditExtrude,
+    ShapeData: bytes,
+) -> bool:
+    Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue.SketchId)
+    Expression = Context.Parameters.expression(PlanValue.ParameterId)
+    if (
+        Sketch is None
+        or Expression is None
+        or Context.ParamSheet.name != "Parameters"
+        or (
+            PlanValue.HasFormula
+            and PlanValue.ParameterId not in Context.Parameters.FusionExpressions
+        )
+    ):
+        return False
+    Direction = (PlanValue.Direction.x, PlanValue.Direction.y, PlanValue.Direction.z)
+    ToolValue = AddExtToolMut(
+        Context, FeatureInfo, Direction, PlanValue.DistanceMm, 0.0, False, Expression
+    )
+    ShapeFile = AddBrepEntryMut(Features.PayloadEntries, ToolValue.name, ShapeData)
+    ReplaceNameMut(ToolValue.properties, "Shape", ShapeProp(ShapeFile))
+    ReplaceNameMut(Sketch.properties, "Visibility", BoolProp("Visibility", False))
+    TrackSolidMut(Features, FeatureInfo, ToolValue)
+    Features.FinalShapeFile = ShapeFile
+    Features.EditableFeatureId = FeatureInfo.FeatureId
+    if PlanValue.ProfileEditable:
+        SetProfRulesMut(Context, Geometry, Sketch, PlanValue.SketchId)
+        Features.EditableProfileId = PlanValue.SketchId
+    return True
+
+
+# the mirrored native cache must follow the authored half angle cell
+def SetRevExprMut(Context: DocContext, PlanValue: EditRevolve) -> list[tuple[str, str]]:
+    if Context.ParamSheet.name != "Parameters":
+        return []
+    Aliases = Context.Parameters.Aliases
+    Expressions = list(RevExpressions(PlanValue, Aliases))
+    if not Expressions or PlanValue.AngleScale == 1.0:
+        return Expressions
+    AgainstId = PlanValue.AgainstParamId
+    if AgainstId is None:
+        return []
+    CellValue = next(
+        (
+            Value
+            for PropertyValue in Context.ParamSheet.properties
+            for Value in PropertyValue.findall("./Cells/Cell")
+            if Value.get("alias") == Aliases[AgainstId]
+        ),
+        None,
+    )
+    if CellValue is None:
+        return []
+    CellValue.set("content", f"={Aliases[PlanValue.AngleParamId]}")
+    return Expressions
+
+
+# the initial world coordinate solid stays in place until the live sweep recomputes
+def HasEditRevMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    FeatureInfo: FeatureData,
+    PlanValue: EditRevolve | PlaneRevPlan | AxisRevPlan,
+    ShapeData: bytes,
+) -> bool:
+    AxisPlan = PlanValue if isinstance(PlanValue, AxisRevPlan) else None
+    Sweep = PlanValue.Revolve if isinstance(PlanValue, AxisRevPlan) else PlanValue
+    Sketch = EditProfile(Context, Geometry, FeatureInfo, Sweep.SketchId)
+    if Sketch is None or not ShapeData:
+        return False
+    Controls = ReadRevGraphMut(Context, Geometry, Features, Sweep, AxisPlan, Sketch)
+    if Controls is None:
+        return False
+    (
+        Expressions,
+        AngleDeg,
+        Symmetric,
+        Dependencies,
+        AxisSketch,
+        AxisOrigin,
+        ProfilePairs,
+    ) = Controls
+    Revolution = Context.Graph.add(
+        "Part::Revolution", FeatureInfo.FeatureName, "Revolution", Touched=True
+    )
+    ShapeFile = AddBrepEntryMut(Features.PayloadEntries, Revolution.name, ShapeData)
+    Revolution.properties.extend(
+        [
+            StringProp("Label", FeatureInfo.FeatureName),
+            *MakeRevProps(
+                Sketch.name,
+                AxisOrigin,
+                Sweep.AxisDirection,
+                AngleDeg,
+                Symmetric,
+                AxisSketch,
+            ),
+            ExpressionProp(Expressions),
+            ShapeProp(ShapeFile),
+            *FeatureMeta(FeatureInfo.Source, "feature"),
+            BoolProp("Visibility", True),
+        ]
+    )
+    Revolution.dependencies.extend((Sketch.name, *Dependencies))
+    ReplaceNameMut(Sketch.properties, "Visibility", BoolProp("Visibility", False))
+    SetProfRulesMut(Context, Geometry, Sketch, Sweep.SketchId, ProfilePairs)
+    TrackSolidMut(Features, FeatureInfo, Revolution)
+    Features.FinalShapeFile = ShapeFile
+    Features.EditableRevId = FeatureInfo.FeatureId
+    return True
+
+
+# the live sweep must bind authored controls before the native feature is emitted
+def ReadRevGraphMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    Sweep: EditRevolve | PlaneRevPlan,
+    AxisPlan: AxisRevPlan | None,
+    Sketch: Object,
+) -> (
+    tuple[
+        list[tuple[str, str]],
+        float,
+        bool,
+        tuple[str, ...],
+        str,
+        SpaceVector,
+        tuple[tuple[str, str], ...],
+    ]
+    | None
+):
+    AxisSketch = ""
+    AxisOrigin = Sweep.AxisOrigin
+    ProfilePairs: tuple[tuple[str, str], ...] = ()
+    if isinstance(Sweep, PlaneRevPlan):
+        TargetNames = BindRevPlaneMut(Context, Geometry, Features, Sweep)
+        if not TargetNames:
+            return None
+        Expressions = PlaneSweepExpr(
+            TargetNames,
+            Sweep.AxisOrigin,
+            Sweep.AxisDirection,
+            Sweep.SketchFrame.z_axis,
+        )
+        AngleDeg = MathValue.degrees(Sweep.EndRadians - Sweep.StartRadians)
+        Symmetric = len(TargetNames) == 2
+        Dependencies = TargetNames
+        Features.EditablePlaneSteps = tuple(Target.StepId for Target in Sweep.Targets)
+        Features.RevBinding = KPlaneRevBinding
+    else:
+        Expressions = SetRevExprMut(Context, Sweep)
+        if not Expressions:
+            return None
+        AngleDeg, Symmetric = Sweep.AngleDeg, Sweep.Symmetric
+        Dependencies = (Context.ParamSheet.name,)
+        if AxisPlan is not None:
+            AxisControls = ReadAxisRevExpr(
+                Context, Geometry, AxisPlan, Sketch, Expressions
+            )
+            if AxisControls is None:
+                return None
+            AxisSketch, Expressions, AxisOrigin = AxisControls
+            ProfilePairs = AxisPlan.ProfilePairs
+            Dependencies += (AxisSketch,)
+            Features.RevBinding = KAxisRevBinding
+    return (
+        Expressions,
+        AngleDeg,
+        Symmetric,
+        Dependencies,
+        AxisSketch,
+        AxisOrigin,
+        ProfilePairs,
+    )
+
+
+# the selected line supplies the same direction and native angle expression
+def ReadAxisRevExpr(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    AxisPlan: AxisRevPlan,
+    Sketch: Object,
+    Expressions: list[tuple[str, str]],
+) -> tuple[str, list[tuple[str, str]], SpaceVector] | None:
+    ProfileLines = GetProfLines(Sketch)
+    if not ProfileLines:
+        return None
+    Reverse = AxisPlan.AxisSense < 0
+    Guide = BindRevAxis(
+        Context, Geometry, AxisPlan.AxisSketchId, AxisPlan.AxisLineId, Reverse
+    )
+    if Guide is None:
+        return None
+    AxisSketch, AxisIndex = Guide
+    Expressions = [
+        (
+            "Angle",
+            AxisAngleExpr(
+                AxisSketch,
+                AxisIndex,
+                Sketch.name,
+                ProfileLines,
+                Expressions[0][1],
+            ),
+        )
+    ]
+    AxisOrigin = AxisPlan.AxisStart if Reverse else AxisPlan.AxisEnd
+    return AxisSketch, Expressions, AxisOrigin
+
+
+# each original construction feature owns the plane moved by its authored angle
+def BindRevPlaneMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    PlanValue: PlaneRevPlan,
+) -> tuple[str, ...]:
+    if Context.ParamSheet.name != "Parameters":
+        return ()
+    Objects = {Value.name: Value for Value in Context.Graph.Objects}
+    Bindings: list[tuple[Object, Object, XmlTree.Element]] = []
+    for Target in PlanValue.Targets:
+        Plane = Objects.get(Geometry.PlaneNames.get(Target.PlaneId, ""))
+        StepValue = Objects.get(Features.FeatureNames.get(Target.StepId, ""))
+        ParamRef = Context.Parameters.expression(Target.AngleParamId)
+        ZeroFrame = ToData(Target.ZeroFrame)
+        if (
+            Plane is None
+            or Plane.type_id != "App::Plane"
+            or StepValue is None
+            or ParamRef is None
+            or not IsPayloadMap(ZeroFrame)
+        ):
+            return ()
+        PoseValue = PlanePoseExpr(
+            PlanValue.AxisOrigin,
+            Target.RotationAxis,
+            Target.ZeroFrame.origin,
+            Quaternion(ZeroFrame),
+            ParamRef,
+        )
+        Bindings.append((Plane, StepValue, ExpressionProp([("Placement", PoseValue)])))
+    for Plane, StepValue, Expression in Bindings:
+        ReplaceNameMut(Plane.properties, "ExpressionEngine", Expression)
+        Plane.dependencies.append(Context.ParamSheet.name)
+        StepValue.properties.append(
+            LinkProp("ConstructionPlane", Plane.name, Dynamic=True)
+        )
+        StepValue.dependencies.append(Plane.name)
+    return tuple(Plane.name for Plane, _, _ in Bindings)
+
+
+# all profile endpoints define the sweep side even when the axis touches a corner
+def GetProfLines(Sketch: Object) -> tuple[int, ...]:
+    GeometryValue = next(
+        (Value for Value in Sketch.properties if Value.get("name") == "Geometry"), None
+    )
+    if GeometryValue is None:
+        return ()
+    return tuple(
+        Index
+        for Index, Value in enumerate(GeometryValue.findall("./GeometryList/Geometry"))
+        if Value.get("type") == NeutralGeomTypeIdByKind["line"]
+    )
+
+
+# the hidden native edge follows both original construction line endpoints
+def BindRevAxis(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    SketchId: str,
+    LineId: str,
+    Reverse: bool,
+) -> tuple[str, int] | None:
+    NameValue = Geometry.SketchNames.get(SketchId)
+    AxisSketch = next(
+        (Value for Value in Context.Graph.Objects if Value.name == NameValue), None
+    )
+    SketchData = next(
+        (Value for Value in Geometry.SketchItems if Value.get("id") == SketchId), None
+    )
+    if AxisSketch is None or AxisSketch.type_id != SketchTypeId or SketchData is None:
+        return None
+    LineData = next(
+        (
+            Value
+            for Value in Items(SketchData.get("entities", []))
+            if Value.get("id") == LineId
+        ),
+        None,
+    )
+    LineGeom = LineData.get("geometry") if LineData is not None else None
+    GeometryValue, Indices, Diagnostics = GeomProp(SketchData)
+    LineIndex = Indices.get(LineId)
+    if (
+        LineData is None
+        or not IsPayloadMap(LineGeom)
+        or Diagnostics
+        or LineIndex is None
+    ):
+        return None
+    First, Second = (2, 1) if Reverse else (1, 2)
+    if Reverse:
+        LineGeom = {**LineGeom, "start": LineGeom["end"], "end": LineGeom["start"]}
+    GeomList = GeometryValue[0]
+    Guide = len(GeomList)
+    AppendGeomMut(
+        GeomList,
+        Indices,
+        Diagnostics,
+        set(),
+        Guide,
+        {
+            **LineData,
+            "id": "kit-axis-guide",
+            "construction": False,
+            "geometry": LineGeom,
+        },
+    )
+    if Diagnostics or len(GeomList) != Guide + 1:
+        return None
+    GeomList.set("count", str(len(GeomList)))
+    Constraints, _, _, _ = ConstraintsProp(
+        SketchData,
+        Indices,
+        Context.Parameters,
+        IncludeIncidence=True,
+        ExtraIncidence=(
+            ((Guide, 1), (LineIndex, First)),
+            ((Guide, 2), (LineIndex, Second)),
+        ),
+    )
+    ReplaceNameMut(AxisSketch.properties, "Geometry", GeometryValue)
+    ReplaceNameMut(AxisSketch.properties, "Constraints", Constraints)
+    return AxisSketch.name, Guide
 
 
 # this definition exists because solidworks fillets require nonexecuting topology carriers
@@ -7326,9 +7868,27 @@ def AddFeatureMut(
 
 # this definition exists because timeline features must preserve their source ordering
 def AddFeaturesMut(
-    Context: DocContext, Geometry: DocGeometry, Features: DocFeatures
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    EditPlan: tuple[str, EditExtrude | EditRevolve | PlaneRevPlan | AxisRevPlan] | None,
+    ShapeData: bytes,
 ) -> None:
     for Feature in Features.FeatureItems:
+        if EditPlan is not None and Feature.get("id") == EditPlan[0]:
+            FeatureInfo = FeatureDataOf(Geometry, Features, Feature)
+            PlanValue = EditPlan[1]
+            Added = (
+                HasEditExtMut(
+                    Context, Geometry, Features, FeatureInfo, PlanValue, ShapeData
+                )
+                if isinstance(PlanValue, EditExtrude)
+                else HasEditRevMut(
+                    Context, Geometry, Features, FeatureInfo, PlanValue, ShapeData
+                )
+            )
+            if Added:
+                continue
         AddFeatureMut(Context, Geometry, Features, Feature)
 
 
@@ -7346,6 +7906,11 @@ def BodyMembers(
     while Pending:
         FeatureId = Pending.pop()
         if FeatureId in MemberIds or FeatureId not in FeatureById:
+            continue
+        if (
+            FeatureId == Features.EditableBodySeed
+            and FinalFeatureId == Features.EditableRevId
+        ):
             continue
         MemberIds.add(FeatureId)
         Pending.extend(
@@ -7377,8 +7942,11 @@ def AddBodyMut(
 ) -> None:
     BodyId = TextAction(BodyValue.get("id"))
     FinalFeatureId = TextAction(BodyValue.get("final_feature_id"))
-    FinalFeature = Features.FeatureNames.get(FinalFeatureId, Features.CurrentName)
-    Members = BodyMembers(Geometry, Features, FinalFeatureId)
+    ScaleTip = Features.ScaleBodyTips.get(BodyId)
+    FinalFeature = ScaleTip or Features.FeatureNames.get(
+        FinalFeatureId, Features.CurrentName
+    )
+    Members = [] if ScaleTip else BodyMembers(Geometry, Features, FinalFeatureId)
     NativeBody = FreecadAttrs(BodyValue)
     NativeName = TextAction(NativeBody.get("name"))
     ObjValue = Context.NativeGraph.get(NativeName) if Context.NativeReplay else None
@@ -7413,6 +7981,8 @@ def AddBodyMut(
                 StringProp("MaterialId", MaterialId, Dynamic=True)
             )
         ObjValue.dependencies.extend(Members)
+        if ScaleTip:
+            ObjValue.dependencies.append(ScaleTip)
     Features.BodyNames[BodyId] = ObjValue.name
     Features.BodyTargets[BodyId] = FinalFeature or ObjValue.name
     Features.BodyObjects.append(ObjValue.name)
@@ -7431,11 +8001,16 @@ def SelectTargets(
     Context: DocContext,
     TargetById: Mapping[str, str],
     Selection: Mapping[str, object],
+    BodyAxisTarget: tuple[str, str, str] | None = None,
 ) -> tuple[list[tuple[str, str]], list[str]]:
     Targets: list[tuple[str, str]] = []
     EntityKinds: list[str] = []
     for PathItem in Items(Selection.get("path", [])):
         EntityId = TextAction(PathItem.get("entity_id"))
+        if BodyAxisTarget is not None and EntityId == BodyAxisTarget[0]:
+            Targets.append((BodyAxisTarget[1], BodyAxisTarget[2]))
+            EntityKinds.append(TextAction(PathItem.get("entity_kind")))
+            continue
         Target = TargetById.get(EntityId, Context.NativeTargets.get(EntityId, ""))
         if not Target:
             continue
@@ -7455,7 +8030,9 @@ def AddSelectionMut(
     ObjValue = Context.Graph.add(
         "App::FeaturePython", Selection.get("name", SelectionId), "Selection"
     )
-    Targets, EntityKinds = SelectTargets(Context, TargetById, Selection)
+    Targets, EntityKinds = SelectTargets(
+        Context, TargetById, Selection, Features.BodyAxisTarget
+    )
     ObjValue.properties.extend(
         [
             StringProp("Label", Selection.get("name", SelectionId)),
@@ -7761,15 +8338,26 @@ def AddPayloadsMut(Context: DocContext, Features: DocFeatures) -> None:
 
 
 # this definition exists because document representations must follow native payload object creation
-def AddRepresentMut(Context: DocContext, Features: DocFeatures) -> None:
-    Features.DocBreps, NeutralShape = AddBrepMut(
-        Context.Graph,
-        Context.Manifest,
-        Features.PayloadEntries,
-        Features.CurrentName,
-    )
-    if NeutralShape:
-        Features.FinalShapeFile = NeutralShape
+def AddRepresentMut(
+    Context: DocContext,
+    Features: DocFeatures,
+    NeutralDoc: CadDoc | None,
+    ShapeData: bytes,
+) -> None:
+    if not (
+        Features.EditableFeatureId
+        or Features.EditableRevId
+        or Features.EditableScaleSteps
+    ):
+        Features.DocBreps, NeutralShape = AddBrepMut(
+            Context.Graph,
+            NeutralDoc,
+            ShapeData,
+            Features.PayloadEntries,
+            Features.CurrentName,
+        )
+        if NeutralShape:
+            Features.FinalShapeFile = NeutralShape
     Features.DocMeshes = AddMeshesMut(
         Context.Graph,
         Context.Manifest,
@@ -7815,9 +8403,12 @@ def SetDocGroupsMut(
     SetDocGroupMut(
         Context.ConfigsGroup, "Configurations", Features.ConfigObjects, False
     )
-    SetDocGroupMut(
-        Context.TimelineGroup, "Feature Timeline", Features.FeatureObjects, True
+    TimelineLabel = (
+        "Construction Planes"
+        if Context.TimelineGroup.name == KDatumGroup
+        else "Feature Timeline"
     )
+    SetDocGroupMut(Context.TimelineGroup, TimelineLabel, Features.FeatureObjects, True)
     SetDocGroupMut(
         Context.BodiesGroup,
         "Bodies",
@@ -7883,6 +8474,32 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
             ),
         ]
     )
+    if Features.EditableFeatureId:
+        Context.MetaObject.properties.append(
+            StringProp(KEditableBinding, Features.EditableFeatureId, Dynamic=True)
+        )
+    if Features.EditableProfileId:
+        Context.MetaObject.properties.append(
+            StringProp(KProfileBinding, Features.EditableProfileId, Dynamic=True)
+        )
+    if Features.EditableScaleSteps:
+        Context.MetaObject.properties.append(
+            StringProp(KScaleBinding, Features.EditableScaleSteps[-1], Dynamic=True)
+        )
+    if Features.EditableRevId:
+        Context.MetaObject.properties.append(
+            StringProp(
+                Features.RevBinding,
+                Features.EditableRevId,
+                Dynamic=True,
+            )
+        )
+    if not Context.NativeReplay and CanEditSheet(
+        Context.Manifest, Context.ParametersData, Context.Parameters.FusionExpressions
+    ):
+        Context.MetaObject.properties.append(
+            StringProp(KFormulaSheetBinding, Context.ParamSheet.name, Dynamic=True)
+        )
 
 
 # this definition exists because replayed external links must use newly written archive paths
@@ -8029,8 +8646,23 @@ def SerializeDoc(Context: DocContext, Features: DocFeatures) -> bytes:
     return XmlValue + b"\n"
 
 
+# only the final timeline step can own the single native revolution solid
+def ReadArchiveRev(
+    DocValue: CadDoc | None,
+) -> tuple[str, EditRevolve | PlaneRevPlan | AxisRevPlan] | None:
+    if DocValue is None or not DocValue.feature_timeline:
+        return None
+    FeatureValue = DocValue.feature_timeline[-1]
+    PlanValue = (
+        ReadEditRevolve(DocValue, FeatureValue)
+        or ReadPlaneRev(DocValue, FeatureValue)
+        or ReadAxisRev(DocValue, FeatureValue)
+    )
+    return (FeatureValue.id, PlanValue) if PlanValue is not None else None
+
+
 # this definition exists because document conversion coordinates each ordered graph and payload phase
-def BuildDocXml(
+def BuildDocCoreMut(
     Manifest: Mapping[str, object],
     ManifestData: str,
     ManifestShaTwoFiveSix: str,
@@ -8038,7 +8670,20 @@ def BuildDocXml(
     NativeOuterLinks: Mapping[str, str] | None = None,
     DocTimestamp: str = "1980-01-01T00:00:00Z",
     TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
+    EditableFeatures: set[str] | None = None,
+    *,
+    EmitDatums: (
+        Callable[[DocContext, DocGeometry, DocFeatures, Mapping[str, BoundDatum]], None]
+        | None
+    ) = None,
+    EmitBodyRev: (
+        Callable[[DocContext, DocGeometry, DocFeatures, CadDoc | None], bool] | None
+    ) = None,
+    EmitScale: (
+        Callable[[DocContext, DocGeometry, DocFeatures, CadDoc | None], bool] | None
+    ) = None,
 ) -> tuple[bytes, dict[str, bytes]]:
+    Datums = ReadSavedDatums(Manifest) if EditableFeatures is not None else {}
     Context = BuildDocContext(
         Manifest,
         ManifestData,
@@ -8047,103 +8692,86 @@ def BuildDocXml(
         NativeOuterLinks,
         DocTimestamp,
         TrustedNativeBreps,
+        KDatumGroup if Datums else "FeatureTimeline",
     )
     Geometry = BuildDocGeom(Context)
     Features = BuildDocItems(Context)
-    AddPlanesMut(Context, Geometry)
+    NeutralDoc, ShapeData = ReadNeutralBrep(Manifest)
+    EditPlan = (
+        ReadArchiveEdit(NeutralDoc) or ReadArchiveRev(NeutralDoc)
+        if EditableFeatures is not None and not Context.NativeValues
+        else None
+    )
+    if not Datums:
+        AddPlanesMut(Context, Geometry)
     AddSketchesMut(Context, Geometry)
     AddEntryDataMut(Context, Features)
-    AddFeaturesMut(Context, Geometry, Features)
+    if Datums and EmitDatums is not None:
+        EmitDatums(Context, Geometry, Features, Datums)
+    elif not (
+        EditableFeatures is not None
+        and not Context.NativeValues
+        and EditPlan is None
+        and (
+            (
+                EmitBodyRev is not None
+                and EmitBodyRev(Context, Geometry, Features, NeutralDoc)
+            )
+            or (
+                EmitScale is not None
+                and EmitScale(Context, Geometry, Features, NeutralDoc)
+            )
+        )
+    ):
+        AddFeaturesMut(Context, Geometry, Features, EditPlan, ShapeData)
+    AddDocViewsMut(Context, Geometry, Features, NeutralDoc, ShapeData)
+    if (
+        Context.SourceFormat == "fusion.f3d"
+        and not Context.NativeReplay
+        and Geometry.SketchItems
+        and IsSketchWire(Manifest)
+    ):
+        Context.MetaObject.properties.append(
+            StringProp(KSketchEditBinding, Context.SketchesGroup.name, Dynamic=True)
+        )
+    XmlData = SerializeDoc(Context, Features)
+    if EditableFeatures is not None:
+        CollectEditsMut(EditableFeatures, Features, Datums)
+    return (XmlData, Features.PayloadEntries)
+
+
+# document views and representations depend on the complete emitted feature inventory
+def AddDocViewsMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    NeutralDoc: CadDoc | None,
+    ShapeData: bytes,
+) -> None:
     AddBodiesMut(Context, Geometry, Features)
     AddSelectMut(Context, Geometry, Features)
     AddConfigsMut(Context, Features)
     AddPayloadsMut(Context, Features)
-    AddRepresentMut(Context, Features)
+    AddRepresentMut(Context, Features, NeutralDoc, ShapeData)
     SetDocGroupsMut(Context, Geometry, Features)
     SetOuterMut(Context, Features)
-    return (SerializeDoc(Context, Features), Features.PayloadEntries)
 
 
-# this definition exists because focused behavior needs one stable owner
-def ZipEntry(NameValue: str, DataValue: bytes) -> tuple[Zipfile.ZipInfo, bytes]:
-    InfoValue = Zipfile.ZipInfo(NameValue, (1980, 1, 1, 0, 0, 0))
-    setattr(InfoValue, "compress_type", Zipfile.ZIP_DEFLATED)
-    setattr(InfoValue, "external_attr", 384 << 16)
-    setattr(InfoValue, "create_system", 3)
-    return (InfoValue, DataValue)
-
-
-# this definition exists because focused behavior needs one stable owner
-def BuildFcstd(
-    Manifest: Mapping[str, object],
-    OuterLinks: Mapping[str, Mapping[str, object]] | None = None,
-    NativeOuterLinks: Mapping[str, str] | None = None,
-    DocTimestamp: str | None = None,
-    TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
-) -> bytes:
-    Canonical = CanonicalJson(Manifest)
-    Digest = Hashlib.sha256(Canonical).hexdigest()
-    Embedded = BaseSixFour.b64encode(ZlibValue.compress(Canonical, 9)).decode("ascii")
-    DocXml, PayloadEntries = BuildDocXml(
-        Manifest,
-        Embedded,
-        Digest,
-        OuterLinks,
-        NativeOuterLinks,
-        DocTimestamp or "1980-01-01T00:00:00Z",
-        TrustedNativeBreps,
-    )
-    Output = IoStream.BytesIO()
-    with Zipfile.ZipFile(Output, "w", allowZip64=True) as Archive:
-        Archive.writestr(*ZipEntry(KDocEntry, DocXml))
-        MetaValue = Manifest.get("metadata")
-        FreecadValue = MetaValue.get("freecad") if IsPayloadMap(MetaValue) else None
-        FreecadMeta: Mapping[str, object] = (
-            FreecadValue if IsPayloadMap(FreecadValue) else {}
+# only emitted native edits enter the caller editable feature inventory
+def CollectEditsMut(
+    EditableFeatures: set[str], Features: DocFeatures, Datums: Mapping[str, object]
+) -> None:
+    EditableFeatures.update(
+        Value
+        for Value in (
+            Features.EditableFeatureId,
+            Features.EditableBodySeed,
+            Features.EditableRevId,
+            *Features.EditablePlaneSteps,
+            *Features.EditableScaleSteps,
+            *Datums,
         )
-        EntryOrder = Sequence(FreecadMeta.get("entry_order", []))
-        Written: set[str] = set()
-        for Value in EntryOrder:
-            Entry = TextAction(Value)
-            if Entry in PayloadEntries and Entry not in Written:
-                Archive.writestr(*ZipEntry(Entry, PayloadEntries[Entry]))
-                Written.add(Entry)
-        Archive.writestr(*ZipEntry(KManifestEntry, Canonical + b"\n"))
-        for Entry, DataValue in sorted(PayloadEntries.items()):
-            if Entry in Written:
-                continue
-            Archive.writestr(*ZipEntry(Entry, DataValue))
-    return Output.getvalue()
-
-
-# this definition exists because focused behavior needs one stable owner
-def BuildFcstdApi(
-    Manifest: Mapping[str, object],
-    OuterLinks: Mapping[str, Mapping[str, object]] | None = None,
-    NativeOuterLinks: Mapping[str, str] | None = None,
-    DocTimestamp: str | None = None,
-    TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
-    **LegacyValues: object,
-) -> bytes:
-    LegacyCopy = dict(LegacyValues)
-    OuterLinks = PayloadMapMap(LegacyCopy.pop("external_links", OuterLinks))
-    NativeOuterLinks = PayloadStrMap(
-        LegacyCopy.pop("native_external_links", NativeOuterLinks)
-    )
-    TimestampValue = LegacyCopy.pop("document_timestamp", DocTimestamp)
-    if TimestampValue is not None and not isinstance(TimestampValue, str):
-        raise TypeError("document timestamp must be text")
-    DocTimestamp = TimestampValue
-    TrustedNativeBreps = PayloadBrepKeys(
-        LegacyCopy.pop("trusted_native_breps", TrustedNativeBreps)
-    )
-    if LegacyCopy:
-        Unexpected = next(iter(LegacyCopy))
-        raise TypeError(
-            f"build_fcstd_archive() got an unexpected keyword argument {Unexpected!r}"
-        )
-    return BuildFcstd(
-        Manifest, OuterLinks, NativeOuterLinks, DocTimestamp, TrustedNativeBreps
+        if Value
     )
 
 
@@ -8205,37 +8833,40 @@ def CanonicalJson(Value: Mapping[str, object]) -> bytes:
     ).encode("utf-8")
 
 
-# this definition exists because focused behavior needs one stable owner
+# native edit readback and manifest extraction share one validated document tree
+def ReadZipManifest(
+    Archive: Zipfile.ZipFile,
+    Members: Mapping[str, Zipfile.ZipInfo],
+    RootValue: XmlTree.Element,
+) -> dict[str, object]:
+    XmlManifest = DocXmlManifest(RootValue)
+    if KManifestEntry not in Members:
+        if XmlManifest is None:
+            raise ValueError("FCStd archive has no embedded Kit interchange document")
+        return ManifestMapping(XmlManifest)
+    try:
+        RawManifest = Archive.read(Members[KManifestEntry])
+    except (
+        OSError,
+        RuntimeError,
+        NotImplementedError,
+        Zipfile.BadZipFile,
+    ) as ErrorInfo:
+        raise ValueError("embedded Kit interchange document is corrupt") from ErrorInfo
+    Manifest = ManifestMapping(RawManifest)
+    if XmlManifest is not None:
+        Secondary = ManifestMapping(XmlManifest)
+        if CanonicalJson(Manifest) != CanonicalJson(Secondary):
+            raise ValueError("embedded Kit interchange document copies do not match")
+    return Manifest
+
+
+# callers inspecting the source snapshot still use the same archive validation
 def ExtractManifest(DataValue: bytes) -> dict[str, object]:
     Archive, Members = Validated(DataValue)
     with Archive:
         RootValue, _ = ValidatedDocXml(Archive, Members)
-        XmlManifest = DocXmlManifest(RootValue)
-        if KManifestEntry not in Members:
-            if XmlManifest is None:
-                raise ValueError(
-                    "FCStd archive has no embedded Kit interchange document"
-                )
-            return ManifestMapping(XmlManifest)
-        try:
-            RawManifest = Archive.read(Members[KManifestEntry])
-        except (
-            OSError,
-            RuntimeError,
-            NotImplementedError,
-            Zipfile.BadZipFile,
-        ) as ErrorInfo:
-            raise ValueError(
-                "embedded Kit interchange document is corrupt"
-            ) from ErrorInfo
-        Manifest = ManifestMapping(RawManifest)
-        if XmlManifest is not None:
-            Secondary = ManifestMapping(XmlManifest)
-            if CanonicalJson(Manifest) != CanonicalJson(Secondary):
-                raise ValueError(
-                    "embedded Kit interchange document copies do not match"
-                )
-        return Manifest
+        return ReadZipManifest(Archive, Members, RootValue)
 
 
 # this binding exists because shared behavior needs one stable value
@@ -8396,9 +9027,6 @@ base64 = BaseSixFour
 
 # this binding exists because shared behavior needs one stable value
 brep_model_brep = BrepModelBrep
-
-# this binding exists because shared behavior needs one stable value
-build_fcstd_archive = BuildFcstdApi
 
 # this binding exists because shared behavior needs one stable value
 copy = CopyValue

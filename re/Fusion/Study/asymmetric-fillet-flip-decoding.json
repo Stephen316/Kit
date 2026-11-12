@@ -1,0 +1,370 @@
+{
+  "scope": "Three actual owned-document straight-edge asymmetric fillets, unequal offsets false/true and swapped-offset false control; focused saved-file checks only",
+  "interface": "decode_asymmetric_fillet_flips(data,records,features)->decoded/unresolved/scope; decode_asymmetric_fillet(data,records,body,feature) reuses shared decoder through asymmetric_radius_decoder callback",
+  "integration": "Attach summary and same-feature tool_settings only on successful rows, retaining existing exact topology warnings; shared default behavior remains unchanged",
+  "capture_provenance": {
+    "file": "asymmetricfilletflips-b09b81df3c08/ground_truth.json",
+    "sha256": "36e073b2289f6c38e8568fd5ee82de863c95a8846e84c18d30d9a285ac4d6810",
+    "executed_generator_sha256": "70f04b5e428aaf7f2286f9ca5c49c5e4dac0f1c57003c230ab406af6de5f5088",
+    "exact_executed_source_snapshot": "asymmetricfilletflips-b09b81df3c08/executed-generator-source.txt"
+  },
+  "schema": {
+    "definition_body_length": 88,
+    "mode_prefix_offsets2_through4_hex": "010000",
+    "flip_bool_offset": 5,
+    "common_flags": "byte6 continuity and byte7 tangent-chain remain shared; selection/offset/weight references and trailer remain existing parser structure",
+    "offset_parameter_roles": [
+      "EdgeOffset1",
+      "EdgeOffset2"
+    ],
+    "meaning": "Actual API isFlipped reverses application of two offsets; world-side/native-edge traversal mapping unknown"
+  },
+  "samples": [
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/unequal_default_false.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 294,
+            "tool_settings": {
+              "rolling_ball_corner": false,
+              "edge_sets": [
+                {
+                  "definition_record_object_id": 295,
+                  "tangent_chain": false,
+                  "continuity": 2,
+                  "kind": "AsymmetricFilletEdgeSet",
+                  "offsetOne": {
+                    "value": 0.12,
+                    "role": "EdgeOffset1",
+                    "name": "d4",
+                    "binding_object_id": 307
+                  },
+                  "offsetTwo": {
+                    "value": 0.27999999999999997,
+                    "role": "EdgeOffset2",
+                    "name": "d5",
+                    "binding_object_id": 310
+                  },
+                  "isFlipped": false,
+                  "flip_scope": "Observed native boolean reverses API offset directions; no world/ASM side mapping inferred",
+                  "tangencyWeight": {
+                    "value": 1.0,
+                    "role": "TangencyWeight",
+                    "name": "d3",
+                    "binding_object_id": 304
+                  },
+                  "selection_record_object_id": 296
+                }
+              ],
+              "input_selection_status": "Actual fillet edge/face topology unresolved"
+            },
+            "scope": "Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": false,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 2,
+            "kind": "AsymmetricFilletEdgeSet",
+            "offsetOne": {
+              "value": 0.12,
+              "role": "EdgeOffset1",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "offsetTwo": {
+              "value": 0.27999999999999997,
+              "role": "EdgeOffset2",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "isFlipped": false,
+            "flip_scope": "Observed native boolean reverses API offset directions; no world/ASM side mapping inferred",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 304
+            },
+            "selection_record_object_id": 296
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "definition_body_hex": "00000100000001000000012801000000000000000000013301000000000000000001360100000000000000000000000000000000000000000000000000000000000000000000000000013001000000000000000000000000",
+      "exact_payload_replay": true,
+      "source_before_rollback_getters_agree": true,
+      "actual_API_isFlipped": false,
+      "normalization": {
+        "requested_rolling_ball_corner": true,
+        "actual_rolling_ball_corner": false,
+        "input_continuity": 1,
+        "actual_continuity": 2
+      },
+      "actual_health_state": 0,
+      "owned_document_close_result": true
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/unequal_flipped_true.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 294,
+            "tool_settings": {
+              "rolling_ball_corner": false,
+              "edge_sets": [
+                {
+                  "definition_record_object_id": 295,
+                  "tangent_chain": false,
+                  "continuity": 2,
+                  "kind": "AsymmetricFilletEdgeSet",
+                  "offsetOne": {
+                    "value": 0.12,
+                    "role": "EdgeOffset1",
+                    "name": "d4",
+                    "binding_object_id": 307
+                  },
+                  "offsetTwo": {
+                    "value": 0.27999999999999997,
+                    "role": "EdgeOffset2",
+                    "name": "d5",
+                    "binding_object_id": 310
+                  },
+                  "isFlipped": true,
+                  "flip_scope": "Observed native boolean reverses API offset directions; no world/ASM side mapping inferred",
+                  "tangencyWeight": {
+                    "value": 1.0,
+                    "role": "TangencyWeight",
+                    "name": "d3",
+                    "binding_object_id": 304
+                  },
+                  "selection_record_object_id": 296
+                }
+              ],
+              "input_selection_status": "Actual fillet edge/face topology unresolved"
+            },
+            "scope": "Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": false,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 2,
+            "kind": "AsymmetricFilletEdgeSet",
+            "offsetOne": {
+              "value": 0.12,
+              "role": "EdgeOffset1",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "offsetTwo": {
+              "value": 0.27999999999999997,
+              "role": "EdgeOffset2",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "isFlipped": true,
+            "flip_scope": "Observed native boolean reverses API offset directions; no world/ASM side mapping inferred",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 304
+            },
+            "selection_record_object_id": 296
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "definition_body_hex": "00000100000101000000012801000000000000000000013301000000000000000001360100000000000000000000000000000000000000000000000000000000000000000000000000013001000000000000000000000000",
+      "exact_payload_replay": true,
+      "source_before_rollback_getters_agree": true,
+      "actual_API_isFlipped": true,
+      "normalization": {
+        "requested_rolling_ball_corner": true,
+        "actual_rolling_ball_corner": false,
+        "input_continuity": 1,
+        "actual_continuity": 2
+      },
+      "actual_health_state": 0,
+      "owned_document_close_result": true
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 294,
+            "tool_settings": {
+              "rolling_ball_corner": false,
+              "edge_sets": [
+                {
+                  "definition_record_object_id": 295,
+                  "tangent_chain": false,
+                  "continuity": 2,
+                  "kind": "AsymmetricFilletEdgeSet",
+                  "offsetOne": {
+                    "value": 0.27999999999999997,
+                    "role": "EdgeOffset1",
+                    "name": "d4",
+                    "binding_object_id": 307
+                  },
+                  "offsetTwo": {
+                    "value": 0.12,
+                    "role": "EdgeOffset2",
+                    "name": "d5",
+                    "binding_object_id": 310
+                  },
+                  "isFlipped": false,
+                  "flip_scope": "Observed native boolean reverses API offset directions; no world/ASM side mapping inferred",
+                  "tangencyWeight": {
+                    "value": 1.0,
+                    "role": "TangencyWeight",
+                    "name": "d3",
+                    "binding_object_id": 304
+                  },
+                  "selection_record_object_id": 296
+                }
+              ],
+              "input_selection_status": "Actual fillet edge/face topology unresolved"
+            },
+            "scope": "Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": false,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 2,
+            "kind": "AsymmetricFilletEdgeSet",
+            "offsetOne": {
+              "value": 0.27999999999999997,
+              "role": "EdgeOffset1",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "offsetTwo": {
+              "value": 0.12,
+              "role": "EdgeOffset2",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "isFlipped": false,
+            "flip_scope": "Observed native boolean reverses API offset directions; no world/ASM side mapping inferred",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 304
+            },
+            "selection_record_object_id": 296
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "definition_body_hex": "00000100000001000000012801000000000000000000013301000000000000000001360100000000000000000000000000000000000000000000000000000000000000000000000000013001000000000000000000000000",
+      "exact_payload_replay": true,
+      "source_before_rollback_getters_agree": true,
+      "actual_API_isFlipped": false,
+      "normalization": {
+        "requested_rolling_ball_corner": true,
+        "actual_rolling_ball_corner": false,
+        "input_continuity": 1,
+        "actual_continuity": 2
+      },
+      "actual_health_state": 0,
+      "owned_document_close_result": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "Flip byte is not boolean",
+      "reason": "Unsupported asymmetric fillet mode/flip framing"
+    },
+    {
+      "case": "Unknown asymmetric mode prefix",
+      "reason": "Unsupported fillet edge-set mode or layout"
+    },
+    {
+      "case": "Edge set index disagrees with feature order",
+      "reason": "Fillet edge-set index disagrees with feature list order"
+    },
+    {
+      "case": "Nonzero definition trailer",
+      "reason": "Unsupported fillet edge-set trailer"
+    },
+    {
+      "case": "Selection proxy owner differs from feature",
+      "reason": "Edge-set selection owner disagrees with feature"
+    },
+    {
+      "case": "Offset binding has wrong role",
+      "reason": "Edge-set binding does not resolve: EdgeOffset1"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "file": "edgemodes-87edbf67527b/fillet_constant.f3d",
+      "default_dictionary_exact": true,
+      "no_new_summary": true
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_variable.f3d",
+      "default_dictionary_exact": true,
+      "no_new_summary": true
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "default_dictionary_exact": true,
+      "no_new_summary": true
+    }
+  ],
+  "limitations": [
+    "Actual source getter geometry before consumption and under rollback corroborates the controlled source; it does not establish a serialized ASM edge identity.",
+    "Flip meaning is the documented API offset reversal; no absolute world direction, selected face ordering, topology generation or radius interpolation law is claimed.",
+    "Existing numeric parameter bindings/common fillet owner checks are reused. No setter request is promoted over actual feature getters."
+  ],
+  "contrasts": {
+    "same_offsets_false_vs_true_differing_native_byte_offsets": [
+      5
+    ],
+    "swapped_offsets_control_has_identical_definition_reference_bytes": true,
+    "swapped_offsets_are_numeric_binding_values_not_flip_encoding": true,
+    "actual_API_flip_sequence": [
+      false,
+      true,
+      false
+    ],
+    "actual_normalization": "All three input continuity1\u2192actual2 and rollingBall requestTrue\u2192actualFalse; decoded native values agree actual feature getters"
+  },
+  "summary": {
+    "actual_exports": 3,
+    "decoded_flip_false": 2,
+    "decoded_flip_true": 1,
+    "actual_parameter_role_name_value_matches": 9,
+    "exact_definition_replays": 3,
+    "source_getter_controls": 3,
+    "actual_normalization_controls": 3,
+    "malformed_guards": 6,
+    "legacy_default_controls": 3,
+    "all_owned_documents_closed_true": true
+  }
+}

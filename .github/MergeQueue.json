@@ -1,0 +1,99 @@
+{
+  "name": "Merge queue",
+  "target": "branch",
+  "enforcement": "active",
+  "bypass_actors": [],
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "merge_queue",
+      "parameters": {
+        "check_response_timeout_minutes": 90,
+        "grouping_strategy": "ALLGREEN",
+        "max_entries_to_build": 2,
+        "max_entries_to_merge": 1,
+        "merge_method": "SQUASH",
+        "min_entries_to_merge": 1,
+        "min_entries_to_merge_wait_minutes": 0
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "do_not_enforce_on_create": false,
+        "strict_required_status_checks_policy": false,
+        "required_status_checks": [
+          {
+            "context": "CI Agg",
+            "integration_id": 15368
+          },
+          {
+            "context": "Ruff",
+            "integration_id": 15368
+          },
+          {
+            "context": "Black",
+            "integration_id": 15368
+          },
+          {
+            "context": "Pyright",
+            "integration_id": 15368
+          },
+          {
+            "context": "Mypy",
+            "integration_id": 15368
+          },
+          {
+            "context": "Python steering",
+            "integration_id": 15368
+          },
+          {
+            "context": "Reject Python wildcard imports",
+            "integration_id": 15368
+          },
+          {
+            "context": "Verify path policies",
+            "integration_id": 15368
+          },
+          {
+            "context": "Verify repository skill",
+            "integration_id": 15368
+          },
+          {
+            "context": "Verify immutable workflow dependencies",
+            "integration_id": 15368
+          },
+          {
+            "context": "Verify changed file headers",
+            "integration_id": 15368
+          },
+          {
+            "context": "Merge queue acceptance",
+            "integration_id": 15368
+          },
+          {
+            "context": "Verify rationale comments on changed sources",
+            "integration_id": 15368
+          },
+          {
+            "context": "Zizmor",
+            "integration_id": 15368
+          },
+          {
+            "context": "actionlint",
+            "integration_id": 15368
+          },
+          {
+            "context": "Verify CI policy and pytest compatibility",
+            "integration_id": 15368
+          }
+        ]
+      }
+    }
+  ]
+}

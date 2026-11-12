@@ -1,0 +1,545 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "distance_positive.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": 1.7000000000000002
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.7000000000000002
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "distance_negative.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": -1.7000000000000002
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          -1.7000000000000002
+        ],
+        [
+          1.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -1.7000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "offset_positive.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": 1.7000000000000002
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "OffsetStartDefinition",
+        "offset": 0.7000000000000001
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          0.7000000000000001
+        ],
+        [
+          1.0,
+          1.0,
+          2.4000000000000004
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ProfileOffset",
+          "value": 0.7000000000000001,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "offset_negative.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": 1.7000000000000002
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "OffsetStartDefinition",
+        "offset": -0.9
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          -0.9
+        ],
+        [
+          1.0,
+          1.0,
+          0.8000000000000002
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ProfileOffset",
+          "value": -0.9,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "to_plane.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "ToEntityExtentDefinition",
+        "offset": 0.0,
+        "isChained": false,
+        "entity_name": "TargetPlane"
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0,
+          3.0
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "TargetPlane"
+        },
+        {
+          "name": "d3",
+          "role": "Side1Offset",
+          "value": 0.0,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "to_plane_offset.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "ToEntityExtentDefinition",
+        "offset": 0.4,
+        "isChained": false,
+        "entity_name": "TargetPlane"
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0,
+          3.4
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "TargetPlane"
+        },
+        {
+          "name": "d3",
+          "role": "Side1Offset",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "from_plane.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": 1.7000000000000002
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "FromEntityStartDefinition",
+        "offset": 0.5,
+        "entity_name": "TargetPlane"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -1.0,
+          -1.0,
+          3.5
+        ],
+        [
+          1.0,
+          1.0,
+          5.2
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "TargetPlane"
+        },
+        {
+          "name": "d3",
+          "role": "ProfileOffset",
+          "value": 0.5,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d5",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "through_positive.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "ThroughAllExtentDefinition",
+        "isPositiveDirection": true
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -2.0,
+          -2.0,
+          -3.0
+        ],
+        [
+          2.0,
+          2.0,
+          3.0
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 6.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "through_negative.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "ThroughAllExtentDefinition",
+        "isPositiveDirection": true
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -2.0,
+          -2.0,
+          -3.0
+        ],
+        [
+          2.0,
+          2.0,
+          3.0
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 6.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "two_sided_mixed.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": 1.1
+      },
+      "extent_two": {
+        "kind": "ThroughAllExtentDefinition",
+        "isPositiveDirection": true
+      },
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.0,
+      "body_bounds_cm": [
+        [
+          -2.0,
+          -2.0,
+          -3.0
+        ],
+        [
+          2.0,
+          2.0,
+          3.0
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 6.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.1,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d5",
+          "role": "Side2TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "taper.f3d",
+      "name": "ProbeExtrusion",
+      "extent_one": {
+        "kind": "DistanceExtentDefinition",
+        "distance": 1.7000000000000002
+      },
+      "extent_two": null,
+      "start": {
+        "kind": "ProfilePlaneStartDefinition"
+      },
+      "taper_one": 0.12217304763960307,
+      "body_bounds_cm": [
+        [
+          -1.2087337535349378,
+          -1.2087337535349378,
+          0.0
+        ],
+        [
+          1.2087337535349378,
+          1.2087337535349378,
+          1.7000000000000002
+        ]
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.7000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.12217304763960307,
+          "unit": "deg",
+          "created_by": "ProbeExtrusion"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

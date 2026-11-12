@@ -1,0 +1,37 @@
+from collections.abc import Mapping
+from dataclasses import replace as Replace
+from xml.etree.ElementTree import Element
+
+from convert.adapters.freecad.Archive import Items, ParamCatalog
+from convert.adapters.freecad.EditBinding import ReadEditBinding
+from convert.adapters.freecad.EditRead.EditSheet import EditCells
+from convert.adapters.freecad.EditRead.Formula.SheetLayout import CheckSheetShape
+from convert.adapters.freecad.EditRead.Formula.SheetScope import ReadSheetObject
+from convert.adapters.freecad.EditRead.Formula.StandaloneCells import ReadSavedSheet
+from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
+from convert.adapters.freecad.FormulaSheet.SheetScope import CanEditSheet
+from interchange.document.models.DocumentModel import CadDocument
+
+
+# bound spreadsheets can replace only the parameter values verified against their source graph
+def ReconcileSheet(
+    DocValue: CadDocument, Manifest: Mapping[str, object], RootValue: Element
+) -> CadDocument:
+    Binding = ReadEditBinding(RootValue, KFormulaSheetBinding)
+    if Binding is None:
+        return DocValue
+    RowValues = Items(Manifest.get("parameters", []))
+    Catalog = ParamCatalog(RowValues)
+    if Binding != "Parameters" or not CanEditSheet(
+        Manifest, RowValues, Catalog.FusionExpressions
+    ):
+        raise ValueError(
+            "FreeCAD editable spreadsheet binding disagrees with its source"
+        )
+    Sheet = ReadSheetObject(RootValue)
+    Cells = EditCells(Sheet, True)
+    CheckSheetShape(Sheet, Cells, Catalog)
+    Parameters = ReadSavedSheet(Cells, Catalog.Aliases, DocValue.parameters)
+    if Parameters is DocValue.parameters:
+        return DocValue
+    return Replace(DocValue, parameters=Parameters)

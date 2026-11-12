@@ -1,12 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
+from collections import Counter as CountValues
 from collections.abc import Callable, Collection, Iterable, Mapping, Sequence
 from contextlib import suppress as Suppress
 from dataclasses import replace as Replace
@@ -70,24 +63,31 @@ from convert.adapters.freecad.Archive import (
     MANIFEST_ENTRY as ManifestEntry,
     NATIVE_DOCUMENT_SHA256_ATTRIBUTE as KNativeDocHashAttr,
     NativeBrepKey,
+    ReadZipManifest,
     MAX_ENTRY_SIZE as MaxEntrySize,
     MAX_EXTERNAL_FILES as MaxOuterFiles,
     MAX_TOTAL_SIZE as MaxTotalSize,
     native_brep_key as ManifestNativeBrepKey,
     validated_archive_members as ValidatedArchiveMembers,
     validated_document_xml as ValidatedDocXml,
-    build_fcstd_archive as BuildFcstdArchive,
     extract_manifest_from_fcstd as ExtractManifestFromFcstd,
     native_expression_parts as NativeExpressionParts,
     native_shape_feature_count as NativeShapeFeatureCount,
     native_sketch_carrier_reasons as NativeSketchCarrier,
     native_sketch_parts as NativeSketchParts,
 )
+from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import (
+    build_fcstd_archive as BuildFcstdArchive,
+)
 from convert.adapters.freecad.Brep import (
     FreeCADBrepWriteError as FreeCadBrepWriteError,
     brep_model_brep as BrepModelBrep,
     proven_ascii_brep as ProvenAsciiBrep,
 )
+from convert.adapters.freecad.EditRead.Formula.ReconcileSheet import ReconcileSheet
+from convert.adapters.freecad.EditRead.Sketch.ReconcileSketch import ReconcileSketch
+from convert.adapters.freecad.EditPlaneRev.ReconcilePlaneRev import ReconcilePlane
+from convert.adapters.freecad.EditRev.ReconcileRev import ReconcileRev
 from convert.adapters.freecad.Format import (
     CAPABILITY_CARRIER_REASONS as CapabilityCarrierReasons,
     INFO as InfoValue,
@@ -104,6 +104,8 @@ from convert.adapters.freecad.Protocol import (
     MATE_WRITE_KINDS as MateWriteKinds,
     XML_TRUE_VALUES as XmlTrueValues,
 )
+from convert.adapters.freecad.ReconcileEdit import ReconcileEdit
+from interchange.features.FeatureBoundPlane import BoundDatum
 
 # shared empty set keeps parameter defaults free of repeated constructor calls
 KNoNativeBreps: frozenset[NativeBrepKey] = frozenset()
@@ -144,6 +146,17 @@ KFeatureWriteValues = frozenset((KindValue.value for KindValue in FeatureWriteKi
 
 # this binding exists because shared behavior needs one stable value
 KMateWriteValues = frozenset((KindValue.value for KindValue in MateWriteKinds))
+
+
+# known missing source constraints must count toward sketch transfer coverage
+KSketchRelIssues = frozenset(
+    {
+        "fusion.sketch.constraint.scope",
+        "fusion.sketch.constraint.unsupported",
+        "fusion.sketch.dimension.scope",
+        "fusion.sketch.dimension.unsupported",
+    }
+)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -665,7 +678,11 @@ def FeatureReasons(
     Feature: FeatureStep, SketchCarrierReasons: Mapping[str, CarrierReason]
 ) -> frozenset[CarrierReason]:
     KindValue = EnumText(Feature.EntityKind)
-    if Feature.IsSuppressed or KindValue == FeatureKind.REFERENCE.value:
+    if Feature.IsSuppressed:
+        return frozenset({CarrierReason.TARGET_UNSUPPORTED})
+    if isinstance(Feature.Definition, BoundDatum):
+        return frozenset({CarrierReason.WRITER_UNIMPLEMENTED})
+    if KindValue == FeatureKind.REFERENCE.value:
         return frozenset({CarrierReason.TARGET_UNSUPPORTED})
     if KindValue == FeatureKind.NATIVE.value:
         return frozenset({CarrierReason.SOURCE_OPAQUE})
@@ -684,6 +701,7 @@ def FeatureParts(
     DocValue: CadDocument,
     SketchNative: Mapping[str, bool],
     SketchCarrierReasons: Mapping[str, CarrierReason],
+    EditableFeatures: Collection[str],
 ) -> tuple[int, int, frozenset[CarrierReason]]:
     Features = FeatureSet(DocValue)
     if HasNativeGraph(DocValue) and DocValue.assembly is None:
@@ -691,11 +709,13 @@ def FeatureParts(
     Carrier = 0
     Reasons: set[CarrierReason] = set()
     for Feature in Features:
-        if CanWriteFeature(DocValue, Feature, SketchNative):
+        if Feature.EntityId in EditableFeatures or CanWriteFeature(
+            DocValue, Feature, SketchNative
+        ):
             continue
         Carrier += 1
         Reasons.update(FeatureReasons(Feature, SketchCarrierReasons))
-    return (len(Features), Carrier, frozenset(Reasons))
+    return (len(Features) - Carrier, Carrier, frozenset(Reasons))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1223,10 +1243,18 @@ def AddSketchMut(
     SketchReasons: dict[str, CarrierReason] = {}
     SketchParts = NativeSketchParts(Manifest)
     ReasonParts = NativeSketchCarrier(Manifest)
+    MissingRules = CountValues(
+        Value.entity_id
+        for Value in ItemValue.diagnostics
+        if Value.code in KSketchRelIssues
+    )
     for SketchValue, Counts, ReasonValues in zip(
         ItemValue.sketches, SketchParts, ReasonParts, strict=True
     ):
         NativeCount, CarrierCount = Counts
+        if MissingCount := MissingRules[SketchValue.id]:
+            CarrierCount += MissingCount
+            ReasonValues = ReasonValues | {CarrierReason.SOURCE_OPAQUE.value}
         Parts[Capability.EDITABLE_SKETCHES].extend(
             [True] * NativeCount + [False] * CarrierCount
         )
@@ -1247,10 +1275,11 @@ def AddBasicMut(
     SketchReasons: Mapping[str, CarrierReason],
     Parts: dict[Capability, list[bool]],
     CarrierReasons: dict[Capability, set[CarrierReason]],
+    EditableFeatures: Collection[str],
 ) -> None:
     Parts[Capability.PARAMETERS].extend(True for _ in ItemValue.parameters)
     NativeCount, CarrierCount, Reasons = FeatureParts(
-        ItemValue, SketchNative, SketchReasons
+        ItemValue, SketchNative, SketchReasons, EditableFeatures
     )
     Parts[Capability.PARAMETRIC_HISTORY].extend(
         [True] * NativeCount + [False] * CarrierCount
@@ -1414,6 +1443,7 @@ def AddDocPartsMut(
     TrustedNativeBreps: frozenset[NativeBrepKey],
     Parts: dict[Capability, list[bool]],
     CarrierReasons: dict[Capability, set[CarrierReason]],
+    EditableFeatures: Collection[str],
 ) -> None:
     SourceNative = HasNativeGraph(ItemValue)
     Manifest = DocToManifest(ItemValue)
@@ -1440,6 +1470,7 @@ def AddDocPartsMut(
         SketchReasons,
         Parts,
         CarrierReasons,
+        EditableFeatures,
     )
     AddGeomMut(
         ItemValue,
@@ -1474,6 +1505,7 @@ def CapabilityA(
     Portable: bool,
     Exact: bool,
     TrustedNativeBreps: frozenset[NativeBrepKey] = KNoNativeBreps,
+    EditableFeatures: Collection[str] = (),
 ) -> tuple[CapabilityTransfer, ...]:
     Required = DocValue.capabilities | InferCapabilities(
         DocValue,
@@ -1492,7 +1524,13 @@ def CapabilityA(
     }
     for ItemValue in DocTree(DocValue):
         AddDocPartsMut(
-            ItemValue, TargetPath, Portable, TrustedNativeBreps, Parts, CarrierReasons
+            ItemValue,
+            TargetPath,
+            Portable,
+            TrustedNativeBreps,
+            Parts,
+            CarrierReasons,
+            EditableFeatures if ItemValue is DocValue else (),
         )
     Parts[Capability.ROUNDTRIP_METADATA].append(False)
     return tuple(
@@ -2302,7 +2340,10 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
     DataValue = SourceBytes(Source)
     Native = False
     try:
-        Value = ExtractManifestFromFcstd(DataValue)
+        Archive, Members = ValidatedArchiveMembers(DataValue)
+        with Archive:
+            RootValue, _ = ValidatedDocXml(Archive, Members)
+            DocValue = ReadEmbedded(Archive, Members, RootValue)
     except ValueError as ErrorInfo:
         if str(ErrorInfo) != "FCStd archive has no embedded Kit interchange document":
             raise FreeCadAdapterA(str(ErrorInfo)) from ErrorInfo
@@ -2311,8 +2352,6 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
         except (NativeFreeCadError, TypeError, ValueError) as NativeError:
             raise FreeCadAdapterA(str(NativeError)) from NativeError
         Native = True
-    else:
-        DocValue = ManifestDoc(Value)
     if Native:
         DocValue = AnnotateNative(DocValue)
     DocValue = Replace(
@@ -2322,6 +2361,27 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
     DocValue = FilteredDoc(DocValue, Settings)
     if Settings.StrictMode:
         DocValue.assert_valid()
+    return DocValue
+
+
+# embedded archives must reconcile every editable native record before filtering
+def ReadEmbedded(
+    Archive: Zipfile.ZipFile,
+    Members: dict[str, Zipfile.ZipInfo],
+    RootValue: XmlTree.Element,
+) -> CadDoc:
+    Value = ReadZipManifest(Archive, Members, RootValue)
+    DocValue = ManifestDoc(Value)
+    from convert.adapters.freecad.EditDatum.ReconcileDatum import ReconcileDatum
+    from convert.adapters.freecad.EditScale.ScaleReadGuard import ReconcileScale
+
+    DocValue = ReconcileDatum(DocValue, Value, RootValue, Archive, Members)
+    DocValue = ReconcileScale(DocValue, Value, RootValue, Archive, Members)
+    DocValue = ReconcileEdit(DocValue, RootValue, Archive, Members)
+    DocValue = ReconcileRev(DocValue, Value, RootValue, Archive, Members)
+    DocValue = ReconcilePlane(DocValue, RootValue, Archive, Members)
+    DocValue = ReconcileSheet(DocValue, Value, RootValue)
+    DocValue = ReconcileSketch(DocValue, Value, RootValue, Archive, Members)
     return DocValue
 
 
@@ -2523,17 +2583,21 @@ def RebuildResult(
         NativeOuters,
         TrustedBreps,
     )
+    EditableFeatures: set[str] = set()
     DataValue = BuildFcstdArchive(
         DocToManifest(DocValue),
         external_links=OuterLinks,
         native_external_links=NativeLinks,
         document_timestamp=DocStamp,
         trusted_native_breps=TrustedBreps,
+        editable_features=EditableFeatures if DocValue.assembly is None else None,
     )
     PathValue = WriteBytes(Target, DataValue, Overwrite)
     if PathValue is not None and StampEpoch is not None:
         OsModule.utime(PathValue, (StampEpoch, StampEpoch))
-    Transfers = CapabilityA(DocValue, TargetPath, Portable, False, TrustedBreps)
+    Transfers = CapabilityA(
+        DocValue, TargetPath, Portable, False, TrustedBreps, EditableFeatures
+    )
     AppUsable = not CarrierOnly and IsNativeGeom(DocValue, TrustedBreps)
     MetaValue = RebuildMeta(
         DocValue,

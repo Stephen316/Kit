@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 from collections import Counter
@@ -13,7 +5,6 @@ from dataclasses import dataclass as DataClass
 from functools import lru_cache as LruCache
 import hashlib as Hashlib
 from pathlib import Path as PathValue
-import re as RegexLib
 import struct as Struct
 from typing import Mapping as TypeMap
 
@@ -139,9 +130,6 @@ def GetMetaText(Metadata: TypeMap[str, object], KeyValue: str) -> str:
 
 # this binding exists because shared behavior needs one stable value
 KRootValue = PathValue(__file__).parents[3]
-
-# this binding exists because shared behavior needs one stable value
-KReadme = KRootValue / "README.md"
 
 # this binding exists because shared behavior needs one stable value
 KExamples = KRootValue / "examples"
@@ -501,11 +489,19 @@ def MatrixDocument(Source: PathValue) -> CadDocument:
 
 # this definition exists because focused behavior needs one stable owner
 def TestSFMRADK() -> None:
-    Supported = KReadme.read_text(encoding="utf-8").split("## Supported formats", 1)[1]
-    Supported = Supported.split("\n## ", 1)[0]
-    ReadmeSuffixes = set(RegexLib.findall(r"`(\.[A-Za-z0-9]+)`", Supported))
-    assert ReadmeSuffixes == set(KFormatBySuffix)
-    assert set(KPartSuffixes) | set(KAssemblySuffixes) == ReadmeSuffixes
+    ReaderSuffixes, WriterSuffixes = (
+        {
+            SuffixName.casefold()
+            for AdapterData in AdapterSet
+            if AdapterData.info.format_id != "interchange.json"
+            for SuffixName in AdapterData.info.extensions
+        }
+        for AdapterSet in (Registry.readers(), Registry.writers())
+    )
+    assert {SuffixName.casefold() for SuffixName in KFormatBySuffix} == (
+        ReaderSuffixes & WriterSuffixes
+    )
+    assert set(KPartSuffixes) | set(KAssemblySuffixes) == set(KFormatBySuffix)
     assert set(KPartSuffixes) & set(KAssemblySuffixes) == {".FCStd"}
     Counts = Counter(Suffix(PathValueA) for PathValueA in KCorpusFiles)
     if not (KExamples / "Random").is_dir():

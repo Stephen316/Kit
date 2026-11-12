@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 import subprocess as Subprocess
@@ -18,13 +10,13 @@ from tests.Policy.RepoFixture import RepoFixture
 
 # fixture sources must carry one compliant rationale so clean cases prove real coverage
 KCleanSource = """\
-# doubling lives here because several fixture assertions reuse the same math
 def Double(Value):
     return Value * 2
 """
 
 # fixture sources omit the mandatory rationale so violation detection gets exercised
 KBadSource = """\
+# doubling lives here because several fixture assertions reuse the same math
 def Broken():
     return 1
 """
@@ -66,10 +58,11 @@ class TestDiffGate(UnitTest.TestCase):
             RootPath = FilePath(TmpPath)
             FixtureInfo = RepoFixture(RootPath)
             FixtureInfo.WriteFile("Alpha.py", KCleanSource)
-            FixtureInfo.WriteFile("Legacy.py", KBadSource)
+            InvalidSource = KBadSource.replace("doubling", "Doubling")
+            FixtureInfo.WriteFile("Legacy.py", InvalidSource)
             BaseRef = FixtureInfo.CommitAll("base")
-            FixtureInfo.WriteFile("Bravo.py", KBadSource)
-            FixtureInfo.WriteFile("re/Nested.py", KBadSource)
+            FixtureInfo.WriteFile("Bravo.py", InvalidSource)
+            FixtureInfo.WriteFile("re/Nested.py", InvalidSource)
             HeadRef = FixtureInfo.CommitAll("head")
             ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
         self.assertEqual(ResultInfo.returncode, 1, ResultInfo.stderr)
@@ -82,13 +75,13 @@ class TestDiffGate(UnitTest.TestCase):
         with Tempfile.TemporaryDirectory() as TmpPath:
             RootPath = FilePath(TmpPath)
             FixtureInfo = RepoFixture(RootPath)
-            FixtureInfo.WriteFile("Alpha.py", KCleanSource)
-            BaseRef = FixtureInfo.CommitAll("base")
             FixtureInfo.WriteFile("Alpha.py", KBadSource)
+            BaseRef = FixtureInfo.CommitAll("base")
+            FixtureInfo.WriteFile("Alpha.py", KCleanSource)
             HeadRef = FixtureInfo.CommitAll("head")
             ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
-        self.assertEqual(ResultInfo.returncode, 1, ResultInfo.stderr)
-        self.assertIn("Alpha.py", ResultInfo.stdout)
+        self.assertEqual(ResultInfo.returncode, 0, ResultInfo.stderr)
+        self.assertIn("passed", ResultInfo.stdout)
 
 
 # scope coverage proves excluded trees and non python edits never trigger failures
@@ -132,3 +125,37 @@ class TestArgGate(UnitTest.TestCase):
             BaseRef = FixtureInfo.CommitAll("base")
             ResultInfo = RunModule(RootPath, BaseRef)
         self.assertEqual(ResultInfo.returncode, 2)
+
+
+def CheckKeptReason() -> None:
+    with Tempfile.TemporaryDirectory() as TmpPath:
+        RootPath = FilePath(TmpPath)
+        FixtureInfo = RepoFixture(RootPath)
+        FixtureInfo.WriteFile("Alpha.py", KBadSource)
+        BaseRef = FixtureInfo.CommitAll("base")
+        FixtureInfo.WriteFile("Alpha.py", KBadSource.replace("return 1", "return 2"))
+        FixtureInfo.WriteFile("Bravo.py", KCleanSource)
+        HeadRef = FixtureInfo.CommitAll("head")
+        ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
+    assert ResultInfo.returncode == 0, ResultInfo.stderr
+    assert "passed" in ResultInfo.stdout
+
+
+# a required rationale must be accepted while unrelated explanations still fail
+def CheckNewReason() -> None:
+    with Tempfile.TemporaryDirectory() as TmpPath:
+        RootPath = FilePath(TmpPath)
+        FixtureInfo = RepoFixture(RootPath)
+        FixtureInfo.WriteFile("Alpha.py", KCleanSource)
+        BaseRef = FixtureInfo.CommitAll("base")
+        FixtureInfo.WriteFile("Bravo.py", "\n" + KBadSource)
+        HeadRef = FixtureInfo.CommitAll("add rationale")
+        PassedInfo = RunModule(RootPath, BaseRef, HeadRef)
+        FixtureInfo.WriteFile(
+            "Bravo.py", "\n" + KBadSource + "\n# this comment explains nothing\n"
+        )
+        HeadRef = FixtureInfo.CommitAll("add stray comment")
+        FailedInfo = RunModule(RootPath, BaseRef, HeadRef)
+    assert PassedInfo.returncode == 0, PassedInfo.stdout
+    assert FailedInfo.returncode == 1, FailedInfo.stderr
+    assert "Bravo.py:6:1: CMT002" in FailedInfo.stdout

@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 from interchange.payloads.PayloadRoles import PayloadRole
@@ -25,6 +17,12 @@ from interchange import (
     PayloadRole,
 )
 from interchange.payloads.PayloadRecord import BrepPayload
+from interchange.features.FeatureAngleRev import AngularRevolve
+from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.features.FeatureBoundScale import BoundScale
+from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
+from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.serialization.Deserialize import FromData
 from interchange.serialization.EncodeData import ToData
 from interchange.serialization.TypeRegistry import KTypeRegistry
@@ -80,6 +78,16 @@ def CheckRegistry() -> None:
         if isinstance(ItemValue, type)
         and (IsDataClass(ItemValue) or issubclass(ItemValue, EnumBase))
     }
+    ExpectedValues.update(
+        (
+            AngularRevolve,
+            BoundDatum,
+            BoundScale,
+            DistanceExtrude,
+            PlaneExtrude,
+            PlaneRevolve,
+        )
+    )
     assert set(KTypeRegistry.values()) == ExpectedValues
 
 

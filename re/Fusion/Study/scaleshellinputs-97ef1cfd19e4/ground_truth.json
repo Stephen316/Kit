@@ -1,0 +1,487 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "scale_sketch.f3d",
+      "getter_errors": [],
+      "requested_input_entities": [
+        {
+          "entity_type": "adsk::fusion::Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmC7rbe5vY/tDt/K3Z26PCFAFUYKxmYKRomWZiZpxha6ZsYm5romxpaJupYphsa6aQamqUYGqeZGliYmYLVAMxjQANg+AwWwdSDrjQyMAB/tUs2IAAAA",
+          "sketch_name": "ScaleInputSketch",
+          "curve_count": 4,
+          "line_endpoints_cm": [
+            {
+              "start": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "end": [
+                4.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "start": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end": [
+                1.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "start": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "end": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "requested_point": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmC7rbe5vY/tDt/K3Z26PCFAFUYKxmYKRomWZiZpxha6ZsYm5romxpaJupYphsa6aQamqUYGqeZGliYmYLVAMxjQANg+AwWwdSDrjS0AkkVBnYcAAAA=",
+        "name": "O",
+        "position_cm": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::Sketch",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmC7rbe5vY/tDt/K3Z26PCFAFUYKxmYKRomWZiZpxha6ZsYm5romxpaJupYphsa6aQamqUYGqeZGliYmYLVAMxjQANg+AwWwdSDrjQyMAB/tUs2IAAAA",
+          "sketch_name": "ScaleInputSketch",
+          "curve_count": 4,
+          "line_endpoints_cm": [
+            {
+              "start": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end": [
+                4.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "end": [
+                4.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "start": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "end": [
+                1.0,
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "start": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "end": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "actual_point": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmC7rbe5vY/tDt/K3Z26PCFAFUYKxmYKRomWZiZpxha6ZsYm5romxpaJupYphsa6aQamqUYGqeZGliYmYLVAMxjQANg+AwWwdSDrjS0AkkVBnYcAAAA=",
+        "name": "O",
+        "position_cm": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "feature_type": "adsk::fusion::ScaleFeature",
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "is_uniform": true,
+        "factor": 1.3
+      },
+      "result_bodies": [],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "ScaleFactor",
+          "unit": "",
+          "value": 1.3,
+          "created_by": "ProbeScaleShellInput"
+        }
+      ]
+    },
+    {
+      "file": "scale_vertex.f3d",
+      "getter_errors": [],
+      "requested_input_entities": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwt4DaXYv1X3YNyx9dSfhyOYIoAojBWMzBUsLI+MUw0RT3WQzU0tdE4NUE91EQ2MD3VRzw9REE/Pk5CQLI7BaoBkMaABsn4EC2DqQ9UbmpgAmiaVOiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "requested_point": {
+        "entity_type": "adsk::fusion::BRepVertex",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PPWoDMRCF0+Uar3M1MPpZadWkdJXapNvMarWQLixL8IXcG1IbXPgYvkByiowUAmGFYD6e3ryHGBYGLiDFKRkeDdkkjrwYR0mykMTRzTLHMEcGq7f6G9leycBXJeBynZ++ds+P59P3/fX2+aIO23J76yYjHeXQJfJcPGk2U4mmiI85j71tXs142JzWx2h1Hg5GPToU0Krrs+PfqTdshe6fwPgoy1qOw1Ly23sZJlkFB/QgdWCP+hnFCvYPuIKu/gBYEEa5JQEAAA==",
+        "body_name": "InputBody1",
+        "position_cm": [
+          4.0,
+          4.0,
+          0.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwt4DaXYv1X3YNyx9dSfhyOYIoAojBWMzBUsLI+MUw0RT3WQzU0tdE4NUE91EQ2MD3VRzw9REE/Pk5CQLI7BaoBkMaABsn4EC2DqQ9UbmpgAmiaVOiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "actual_point": {
+        "entity_type": "adsk::fusion::BRepVertex",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PPWoDMRCF0+Uar3M1MPpZadWkdJXapNvMarWQLixL8IXcG1IbXPgYvkByiowUAmGFYD6e3ryHGBYGLiDFKRkeDdkkjrwYR0mykMTRzTLHMEcGq7f6G9leycBXJeBynZ++ds+P59P3/fX2+aIO23J76yYjHeXQJfJcPGk2U4mmiI85j71tXs142JzWx2h1Hg5GPToU0Krrs+PfqTdshe6fwPgoy1qOw1Ly23sZJlkFB/QgdWCP+hnFCvYPuIKu/gBYEEa5JQEAAA==",
+        "body_name": "InputBody1",
+        "position_cm": [
+          4.0,
+          4.0,
+          0.0
+        ]
+      },
+      "feature_type": "adsk::fusion::ScaleFeature",
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "is_uniform": true,
+        "factor": 1.3
+      },
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwt4DaXYv1X3YNyx9dSfhyOYIoAojBWMzBUsLI+MUw0RT3WQzU0tdE4NUE91EQ2MD3VRzw9REE/Pk5CQLI7BaoBkMaABsn4EC2DqQ9UbmpgAmiaVOiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d3",
+          "role": "ScaleFactor",
+          "unit": "",
+          "value": 1.3,
+          "created_by": "ProbeScaleShellInput"
+        }
+      ]
+    },
+    {
+      "file": "scale_construction_point.f3d",
+      "getter_errors": [],
+      "requested_input_entities": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtOsJX2tm1zs203OFmxpd2wDqjBSMDZTMDE2SLU0NEnVNTFPSgYSZua6iUapKbrGhikplkAiMcnMGKwWaAYDGgDbZ6AAtg5kvZG5KQBt2WjHiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "requested_point": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtOsJX2tm1zs203OFmxpd2wDqjBSMDZTMDE2SLU0NEnVNTFPSgYSZua6iUapKbrGhikplkAiMcnMGKwWaAYDGgDbZ6AAtg5kvbGhEQB/gZQOiAAAAA==",
+        "name": "ScaleReferencePoint",
+        "position_cm": [
+          2.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtOsJX2tm1zs203OFmxpd2wDqjBSMDZTMDE2SLU0NEnVNTFPSgYSZua6iUapKbrGhikplkAiMcnMGKwWaAYDGgDbZ6AAtg5kvZG5KQBt2WjHiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "actual_point": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtOsJX2tm1zs203OFmxpd2wDqjBSMDZTMDE2SLU0NEnVNTFPSgYSZua6iUapKbrGhikplkAiMcnMGKwWaAYDGgDbZ6AAtg5kvbGhEQB/gZQOiAAAAA==",
+        "name": "ScaleReferencePoint",
+        "position_cm": [
+          2.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "feature_type": "adsk::fusion::ScaleFeature",
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "is_uniform": true,
+        "factor": 1.3
+      },
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtOsJX2tm1zs203OFmxpd2wDqjBSMDZTMDE2SLU0NEnVNTFPSgYSZua6iUapKbrGhikplkAiMcnMGKwWaAYDGgDbZ6AAtg5kvZG5KQBt2WjHiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d3",
+          "role": "ScaleFactor",
+          "unit": "",
+          "value": 1.3,
+          "created_by": "ProbeScaleShellInput"
+        }
+      ]
+    },
+    {
+      "file": "shell_two_bodies.f3d",
+      "getter_errors": [],
+      "requested_input_entities": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn9tVYrgWoctE2sLFjYsk/kAVGGkYGymYJmUYmlimWqqm2KSaqFrYmqWpptkkmSqa2yYlpyYnGqQZJqaAlYLNIMBDYDtM1AAWwey3sjcFADO35LkiAAAAA==",
+          "body_name": "InputBody1"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn9tVYrgWoctE2sLFjYsk/kAVGGkYGymYJmUYmlimWqqm2KSaqFrYmqWpptkkmSqa2yYlpyYnGqQZJqaAlYLNIMBDYDtM1AAWwey3tjUBADt52GgiAAAAA==",
+          "body_name": "InputBody2"
+        }
+      ],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn9tVYrgWoctE2sLFjYsk/kAVGGkYGymYJmUYmlimWqqm2KSaqFrYmqWpptkkmSqa2yYlpyYnGqQZJqaAlYLNIMBDYDtM1AAWwey3tjUBADt52GgiAAAAA==",
+          "body_name": "InputBody2"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn9tVYrgWoctE2sLFjYsk/kAVGGkYGymYJmUYmlimWqqm2KSaqFrYmqWpptkkmSqa2yYlpyYnGqQZJqaAlYLNIMBDYDtM1AAWwey3sjcFADO35LkiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "feature_type": "adsk::fusion::ShellFeature",
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "is_tangent_chain": false,
+        "shell_type": 0,
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null
+      },
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn9tVYrgWoctE2sLFjYsk/kAVGGkYGymYJmUYmlimWqqm2KSaqFrYmqWpptkkmSqa2yYlpyYnGqQZJqaAlYLNIMBDYDtM1AAWwey3tjUBADt52GgiAAAAA==",
+          "body_name": "InputBody2"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQn9tVYrgWoctE2sLFjYsk/kAVGGkYGymYJmUYmlimWqqm2KSaqFrYmqWpptkkmSqa2yYlpyYnGqQZJqaAlYLNIMBDYDtM1AAWwey3sjcFADO35LkiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "InputSourceExtrude2"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "InputSourceExtrude2"
+        },
+        {
+          "name": "d5",
+          "role": "innerThickness",
+          "unit": "mm",
+          "value": 0.1,
+          "created_by": "ProbeScaleShellInput"
+        }
+      ]
+    },
+    {
+      "file": "shell_body_and_other_face.f3d",
+      "getter_errors": [],
+      "requested_input_entities": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnsnN/aw1W5s8zK+pAtz5H0FqjBSMDZTSE00MzE2NE7RNUsyTtM1sTCx1LW0TEzWTTNOMjc0tDSzME02BasFmsGABsD2GSiArQNZb2RuCgCUkULuiAAAAA==",
+          "body_name": "InputBody1"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQU4EIRBFXal7L1AXIKGoAmE7iX2E2XZoaNTNjDF6HS/g4dzoXoqJHbudEAkJP79e/98BDQYQyEFEKs6WojAlVuyLVyEaVDmid8mT4WJBV1Z4Lcr4qhBYHAcfu+Fq/z5cvj183t9cH74qYSR3jo4JKSs3Uam5HFQIMalC0y1icN4m29iacbFZrU9Dq2MgsAFBjuq2H5ExaW6nyK3htgZvDfvL0DAdXw95zmOJaR6f5/T4NI85vkTYDQAD+IooCbmrsorTNm3S5IIY2J8Qap75Ga4pqVxxtBovHwh3ppJ6lZ2oFcd/OOpUcq+yE3X+NhaOO5WmV9mJ+ucDfAPXbV1FAAMAAA==",
+          "body_name": "InputBody2",
+          "surface_type": 0
+        }
+      ],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQU4EIRBFXal7L1AXIKGoAmE7iX2E2XZoaNTNjDF6HS/g4dzoXoqJHbudEAkJP79e/98BDQYQyEFEKs6WojAlVuyLVyEaVDmid8mT4WJBV1Z4Lcr4qhBYHAcfu+Fq/z5cvj183t9cH74qYSR3jo4JKSs3Uam5HFQIMalC0y1icN4m29iacbFZrU9Dq2MgsAFBjuq2H5ExaW6nyK3htgZvDfvL0DAdXw95zmOJaR6f5/T4NI85vkTYDQAD+IooCbmrsorTNm3S5IIY2J8Qap75Ga4pqVxxtBovHwh3ppJ6lZ2oFcd/OOpUcq+yE3X+NhaOO5WmV9mJ+ucDfAPXbV1FAAMAAA==",
+          "body_name": "InputBody2",
+          "surface_type": 0
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnsnN/aw1W5s8zK+pAtz5H0FqjBSMDZTSE00MzE2NE7RNUsyTtM1sTCx1LW0TEzWTTNOMjc0tDSzME02BasFmsGABsD2GSiArQNZb2RuCgCUkULuiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "feature_type": "adsk::fusion::ShellFeature",
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "is_tangent_chain": false,
+        "shell_type": 0,
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null
+      },
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnsnN/aw1W5s8zK+pAtz5H0FqjBSMDZTSE00MzE2NE7RNUsyTtM1sTCx1LW0TEzWTTNOMjc0tDSzME02BasFmsGABsD2GSiArQNZb2xqAgC3qbGqiAAAAA==",
+          "body_name": "InputBody2"
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnsnN/aw1W5s8zK+pAtz5H0FqjBSMDZTSE00MzE2NE7RNUsyTtM1sTCx1LW0TEzWTTNOMjc0tDSzME02BasFmsGABsD2GSiArQNZb2RuCgCUkULuiAAAAA==",
+          "body_name": "InputBody1"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "InputSourceExtrude1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "unit": "mm",
+          "value": 2.0,
+          "created_by": "InputSourceExtrude2"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "unit": "deg",
+          "value": 0.0,
+          "created_by": "InputSourceExtrude2"
+        },
+        {
+          "name": "d5",
+          "role": "innerThickness",
+          "unit": "mm",
+          "value": 0.1,
+          "created_by": "ProbeScaleShellInput"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

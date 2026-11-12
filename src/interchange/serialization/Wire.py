@@ -1,14 +1,7 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 from dataclasses import fields as GetFields
+from functools import lru_cache as Memoize
 
 from interchange.core.Reflection import CanonName
 from interchange.serialization.RecordType import DataRecord
@@ -81,19 +74,44 @@ def GetModelField(WireName: str, ClassType: type[object] | None = None) -> str:
     )
 
 
+# known schema names can be indexed once without retaining untrusted incoming keys
+@Memoize(maxsize=256)
+def GetSlotAliases(
+    SlotNames: tuple[str, ...], ModelName: str
+) -> tuple[dict[str, str], frozenset[str]]:
+    Positions: dict[str, int] = {}
+    Aliases: dict[str, str] = {}
+    TypeFields = KTypeWireFields.get(ModelName, {})
+    for FieldName in SlotNames:
+        _ = Positions.setdefault(FieldName, len(Positions))
+        WireName = TypeFields.get(FieldName, GetWireField(FieldName))
+        _ = Aliases.setdefault(WireName, FieldName)
+    for WireName, FieldName in Aliases.items():
+        Converted = TypeFields.get(WireName, GetWireField(WireName))
+        if Converted in Positions and Positions[Converted] < Positions[FieldName]:
+            Aliases[WireName] = Converted
+    return Aliases, frozenset(Positions)
+
+
 # target records disambiguate shared wire keys by their actual dataclass fields
 def ResolveField(ClassType: type[DataRecord], WireName: str) -> str:
-    FieldNames = GetSlotNames(ClassType)
-    TypeFields = KTypeWireFields.get(
-        CanonName(ClassType),
-        {},
-    )
-    for FieldName in FieldNames:
-        if TypeFields.get(FieldName, GetWireField(FieldName)) == WireName:
-            return FieldName
-        if GetWireField(WireName, ClassType) == FieldName:
-            return FieldName
-    ReflectedNames = {FieldValue.name for FieldValue in GetFields(ClassType)}
-    if WireName in ReflectedNames:
+    SlotNames = GetSlotNames(ClassType)
+    ModelName = CanonName(ClassType)
+    if type(WireName) is str:
+        Aliases, SlotSet = GetSlotAliases(SlotNames, ModelName)
+        Direct = Aliases.get(WireName)
+        if Direct is not None:
+            return Direct
+        Converted = GetWireField(WireName, ClassType)
+        if Converted in SlotSet:
+            return Converted
+    else:
+        TypeFields = KTypeWireFields.get(ModelName, {})
+        for FieldName in SlotNames:
+            if TypeFields.get(FieldName, GetWireField(FieldName)) == WireName:
+                return FieldName
+            if GetWireField(WireName, ClassType) == FieldName:
+                return FieldName
+    if WireName in {FieldValue.name for FieldValue in GetFields(ClassType)}:
         return WireName
     return GetModelField(WireName, ClassType)

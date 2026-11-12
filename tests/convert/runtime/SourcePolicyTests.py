@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 import ast as AstLib
 
 from tests.convert.runtime.RuntimeAstRules import CheckNode
@@ -31,17 +23,6 @@ def CheckNoPass() -> None:
         assert not any(
             isinstance(NodeData, AstLib.Pass) for NodeData in AstLib.walk(SyntaxTree)
         ), SourcePath
-
-
-# every production module retains the legal notice required by repository licensing
-def CheckHeaders() -> None:
-    ExpectedLines = (
-        "# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0",
-        "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin",
-    )
-    for SourcePath in KSourcePath.rglob("*.py"):
-        SourceLines = SourcePath.read_text(encoding="utf-8").splitlines()
-        assert tuple(SourceLines[: len(ExpectedLines)]) == ExpectedLines, SourcePath
 
 
 # wheel source stays limited to the two intentional public production packages

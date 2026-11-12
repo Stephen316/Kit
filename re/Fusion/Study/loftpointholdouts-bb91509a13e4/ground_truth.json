@@ -1,0 +1,729 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "tangent_start_weight1",
+      "file": "tangent_start_weight1.f3d",
+      "getter_errors": [],
+      "requested_point_source": "SketchPoint",
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::SketchPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHVGpmZQ0tDABACwolk/jgAAAA==",
+          "sketch_name": "HoldoutLoftPoint",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHUg641MzQBaAXgXiAAAAA==",
+          "sketch_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U8h/sNH7mJ/jqgVnOQS/rv+9BShuqGCsYGRkAmYB1QBpIMvIAsgyVDDBqctIwdhMITk5JTUlOdFE18jM3EzXxNDYRNcyzSxN18LYJNXIzMzSINkQbjMDGgDbZ6AAts7IwARiHxQaGEFcAVIBAIZm29G+AAAA",
+          "sketch_name": "HoldoutLoftProfile",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHUg642MTACx9je2iAAAAA==",
+          "profile_loop_count": 1,
+          "sketch_circles": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHWmYGVAhUYmCoYGQDYALW0EQpIAAAA=",
+              "center_world_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointTangent",
+        "section_index": 0,
+        "weight": 1.0
+      },
+      "settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHVGpmZQ0tDABACwolk/jgAAAA==",
+            "sketch_name": "HoldoutLoftPoint",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHUg641MzQBaAXgXiAAAAA==",
+            "sketch_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "world_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftPointTangentEndCondition",
+            "weight": 1.0
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U8h/sNH7mJ/jqgVnOQS/rv+9BShuqGCsYGRkAmYB1QBpIMvIAsgyVDDBqctIwdhMITk5JTUlOdFE18jM3EzXxNDYRNcyzSxN18LYJNXIzMzSINkQbjMDGgDbZ6AAts7IwARiHxQaGEFcAVIBAIZm29G+AAAA",
+            "sketch_name": "HoldoutLoftProfile",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHUg642MTACx9je2iAAAAA==",
+            "profile_loop_count": 1,
+            "sketch_circles": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHWmYGVAhUYmCoYGQDYALW0EQpIAAAA=",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "PointLoftProfilePlane"
+        },
+        {
+          "name": "d3",
+          "role": "Start Weight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeLoftPointHoldout"
+        }
+      ]
+    },
+    {
+      "case": "construction_sharp_end",
+      "file": "construction_sharp_end.f3d",
+      "getter_errors": [],
+      "requested_point_source": "ConstructionPointInput.setByThreePlanes",
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0UxASLhQ6Osdt6l7xzS8kZtU8BYobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTME8yNEuxMLbUNU0zTNM1MTG20LU0NzHQtTAzTDVPNDawTEoxgdnMgAbA9hkogK0zMjCB2AeFYNcYgNkGAFD5cQS+AAAA",
+          "sketch_name": "HoldoutLoftProfile",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiMDIwCK7ibkiAAAAA==",
+          "profile_loop_count": 1,
+          "sketch_circles": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwA7Wy/kkgAAAA==",
+              "center_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::ConstructionPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiNTMwDW3jyeiAAAAA==",
+          "name": "HoldoutLoftConstructionPoint",
+          "world_point_cm": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "is_parametric": true,
+          "component_name": "(Unsaved)",
+          "definition": {
+            "entity_type": "adsk::fusion::ConstructionPointThreePlanesDefinition",
+            "sources": {
+              "planeOne": {
+                "entity_type": "adsk::fusion::ConstructionPlane",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiNjEwB8GGgmiAAAAA==",
+                "name": "PointEndpointPlane",
+                "origin_world_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "planeTwo": {
+                "entity_type": "adsk::fusion::ConstructionPlane",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IehNjAKQHGOiHAAAA",
+                "name": "XZ",
+                "origin_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  0.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              "planeThree": {
+                "entity_type": "adsk::fusion::ConstructionPlane",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IehMTAAeSfHaHAAAA",
+                "name": "YZ",
+                "origin_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "requested_condition": {
+        "type": "PointSharp",
+        "section_index": 1,
+        "weight": null
+      },
+      "settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0UxASLhQ6Osdt6l7xzS8kZtU8BYobKhgrGBkYgVlANUAayDKyALIMFUxw6jJSMDZTME8yNEuxMLbUNU0zTNM1MTG20LU0NzHQtTAzTDVPNDawTEoxgdnMgAbA9hkogK0zMjCB2AeFYNcYgNkGAFD5cQS+AAAA",
+            "sketch_name": "HoldoutLoftProfile",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiMDIwCK7ibkiAAAAA==",
+            "profile_loop_count": 1,
+            "sketch_circles": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbJ2poRGYNjIAKgViAwA7Wy/kkgAAAA==",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::ConstructionPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiNTMwDW3jyeiAAAAA==",
+            "name": "HoldoutLoftConstructionPoint",
+            "world_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "is_parametric": true,
+            "component_name": "(Unsaved)",
+            "definition": {
+              "entity_type": "adsk::fusion::ConstructionPointThreePlanesDefinition",
+              "sources": {
+                "planeOne": {
+                  "entity_type": "adsk::fusion::ConstructionPlane",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiNjEwB8GGgmiAAAAA==",
+                  "name": "PointEndpointPlane",
+                  "origin_world_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "normal_world": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "planeTwo": {
+                  "entity_type": "adsk::fusion::ConstructionPlane",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IehNjAKQHGOiHAAAA",
+                  "name": "XZ",
+                  "origin_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_world": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                "planeThree": {
+                  "entity_type": "adsk::fusion::ConstructionPlane",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IehMTAAeSfHaHAAAA",
+                  "name": "YZ",
+                  "origin_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_world": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              }
+            },
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "PointEndpointPlane"
+        }
+      ]
+    },
+    {
+      "case": "construction_sharp_start",
+      "file": "construction_sharp_start.f3d",
+      "getter_errors": [],
+      "requested_point_source": "ConstructionPointInput.setByThreePlanes",
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzI1AwBpPpMtiAAAAA==",
+          "name": "HoldoutLoftConstructionPoint",
+          "world_point_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "is_parametric": true,
+          "component_name": "(Unsaved)",
+          "definition": {
+            "entity_type": "adsk::fusion::ConstructionPointThreePlanesDefinition",
+            "sources": {
+              "planeOne": {
+                "entity_type": "adsk::fusion::ConstructionPlane",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzECAMqmhVaHAAAA",
+                "name": "XY",
+                "origin_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "planeTwo": {
+                "entity_type": "adsk::fusion::ConstructionPlane",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzEGAFyWgiGHAAAA",
+                "name": "XZ",
+                "origin_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  0.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              "planeThree": {
+                "entity_type": "adsk::fusion::ConstructionPlane",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzEBAP8D5r+HAAAA",
+                "name": "YZ",
+                "origin_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  1.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            }
+          }
+        },
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U+jrsEw6XeTRs2qjtk2k0PtMoLihgrGCkZEJmAVUA6SBLCMLIMtQwQSnLiMFYzMF86TENAOjJGPdFBMzE10TM1NT3SQjYwPdFEOjVGNzC7OURBNzmM0MaABsn4EC2DojAxOIfVBoYARxBUgFAD96FAO+AAAA",
+          "sketch_name": "HoldoutLoftProfile",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzIyAQCCydyMiAAAAA==",
+          "profile_loop_count": 1,
+          "sketch_circles": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1pkaGoFpIyMTBUMDIBsAPpjh4pIAAAA=",
+              "center_world_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        }
+      ],
+      "requested_condition": {
+        "type": "PointSharp",
+        "section_index": 0,
+        "weight": null
+      },
+      "settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::ConstructionPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzI1AwBpPpMtiAAAAA==",
+            "name": "HoldoutLoftConstructionPoint",
+            "world_point_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "is_parametric": true,
+            "component_name": "(Unsaved)",
+            "definition": {
+              "entity_type": "adsk::fusion::ConstructionPointThreePlanesDefinition",
+              "sources": {
+                "planeOne": {
+                  "entity_type": "adsk::fusion::ConstructionPlane",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzECAMqmhVaHAAAA",
+                  "name": "XY",
+                  "origin_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_world": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "planeTwo": {
+                  "entity_type": "adsk::fusion::ConstructionPlane",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzEGAFyWgiGHAAAA",
+                  "name": "XZ",
+                  "origin_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_world": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                "planeThree": {
+                  "entity_type": "adsk::fusion::ConstructionPlane",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzEBAP8D5r+HAAAA",
+                  "name": "YZ",
+                  "origin_world_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_world": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              }
+            },
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U+jrsEw6XeTRs2qjtk2k0PtMoLihgrGCkZEJmAVUA6SBLCMLIMtQwQSnLiMFYzMF86TENAOjJGPdFBMzE10TM1NT3SQjYwPdFEOjVGNzC7OURBNzmM0MaABsn4EC2DojAxOIfVBoYARxBUgFAD96FAO+AAAA",
+            "sketch_name": "HoldoutLoftProfile",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzIyAQCCydyMiAAAAA==",
+            "profile_loop_count": 1,
+            "sketch_circles": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1pkaGoFpIyMTBUMDIBsAPpjh4pIAAAA=",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ],
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "PointLoftProfilePlane"
+        }
+      ]
+    },
+    {
+      "case": "vertex_construction_sharp_end",
+      "file": "vertex_construction_sharp_end.f3d",
+      "getter_errors": [],
+      "requested_point_source": "ConstructionPointInput.setByPoint(BRepVertex)",
+      "vertex_before_construction": {
+        "entity_type": "adsk::fusion::BRepVertex",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWoDMQxFe4JCF6FbbbsQyJZmbArZlRwhq8LgsTUldFPCULLJAXKznKJniWQIlNgLPb6fJBNECMAjlFRl1iWgtsQoAweca2OkpqoitdW8AJnrPjnFbBRAPBnh9eX89x4+vi/Xt+3X5vnTjOhzR8qB7eISS0NREixDZKyaZM5DrWlo3bUZTw+n7yPo6wQYgjlWDKAv9mem2Gv/2UPA/wKCXz2uepqOWg8/OrWyFthDBnRvZ0CODuEO0cFabzTvPjMlAQAA",
+        "world_point_cm": [
+          0.0,
+          0.0,
+          3.0
+        ],
+        "body_name": "PointSupportBody",
+        "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YwAwA83qP6YgAAAA="
+      },
+      "source_entities_before_loft": [
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0UxAXrL1nZeiS3XlC0zZdlC8GKG6oYKxgZGAEZgHVAGkgy8gCyDJUMMGpy0jB2EzBzMDC0BgIddOMElN0TVINTHQTTY2MdZNTzU2SLEyTk81NU2A2M6ABsH0GCmDrjAxMIPZBIdg1BmC2AQDnb1kzvgAAAA==",
+          "sketch_name": "HoldoutLoftProfile",
+          "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7IwAgA3dQg74gAAAA=",
+          "profile_loop_count": 1,
+          "sketch_circles": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFtnamgEpo0MgEqB2AAAO9GQwJIAAAA=",
+              "center_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::ConstructionPoint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YyBQAy0mwQogAAAA=",
+          "name": "HoldoutLoftConstructionPoint",
+          "world_point_cm": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "is_parametric": true,
+          "component_name": "(Unsaved)",
+          "definition": {
+            "entity_type": "adsk::fusion::ConstructionPointPointDefinition",
+            "sources": {
+              "pointEntity": {
+                "entity_type": "adsk::fusion::BRepVertex",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWoDMQxFe4JCF6FbbbsQyJZmbArZlRwhq8LgsTUldFPCULLJAXKznKJniWQIlNgLPb6fJBNECMAjlFRl1iWgtsQoAweca2OkpqoitdW8AJnrPjnFbBRAPBnh9eX89x4+vi/Xt+3X5vnTjOhzR8qB7eISS0NREixDZKyaZM5DrWlo3bUZTw+n7yPo6wQYgjlWDKAv9mem2Gv/2UPA/wKCXz2uepqOWg8/OrWyFthDBnRvZ0CODuEO0cFabzTvPjMlAQAA",
+                "world_point_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ],
+                "body_name": "PointSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YwAwA83qP6YgAAAA="
+              }
+            }
+          }
+        }
+      ],
+      "requested_condition": {
+        "type": "PointSharp",
+        "section_index": 1,
+        "weight": null
+      },
+      "settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0UxAXrL1nZeiS3XlC0zZdlC8GKG6oYKxgZGAEZgHVAGkgy8gCyDJUMMGpy0jB2EzBzMDC0BgIddOMElN0TVINTHQTTY2MdZNTzU2SLEyTk81NU2A2M6ABsH0GCmDrjAxMIPZBIdg1BmC2AQDnb1kzvgAAAA==",
+            "sketch_name": "HoldoutLoftProfile",
+            "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7IwAgA3dQg74gAAAA=",
+            "profile_loop_count": 1,
+            "sketch_circles": [
+              {
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFtnamgEpo0MgEqB2AAAO9GQwJIAAAA=",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal_world": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            ],
+            "index": 0,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "entity_type": "adsk::fusion::ConstructionPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YyBQAy0mwQogAAAA=",
+            "name": "HoldoutLoftConstructionPoint",
+            "world_point_cm": [
+              0.0,
+              0.0,
+              3.0
+            ],
+            "is_parametric": true,
+            "component_name": "(Unsaved)",
+            "definition": {
+              "entity_type": "adsk::fusion::ConstructionPointPointDefinition",
+              "sources": {
+                "pointEntity": {
+                  "entity_type": "adsk::fusion::BRepVertex",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWoDMQxFe4JCF6FbbbsQyJZmbArZlRwhq8LgsTUldFPCULLJAXKznKJniWQIlNgLPb6fJBNECMAjlFRl1iWgtsQoAweca2OkpqoitdW8AJnrPjnFbBRAPBnh9eX89x4+vi/Xt+3X5vnTjOhzR8qB7eISS0NREixDZKyaZM5DrWlo3bUZTw+n7yPo6wQYgjlWDKAv9mem2Gv/2UPA/wKCXz2uepqOWg8/OrWyFthDBnRvZ0CODuEO0cFabzTvPjMlAQAA",
+                  "world_point_cm": [
+                    0.0,
+                    0.0,
+                    3.0
+                  ],
+                  "body_name": "PointSupportBody",
+                  "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YwAwA83qP6YgAAAA="
+                }
+              }
+            },
+            "index": 1,
+            "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "PointSupportExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "PointSupportExtrude"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "token_scope": "Opaque API tokens retained as evidence; token equality does not establish decoded native identity"
+}

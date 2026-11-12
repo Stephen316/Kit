@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
 import base64 as BaseSixFour
 from collections.abc import Callable as FuncCall, Mapping, Sequence
@@ -1752,7 +1744,7 @@ def VerifyTransfers(Result: WriteResult) -> None:
     assert Transfers[Capability.MATERIALS] is TransferMode.NATIVE
     assert Transfers[Capability.CONFIGURATIONS] is TransferMode.NATIVE
     assert Transfers[Capability.BREP] is TransferMode.NATIVE
-    assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.MIXED
+    assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.CARRIER
 
 
 # this definition exists because neutral xml objects must retain every native relationship

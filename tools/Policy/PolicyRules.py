@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 
 # large directories become hard to navigate so direct ownership stays intentionally bounded
@@ -18,6 +10,8 @@ KStemPattern = r"^[A-Z][A-Za-z]*$"
 KToolPathSet = frozenset(
     {
         ".gitattributes",
+        "cubic.yaml",
+        ".agents/skills/standard-pr-practice/agents/openai.yaml",
         ".github/CODE_OF_CONDUCT.md",
         ".github/CodeQL/extensions/KitPython/codeql-pack.yml",
         ".github/ISSUE_TEMPLATE/config.yml",
@@ -27,7 +21,6 @@ KToolPathSet = frozenset(
         ".gitleaksignore",
         ".hoplite/settings.json",
         ".kiro/settings/mcp.json",
-        "HEADER_NOTICE",
         "pyproject.toml",
         "uv.lock",
         "typings/defusedxml/__init__.pyi",

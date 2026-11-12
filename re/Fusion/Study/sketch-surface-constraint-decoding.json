@@ -1,0 +1,954 @@
+{
+  "stage": "Observed planar surface constraints",
+  "status": "Four actual captured exports decoded; standalone integration ready",
+  "capture_directory": "sketchsurfaceconstraints-5a2cd669cd19",
+  "capture_errors": [],
+  "sdk_file": "/Users/stephenh/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Python/defs/adsk/fusion.py",
+  "sdk_methods": {
+    "addCoincidentToSurface": 17748,
+    "addLineParallelToPlanarSurface": 17757,
+    "addLineOnPlanarSurface": 17766,
+    "addPerpendicularToSurface": 17774
+  },
+  "native_schema": {
+    "constraint_class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+    "surface_cache_class_guid": "6F542DE3-39A5-47D6-A55B-4AD354B879F1",
+    "constraint_prefix": "Two 15-byte dependency slots with zero extras, EntityGenesis=2; repeated owner/code/arity/member/cache roles in 46-byte tail",
+    "codes": {
+      "1": "Point/CoincidentToSurface/ConstructionPlane",
+      "2": "Line/LineOnPlanarSurface/BRepFaceRecipe",
+      "16": "Line/LineParallelToPlanarSurface/ConstructionPlane",
+      "32": "Line/PerpendicularToSurface/ConstructionPlane"
+    },
+    "surface_geometry": "Attributes EntityGenesis=0/surface_tag; one zero byte, 9 finite f64 (origin,x,y), 30 raw style bytes, owner ref; normal=cross(x,y)",
+    "provenance": "Typed controller -> output entry -> cache and output naming; proxy -> descriptor -> native plane or bounded-face recipe. Plane source/context/output leaves agree; output face recipe term belongs bounded input table."
+  },
+  "validation": {
+    "checks": 67,
+    "cases": 4,
+    "malformed_guards": [
+      {
+        "mutation": "dependency_extra",
+        "rejected": true,
+        "reason": "Unobserved surface constraint dependency extras"
+      },
+      {
+        "mutation": "unknown_surface_code",
+        "rejected": true,
+        "reason": "Unsupported surface constraint owner/code/arity"
+      },
+      {
+        "mutation": "repeated_member_mismatch",
+        "rejected": true,
+        "reason": "Surface constraint repeated ordered roles disagree"
+      },
+      {
+        "mutation": "nonorthogonal_surface_basis",
+        "rejected": true,
+        "reason": "Surface plane cache basis is not orthonormal"
+      }
+    ],
+    "prior_noop_files": [
+      "sketchpatterngaps-330282788fce/circular_point.f3d",
+      "sketchpatterngaps-330282788fce/circular_symmetric_suppressed.f3d"
+    ],
+    "identities": "Selected only by explicit stored references and typed roles. Geometry checked afterward; coordinates never assign identity."
+  },
+  "cases": [
+    {
+      "file": "sketchsurfaceconstraints-5a2cd669cd19/coincident_to_plane.f3d",
+      "sha256": "57fb1d2a6d82ff780d3cf25c213efd85cd96078ac25eda3a2df81fa15fcf7bab",
+      "api_class": "adsk::fusion::CoincidentToSurfaceConstraint",
+      "output": {
+        "constraints": [
+          {
+            "object_id": 295,
+            "sketch_object_id": 202,
+            "kind": "CoincidentToSurface",
+            "api_constraint_class": "CoincidentToSurfaceConstraint",
+            "stored_constraint_code": 1,
+            "entity_ids": [
+              228,
+              289
+            ],
+            "member_role": "point",
+            "member_object_id": 228,
+            "surface_role": "surface",
+            "surface_cache_object_id": 289,
+            "source_controller_object_id": 269,
+            "geometry_consistency": {
+              "matches": true,
+              "member_plane_residuals_cm": [
+                0.0
+              ]
+            },
+            "scope": "Observed Point/Line with planar surface cache; no general 3D curve/solver interpretation"
+          }
+        ],
+        "additional_geometry": [
+          {
+            "kind": "SurfacePlane",
+            "object_id": 289,
+            "sketch_object_id": 202,
+            "record_offset": 26280,
+            "entity_genesis": 0,
+            "entity_tag": 102,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "uninterpreted_style_hex": "00000000010000000000000000000000000000803f0000803f0000000000"
+          }
+        ],
+        "relationships": [
+          {
+            "controller_object_id": 269,
+            "entry_object_id": 277,
+            "target_feature_object_id": 207,
+            "target_sketch_object_id": 202,
+            "source_proxy_object_id": 270,
+            "source_descriptor_object_id": 273,
+            "output_naming_record_object_id": 290,
+            "output_naming_leaf_object_id": 291,
+            "output_cache_object_id": 289,
+            "uninterpreted_controller_middle_hex": "010100002cb43ea83514513f010100000117010000000000000000010000011601000000000000000000",
+            "namespace_text": "8232b2ae-bb17-4cec-819e-90717b9d05d3",
+            "entity_guid_text": "ebbd96c1-eddf-494a-895a-e0f3fbeba023",
+            "source": {
+              "kind": "ConstructionPlane",
+              "source_leaf_object_id": 276,
+              "native_plane_object_id": 44,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "context_object_id": 280,
+              "uninterpreted_descriptor_trailer_hex": "00000000110000000000000000000000000001010000c7bab88d06f0f63e010100000113010000000000000000010000011201000000000000000000"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Point/Line planar CoincidentToSurface, LineOnPlanarSurface, LineParallelToPlanarSurface and PerpendicularToSurface with explicit source chains",
+        "limitations": "No general 3D/curved surfaces, transformed occurrence contexts, solver regeneration, style semantics or persistent BRep face mapping"
+      },
+      "coverage_before": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 3,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 2
+        },
+        "unhandled": [
+          {
+            "object_id": 289,
+            "class_guid": "6F542DE3-39A5-47D6-A55B-4AD354B879F1",
+            "class_namespace": "Geometry",
+            "record_offset": 26280,
+            "family": "SketchOwnedGeometry",
+            "sketch_object_id": 202,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          },
+          {
+            "object_id": 295,
+            "class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "class_namespace": "MSketch",
+            "record_offset": 26755,
+            "family": "ConstraintOrRelationship",
+            "sketch_object_id": 202,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          }
+        ],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      },
+      "coverage_after": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 3,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 3,
+          "ConstraintOrRelationship": 1
+        },
+        "unhandled": [],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      }
+    },
+    {
+      "file": "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d",
+      "sha256": "592804d30a4676e5f16cd7ec9aaa414488980932e31918f793601cb1aa8dd86f",
+      "api_class": "adsk::fusion::LineOnPlanarSurfaceConstraint",
+      "output": {
+        "constraints": [
+          {
+            "object_id": 409,
+            "sketch_object_id": 303,
+            "kind": "LineOnPlanarSurface",
+            "api_constraint_class": "LineOnPlanarSurfaceConstraint",
+            "stored_constraint_code": 2,
+            "entity_ids": [
+              332,
+              403
+            ],
+            "member_role": "line",
+            "member_object_id": 332,
+            "surface_role": "planarSurface",
+            "surface_cache_object_id": 403,
+            "source_controller_object_id": 384,
+            "geometry_consistency": {
+              "matches": true,
+              "member_plane_residuals_cm": [
+                0.0,
+                0.0
+              ]
+            },
+            "scope": "Observed Point/Line with planar surface cache; no general 3D curve/solver interpretation"
+          }
+        ],
+        "additional_geometry": [
+          {
+            "kind": "SurfacePlane",
+            "object_id": 403,
+            "sketch_object_id": 303,
+            "record_offset": 38651,
+            "entity_genesis": 0,
+            "entity_tag": 113,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "origin_cm": [
+              0.0,
+              0.5,
+              -0.5
+            ],
+            "x_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              -0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              -0.0
+            ],
+            "uninterpreted_style_hex": "00000000010000000000000000000000000000803f0000803f0000000000"
+          }
+        ],
+        "relationships": [
+          {
+            "controller_object_id": 384,
+            "entry_object_id": 393,
+            "target_feature_object_id": 307,
+            "target_sketch_object_id": 303,
+            "source_proxy_object_id": 385,
+            "source_descriptor_object_id": 388,
+            "output_naming_record_object_id": 404,
+            "output_naming_leaf_object_id": 405,
+            "output_cache_object_id": 403,
+            "uninterpreted_controller_middle_hex": "010100007706a31874d0323f01010000018b010000000000000000010000018a01000000000000000000",
+            "namespace_text": "082ebd4e-7cae-43f5-95cd-bb40a1138cba",
+            "entity_guid_text": "d939e78e-8665-478b-b174-7d27b742e286",
+            "source": {
+              "kind": "BRepFaceRecipe",
+              "input_recipe": {
+                "object_id": 391,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 37682,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "5",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "4",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 3,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 4,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "bounded_face_recipe_data",
+                "payload_relative_offset": 171,
+                "payload_length": 364,
+                "payload_hex": "00000000ffffffff0400000001000000ffffffff0100000000000000ffffffff02000000ffffffff0100000000000000ffffffff0200000001000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff0100000000000000ffffffff0200000001000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff04000000ffffffff0100000000000000ffffffff02000000ffffffff0100000000000000ffffffff0200000003000000ffffffff0000000000000000ffffffff04000000ffffffff0000000000000000ffffffff00000000ffffffff0100000000000000ffffffff0200000004000000ffffffff0000000000000000ffffffff02000000ffffffff0000000000000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1,
+                  4,
+                  1,
+                  -1,
+                  1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  1,
+                  0,
+                  -1,
+                  2,
+                  1,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  0,
+                  -1,
+                  2,
+                  1,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  3,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  -1,
+                  3,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  4,
+                  -1,
+                  1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  1,
+                  0,
+                  -1,
+                  2,
+                  3,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  4,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  0,
+                  -1,
+                  2,
+                  4,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  -1,
+                  2,
+                  -1,
+                  0,
+                  0,
+                  -1
+                ]
+              },
+              "output_naming_recipe": {
+                "object_id": 405,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 38929,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "5",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "face_recipe_data",
+                "payload_relative_offset": 63,
+                "payload_length": 8,
+                "payload_hex": "00000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1
+                ]
+              },
+              "body_anchor": {
+                "object_id": 284,
+                "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                "native_body_object_id": 278,
+                "source_owner_object_id": 243,
+                "native_uuid_text": "614a6b48-4700-424c-90b6-249c0b9234f5",
+                "stored_flags": [
+                  0,
+                  1
+                ],
+                "native_body_reference_offset": 33899,
+                "body_properties": {},
+                "association": "Typed anchor contains an explicit reference to the native body record",
+                "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+              },
+              "context_object_id": 396,
+              "recipe_native_reference_value": 301,
+              "uninterpreted_descriptor_trailer_hex": "1100000000000000000000000000010100000000000000000000010100000186010000000000000000010000018501000000000000000000",
+              "topology_status": "Explicit face term and independent source-body anchor retained; recipe numeric body identity and persistent ASM face mapping unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Point/Line planar CoincidentToSurface, LineOnPlanarSurface, LineParallelToPlanarSurface and PerpendicularToSurface with explicit source chains",
+        "limitations": "No general 3D/curved surfaces, transformed occurrence contexts, solver regeneration, style semantics or persistent BRep face mapping"
+      },
+      "coverage_before": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 14,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 13
+        },
+        "unhandled": [
+          {
+            "object_id": 403,
+            "class_guid": "6F542DE3-39A5-47D6-A55B-4AD354B879F1",
+            "class_namespace": "Geometry",
+            "record_offset": 38651,
+            "family": "SketchOwnedGeometry",
+            "sketch_object_id": 303,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          },
+          {
+            "object_id": 409,
+            "class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "class_namespace": "MSketch",
+            "record_offset": 39187,
+            "family": "ConstraintOrRelationship",
+            "sketch_object_id": 303,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          }
+        ],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      },
+      "coverage_after": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 14,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 14,
+          "ConstraintOrRelationship": 1
+        },
+        "unhandled": [],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      }
+    },
+    {
+      "file": "sketchsurfaceconstraints-5a2cd669cd19/line_parallel_to_plane.f3d",
+      "sha256": "dc72e12d81a77faaee1982a55f9ba0eb87c96e354e5e35eaf83ff5f2cc59f9f8",
+      "api_class": "adsk::fusion::LineParallelToPlanarSurfaceConstraint",
+      "output": {
+        "constraints": [
+          {
+            "object_id": 304,
+            "sketch_object_id": 202,
+            "kind": "LineParallelToPlanarSurface",
+            "api_constraint_class": "LineParallelToPlanarSurfaceConstraint",
+            "stored_constraint_code": 16,
+            "entity_ids": [
+              232,
+              298
+            ],
+            "member_role": "line",
+            "member_object_id": 232,
+            "surface_role": "planarSurface",
+            "surface_cache_object_id": 298,
+            "source_controller_object_id": 278,
+            "geometry_consistency": {
+              "matches": true,
+              "member_plane_residuals_cm": [
+                0.5,
+                0.5
+              ]
+            },
+            "scope": "Observed Point/Line with planar surface cache; no general 3D curve/solver interpretation"
+          }
+        ],
+        "additional_geometry": [
+          {
+            "kind": "SurfacePlane",
+            "object_id": 298,
+            "sketch_object_id": 202,
+            "record_offset": 26938,
+            "entity_genesis": 0,
+            "entity_tag": 104,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "uninterpreted_style_hex": "00000000010000000000000000000000000000803f0000803f0000000000"
+          }
+        ],
+        "relationships": [
+          {
+            "controller_object_id": 278,
+            "entry_object_id": 286,
+            "target_feature_object_id": 207,
+            "target_sketch_object_id": 202,
+            "source_proxy_object_id": 279,
+            "source_descriptor_object_id": 282,
+            "output_naming_record_object_id": 299,
+            "output_naming_leaf_object_id": 300,
+            "output_cache_object_id": 298,
+            "uninterpreted_controller_middle_hex": "0101000092f45cebfa21203f010100000120010000000000000000010000011f01000000000000000000",
+            "namespace_text": "65bf2b0e-74a9-4f09-a027-e6daef885bdc",
+            "entity_guid_text": "cc48d671-4600-4b28-ada8-e331e1768879",
+            "source": {
+              "kind": "ConstructionPlane",
+              "source_leaf_object_id": 285,
+              "native_plane_object_id": 44,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "context_object_id": 289,
+              "uninterpreted_descriptor_trailer_hex": "000000001100000000000000000000000000010100007c43eb25e941f13e01010000011c010000000000000000010000011b01000000000000000000"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Point/Line planar CoincidentToSurface, LineOnPlanarSurface, LineParallelToPlanarSurface and PerpendicularToSurface with explicit source chains",
+        "limitations": "No general 3D/curved surfaces, transformed occurrence contexts, solver regeneration, style semantics or persistent BRep face mapping"
+      },
+      "coverage_before": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 5,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 4
+        },
+        "unhandled": [
+          {
+            "object_id": 298,
+            "class_guid": "6F542DE3-39A5-47D6-A55B-4AD354B879F1",
+            "class_namespace": "Geometry",
+            "record_offset": 26938,
+            "family": "SketchOwnedGeometry",
+            "sketch_object_id": 202,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          },
+          {
+            "object_id": 304,
+            "class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "class_namespace": "MSketch",
+            "record_offset": 27413,
+            "family": "ConstraintOrRelationship",
+            "sketch_object_id": 202,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          }
+        ],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      },
+      "coverage_after": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 5,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 5,
+          "ConstraintOrRelationship": 1
+        },
+        "unhandled": [],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      }
+    },
+    {
+      "file": "sketchsurfaceconstraints-5a2cd669cd19/perpendicular_to_plane.f3d",
+      "sha256": "e98739d3d6f86b1a6e0ef252c41a760d5d2f03ab35db0a58cb67be2aec97e32c",
+      "api_class": "adsk::fusion::PerpendicularToSurfaceConstraint",
+      "output": {
+        "constraints": [
+          {
+            "object_id": 304,
+            "sketch_object_id": 202,
+            "kind": "PerpendicularToSurface",
+            "api_constraint_class": "PerpendicularToSurfaceConstraint",
+            "stored_constraint_code": 32,
+            "entity_ids": [
+              232,
+              298
+            ],
+            "member_role": "curve",
+            "member_object_id": 232,
+            "surface_role": "surface",
+            "surface_cache_object_id": 298,
+            "source_controller_object_id": 278,
+            "geometry_consistency": {
+              "matches": true,
+              "member_plane_residuals_cm": [
+                0.5,
+                2.5
+              ]
+            },
+            "scope": "Observed Point/Line with planar surface cache; no general 3D curve/solver interpretation"
+          }
+        ],
+        "additional_geometry": [
+          {
+            "kind": "SurfacePlane",
+            "object_id": 298,
+            "sketch_object_id": 202,
+            "record_offset": 26938,
+            "entity_genesis": 0,
+            "entity_tag": 104,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "uninterpreted_style_hex": "00000000010000000000000000000000000000803f0000803f0000000000"
+          }
+        ],
+        "relationships": [
+          {
+            "controller_object_id": 278,
+            "entry_object_id": 286,
+            "target_feature_object_id": 207,
+            "target_sketch_object_id": 202,
+            "source_proxy_object_id": 279,
+            "source_descriptor_object_id": 282,
+            "output_naming_record_object_id": 299,
+            "output_naming_leaf_object_id": 300,
+            "output_cache_object_id": 298,
+            "uninterpreted_controller_middle_hex": "01010000aaae505f27d9203f010100000120010000000000000000010000011f01000000000000000000",
+            "namespace_text": "5f27eaf2-23b5-43a6-87c6-2b40ebcb52b1",
+            "entity_guid_text": "3d0c7529-6b6e-4448-8edf-0ecedbfd77f4",
+            "source": {
+              "kind": "ConstructionPlane",
+              "source_leaf_object_id": 285,
+              "native_plane_object_id": 44,
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "context_object_id": 289,
+              "uninterpreted_descriptor_trailer_hex": "00000000110000000000000000000000000001010000db19ba9abbe4ef3e01010000011c010000000000000000010000011b01000000000000000000"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Point/Line planar CoincidentToSurface, LineOnPlanarSurface, LineParallelToPlanarSurface and PerpendicularToSurface with explicit source chains",
+        "limitations": "No general 3D/curved surfaces, transformed occurrence contexts, solver regeneration, style semantics or persistent BRep face mapping"
+      },
+      "coverage_before": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 5,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 4
+        },
+        "unhandled": [
+          {
+            "object_id": 298,
+            "class_guid": "6F542DE3-39A5-47D6-A55B-4AD354B879F1",
+            "class_namespace": "Geometry",
+            "record_offset": 26938,
+            "family": "SketchOwnedGeometry",
+            "sketch_object_id": 202,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          },
+          {
+            "object_id": 304,
+            "class_guid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+            "class_namespace": "MSketch",
+            "record_offset": 27413,
+            "family": "ConstraintOrRelationship",
+            "sketch_object_id": 202,
+            "scope_status": "Explicit decoded sketch ownership/arguments",
+            "scope_reason": null,
+            "reason": "Recognized record family has no decoded output or validated tool-support association"
+          }
+        ],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      },
+      "coverage_after": {
+        "status": "Observed class-family accounting",
+        "candidate_record_counts": {
+          "SketchOwnedGeometry": 5,
+          "ConstraintOrRelationship": 1
+        },
+        "accounted_record_counts": {
+          "SketchOwnedGeometry": 5,
+          "ConstraintOrRelationship": 1
+        },
+        "unhandled": [],
+        "limitations": [
+          "Counts are records, not API entity or user-constraint counts",
+          "Unknown class families, non-sketch-owned geometry and geometry with unreadable ownership are outside this audit",
+          "An empty unhandled list does not establish complete sketch decoding or regeneration"
+        ]
+      }
+    }
+  ],
+  "integration": {
+    "signature": "decode_sketch_surface_constraints(data, records, features)",
+    "call_order": "After decode_sketches, before sketch coverage; no placement/body summaries required",
+    "mutates_features": false,
+    "merge": "Append additional_geometry to owner sketch geometry and constraints to owner sketch constraints, deduplicate object_id. Expose relationships independently; only successfully decoded IDs count as represented. Existing generic reader silently skips these relations; no old decoded relationship duplicates.",
+    "coverage": "Both native plane cache and constraint are currently unhandled; both accounted after append. Controller is source support, not an extra user constraint."
+  },
+  "limitations": [
+    "Only four captured method/member/source combinations accepted. No general 3D or curved surface support.",
+    "All captured target sketch transforms are identity; no occurrence/context transform resolution.",
+    "Face recipe native numeric reference301 has no primary record; explicit body anchor targets body278 and source feature243. Retain both without asserting equality or exact persistent face mapping.",
+    "Style bytes, controller middle and descriptor trailers are raw, uninterpreted. No solver, writer or native regeneration support."
+  ]
+}

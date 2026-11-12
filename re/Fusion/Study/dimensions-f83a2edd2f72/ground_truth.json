@@ -1,0 +1,156 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "name": "DimensionAligned",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchLinearDimension",
+        "is_driving": true,
+        "parameter_name": "d1",
+        "parameter_value": 4.30116263352,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionHorizontal",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchLinearDimension",
+        "is_driving": true,
+        "parameter_name": "d2",
+        "parameter_value": 3.5,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionVertical",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchLinearDimension",
+        "is_driving": true,
+        "parameter_name": "d3",
+        "parameter_value": 2.5,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionDrivenAligned",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchLinearDimension",
+        "is_driving": false,
+        "parameter_name": "d4",
+        "parameter_value": 4.30116263352,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionOffset",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchOffsetDimension",
+        "is_driving": true,
+        "parameter_name": "d5",
+        "parameter_value": 2.0,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionEllipseMajor",
+      "geometric_constraints": [
+        "CoincidentConstraint",
+        "CoincidentConstraint",
+        "CoincidentConstraint",
+        "CoincidentConstraint"
+      ],
+      "dimension": {
+        "kind": "SketchEllipseMajorRadiusDimension",
+        "is_driving": true,
+        "parameter_name": "d6",
+        "parameter_value": 3.0,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionEllipseMinor",
+      "geometric_constraints": [
+        "CoincidentConstraint",
+        "CoincidentConstraint",
+        "CoincidentConstraint",
+        "CoincidentConstraint"
+      ],
+      "dimension": {
+        "kind": "SketchEllipseMinorRadiusDimension",
+        "is_driving": true,
+        "parameter_name": "d7",
+        "parameter_value": 1.5,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionConcentric",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchConcentricCircleDimension",
+        "is_driving": true,
+        "parameter_name": "d8",
+        "parameter_value": 1.8,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionTangentDistance",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchTangentDistanceDimension",
+        "is_driving": true,
+        "parameter_name": "d9",
+        "parameter_value": 5.7,
+        "parameter_role": "Tangent Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionLinearDiameter",
+      "geometric_constraints": [],
+      "dimension": {
+        "kind": "SketchLinearDiameterDimension",
+        "is_driving": true,
+        "parameter_name": "d10",
+        "parameter_value": 6.0,
+        "parameter_role": "Linear Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      }
+    },
+    {
+      "name": "DimensionSmooth",
+      "geometric_constraints": [
+        "SmoothConstraint"
+      ]
+    },
+    {
+      "name": "DimensionControlPolygon",
+      "geometric_constraints": []
+    }
+  ],
+  "errors": []
+}

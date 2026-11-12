@@ -1,0 +1,144 @@
+"""Owned annular-sheet BRep boundary Free/Tangent/Curvature Patch contrasts.
+
+A planar circular hole has a valid planar continuation for all three controls.
+Boundary/getContinuity API order is captured; no recipe-to-ASM edge identity,
+continuity direction sign or persistent topology is inferred by the generator.
+"""
+import hashlib
+import json
+from pathlib import Path
+import traceback
+import uuid
+
+import adsk.core
+import adsk.fusion
+
+CASES=('brep_free','brep_tangent','brep_curvature')
+
+
+def run(context):
+    app=adsk.core.Application.get();root=Path(__file__).resolve().parent
+    output=root/('patchcontinuity-'+uuid.uuid4().hex[:12]);output.mkdir()
+    source=Path(__file__).read_bytes();(output/'executed-generator-source.txt').write_bytes(source)
+    cases=context.get('cases',CASES) if isinstance(context,dict) else CASES
+    if not isinstance(cases,(tuple,list)) or any(c not in CASES for c in cases):raise ValueError('Unknown Patch continuity case')
+    truth={'status':'running','fusion_version':app.version,'samples':[],'errors':[],
+        'executed_generator_sha256':hashlib.sha256(source).hexdigest(),
+        'SDK_scope':'Patch accepts BRepEdge or closed collection/path; per-edge setContinuity arrays follow getContinuity returned edge order. Connected ignores weight; one-face open edge ignores flip. Existing feature boundary/getContinuity require rollback.',
+        'identity_scope':'API edge/body tokens remain opaque; source loops select fixture geometry only and do not establish serialized native/ASM identity'}
+    def save(event):
+        (output/'ground_truth.json').write_text(json.dumps(truth,indent=2)+'\n')
+        (output/'progress.json').write_text(json.dumps({'status':truth['status'],'samples':[{'case':s['case'],'status':s['status']} for s in truth['samples']],'errors':len(truth['errors'])},indent=2)+'\n')
+        with (output/'journal.jsonl').open('a') as handle:handle.write(json.dumps(event)+'\n')
+    save({'event':'started','cases':list(cases)})
+    for case in cases:
+        sample={'case':case,'file':case+'.f3d','status':'creating_document','getter_errors':[],
+            'requested':{'continuity_name':case.removeprefix('brep_'),'weight':.5,'is_continuity_direction_flipped':False,
+                'operation':'NewBody','outer_radius_cm':2.,'hole_radius_cm':.7,'boundary_source':'Single inner circular BRepEdge of owned annular planar seed sheet'}}
+        truth['samples'].append(sample);document=None;design=None;save({'event':'case_started','case':case})
+        try:
+            document=app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+            design=adsk.fusion.Design.cast(document.products.itemByProductType('DesignProductType'))
+            design.designType=adsk.fusion.DesignTypes.ParametricDesignType;component=design.rootComponent
+            point=adsk.core.Point3D.create
+            def read(label,callback):
+                try:return callback()
+                except Exception:
+                    sample['getter_errors'].append({'field':label,'error':traceback.format_exc()});return {'getter_failed':True}
+            def body_truth(body,label):
+                return {'entity_type':body.objectType,'name':body.name,'entity_token':read(label+'.token',lambda:body.entityToken),
+                    'is_solid':body.isSolid,'face_count':body.faces.count,'edge_count':body.edges.count,'vertex_count':body.vertices.count,
+                    'area_cm2':body.area,'volume_cm3':body.volume,
+                    'bounds_min_cm':list(body.boundingBox.minPoint.asArray()),'bounds_max_cm':list(body.boundingBox.maxPoint.asArray()),
+                    'face_geometry_types':[face.geometry.objectType for face in body.faces]}
+            def edge_truth(edge,label):
+                curve=edge.geometry;circle=adsk.core.Circle3D.cast(curve)
+                result={'entity_type':edge.objectType,'entity_token':read(label+'.token',lambda:edge.entityToken),
+                    'temporary_id':read(label+'.tempId',lambda:edge.tempId),'body_name':edge.body.name,
+                    'body_token':read(label+'.bodyToken',lambda:edge.body.entityToken),'geometry_type':curve.objectType,
+                    'face_count':edge.faces.count,'incident_face_geometry_types':[face.geometry.objectType for face in edge.faces],
+                    'is_param_reversed':edge.isParamReversed,
+                    'start_vertex_cm':list(edge.startVertex.geometry.asArray()) if edge.startVertex else None,
+                    'end_vertex_cm':list(edge.endVertex.geometry.asArray()) if edge.endVertex else None}
+                if circle:result.update(center_cm=list(circle.center.asArray()),normal=list(circle.normal.asArray()),radius_cm=circle.radius)
+                ok,low,high=edge.evaluator.getParameterExtents();result['evaluator_extents_returned']=ok;result['evaluator_extents']=[low,high];result['evaluator_samples']=[]
+                if ok:
+                    for fraction in (0.,.25,.5,.75,1.):
+                        u=low+(high-low)*fraction;accepted,p=edge.evaluator.getPointAtParameter(u)
+                        result['evaluator_samples'].append({'fraction':fraction,'parameter':u,'returned':accepted,'point_cm':list(p.asArray()) if accepted else None})
+                return result
+            def boundary_truth(boundary,label):
+                if boundary is None:return {'is_null':True}
+                edge=adsk.fusion.BRepEdge.cast(boundary)
+                if edge:return {'entity_type':boundary.objectType,'edges':[edge_truth(edge,label+'.edge')]}
+                if hasattr(boundary,'item') and hasattr(boundary,'count'):
+                    return {'entity_type':boundary.objectType,'count':boundary.count,'edges':[edge_truth(boundary.item(i),label+'.edge'+str(i)) for i in range(boundary.count)]}
+                return {'entity_type':boundary.objectType,'scope':'Other boundary type retained without guessing members'}
+            def continuity_truth(owner,label):
+                result=owner.getContinuity();sample[label+'_return_shape']={'python_type':type(result).__name__,
+                    'length':len(result) if isinstance(result,(tuple,list)) else None}
+                if not isinstance(result,(tuple,list)) or len(result)!=5:raise RuntimeError('Unexpected public getContinuity return signature')
+                success,edges,continuity,weights,flips=result
+                if not success:raise RuntimeError('Public getContinuity returned failure')
+                edges=list(edges)
+                if not len(edges)==len(continuity)==len(weights)==len(flips):raise RuntimeError('Public continuity arrays have different lengths')
+                return {'returned':bool(success),'is_group_edges':owner.isGroupEdges,'edges':[edge_truth(e,label+'.edge'+str(i)) for i,e in enumerate(edges)],
+                    'continuity':[int(c) for c in continuity],'weights':list(weights),'is_continuity_direction_flipped':list(flips),
+                    'group_controls':{'active':owner.isGroupEdges,
+                        'continuity':read(label+'.groupContinuity',lambda:int(owner.groupContinuity)),
+                        'weight':read(label+'.groupWeight',lambda:owner.groupWeight),
+                        'is_direction_flipped':read(label+'.groupFlipped',lambda:owner.groupIsContinuityDirectionFlipped)},
+                    'weight_applicability':'Ignored where continuity is Connected; retained raw otherwise',
+                    'flip_applicability':'Ignored for captured one-adjacent-face open boundary edge'}
+            sketch=component.sketches.add(component.xYConstructionPlane);sketch.name='PatchAnnularSeedSketch'
+            sketch.sketchCurves.sketchCircles.addByCenterRadius(point(0,0,0),2.)
+            sketch.sketchCurves.sketchCircles.addByCenterRadius(point(0,0,0),.7)
+            profiles=[p for p in sketch.profiles if p.profileLoops.count==2]
+            if len(profiles)!=1:raise RuntimeError('Owned annular source profile missing/ambiguous')
+            seed=component.features.patchFeatures.add(component.features.patchFeatures.createInput(profiles[0],adsk.fusion.FeatureOperations.NewBodyFeatureOperation))
+            seed.name='PatchAnnularSeed';body=seed.bodies.item(0);body.name='PatchAnnularSupport'
+            inner=[loop for face in body.faces for loop in face.loops if not loop.isOuter]
+            if len(inner)!=1 or inner[0].edges.count!=1:raise RuntimeError('Owned single circular inner BRep boundary unavailable')
+            edge=inner[0].edges.item(0)
+            if adsk.core.Circle3D.cast(edge.geometry) is None or edge.faces.count!=1:raise RuntimeError('Controlled source must be a one-face circular BRepEdge')
+            sample['source_before_patch']={'body':body_truth(body,'source_body'),'edge':edge_truth(edge,'source_edge')}
+            inputs=component.features.patchFeatures.createInput(edge,adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
+            if inputs is None:raise RuntimeError('Patch BRep input creation returned null')
+            initial=continuity_truth(inputs,'input_initial');sample['input_initial_continuity']=initial
+            code={'brep_free':adsk.fusion.SurfaceContinuityTypes.ConnectedSurfaceContinuityType,
+                'brep_tangent':adsk.fusion.SurfaceContinuityTypes.TangentSurfaceContinuityType,
+                'brep_curvature':adsk.fusion.SurfaceContinuityTypes.CurvatureSurfaceContinuityType}[case]
+            count=len(initial['edges']);sample['requested']['continuity_API_value']=int(code)
+            sample['set_continuity_returned']=inputs.setContinuity([int(code)]*count,[.5]*count,[False]*count)
+            if not sample['set_continuity_returned']:raise RuntimeError('Patch continuity setter rejected arrays')
+            sample['input_actual_continuity']=continuity_truth(inputs,'input_after_set')
+            sample['input_boundary']=boundary_truth(inputs.boundaryCurve,'input_boundary')
+            sample['status']='adding_patch';save({'event':'adding_patch','case':case})
+            feature=component.features.patchFeatures.add(inputs)
+            if feature is None:raise RuntimeError('Patch BRep add returned null')
+            feature.name='ProbePatchContinuity_'+case
+            if feature.bodies.count==1:feature.bodies.item(0).name='PatchFilledSurface'
+            sample['compute_all_returned']=design.computeAll();sample['health_state']=feature.healthState;sample['warning']=feature.errorOrWarningMessage
+            sample['result_bodies']=[body_truth(b,'result_body') for b in feature.bodies]
+            sample['root_bodies_after']=[body_truth(b,'root_body') for b in component.bRepBodies]
+            feature.timelineObject.rollTo(True)
+            sample['settings']={'operation':int(feature.operation),'boundary':boundary_truth(feature.boundaryCurve,'actual_boundary'),
+                'continuity':continuity_truth(feature,'actual_feature'),
+                'interior_entity_count':feature.interiorRailsAndPoints.count if feature.interiorRailsAndPoints else 0}
+            design.timeline.moveToEnd()
+            sample['parameters']=[{'name':p.name,'role':p.role,'raw_value':p.value,'unit':p.unit,'expression':p.expression,
+                'created_by':read('parameter.createdBy',lambda parameter=p:getattr(parameter.createdBy,'name',None))} for p in component.modelParameters]
+            sample['status']='exporting';save({'event':'exporting','case':case})
+            if not design.exportManager.execute(design.exportManager.createFusionArchiveExportOptions(str(output/sample['file']))):raise RuntimeError('Patch continuity export failed')
+            sample['status']='exported';save({'event':'exported','case':case})
+        except Exception:
+            sample['status']='error';truth['errors'].append({'case':case,'error':traceback.format_exc()});save({'event':'case_error','case':case})
+        finally:
+            if document is not None:
+                try:
+                    if design is not None:design.timeline.moveToEnd()
+                    sample['close_owned_document_result']=document.close(False)
+                except Exception:sample['getter_errors'].append({'field':'close_owned_document','error':traceback.format_exc()})
+            save({'event':'case_finished','case':case,'status':sample['status']})
+    truth['status']='complete';save({'event':'complete'})
+    (output/'complete.txt').write_text('Patch BRep continuity contrasts finished; inspect actual results/errors.\n')

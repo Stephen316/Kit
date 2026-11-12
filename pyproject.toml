@@ -1,29 +1,18 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 [build-system]
-requires = ["hatchling==1.32.0"]
+requires = ["hatchling==1.33.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "kit"
+name = "unicad-kit"
 version = "0.1.0"
-description = "CAD interchange SDK by Parashell."
+description = "Fully parametric CAD file interchange"
 readme = "README.md"
 requires-python = ">=3.11"
-license = "LicenseRef-PolyForm-Strict-1.0.0"
-license-files = ["LICENSE"]
+license = "MIT"
+license-files = ["LICENSE", "src/convert/adapters/solidworks/container/OpenSwxLicense.md"]
 authors = [
-    { name = "Parashell" },
-    { name = "Odin Glynn-Martin", email = "odin.glynn@parashell.cloud" },
-]
-maintainers = [
-    { name = "Odin Glynn-Martin", email = "odin.glynn@parashell.cloud" },
+    { name = "Odin Glynn-Martin" },
+    { name = "Stephen Harcourt" },
 ]
 keywords = [
     "cad",
@@ -37,13 +26,15 @@ keywords = [
 ]
 
 [project.urls]
-Repository = "https://github.com/TryParashell/Kit"
-Issues = "https://github.com/TryParashell/Kit/issues"
+Repository = "https://github.com/TryUniCAD/Kit"
+Issues = "https://github.com/TryUniCAD/Kit/issues"
 
 [project.optional-dependencies]
 dev = [
+    "black==26.10.1",
     "pytest==9.1.1",
     "pywin32==312 ; sys_platform == 'win32'",
+    "typing-extensions>=4.12",
 ]
 
 [project.entry-points."kit"]
@@ -64,6 +55,7 @@ include = [
 [tool.pytest.ini_options]
 addopts = "-ra"
 testpaths = ["tests"]
+norecursedirs = ["re"]
 python_files = ["*Test.py", "*Tests.py"]
 python_functions = ["test_*", "Test*", "Check*"]
 collect_imported_tests = false
@@ -71,41 +63,42 @@ collect_imported_tests = false
 [tool.black]
 line-length = 88
 target-version = ["py311"]
-force-exclude = "(examples|Parashell|modules|re|src/convert/adapters/solidworks/programs)/"
+force-exclude = "(examples|modules|re|src/convert/adapters/solidworks/programs)/"
 
 [dependency-groups]
 dev = [
     "bandit>=1.9.4",
-    "black==26.3.1",
-    "checkov>=3.3.11",
+    "black==26.10.1",
+    "checkov>=3.4.3",
     "cyclonedx-bom>=4.6.1",
     "defusedxml>=0.7.1",
     "detect-secrets>=1.5.0",
-    "dlint>=0.16.0",
-    "mypy>=2.3.1",
+    "dlint>=0.17.0",
+    "mypy>=2.4.1",
     "numpy<2.5",
-    "pip-audit>=2.9.0",
-    "pyright==1.1.411",
-    "ruff>=0.16.3",
+    "pip-audit>=2.10.1",
+    "pyright==1.1.414",
+    "ruff>=0.17.3",
     "safety>=3.8.1",
-    "semgrep>=1.136.0",
-    "setuptools==80.9.0",
+    "semgrep>=1.183.0",
+    "setuptools==84.2.1",
     "typing-extensions>=4.12",
-    "types-pywin32>=312.0.0.20260724",
-    "zizmor>=1.29.0",
+    "types-pywin32>=312.0.0.20261104",
+    "zizmor>=1.32.0",
 ]
 [tool.ruff]
 target-version = "py311"
 line-length = 120
 src = ["src", "tests", "tools"]
-exclude = [".venv", "examples", "Parashell", "modules", "re", ".github/scripts"]
+exclude = [".venv", "examples", "modules", "re", ".github/scripts"]
+force-exclude = true
 
 [tool.ruff.lint]
 select = ["E9", "F"]
 ignore = ["F401", "F402", "F811", "F821", "F823"]
 
 [tool.bandit]
-exclude_dirs = [".venv", "examples", "Parashell", "modules", "re", "tests"]
+exclude_dirs = [".venv", "examples", "modules", "re", "tests"]
 skips = ["B101", "B105", "B314", "B404", "B405", "B603", "B607"]
 
 [tool.mypy]
@@ -125,7 +118,7 @@ enable_error_code = [
 ]
 explicit_package_bases = true
 files = ["src", "tests", "tools"]
-exclude = '^(\.venv|examples|Parashell|modules)/'
+exclude = '^(\.venv|examples|modules|re)/'
 mypy_path = ["src", "typings", ".", "re/tooling/ghidra/Generation"]
 warn_unused_configs = true
 show_error_codes = true
@@ -133,7 +126,8 @@ pretty = true
 
 [tool.pyright]
 include = ["src", "tests", "tools"]
-exclude = [".venv", "examples", "Parashell", "modules", "tests/oracle"]
+exclude = [".venv", "examples", "modules", "re", "tests/oracle"]
+ignore = ["re"]
 typeCheckingMode = "strict"
 pythonVersion = "3.11"
 reportAssertTypeFailure = "error"
@@ -166,6 +160,14 @@ reportUnusedVariable = "error"
 exclude-newer = "7 days"
 override-dependencies = [
     "click>=8.3.3,<8.5",
+    "filelock==4.2.4",
+    "mcp==1.30.0",
+    "opentelemetry-api==1.45.1",
+    "opentelemetry-sdk==1.45.1",
+    "opentelemetry-exporter-otlp-proto-http==1.45.1",
+    "opentelemetry-instrumentation-requests==0.66b1",
+    "opentelemetry-instrumentation-threading==0.66b1",
+    "pywin32==312 ; sys_platform == 'win32'",
     "nltk @ git+https://github.com/nltk/nltk.git@ba6b259aa94a85168c031ad60e4072538c30b513",
     "protobuf>=5.29.6,<6",
 ]

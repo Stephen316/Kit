@@ -1,0 +1,337 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "solid_two.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "surface_two.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          false
+        ],
+        "operation": 3,
+        "is_solid": false,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "start_direction.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": 0.17453292519943295,
+            "weight": 1.5
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "Start Weight",
+          "value": 1.5,
+          "unit": "",
+          "created_by": "ProbeLoft"
+        },
+        {
+          "name": "d4",
+          "role": "Start TakeOff Angle",
+          "value": 0.17453292519943295,
+          "unit": "deg",
+          "created_by": "ProbeLoft"
+        }
+      ]
+    },
+    {
+      "file": "end_direction.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": -0.08726646259971647,
+            "weight": 1.2
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "End Weight",
+          "value": 1.2,
+          "unit": "",
+          "created_by": "ProbeLoft"
+        },
+        {
+          "name": "d4",
+          "role": "End TakeOff Angle",
+          "value": -0.08726646259971647,
+          "unit": "deg",
+          "created_by": "ProbeLoft"
+        }
+      ]
+    },
+    {
+      "file": "both_direction.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": 0.17453292519943295,
+            "weight": 1.5
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": -0.08726646259971647,
+            "weight": 1.2
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "Start Weight",
+          "value": 1.5,
+          "unit": "",
+          "created_by": "ProbeLoft"
+        },
+        {
+          "name": "d4",
+          "role": "Start TakeOff Angle",
+          "value": 0.17453292519943295,
+          "unit": "deg",
+          "created_by": "ProbeLoft"
+        },
+        {
+          "name": "d5",
+          "role": "End Weight",
+          "value": 1.2,
+          "unit": "",
+          "created_by": "ProbeLoft"
+        },
+        {
+          "name": "d6",
+          "role": "End TakeOff Angle",
+          "value": -0.08726646259971647,
+          "unit": "deg",
+          "created_by": "ProbeLoft"
+        }
+      ]
+    },
+    {
+      "file": "unmerged.f3d",
+      "settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": false,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "case": "solid_three",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftModes.py\", line 68, in run\n    entity, condition = section.entity, section.endCondition\n                                        ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46233, in _get_endCondition\n    return _fusion.LoftSection__get_endCondition(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Only first/last section has end condition.\n"
+    },
+    {
+      "case": "centerline",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftModes.py\", line 55, in run\n    feature = root.features.loftFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46115, in add\n    return _fusion.LoftFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : ASM_CENTERLINE_SECTION_DOESNT_CUT_PATH -   The centerline does not intersect all profile planes.\n    Try extending the centerline, or adjusting the profiles so that they all intersect the centerline. Also check that the centerline was selected as intended.\nLOFT_TOOLBODY_CREATE_FAIL - Cannot create tool body for loft.\n"
+    }
+  ]
+}

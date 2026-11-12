@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 import argparse as Argparse
 from pathlib import Path as PathInfo
@@ -41,13 +33,6 @@ def GenerateScript(StreamBytes: int) -> str:
         raise ValueError("resolved stream length must be positive")
     GuardText = hex(StreamBytes)
     LinesData = [
-        "$$ SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0",
-        "$$ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin",
-        "$$",
-        "$$ This SPDX license identifier and copyright notice must not be",
-        "$$ removed, altered, or obscured. Doing so is a material breach of",
-        "$$ the PolyForm Strict License 1.0.0 and voids all licenses granted",
-        "$$ to you under it immediately and permanently.",
         ".symopt+0x4000",
         ".symopt-0x20000",
         ".exepath+ C:\\Program Files\\SOLIDWORKS Corp\\SOLIDWORKS",

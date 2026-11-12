@@ -1,13 +1,3 @@
-<!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
--->
-
 # Revolve donors authored at swVersion 18000, and what the graded family pinned
 
 This document records a SOLIDWORKS 2025 (`RevisionNumber` 33.5.0) authoring session that replaces

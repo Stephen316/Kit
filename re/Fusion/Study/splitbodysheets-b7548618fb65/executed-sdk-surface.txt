@@ -1,0 +1,1797 @@
+class SplitBodyFeatures(Base):
+    r"""
+    Collection that provides access to all of the existing split body features in a component
+    and supports the ability to create new split body features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SplitBodyFeatures *":
+        return _fusion.SplitBodyFeatures___deref__(self)
+
+    def __eq__(self, rhs: "SplitBodyFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SplitBodyFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SplitBodyFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SplitBodyFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SplitBodyFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.SplitBodyFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.SplitBodyFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.SplitBodyFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SplitBodyFeatures_classType()
+    __swig_destroy__ = _fusion.delete_SplitBodyFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.SplitBodyFeature":
+        r"""
+        Function that returns the specified split body feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.SplitBodyFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of split body features in the collection."""
+        return _fusion.SplitBodyFeatures__get_count(self)
+
+    def createInput(self, splitBodies: "Base", splittingTool: "Base", isSplittingToolExtended: "bool") -> "adsk.fusion.SplitBodyFeatureInput":
+        r"""
+        Creates a SplitBodyFeatureInput object. Use properties and methods on this object
+        to define the split body you want to create and then use the Add method, passing in
+        the SplitBodyFeatureInput object.
+        splitBodies : Input solid body or open bodies to be split. This can be a single BRepBody or an ObjectCollection if multiple
+        bodies are to be split.
+        splittingTool : Input entity that defines the splitting tool. The splitting tool is a single entity that can be either a solid or open BRepBody,
+        construction plane, profile, or a face.
+        isSplittingToolExtended : A boolean value for setting whether or not the splitting tool is to be automatically extended (if possible) so as to
+        completely intersect the bodyToSplit.
+        Returns the newly created SplitBodyFeatureInput object or null if the creation failed.
+        """
+        return _fusion.SplitBodyFeatures_createInput(self, splitBodies, splittingTool, isSplittingToolExtended)
+
+    def add(self, input: "SplitBodyFeatureInput") -> "adsk.fusion.SplitBodyFeature":
+        r"""
+        Creates a new split body feature.
+        input : A SplitBodyFeatureInput object that defines the desired split body feature. Use the createInput
+        method to create a new SplitBodyFeatureInput object and then use methods on it
+        (the SplitBodyFeatureInput object) to define the split body.
+        Returns the newly created SplitBodyFeature object or null if the creation failed.
+        """
+        return _fusion.SplitBodyFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.SplitBodyFeature":
+        r"""
+        Function that returns the specified split body feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.SplitBodyFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SplitBodyFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SplitBodyFeatures__get_isValid(self)
+
+# Register SplitBodyFeatures in _fusion:
+_fusion.SplitBodyFeatures_swigregister(SplitBodyFeatures)
+
+def SplitBodyFeatures_classType() -> "str":
+    return _fusion.SplitBodyFeatures_classType()
+
+
+SplitBodyFeatures.count = property(SplitBodyFeatures._get_count, doc="The number of split body features in the collection.")
+
+
+SplitBodyFeatures.cast = lambda arg: arg if isinstance(arg, SplitBodyFeatures) else None
+
+class SplitBodyFeatureInput(Base):
+    r"""This class defines the methods and properties that pertain to the definition of a split body feature."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SplitBodyFeatureInput *":
+        return _fusion.SplitBodyFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "SplitBodyFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SplitBodyFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SplitBodyFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SplitBodyFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SplitBodyFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SplitBodyFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_SplitBodyFeatureInput
+
+    def _get_splitBodies(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the input solid or open bodies to be split. This can be a
+        single BRepBody or an ObjectCollection if multiple bodies are to be split.
+        """
+        return _fusion.SplitBodyFeatureInput__get_splitBodies(self)
+
+    def _set_splitBodies(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the input solid or open bodies to be split. This can be a
+        single BRepBody or an ObjectCollection if multiple bodies are to be split.
+        """
+        return _fusion.SplitBodyFeatureInput__set_splitBodies(self, value)
+
+    def _get_splittingTool(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the entity that defines the splitting tool. The splitting tool is a single
+        entity that can be either a solid or open BRepBody, construction plane, profile, or a face.
+        """
+        return _fusion.SplitBodyFeatureInput__get_splittingTool(self)
+
+    def _set_splittingTool(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the entity that defines the splitting tool. The splitting tool is a single
+        entity that can be either a solid or open BRepBody, construction plane, profile, or a face.
+        """
+        return _fusion.SplitBodyFeatureInput__set_splittingTool(self, value)
+
+    def _get_isSplittingToolExtended(self) -> "bool":
+        r"""
+        Gets and sets whether or not the splitting tool is to be automatically extended (if possible) so as to
+        completely intersect the bodyToSplit.
+        """
+        return _fusion.SplitBodyFeatureInput__get_isSplittingToolExtended(self)
+
+    def _set_isSplittingToolExtended(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets whether or not the splitting tool is to be automatically extended (if possible) so as to
+        completely intersect the bodyToSplit.
+        """
+        return _fusion.SplitBodyFeatureInput__set_isSplittingToolExtended(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.SplitBodyFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.SplitBodyFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SplitBodyFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SplitBodyFeatureInput__get_isValid(self)
+
+# Register SplitBodyFeatureInput in _fusion:
+_fusion.SplitBodyFeatureInput_swigregister(SplitBodyFeatureInput)
+
+def SplitBodyFeatureInput_classType() -> "str":
+    return _fusion.SplitBodyFeatureInput_classType()
+
+
+SplitBodyFeatureInput.splitBodies = property(SplitBodyFeatureInput._get_splitBodies, SplitBodyFeatureInput._set_splitBodies, doc="Gets and sets the input solid or open bodies to be split. This can be a\nsingle BRepBody or an ObjectCollection if multiple bodies are to be split.")
+
+
+SplitBodyFeatureInput.splittingTool = property(SplitBodyFeatureInput._get_splittingTool, SplitBodyFeatureInput._set_splittingTool, doc="Gets and sets the entity that defines the splitting tool. The splitting tool is a single\nentity that can be either a solid or open BRepBody, construction plane, profile, or a face.")
+
+
+SplitBodyFeatureInput.isSplittingToolExtended = property(SplitBodyFeatureInput._get_isSplittingToolExtended, SplitBodyFeatureInput._set_isSplittingToolExtended, doc="Gets and sets whether or not the splitting tool is to be automatically extended (if possible) so as to\ncompletely intersect the bodyToSplit.")
+
+
+SplitBodyFeatureInput.targetBaseFeature = property(SplitBodyFeatureInput._get_targetBaseFeature, SplitBodyFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+SplitBodyFeatureInput.cast = lambda arg: arg if isinstance(arg, SplitBodyFeatureInput) else None
+
+class SplitBodyFeature(Feature):
+    r"""Object that represents an existing split body feature in a design."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SplitBodyFeature *":
+        return _fusion.SplitBodyFeature___deref__(self)
+
+    def __eq__(self, rhs: "SplitBodyFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SplitBodyFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SplitBodyFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SplitBodyFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SplitBodyFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SplitBodyFeature_classType()
+    __swig_destroy__ = _fusion.delete_SplitBodyFeature
+
+    def _get_splitBodies(self) -> "adsk.core.ObjectCollection":
+        r"""
+        Gets and sets the input solid or open bodies that are split.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SplitBodyFeature__get_splitBodies(self)
+
+    def _set_splitBodies(self, value: "ObjectCollection") -> "bool":
+        r"""
+        Gets and sets the input solid or open bodies that are split.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SplitBodyFeature__set_splitBodies(self, value)
+
+    def setSplittingTool(self, splittingTool: "Base", isSplittingToolExtended: "bool") -> "bool":
+        r"""
+        Sets the splitting tool used for the feature.
+        To use this method, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        splittingTool : Input entity that defines the splitting tool. The splitting tool is a single entity that can be either a solid body,
+        open body, construction plane, face, or sketch curve that partially or fully intersects the body to split.
+        isSplittingToolExtended : A boolean value for setting whether or not the splittingTool is to be automatically extended (if possible) so as to
+        completely intersect the facesToSplit.
+        Returns true if successful.
+        """
+        return _fusion.SplitBodyFeature_setSplittingTool(self, splittingTool, isSplittingToolExtended)
+
+    def _get_splittingTool(self) -> "adsk.core.Base":
+        r"""
+        Gets the entity that defines the splitting tool. The splitting tool is a single entity that can be either a
+        solid body, open body, plane, sketch curve or face that partially or fully intersects the bodyToSplit.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SplitBodyFeature__get_splittingTool(self)
+
+    def _get_isSplittingToolExtended(self) -> "bool":
+        r"""
+        Gets whether or not the splitting tool is to be automatically extended (if possible) so as to
+        completely intersect the bodyToSplit.
+        """
+        return _fusion.SplitBodyFeature__get_isSplittingToolExtended(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.SplitBodyFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.SplitBodyFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.SplitBodyFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this is not the NativeObject.
+        """
+        return _fusion.SplitBodyFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.SplitBodyFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.SplitBodyFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.SplitBodyFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.SplitBodyFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.SplitBodyFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.SplitBodyFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.SplitBodyFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.SplitBodyFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.SplitBodyFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.SplitBodyFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.SplitBodyFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.SplitBodyFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.SplitBodyFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.SplitBodyFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.SplitBodyFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.SplitBodyFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.SplitBodyFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.SplitBodyFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SplitBodyFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SplitBodyFeature__get_isValid(self)
+
+# Register SplitBodyFeature in _fusion:
+_fusion.SplitBodyFeature_swigregister(SplitBodyFeature)
+
+def SplitBodyFeature_classType() -> "str":
+    return _fusion.SplitBodyFeature_classType()
+
+
+SplitBodyFeature.splitBodies = property(SplitBodyFeature._get_splitBodies, SplitBodyFeature._set_splitBodies, doc="Gets and sets the input solid or open bodies that are split.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SplitBodyFeature.splittingTool = property(SplitBodyFeature._get_splittingTool, doc="Gets the entity that defines the splitting tool. The splitting tool is a single entity that can be either a\nsolid body, open body, plane, sketch curve or face that partially or fully intersects the bodyToSplit.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SplitBodyFeature.isSplittingToolExtended = property(SplitBodyFeature._get_isSplittingToolExtended, doc="Gets whether or not the splitting tool is to be automatically extended (if possible) so as to\ncompletely intersect the bodyToSplit.")
+
+
+SplitBodyFeature.nativeObject = property(SplitBodyFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+SplitBodyFeature.cast = lambda arg: arg if isinstance(arg, SplitBodyFeature) else None
+
+class PatchFeatures(Base):
+    r"""
+    Collection that provides access to all of the existing Patch features in a component
+    and supports the ability to create new Patch features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.PatchFeatures *":
+        return _fusion.PatchFeatures___deref__(self)
+
+    def __eq__(self, rhs: "PatchFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.PatchFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "PatchFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.PatchFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.PatchFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.PatchFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.PatchFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.PatchFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.PatchFeatures_classType()
+    __swig_destroy__ = _fusion.delete_PatchFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.PatchFeature":
+        r"""
+        Function that returns the specified patch feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.PatchFeatures_item(self, index)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.PatchFeature":
+        r"""
+        Function that returns the specified patch feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.PatchFeatures_itemByName(self, name)
+
+    def _get_count(self) -> "int":
+        r"""The number of Patch features in the collection."""
+        return _fusion.PatchFeatures__get_count(self)
+
+    def createInput(self, boundaryCurve: "Base", operation: "FeatureOperations") -> "adsk.fusion.PatchFeatureInput":
+        r"""
+        Creates a PatchFeatureInput object. Use properties and methods on the returned PatchFeatureInput
+        object to set other settings. The PatchFeatureInput object is used as input to the add method
+        to create the patch feature.
+        boundaryCurve : Defines the input geometry that will be used to define the boundary. This can be a sketch profile,
+        a single sketch curve, a single B-Rep edge, an ObjectCollection, or a Path object.
+        If a single sketch curve or B-Rep edge is an input that is not closed; Fusion will automatically find connected sketch curves
+        or B-Rep edges to define a closed loop.
+        If an ObjectCollection is an input, it must be a set of curves that define a closed shape.
+        If a Path is an input, it must define a closed shape.
+        operation : The feature operation to perform. Only 'NewBodyFeatureOperation' and 'NewComponentFeatureOperation' are
+        valid operations for patch features.
+        Returns the newly created PatchFeatureInput object or null if the creation fails.
+        """
+        return _fusion.PatchFeatures_createInput(self, boundaryCurve, operation)
+
+    def add(self, input: "PatchFeatureInput") -> "adsk.fusion.PatchFeature":
+        r"""
+        Creates a new patch feature.
+        input : A PatchFeatureInput object that defines the desired patch feature. Use the createInput
+        method to create a new PatchFeatureInput object and then use methods on it
+        (the PatchFeatureInput object) to define the patch feature.
+        Returns the newly created PatchFeature object or null if the creation failed.
+        """
+        return _fusion.PatchFeatures_add(self, input)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.PatchFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.PatchFeatures__get_isValid(self)
+
+# Register PatchFeatures in _fusion:
+_fusion.PatchFeatures_swigregister(PatchFeatures)
+
+def PatchFeatures_classType() -> "str":
+    return _fusion.PatchFeatures_classType()
+
+
+PatchFeatures.count = property(PatchFeatures._get_count, doc="The number of Patch features in the collection.")
+
+
+PatchFeatures.cast = lambda arg: arg if isinstance(arg, PatchFeatures) else None
+
+class PatchFeatureInput(Base):
+    r"""This class defines the methods and properties that pertain to the definition of a patch feature."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.PatchFeatureInput *":
+        return _fusion.PatchFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "PatchFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.PatchFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "PatchFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.PatchFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.PatchFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.PatchFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_PatchFeatureInput
+
+    def _get_boundaryCurve(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the input geometry that will be used to define the boundary. This can be a sketch profile,
+        a single sketch curve, a single B-Rep edge, an ObjectCollection, or a Path object.
+        If a single open sketch curve or B-Rep edge is input, Fusion will automatically find connected sketch curves
+        or B-Rep edges to define a closed loop.
+        If an ObjectCollection is used as input, it must be a set of curves that define a closed shape.
+        If a Path is used as input, it must define a closed shape.
+        """
+        return _fusion.PatchFeatureInput__get_boundaryCurve(self)
+
+    def _set_boundaryCurve(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the input geometry that will be used to define the boundary. This can be a sketch profile,
+        a single sketch curve, a single B-Rep edge, an ObjectCollection, or a Path object.
+        If a single open sketch curve or B-Rep edge is input, Fusion will automatically find connected sketch curves
+        or B-Rep edges to define a closed loop.
+        If an ObjectCollection is used as input, it must be a set of curves that define a closed shape.
+        If a Path is used as input, it must define a closed shape.
+        """
+        return _fusion.PatchFeatureInput__set_boundaryCurve(self, value)
+
+    def _get_operation(self) -> "adsk.fusion.FeatureOperations":
+        r"""
+        Gets and sets the type of operation performed by the patch feature. Only 'NewBodyFeatureOperation' and 'NewComponentFeatureOperation' are
+        valid operations for patch features.
+        """
+        return _fusion.PatchFeatureInput__get_operation(self)
+
+    def _set_operation(self, value: "FeatureOperations") -> "bool":
+        r"""
+        Gets and sets the type of operation performed by the patch feature. Only 'NewBodyFeatureOperation' and 'NewComponentFeatureOperation' are
+        valid operations for patch features.
+        """
+        return _fusion.PatchFeatureInput__set_operation(self, value)
+
+    def _get_continuity(self) -> "adsk.fusion.SurfaceContinuityTypes":
+        r"""
+        ** This property is retired. **
+
+        This property has been retired and replaced by either the groupContinuity property or setContinuity method, depending on
+        if the isGroupEdges property is true or not.
+        Gets and sets the type of surface continuity to use when matching boundary edges to face edges. When a new PatchFeatureInput is
+        created, this is initialized to ConnectedSurfaceContinuityType. This value is ignored when creating a patch for sketch curves.
+        """
+        return _fusion.PatchFeatureInput__get_continuity(self)
+
+    def _set_continuity(self, value: "SurfaceContinuityTypes") -> "bool":
+        r"""
+        ** This property is retired. **
+
+        This property has been retired and replaced by either the groupContinuity property or setContinuity method, depending on
+        if the isGroupEdges property is true or not.
+        Gets and sets the type of surface continuity to use when matching boundary edges to face edges. When a new PatchFeatureInput is
+        created, this is initialized to ConnectedSurfaceContinuityType. This value is ignored when creating a patch for sketch curves.
+        """
+        return _fusion.PatchFeatureInput__set_continuity(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.PatchFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.PatchFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_creationOccurrence(self) -> "adsk.fusion.Occurrence":
+        r"""
+        For geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the Patch feature is created based on geometry (e.g., a profile, edges, faces)
+        in another component AND (the Patch feature) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI
+        """
+        return _fusion.PatchFeatureInput__get_creationOccurrence(self)
+
+    def _set_creationOccurrence(self, value: "Occurrence") -> "bool":
+        r"""
+        For geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the Patch feature is created based on geometry (e.g., a profile, edges, faces)
+        in another component AND (the Patch feature) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI
+        """
+        return _fusion.PatchFeatureInput__set_creationOccurrence(self, value)
+
+    def _get_interiorRailsAndPoints(self) -> "adsk.core.ObjectCollection":
+        r"""
+        Gets and sets any interior curves or points the patch should fit
+        through. Valid entities include object collections of connected curves, paths, sketch curves,
+        sketch points, B-Rep edges, and construction points.
+        When getting this property, the returned ObjectCollection can contain individual edges, sketch curves,
+        sketch points, construction points, vertices, and ObjectCollection objects that represent a group
+        of the curves and points listed above.
+        Can be set to null to remove any interior rails and points from the patch.
+        """
+        return _fusion.PatchFeatureInput__get_interiorRailsAndPoints(self)
+
+    def _set_interiorRailsAndPoints(self, value: "ObjectCollection") -> "bool":
+        r"""
+        Gets and sets any interior curves or points the patch should fit
+        through. Valid entities include object collections of connected curves, paths, sketch curves,
+        sketch points, B-Rep edges, and construction points.
+        When getting this property, the returned ObjectCollection can contain individual edges, sketch curves,
+        sketch points, construction points, vertices, and ObjectCollection objects that represent a group
+        of the curves and points listed above.
+        Can be set to null to remove any interior rails and points from the patch.
+        """
+        return _fusion.PatchFeatureInput__set_interiorRailsAndPoints(self, value)
+
+    def _get_isGroupEdges(self) -> "bool":
+        r"""
+        Gets and sets if the edges in the boundary curve are treated as a group,
+        and they all use the same continuity. If this property is True (which is the default),
+        the continuity property controls the continuity for all edges. If
+        this property is false; the continuity is set for each edge using the
+        setContinuity method.
+        When this property is set to true, the continuity and weight of the first edge
+        will be used for all edges. When set to false, each edge will initially have
+        the same continuity and weight. This is typically set to false as a side-effect
+        of calling the setContinuity method.
+        """
+        return _fusion.PatchFeatureInput__get_isGroupEdges(self)
+
+    def _set_isGroupEdges(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the edges in the boundary curve are treated as a group,
+        and they all use the same continuity. If this property is True (which is the default),
+        the continuity property controls the continuity for all edges. If
+        this property is false; the continuity is set for each edge using the
+        setContinuity method.
+        When this property is set to true, the continuity and weight of the first edge
+        will be used for all edges. When set to false, each edge will initially have
+        the same continuity and weight. This is typically set to false as a side-effect
+        of calling the setContinuity method.
+        """
+        return _fusion.PatchFeatureInput__set_isGroupEdges(self, value)
+
+    def _get_groupContinuity(self) -> "adsk.fusion.SurfaceContinuityTypes":
+        r"""
+        Gets and sets the type of surface continuity to use for all edges when the isGroupEdges property is true. The continuity
+        is used to determine how the patch connects to any B-Rep edges in the boundary. It is ignored for any sketch curves in the
+        boundary. The property defaults to ConnectedSurfaceContinuityType. The value of this property is ignored if the isGroupEdges property is false.
+        """
+        return _fusion.PatchFeatureInput__get_groupContinuity(self)
+
+    def _set_groupContinuity(self, value: "SurfaceContinuityTypes") -> "bool":
+        r"""
+        Gets and sets the type of surface continuity to use for all edges when the isGroupEdges property is true. The continuity
+        is used to determine how the patch connects to any B-Rep edges in the boundary. It is ignored for any sketch curves in the
+        boundary. The property defaults to ConnectedSurfaceContinuityType. The value of this property is ignored if the isGroupEdges property is false.
+        """
+        return _fusion.PatchFeatureInput__set_groupContinuity(self, value)
+
+    def _get_groupWeight(self) -> "float":
+        r"""
+        Gets and sets the weight to use for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to 0.5. The value of this property is ignored if the isGroupEdges property is false.
+        """
+        return _fusion.PatchFeatureInput__get_groupWeight(self)
+
+    def _set_groupWeight(self, value: "float") -> "bool":
+        r"""
+        Gets and sets the weight to use for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to 0.5. The value of this property is ignored if the isGroupEdges property is false.
+        """
+        return _fusion.PatchFeatureInput__set_groupWeight(self, value)
+
+    def _get_groupIsContinuityDirectionFlipped(self) -> "bool":
+        r"""
+        Gets and sets the continuity direction for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to false. The value of this property is ignored if the isGroupEdges property is false.
+        """
+        return _fusion.PatchFeatureInput__get_groupIsContinuityDirectionFlipped(self)
+
+    def _set_groupIsContinuityDirectionFlipped(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets the continuity direction for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to false. The value of this property is ignored if the isGroupEdges property is false.
+        """
+        return _fusion.PatchFeatureInput__set_groupIsContinuityDirectionFlipped(self, value)
+
+    def setContinuity(self, continuity: "list[int]", weight: "list[float]", isContinuityDirectionFlipped: "list[bool]") -> "bool":
+        r"""
+        Sets the continuity to use for each edge in the boundary. The arrays for the arguments correspond
+        to B-Rep edges in the boundary. You can use the getContinuity method to get the list of edges to
+        know their order. This order applies to the arrays provided for the arguments.
+        continuity : An array whose size of the number of B-Rep edges in the boundary. You can use the getContinuity
+        method to get the list of edges, so you know the number and order of the edges. The continuity array defines the
+        type of continuity to apply to the edge at the same index. The values are obtained from the SurfaceContinuityTypes
+        enum and passed in as an integer.
+        weight : An array whose size is the number of B-Rep edges in the boundary. You can use the getContinuity
+        method to get the list of edges, so you know the number and order of the edges. The weight array defines the
+        weight to apply to the edge at the same index. If the continuity of an edge is ConnectedSurfaceContinuityType,
+        the weight value is ignored.
+        isContinuityDirectionFlipped : An array whose size is the number of B-Rep edges in the boundary. You can use the getContinuity
+        method to get the list of edges, so you know the number and order of the edges. The isContinuityDirectionFlipped
+        array defines which of the two faces the edge connects to and is used in computing the continuity direction. If the
+        continuity is ConnectedSurfaceContinuityType, or the edge is an open edge and only connected to a single face,
+        the value is ignored.
+        If false, the face associated with the first co-edge returned by the edge is used.
+        Returns true if successful.
+        """
+        return _fusion.PatchFeatureInput_setContinuity(self, continuity, weight, isContinuityDirectionFlipped)
+
+    def getContinuity(self) -> "bool":
+        r"""
+        Gets the continuity used for each edge in the boundary.
+        edges : Output array containing all of the BRepEdge objects in the boundary.
+        continuity : Output array the same size as the edges array that defines the continuity
+        to apply to the edge in the same index in the edges array. The values are obtained
+        from the SurfaceContinuityTypes enum and passed in as an integers.
+        weight : Output array the same size as the edges array that defines the weight applied
+        to the edge in the same index in the edges array. If the continuity
+        of an edge is ConnectedSurfaceContinuityType, the weight value should be ignored.
+        isContinuityDirectionFlipped : Output array the same size as the edges array that defines which of the two faces the
+        edge connects to is used in computing the continuity direction. If the continuity is
+        ConnectedSurfaceContinuityType or the edge is an open edge and only connected to a
+        single face, the value should be ignored.
+        If false, the face associated with the first co-edge returned by the edge is used.
+        Returns true if successful.
+        """
+        return _fusion.PatchFeatureInput_getContinuity(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.PatchFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.PatchFeatureInput__get_isValid(self)
+
+# Register PatchFeatureInput in _fusion:
+_fusion.PatchFeatureInput_swigregister(PatchFeatureInput)
+
+def PatchFeatureInput_classType() -> "str":
+    return _fusion.PatchFeatureInput_classType()
+
+
+PatchFeatureInput.boundaryCurve = property(PatchFeatureInput._get_boundaryCurve, PatchFeatureInput._set_boundaryCurve, doc="Gets and sets the input geometry that will be used to define the boundary. This can be a sketch profile,\na single sketch curve, a single B-Rep edge, an ObjectCollection, or a Path object.\nIf a single open sketch curve or B-Rep edge is input, Fusion will automatically find connected sketch curves\nor B-Rep edges to define a closed loop.\nIf an ObjectCollection is used as input, it must be a set of curves that define a closed shape.\nIf a Path is used as input, it must define a closed shape.")
+
+
+PatchFeatureInput.operation = property(PatchFeatureInput._get_operation, PatchFeatureInput._set_operation, doc="Gets and sets the type of operation performed by the patch feature. Only 'NewBodyFeatureOperation' and 'NewComponentFeatureOperation' are\nvalid operations for patch features.")
+
+
+PatchFeatureInput.continuity = property(PatchFeatureInput._get_continuity, PatchFeatureInput._set_continuity, doc="** This property is retired. **\n\nThis property has been retired and replaced by either the groupContinuity property or setContinuity method, depending on\nif the isGroupEdges property is true or not.\nGets and sets the type of surface continuity to use when matching boundary edges to face edges. When a new PatchFeatureInput is\ncreated, this is initialized to ConnectedSurfaceContinuityType. This value is ignored when creating a patch for sketch curves.")
+
+
+PatchFeatureInput.targetBaseFeature = property(PatchFeatureInput._get_targetBaseFeature, PatchFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+PatchFeatureInput.creationOccurrence = property(PatchFeatureInput._get_creationOccurrence, PatchFeatureInput._set_creationOccurrence, doc="For geometry to be transformed correctly, an Occurrence for creation needs to be\nspecified when the Patch feature is created based on geometry (e.g., a profile, edges, faces)\nin another component AND (the Patch feature) is not in the root component.\nThe CreationOccurrence is analogous to the active occurrence in the UI")
+
+
+PatchFeatureInput.interiorRailsAndPoints = property(PatchFeatureInput._get_interiorRailsAndPoints, PatchFeatureInput._set_interiorRailsAndPoints, doc="Gets and sets any interior curves or points the patch should fit\nthrough. Valid entities include object collections of connected curves, paths, sketch curves,\nsketch points, B-Rep edges, and construction points.\nWhen getting this property, the returned ObjectCollection can contain individual edges, sketch curves,\nsketch points, construction points, vertices, and ObjectCollection objects that represent a group\nof the curves and points listed above.\nCan be set to null to remove any interior rails and points from the patch.")
+
+
+PatchFeatureInput.isGroupEdges = property(PatchFeatureInput._get_isGroupEdges, PatchFeatureInput._set_isGroupEdges, doc="Gets and sets if the edges in the boundary curve are treated as a group,\nand they all use the same continuity. If this property is True (which is the default),\nthe continuity property controls the continuity for all edges. If\nthis property is false; the continuity is set for each edge using the\nsetContinuity method.\nWhen this property is set to true, the continuity and weight of the first edge\nwill be used for all edges. When set to false, each edge will initially have\nthe same continuity and weight. This is typically set to false as a side-effect\nof calling the setContinuity method.")
+
+
+PatchFeatureInput.groupContinuity = property(PatchFeatureInput._get_groupContinuity, PatchFeatureInput._set_groupContinuity, doc="Gets and sets the type of surface continuity to use for all edges when the isGroupEdges property is true. The continuity\nis used to determine how the patch connects to any B-Rep edges in the boundary. It is ignored for any sketch curves in the\nboundary. The property defaults to ConnectedSurfaceContinuityType. The value of this property is ignored if the isGroupEdges property is false.")
+
+
+PatchFeatureInput.groupWeight = property(PatchFeatureInput._get_groupWeight, PatchFeatureInput._set_groupWeight, doc="Gets and sets the weight to use for all edges when the isGroupEdges property is true. It is ignored for any sketch curves\nin the boundary. The property defaults to 0.5. The value of this property is ignored if the isGroupEdges property is false.")
+
+
+PatchFeatureInput.groupIsContinuityDirectionFlipped = property(PatchFeatureInput._get_groupIsContinuityDirectionFlipped, PatchFeatureInput._set_groupIsContinuityDirectionFlipped, doc="Gets and sets the continuity direction for all edges when the isGroupEdges property is true. It is ignored for any sketch curves\nin the boundary. The property defaults to false. The value of this property is ignored if the isGroupEdges property is false.")
+
+
+PatchFeatureInput.cast = lambda arg: arg if isinstance(arg, PatchFeatureInput) else None
+
+class PatchFeature(Feature):
+    r"""An object that represents an existing patch feature in a design."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.PatchFeature *":
+        return _fusion.PatchFeature___deref__(self)
+
+    def __eq__(self, rhs: "PatchFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.PatchFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "PatchFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.PatchFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.PatchFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.PatchFeature_classType()
+    __swig_destroy__ = _fusion.delete_PatchFeature
+
+    def _get_boundaryCurve(self) -> "adsk.core.Base":
+        r"""
+        Returns an ObjectCollection that contains all of the sketch curves or B-Rep edges
+        that defines the closed outer boundary of the patch feature.
+        When setting this property, the input can be a sketch profile, a single sketch curve, a single B-Rep edge,
+        or an ObjectCollection of sketch curves and B-Rep edges.
+        If a single open sketch curve or B-Rep edge is input, Fusion will automatically find connected sketch curves
+        or B-Rep edges to define a closed loop.
+        If an ObjectCollection of sketch curves or B-Rep edges is input, they must define a closed shape.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_boundaryCurve(self)
+
+    def _set_boundaryCurve(self, value: "Base") -> "bool":
+        r"""
+        Returns an ObjectCollection that contains all of the sketch curves or B-Rep edges
+        that defines the closed outer boundary of the patch feature.
+        When setting this property, the input can be a sketch profile, a single sketch curve, a single B-Rep edge,
+        or an ObjectCollection of sketch curves and B-Rep edges.
+        If a single open sketch curve or B-Rep edge is input, Fusion will automatically find connected sketch curves
+        or B-Rep edges to define a closed loop.
+        If an ObjectCollection of sketch curves or B-Rep edges is input, they must define a closed shape.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_boundaryCurve(self, value)
+
+    def _get_operation(self) -> "adsk.fusion.FeatureOperations":
+        r"""Gets the type of operation performed by the patch feature."""
+        return _fusion.PatchFeature__get_operation(self)
+
+    def _get_continuity(self) -> "adsk.fusion.SurfaceContinuityTypes":
+        r"""
+        ** This property is retired. **
+
+        This property has been retired and replaced by either the groupContinuity property or setContinuity method, depending on
+        if the isGroupEdges property is true or not.
+        Gets and sets the type of surface continuity used when creating the patch face. This value is only used when BRepEdges are input and
+        defines the continuity of how the patch face connects to the face adjacent to each of the input edges.
+        To set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_continuity(self)
+
+    def _set_continuity(self, value: "SurfaceContinuityTypes") -> "bool":
+        r"""
+        ** This property is retired. **
+
+        This property has been retired and replaced by either the groupContinuity property or setContinuity method, depending on
+        if the isGroupEdges property is true or not.
+        Gets and sets the type of surface continuity used when creating the patch face. This value is only used when BRepEdges are input and
+        defines the continuity of how the patch face connects to the face adjacent to each of the input edges.
+        To set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_continuity(self, value)
+
+    def _get_nativeObject(self) -> "adsk.fusion.PatchFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.PatchFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.PatchFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e., a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy.
+        Returns the proxy object or null if this is not the NativeObject.
+        """
+        return _fusion.PatchFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_interiorRailsAndPoints(self) -> "adsk.core.ObjectCollection":
+        r"""
+        Gets and sets any interior curves or points the patch should fit
+        through. Valid entities include object collections of connected curves, paths, sketch curves,
+        sketch points, B-Rep edges, and construction points.
+        When getting this property, the returned ObjectCollection can contain individual edges, sketch curves,
+        sketch points, construction points, vertices, and ObjectCollection objects that represent a group
+        of the curves and points listed above.
+        Can be set to null to remove any interior rails and points from the patch.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_interiorRailsAndPoints(self)
+
+    def _set_interiorRailsAndPoints(self, value: "ObjectCollection") -> "bool":
+        r"""
+        Gets and sets any interior curves or points the patch should fit
+        through. Valid entities include object collections of connected curves, paths, sketch curves,
+        sketch points, B-Rep edges, and construction points.
+        When getting this property, the returned ObjectCollection can contain individual edges, sketch curves,
+        sketch points, construction points, vertices, and ObjectCollection objects that represent a group
+        of the curves and points listed above.
+        Can be set to null to remove any interior rails and points from the patch.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_interiorRailsAndPoints(self, value)
+
+    def _get_isGroupEdges(self) -> "bool":
+        r"""
+        Gets and sets if the edges in the boundary curve are treated as a group
+        , and they all use the same continuity. If this property is True (which is the default),
+        the continuity for all edges is controlled by the continuity property. If
+        this property is false; the continuity is set for each edge using the
+        setContinuity method.
+        When this property is set to true, the continuity and weight of the first edge
+        will be used for all edges. When set to false, each edge will initially have
+        the same continuity and weight. This property is typically set to false by calling the
+        setContinuity method, which has the side effect of changing this to false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_isGroupEdges(self)
+
+    def _set_isGroupEdges(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the edges in the boundary curve are treated as a group
+        , and they all use the same continuity. If this property is True (which is the default),
+        the continuity for all edges is controlled by the continuity property. If
+        this property is false; the continuity is set for each edge using the
+        setContinuity method.
+        When this property is set to true, the continuity and weight of the first edge
+        will be used for all edges. When set to false, each edge will initially have
+        the same continuity and weight. This property is typically set to false by calling the
+        setContinuity method, which has the side effect of changing this to false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_isGroupEdges(self, value)
+
+    def _get_groupContinuity(self) -> "adsk.fusion.SurfaceContinuityTypes":
+        r"""
+        Gets and sets the type of surface continuity to use for all edges when the isGroupEdges property is true.
+        The continuity is used to determine how the patch connects to any B-Rep edges in the boundary. It is
+        ignored for any sketch curves in the boundary. The property defaults to ConnectedSurfaceContinuityType.
+        The value of this property is ignored if the isGroupEdges property is false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_groupContinuity(self)
+
+    def _set_groupContinuity(self, value: "SurfaceContinuityTypes") -> "bool":
+        r"""
+        Gets and sets the type of surface continuity to use for all edges when the isGroupEdges property is true.
+        The continuity is used to determine how the patch connects to any B-Rep edges in the boundary. It is
+        ignored for any sketch curves in the boundary. The property defaults to ConnectedSurfaceContinuityType.
+        The value of this property is ignored if the isGroupEdges property is false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_groupContinuity(self, value)
+
+    def _get_groupWeight(self) -> "float":
+        r"""
+        Gets and sets the weight to use for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to 0.5. The value of this property is ignored if the isGroupEdges property is false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_groupWeight(self)
+
+    def _set_groupWeight(self, value: "float") -> "bool":
+        r"""
+        Gets and sets the weight to use for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to 0.5. The value of this property is ignored if the isGroupEdges property is false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_groupWeight(self, value)
+
+    def _get_groupIsContinuityDirectionFlipped(self) -> "bool":
+        r"""
+        Gets and sets the continuity direction for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to false. The value of this property is ignored if the isGroupEdges property is false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__get_groupIsContinuityDirectionFlipped(self)
+
+    def _set_groupIsContinuityDirectionFlipped(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets the continuity direction for all edges when the isGroupEdges property is true. It is ignored for any sketch curves
+        in the boundary. The property defaults to false. The value of this property is ignored if the isGroupEdges property is false.
+        To get or set this property, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.PatchFeature__set_groupIsContinuityDirectionFlipped(self, value)
+
+    def setContinuity(self, continuity: "list[int]", weight: "list[float]", isContinuityDirectionFlipped: "list[bool]") -> "bool":
+        r"""
+        Sets the continuity to use for each edge in the boundary. The arrays for the arguments correspond
+        to B-Rep edges in the boundary. You can use the getContinuity method to get the list of edges to
+        know their order. This order applies to the arrays provided for the arguments.
+        continuity : An array whose size of the number of B-Rep edges in the boundary. You can use the getContinuity
+        method to get the list of edges, so you know the number and order of the edges. The continuity array defines the
+        type of continuity to apply to the edge at the same index. The values are obtained from the SurfaceContinuityTypes
+        enum and passed in as an integer.
+        weight : An array whose size is the number of B-Rep edges in the boundary. You can use the getContinuity
+        method to get the list of edges, so you know the number and order of the edges. The weight array defines the
+        weight to apply to the edge at the same index. If the continuity of an edge is ConnectedSurfaceContinuityType,
+        the weight value is ignored.
+        isContinuityDirectionFlipped : An array whose size is the number of B-Rep edges in the boundary. You can use the getContinuity
+        method to get the list of edges, so you know the number and order of the edges. The isContinuityDirectionFlipped
+        array defines which of the two faces the edge connects to and is used in computing the continuity direction. If the
+        continuity is ConnectedSurfaceContinuityType, or the edge is an open edge and only connected to a single face,
+        the value is ignored.
+        If false, the face associated with the first co-edge returned by the edge is used.
+        Returns true if successful.
+        """
+        return _fusion.PatchFeature_setContinuity(self, continuity, weight, isContinuityDirectionFlipped)
+
+    def getContinuity(self) -> "bool":
+        r"""
+        Gets the continuity used for each edge in the boundary.
+        To call this method, you need to position the timeline marker immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        edges : Output array containing all of the BRepEdge objects in the boundary.
+        continuity : Output array the same size as the edges array that defines the continuity
+        to apply to the edge in the same index in the edges array. The values are obtained
+        from the SurfaceContinuityTypes enum and passed in as an integers.
+        weight : Output array the same size as the edges array that defines the weight applied
+        to the edge in the same index in the edges array. If the continuity
+        of an edge is ConnectedSurfaceContinuityType, the weight value should be ignored.
+        isContinuityDirectionFlipped : Output array the same size as the edges array that defines which of the two faces the
+        edge connects to is used in computing the continuity direction. If the continuity is
+        ConnectedSurfaceContinuityType or the edge is an open edge and only connected to a
+        single face, the value should be ignored.
+        If false, the face associated with the first co-edge returned by the edge is used.
+        Returns true if successful.
+        """
+        return _fusion.PatchFeature_getContinuity(self)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.PatchFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.PatchFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.PatchFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.PatchFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.PatchFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.PatchFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.PatchFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.PatchFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.PatchFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.PatchFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.PatchFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.PatchFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.PatchFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.PatchFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.PatchFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.PatchFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.PatchFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.PatchFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.PatchFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.PatchFeature__get_isValid(self)
+
+# Register PatchFeature in _fusion:
+_fusion.PatchFeature_swigregister(PatchFeature)
+
+def PatchFeature_classType() -> "str":
+    return _fusion.PatchFeature_classType()
+
+
+PatchFeature.boundaryCurve = property(PatchFeature._get_boundaryCurve, PatchFeature._set_boundaryCurve, doc="Returns an ObjectCollection that contains all of the sketch curves or B-Rep edges\nthat defines the closed outer boundary of the patch feature.\nWhen setting this property, the input can be a sketch profile, a single sketch curve, a single B-Rep edge,\nor an ObjectCollection of sketch curves and B-Rep edges.\nIf a single open sketch curve or B-Rep edge is input, Fusion will automatically find connected sketch curves\nor B-Rep edges to define a closed loop.\nIf an ObjectCollection of sketch curves or B-Rep edges is input, they must define a closed shape.\nTo get or set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.operation = property(PatchFeature._get_operation, doc="Gets the type of operation performed by the patch feature.")
+
+
+PatchFeature.continuity = property(PatchFeature._get_continuity, PatchFeature._set_continuity, doc="** This property is retired. **\n\nThis property has been retired and replaced by either the groupContinuity property or setContinuity method, depending on\nif the isGroupEdges property is true or not.\nGets and sets the type of surface continuity used when creating the patch face. This value is only used when BRepEdges are input and\ndefines the continuity of how the patch face connects to the face adjacent to each of the input edges.\nTo set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.nativeObject = property(PatchFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+PatchFeature.interiorRailsAndPoints = property(PatchFeature._get_interiorRailsAndPoints, PatchFeature._set_interiorRailsAndPoints, doc="Gets and sets any interior curves or points the patch should fit\nthrough. Valid entities include object collections of connected curves, paths, sketch curves,\nsketch points, B-Rep edges, and construction points.\nWhen getting this property, the returned ObjectCollection can contain individual edges, sketch curves,\nsketch points, construction points, vertices, and ObjectCollection objects that represent a group\nof the curves and points listed above.\nCan be set to null to remove any interior rails and points from the patch.\nTo get or set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.isGroupEdges = property(PatchFeature._get_isGroupEdges, PatchFeature._set_isGroupEdges, doc="Gets and sets if the edges in the boundary curve are treated as a group\n, and they all use the same continuity. If this property is True (which is the default),\nthe continuity for all edges is controlled by the continuity property. If\nthis property is false; the continuity is set for each edge using the\nsetContinuity method.\nWhen this property is set to true, the continuity and weight of the first edge\nwill be used for all edges. When set to false, each edge will initially have\nthe same continuity and weight. This property is typically set to false by calling the\nsetContinuity method, which has the side effect of changing this to false.\nTo get or set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.groupContinuity = property(PatchFeature._get_groupContinuity, PatchFeature._set_groupContinuity, doc="Gets and sets the type of surface continuity to use for all edges when the isGroupEdges property is true.\nThe continuity is used to determine how the patch connects to any B-Rep edges in the boundary. It is\nignored for any sketch curves in the boundary. The property defaults to ConnectedSurfaceContinuityType.\nThe value of this property is ignored if the isGroupEdges property is false.\nTo get or set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.groupWeight = property(PatchFeature._get_groupWeight, PatchFeature._set_groupWeight, doc="Gets and sets the weight to use for all edges when the isGroupEdges property is true. It is ignored for any sketch curves\nin the boundary. The property defaults to 0.5. The value of this property is ignored if the isGroupEdges property is false.\nTo get or set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.groupIsContinuityDirectionFlipped = property(PatchFeature._get_groupIsContinuityDirectionFlipped, PatchFeature._set_groupIsContinuityDirectionFlipped, doc="Gets and sets the continuity direction for all edges when the isGroupEdges property is true. It is ignored for any sketch curves\nin the boundary. The property defaults to false. The value of this property is ignored if the isGroupEdges property is false.\nTo get or set this property, you need to position the timeline marker immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+PatchFeature.cast = lambda arg: arg if isinstance(arg, PatchFeature) else None
+
+class ConstructionPlaneInput(Base):
+    r"""
+    A ConstructionPlaneInput is a throwaway object used to create a ConstructionPlane.
+    The usage pattern is:
+    a. create a ConstructionPlaneInput (ConstructionPlanes.CreateInput)
+    b. call one of the member functions to specify how the ConstructionPlane is created
+    c. create the ConstructionPlane (call ConstructionPlanes.Add)
+    d. stop referencing the ConstructionPlaneInput (so it gets deleted).
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ConstructionPlaneInput *":
+        return _fusion.ConstructionPlaneInput___deref__(self)
+
+    def __eq__(self, rhs: "ConstructionPlaneInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ConstructionPlaneInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ConstructionPlaneInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ConstructionPlaneInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ConstructionPlaneInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ConstructionPlaneInput_classType()
+    __swig_destroy__ = _fusion.delete_ConstructionPlaneInput
+
+    def setByPlane(self, plane: "Plane") -> "bool":
+        r"""
+        This input method is for creating a non-parametric construction plane positioned in
+        space as defined by the input Plane object.
+        This method of defining a construction plane is only valid when working in the direct modeling mode.
+        This is not valid when working in the parametric modeling mode and will fail.
+        plane : A transient plane object
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByPlane(self, plane)
+
+    def setByOffset(self, planarEntity: "Base", offset: "ValueInput") -> "bool":
+        r"""
+        This input method is for creating a construction plane that is offset from a planar
+        face or construction plane at a specified distance. This can result in
+        a parametric or non-parametric construction plane depending on whether the parent
+        component is parametric or is a direct edit component.
+        planarEntity : A plane, planar face or construction plane from which to create the offset plane.
+        offset : ValueInput object that specifies the offset distance for the plane.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByOffset(self, planarEntity, offset)
+
+    def setByAngle(self, linearEntity: "Base", angle: "ValueInput", planarEntity: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane through an edge, axis or line
+        at a specified angle. This can result in a parametric or non-parametric construction
+        plane depending on whether the parent component is parametric or is a direct edit
+        component.
+        linearEntity : The axis about which to rotate the plane.
+        angle : The angle at which to create the plane.
+        planarEntity : The planar face or construction plane the angle is measured from.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByAngle(self, linearEntity, angle, planarEntity)
+
+    def setByTangent(self, tangentFace: "BRepFace", angle: "ValueInput", planarEntity: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane tangent to a cylindrical or
+        conical face at a specified point. This can result in a parametric or non-parametric construction
+        plane depending on whether the parent component is parametric or is a direct edit
+        component.
+        tangentFace : A cylindrical or conical face to create the plane tangent to.
+        angle : The angle relative to the planarEntity input at which to create the tangent plane.
+        planarEntity : The planar face or construction plane the tangent is measured from.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByTangent(self, tangentFace, angle, planarEntity)
+
+    def setByTwoPlanes(self, planarEntityOne: "Base", planarEntityTwo: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane at the midpoint between
+        two planar faces or construction planes. This can result in a parametric or
+        non-parametric construction plane depending on whether the parent component is
+        parametric or is a direct edit component.
+        planarEntityOne : The first planar face or construction plane to create a bisecting plane between
+        planarEntityTwo : The second planar face or construction plane to create a bisecting plane between
+        Returns true if the construction plane definition is successful.
+        This will fail if the two planes are co-planar.
+        """
+        return _fusion.ConstructionPlaneInput_setByTwoPlanes(self, planarEntityOne, planarEntityTwo)
+
+    def setByTwoEdges(self, linearEntityOne: "Base", linearEntityTwo: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane that passes through two
+        coplanar linear entities or axes.
+        Defines a plane by specifying two coplanar linear entities. This can result in a
+        parametric or non-parametric construction plane depending on whether the parent
+        component is parametric or is a direct edit component.
+        linearEntityOne : The first of two coplanar linear entities to define the plane
+        linearEntityTwo : The second of two coplanar linear entities to define the plane
+        Returns true if the construction plane definition is successful.
+        This will fail if the two linear entities are not coplanar.
+        """
+        return _fusion.ConstructionPlaneInput_setByTwoEdges(self, linearEntityOne, linearEntityTwo)
+
+    def setByThreePoints(self, pointEntityOne: "Base", pointEntityTwo: "Base", pointEntityThree: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane through three points that
+        define a triangle. This can result in a parametric or non-parametric construction
+        plane depending on whether the parent component is parametric or is a direct edit
+        component.
+        pointEntityOne : The first construction point, sketch point or vertex in the triangle
+        pointEntityTwo : The second construction point, sketch point or vertex in the triangle
+        pointEntityThree : The third construction point, sketch point or vertex in the triangle
+        Returns true if the construction plane definition is successful.
+        This will fail if the points do not form a triangle (no two
+        points can be coincident and all three cannot be collinear).
+        """
+        return _fusion.ConstructionPlaneInput_setByThreePoints(self, pointEntityOne, pointEntityTwo, pointEntityThree)
+
+    def setByTangentAtPoint(self, tangentFace: "BRepFace", pointEntity: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane tangent to a face
+        and aligned to a point. This can result in a parametric or non-parametric
+        construction plane depending on whether the parent component is parametric or is a
+        direct edit component.
+        tangentFace : A face to create the plane tangent to
+        pointEntity : A construction point, sketch point or vertex the tangent plane aligns to.
+        This point need not lie on the tangent face.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByTangentAtPoint(self, tangentFace, pointEntity)
+
+    def setByDistanceOnPath(self, pathEntity: "Base", distance: "ValueInput") -> "bool":
+        r"""
+        ** This method is retired. **
+
+        This method has been retired and replaced by the setByPath method. The setByPath method lets you choose
+        how the distance is specified; proportional distance (which is the only option with setByDistanceOnPath) or the
+        physical distance along the path.
+        This input method is for creating a construction plane normal to, and at
+        specified distance along, a path defined by an edge or sketch profile.
+        This can result in a parametric or non-parametric
+        construction plane depending on whether the parent component is parametric or is a
+        direct edit component.
+        pathEntity : The path can be an edge, sketch curve, or a path of multiple entities.
+        distance : The distance is a value from 0 to 1 indicating the position along the path where 0
+        is at the start and 1 is at the end.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByDistanceOnPath(self, pathEntity, distance)
+
+    def _get_creationOccurrence(self) -> "adsk.fusion.Occurrence":
+        r"""
+        In order for geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the ConstructionPlane is created based on geometry (e.g. a planarEntity)
+        in another component AND (the ConstructionPlane) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI.
+        """
+        return _fusion.ConstructionPlaneInput__get_creationOccurrence(self)
+
+    def _set_creationOccurrence(self, value: "Occurrence") -> "bool":
+        r"""
+        In order for geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the ConstructionPlane is created based on geometry (e.g. a planarEntity)
+        in another component AND (the ConstructionPlane) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI.
+        """
+        return _fusion.ConstructionPlaneInput__set_creationOccurrence(self, value)
+
+    def _get_targetBaseOrFormFeature(self) -> "adsk.core.Base":
+        r"""
+        When creating a construction plane that is owned by a base or form feature, set this property to the
+        base or form feature you want to associate the new construction plane with. By default, this is null,
+        meaning it will not be associated with a base or form feature.
+        Because of a current limitation, if you want to create a construction plane associated with a base
+        or form feature, you must set this property AND call the startEdit method of the base or form feature,
+        create the feature, and then call the finishEdit method of the base or form feature. The base or form
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.ConstructionPlaneInput__get_targetBaseOrFormFeature(self)
+
+    def _set_targetBaseOrFormFeature(self, value: "Base") -> "bool":
+        r"""
+        When creating a construction plane that is owned by a base or form feature, set this property to the
+        base or form feature you want to associate the new construction plane with. By default, this is null,
+        meaning it will not be associated with a base or form feature.
+        Because of a current limitation, if you want to create a construction plane associated with a base
+        or form feature, you must set this property AND call the startEdit method of the base or form feature,
+        create the feature, and then call the finishEdit method of the base or form feature. The base or form
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.ConstructionPlaneInput__set_targetBaseOrFormFeature(self, value)
+
+    def setByOffsetThroughPoint(self, planarEntity: "Base", point: "Base") -> "bool":
+        r"""
+        Defines a construction plane that is offset from a planar face or construction plane
+        and whose offset distance is defined by a vertex, sketch point, or construction point where
+        the plane passes through the point.
+        planarEntity : A planar BRepFace, ConstructionPlane, or Plane object that the new construction plane will be
+        offset from. A Plane object is only valid in a direct-edit design or a base feature. In that case
+        a non-parametric result is created.
+        point : A BRepVertex, SketchPoint, ConstructionPoint, or Point3D that defines the offset distance.
+        A Point3D is only valid in a direct-edit design. In that case a non-parametric result is created.
+        Returns true if construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByOffsetThroughPoint(self, planarEntity, point)
+
+    def setByAngleOnCurvedFace(self, curvedFace: "Base", angle: "ValueInput", planarEntity: "Base") -> "bool":
+        r"""
+        This input method is for creating a construction plane through the axis inferred
+        from a cylindrical or conical curved face at a specified angle. This can result in
+        a parametric or non-parametric construction plane depending on whether the parent
+        component is parametric or is a direct edit component.
+        curvedFace : The cylindrical or conical curved face from which the axis of rotation is inferred.
+        angle : The angle at which to create the plane.
+        planarEntity : The planar face or construction plane the angle is measured from.
+        A zero angle creates a plane whose normal is aligned with this plane's normal,
+        so the result is deterministic when an explicit planarEntity is provided.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByAngleOnCurvedFace(self, curvedFace, angle, planarEntity)
+
+    def _get_isExtended(self) -> "bool":
+        r"""
+        Gets and sets whether the construction plane will use the extended display mode
+        when created. When true, the plane extends to fill the viewport. When false, the
+        plane size fits to the defining geometry (default).
+        """
+        return _fusion.ConstructionPlaneInput__get_isExtended(self)
+
+    def _set_isExtended(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets whether the construction plane will use the extended display mode
+        when created. When true, the plane extends to fill the viewport. When false, the
+        plane size fits to the defining geometry (default).
+        """
+        return _fusion.ConstructionPlaneInput__set_isExtended(self, value)
+
+    def setByPerpendicularToPlane(self, *args) -> "bool":
+        r"""
+        This input method creates a construction plane that is perpendicular to the input
+        face or plane. This can result in a parametric or non-parametric construction plane
+        depending on whether the parent component is parametric or is a direct edit component.
+        planarEntity : The face or plane the new construction plane will be perpendicular to. This may be a
+        planar BRepFace, a cylindrical/conical/toroidal BRepFace, a ConstructionPlane,
+        a Profile, or a Sketch (the sketch must contain at least one profile).
+        distance : An optional ValueInput specifying the offset distance of the perpendicular plane
+        from its base position. Pass null to default to zero.
+        referenceEntity : An optional reference entity that the new plane passes through. Supported types:
+        BRepVertex, ConstructionPoint, SketchPoint, planar BRepFace, or ConstructionPlane.
+        Pass null to omit (the plane is then positioned by `distance` along the perpendicular
+        direction from a point on `planarEntity`).
+        useUDirection : True to align the perpendicular plane with the U axis of the reference face;
+        false to align with the V axis. Defaults to true.
+        Returns true if the construction plane definition is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByPerpendicularToPlane(self, *args)
+
+    def setByThreeSnapPoints(self, snapPointOne: "ConstructionSnapPoint", snapPointTwo: "ConstructionSnapPoint", snapPointThree: "ConstructionSnapPoint") -> "bool":
+        r"""
+        This input method is for creating a construction plane through three snap points.
+        A snap point captures the same information that the user supplies in the UI when they hover over
+        an entity and pick a snap location: the host entity, an optional reference entity, the picked
+        3D point in world space, and a ConstructionSnapPointTypes value that classifies the selection.
+        Build each snap with ConstructionSnapPoint.create. Supported snap-point types include vertex
+        (DefaultConstructionSnapPointType on a BRepVertex, SketchPoint, or ConstructionPoint), edge
+        midpoint, edge start/end, arc center, face center, and tangent on a curved face (cylinder/cone,
+        sphere, torus, or spline).
+        The first snap point defines the plane origin. The three points together define the plane
+        orientation (normal); they do not explicitly set the in-plane X- or Y-axis directions.
+        This matches setByThreePoints.
+        This will fail if the three points are collinear or any two are coincident.
+        This can result in a parametric or non-parametric construction plane depending
+        on whether the parent component is parametric or is a direct edit component.
+        snapPointOne : The first ConstructionSnapPoint the plane passes through.
+        snapPointTwo : The second ConstructionSnapPoint the plane passes through.
+        snapPointThree : The third ConstructionSnapPoint the plane passes through.
+        Returns true if the creation of the ConstructionPlaneInput is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByThreeSnapPoints(self, snapPointOne, snapPointTwo, snapPointThree)
+
+    def setByPath(self, path: "Path", distanceType: "PathDistanceTypes", distance: "ValueInput") -> "bool":
+        r"""
+        This input method is for creating a construction plane normal to the specified path
+        at a specified position along the path.
+        This can result in a parametric or non-parametric construction plane, depending
+        on whether the parent design is parametric or is a direct edit component, or if
+        the construction plane is created in a base feature in a parametric design.
+        path : Specifies the Path object the construction plane will be created on.
+        To create a Path from a single BRepEdge or SketchCurve, use the static
+        Path.create method (e.g. Path.create(edge, ChainedCurveOptions.noChainedCurves)).
+        distanceType : Specifies PathDistanceTypes value indicating the measurement type for distance.
+        distance : Specifies the distance to determine the position on the specified path to place the construction plane.
+        If the distanceType is set to ProportionalPathDistanceType this should be a unitless number from 0 to 1
+        indicating the proportion of the path. Values outside [0, 1] will cause this method to return false.
+        This can be a real value or an expression which can be evaluated as a unitless number.
+        If the distanceType is set to PhysicalPathDistanceType this will be interpreted as a centimeter value
+        if it is set using a real, or if an expression is provided it must be able to be evaluated as a valid
+        distance. Values exceeding the total path length are clamped to the endpoint.
+        Returns true if calling this method is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByPath(self, path, distanceType, distance)
+
+    def setByPathToObject(self, path: "Path", toObject: "Base", offset: "ValueInput") -> "bool":
+        r"""
+        This input method is for creating a construction plane normal to the specified path
+        at the position where the path meets the target point entity, with an optional signed
+        offset along the path from that target.
+        This can result in a parametric or non-parametric construction plane, depending
+        on whether the parent design is parametric or is a direct edit component, or if
+        the construction plane is created in a base feature in a parametric design.
+        path : Specifies the Path object the construction plane will be created on.
+        To create a Path from a single BRepEdge or SketchCurve, use the static
+        Path.create method (e.g. Path.create(edge, ChainedCurveOptions.noChainedCurves)).
+        toObject : Specifies the point entity the construction plane is positioned to. This must be a
+        BRepVertex, ConstructionPoint, or SketchPoint.
+        offset : Specifies the signed offset from the target along the path. Positive and negative
+        values can be used to offset in both directions. Pass a value of 0 for no offset.
+        Returns true if calling this method is successful.
+        """
+        return _fusion.ConstructionPlaneInput_setByPathToObject(self, path, toObject, offset)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ConstructionPlaneInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ConstructionPlaneInput__get_isValid(self)
+
+# Register ConstructionPlaneInput in _fusion:
+_fusion.ConstructionPlaneInput_swigregister(ConstructionPlaneInput)
+
+def ConstructionPlaneInput_classType() -> "str":
+    return _fusion.ConstructionPlaneInput_classType()
+
+
+ConstructionPlaneInput.creationOccurrence = property(ConstructionPlaneInput._get_creationOccurrence, ConstructionPlaneInput._set_creationOccurrence, doc="In order for geometry to be transformed correctly, an Occurrence for creation needs to be\nspecified when the ConstructionPlane is created based on geometry (e.g. a planarEntity)\nin another component AND (the ConstructionPlane) is not in the root component.\nThe CreationOccurrence is analogous to the active occurrence in the UI.")
+
+
+ConstructionPlaneInput.targetBaseOrFormFeature = property(ConstructionPlaneInput._get_targetBaseOrFormFeature, ConstructionPlaneInput._set_targetBaseOrFormFeature, doc="When creating a construction plane that is owned by a base or form feature, set this property to the\nbase or form feature you want to associate the new construction plane with. By default, this is null,\nmeaning it will not be associated with a base or form feature.\nBecause of a current limitation, if you want to create a construction plane associated with a base\nor form feature, you must set this property AND call the startEdit method of the base or form feature,\ncreate the feature, and then call the finishEdit method of the base or form feature. The base or form\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+ConstructionPlaneInput.isExtended = property(ConstructionPlaneInput._get_isExtended, ConstructionPlaneInput._set_isExtended, doc="Gets and sets whether the construction plane will use the extended display mode\nwhen created. When true, the plane extends to fill the viewport. When false, the\nplane size fits to the defining geometry (default).")
+
+
+ConstructionPlaneInput.cast = lambda arg: arg if isinstance(arg, ConstructionPlaneInput) else None

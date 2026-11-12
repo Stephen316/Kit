@@ -1,0 +1,122 @@
+{
+  "status": "Corrected controlled native capture complete",
+  "observed_at_utc": "2026-10-21T20:51:15.474963+00:00",
+  "generator": "GenerateRuleFilletSurfaceContrasts.py",
+  "generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+  "planned_cases": [
+    "offsets_one_two",
+    "offsets_one_three"
+  ],
+  "planned_capture": "Direct source surface/NURBS and trim-aware samples, separate temporary API conversion, then separately exported singleton Offset face witnesses after the original archive",
+  "dispatch_observation": {
+    "return_code": 1,
+    "return_posted": false,
+    "execution_started": false,
+    "reason": "Target Fusion command window absent from macOS accessibility; dispatcher stopped before targeted Return events",
+    "fusion_pid": 5619,
+    "same_process_verified_alive": true,
+    "accessible_fusion_window_count": 0,
+    "attempted_generator_sha256": "bbb12b2016aea348867062f5f861cc9ceec9e139e48e005c10564c1eb0304cb4",
+    "scope": "Historical command-field attempt before additive witness preparation; no later dispatch attempted"
+  },
+  "console_observation": {
+    "CGSSessionScreenIsLocked": true,
+    "kCGSessionLoginDoneKey": true,
+    "scope": "Only lock/login flags read; no capture of screen contents or console identities"
+  },
+  "limits": [
+    "Two actual controlled cases validate this capture path and zero-offset witness acceptance, without proving every Fusion crash fixed.",
+    "Source API NURBS data, procedural face evaluation and temporary converted geometry remain separate representations.",
+    "Native VBL face binding, exact procedural XYZ evaluation and general regeneration remain unresolved."
+  ],
+  "latest_availability_observation": {
+    "fusion_pid": 5619,
+    "same_process_verified_alive": true,
+    "elapsed_process_time_at_process_check": "03:42:00",
+    "accessible_fusion_window_count": 0,
+    "window_server_target_window_count": 34,
+    "window_server_target_onscreen_count": 2,
+    "CGSSessionScreenIsLocked": true,
+    "kCGSessionLoginDoneKey": true,
+    "session_state_diagnostic": {
+      "command": "/usr/bin/python3 dispatch_fusion_script.py --session-state",
+      "session_locked": true,
+      "no_ui_events": true,
+      "recorded_at_utc": "2026-10-21T19:43:27.514999+00:00",
+      "rechecked_after_generator_freeze": true
+    },
+    "new_dispatch_attempted": false,
+    "execution_started": false,
+    "scope": "Independent read-only process, accessibility and CoreGraphics metadata checks this turn; explicit lock Boolean only, no pixel capture, activation, restart, permission prompt, keyboard event or API capture",
+    "recorded_at_utc": "2026-10-21T19:37:41.640805+00:00"
+  },
+  "witness_plan": {
+    "file": "rule-fillet-surface-witness-plan.json",
+    "sha256": "98c7724b439214f5ea3a2218b1ef7005ccbfd4e84154350727e378e6e25c9b76",
+    "actual_execution_started": false,
+    "native_VBL_binding": null
+  },
+  "prior_partial_execution": {
+    "directory": "rulefilletsurfaces-9dd46198ca8a",
+    "executed_generator_sha256": "6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305",
+    "ground_truth_sha256": "4f12bfdb0d52834236cb43f046d38ad0ac5efe5ffcc4a459f15f37628efd3b21",
+    "journal_sha256": "75fc2be64e084e80e9dd62577541c5da7648842c8b2822ce64e3f1d9395893c4",
+    "healthy_source_exports": 1,
+    "witness_features_created": 0,
+    "terminal": "halted",
+    "failure": "TypeError: NotImplemented should not be used in a boolean context",
+    "same_Fusion_pid_alive": 5619,
+    "owned_document_retained": true,
+    "automatic_retry": false,
+    "recovery_pending": true
+  },
+  "latest_execution": {
+    "directory": "rulefilletsurfaces-7b26b40f98f7",
+    "status": "Complete",
+    "executed_generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+    "ground_truth_sha256": "3a4c0ffeda19e6189aaf2538aa1c0517d3bfc56a95a4f501ad31d03e80307376",
+    "journal_sha256": "cf53b92605c055042665b9b723cde0083e10e4cdd735b66f9f57e8ec3e9616f0",
+    "complete_marker_sha256": "f8c8c6d012d1c79f4842f086df4fc918f59c28a628be559c07c25395ed22cf9a",
+    "healthy_source_exports": 2,
+    "witness_archives": 2,
+    "witness_features_created": 16,
+    "successful_owned_closes": 2,
+    "case_errors": 0,
+    "same_Fusion_pid_alive": 5619,
+    "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+    "API_native_entity_readbacks_verified": true,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  },
+  "known_failure_recovery": {
+    "directory": "recoverrulesurfacewitness-f013800ce846",
+    "status": "RecoveredClosed",
+    "report_sha256": "72169cd461be1f84af9163e2433caceb9581815a8de63787a58342a9cbf8fe45",
+    "owned_close_returned": true,
+    "both_alias_quarantines_released_while_document_open": true,
+    "unrelated_documents_touched": false
+  },
+  "historical_dispatch_safety": {
+    "automatic_restart": false,
+    "global_keyboard_events": false,
+    "crash_observed": false,
+    "new_archives": 0,
+    "capture_hold_changed": false
+  },
+  "safety": {
+    "same_Fusion_pid_alive": 5619,
+    "new_local_CER_after_capture": false,
+    "successful_owned_closes": 2,
+    "global_keyboard_events": false,
+    "automatic_restart": false,
+    "native_quarantine_remaining": false
+  },
+  "rule_witness_native_validation": {
+    "report": "rule-surface-witness-native-validation.json",
+    "sha256": "af15200c2f3a17b5292eecf3079772b6c7b4e30a7bd70656126c1628aef07211",
+    "healthy_owned_captures": 2,
+    "witnesses": 16,
+    "actual_exports": 4,
+    "focused_saved_trace_checks": 93,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  }
+}

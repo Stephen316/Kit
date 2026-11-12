@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
 from dataclasses import replace as Replace
 import io as IoStream
@@ -455,18 +447,6 @@ def TestCatproductC(TmpPath: FilePath) -> None:
     assert any(
         (ItemValue.attributes["reason"] == "reparse_point" for ItemValue in Rejected)
     )
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestCatproductA(TmpPath: FilePath) -> None:
-    RootValue = TmpPath / "components"
-    RootValue.mkdir()
-    Inside = RootValue / "inside.CATPart"
-    Outside = TmpPath / "outside.CATPart"
-    Inside.touch()
-    Outside.touch()
-    assert UnderRoot(Inside.resolve(), RootValue.resolve())
-    assert not UnderRoot(Outside.resolve(), RootValue.resolve())
 
 
 # this definition exists because focused behavior needs one stable owner

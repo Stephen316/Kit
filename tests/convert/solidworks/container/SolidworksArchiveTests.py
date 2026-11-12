@@ -1,14 +1,6 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations
 import json as JsonLib
-from pathlib import Path as FilePath
+from pathlib import Path as FilePath, PureWindowsPath
 import struct as StructLib
 from typing import TypedDict
 import pytest as PytestLib
@@ -71,7 +63,7 @@ KRootInfo = FilePath(__file__).parents[4]
 KLayouts = KRootInfo / "re" / "data" / "Layouts" / "ClassLayouts.json"
 
 # centralizes shared evidence so every related assertion uses one value
-KSegments = KRootInfo / "re" / "data" / "segments"
+KSegments = KRootInfo / "re" / "data" / "segments" / "Streams"
 
 # centralizes shared evidence so every related assertion uses one value
 KDonors = KRootInfo / "examples" / "Fixtures" / "SolidWorks" / "donors"
@@ -145,9 +137,7 @@ def RecordedSegment(Value: KLayoutValue) -> SegmentRecord:
 
 # keeps this focused behavior isolated so regressions remain immediately visible
 def Recorded(Label: str) -> RecordedArchive:
-    TargetPath = KSegments / f"segments_{Label}.json"
-    if not TargetPath.is_file():
-        PytestLib.skip(f"no recorded segmentation for {Label}")
+    TargetPath = RecordedPath(Label)
     RawPayload: object = JsonLib.loads(TargetPath.read_text(encoding="utf-8"))
     if not IsLayoutObject(RawPayload):
         raise TypeError(f"recorded archive {TargetPath} must be a json object")
@@ -163,9 +153,25 @@ def Recorded(Label: str) -> RecordedArchive:
     }
 
 
+def RecordedPath(Label: str) -> FilePath:
+    NameValue = "".join(WordValue.title() for WordValue in Label.split("_"))
+    return KSegments / f"Segments{NameValue}.json"
+
+
+def TracePartPath(Payload: RecordedArchive) -> FilePath:
+    Original = FilePath(Payload["part"])
+    if Original.is_file():
+        return Original
+    Parts = PureWindowsPath(Payload["part"]).parts
+    for Index, Value in enumerate(Parts):
+        if Value in {"examples", ".rescratch"}:
+            return KRootInfo.joinpath(*Parts[Index:])
+    return Original
+
+
 # keeps this focused behavior isolated so regressions remain immediately visible
 def RecordedPart(Payload: RecordedArchive) -> tuple[bytes, int | None]:
-    PartDoc = FilePath(Payload["part"])
+    PartDoc = TracePartPath(Payload)
     if not PartDoc.is_file():
         PytestLib.skip(f"traced part {PartDoc} is not present in this checkout")
     Archive = SldprtArchive.from_bytes(PartDoc.read_bytes())
@@ -180,10 +186,7 @@ def AuthoredMV() -> int | None:
     for Label in KLabels:
         if Label.startswith("vendor_"):
             continue
-        TargetPath = KSegments / f"segments_{Label}.json"
-        if not TargetPath.is_file():
-            continue
-        PartDoc = FilePath(Recorded(Label)["part"])
+        PartDoc = TracePartPath(Recorded(Label))
         if not PartDoc.is_file():
             continue
         Version = ContainerMoVersion(
@@ -330,9 +333,6 @@ def AssertLayoutRow(NameText: str, Entry: ClassLayout) -> None:
 def GetRecordedSet() -> set[str]:
     RecordedNames = set[str]()
     for Label in KLabels:
-        TargetPath = KSegments / f"segments_{Label}.json"
-        if not TargetPath.is_file():
-            continue
         for ItemValue in Recorded(Label)["segments"]:
             if ItemValue["kind"] in {KindInfoA, KindInfo}:
                 RecordedNames.add(ItemValue["class_name"])

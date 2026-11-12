@@ -1,0 +1,6134 @@
+{
+  "scope": "Ten analytic simple profile extrusions in two rigid frames; membership permutation and malformed/simple-loop guards, zero main/cache/live inputs",
+  "source_sha256": {
+    "decode_trimmed_extrusion_geometry.py": "4aefa41536c987b49ac0639312aecec0211898e94a8a64e0614f2391a5f485ad",
+    "decode_circular_extrusion_geometry.py": "77fe57a5a7b50cb7b2d3add0dd738b84b13b3501cf87893cd60205fc00ffe6d1",
+    "validate_trimmed_extrusion_geometry.py": "77632c0d8501e0dbc01a116cbf90e3b14c1ac2772a6d6651be280d3e114c77c1"
+  },
+  "check_count": 81,
+  "checks": [
+    "lens frame 0 independently known area",
+    "lens frame 0 independently known perimeter",
+    "lens frame 0 exact volume",
+    "lens frame 0 exact material areas",
+    "lens frame 0 exact arc extrema and station bounds",
+    "lens frame 0 original source operands unchanged",
+    "lens frame 0 complete source role coverage",
+    "lens frame 0 no native topology assignments",
+    "lens frame 1 independently known area",
+    "lens frame 1 independently known perimeter",
+    "lens frame 1 exact volume",
+    "lens frame 1 exact material areas",
+    "lens frame 1 exact arc extrema and station bounds",
+    "lens frame 1 original source operands unchanged",
+    "lens frame 1 complete source role coverage",
+    "lens frame 1 no native topology assignments",
+    "repeated Circle split lens frame 0 independently known area",
+    "repeated Circle split lens frame 0 independently known perimeter",
+    "repeated Circle split lens frame 0 exact volume",
+    "repeated Circle split lens frame 0 exact material areas",
+    "repeated Circle split lens frame 0 exact arc extrema and station bounds",
+    "repeated Circle split lens frame 0 original source operands unchanged",
+    "repeated Circle split lens frame 0 complete source role coverage",
+    "repeated Circle split lens frame 0 no native topology assignments",
+    "repeated Circle split lens frame 1 independently known area",
+    "repeated Circle split lens frame 1 independently known perimeter",
+    "repeated Circle split lens frame 1 exact volume",
+    "repeated Circle split lens frame 1 exact material areas",
+    "repeated Circle split lens frame 1 exact arc extrema and station bounds",
+    "repeated Circle split lens frame 1 original source operands unchanged",
+    "repeated Circle split lens frame 1 complete source role coverage",
+    "repeated Circle split lens frame 1 no native topology assignments",
+    "concave crescent frame 0 independently known area",
+    "concave crescent frame 0 independently known perimeter",
+    "concave crescent frame 0 exact volume",
+    "concave crescent frame 0 exact material areas",
+    "concave crescent frame 0 exact arc extrema and station bounds",
+    "concave crescent frame 0 original source operands unchanged",
+    "concave crescent frame 0 complete source role coverage",
+    "concave crescent frame 0 no native topology assignments",
+    "concave crescent frame 1 independently known area",
+    "concave crescent frame 1 independently known perimeter",
+    "concave crescent frame 1 exact volume",
+    "concave crescent frame 1 exact material areas",
+    "concave crescent frame 1 exact arc extrema and station bounds",
+    "concave crescent frame 1 original source operands unchanged",
+    "concave crescent frame 1 complete source role coverage",
+    "concave crescent frame 1 no native topology assignments",
+    "mixed circular segment frame 0 independently known area",
+    "mixed circular segment frame 0 independently known perimeter",
+    "mixed circular segment frame 0 exact volume",
+    "mixed circular segment frame 0 exact material areas",
+    "mixed circular segment frame 0 exact arc extrema and station bounds",
+    "mixed circular segment frame 0 original source operands unchanged",
+    "mixed circular segment frame 0 complete source role coverage",
+    "mixed circular segment frame 0 no native topology assignments",
+    "mixed circular segment frame 1 independently known area",
+    "mixed circular segment frame 1 independently known perimeter",
+    "mixed circular segment frame 1 exact volume",
+    "mixed circular segment frame 1 exact material areas",
+    "mixed circular segment frame 1 exact arc extrema and station bounds",
+    "mixed circular segment frame 1 original source operands unchanged",
+    "mixed circular segment frame 1 complete source role coverage",
+    "mixed circular segment frame 1 no native topology assignments",
+    "rectangle frame 0 independently known area",
+    "rectangle frame 0 independently known perimeter",
+    "rectangle frame 0 exact volume",
+    "rectangle frame 0 exact material areas",
+    "rectangle frame 0 exact arc extrema and station bounds",
+    "rectangle frame 0 original source operands unchanged",
+    "rectangle frame 0 complete source role coverage",
+    "rectangle frame 0 no native topology assignments",
+    "rectangle frame 1 independently known area",
+    "rectangle frame 1 independently known perimeter",
+    "rectangle frame 1 exact volume",
+    "rectangle frame 1 exact material areas",
+    "rectangle frame 1 exact arc extrema and station bounds",
+    "rectangle frame 1 original source operands unchanged",
+    "rectangle frame 1 complete source role coverage",
+    "rectangle frame 1 no native topology assignments",
+    "Source membership permutation preserves area/volume"
+  ],
+  "guard_count": 11,
+  "guards": [
+    {
+      "name": "Duplicate full portion role",
+      "rejected": true,
+      "reason": "Trimmed extrusion portion role missing or duplicated"
+    },
+    {
+      "name": "Nonpositive source radius",
+      "rejected": true,
+      "reason": "Trimmed extrusion Circle frame/radius/window is unsupported"
+    },
+    {
+      "name": "Whole Circle masquerading as bounded portion",
+      "rejected": true,
+      "reason": "Trimmed extrusion Circle frame/radius/window is unsupported"
+    },
+    {
+      "name": "Nonfinite source interval",
+      "rejected": true,
+      "reason": "Trimmed extrusion requires finite numeric operands"
+    },
+    {
+      "name": "Inconsistent repeated native source",
+      "rejected": true,
+      "reason": "Trimmed extrusion repeated source identity has inconsistent coefficients"
+    },
+    {
+      "name": "Open source boundary",
+      "rejected": true,
+      "reason": "Trimmed extrusion source endpoints do not form a simple degree-two boundary"
+    },
+    {
+      "name": "Self-crossing closed boundary",
+      "rejected": true,
+      "reason": "Trimmed extrusion boundary self-intersects or touches at an interior point"
+    },
+    {
+      "name": "Two disconnected source cycles",
+      "rejected": true,
+      "reason": "Trimmed extrusion source boundary contains disconnected cycles"
+    },
+    {
+      "name": "Nonrigid source frame",
+      "rejected": true,
+      "reason": "Non-unit transform axes"
+    },
+    {
+      "name": "Unsupported profile taper",
+      "rejected": true,
+      "reason": "Circular extrusion taper outside the observed positive one-side profile-plane family"
+    },
+    {
+      "name": "Nonfinite source primitive",
+      "rejected": true,
+      "reason": "Trimmed extrusion requires finite numeric operands"
+    }
+  ],
+  "samples": [
+    {
+      "name": "lens frame 0",
+      "independent_area_cm2": 1.2283696986087567,
+      "independent_perimeter_cm": 4.1887902047863905,
+      "independent_bounds_cm": [
+        [
+          -0.5,
+          -0.8660254037844386,
+          -0.7
+        ],
+        [
+          0.5,
+          0.8660254037844386,
+          1.3
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "a",
+              "direction": 1
+            },
+            {
+              "role_key": "b",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 1.2283696986087564,
+          "perimeter_cm": 4.18879020478639,
+          "mathematical_vertices_local_cm": [
+            [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              0.0
+            ],
+            [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "a",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              5.235987755982989,
+              7.330382858376184
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.1102230246251565e-16,
+                -0.8660254037844386,
+                0.0
+              ],
+              "midpoint": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "end": [
+                5.551115123125783e-16,
+                0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                5.235987755982989,
+                7.330382858376184
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 2.094395102393195,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              2.0943951023931953,
+              4.1887902047863905
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.6653345369377348e-16,
+                0.8660254037844387,
+                0.0
+              ],
+              "midpoint": [
+                -0.5,
+                1.2246467991473532e-16,
+                0.0
+              ],
+              "end": [
+                -4.440892098500626e-16,
+                -0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    4.1887902047863905
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    4.1887902047863905
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                2.0943951023931953,
+                4.1887902047863905
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 2.0943951023931953,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              -0.7
+            ],
+            "upper_cm": [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              -0.7
+            ],
+            "upper_cm": [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.7,
+            "boundary_cycle": [
+              {
+                "role_key": "b",
+                "direction": -1
+              },
+              {
+                "role_key": "a",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "a",
+                "direction": 1
+              },
+              {
+                "role_key": "b",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 2.456739397217513,
+        "lateral_area_cm2": 8.37758040957278,
+        "total_area_cm2": 10.834319806790292,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -0.5,
+            -0.8660254037844386,
+            -0.7
+          ],
+          "maximum": [
+            0.5,
+            0.8660254037844387,
+            1.3
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "lens frame 1",
+      "independent_area_cm2": 1.2283696986087567,
+      "independent_perimeter_cm": 4.1887902047863905,
+      "independent_bounds_cm": [
+        [
+          3.5,
+          -3.3,
+          6.133974596215562
+        ],
+        [
+          4.5,
+          -1.3,
+          7.866025403784438
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "a",
+              "direction": 1
+            },
+            {
+              "role_key": "b",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 1.2283696986087564,
+          "perimeter_cm": 4.18879020478639,
+          "mathematical_vertices_local_cm": [
+            [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              0.0
+            ],
+            [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "a",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              5.235987755982989,
+              7.330382858376184
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.1102230246251565e-16,
+                -0.8660254037844386,
+                0.0
+              ],
+              "midpoint": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "end": [
+                5.551115123125783e-16,
+                0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                5.235987755982989,
+                7.330382858376184
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 2.094395102393195,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              2.0943951023931953,
+              4.1887902047863905
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.6653345369377348e-16,
+                0.8660254037844387,
+                0.0
+              ],
+              "midpoint": [
+                -0.5,
+                1.2246467991473532e-16,
+                0.0
+              ],
+              "end": [
+                -4.440892098500626e-16,
+                -0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    4.1887902047863905
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    4.1887902047863905
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                2.0943951023931953,
+                4.1887902047863905
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 2.0943951023931953,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              4.0,
+              -1.3,
+              6.133974596215562
+            ],
+            "upper_cm": [
+              4.0,
+              -3.3,
+              6.133974596215562
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              4.000000000000001,
+              -1.3,
+              7.866025403784438
+            ],
+            "upper_cm": [
+              4.000000000000001,
+              -3.3,
+              7.866025403784438
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              1.0,
+              -0.0
+            ],
+            "plane_constant_cm": -1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "b",
+                "direction": -1
+              },
+              {
+                "role_key": "a",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "plane_constant_cm": 3.3,
+            "boundary_cycle": [
+              {
+                "role_key": "a",
+                "direction": 1
+              },
+              {
+                "role_key": "b",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 2.456739397217513,
+        "lateral_area_cm2": 8.37758040957278,
+        "total_area_cm2": 10.834319806790292,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            3.5,
+            -3.3,
+            6.133974596215562
+          ],
+          "maximum": [
+            4.5,
+            -1.3,
+            7.866025403784438
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "repeated Circle split lens frame 0",
+      "independent_area_cm2": 1.2283696986087567,
+      "independent_perimeter_cm": 4.1887902047863905,
+      "independent_bounds_cm": [
+        [
+          -0.5,
+          -0.8660254037844386,
+          -0.7
+        ],
+        [
+          0.5,
+          0.8660254037844386,
+          1.3
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "a0",
+              "direction": 1
+            },
+            {
+              "role_key": "a1",
+              "direction": 1
+            },
+            {
+              "role_key": "b0",
+              "direction": 1
+            },
+            {
+              "role_key": "b1",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 1.2283696986087567,
+          "perimeter_cm": 4.18879020478639,
+          "mathematical_vertices_local_cm": [
+            [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              0.0
+            ],
+            [
+              0.5,
+              -2.4492935982947064e-16,
+              0.0
+            ],
+            [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              0.0
+            ],
+            [
+              -0.5,
+              1.2246467991473532e-16,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "a0",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              5.235987755982989,
+              6.283185307179586
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.1102230246251565e-16,
+                -0.8660254037844386,
+                0.0
+              ],
+              "midpoint": [
+                0.3660254037844388,
+                -0.49999999999999967,
+                0.0
+              ],
+              "end": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    6.283185307179586
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    6.283185307179586
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                5.235987755982989,
+                6.283185307179586
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965974,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "a1",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              6.283185307179586,
+              7.330382858376184
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "midpoint": [
+                0.36602540378443904,
+                0.4999999999999993,
+                0.0
+              ],
+              "end": [
+                5.551115123125783e-16,
+                0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              2
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    6.283185307179586,
+                    7.330382858376184
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    6.283185307179586,
+                    7.330382858376184
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                6.283185307179586,
+                7.330382858376184
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965974,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b0",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              2.0943951023931953,
+              3.141592653589793
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.6653345369377348e-16,
+                0.8660254037844387,
+                0.0
+              ],
+              "midpoint": [
+                -0.3660254037844385,
+                0.5000000000000003,
+                0.0
+              ],
+              "end": [
+                -0.5,
+                1.2246467991473532e-16,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              2,
+              3
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    3.141592653589793
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    3.141592653589793
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                2.0943951023931953,
+                3.141592653589793
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965979,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b1",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              3.141592653589793,
+              4.1887902047863905
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                -0.5,
+                1.2246467991473532e-16,
+                0.0
+              ],
+              "midpoint": [
+                -0.3660254037844388,
+                -0.4999999999999998,
+                0.0
+              ],
+              "end": [
+                -4.440892098500626e-16,
+                -0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              3,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    3.141592653589793,
+                    4.1887902047863905
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    3.141592653589793,
+                    4.1887902047863905
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                3.141592653589793,
+                4.1887902047863905
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965974,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              -0.7
+            ],
+            "upper_cm": [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              0.5,
+              -2.4492935982947064e-16,
+              -0.7
+            ],
+            "upper_cm": [
+              0.5,
+              -2.4492935982947064e-16,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 2,
+            "lower_cm": [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              -0.7
+            ],
+            "upper_cm": [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 3,
+            "lower_cm": [
+              -0.5,
+              1.2246467991473532e-16,
+              -0.7
+            ],
+            "upper_cm": [
+              -0.5,
+              1.2246467991473532e-16,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.7,
+            "boundary_cycle": [
+              {
+                "role_key": "b1",
+                "direction": -1
+              },
+              {
+                "role_key": "b0",
+                "direction": -1
+              },
+              {
+                "role_key": "a1",
+                "direction": -1
+              },
+              {
+                "role_key": "a0",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "a0",
+                "direction": 1
+              },
+              {
+                "role_key": "a1",
+                "direction": 1
+              },
+              {
+                "role_key": "b0",
+                "direction": 1
+              },
+              {
+                "role_key": "b1",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 2.4567393972175133,
+        "lateral_area_cm2": 8.37758040957278,
+        "total_area_cm2": 10.834319806790292,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -0.5,
+            -0.8660254037844386,
+            -0.7
+          ],
+          "maximum": [
+            0.5,
+            0.8660254037844387,
+            1.3
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "repeated Circle split lens frame 1",
+      "independent_area_cm2": 1.2283696986087567,
+      "independent_perimeter_cm": 4.1887902047863905,
+      "independent_bounds_cm": [
+        [
+          3.5,
+          -3.3,
+          6.133974596215562
+        ],
+        [
+          4.5,
+          -1.3,
+          7.866025403784438
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "a0",
+              "direction": 1
+            },
+            {
+              "role_key": "a1",
+              "direction": 1
+            },
+            {
+              "role_key": "b0",
+              "direction": 1
+            },
+            {
+              "role_key": "b1",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 1.2283696986087567,
+          "perimeter_cm": 4.18879020478639,
+          "mathematical_vertices_local_cm": [
+            [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              0.0
+            ],
+            [
+              0.5,
+              -2.4492935982947064e-16,
+              0.0
+            ],
+            [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              0.0
+            ],
+            [
+              -0.5,
+              1.2246467991473532e-16,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "a0",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              5.235987755982989,
+              6.283185307179586
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.1102230246251565e-16,
+                -0.8660254037844386,
+                0.0
+              ],
+              "midpoint": [
+                0.3660254037844388,
+                -0.49999999999999967,
+                0.0
+              ],
+              "end": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    6.283185307179586
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    6.283185307179586
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                5.235987755982989,
+                6.283185307179586
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965974,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "a1",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              6.283185307179586,
+              7.330382858376184
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "midpoint": [
+                0.36602540378443904,
+                0.4999999999999993,
+                0.0
+              ],
+              "end": [
+                5.551115123125783e-16,
+                0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              2
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    6.283185307179586,
+                    7.330382858376184
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    6.283185307179586,
+                    7.330382858376184
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                6.283185307179586,
+                7.330382858376184
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965974,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b0",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              2.0943951023931953,
+              3.141592653589793
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.6653345369377348e-16,
+                0.8660254037844387,
+                0.0
+              ],
+              "midpoint": [
+                -0.3660254037844385,
+                0.5000000000000003,
+                0.0
+              ],
+              "end": [
+                -0.5,
+                1.2246467991473532e-16,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              2,
+              3
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    3.141592653589793
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    2.0943951023931953,
+                    3.141592653589793
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                2.0943951023931953,
+                3.141592653589793
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965979,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b1",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              3.141592653589793,
+              4.1887902047863905
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                -0.5,
+                1.2246467991473532e-16,
+                0.0
+              ],
+              "midpoint": [
+                -0.3660254037844388,
+                -0.4999999999999998,
+                0.0
+              ],
+              "end": [
+                -4.440892098500626e-16,
+                -0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              3,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    3.141592653589793,
+                    4.1887902047863905
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    3.141592653589793,
+                    4.1887902047863905
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                3.141592653589793,
+                4.1887902047863905
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 1.0471975511965974,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              4.0,
+              -1.3,
+              6.133974596215562
+            ],
+            "upper_cm": [
+              4.0,
+              -3.3,
+              6.133974596215562
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              4.5,
+              -1.3,
+              7.0
+            ],
+            "upper_cm": [
+              4.5,
+              -3.3,
+              7.0
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 2,
+            "lower_cm": [
+              4.000000000000001,
+              -1.3,
+              7.866025403784438
+            ],
+            "upper_cm": [
+              4.000000000000001,
+              -3.3,
+              7.866025403784438
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 3,
+            "lower_cm": [
+              3.5,
+              -1.3,
+              7.0
+            ],
+            "upper_cm": [
+              3.5,
+              -3.3,
+              7.0
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              1.0,
+              -0.0
+            ],
+            "plane_constant_cm": -1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "b1",
+                "direction": -1
+              },
+              {
+                "role_key": "b0",
+                "direction": -1
+              },
+              {
+                "role_key": "a1",
+                "direction": -1
+              },
+              {
+                "role_key": "a0",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "plane_constant_cm": 3.3,
+            "boundary_cycle": [
+              {
+                "role_key": "a0",
+                "direction": 1
+              },
+              {
+                "role_key": "a1",
+                "direction": 1
+              },
+              {
+                "role_key": "b0",
+                "direction": 1
+              },
+              {
+                "role_key": "b1",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 2.4567393972175133,
+        "lateral_area_cm2": 8.37758040957278,
+        "total_area_cm2": 10.834319806790292,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            3.5,
+            -3.3,
+            6.133974596215562
+          ],
+          "maximum": [
+            4.5,
+            -1.3,
+            7.866025403784438
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "concave crescent frame 0",
+      "independent_area_cm2": 1.9132229549810364,
+      "independent_perimeter_cm": 6.283185307179586,
+      "independent_bounds_cm": [
+        [
+          0.0,
+          -1.0,
+          -0.7
+        ],
+        [
+          1.5,
+          1.0,
+          1.3
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "b",
+              "direction": 1
+            },
+            {
+              "role_key": "a",
+              "direction": -1
+            }
+          ],
+          "area_cm2": 1.9132229549810362,
+          "perimeter_cm": 6.283185307179585,
+          "mathematical_vertices_local_cm": [
+            [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              0.0
+            ],
+            [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "a",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              5.235987755982989,
+              7.330382858376184
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.1102230246251565e-16,
+                -0.8660254037844386,
+                0.0
+              ],
+              "midpoint": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "end": [
+                5.551115123125783e-16,
+                0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    -0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                5.235987755982989,
+                7.330382858376184
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": -1
+            },
+            "arc_or_segment_length_cm": 2.094395102393195,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              4.1887902047863905,
+              8.377580409572781
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                -4.440892098500626e-16,
+                -0.8660254037844384,
+                0.0
+              ],
+              "midpoint": [
+                1.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "end": [
+                7.771561172376096e-16,
+                0.8660254037844392,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    4.1887902047863905,
+                    8.377580409572781
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.5,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    4.1887902047863905,
+                    8.377580409572781
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                4.1887902047863905,
+                8.377580409572781
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 4.1887902047863905,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              -0.7
+            ],
+            "upper_cm": [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              -0.7
+            ],
+            "upper_cm": [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.7,
+            "boundary_cycle": [
+              {
+                "role_key": "a",
+                "direction": 1
+              },
+              {
+                "role_key": "b",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "b",
+                "direction": 1
+              },
+              {
+                "role_key": "a",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 3.8264459099620725,
+        "lateral_area_cm2": 12.56637061435917,
+        "total_area_cm2": 16.392816524321244,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -4.440892098500626e-16,
+            -1.0,
+            -0.7
+          ],
+          "maximum": [
+            1.5,
+            1.0,
+            1.3
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "concave crescent frame 1",
+      "independent_area_cm2": 1.9132229549810364,
+      "independent_perimeter_cm": 6.283185307179586,
+      "independent_bounds_cm": [
+        [
+          4.0,
+          -3.3,
+          6.0
+        ],
+        [
+          5.5,
+          -1.3,
+          8.0
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "b",
+              "direction": 1
+            },
+            {
+              "role_key": "a",
+              "direction": -1
+            }
+          ],
+          "area_cm2": 1.9132229549810362,
+          "perimeter_cm": 6.283185307179585,
+          "mathematical_vertices_local_cm": [
+            [
+              1.1102230246251565e-16,
+              -0.8660254037844386,
+              0.0
+            ],
+            [
+              5.551115123125783e-16,
+              0.8660254037844384,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "a",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              5.235987755982989,
+              7.330382858376184
+            ],
+            "source_geometry": {
+              "center_cm": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                1.1102230246251565e-16,
+                -0.8660254037844386,
+                0.0
+              ],
+              "midpoint": [
+                0.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "end": [
+                5.551115123125783e-16,
+                0.8660254037844384,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    3.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    5.235987755982989,
+                    7.330382858376184
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                3.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                5.235987755982989,
+                7.330382858376184
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": -1
+            },
+            "arc_or_segment_length_cm": 2.094395102393195,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "b",
+            "source_primitive_id": 2,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              4.1887902047863905,
+              8.377580409572781
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                -4.440892098500626e-16,
+                -0.8660254037844384,
+                0.0
+              ],
+              "midpoint": [
+                1.5,
+                -2.4492935982947064e-16,
+                0.0
+              ],
+              "end": [
+                7.771561172376096e-16,
+                0.8660254037844392,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    4.1887902047863905,
+                    8.377580409572781
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.5,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    4.1887902047863905,
+                    8.377580409572781
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.5,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                4.1887902047863905,
+                8.377580409572781
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 4.1887902047863905,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              4.0,
+              -1.3,
+              6.133974596215562
+            ],
+            "upper_cm": [
+              4.0,
+              -3.3,
+              6.133974596215562
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              4.000000000000001,
+              -1.3,
+              7.866025403784438
+            ],
+            "upper_cm": [
+              4.000000000000001,
+              -3.3,
+              7.866025403784438
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              1.0,
+              -0.0
+            ],
+            "plane_constant_cm": -1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "a",
+                "direction": 1
+              },
+              {
+                "role_key": "b",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "plane_constant_cm": 3.3,
+            "boundary_cycle": [
+              {
+                "role_key": "b",
+                "direction": 1
+              },
+              {
+                "role_key": "a",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 3.8264459099620725,
+        "lateral_area_cm2": 12.56637061435917,
+        "total_area_cm2": 16.392816524321244,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            3.9999999999999996,
+            -3.3,
+            6.0
+          ],
+          "maximum": [
+            5.5,
+            -1.3,
+            8.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "mixed circular segment frame 0",
+      "independent_area_cm2": 0.6141848493043783,
+      "independent_perimeter_cm": 3.8264459099620725,
+      "independent_bounds_cm": [
+        [
+          -0.8660254037844386,
+          0.5,
+          -0.7
+        ],
+        [
+          0.8660254037844386,
+          1.0,
+          1.3
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "arc",
+              "direction": 1
+            },
+            {
+              "role_key": "chord",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 0.6141848493043786,
+          "perimeter_cm": 3.826445909962073,
+          "mathematical_vertices_local_cm": [
+            [
+              0.8660254037844387,
+              0.49999999999999994,
+              0.0
+            ],
+            [
+              -0.8660254037844387,
+              0.49999999999999994,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "arc",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              0.5235987755982988,
+              2.6179938779914944
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.8660254037844387,
+                0.49999999999999994,
+                0.0
+              ],
+              "midpoint": [
+                6.123233995736766e-17,
+                1.0,
+                0.0
+              ],
+              "end": [
+                -0.8660254037844387,
+                0.49999999999999994,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    -0.7
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    0.5235987755982988,
+                    2.6179938779914944
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    1.3
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "angle_interval_radians": [
+                    0.5235987755982988,
+                    2.6179938779914944
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "angle_interval_radians": [
+                0.5235987755982988,
+                2.6179938779914944
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 2.0943951023931957,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "chord",
+            "source_primitive_id": 2,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                -0.8660254037844386,
+                0.5,
+                0.0
+              ],
+              "end_cm": [
+                0.8660254037844386,
+                0.5,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                -0.8660254037844386,
+                0.5,
+                0.0
+              ],
+              "end_cm": [
+                0.8660254037844386,
+                0.5,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                -0.8660254037844386,
+                0.5,
+                0.0
+              ],
+              "midpoint": [
+                0.0,
+                0.5,
+                0.0
+              ],
+              "end": [
+                0.8660254037844386,
+                0.5,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    -0.8660254037844386,
+                    0.5,
+                    -0.7
+                  ],
+                  "end_cm": [
+                    0.8660254037844386,
+                    0.5,
+                    -0.7
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    -0.8660254037844386,
+                    0.5,
+                    1.3
+                  ],
+                  "end_cm": [
+                    0.8660254037844386,
+                    0.5,
+                    1.3
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                -0.8660254037844386,
+                0.5,
+                -0.7
+              ],
+              "unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": -0.5,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 1.7320508075688772,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              0.8660254037844387,
+              0.49999999999999994,
+              -0.7
+            ],
+            "upper_cm": [
+              0.8660254037844387,
+              0.49999999999999994,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              -0.8660254037844387,
+              0.49999999999999994,
+              -0.7
+            ],
+            "upper_cm": [
+              -0.8660254037844387,
+              0.49999999999999994,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.7,
+            "boundary_cycle": [
+              {
+                "role_key": "chord",
+                "direction": -1
+              },
+              {
+                "role_key": "arc",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "arc",
+                "direction": 1
+              },
+              {
+                "role_key": "chord",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 1.228369698608757,
+        "lateral_area_cm2": 7.652891819924146,
+        "total_area_cm2": 8.881261518532902,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            -0.8660254037844387,
+            0.49999999999999994,
+            -0.7
+          ],
+          "maximum": [
+            0.8660254037844387,
+            1.0,
+            1.3
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "mixed circular segment frame 1",
+      "independent_area_cm2": 0.6141848493043783,
+      "independent_perimeter_cm": 3.8264459099620725,
+      "independent_bounds_cm": [
+        [
+          3.1339745962155616,
+          -3.3,
+          7.5
+        ],
+        [
+          4.866025403784438,
+          -1.3,
+          8.0
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "arc",
+              "direction": 1
+            },
+            {
+              "role_key": "chord",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 0.6141848493043786,
+          "perimeter_cm": 3.826445909962073,
+          "mathematical_vertices_local_cm": [
+            [
+              0.8660254037844387,
+              0.49999999999999994,
+              0.0
+            ],
+            [
+              -0.8660254037844387,
+              0.49999999999999994,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "arc",
+            "source_primitive_id": 1,
+            "kind": "CircleArc",
+            "parameter_interval": [
+              0.5235987755982988,
+              2.6179938779914944
+            ],
+            "source_geometry": {
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "reference_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "center_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "radius_cm": 1.0,
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.8660254037844387,
+                0.49999999999999994,
+                0.0
+              ],
+              "midpoint": [
+                6.123233995736766e-17,
+                1.0,
+                0.0
+              ],
+              "end": [
+                -0.8660254037844387,
+                0.49999999999999994,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.0,
+                    -1.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    0.5235987755982988,
+                    2.6179938779914944
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "CircleArc",
+                  "center_cm": [
+                    4.0,
+                    -3.3,
+                    7.0
+                  ],
+                  "radius_cm": 1.0,
+                  "unit_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "reference_u": [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  "reference_v": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "angle_interval_radians": [
+                    0.5235987755982988,
+                    2.6179938779914944
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Cylinder",
+              "axis_origin_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "unit_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "radius_cm": 1.0,
+              "reference_u": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "reference_v": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "angle_interval_radians": [
+                0.5235987755982988,
+                2.6179938779914944
+              ],
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ],
+              "chosen_mathematical_radial_normal_multiplier": 1
+            },
+            "arc_or_segment_length_cm": 2.0943951023931957,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "chord",
+            "source_primitive_id": 2,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                -0.8660254037844386,
+                0.5,
+                0.0
+              ],
+              "end_cm": [
+                0.8660254037844386,
+                0.5,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                3.1339745962155616,
+                -2.0,
+                7.5
+              ],
+              "end_cm": [
+                4.866025403784438,
+                -2.0,
+                7.5
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                -0.8660254037844386,
+                0.5,
+                0.0
+              ],
+              "midpoint": [
+                0.0,
+                0.5,
+                0.0
+              ],
+              "end": [
+                0.8660254037844386,
+                0.5,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    3.1339745962155616,
+                    -1.3,
+                    7.5
+                  ],
+                  "end_cm": [
+                    4.866025403784438,
+                    -1.3,
+                    7.5
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    3.1339745962155616,
+                    -3.3,
+                    7.5
+                  ],
+                  "end_cm": [
+                    4.866025403784438,
+                    -3.3,
+                    7.5
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                3.1339745962155616,
+                -1.3,
+                7.5
+              ],
+              "unit_normal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "plane_constant_cm": -7.5,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 1.7320508075688772,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              4.866025403784438,
+              -1.3,
+              7.5
+            ],
+            "upper_cm": [
+              4.866025403784438,
+              -3.3,
+              7.5
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              3.133974596215561,
+              -1.3,
+              7.5
+            ],
+            "upper_cm": [
+              3.133974596215561,
+              -3.3,
+              7.5
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              1.0,
+              -0.0
+            ],
+            "plane_constant_cm": -1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "chord",
+                "direction": -1
+              },
+              {
+                "role_key": "arc",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "plane_constant_cm": 3.3,
+            "boundary_cycle": [
+              {
+                "role_key": "arc",
+                "direction": 1
+              },
+              {
+                "role_key": "chord",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 1.228369698608757,
+        "lateral_area_cm2": 7.652891819924146,
+        "total_area_cm2": 8.881261518532902,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            3.133974596215561,
+            -3.3,
+            7.5
+          ],
+          "maximum": [
+            4.866025403784438,
+            -1.3,
+            8.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "rectangle frame 0",
+      "independent_area_cm2": 6.0,
+      "independent_perimeter_cm": 10.0,
+      "independent_bounds_cm": [
+        [
+          0.0,
+          0.0,
+          -0.7
+        ],
+        [
+          2.0,
+          3.0,
+          1.3
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "0",
+              "direction": 1
+            },
+            {
+              "role_key": "1",
+              "direction": 1
+            },
+            {
+              "role_key": "2",
+              "direction": 1
+            },
+            {
+              "role_key": "3",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 6.0,
+          "perimeter_cm": 10.0,
+          "mathematical_vertices_local_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "0",
+            "source_primitive_id": 1,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                0.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "midpoint": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    -0.7
+                  ],
+                  "end_cm": [
+                    2.0,
+                    0.0,
+                    -0.7
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    1.3
+                  ],
+                  "end_cm": [
+                    2.0,
+                    0.0,
+                    1.3
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                0.0,
+                -0.7
+              ],
+              "unit_normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 2.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "1",
+            "source_primitive_id": 2,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                3.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                3.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "midpoint": [
+                2.0,
+                1.5,
+                0.0
+              ],
+              "end": [
+                2.0,
+                3.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              2
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    2.0,
+                    0.0,
+                    -0.7
+                  ],
+                  "end_cm": [
+                    2.0,
+                    3.0,
+                    -0.7
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    2.0,
+                    0.0,
+                    1.3
+                  ],
+                  "end_cm": [
+                    2.0,
+                    3.0,
+                    1.3
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                2.0,
+                0.0,
+                -0.7
+              ],
+              "unit_normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 2.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 3.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "2",
+            "source_primitive_id": 3,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "midpoint": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "end": [
+                0.0,
+                3.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              2,
+              3
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    2.0,
+                    3.0,
+                    -0.7
+                  ],
+                  "end_cm": [
+                    0.0,
+                    3.0,
+                    -0.7
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    2.0,
+                    3.0,
+                    1.3
+                  ],
+                  "end_cm": [
+                    0.0,
+                    3.0,
+                    1.3
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                2.0,
+                3.0,
+                -0.7
+              ],
+              "unit_normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "plane_constant_cm": 3.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 2.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "3",
+            "source_primitive_id": 4,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "midpoint": [
+                0.0,
+                1.5,
+                0.0
+              ],
+              "end": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              3,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    0.0,
+                    3.0,
+                    -0.7
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    -0.7
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    0.0,
+                    3.0,
+                    1.3
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    1.3
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                0.0,
+                3.0,
+                -0.7
+              ],
+              "unit_normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "plane_constant_cm": 0.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 3.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              0.0,
+              0.0,
+              -0.7
+            ],
+            "upper_cm": [
+              0.0,
+              0.0,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              2.0,
+              0.0,
+              -0.7
+            ],
+            "upper_cm": [
+              2.0,
+              0.0,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 2,
+            "lower_cm": [
+              2.0,
+              3.0,
+              -0.7
+            ],
+            "upper_cm": [
+              2.0,
+              3.0,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 3,
+            "lower_cm": [
+              0.0,
+              3.0,
+              -0.7
+            ],
+            "upper_cm": [
+              0.0,
+              3.0,
+              1.3
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "plane_constant_cm": 0.7,
+            "boundary_cycle": [
+              {
+                "role_key": "3",
+                "direction": -1
+              },
+              {
+                "role_key": "2",
+                "direction": -1
+              },
+              {
+                "role_key": "1",
+                "direction": -1
+              },
+              {
+                "role_key": "0",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "plane_constant_cm": 1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "0",
+                "direction": 1
+              },
+              {
+                "role_key": "1",
+                "direction": 1
+              },
+              {
+                "role_key": "2",
+                "direction": 1
+              },
+              {
+                "role_key": "3",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 12.0,
+        "lateral_area_cm2": 20.0,
+        "total_area_cm2": 32.0,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "maximum": [
+            2.0,
+            3.0,
+            1.3
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    },
+    {
+      "name": "rectangle frame 1",
+      "independent_area_cm2": 6.0,
+      "independent_perimeter_cm": 10.0,
+      "independent_bounds_cm": [
+        [
+          4.0,
+          -3.3,
+          7.0
+        ],
+        [
+          6.0,
+          -1.3,
+          10.0
+        ]
+      ],
+      "result": {
+        "profile": {
+          "mathematical_positive_boundary_cycle": [
+            {
+              "role_key": "0",
+              "direction": 1
+            },
+            {
+              "role_key": "1",
+              "direction": 1
+            },
+            {
+              "role_key": "2",
+              "direction": 1
+            },
+            {
+              "role_key": "3",
+              "direction": 1
+            }
+          ],
+          "area_cm2": 6.0,
+          "perimeter_cm": 10.0,
+          "mathematical_vertices_local_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ]
+          ],
+          "native_traversal_semantics": null
+        },
+        "axial_stations": [
+          {
+            "axial_distance_cm": -0.7,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "Start"
+          },
+          {
+            "axial_distance_cm": 1.3,
+            "taper_angle_radians": 0.0,
+            "native_control_role": "SideOneEnd"
+          }
+        ],
+        "boundary_curves": [
+          {
+            "role_key": "0",
+            "source_primitive_id": 1,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ],
+              "end_cm": [
+                6.0,
+                -2.0,
+                7.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "midpoint": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "end": [
+                2.0,
+                0.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              0,
+              1
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    4.0,
+                    -1.3,
+                    7.0
+                  ],
+                  "end_cm": [
+                    6.0,
+                    -1.3,
+                    7.0
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    4.0,
+                    -3.3,
+                    7.0
+                  ],
+                  "end_cm": [
+                    6.0,
+                    -3.3,
+                    7.0
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                4.0,
+                -1.3,
+                7.0
+              ],
+              "unit_normal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "plane_constant_cm": -7.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 2.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "1",
+            "source_primitive_id": 2,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                2.0,
+                3.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                6.0,
+                -2.0,
+                7.0
+              ],
+              "end_cm": [
+                6.0,
+                -2.0,
+                10.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "midpoint": [
+                2.0,
+                1.5,
+                0.0
+              ],
+              "end": [
+                2.0,
+                3.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              1,
+              2
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    6.0,
+                    -1.3,
+                    7.0
+                  ],
+                  "end_cm": [
+                    6.0,
+                    -1.3,
+                    10.0
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    6.0,
+                    -3.3,
+                    7.0
+                  ],
+                  "end_cm": [
+                    6.0,
+                    -3.3,
+                    10.0
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                6.0,
+                -1.3,
+                7.0
+              ],
+              "unit_normal": [
+                1.0,
+                0.0,
+                -0.0
+              ],
+              "plane_constant_cm": 6.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 3.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "2",
+            "source_primitive_id": 3,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                6.0,
+                -2.0,
+                10.0
+              ],
+              "end_cm": [
+                4.0,
+                -2.0,
+                10.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                2.0,
+                3.0,
+                0.0
+              ],
+              "midpoint": [
+                1.0,
+                3.0,
+                0.0
+              ],
+              "end": [
+                0.0,
+                3.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              2,
+              3
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    6.0,
+                    -1.3,
+                    10.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    -1.3,
+                    10.0
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    6.0,
+                    -3.3,
+                    10.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    -3.3,
+                    10.0
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                6.0,
+                -1.3,
+                10.0
+              ],
+              "unit_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_constant_cm": 10.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 2.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          },
+          {
+            "role_key": "3",
+            "source_primitive_id": 4,
+            "kind": "LineSegment",
+            "parameter_interval": [
+              0.0,
+              1.0
+            ],
+            "source_geometry": {
+              "start_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "component_source_geometry": {
+              "start_cm": [
+                4.0,
+                -2.0,
+                10.0
+              ],
+              "end_cm": [
+                4.0,
+                -2.0,
+                7.0
+              ]
+            },
+            "sketch_local_points_cm": {
+              "start": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "midpoint": [
+                0.0,
+                1.5,
+                0.0
+              ],
+              "end": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "mathematical_endpoint_roles": [
+              3,
+              0
+            ],
+            "layer_curves": [
+              {
+                "layer": 0,
+                "axial_distance_cm": -0.7,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    4.0,
+                    -1.3,
+                    10.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    -1.3,
+                    7.0
+                  ]
+                }
+              },
+              {
+                "layer": 1,
+                "axial_distance_cm": 1.3,
+                "geometry": {
+                  "kind": "LineSegment",
+                  "start_cm": [
+                    4.0,
+                    -3.3,
+                    10.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    -3.3,
+                    7.0
+                  ]
+                }
+              }
+            ],
+            "side_carrier": {
+              "kind": "Plane",
+              "origin_cm": [
+                4.0,
+                -1.3,
+                10.0
+              ],
+              "unit_normal": [
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              "plane_constant_cm": -4.0,
+              "axial_domain_cm": [
+                -0.7,
+                1.3
+              ]
+            },
+            "arc_or_segment_length_cm": 3.0,
+            "native_ENTITY_identity": null,
+            "native_UV": null
+          }
+        ],
+        "connector_segments": [
+          {
+            "mathematical_vertex_role": 0,
+            "lower_cm": [
+              4.0,
+              -1.3,
+              7.0
+            ],
+            "upper_cm": [
+              4.0,
+              -3.3,
+              7.0
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 1,
+            "lower_cm": [
+              6.0,
+              -1.3,
+              7.0
+            ],
+            "upper_cm": [
+              6.0,
+              -3.3,
+              7.0
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 2,
+            "lower_cm": [
+              6.0,
+              -1.3,
+              10.0
+            ],
+            "upper_cm": [
+              6.0,
+              -3.3,
+              10.0
+            ],
+            "native_EDGE_identity": null
+          },
+          {
+            "mathematical_vertex_role": 3,
+            "lower_cm": [
+              4.0,
+              -1.3,
+              10.0
+            ],
+            "upper_cm": [
+              4.0,
+              -3.3,
+              10.0
+            ],
+            "native_EDGE_identity": null
+          }
+        ],
+        "caps": [
+          {
+            "layer": 0,
+            "unit_outward_normal": [
+              -0.0,
+              1.0,
+              -0.0
+            ],
+            "plane_constant_cm": -1.3,
+            "boundary_cycle": [
+              {
+                "role_key": "3",
+                "direction": -1
+              },
+              {
+                "role_key": "2",
+                "direction": -1
+              },
+              {
+                "role_key": "1",
+                "direction": -1
+              },
+              {
+                "role_key": "0",
+                "direction": -1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          },
+          {
+            "layer": 1,
+            "unit_outward_normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "plane_constant_cm": 3.3,
+            "boundary_cycle": [
+              {
+                "role_key": "0",
+                "direction": 1
+              },
+              {
+                "role_key": "1",
+                "direction": 1
+              },
+              {
+                "role_key": "2",
+                "direction": 1
+              },
+              {
+                "role_key": "3",
+                "direction": 1
+              }
+            ],
+            "native_FACE_identity": null,
+            "native_traversal_semantics": null
+          }
+        ],
+        "volume_cm3": 12.0,
+        "lateral_area_cm2": 20.0,
+        "total_area_cm2": 32.0,
+        "component_axis_aligned_bounds_cm": {
+          "minimum": [
+            4.0,
+            -3.3,
+            7.0
+          ],
+          "maximum": [
+            6.0,
+            -1.3,
+            10.0
+          ]
+        },
+        "source_to_cache_entity_mapping": null,
+        "scope": "Finite zero-taper extrusion of a qualified simple two/four-portion Line/Circle boundary. Source-derived mathematical endpoints establish only an abstract closed cycle. Exact carriers/domains, Green area, volume and rigid-frame bounds are constructed without cached coordinates, native ENTITY assignments, native UV/traversal, chronology, a solver or general CAD regeneration."
+      }
+    }
+  ]
+}

@@ -1,0 +1,972 @@
+{
+  "scope": "Three actual public RemoveFeatures.add captures with independently rolled-back itemToRemove and collection observations; target identity/owner decoding, not general lifecycle replay",
+  "interface": "decode_remove_features(data, records, features, assembly, *, body_selections=None, component_creations=None) -> decoded/unresolved/scope",
+  "provenance": {
+    "capture_directory": "removecontrasts-9c5f83456a0e",
+    "ground_truth_sha256": "51f705e8a276d5585070a5945fd922c1f553f51562227581dd59188227a61d10",
+    "journal_sha256": "1e7b08d27344899bbb448078707e6eb1588a8f7ae676b9c44aaf4c74203a21a7",
+    "actual_executed_generator_sha256": "750dd545c576a65493956808daf3494547070860a95c20ad6e51cde5bae57cff",
+    "source_sha256": {
+      "GenerateRemoveContrasts.py": "750dd545c576a65493956808daf3494547070860a95c20ad6e51cde5bae57cff",
+      "decode_remove_features.py": "a22de47801177678d23f3b2b941c5d3d1326cd01134cbe2df1ed94190a235aff",
+      "validate_remove_features.py": "d9a8b97a1173056c684f2c96e33cefc484d813002e980873ae2b369ce4d05776",
+      "decode_component_creation.py": "7c6e03521fbb101f348db04f34ef5023bc7d4933e1571d7408fe4b928f16cb7f",
+      "decode_body_selections.py": "8b9b8047009257f7cdba791e3610b6995c481950cf5087224a0190874475544a",
+      "decode_direct_body_features.py": "aa3b69ce3c5f6d0ab44bb96b36e8539119bbe071a3eaba95fb0d2ea07706e769",
+      "decode_asbuilt_joints.py": "b8b5ad3e7f2ab4414c8561f3fd88dccb55513e0f5a5c3d5d46cdaab61f9f0c2f",
+      "decode_dependencies.py": "ef10c19427f61e7a69c001276dfee3f056e0ab0a39ff6ab3ca62f5311d2c59e7",
+      "decode_timeline.py": "3a08f6294017f2ec8aeab360d4f4cc7925d1e341e1715af87f1c31755d4fc1fd"
+    }
+  },
+  "integration": "Classify only decoded feature_object_id as reported kind RemoveBody/RemoveInstance and attach remove_feature_settings. Preserve old strict direct-body failures and current occurrence collection diagnostics. Do not restore paths or change visibility/body lifetime based on this summary.",
+  "samples": [
+    {
+      "file": "removecontrasts-9c5f83456a0e/root_body.f3d",
+      "archive_sha256": "8a0b3ba20c6c97b84c08937a9e688153e7745b3477b007ee49dbe96c88a50d98",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 417,
+            "feature_class_guid": "4A782808-FBDD-4351-A10A-F7AE5693D330",
+            "kind": "RemoveBody",
+            "name": "ProbeRemoveRootBody",
+            "stored_index": 1,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "component_scope_object_id": 33,
+            "target": {
+              "kind": "Body",
+              "native_body_object_id": 275,
+              "source_owner_object_id": 243,
+              "body_anchor_object_id": 281,
+              "selection_record_object_id": 418,
+              "descriptor_object_id": 421,
+              "body_descriptor": {
+                "object_id": 421,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 417,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "body_properties": {
+                  "name": "RemoveTargetBody",
+                  "name_status": "Stored custom name recovered",
+                  "stored_body_tag": "0_275"
+                },
+                "source_owner_object_id": 243,
+                "recipe_record_object_id": 424,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "2dea4762-5860-4c46-b5fc-2b7f1c3abbb1",
+                "entity_uuid_text": "8f025348-fcd3-4198-9602-1c7315e58926",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 3.8708000000000145e-05,
+                "helper_record_object_id": 423,
+                "support_record_object_id": 422,
+                "support_reference_object_ids": [
+                  243,
+                  322
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "creator_component_scope_object_id": 33,
+              "geometry_scope": "Explicit historical native BODY/anchor and creator component scope; no exact persistent topology or current body membership inferred"
+            },
+            "state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "action_scope": "Typed removal target and component owner; current collections and historical source identity remain separate. Final visibility, lifecycle replay and regeneration unresolved",
+            "scope": "Observed ordinary public RemoveBody/RemoveInstance typed target, native component scope and historical source provenance; current visibility, feature replay and regeneration unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed ordinary public RemoveBody/RemoveInstance typed target, native component scope and historical source provenance; current visibility, feature replay and regeneration unresolved"
+      },
+      "actual_requested_target": {
+        "status": "returned_body",
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "RemoveTargetBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+        "component_name": "(Unsaved)",
+        "assembly_context_path": null,
+        "is_solid": true,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "actual_rolled_back_item_to_remove": {
+        "status": "returned_body",
+        "entity_type": "adsk::fusion::BRepBody",
+        "name": "RemoveTargetBody",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2RuCgDPOdpYiAAAAA==",
+        "component_name": "(Unsaved)",
+        "assembly_context_path": null,
+        "is_solid": true,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "actual_feature_identity": {
+        "name": "ProbeRemoveRootBody",
+        "entity_type": "adsk::fusion::RemoveFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2JoDgDXgwPkiAAAAA==",
+        "timeline_index": 4,
+        "parent_component_name": "(Unsaved)"
+      },
+      "actual_feature_bodies": [],
+      "actual_collection_counts": {
+        "before": [
+          2,
+          0,
+          0
+        ],
+        "rolled_back": [
+          2,
+          0,
+          0
+        ],
+        "after": [
+          1,
+          0,
+          0
+        ]
+      },
+      "actual_getter_errors": [],
+      "actual_root_remove_feature_count": 1,
+      "actual_source_component_after": {
+        "name": "(Unsaved)",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveSurvivorBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu4r96SIBB+3rX+062Wsdm8EqjBSMDZTsEgzMDI1NrHQTUtOMdY1MbS00LU0MzDSNUw2NzY0TTW1sDQyA6sFmsGABsD2GSiArQNZb2xqAgDsASkciAAAAA==",
+            "component_name": "(Unsaved)",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                5.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "native_target_matches_independent_API": true,
+      "decoder_does_not_mutate_inputs": true,
+      "retained_assembly_diagnostics": [],
+      "retained_strict_direct_body_diagnostics": [
+        {
+          "feature_object_id": 417,
+          "class_guid": "4A782808-FBDD-4351-A10A-F7AE5693D330",
+          "record_offset": 43820,
+          "reason": "Unobserved RemoveBody framing"
+        }
+      ]
+    },
+    {
+      "file": "removecontrasts-9c5f83456a0e/root_occurrence.f3d",
+      "archive_sha256": "acfcc772e1f5e50e9d7e9d24a56eb3a9448965f5f0a8bffd20da17f8a93b972c",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 590,
+            "feature_class_guid": "D3DC9613-9714-4DBE-99C4-0A76DB3327F1",
+            "kind": "RemoveInstance",
+            "name": "ProbeRemoveRootOccurrence",
+            "stored_index": 1,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "component_scope_object_id": 33,
+            "target": {
+              "kind": "Occurrence",
+              "native_occurrence_object_id": 253,
+              "occurrence_datum_object_id": 258,
+              "snapshot_object_id": 260,
+              "datum_bookkeeping_object_id": 259,
+              "source_creation": {
+                "feature_object_id": 254,
+                "kind": "CreateComponent",
+                "component_object_id": 202,
+                "component_name": "RemoveTargetComponent",
+                "component_scope_object_id": 231,
+                "snapshot_object_id": 260,
+                "occurrence_datum_object_id": 258,
+                "datum_bookkeeping_object_id": 259,
+                "native_occurrence_object_id": 253,
+                "occurrence_paths": [],
+                "snapshot_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "snapshot_uses_identity_shortcut": false,
+                "snapshot_matches_occurrence_cache": true,
+                "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+                "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+                "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+              },
+              "component_object_id": 202,
+              "component_name": "RemoveTargetComponent",
+              "instance_number": 1,
+              "stored_native_occurrence": {
+                "object_id": 253,
+                "component_object_id": 202,
+                "instance_number": 1,
+                "explicit_name": null,
+                "namespace_text": "a7b2a562-4c3b-4a5b-a812-6bbb5b85d1b6",
+                "instance_guid_text": "ca7a3090-af56-4831-92d6-f5040b60a358",
+                "parent_collection_object_id": 6,
+                "local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "translation_units": "cm",
+                "matrix_order": "row-major; column-vector multiplication"
+              },
+              "declared_parent_route": [
+                {
+                  "native_occurrence_object_id": 253,
+                  "component_object_id": 202,
+                  "component_name": "RemoveTargetComponent",
+                  "instance_number": 1,
+                  "declared_parent_collection_object_id": 6,
+                  "declared_parent_component_object_id": 3,
+                  "is_listed_in_stored_parent_collection": false
+                }
+              ],
+              "declared_parent_path_label": "RemoveTargetComponent:1",
+              "path_scope": "Uniquely framed declared-parent chain for source provenance; not a restored final occurrence path or collection membership",
+              "is_listed_in_stored_parent_collection": false
+            },
+            "state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "action_scope": "Typed removal target and component owner; current collections and historical source identity remain separate. Final visibility, lifecycle replay and regeneration unresolved",
+            "scope": "Observed ordinary public RemoveBody/RemoveInstance typed target, native component scope and historical source provenance; current visibility, feature replay and regeneration unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed ordinary public RemoveBody/RemoveInstance typed target, native component scope and historical source provenance; current visibility, feature replay and regeneration unresolved"
+      },
+      "actual_requested_target": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetComponent:1",
+        "full_path_name": "RemoveTargetComponent:1",
+        "component_name": "RemoveTargetComponent",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": "RemoveTargetComponent:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "max": [
+                3.0,
+                2.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "actual_rolled_back_item_to_remove": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetComponent:1",
+        "full_path_name": "RemoveTargetComponent:1",
+        "component_name": "RemoveTargetComponent",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Ouw2CMQyEG1oGoHNDaclJnNiumSQPZwSmYAZWYBAKenoWoKYgv+jRNafTp7sjYIgQgJZC1OXCLylwOe4P5+vpfns/LrvX57mICKlAd2cXHjhNIy5b0SQ5DlNmqWaabbVsZJWayAjrzAVZU0CLo+DMxNQK1ZT1/9ZoJrPrQI2DkXOZaOQNqbck3Txml+37F8FWVoPHAAAA",
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ0CMQyFG1oGoHNDackXO4ldM0l+nBGY4mZgBQahoKdnAWoKcjcAerL06enJ9iNQoKkFwpydgk5aQDYnwXo+nq63y+P+ea6H9/c1EwE4QXMXz9JxmAacWNAyO3ZTkVzMNNrcsiVLLkxGWEZMKMoLWugJRyShmqhw1P+3erU8mnbU0AUlpoFGXpFa5dzMQ/S8/751YdYfs3BSY9UAAAA=",
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": "RemoveTargetComponent:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "max": [
+                3.0,
+                2.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "actual_feature_identity": {
+        "name": "ProbeRemoveRootOccurrence",
+        "entity_type": "adsk::fusion::RemoveFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQo8qr2TZPOfT6z+d72F5+ucWUIWRgrGZQnJqqkmquUmKbpqlhZEukJmoa2lunKqbYmlhYmKeaGlpYWoJVgs0gwENgO0zUABbB7Le1NIAAFr9SxyIAAAA",
+        "timeline_index": 6,
+        "parent_component_name": "(Unsaved)"
+      },
+      "actual_feature_bodies": [],
+      "actual_collection_counts": {
+        "before": [
+          0,
+          2,
+          2
+        ],
+        "rolled_back": [
+          0,
+          2,
+          2
+        ],
+        "after": [
+          0,
+          1,
+          1
+        ]
+      },
+      "actual_getter_errors": [
+        {
+          "field": "source_component_after.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : Xl::Utils::referenceKey(this, referenceKey)\n"
+        }
+      ],
+      "actual_root_remove_feature_count": 1,
+      "actual_source_component_after": {
+        "name": "RemoveTargetComponent",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetComponentBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetComponent",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "native_target_matches_independent_API": true,
+      "decoder_does_not_mutate_inputs": true,
+      "retained_assembly_diagnostics": [
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "retained_strict_direct_body_diagnostics": []
+    },
+    {
+      "file": "removecontrasts-9c5f83456a0e/nested_occurrence.f3d",
+      "archive_sha256": "4109ef9f0407638eb0ed9519ff39b3aa59728f67683ccd2f98a438fbee13f96d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 655,
+            "feature_class_guid": "D3DC9613-9714-4DBE-99C4-0A76DB3327F1",
+            "kind": "RemoveInstance",
+            "name": "ProbeRemoveNestedOccurrence",
+            "stored_index": 1,
+            "component_object_id": 202,
+            "component_name": "RemoveParentComponent",
+            "component_scope_object_id": 231,
+            "target": {
+              "kind": "Occurrence",
+              "native_occurrence_object_id": 316,
+              "occurrence_datum_object_id": 321,
+              "snapshot_object_id": 323,
+              "datum_bookkeeping_object_id": 322,
+              "source_creation": {
+                "feature_object_id": 317,
+                "kind": "CreateComponent",
+                "component_object_id": 265,
+                "component_name": "RemoveTargetChild",
+                "component_scope_object_id": 294,
+                "snapshot_object_id": 323,
+                "occurrence_datum_object_id": 321,
+                "datum_bookkeeping_object_id": 322,
+                "native_occurrence_object_id": 316,
+                "occurrence_paths": [],
+                "snapshot_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "snapshot_uses_identity_shortcut": false,
+                "snapshot_matches_occurrence_cache": true,
+                "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+                "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+                "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+              },
+              "component_object_id": 265,
+              "component_name": "RemoveTargetChild",
+              "instance_number": 1,
+              "stored_native_occurrence": {
+                "object_id": 316,
+                "component_object_id": 265,
+                "instance_number": 1,
+                "explicit_name": null,
+                "namespace_text": "1d7c4f77-7350-483c-b7bb-3cb1698b614c",
+                "instance_guid_text": "1118cc5d-e7ca-472c-8780-31d517d355c2",
+                "parent_collection_object_id": 204,
+                "local_transform": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "translation_units": "cm",
+                "matrix_order": "row-major; column-vector multiplication"
+              },
+              "declared_parent_route": [
+                {
+                  "native_occurrence_object_id": 253,
+                  "component_object_id": 202,
+                  "component_name": "RemoveParentComponent",
+                  "instance_number": 1,
+                  "declared_parent_collection_object_id": 6,
+                  "declared_parent_component_object_id": 3,
+                  "is_listed_in_stored_parent_collection": true
+                },
+                {
+                  "native_occurrence_object_id": 316,
+                  "component_object_id": 265,
+                  "component_name": "RemoveTargetChild",
+                  "instance_number": 1,
+                  "declared_parent_collection_object_id": 204,
+                  "declared_parent_component_object_id": 202,
+                  "is_listed_in_stored_parent_collection": false
+                }
+              ],
+              "declared_parent_path_label": "RemoveParentComponent:1+RemoveTargetChild:1",
+              "path_scope": "Uniquely framed declared-parent chain for source provenance; not a restored final occurrence path or collection membership",
+              "is_listed_in_stored_parent_collection": false
+            },
+            "state": {
+              "is_suppressed": false,
+              "is_rolled_back": false,
+              "source": "Observed shared feature footer; suppression copies agree"
+            },
+            "action_scope": "Typed removal target and component owner; current collections and historical source identity remain separate. Final visibility, lifecycle replay and regeneration unresolved",
+            "scope": "Observed ordinary public RemoveBody/RemoveInstance typed target, native component scope and historical source provenance; current visibility, feature replay and regeneration unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed ordinary public RemoveBody/RemoveInstance typed target, native component scope and historical source provenance; current visibility, feature replay and regeneration unresolved"
+      },
+      "actual_requested_target": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetChild:1",
+        "full_path_name": "RemoveParentComponent:1+RemoveTargetChild:1",
+        "component_name": "RemoveTargetChild",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV8/R5dczo96e5i4EABQ5xC0ulwS1J4HN633f50vT8vx+/ndZ4EhSWF4cWEtMCo5MAmFbR4g9h6JydUX3gjRUXER4KG2oCzNKiNG0iMyExpDE4rh4hqJg49W50cGWjWCAu6YPZFxOj/JskWrVSHlFsHRp+dngpkx9SNLFsZ68cfkumw5u8AAAA=",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          6.0,
+          0.0,
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": "RemoveParentComponent:1",
+        "native_object_token": null,
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxExSRkACzF/nbidCyAmCGxk56aEZiDAeip6SmoWYV86NHJ0un0JN/FoCFOYaB5X0c6HQZekxRuu+dlsz2cr/fT/v16HCdBYUlheDEhLTAqObBJBS3eILbeyQnVF/6RoiLiI0FDbcBZGtTGDSRGZKY0BqeVQ0Q1E4eerU6ODDRrhAVdMPsiYvS/k2SLVqpDyq0Do8+fngpkx9SNLFsZ343rZo74AWUpZhf9AAAA",
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": "RemoveParentComponent:1+RemoveTargetChild:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                6.0,
+                2.0,
+                3.0
+              ],
+              "max": [
+                7.0,
+                3.0,
+                4.0
+              ]
+            }
+          }
+        ]
+      },
+      "actual_rolled_back_item_to_remove": {
+        "status": "returned_occurrence",
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "RemoveTargetChild:1",
+        "full_path_name": "RemoveTargetChild:1",
+        "component_name": "RemoveTargetChild",
+        "entity_token": null,
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "native_object_token": null,
+        "native_object_transform": [
+          1.0,
+          0.0,
+          0.0,
+          4.0,
+          0.0,
+          1.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          1.0,
+          2.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": "RemoveTargetChild:1",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                4.0,
+                -1.0,
+                2.0
+              ],
+              "max": [
+                5.0,
+                0.0,
+                3.0
+              ]
+            }
+          }
+        ]
+      },
+      "actual_feature_identity": {
+        "name": "ProbeRemoveNestedOccurrence",
+        "entity_type": "adsk::fusion::RemoveFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkadi92M8r7VS/cUOty/eswfqMJIwdhMITUlLdnSJNVANyXF1FLXxNzYRNfSyCBR1zLZ3NIyydjUyCLNEqwWaAYDGgDbZ6AAtg5kvZmpKQAiPC0OiAAAAA==",
+        "timeline_index": 7,
+        "parent_component_name": "RemoveParentComponent"
+      },
+      "actual_feature_bodies": [],
+      "actual_collection_counts": {
+        "before": [
+          0,
+          2,
+          3
+        ],
+        "rolled_back": [
+          0,
+          2,
+          3
+        ],
+        "after": [
+          0,
+          2,
+          2
+        ]
+      },
+      "actual_getter_errors": [
+        {
+          "field": "requested_native_child_before.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 60, in <lambda>\n    entity_token=observe(label+'.entityToken',lambda:occurrence.entityToken),\n                                                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_native_child_before.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_native_child_before.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "requested_target_before.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "before.all_occurrences[0].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "actual_item_to_remove.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 60, in <lambda>\n    entity_token=observe(label+'.entityToken',lambda:occurrence.entityToken),\n                                                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "actual_item_to_remove.nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "actual_item_to_remove.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "rolled_back.all_occurrences[0].nativeObject.entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 63, in <lambda>\n    native_object_token=observe(label+'.nativeObject.entityToken',lambda:occurrence.nativeObject.entityToken if occurrence.nativeObject else None),\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n"
+        },
+        {
+          "field": "source_component_after.bodies[0].entityToken",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 42, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRemoveContrasts.py\", line 49, in <lambda>\n    name=observe(label+'.name',lambda:body.name),entity_token=observe(label+'.entityToken',lambda:body.entityToken),\n                                                                                                  ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 16990, in _get_entityToken\n    return _fusion.BRepBody__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : Xl::Utils::referenceKey(this, referenceKey)\n"
+        }
+      ],
+      "actual_root_remove_feature_count": 0,
+      "actual_source_component_after": {
+        "name": "RemoveTargetChild",
+        "body_count": 1,
+        "occurrence_count": 0,
+        "bodies": [
+          {
+            "status": "returned_body",
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "RemoveTargetChildBody",
+            "entity_token": null,
+            "component_name": "RemoveTargetChild",
+            "assembly_context_path": null,
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "occurrences": []
+      },
+      "native_target_matches_independent_API": true,
+      "decoder_does_not_mutate_inputs": true,
+      "retained_assembly_diagnostics": [
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "retained_strict_direct_body_diagnostics": []
+    }
+  ],
+  "malformed_guards": [
+    {
+      "control": "Public body repeated proxy differs",
+      "rejected": true,
+      "reason": "Public RemoveBody repeated input framing differs"
+    },
+    {
+      "control": "Public body proxy owner differs",
+      "rejected": true,
+      "reason": "Public RemoveBody proxy/descriptor reciprocal owner differs"
+    },
+    {
+      "control": "Historical selected body anchor differs",
+      "rejected": true,
+      "reason": "Public RemoveBody existing typed descriptor/anchor source unresolved"
+    },
+    {
+      "control": "Instance target datum is absent",
+      "rejected": true,
+      "reason": "As-built typed reference missing/ambiguous/wrong class: 999999"
+    },
+    {
+      "control": "Occurrence datum bookkeeping backlink differs",
+      "rejected": true,
+      "reason": "Public RemoveInstance target datum bookkeeping is not reciprocal"
+    },
+    {
+      "control": "Creation snapshot matrix differs from native occurrence cache",
+      "rejected": true,
+      "reason": "Public RemoveInstance supplied creation route differs from fresh framing"
+    },
+    {
+      "control": "Removal feature component scope differs from target declared parent",
+      "rejected": true,
+      "reason": "Public RemoveInstance feature is not scoped to target declared parent component"
+    },
+    {
+      "control": "Selected occurrence datum aliases another existing target",
+      "rejected": true,
+      "reason": "Public RemoveInstance target lacks one independently decoded creation/snapshot route"
+    }
+  ],
+  "prior_direct_body_controls": [
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "old_summary_exact_golden": true,
+      "new_public_remove_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "splinepatches-900d152c2380/splinepatches.f3d",
+      "old_summary_exact_golden": true,
+      "new_public_remove_helper_does_not_recover_or_reject": true
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "old_summary_exact_golden": true,
+      "new_public_remove_helper_does_not_recover_or_reject": true
+    }
+  ],
+  "limitations": [
+    "Root public RemoveBody has existing owned body proxy/descriptor/anchor grammar and a66-byte ordinary feature footer. BoundaryFill children retain their separate explicit typed parent route.",
+    "RemoveInstance selects a typed occurrence datum from the independently decoded CreateComponent/snapshot chain. Historical source placements are not final geometry or a native replay.",
+    "Nested root API call normalizes to a parent-owned native RemoveInstance. Its actual itemToRemove getter returns the native child with local transform and no assemblyContext; the original requested proxy path is a separate observation.",
+    "Declared-parent route labels follow explicit collection/owner/native-occurrence links only when unique. They are not restored current paths; removed targets remain absent from current member lists.",
+    "Actual feature bodies/collection counts and post-removal component definitions are getter evidence, not claims of body destruction or final visibility.",
+    "Current assembly diagnostics remain unchanged; ambiguity, repeated parent component instances, deeper contexts, mesh/surface variants and general lifecycle are unsupported.",
+    "Eleven API token failures are retained; native target identity does not use token contents or coordinate matching."
+  ],
+  "validation": {
+    "actual_public_remove_files": 3,
+    "decoded_removal_targets": 3,
+    "root_body_targets": 1,
+    "occurrence_targets": 2,
+    "independently_scoped_parent_owned_nested_target": 1,
+    "retained_current_collection_absence_diagnostics": 2,
+    "malformed_guards": 8,
+    "old_BaseFeature_BoundaryFill_golden_controls": 3,
+    "retained_API_token_getter_errors": 11,
+    "live_Fusion_calls_by_validator": 0,
+    "final_visibility_or_replay_claim": false,
+    "all_checks_passed": true
+  }
+}

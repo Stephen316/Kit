@@ -1,30 +1,24 @@
-<!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
--->
-
 # `re/` — reverse-engineering workspace
 
-Everything durable that came out of reverse-engineering the SOLIDWORKS part format, organised so a
-new agent can pick it up, trust the right parts, and repeat the exercise on a different CAD format.
+Durable reverse-engineering findings and tooling for native CAD formats. The SOLIDWORKS
+workspace described below retains its original structure. The imported
+[Fusion study](Fusion/README.md) contains the experimental Fusion decoder, saved
+captures and validation evidence, with its source history preserved.
 
 `Methodology.md` is the reusable playbook — read it first if your target is AutoCAD, CATIA, NX or
-Creo. Everything else in this directory is the SOLIDWORKS worked example that the playbook was
-distilled from. [`AutomationPlan.md`](AutomationPlan.md) designs the scripted pipeline that
-automates that playbook across SOLIDWORKS and Fusion.
+Creo. The existing SOLIDWORKS directories provide the worked example that the playbook was
+distilled from. `Fusion/` preserves a separate native-file study and its original commit history.
+The [automation plan](../Documentation/Reference/Research/AutomationPlan.md) defines the neutral-first research pipeline.
+The [implementation steps](../Documentation/Reference/Research/AutomationSteps.md) track ownership, dependencies and evidence.
 
 ## Size
 
-| part                                   | size         |
-| -------------------------------------- | ------------ |
-| `re/` excluding binaries               | **~6.9 MB**  |
-| the four vendor DLLs in `re/binaries/` | **~52.6 MB** |
-| `re/` total, all tracked               | **~59.5 MB** |
+| part                                             | size           |
+| ------------------------------------------------ | -------------- |
+| Existing SOLIDWORKS workspace excluding binaries | **~7.3 MiB**   |
+| The four vendor DLLs in `re/binaries/`           | **~51.9 MiB**  |
+| Imported Fusion study and evidence               | **~278.1 MiB** |
+| `re/` total, including the Fusion import         | **~337.3 MiB** |
 
 The DLLs are **tracked**, deliberately, so that a cloud agent with no SOLIDWORKS install can run
 Ghidra against them. Read `binaries/README.md` for the licensing position before this repository is
@@ -32,7 +26,7 @@ shared with anyone outside Parashell — they are unmodified proprietary Dassaul
 from a licensed local install, and `binaries/Fetch.ps1` reproduces them from that install if you
 would rather not carry them.
 
-The bulk of the tracked bytes is machine-readable evidence: `re/data/` (~4.6 MB, dominated by the
+Within the SOLIDWORKS workspace, the bulk of the tracked bytes is machine-readable evidence: `re/data/` (~4.6 MB, dominated by the
 static container census and the traced object segmentations) and `re/solidworks/measurements/`
 (~1.1 MB of volume measurements). The prose is about 380 KB.
 
@@ -40,6 +34,7 @@ static container census and the traced object segmentations) and `re/solidworks/
 
 | directory     | what is in it                                                                                                                                                                                                                                                                                                                                                            |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Fusion/`     | Imported experimental Fusion native-file decoder, capture tools, saved examples and audit reports; original source history and evidence bytes preserved.                                                                                                                                                                                                                 |
 | `binaries/`   | the four SOLIDWORKS DLLs every finding was derived from, plus `Manifest.json` (SHA-256 and version of each) and `Fetch.ps1` (re-copies them from a local install). Tracked. Read `binaries/README.md` first.                                                                                                                                                             |
 | `solidworks/` | the findings. Layered: `container/` (file framing + the signature table), `archive/` (the `su_CArchive` grammar, the reader's identity, object segmentation), `records/` (per-class field layouts), `features/` (extrude, revolve, sketch, arc, bodies), `corpus/` (what corpora exist and what each proves), `measurements/` (every volume measurement, with controls). |
 | `tooling/`    | how the work was done and how to redo it: `ghidra/` (headless decompilation), `windbg/` (the cdb runtime trace), `harness/` (the COM measurement loop).                                                                                                                                                                                                                  |
@@ -110,7 +105,7 @@ cheapest end-to-end check that the recorded tables really do come out of the rec
 
 ## Scope honesty
 
-This work reads and _patches_ SOLIDWORKS streams. It does not serialise one from nothing. The
+The SOLIDWORKS work reads and _patches_ SOLIDWORKS streams. It does not serialise one from nothing. The
 container framing is fully inverted (any of 1000 file ids can be written with no donor); stream
 content still comes from a donor part of the right feature topology. `solidworks/README.md` states
 exactly where that line falls.

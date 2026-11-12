@@ -1,0 +1,1555 @@
+{
+  "scope": "Three actual singleton SplitBody controls with independent Patch-sheet face/body tools; explicit native tool/source/result references, extension toggle and common operation-flag agreement. No geometry/ordinal identity selection or regeneration.",
+  "interface": "decode_split_body_sheet_tools(data,records,features)->decoded/unresolved/scope; rows feature_object_id/kind/name/settings",
+  "shared_hook": "decode_split(...,tool_resolver=None); default plane resolution and unresolved None behavior exact. Five-argument callback returns qualified tool.entity.kind BRepFace/BRepBody plus native_evidence; unchanged header/proxy/operationflag/count parsing.",
+  "integration": {
+    "stream": "split_body_sheet_tools",
+    "settings_field": "settings",
+    "decode_level": "Observed SplitBody sheet face/body tool, extension control and typed source/result routes; persistent topology and regeneration unresolved",
+    "old_partial_tool_status": "Split tool reference unresolved",
+    "late_body_evidence_path": "settings.tool.native_evidence",
+    "scope": "Default already publishes partial settings and decoded tool row. Replace only exact qualified partial settings/decode_level, add optional sidecars; no tool summary/error/kind/discovery/timeline changes."
+  },
+  "capture_provenance": {
+    "ground_truth": "splitbodysheets-b7548618fb65/ground_truth.json",
+    "ground_truth_sha256": "cf7c7f0450ea6a4472b0fb46a5a07e75f0fc594571f9d9106c0fb5148bd175a7",
+    "executed_generator_sha256": "edcc6ba74f1ada47a4f718be95afa63f9f03ae68383593424458d30b039706d1",
+    "executed_sdk_surface_sha256": "ea54f3267e710e57b6f9dc334294b413089780c11824edf699eb48dc5e62fcfe",
+    "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+    "fusion_version": "2705.1.30"
+  },
+  "native_schema": {
+    "feature_class_guid": "65CA3206-E33A-471E-8E40-2C72B57C6181",
+    "prefix": "000100000000",
+    "extension_boolean_offset": 6,
+    "definition_reference_offset": 11,
+    "stored_operation_flag_offset": 22,
+    "tool_count_offset": 30,
+    "tool_proxy_reference_offset": 34,
+    "per_target_count_offset": 49,
+    "per_target_reference_start": 53,
+    "target_proxy_rule": "After53+11*count, require0000000001000000 then11byte proxy reference",
+    "tool_face_descriptor_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+    "tool_body_descriptor_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+    "operation_flag_scope": "Literal native uint64 agrees DcFeatureOperationIdFlag proxy attribute; no new enum or topology meaning inferred"
+  },
+  "samples": [
+    {
+      "archive": "splitbodysheets-b7548618fb65/sheet_face_no_extend.f3d",
+      "archive_sha256": "115c347242dc8bd313dc4d8318f264a269bd1cd79631b7ed51102cfde9a36925",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 972,
+            "kind": "SplitBody",
+            "name": "OwnedSplitBodySheet_sheet_face_no_extend",
+            "settings": {
+              "is_tool_extended": false,
+              "input_body_count": 1,
+              "split_definition_record_object_id": 984,
+              "tool_selection_record_object_id": 976,
+              "tool": {
+                "entity": {
+                  "kind": "BRepFace",
+                  "native_body_object_id": 379
+                },
+                "native_evidence": {
+                  "feature_object_id": 972,
+                  "feature_record_offset": 47529,
+                  "tool_selection_record_object_id": 976,
+                  "source_selection_record_object_id": 985,
+                  "tool_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 976,
+                      "attributes": {
+                        "DcFeatureOperationIdFlag": 306
+                      },
+                      "faces": [
+                        {
+                          "descriptor_object_id": 979,
+                          "body_anchor_object_id": 383,
+                          "native_body_object_id": 379,
+                          "source_owner_object_id": 344,
+                          "namespace_text": "d698fbf4-d48b-4391-8d49-34450fc0d8bd",
+                          "entity_guid_text": "5eb699dc-a69d-4445-a8a2-ab75f51ce8cf",
+                          "context_record_object_ids": [
+                            1046
+                          ],
+                          "recipe": {
+                            "object_id": 982,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 48988,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 305,
+                                    "numeric_record_collision": {
+                                      "object_id": 305,
+                                      "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                      "record_offset": 38551,
+                                      "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "face_recipe_data",
+                            "payload_relative_offset": 63,
+                            "payload_length": 8,
+                            "payload_hex": "00000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 979,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "namespace_text": "d698fbf4-d48b-4391-8d49-34450fc0d8bd",
+                      "entity_guid_text": "5eb699dc-a69d-4445-a8a2-ab75f51ce8cf",
+                      "context_record_object_ids": [
+                        1046
+                      ],
+                      "recipe": {
+                        "object_id": 982,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 48988,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38551,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 979,
+                      "owner_object_id": 972,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 982,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 48988,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38551,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 1046,
+                      "namespace_text": "d698fbf4-d48b-4391-8d49-34450fc0d8bd",
+                      "entity_guid_text": "5eb699dc-a69d-4445-a8a2-ab75f51ce8cf",
+                      "stored_context_index_field": 14,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "source_body_route": {
+                    "kind": "Body",
+                    "selection": {
+                      "selection_record_object_id": 985,
+                      "owner_object_id": 972,
+                      "attributes": {},
+                      "descriptor_object_ids": [
+                        988
+                      ],
+                      "native_body_object_ids": [
+                        275
+                      ],
+                      "association": "Explicit counted proxy list with matching descriptor owners"
+                    },
+                    "descriptor": {
+                      "object_id": 988,
+                      "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                      "owner_object_id": 972,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "body_properties": {},
+                      "source_owner_object_id": 243,
+                      "recipe_record_object_id": 991,
+                      "stored_identifier": 301,
+                      "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                      "stored_kind_field": 33,
+                      "namespace_text": "d698fbf4-d48b-4391-8d49-34450fc0d8bd",
+                      "entity_uuid_text": "5eb699dc-a69d-4445-a8a2-ab75f51ce8cf",
+                      "context_record_object_ids": [],
+                      "stored_trailer_kind_field": 8,
+                      "uninterpreted_trailer_field_hex": "00000000000000000000",
+                      "uninterpreted_cached_scalar": 4.3417000000000455e-05,
+                      "helper_record_object_id": 990,
+                      "support_record_object_id": 989,
+                      "support_reference_object_ids": [
+                        243,
+                        344
+                      ],
+                      "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                      "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                    },
+                    "recipe": {
+                      "object_id": 991,
+                      "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                      "record_offset": 49960,
+                      "stored_header_fields": [
+                        1,
+                        3
+                      ],
+                      "name_table": [
+                        {
+                          "table_index": 0,
+                          "terms": [
+                            {
+                              "name": "301",
+                              "stored_index": 7,
+                              "stored_reference_tag": 0,
+                              "stored_reference_value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "payload_kind": "body_recipe_data",
+                      "payload_relative_offset": 61,
+                      "payload_length": 8,
+                      "payload_hex": "00000000ffffffff",
+                      "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                      "uninterpreted_payload_int32": [
+                        0,
+                        -1
+                      ]
+                    },
+                    "typed_context": null
+                  },
+                  "source_historical_native_body_object_id": 275,
+                  "tool_historical_native_body_object_id": 379,
+                  "per_target_record_object_ids": [
+                    1001
+                  ],
+                  "newly_owned_result_anchors": [
+                    {
+                      "object_id": 1001,
+                      "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                      "native_body_object_id": 997,
+                      "source_owner_object_id": 972,
+                      "native_uuid_text": "37543200-fa38-4a8d-8952-e5e1209886bc",
+                      "stored_flags": [
+                        0,
+                        1
+                      ],
+                      "native_body_reference_offset": 51599,
+                      "body_properties": {},
+                      "association": "Typed anchor contains an explicit reference to the native body record",
+                      "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                    }
+                  ],
+                  "newly_owned_native_body_object_ids": [
+                    997
+                  ],
+                  "historical_and_current_body_properties": [
+                    {
+                      "object_id": 275,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 33657,
+                      "name": "OwnedSplitBlock_sheet_face_no_extend",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_275",
+                      "name_helper_object_id": 276,
+                      "name_field_offset": 34253,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 379,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 46032,
+                      "name": "OwnedSplitToolSheet_sheet_face_no_extend",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_379",
+                      "name_helper_object_id": 380,
+                      "name_field_offset": 46624,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 997,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 50526,
+                      "name": "OwnedSplitBlock_sheet_face_no_extend (1)",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_997",
+                      "name_helper_object_id": 1002,
+                      "name_field_offset": 51118,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    }
+                  ],
+                  "native_current_body_collection": {
+                    "object_id": 7,
+                    "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "body_object_ids": [
+                      275,
+                      379,
+                      997
+                    ],
+                    "stored_field_at_3": 3,
+                    "uninterpreted_middle_hex": "010118010000000000000000010800000000000000000001011200000000000000000000"
+                  },
+                  "native_history_mapping_object_id": 8,
+                  "stored_role_prefix_hex": "000100000000000100000001d803000000000000000032010000000000000100000001d0030000000000000000000000000100000001e9030000000000000000000000000100000001d9030000000000000000",
+                  "definition_record_object_id": 984,
+                  "stored_definition_payload_hex": "0000000000000000000000000000000000000000030000000000000000000000000000000000010001cc03000000000000000000000000000000",
+                  "stored_collection_payload_hex": "00000003000000030000000113010000000000000000017b01000000000000000001e5030000000000000000010118010000000000000000010800000000000000000001011200000000000000000000030000000113010000000000000000017b01000000000000000001e50300000000000000000103000000000000000000",
+                  "stored_mapping_payload_hex": "000003000000c4000000000000001301000000000000c5000000000000007b01000000000000c600000000000000e5030000000000000107000000000000000000002e00000042005200450050002e00650066006500370035003000380038002d0031003800360035002d0034003100330030002d0039006200350038002d006300340033006600640031003500620065006100300061002e0073006d0062006800",
+                  "scope": "Observed owned SplitBody sheet face/body tool and historical source BODY selectors; explicit per-target newly owned BODY anchor and reciprocal stored collection retain source, tool and new BODY identities separately. Same-asset initial ASM stored-ID mapping qualified late. No API body or selected-face identity, source/result ordinal pairing, lifecycle, solver or regeneration inferred."
+                },
+                "representation_scope": "Stored face/body descriptor kind retained independently of requested and rolled API representation",
+                "scope": "Observed owned SplitBody sheet face/body tool and historical source BODY selectors; explicit per-target newly owned BODY anchor and reciprocal stored collection retain source, tool and new BODY identities separately. Same-asset initial ASM stored-ID mapping qualified late. No API body or selected-face identity, source/result ordinal pairing, lifecycle, solver or regeneration inferred."
+              },
+              "tool_descriptor_object_id": 979,
+              "target_selection_record_object_id": 985,
+              "target_descriptor_object_ids": [
+                988
+              ],
+              "per_target_record_object_ids": [
+                1001
+              ],
+              "stored_operation_flag": 306,
+              "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed one-target SplitBody with independent owned Patch-sheet face/body tool descriptors, literal extension boolean and operation-flag agreement, typed historical source/tool and owned result routes. Selected ASMface identity, general sheet extension, lifecycle and regeneration unresolved."
+      },
+      "expected_default_settings": {
+        "is_tool_extended": false,
+        "input_body_count": 1,
+        "split_definition_record_object_id": 984,
+        "tool_selection_record_object_id": 976,
+        "tool": null,
+        "tool_descriptor_object_id": 979,
+        "target_selection_record_object_id": 985,
+        "target_descriptor_object_ids": [
+          988
+        ],
+        "per_target_record_object_ids": [
+          1001
+        ],
+        "stored_operation_flag": 306,
+        "target_selection_status": "Explicit target descriptors retained; body topology unresolved",
+        "tool_selection_status": "Split tool reference unresolved"
+      },
+      "actual_input_tool_type": "BRepFace",
+      "actual_feature_tool_type": "BRepFace",
+      "actual_input_split_body_type": "BRepBody",
+      "actual_feature_split_bodies_type": "Collection",
+      "actual_is_tool_extended": false,
+      "actual_current_BRep_count": 3,
+      "actual_feature_BRep_count": 1,
+      "stored_common_prefix_hex": "000100000000000100000001d803000000000000000032010000000000000100000001d0030000000000000000000000000100000001e9030000000000000000000000000100000001d9030000000000000000",
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "splitbodysheets-b7548618fb65/sheet_body_no_extend.f3d",
+      "archive_sha256": "84ba426e507744ffbff9e14d8ca77f8023054bdcf439e1b15daa30af44f5f6f3",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 984,
+            "kind": "SplitBody",
+            "name": "OwnedSplitBodySheet_sheet_body_no_extend",
+            "settings": {
+              "is_tool_extended": false,
+              "input_body_count": 1,
+              "split_definition_record_object_id": 995,
+              "tool_selection_record_object_id": 988,
+              "tool": {
+                "entity": {
+                  "kind": "BRepBody",
+                  "native_body_object_id": 379
+                },
+                "native_evidence": {
+                  "feature_object_id": 984,
+                  "feature_record_offset": 47529,
+                  "tool_selection_record_object_id": 988,
+                  "source_selection_record_object_id": 996,
+                  "tool_route": {
+                    "kind": "Body",
+                    "selection": {
+                      "selection_record_object_id": 988,
+                      "owner_object_id": 984,
+                      "attributes": {
+                        "DcFeatureOperationIdFlag": 306
+                      },
+                      "descriptor_object_ids": [
+                        991
+                      ],
+                      "native_body_object_ids": [
+                        379
+                      ],
+                      "association": "Explicit counted proxy list with matching descriptor owners"
+                    },
+                    "descriptor": {
+                      "object_id": 991,
+                      "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                      "owner_object_id": 984,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "body_properties": {},
+                      "source_owner_object_id": 344,
+                      "recipe_record_object_id": 994,
+                      "stored_identifier": 305,
+                      "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                      "stored_kind_field": 3,
+                      "namespace_text": "7c1f5861-9bb0-4de9-aff6-c7f690687c89",
+                      "entity_uuid_text": "9f8f7836-f1a7-40b5-9ccb-4e9a60493bf2",
+                      "context_record_object_ids": [
+                        1059
+                      ],
+                      "stored_trailer_kind_field": 9,
+                      "uninterpreted_trailer_field_hex": "00000000000000000000",
+                      "uninterpreted_cached_scalar": 0.00013154099999999978,
+                      "helper_record_object_id": 993,
+                      "support_record_object_id": 992,
+                      "support_reference_object_ids": [
+                        344
+                      ],
+                      "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                      "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                    },
+                    "recipe": {
+                      "object_id": 994,
+                      "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                      "record_offset": 49086,
+                      "stored_header_fields": [
+                        1,
+                        3
+                      ],
+                      "name_table": [
+                        {
+                          "table_index": 0,
+                          "terms": [
+                            {
+                              "name": "305",
+                              "stored_index": 6,
+                              "stored_reference_tag": 0,
+                              "stored_reference_value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "payload_kind": "body_recipe_data",
+                      "payload_relative_offset": 61,
+                      "payload_length": 8,
+                      "payload_hex": "00000000ffffffff",
+                      "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                      "uninterpreted_payload_int32": [
+                        0,
+                        -1
+                      ]
+                    },
+                    "typed_context": {
+                      "context_object_id": 1059,
+                      "stored_index_field": 13,
+                      "namespace_text": "7c1f5861-9bb0-4de9-aff6-c7f690687c89",
+                      "entity_guid_text": "9f8f7836-f1a7-40b5-9ccb-4e9a60493bf2",
+                      "stored_context_payload_hex": "00000d0000000000000024000000370063003100660035003800360031002d0039006200620030002d0034006400650039002d0061006600660036002d0063003700660036003900300036003800370063003800390024000000390066003800660037003800330036002d0066003100610037002d0034003000620035002d0039006300630062002d0034006500390061003600300034003900330062006600320002000000000000000124040000000000000000",
+                      "body_identity_link_object_id": 1060,
+                      "body_identity_leaf_object_id": 1061,
+                      "leaf_native_body_object_id": 379,
+                      "stored_leaf_payload_hex": "00007b01000000000000"
+                    }
+                  },
+                  "source_body_route": {
+                    "kind": "Body",
+                    "selection": {
+                      "selection_record_object_id": 996,
+                      "owner_object_id": 984,
+                      "attributes": {},
+                      "descriptor_object_ids": [
+                        999
+                      ],
+                      "native_body_object_ids": [
+                        275
+                      ],
+                      "association": "Explicit counted proxy list with matching descriptor owners"
+                    },
+                    "descriptor": {
+                      "object_id": 999,
+                      "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                      "owner_object_id": 984,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "body_properties": {},
+                      "source_owner_object_id": 243,
+                      "recipe_record_object_id": 1002,
+                      "stored_identifier": 301,
+                      "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                      "stored_kind_field": 33,
+                      "namespace_text": "7c1f5861-9bb0-4de9-aff6-c7f690687c89",
+                      "entity_uuid_text": "9f8f7836-f1a7-40b5-9ccb-4e9a60493bf2",
+                      "context_record_object_ids": [],
+                      "stored_trailer_kind_field": 8,
+                      "uninterpreted_trailer_field_hex": "00000000000000000000",
+                      "uninterpreted_cached_scalar": 5.3708999999999875e-05,
+                      "helper_record_object_id": 1001,
+                      "support_record_object_id": 1000,
+                      "support_reference_object_ids": [
+                        243,
+                        344
+                      ],
+                      "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                      "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                    },
+                    "recipe": {
+                      "object_id": 1002,
+                      "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                      "record_offset": 50056,
+                      "stored_header_fields": [
+                        1,
+                        3
+                      ],
+                      "name_table": [
+                        {
+                          "table_index": 0,
+                          "terms": [
+                            {
+                              "name": "301",
+                              "stored_index": 7,
+                              "stored_reference_tag": 0,
+                              "stored_reference_value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "payload_kind": "body_recipe_data",
+                      "payload_relative_offset": 61,
+                      "payload_length": 8,
+                      "payload_hex": "00000000ffffffff",
+                      "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                      "uninterpreted_payload_int32": [
+                        0,
+                        -1
+                      ]
+                    },
+                    "typed_context": null
+                  },
+                  "source_historical_native_body_object_id": 275,
+                  "tool_historical_native_body_object_id": 379,
+                  "per_target_record_object_ids": [
+                    1014
+                  ],
+                  "newly_owned_result_anchors": [
+                    {
+                      "object_id": 1014,
+                      "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                      "native_body_object_id": 1010,
+                      "source_owner_object_id": 984,
+                      "native_uuid_text": "8fb8b85b-4eed-4dd7-9ce9-328e95bfbeca",
+                      "stored_flags": [
+                        0,
+                        1
+                      ],
+                      "native_body_reference_offset": 51697,
+                      "body_properties": {},
+                      "association": "Typed anchor contains an explicit reference to the native body record",
+                      "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                    }
+                  ],
+                  "newly_owned_native_body_object_ids": [
+                    1010
+                  ],
+                  "historical_and_current_body_properties": [
+                    {
+                      "object_id": 275,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 33657,
+                      "name": "OwnedSplitBlock_sheet_body_no_extend",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_275",
+                      "name_helper_object_id": 276,
+                      "name_field_offset": 34253,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 379,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 46032,
+                      "name": "OwnedSplitToolSheet_sheet_body_no_extend",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_379",
+                      "name_helper_object_id": 380,
+                      "name_field_offset": 46624,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 1010,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 50622,
+                      "name": "OwnedSplitBlock_sheet_body_no_extend (1)",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_1010",
+                      "name_helper_object_id": 1015,
+                      "name_field_offset": 51216,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    }
+                  ],
+                  "native_current_body_collection": {
+                    "object_id": 7,
+                    "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "body_object_ids": [
+                      275,
+                      379,
+                      1010
+                    ],
+                    "stored_field_at_3": 3,
+                    "uninterpreted_middle_hex": "010118010000000000000000010800000000000000000001011200000000000000000000"
+                  },
+                  "native_history_mapping_object_id": 8,
+                  "stored_role_prefix_hex": "000100000000000100000001e303000000000000000032010000000000000100000001dc030000000000000000000000000100000001f6030000000000000000000000000100000001e4030000000000000000",
+                  "definition_record_object_id": 995,
+                  "stored_definition_payload_hex": "0000000000000000000000000000000000000000030000000000000000000000000000000000010001d803000000000000000000000000000000",
+                  "stored_collection_payload_hex": "00000003000000030000000113010000000000000000017b01000000000000000001f2030000000000000000010118010000000000000000010800000000000000000001011200000000000000000000030000000113010000000000000000017b01000000000000000001f20300000000000000000103000000000000000000",
+                  "stored_mapping_payload_hex": "000003000000c4000000000000001301000000000000c5000000000000007b01000000000000c600000000000000f2030000000000000107000000000000000000002e00000042005200450050002e00630063003800380031003300650037002d0034003100370031002d0034006500630066002d0062003800620065002d006400390032006400330066006100370065006300340037002e0073006d0062006800",
+                  "scope": "Observed owned SplitBody sheet face/body tool and historical source BODY selectors; explicit per-target newly owned BODY anchor and reciprocal stored collection retain source, tool and new BODY identities separately. Same-asset initial ASM stored-ID mapping qualified late. No API body or selected-face identity, source/result ordinal pairing, lifecycle, solver or regeneration inferred."
+                },
+                "representation_scope": "Stored face/body descriptor kind retained independently of requested and rolled API representation",
+                "scope": "Observed owned SplitBody sheet face/body tool and historical source BODY selectors; explicit per-target newly owned BODY anchor and reciprocal stored collection retain source, tool and new BODY identities separately. Same-asset initial ASM stored-ID mapping qualified late. No API body or selected-face identity, source/result ordinal pairing, lifecycle, solver or regeneration inferred."
+              },
+              "tool_descriptor_object_id": 991,
+              "target_selection_record_object_id": 996,
+              "target_descriptor_object_ids": [
+                999
+              ],
+              "per_target_record_object_ids": [
+                1014
+              ],
+              "stored_operation_flag": 306,
+              "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed one-target SplitBody with independent owned Patch-sheet face/body tool descriptors, literal extension boolean and operation-flag agreement, typed historical source/tool and owned result routes. Selected ASMface identity, general sheet extension, lifecycle and regeneration unresolved."
+      },
+      "expected_default_settings": {
+        "is_tool_extended": false,
+        "input_body_count": 1,
+        "split_definition_record_object_id": 995,
+        "tool_selection_record_object_id": 988,
+        "tool": null,
+        "tool_descriptor_object_id": 991,
+        "target_selection_record_object_id": 996,
+        "target_descriptor_object_ids": [
+          999
+        ],
+        "per_target_record_object_ids": [
+          1014
+        ],
+        "stored_operation_flag": 306,
+        "target_selection_status": "Explicit target descriptors retained; body topology unresolved",
+        "tool_selection_status": "Split tool reference unresolved"
+      },
+      "actual_input_tool_type": "BRepBody",
+      "actual_feature_tool_type": "BRepBody",
+      "actual_input_split_body_type": "BRepBody",
+      "actual_feature_split_bodies_type": "Collection",
+      "actual_is_tool_extended": false,
+      "actual_current_BRep_count": 3,
+      "actual_feature_BRep_count": 1,
+      "stored_common_prefix_hex": "000100000000000100000001e303000000000000000032010000000000000100000001dc030000000000000000000000000100000001f6030000000000000000000000000100000001e4030000000000000000",
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "splitbodysheets-b7548618fb65/small_sheet_face_extend.f3d",
+      "archive_sha256": "e7db01c31ed06fbef318520579d1600035cafb8a5094e5d36a2183f908dc3515",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 972,
+            "kind": "SplitBody",
+            "name": "OwnedSplitBodySheet_small_sheet_face_extend",
+            "settings": {
+              "is_tool_extended": true,
+              "input_body_count": 1,
+              "split_definition_record_object_id": 984,
+              "tool_selection_record_object_id": 976,
+              "tool": {
+                "entity": {
+                  "kind": "BRepFace",
+                  "native_body_object_id": 379
+                },
+                "native_evidence": {
+                  "feature_object_id": 972,
+                  "feature_record_offset": 47571,
+                  "tool_selection_record_object_id": 976,
+                  "source_selection_record_object_id": 985,
+                  "tool_route": {
+                    "kind": "Face",
+                    "selection": {
+                      "selection_record_object_id": 976,
+                      "attributes": {
+                        "DcFeatureOperationIdFlag": 306
+                      },
+                      "faces": [
+                        {
+                          "descriptor_object_id": 979,
+                          "body_anchor_object_id": 383,
+                          "native_body_object_id": 379,
+                          "source_owner_object_id": 344,
+                          "namespace_text": "a141f9b6-0fdd-47d4-be8e-fc6f64f3ebb4",
+                          "entity_guid_text": "aac8e9e7-2294-4cee-8653-7ccefa003eb0",
+                          "context_record_object_ids": [
+                            1046
+                          ],
+                          "recipe": {
+                            "object_id": 982,
+                            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                            "record_offset": 49036,
+                            "stored_header_fields": [
+                              1,
+                              3
+                            ],
+                            "name_table": [
+                              {
+                                "table_index": 0,
+                                "terms": [
+                                  {
+                                    "name": "5",
+                                    "stored_index": 0,
+                                    "stored_reference_tag": 1,
+                                    "stored_reference_value": 305,
+                                    "numeric_record_collision": {
+                                      "object_id": 305,
+                                      "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                      "record_offset": 38581,
+                                      "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            "payload_kind": "face_recipe_data",
+                            "payload_relative_offset": 63,
+                            "payload_length": 8,
+                            "payload_hex": "00000000ffffffff",
+                            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                            "uninterpreted_payload_int32": [
+                              0,
+                              -1
+                            ]
+                          },
+                          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                          "context_scope": "Context identities retained; no occurrence transform inferred"
+                        }
+                      ]
+                    },
+                    "face": {
+                      "descriptor_object_id": 979,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "namespace_text": "a141f9b6-0fdd-47d4-be8e-fc6f64f3ebb4",
+                      "entity_guid_text": "aac8e9e7-2294-4cee-8653-7ccefa003eb0",
+                      "context_record_object_ids": [
+                        1046
+                      ],
+                      "recipe": {
+                        "object_id": 982,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49036,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38581,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                      "context_scope": "Context identities retained; no occurrence transform inferred"
+                    },
+                    "typed_context": {
+                      "descriptor_object_id": 979,
+                      "owner_object_id": 972,
+                      "stored_descriptor_flag_at_3": 0,
+                      "descriptor_recipe": {
+                        "object_id": 982,
+                        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                        "record_offset": 49036,
+                        "stored_header_fields": [
+                          1,
+                          3
+                        ],
+                        "name_table": [
+                          {
+                            "table_index": 0,
+                            "terms": [
+                              {
+                                "name": "5",
+                                "stored_index": 0,
+                                "stored_reference_tag": 1,
+                                "stored_reference_value": 305,
+                                "numeric_record_collision": {
+                                  "object_id": 305,
+                                  "class_guid": "F47A46FB-DA27-4AFA-8A72-1B38FA596E23",
+                                  "record_offset": 38581,
+                                  "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "payload_kind": "face_recipe_data",
+                        "payload_relative_offset": 63,
+                        "payload_length": 8,
+                        "payload_hex": "00000000ffffffff",
+                        "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                        "uninterpreted_payload_int32": [
+                          0,
+                          -1
+                        ]
+                      },
+                      "context_object_id": 1046,
+                      "namespace_text": "a141f9b6-0fdd-47d4-be8e-fc6f64f3ebb4",
+                      "entity_guid_text": "aac8e9e7-2294-4cee-8653-7ccefa003eb0",
+                      "stored_context_index_field": 14,
+                      "optional_context_recipe_route": null,
+                      "body_anchor_object_id": 383,
+                      "native_body_object_id": 379,
+                      "source_owner_object_id": 344,
+                      "scope": "Explicit topology descriptor/context namespace and entity correspondence, optional typed secondary edge-recipe route, historical body provenance; no geometry, closure or persistent topology mapping"
+                    }
+                  },
+                  "source_body_route": {
+                    "kind": "Body",
+                    "selection": {
+                      "selection_record_object_id": 985,
+                      "owner_object_id": 972,
+                      "attributes": {},
+                      "descriptor_object_ids": [
+                        988
+                      ],
+                      "native_body_object_ids": [
+                        275
+                      ],
+                      "association": "Explicit counted proxy list with matching descriptor owners"
+                    },
+                    "descriptor": {
+                      "object_id": 988,
+                      "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                      "owner_object_id": 972,
+                      "body_anchor_object_id": 281,
+                      "native_body_object_id": 275,
+                      "body_properties": {},
+                      "source_owner_object_id": 243,
+                      "recipe_record_object_id": 991,
+                      "stored_identifier": 301,
+                      "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                      "stored_kind_field": 33,
+                      "namespace_text": "a141f9b6-0fdd-47d4-be8e-fc6f64f3ebb4",
+                      "entity_uuid_text": "aac8e9e7-2294-4cee-8653-7ccefa003eb0",
+                      "context_record_object_ids": [],
+                      "stored_trailer_kind_field": 8,
+                      "uninterpreted_trailer_field_hex": "00000000000000000000",
+                      "uninterpreted_cached_scalar": 4.920899999999971e-05,
+                      "helper_record_object_id": 990,
+                      "support_record_object_id": 989,
+                      "support_reference_object_ids": [
+                        243,
+                        344
+                      ],
+                      "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                      "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                    },
+                    "recipe": {
+                      "object_id": 991,
+                      "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                      "record_offset": 50008,
+                      "stored_header_fields": [
+                        1,
+                        3
+                      ],
+                      "name_table": [
+                        {
+                          "table_index": 0,
+                          "terms": [
+                            {
+                              "name": "301",
+                              "stored_index": 7,
+                              "stored_reference_tag": 0,
+                              "stored_reference_value": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "payload_kind": "body_recipe_data",
+                      "payload_relative_offset": 61,
+                      "payload_length": 8,
+                      "payload_hex": "00000000ffffffff",
+                      "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                      "uninterpreted_payload_int32": [
+                        0,
+                        -1
+                      ]
+                    },
+                    "typed_context": null
+                  },
+                  "source_historical_native_body_object_id": 275,
+                  "tool_historical_native_body_object_id": 379,
+                  "per_target_record_object_ids": [
+                    1001
+                  ],
+                  "newly_owned_result_anchors": [
+                    {
+                      "object_id": 1001,
+                      "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                      "native_body_object_id": 997,
+                      "source_owner_object_id": 972,
+                      "native_uuid_text": "0a88c233-d092-430b-be0a-27f5f71dc2e0",
+                      "stored_flags": [
+                        0,
+                        1
+                      ],
+                      "native_body_reference_offset": 51653,
+                      "body_properties": {},
+                      "association": "Typed anchor contains an explicit reference to the native body record",
+                      "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                    }
+                  ],
+                  "newly_owned_native_body_object_ids": [
+                    997
+                  ],
+                  "historical_and_current_body_properties": [
+                    {
+                      "object_id": 275,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 33669,
+                      "name": "OwnedSplitBlock_small_sheet_face_extend",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_275",
+                      "name_helper_object_id": 276,
+                      "name_field_offset": 34265,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 379,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 46068,
+                      "name": "OwnedSplitToolSheet_small_sheet_face_extend",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_379",
+                      "name_helper_object_id": 380,
+                      "name_field_offset": 46660,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    },
+                    {
+                      "object_id": 997,
+                      "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+                      "record_offset": 50574,
+                      "name": "OwnedSplitBlock_small_sheet_face_extend (1)",
+                      "name_status": "Stored custom name recovered",
+                      "collection_object_id": 7,
+                      "component_object_id": 3,
+                      "component_name": "(Unsaved)",
+                      "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+                      "stored_body_tag": "0_997",
+                      "name_helper_object_id": 1002,
+                      "name_field_offset": 51166,
+                      "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer"
+                    }
+                  ],
+                  "native_current_body_collection": {
+                    "object_id": 7,
+                    "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                    "component_object_id": 3,
+                    "component_name": "(Unsaved)",
+                    "body_object_ids": [
+                      275,
+                      379,
+                      997
+                    ],
+                    "stored_field_at_3": 3,
+                    "uninterpreted_middle_hex": "010118010000000000000000010800000000000000000001011200000000000000000000"
+                  },
+                  "native_history_mapping_object_id": 8,
+                  "stored_role_prefix_hex": "000100000000010100000001d803000000000000000032010000000000000100000001d0030000000000000000000000000100000001e9030000000000000000000000000100000001d9030000000000000000",
+                  "definition_record_object_id": 984,
+                  "stored_definition_payload_hex": "0000000000000000000000000000000000000000030000000000000000000000000000000000010001cc03000000000000000000000000000000",
+                  "stored_collection_payload_hex": "00000003000000030000000113010000000000000000017b01000000000000000001e5030000000000000000010118010000000000000000010800000000000000000001011200000000000000000000030000000113010000000000000000017b01000000000000000001e50300000000000000000103000000000000000000",
+                  "stored_mapping_payload_hex": "000003000000c4000000000000001301000000000000c5000000000000007b01000000000000c600000000000000e5030000000000000107000000000000000000002e00000042005200450050002e00340038006100340038006300650036002d0064006200340065002d0034003000630033002d0061006400300036002d003400300062006500650039003400310031006500300031002e0073006d0062006800",
+                  "scope": "Observed owned SplitBody sheet face/body tool and historical source BODY selectors; explicit per-target newly owned BODY anchor and reciprocal stored collection retain source, tool and new BODY identities separately. Same-asset initial ASM stored-ID mapping qualified late. No API body or selected-face identity, source/result ordinal pairing, lifecycle, solver or regeneration inferred."
+                },
+                "representation_scope": "Stored face/body descriptor kind retained independently of requested and rolled API representation",
+                "scope": "Observed owned SplitBody sheet face/body tool and historical source BODY selectors; explicit per-target newly owned BODY anchor and reciprocal stored collection retain source, tool and new BODY identities separately. Same-asset initial ASM stored-ID mapping qualified late. No API body or selected-face identity, source/result ordinal pairing, lifecycle, solver or regeneration inferred."
+              },
+              "tool_descriptor_object_id": 979,
+              "target_selection_record_object_id": 985,
+              "target_descriptor_object_ids": [
+                988
+              ],
+              "per_target_record_object_ids": [
+                1001
+              ],
+              "stored_operation_flag": 306,
+              "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed one-target SplitBody with independent owned Patch-sheet face/body tool descriptors, literal extension boolean and operation-flag agreement, typed historical source/tool and owned result routes. Selected ASMface identity, general sheet extension, lifecycle and regeneration unresolved."
+      },
+      "expected_default_settings": {
+        "is_tool_extended": true,
+        "input_body_count": 1,
+        "split_definition_record_object_id": 984,
+        "tool_selection_record_object_id": 976,
+        "tool": null,
+        "tool_descriptor_object_id": 979,
+        "target_selection_record_object_id": 985,
+        "target_descriptor_object_ids": [
+          988
+        ],
+        "per_target_record_object_ids": [
+          1001
+        ],
+        "stored_operation_flag": 306,
+        "target_selection_status": "Explicit target descriptors retained; body topology unresolved",
+        "tool_selection_status": "Split tool reference unresolved"
+      },
+      "actual_input_tool_type": "BRepFace",
+      "actual_feature_tool_type": "BRepFace",
+      "actual_input_split_body_type": "BRepBody",
+      "actual_feature_split_bodies_type": "Collection",
+      "actual_is_tool_extended": true,
+      "actual_current_BRep_count": 3,
+      "actual_feature_BRep_count": 1,
+      "stored_common_prefix_hex": "000100000000010100000001d803000000000000000032010000000000000100000001d0030000000000000000000000000100000001e9030000000000000000000000000100000001d9030000000000000000",
+      "owned_document_closed_true": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Nonboolean extension control",
+      "absolute_mutation_offset": 47554,
+      "rejected": true,
+      "reason": "Unsupported split-body prefix"
+    },
+    {
+      "guard": "Operation flag disagrees with proxy attribute",
+      "absolute_mutation_offset": 47570,
+      "rejected": true,
+      "reason": "Split tool operation flag disagrees with feature"
+    },
+    {
+      "guard": "Uncaptured tool count",
+      "absolute_mutation_offset": 47578,
+      "rejected": true,
+      "reason": "Unsupported split-body tool count"
+    },
+    {
+      "guard": "Uncaptured per-target count",
+      "absolute_mutation_offset": 47597,
+      "rejected": true,
+      "reason": "Unsupported reference encoding"
+    },
+    {
+      "guard": "Tool proxy feature owner differs",
+      "absolute_mutation_offset": 48402,
+      "rejected": true,
+      "reason": "Split input owner disagrees with feature"
+    },
+    {
+      "guard": "Tool descriptor feature owner differs",
+      "absolute_mutation_offset": 48837,
+      "rejected": true,
+      "reason": "Unsupported face descriptor prefix/owner"
+    },
+    {
+      "guard": "Target descriptor feature owner differs",
+      "absolute_mutation_offset": 49706,
+      "rejected": true,
+      "reason": "ReplaceFace owned body target unresolved"
+    },
+    {
+      "guard": "Unresolved callback must not publish complete settings",
+      "absolute_mutation_offset": null,
+      "rejected": true,
+      "reason": "Split tool resolver did not qualify an observed BRep tool"
+    },
+    {
+      "guard": "Opt-in callback cannot substitute another entity kind",
+      "absolute_mutation_offset": null,
+      "rejected": true,
+      "reason": "Split tool resolver did not qualify an observed BRep tool"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "splits-efce4ef164c9/yz_extend.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 282,
+          "settings": {
+            "is_tool_extended": true,
+            "input_body_count": 1,
+            "split_definition_record_object_id": 293,
+            "tool_selection_record_object_id": 286,
+            "tool": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "selection_object_id": 286,
+              "descriptor_object_id": 289,
+              "terminal_object_id": 292,
+              "namespace_text": "350a4201-8303-4a5c-8f29-b20012a88591",
+              "entity_guid_text": "19809f56-46f4-4810-8d02-6fa757aac9a8",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "tool_descriptor_object_id": 289,
+            "target_selection_record_object_id": 294,
+            "target_descriptor_object_ids": [
+              297
+            ],
+            "per_target_record_object_ids": [
+              312
+            ],
+            "stored_operation_flag": 303,
+            "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "splits-efce4ef164c9/yz_no_extend.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 282,
+          "settings": {
+            "is_tool_extended": false,
+            "input_body_count": 1,
+            "split_definition_record_object_id": 293,
+            "tool_selection_record_object_id": 286,
+            "tool": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "selection_object_id": 286,
+              "descriptor_object_id": 289,
+              "terminal_object_id": 292,
+              "namespace_text": "863d27fe-ae34-4a29-bd7c-057996159bb8",
+              "entity_guid_text": "244b611c-d208-438f-ac95-4b68235ea3fa",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "tool_descriptor_object_id": 289,
+            "target_selection_record_object_id": 294,
+            "target_descriptor_object_ids": [
+              297
+            ],
+            "per_target_record_object_ids": [
+              312
+            ],
+            "stored_operation_flag": 303,
+            "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "splits-efce4ef164c9/xz_extend.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 282,
+          "settings": {
+            "is_tool_extended": true,
+            "input_body_count": 1,
+            "split_definition_record_object_id": 293,
+            "tool_selection_record_object_id": 286,
+            "tool": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "XZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "y_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "object_id": 43,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "selection_object_id": 286,
+              "descriptor_object_id": 289,
+              "terminal_object_id": 292,
+              "namespace_text": "dd03f26c-9b74-4852-a719-c2826019c703",
+              "entity_guid_text": "8dae0b25-5f15-4874-b326-495a0a3e8783",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "tool_descriptor_object_id": 289,
+            "target_selection_record_object_id": 294,
+            "target_descriptor_object_ids": [
+              297
+            ],
+            "per_target_record_object_ids": [
+              312
+            ],
+            "stored_operation_flag": 303,
+            "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "splits-efce4ef164c9/offset_plane.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 304,
+          "settings": {
+            "is_tool_extended": true,
+            "input_body_count": 1,
+            "split_definition_record_object_id": 315,
+            "tool_selection_record_object_id": 308,
+            "tool": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "SplitPlane",
+                "object_id": 282,
+                "feature_object_id": 283,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              },
+              "selection_object_id": 308,
+              "descriptor_object_id": 311,
+              "terminal_object_id": 314,
+              "namespace_text": "3eef7d9d-bf53-467c-b473-05139cf0ba6d",
+              "entity_guid_text": "5e87234c-f0f5-4175-bb10-36b54102df55",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "tool_descriptor_object_id": 311,
+            "target_selection_record_object_id": 316,
+            "target_descriptor_object_ids": [
+              319
+            ],
+            "per_target_record_object_ids": [
+              334
+            ],
+            "stored_operation_flag": 304,
+            "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "splits-efce4ef164c9/multiple_bodies.f3d",
+      "expected_default_settings": [
+        {
+          "feature_object_id": 359,
+          "settings": {
+            "is_tool_extended": true,
+            "input_body_count": 2,
+            "split_definition_record_object_id": 370,
+            "tool_selection_record_object_id": 363,
+            "tool": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "XZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "y_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "object_id": 43,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "selection_object_id": 363,
+              "descriptor_object_id": 366,
+              "terminal_object_id": 369,
+              "namespace_text": "75182cd0-fa67-49ed-b157-b76740582762",
+              "entity_guid_text": "99267da8-6280-4701-b91f-36e16b45bd4d",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "tool_descriptor_object_id": 366,
+            "target_selection_record_object_id": 371,
+            "target_descriptor_object_ids": [
+              374,
+              378
+            ],
+            "per_target_record_object_ids": [
+              395,
+              400
+            ],
+            "stored_operation_flag": 306,
+            "target_selection_status": "Explicit target descriptors retained; body topology unresolved"
+          }
+        }
+      ],
+      "full_pinned_default_dictionary_exact": true,
+      "full_historical_settings_exact": true,
+      "new_wrapper_no_candidate": true
+    }
+  ],
+  "limitations": [
+    "Qualified family has one historical target and independent owned Patch-sheet tool; arbitrary imported targets, plural sheet/body selections and general extension remain unsupported.",
+    "The tool face/body distinction comes from native descriptor classes. Requested and actual API representations remain independently recorded.",
+    "Stored extension boolean agrees actual input/feature getters. A small sheet successfully extends in the captured case; no algorithm for general surface extension is reconstructed.",
+    "Historical source, unchanged tool sheet and genuinely owned new result references are distinct. Current body counts and API collections do not create an ordinal source/result pairing.",
+    "Native recipes and stored BODY/ASM ID joins do not establish persistent selected ASM face identity, API handle identity, lifecycle or regeneration.",
+    "The prior common decoder returns successful partial settings with toolNone; this is preserved exactly unless the new pure tool proof succeeds."
+  ],
+  "default_preservation": {
+    "pinned_revision": "388f658",
+    "pinned_decode_split_sha256": "494bfbf43756381a7b0ea10474c820febde37a68c1d40eac647992ab7b20bc2d",
+    "old_files": 5,
+    "new_partial_files": 3,
+    "scope": "Direct helper comparison only, no main-reader execution or changed diagnostics on default path"
+  },
+  "source_sha256": {
+    "decode_split.py": "e75c5307385bc15d05b55059fcb6f429836998590e0cacef33bfa89400e334e4",
+    "decode_split_body_sheet_tools.py": "36b21633e29024a32a9f84e8f3b138999dc0b6b9ab1f192aedbe2bc5f2e6c1ef",
+    "decode_split_body_sheet_routes.py": "35d965b78b3d3ae1d83cb3b9cb2405eac252af9f83d71e086cf216effec51172",
+    "validate_split_body_sheet_tools.py": "35a53b7eb4e5d06aca65baf9de9a542dd08565e7fc5a7c57ed805c42353554ba"
+  },
+  "validation": {
+    "actual_exports": 3,
+    "decoded_sheet_tools": 3,
+    "face_tools": 2,
+    "body_tools": 1,
+    "extension_boolean_contrasts": 2,
+    "exact_new_default_partial_settings": 3,
+    "malformed_guards": 9,
+    "exact_pinned_old_files": 5,
+    "exact_historical_settings_files": 5,
+    "no_main_calls": true
+  }
+}

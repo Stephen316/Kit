@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 name: Steering synchronization
 
 on:
@@ -23,18 +15,50 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  pr-ci-reuse:
+    name: PR CI reuse (Steering synchronization)
+    if: github.event_name == 'merge_group'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read # Reads immutable PR CI evidence from its originating run.
+      statuses: read # Reads legacy commit-status contexts.
+      checks: read # Verifies current PR check health before reuse.
+      pull-requests: read # Reads queued PR heads and compares candidate membership.
+    outputs:
+      reuse: ${{ steps.reports.outputs.reuse }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.merge_group.base_sha }}
+
+      - name: Verify reusable PR CI reports
+        id: reports
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const Reports = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CiReports.cjs`);
+            await Reports.SetReuse({ github, context, core });
+
   verify-steering-sync:
-    name: Verify generated Agent Skills
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Verify repository skill
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
           version: "0.12.5"
           enable-cache: true
@@ -44,4 +68,82 @@ jobs:
         run: uv sync --frozen --python 3.11
 
       - name: Verify steering synchronization
-        run: uv run python -m tools.skills.MigrateKiroSteering --check
+        run: bash .github/scripts/VerifySkills.sh
+
+      - name: Verify lossless standards consolidation
+        run: |
+          uv run python - <<'PYTHON'
+          import hashlib as Hashlib
+          import json as Json
+          import re as Regex
+          import subprocess as Subprocess
+          from pathlib import Path as FilePath
+
+          PackageRoot = FilePath(".agents/skills/standard-pr-practice").resolve()
+          SourceCommit = "bc47bd1a43916f664a11e3be9698b36ec723d8d2"
+          ArchivedOnly = {
+              ".agents/skills/spdx-header/SKILL.md",
+              ".kiro/steering/SpdxHeader.md",
+          }
+          FileNotice = Regex.compile(
+              rb"(?m)^(?P<block><!--\r?\n)?(?P<prefix>(?:\# |// |\$\$ |))"
+              rb"SPDX-License-Identifier: MIT\r?\n(?P=prefix)"
+              rb"SPDX-FileCopyrightText: Copyright \(c\) 2026 (?:Parashell, )?"
+              rb"Odin Glynn-Martin(?:, Stephen Harcourt)?\r?\n"
+              rb"(?(block)-->\r?\n)(?:\r?\n)?"
+          )
+          Manifest = Json.loads((PackageRoot / "references/Standards/Manifest.json").read_text())
+          if Manifest["source_commit"] != SourceCommit:
+              raise SystemExit("The original standards source commit must remain pinned")
+          SourceTree = Subprocess.check_output([
+              "git", "ls-tree", "-r", "-z", SourceCommit, "--",
+              ".agents", ".kiro/skills", ".kiro/steering",
+          ])
+          Expected = {}
+          for Record in SourceTree.split(b"\0"):
+              if not Record:
+                  continue
+              Metadata, SourcePath = Record.split(b"\t", 1)
+              Mode, Kind, Blob = Metadata.decode().split()
+              if Kind != "blob":
+                  raise SystemExit("Unexpected object in the original standards tree")
+              Expected[SourcePath.decode()] = (Mode, Blob)
+          Entries = Manifest["entries"]
+          SourceNames = [Entry["source"] for Entry in Entries]
+          DocumentNames = [Entry["document"] for Entry in Entries if Entry["document"] is not None]
+          if len(SourceNames) != len(set(SourceNames)) or set(SourceNames) != set(Expected):
+              raise SystemExit("Every original standards file must appear exactly once")
+          if len(DocumentNames) != len(set(DocumentNames)):
+              raise SystemExit("Original standards need distinct readable copies")
+          if {Entry["source"] for Entry in Entries if Entry["document"] is None} != ArchivedOnly:
+              raise SystemExit("Only the retired file-notice rules may omit readable copies")
+          for Entry in Entries:
+              SourceName = Entry["source"]
+              Mode, Blob = Expected[SourceName]
+              if (Entry["mode"], Entry["git_blob"]) != (Mode, Blob):
+                  raise SystemExit(f"Original provenance changed: {SourceName}")
+              Original = Subprocess.check_output(["git", "cat-file", "blob", Blob])
+              if len(Original) != Entry["size"] or Hashlib.sha256(Original).hexdigest() != Entry["sha256"]:
+                  raise SystemExit(f"Original bytes changed: {SourceName}")
+              if Entry["document"] is None:
+                  continue
+              DocumentPath = (PackageRoot / Entry["document"]).resolve()
+              _ = DocumentPath.relative_to(PackageRoot)
+              Document = DocumentPath.read_bytes()
+              ExpectedText = FileNotice.sub(b"", Original)
+              if SourceName.endswith("/RepositoryStructure.md") or SourceName == ".agents/skills/repository-structure/SKILL.md":
+                  ExpectedText = ExpectedText.replace(
+                      b"- Start every new non exempt text file with the exact repository SPDX notice\n", b""
+                  )
+              if SourceName == ".agents/README.md":
+                  ExpectedText = Regex.sub(rb"(?m)^\| `\.kiro/steering/SpdxHeader\.md`[^\n]*\n", b"", ExpectedText)
+              if Entry["encoding"] == "raw":
+                  Preserved = Document == ExpectedText
+              elif Entry["encoding"] in {"markdown-wrapper", "notice-wrapper"}:
+                  Preserved = Document.endswith(ExpectedText)
+              else:
+                  raise SystemExit(f"Unknown preservation format: {SourceName}")
+              if not Preserved:
+                  raise SystemExit(f"Readable standards were abridged or altered: {SourceName}")
+          print(f"Verified {len(Expected)} original standards files and {len(DocumentNames)} active copies")
+          PYTHON

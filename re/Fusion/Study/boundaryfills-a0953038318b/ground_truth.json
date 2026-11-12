@@ -1,0 +1,875 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "new_middle.f3d",
+      "operation": 3,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": true,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        1
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 4.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "new_first.f3d",
+      "operation": 3,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": true,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": false,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        0
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 8.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "new_two.f3d",
+      "operation": 3,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": true,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": true,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        0,
+        2
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 12.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "new_middle_remove.f3d",
+      "operation": 3,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": true,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        1
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 8.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": true
+    },
+    {
+      "file": "join_middle.f3d",
+      "operation": 0,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": false,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": true,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        1
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "ToolA",
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 12.0
+          }
+        },
+        {
+          "name": "ToolB",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 12.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "cut_middle.f3d",
+      "operation": 1,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": true,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        1
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "ToolB",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 4.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "intersect_middle.f3d",
+      "operation": 2,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": true,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        1
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "ToolB",
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 8.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "component_middle.f3d",
+      "operation": 3,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": true,
+          "source_tools": [
+            "ToolA",
+            "ToolB"
+          ],
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 2,
+          "selected": false,
+          "source_tools": [
+            "ToolB",
+            "ToolA"
+          ],
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        1
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ],
+      "output_bodies": [
+        {
+          "name": "Body1",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 4.0
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    },
+    {
+      "file": "plane_first.f3d",
+      "operation": 3,
+      "cells_before_add": [
+        {
+          "index": 0,
+          "selected": true,
+          "source_tools": [
+            "ToolA",
+            "ToolPlane"
+          ],
+          "geometry": {
+            "min_cm": [
+              1.2000000000000002,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        },
+        {
+          "index": 1,
+          "selected": false,
+          "source_tools": [
+            "ToolA",
+            "ToolPlane"
+          ],
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.2000000000000002,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 0.0
+          }
+        }
+      ],
+      "requested_choices": [
+        0
+      ],
+      "tool_names": [
+        "ToolA",
+        "ToolPlane"
+      ],
+      "output_bodies": [
+        {
+          "name": "Body2",
+          "geometry": {
+            "min_cm": [
+              1.2000000000000002,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 7.199999999999999
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "is_remove_tools": false
+    }
+  ],
+  "errors": []
+}

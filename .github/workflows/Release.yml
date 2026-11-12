@@ -1,0 +1,142 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: Release-${{ github.sha }}
+
+jobs:
+  build:
+    name: Build and verify release artifacts
+    if: github.repository == 'TryUniCAD/Kit' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      source-id: ${{ steps.source.outputs.artifact-id }}
+      distributions-id: ${{ steps.distributions.outputs.artifact-id }}
+      package-version: ${{ steps.package.outputs.version }}
+    steps:
+      - name: Check out the exact commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify release version authorization
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const { CheckPushBase } = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CheckPushBase.cjs`);
+            await CheckPushBase(github, context);
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: false
+
+      - name: Build and verify release artifacts
+        id: package
+        shell: bash
+        run: |
+          shellcheck .github/scripts/BuildRelease.sh
+          bash .github/scripts/BuildRelease.sh
+
+      - name: Save GitHub release assets
+        id: source
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: source-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/source/
+            ${{ runner.temp }}/ReleaseNotes.md
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Save PyPI distributions
+        id: distributions
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: distributions-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/distributions/
+          if-no-files-found: error
+
+  github-release:
+    name: Publish GitHub release
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write # Creates the commit tag and uploads the release assets.
+    steps:
+      - name: Download GitHub release assets
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.build.outputs.source-id }}
+          path: ${{ runner.temp }}/release
+          merge-multiple: true
+
+      - name: Publish the commit release and its assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PackageVersion: ${{ needs.build.outputs.package-version }}
+        shell: bash
+        run: |
+          ReleaseTag="commit-${GITHUB_SHA}"
+          RefEndpoint="repos/${GH_REPO}/git/ref/tags/${ReleaseTag}"
+          if ! TaggedSha="$(gh api "${RefEndpoint}" --jq '.object.sha')"; then
+            TaggedSha="$(gh api --method POST "repos/${GH_REPO}/git/refs" \
+              -f ref="refs/tags/${ReleaseTag}" -f sha="${GITHUB_SHA}" --jq '.object.sha')"
+          fi
+          if [[ "${TaggedSha}" != "${GITHUB_SHA}" ]]; then
+            echo "Tag ${ReleaseTag} does not point to ${GITHUB_SHA}" >&2
+            exit 1
+          fi
+          gh release create "${ReleaseTag}" "${RUNNER_TEMP}"/release/source/* \
+            --verify-tag --title "Kit v${PackageVersion}" --notes-file "${RUNNER_TEMP}/release/ReleaseNotes.md"
+
+  pypi:
+    name: Publish to PyPI
+    needs: [build, github-release]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: pypi
+    concurrency:
+      group: PyPI-unicad-kit-${{ needs.build.outputs.package-version }}
+    permissions:
+      id-token: write # Requests the OIDC token for PyPI Trusted Publishing.
+    steps:
+      - name: Check whether the PyPI version is published
+        id: version
+        env:
+          PackageVersion: ${{ needs.build.outputs.package-version }}
+        shell: bash
+        run: |
+          StatusCode="$(curl --silent --show-error --location --retry 3 --max-time 30 \
+            --output /dev/null --write-out '%{http_code}' "https://pypi.org/pypi/unicad-kit/${PackageVersion}/json")"
+          case "${StatusCode}" in
+            404) printf 'publish=true\n' >> "${GITHUB_OUTPUT}" ;;
+            200) echo "unicad-kit ${PackageVersion} is already on PyPI" ;;
+            *) echo "Could not check the PyPI version (HTTP ${StatusCode})" >&2; exit 1 ;;
+          esac
+
+      - name: Download PyPI distributions
+        if: steps.version.outputs.publish == 'true'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.build.outputs.distributions-id }}
+          path: dist
+          merge-multiple: true
+
+      - name: Publish with Trusted Publishing
+        if: steps.version.outputs.publish == 'true'
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3

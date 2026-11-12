@@ -1,0 +1,1545 @@
+{
+  "scope": "Three healthy completed actual SketchLine Trim cases. Common recipe/target parser retained; line source and direction do not assign selected cells or persistent topology.",
+  "interface": "decode_surface_trim_lines(data,records,features)->decoded/unresolved/scope; rows feature_object_id/kind/name/settings",
+  "integration": {
+    "stream": "surface_trim_lines",
+    "source_stream": "surface_trim_line_sources",
+    "feature_source_field": "surface_trim_line_source",
+    "settings_field": "settings",
+    "cleared_old_reason": "Only observed planar trim tools supported",
+    "decode_level": "Observed SurfaceTrim sketch-Line tool and typed sketch source; selected-cell recipe, persistent topology and regeneration unresolved"
+  },
+  "captures": [
+    {
+      "directory": "surfacetrimtools-ca26d21e7ad9",
+      "capture_status": "Complete",
+      "complete_marker_present": true,
+      "ground_truth_sha256": "2f2386d8858f0ecee5e1140f6c25cd2f753246afad170fdd1aba1b811610053f",
+      "executed_generator_sha256": "f5e0eb09a4295e3f2bf0d9c086638f315992941e5e7a71d07cb6e74f026f90dc",
+      "executed_sdk_surface_sha256": "2a889ec27dea5b23493204e3101efd26c35942a56611d2fce91e7a6ffa09a11d",
+      "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+      "fusion_version": "2705.1.30",
+      "entrypoint_provenance": {
+        "source_path": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceTrimRemainingContrasts.py",
+        "sha256": "032493682831598f112ebef768c61878109ac9a81cf2ca8349e99303058cbca8",
+        "executed_snapshot": "executed-entrypoint-source.txt",
+        "invocation": "Absolute runpy of GenerateSurfaceTrimToolContrasts.py; explicitly selected owned cases",
+        "selected_cases": [
+          "sheet_body",
+          "sketch_line"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "directory": "surfacetrimtools-650ca09579b1",
+      "capture_status": "Complete",
+      "complete_marker_present": true,
+      "ground_truth_sha256": "bcc4bdfa5967ec51008e5ae89c29069b6dab4854a1eaa68f639e5205bd5203e8",
+      "executed_generator_sha256": "b0e7530fda80da9b961ff55271d5ec9487a665838ef5feb6dca4f4cfc283f2b3",
+      "executed_sdk_surface_sha256": "2a889ec27dea5b23493204e3101efd26c35942a56611d2fce91e7a6ffa09a11d",
+      "sdk_runtime_sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+      "fusion_version": "2705.1.30",
+      "entrypoint_provenance": {
+        "source_path": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceTrimLineContrasts.py",
+        "sha256": "c6250ed49ce80851f6eabee406a6a2c6b101b075f20ad1cdd7fae3c2994a00c0",
+        "executed_snapshot": "executed-entrypoint-source.txt",
+        "invocation": "Absolute runpy of GenerateSurfaceTrimToolContrasts.py; explicitly selected owned cases",
+        "selected_cases": [
+          "sketch_line_offset_positive",
+          "sketch_line_reversed_negative"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "samples": [
+    {
+      "archive": "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d",
+      "archive_sha256": "9733447bc1fdde13f80a22a89d9a50e009a7ff1a2a8064a8f58d11040d917c32",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 672,
+            "kind": "SurfaceTrim",
+            "name": "OwnedSurfaceTrim_sketch_line",
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "tool": {
+                "selection_record_object_id": 680,
+                "entity": {
+                  "kind": "SketchLine",
+                  "sketch_object_id": 291,
+                  "curve_object_id": 320
+                },
+                "native_source_evidence": {
+                  "feature_object_id": 672,
+                  "tool_selection_record_object_id": 680,
+                  "source_kind": "SketchLine",
+                  "selection": {
+                    "selection_record_object_id": 680,
+                    "descriptor_object_id": 683,
+                    "terminal_object_id": 686,
+                    "sketch_object_id": 291,
+                    "curve_object_id": 320,
+                    "curve_entity_tag": 112,
+                    "kind": "Line",
+                    "is_closed": false
+                  },
+                  "source_endpoints": [
+                    {
+                      "role": "start",
+                      "point_object_id": 316,
+                      "native_record_offset": 35357,
+                      "entity_tag": 110,
+                      "point_sketch_local_cm": [
+                        -3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "point_object_id": 318,
+                      "native_record_offset": 35626,
+                      "entity_tag": 111,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "source_start_sketch_local_cm": [
+                    -3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "source_end_sketch_local_cm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_displacement_sketch_local_cm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_displacement_component_cm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_derived_samples": [
+                    {
+                      "natural_segment_fraction": 0.0,
+                      "point_sketch_local_cm": [
+                        -3.0,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        -3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.25,
+                      "point_sketch_local_cm": [
+                        -1.5,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        -1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.5,
+                      "point_sketch_local_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.75,
+                      "point_sketch_local_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 1.0,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "native_curve_primary_record_offset": 35895,
+                  "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000008c000000000000000000000000000000000000000000000184000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+                  "native_feature_record_offset": 36251,
+                  "stored_tool_operand_hex": "01a8020000000000000000",
+                  "source_sketch_base_record_offset": 33601,
+                  "source_sketch_collection_object_id": 9,
+                  "native_transform_object_id": 292,
+                  "native_transform_record_offset": 33762,
+                  "stored_transform_payload_hex": "000001000103000000000000000000",
+                  "canonical_placement": {
+                    "sketch_to_component_matrix": [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "matrix_order": "row-major; column-vector multiplication",
+                    "translation_units": "cm",
+                    "encoding": "ImplicitIdentity",
+                    "transform_object_id": 292,
+                    "record_offset": 33762,
+                    "scope": "Parent component; assembly occurrences unresolved"
+                  },
+                  "source_component_object_id": 3,
+                  "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+                  "native_API_source_assignment": null,
+                  "selected_asm_face_id": null,
+                  "native_trim_cell_assignment": null,
+                  "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+                  "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+                  "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+                },
+                "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+              },
+              "tool_selection": {
+                "selection_record_object_id": 680,
+                "descriptor_object_ids": [
+                  683
+                ],
+                "stored_descriptor_count": 1
+              },
+              "target_selection": {
+                "selection_record_object_id": 673,
+                "descriptor_object_ids": [
+                  676
+                ],
+                "stored_descriptor_count": 1
+              },
+              "recipe_record_object_id": 699,
+              "recipe_definition_object_id": 700,
+              "stored_recipe_payload_hex": "000001000000030000000a00000001000000010000003502000000010000002d0100000000000001000000010000003300000000010000002f0100000000000001000000010000003501000000010000002d0100000000000001000000010000003600000000000000000000000001000000010000003300000000010000002d0100000000000001000000010000003500000000000000000000000001000000010000003100000000010000002d0100000000000001000000010000003400000000010000002d010000000000000100000001000000370000000000000000000000000100000001000000380000000000000000000000000000000018000000626f756e6465645f666163655f7265636970655f6461746100000000ffffffff0400000001000000ffffffff0200000002000000ffffffff00000000ffffffff02000000030000000200000000000000ffffffff02000000ffffffff0300000004000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff04000000ffffffff0000000000000000ffffffff00000000050000000200000000000000ffffffff02000000ffffffff0300000006000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff06000000ffffffff0000000000000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff07000000ffffffff0100000000000000ffffffff02000000080000000100000000000000ffffffff0200000004000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000090000000100000000000000ffffffff0200000006000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff06000000ffffffff0000000000000000ffffffff",
+              "trim_cell_status": "Selected-cell semantics and bounded-face recipe undecoded; original recipe retained"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SurfaceTrim singleton native sketch-Line tool with typed proxy/descriptor/sketch-tag source and canonical parent-component geometry. Common recipe/target ownership retained; line orientation/offset does not assign selected-cell meaning, projected trim sides or persistent topology. General curves, lifecycle and regeneration unresolved."
+      },
+      "expected_default_failure": {
+        "error_type": "ValueError",
+        "reason": "Only observed planar trim tools supported"
+      },
+      "actual_requested": {
+        "trim_tool_argument_type": "SketchLine",
+        "remove_target_positive_y_half": true,
+        "targetBaseFeature_set": false
+      },
+      "actual_input_tool_type": "SketchLine",
+      "actual_rolled_tool_type": "SketchLine",
+      "actual_selected_input_cell_enumeration_indices": [
+        0
+      ],
+      "native_cell_recipe_assignment": null,
+      "exact_recipe_wrapper_payload_hex": "00000100000001bc020000000000000000",
+      "opaque_recipe_bytes_replayed": 708,
+      "owned_export_and_close_true": true,
+      "capture_status": "Complete"
+    },
+    {
+      "archive": "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d",
+      "archive_sha256": "33dd68a8450ea918eb1b7df071128a369beae72bf659891a5e7e999845a9f45a",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 672,
+            "kind": "SurfaceTrim",
+            "name": "OwnedSurfaceTrim_sketch_line_offset_positive",
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "tool": {
+                "selection_record_object_id": 680,
+                "entity": {
+                  "kind": "SketchLine",
+                  "sketch_object_id": 291,
+                  "curve_object_id": 320
+                },
+                "native_source_evidence": {
+                  "feature_object_id": 672,
+                  "tool_selection_record_object_id": 680,
+                  "source_kind": "SketchLine",
+                  "selection": {
+                    "selection_record_object_id": 680,
+                    "descriptor_object_id": 683,
+                    "terminal_object_id": 686,
+                    "sketch_object_id": 291,
+                    "curve_object_id": 320,
+                    "curve_entity_tag": 112,
+                    "kind": "Line",
+                    "is_closed": false
+                  },
+                  "source_endpoints": [
+                    {
+                      "role": "start",
+                      "point_object_id": 316,
+                      "native_record_offset": 35485,
+                      "entity_tag": 110,
+                      "point_sketch_local_cm": [
+                        -3.0,
+                        0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "point_object_id": 318,
+                      "native_record_offset": 35754,
+                      "entity_tag": 111,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        0.25,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "source_start_sketch_local_cm": [
+                    -3.0,
+                    0.25,
+                    0.0
+                  ],
+                  "source_end_sketch_local_cm": [
+                    3.0,
+                    0.25,
+                    0.0
+                  ],
+                  "natural_displacement_sketch_local_cm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_displacement_component_cm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_derived_samples": [
+                    {
+                      "natural_segment_fraction": 0.0,
+                      "point_sketch_local_cm": [
+                        -3.0,
+                        0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        -3.0,
+                        0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.25,
+                      "point_sketch_local_cm": [
+                        -1.5,
+                        0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        -1.5,
+                        0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.5,
+                      "point_sketch_local_cm": [
+                        0.0,
+                        0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        0.0,
+                        0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.75,
+                      "point_sketch_local_cm": [
+                        1.5,
+                        0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        1.5,
+                        0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 1.0,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        3.0,
+                        0.25,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "native_curve_primary_record_offset": 36023,
+                  "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e743634000000000000000000000000000008c0000000000000d03f0000000000000000000000000000184000000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+                  "native_feature_record_offset": 36379,
+                  "stored_tool_operand_hex": "01a8020000000000000000",
+                  "source_sketch_base_record_offset": 33697,
+                  "source_sketch_collection_object_id": 9,
+                  "native_transform_object_id": 292,
+                  "native_transform_record_offset": 33890,
+                  "stored_transform_payload_hex": "000001000103000000000000000000",
+                  "canonical_placement": {
+                    "sketch_to_component_matrix": [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "matrix_order": "row-major; column-vector multiplication",
+                    "translation_units": "cm",
+                    "encoding": "ImplicitIdentity",
+                    "transform_object_id": 292,
+                    "record_offset": 33890,
+                    "scope": "Parent component; assembly occurrences unresolved"
+                  },
+                  "source_component_object_id": 3,
+                  "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+                  "native_API_source_assignment": null,
+                  "selected_asm_face_id": null,
+                  "native_trim_cell_assignment": null,
+                  "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+                  "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+                  "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+                },
+                "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+              },
+              "tool_selection": {
+                "selection_record_object_id": 680,
+                "descriptor_object_ids": [
+                  683
+                ],
+                "stored_descriptor_count": 1
+              },
+              "target_selection": {
+                "selection_record_object_id": 673,
+                "descriptor_object_ids": [
+                  676
+                ],
+                "stored_descriptor_count": 1
+              },
+              "recipe_record_object_id": 699,
+              "recipe_definition_object_id": 700,
+              "stored_recipe_payload_hex": "000001000000030000000a00000001000000010000003502000000010000002d0100000000000001000000010000003300000000010000002f0100000000000001000000010000003501000000010000002d0100000000000001000000010000003600000000000000000000000001000000010000003300000000010000002d0100000000000001000000010000003500000000000000000000000001000000010000003100000000010000002d0100000000000001000000010000003400000000010000002d010000000000000100000001000000370000000000000000000000000100000001000000380000000000000000000000000000000018000000626f756e6465645f666163655f7265636970655f6461746100000000ffffffff0400000001000000ffffffff0200000002000000ffffffff00000000ffffffff02000000030000000200000000000000ffffffff02000000ffffffff0300000004000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff04000000ffffffff0000000000000000ffffffff00000000050000000200000000000000ffffffff02000000ffffffff0300000006000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff06000000ffffffff0000000000000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff07000000ffffffff0100000000000000ffffffff02000000080000000100000000000000ffffffff0200000004000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000090000000100000000000000ffffffff0200000006000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff06000000ffffffff0000000000000000ffffffff",
+              "trim_cell_status": "Selected-cell semantics and bounded-face recipe undecoded; original recipe retained"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SurfaceTrim singleton native sketch-Line tool with typed proxy/descriptor/sketch-tag source and canonical parent-component geometry. Common recipe/target ownership retained; line orientation/offset does not assign selected-cell meaning, projected trim sides or persistent topology. General curves, lifecycle and regeneration unresolved."
+      },
+      "expected_default_failure": {
+        "error_type": "ValueError",
+        "reason": "Only observed planar trim tools supported"
+      },
+      "actual_requested": {
+        "trim_tool_argument_type": "SketchLine",
+        "remove_target_positive_y_half": true,
+        "targetBaseFeature_set": false,
+        "line_endpoints_cm": [
+          [
+            -3.0,
+            0.25,
+            0.0
+          ],
+          [
+            3.0,
+            0.25,
+            0.0
+          ]
+        ]
+      },
+      "actual_input_tool_type": "SketchLine",
+      "actual_rolled_tool_type": "SketchLine",
+      "actual_selected_input_cell_enumeration_indices": [
+        0
+      ],
+      "native_cell_recipe_assignment": null,
+      "exact_recipe_wrapper_payload_hex": "00000100000001bc020000000000000000",
+      "opaque_recipe_bytes_replayed": 708,
+      "owned_export_and_close_true": true,
+      "capture_status": "Complete"
+    },
+    {
+      "archive": "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d",
+      "archive_sha256": "bc70972980d63d3b9511d4f4a8db22b31a94f43e337f1e9538494d6e8da2731b",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 672,
+            "kind": "SurfaceTrim",
+            "name": "OwnedSurfaceTrim_sketch_line_reversed_negative",
+            "settings": {
+              "input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved",
+              "tool": {
+                "selection_record_object_id": 680,
+                "entity": {
+                  "kind": "SketchLine",
+                  "sketch_object_id": 291,
+                  "curve_object_id": 320
+                },
+                "native_source_evidence": {
+                  "feature_object_id": 672,
+                  "tool_selection_record_object_id": 680,
+                  "source_kind": "SketchLine",
+                  "selection": {
+                    "selection_record_object_id": 680,
+                    "descriptor_object_id": 683,
+                    "terminal_object_id": 686,
+                    "sketch_object_id": 291,
+                    "curve_object_id": 320,
+                    "curve_entity_tag": 112,
+                    "kind": "Line",
+                    "is_closed": false
+                  },
+                  "source_endpoints": [
+                    {
+                      "role": "start",
+                      "point_object_id": 316,
+                      "native_record_offset": 35501,
+                      "entity_tag": 110,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        -0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "role": "end",
+                      "point_object_id": 318,
+                      "native_record_offset": 35770,
+                      "entity_tag": 111,
+                      "point_sketch_local_cm": [
+                        -3.0,
+                        -0.25,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "source_start_sketch_local_cm": [
+                    3.0,
+                    -0.25,
+                    0.0
+                  ],
+                  "source_end_sketch_local_cm": [
+                    -3.0,
+                    -0.25,
+                    0.0
+                  ],
+                  "natural_displacement_sketch_local_cm": [
+                    -6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_displacement_component_cm": [
+                    -6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "natural_derived_samples": [
+                    {
+                      "natural_segment_fraction": 0.0,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        -0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        3.0,
+                        -0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.25,
+                      "point_sketch_local_cm": [
+                        1.5,
+                        -0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        1.5,
+                        -0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.5,
+                      "point_sketch_local_cm": [
+                        0.0,
+                        -0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        0.0,
+                        -0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 0.75,
+                      "point_sketch_local_cm": [
+                        -1.5,
+                        -0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        -1.5,
+                        -0.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "natural_segment_fraction": 1.0,
+                      "point_sketch_local_cm": [
+                        -3.0,
+                        -0.25,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        -3.0,
+                        -0.25,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "native_curve_primary_record_offset": 36039,
+                  "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363402000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436347000000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e74363400000000000000000000000000000840000000000000d0bf000000000000000000000000000018c000000000000000000000000000000000000000000000f0bf0000000000000000000000000000000000000000000000000000000000000000000000000000f03f013e010000000000000000013c01000000000000000000000000000000000000000100000000010000000000000000000000000000803f0000803f00000000000123010000000000000000",
+                  "native_feature_record_offset": 36395,
+                  "stored_tool_operand_hex": "01a8020000000000000000",
+                  "source_sketch_base_record_offset": 33709,
+                  "source_sketch_collection_object_id": 9,
+                  "native_transform_object_id": 292,
+                  "native_transform_record_offset": 33906,
+                  "stored_transform_payload_hex": "000001000103000000000000000000",
+                  "canonical_placement": {
+                    "sketch_to_component_matrix": [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "matrix_order": "row-major; column-vector multiplication",
+                    "translation_units": "cm",
+                    "encoding": "ImplicitIdentity",
+                    "transform_object_id": 292,
+                    "record_offset": 33906,
+                    "scope": "Parent component; assembly occurrences unresolved"
+                  },
+                  "source_component_object_id": 3,
+                  "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+                  "native_API_source_assignment": null,
+                  "selected_asm_face_id": null,
+                  "native_trim_cell_assignment": null,
+                  "direction_scope": "Natural native start/end order only; no Trim kept/removed side, traversal or selected-cell interpretation",
+                  "evaluator_scope": "Derived finite full line segment fractions in sketch-local and parent-component coordinates; no occurrence/world or API evaluator-parameter claim",
+                  "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+                },
+                "scope": "Observed singleton SurfaceTrim SketchLine source through owned proxy/descriptor/leaf and native sketch ID/entity tag, endpoint references and canonical Sketch-to-component placement. Natural line evaluations are derived; native/API handle identity, Trim cell/side selection, persistent face identity, result geometry, lifecycle and regeneration unresolved."
+              },
+              "tool_selection": {
+                "selection_record_object_id": 680,
+                "descriptor_object_ids": [
+                  683
+                ],
+                "stored_descriptor_count": 1
+              },
+              "target_selection": {
+                "selection_record_object_id": 673,
+                "descriptor_object_ids": [
+                  676
+                ],
+                "stored_descriptor_count": 1
+              },
+              "recipe_record_object_id": 699,
+              "recipe_definition_object_id": 700,
+              "stored_recipe_payload_hex": "000001000000030000000900000001000000010000003502000000010000002d0100000000000001000000010000003300000000010000002f0100000000000001000000010000003501000000010000002d0100000000000001000000010000003600000000000000000000000001000000010000003100000000010000002d0100000000000001000000010000003500000000000000000000000001000000010000003300000000010000002d0100000000000001000000010000003400000000010000002d010000000000000100000001000000390000000000000000000000000000000018000000626f756e6465645f666163655f7265636970655f6461746100000000ffffffff0400000001000000ffffffff0200000000000000ffffffff02000000ffffffff02000000030000000200000000000000ffffffff02000000ffffffff0300000004000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff04000000ffffffff0000000000000000ffffffff00000000050000000200000000000000ffffffff02000000ffffffff0300000006000000ffffffff0000000000000000ffffffff01000000ffffffff0000000000000000ffffffff06000000ffffffff0000000000000000ffffffff00000000ffffffff06000000ffffffff0000000000000000ffffffff07000000ffffffff0100000000000000ffffffff02000000080000000100000000000000ffffffff0200000006000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff0100000000000000ffffffff0200000004000000ffffffff0000000000000000ffffffff07000000ffffffff0000000000000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff",
+              "trim_cell_status": "Selected-cell semantics and bounded-face recipe undecoded; original recipe retained"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SurfaceTrim singleton native sketch-Line tool with typed proxy/descriptor/sketch-tag source and canonical parent-component geometry. Common recipe/target ownership retained; line orientation/offset does not assign selected-cell meaning, projected trim sides or persistent topology. General curves, lifecycle and regeneration unresolved."
+      },
+      "expected_default_failure": {
+        "error_type": "ValueError",
+        "reason": "Only observed planar trim tools supported"
+      },
+      "actual_requested": {
+        "trim_tool_argument_type": "SketchLine",
+        "remove_target_positive_y_half": true,
+        "targetBaseFeature_set": false,
+        "line_endpoints_cm": [
+          [
+            3.0,
+            -0.25,
+            0.0
+          ],
+          [
+            -3.0,
+            -0.25,
+            0.0
+          ]
+        ]
+      },
+      "actual_input_tool_type": "SketchLine",
+      "actual_rolled_tool_type": "SketchLine",
+      "actual_selected_input_cell_enumeration_indices": [
+        1
+      ],
+      "native_cell_recipe_assignment": null,
+      "exact_recipe_wrapper_payload_hex": "00000100000001bc020000000000000000",
+      "opaque_recipe_bytes_replayed": 687,
+      "owned_export_and_close_true": true,
+      "capture_status": "Complete"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject reserved Trim prefix",
+      "absolute_mutation_offset": 36270,
+      "reason": "Unsupported surface trim prefix"
+    },
+    {
+      "guard": "Reject recipe wrapper framing",
+      "absolute_mutation_offset": 39093,
+      "reason": "Unsupported trim recipe wrapper"
+    },
+    {
+      "guard": "Reject target count2",
+      "absolute_mutation_offset": 36310,
+      "reason": "Unsupported surface-tool reference count"
+    },
+    {
+      "guard": "Reject owned tool proxy mismatch",
+      "absolute_mutation_offset": 37633,
+      "reason": "Surface-tool proxy owner disagrees with feature"
+    },
+    {
+      "guard": "Reject owned target descriptor mismatch",
+      "absolute_mutation_offset": 37197,
+      "reason": "Surface-tool descriptor owner disagrees with feature"
+    },
+    {
+      "guard": "Callback source selection mismatch",
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Callback native owner mismatch",
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Callback proof missing",
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Callback unrequested BRepFace kind",
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    },
+    {
+      "guard": "Reject explicit tool kinds ()",
+      "reason": "Unsupported explicit Trim tool kinds"
+    },
+    {
+      "guard": "Reject explicit tool kinds ('SketchLine', 'SketchLine')",
+      "reason": "Unsupported explicit Trim tool kinds"
+    },
+    {
+      "guard": "Reject explicit tool kinds ('Unknown',)",
+      "reason": "Unsupported explicit Trim tool kinds"
+    },
+    {
+      "guard": "Reject explicit tool kinds ['SketchLine']",
+      "reason": "Unsupported explicit Trim tool kinds"
+    },
+    {
+      "guard": "Default callback still excludes SketchLine",
+      "reason": "Trim tool resolver source identity/owner/type disagrees"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_natural.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "96ff2b1e852d821d79cc3b6ac97fc332f8564b9fc4f38253aefbb99fca55a45d"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_tangent.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "352afd23b0d1a117f2d9d469df1e4ca5369f8ee871befd9be54072fdfc094e7a"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_perpendicular.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "4f505a3e5f3552bb2123f60cd1ebdf04139dd7b66cf80ec040e631b6428f7480"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_perpendicular_negative.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "92fbeaf2778ff2901fadae5e86522637fefa1b45f9c78f8af93404caee27ed05"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_aligned.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b70dbe99f2f3f18699e1e0a93565b5cd42235ab9fb0a672b3c06556d26572d32"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_two_edges.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "45fccc487bde0ca1dff5511ed1eb3ec38367b9a6cf5d750580a80d9aa65236c1"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_internal.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "f197e0bd5d220db5e049c25fdb8b06e61088edba206a298914baa25be84639c2"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_external.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "c0c25843da5ae430931fccad928d2199c1f2c0fa915c3e0eebfc9ef35dd674af"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_all.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "467f3577e193d289feae2b455bd7f083c529b1c713dbedb4ecbe59ef854ac5ee"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_manual.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 240,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b888441edce80563d8a33a5a039512495aee9394057c496f4b31ab50c01a6509"
+        },
+        {
+          "feature_object_id": 274,
+          "kind": "SurfaceUntrim",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "c9a3e5b8a592083390ea7e1d85aa11747286e2c0a46c3cd0bb9ccc4e49f4e87a"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_tangent.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b76efcbd33760d1d8260e1b2e3cdcce277454fc651c91d2591fbd9d3cdba6e41"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_normal.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "c0b3c09f41909aebfe247ab1533e972fc18dfe2cffad0c70627a8091cd7a4eb7"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "8d82b7c61f41d8d370231a0361d4caf0126b4802dd3b296e0e020bbf3075a480"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceRuled",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "2e8c9e0a658a217356c4eace480f4fc21e2ab97f6e8dca95252a564b479e1a96"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/trim_positive.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 297,
+          "kind": "SurfaceTrim",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "b2264a0b929930f2893a98dc0f35ce93d998c7c7f92e6cb2c04f49e8c2219ec8"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/trim_negative.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 297,
+          "kind": "SurfaceTrim",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "d5945f6d36dbdf46165809ff4dc3ddde31dd24eacd9e9ed36f555604685ff5f7"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacebounds-8804bbf80755/extend_no_chain.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceExtend",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "a7f71b28ef60452ed3b45709859734f8e7aaa51c23b0c54210ddc29e6549e36c"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/patch_rectangle.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/patch_circle.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 234,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "a11ce7743e9f34b4edb30f22658e3b2a84ca382cbee56a98ea06fbdcc7eda06a"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_positive.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceOffset",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "5d662c4664d5d22ed7d5f36759b44b364da9e7212cbaf969bb4623fccb16f4bf"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_negative.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceOffset",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "6e9b81c0debfd1798fd556b390945a14a3180e6aed075551580c06dcfbddfbd0"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/offset_rounded.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "SurfaceOffset",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "61ce619f5182355173346fa4eae901ef85950f1306dd94ebbfdd1e73ba28e76b"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/stitch_tight.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 325,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "df5217639d556e4bc57374fcb7c11f739a71a0e9e744c139c8258d7ed33d5ec1"
+        },
+        {
+          "feature_object_id": 365,
+          "kind": "SurfaceStitch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "3791a910f77040c167a18e1d08aa77d74dad266c3dc113744278c052f7f970fb"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 325,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "df5217639d556e4bc57374fcb7c11f739a71a0e9e744c139c8258d7ed33d5ec1"
+        },
+        {
+          "feature_object_id": 365,
+          "kind": "SurfaceStitch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "8efd0e1dcfecc994a759c7cf88a2c003ede0bb953eda664c4c517fb665363fc5"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/unstitch_face.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 282,
+          "kind": "Unstitch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "4ae99095486391459cdec2b034e1e299c902f2ecc206b8131e7cd01c7c91f6e2"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/unstitch_chain.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 282,
+          "kind": "Unstitch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "6a1b54d7278cf78f7b8874cb263460f1e0b7e6f669eebf1db73d98bd4d9ad7f8"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/reverse_normal.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 243,
+          "kind": "SurfacePatch",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "9973ee1aa95e0eec04d0622861ad5156c42d39c623b2585d8cb7ccf1a0ad7620"
+        },
+        {
+          "feature_object_id": 285,
+          "kind": "ReverseNormal",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "81d44882ef4e74eeabe93ec4b90ddd9b929821351a8d40024993c6682128b7e3"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetools-856ca50cf4c7/delete_opening.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 282,
+          "kind": "SurfaceDeleteFace",
+          "full_pinned_default_outcome_exact": true,
+          "outcome_sha256": "1ca70f1371f7df3d85235fe3429dc4f8f789bbaffab0dbfa88604643d76f7981"
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    }
+  ],
+  "face_body_controls": [
+    {
+      "archive": "surfacetrimtools-c507461585b5/sheet_face.f3d",
+      "full_pinned_face_body_summary_exact": true,
+      "full_prior_report_exact": true,
+      "line_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d",
+      "full_pinned_face_body_summary_exact": true,
+      "full_prior_report_exact": true,
+      "line_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetrimtools-560510587441/sheet_face.f3d",
+      "full_pinned_face_body_summary_exact": true,
+      "full_prior_report_exact": false,
+      "line_wrapper_no_candidate": true
+    },
+    {
+      "archive": "surfacetrimtools-ca26d21e7ad9/sheet_body.f3d",
+      "full_pinned_face_body_summary_exact": true,
+      "full_prior_report_exact": false,
+      "line_wrapper_no_candidate": true
+    }
+  ],
+  "default_preservation": {
+    "pinned_revision": "e8af2ba",
+    "pinned_surface_tools_sha256": "2b7ab09d9050355015a5043aaf12f0e1a14312428cf655570b0951df4237670b",
+    "full_legacy_surface_file_outcomes_exact": 28,
+    "full_face_body_summaries_exact": 4,
+    "scope": "Direct common decoder and bounded wrappers only; no main-reader execution"
+  },
+  "checks": [
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d terminal complete",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d executed generator/SDK snapshots exact",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d executed entrypoint snapshot exact",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d export and owned close exact",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d successful lifecycle finalization",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d no getter errors",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d healthy feature_before_node",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d healthy feature_at_timeline_end",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d exactly one bounded Line Trim",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d exact old plane-only failure preserved",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d actual input and rolled tool remain SketchLine",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d owned selection and source IDs agree",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d exact opaque recipe payload replay",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d exact typed wrapper replay",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d cell assignment remains unknown",
+    "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d literal selected API indices preserved",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d terminal complete",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d executed generator/SDK snapshots exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d executed entrypoint snapshot exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d export and owned close exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d successful lifecycle finalization",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d no getter errors",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d healthy feature_before_node",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d healthy feature_at_timeline_end",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d exactly one bounded Line Trim",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d exact old plane-only failure preserved",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d actual input and rolled tool remain SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d owned selection and source IDs agree",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d exact opaque recipe payload replay",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d exact typed wrapper replay",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d cell assignment remains unknown",
+    "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d literal selected API indices preserved",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d terminal complete",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d executed generator/SDK snapshots exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d executed entrypoint snapshot exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d export and owned close exact",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d successful lifecycle finalization",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d no getter errors",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d healthy feature_before_node",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d healthy feature_at_timeline_end",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d exactly one bounded Line Trim",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d exact old plane-only failure preserved",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d actual input and rolled tool remain SketchLine",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d owned selection and source IDs agree",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d exact opaque recipe payload replay",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d exact typed wrapper replay",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d cell assignment remains unknown",
+    "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d literal selected API indices preserved",
+    "Reject reserved Trim prefix",
+    "Reject recipe wrapper framing",
+    "Reject target count2",
+    "Reject owned tool proxy mismatch",
+    "Reject owned target descriptor mismatch",
+    "Callback source selection mismatch",
+    "Callback native owner mismatch",
+    "Callback proof missing",
+    "Callback unrequested BRepFace kind",
+    "Reject explicit tool kinds ()",
+    "Reject explicit tool kinds ('SketchLine', 'SketchLine')",
+    "Reject explicit tool kinds ('Unknown',)",
+    "Reject explicit tool kinds ['SketchLine']",
+    "Default callback still excludes SketchLine",
+    "surfacebounds-ac801bb00fae/extend_natural.f3d default 243",
+    "surfacebounds-ac801bb00fae/extend_natural.f3d default 285",
+    "surfacebounds-ac801bb00fae/extend_natural.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/extend_tangent.f3d default 243",
+    "surfacebounds-ac801bb00fae/extend_tangent.f3d default 285",
+    "surfacebounds-ac801bb00fae/extend_tangent.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/extend_perpendicular.f3d default 243",
+    "surfacebounds-ac801bb00fae/extend_perpendicular.f3d default 285",
+    "surfacebounds-ac801bb00fae/extend_perpendicular.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/extend_perpendicular_negative.f3d default 243",
+    "surfacebounds-ac801bb00fae/extend_perpendicular_negative.f3d default 285",
+    "surfacebounds-ac801bb00fae/extend_perpendicular_negative.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/extend_aligned.f3d default 243",
+    "surfacebounds-ac801bb00fae/extend_aligned.f3d default 285",
+    "surfacebounds-ac801bb00fae/extend_aligned.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/extend_two_edges.f3d default 243",
+    "surfacebounds-ac801bb00fae/extend_two_edges.f3d default 285",
+    "surfacebounds-ac801bb00fae/extend_two_edges.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/untrim_internal.f3d default 240",
+    "surfacebounds-ac801bb00fae/untrim_internal.f3d default 274",
+    "surfacebounds-ac801bb00fae/untrim_internal.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/untrim_external.f3d default 240",
+    "surfacebounds-ac801bb00fae/untrim_external.f3d default 274",
+    "surfacebounds-ac801bb00fae/untrim_external.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/untrim_all.f3d default 240",
+    "surfacebounds-ac801bb00fae/untrim_all.f3d default 274",
+    "surfacebounds-ac801bb00fae/untrim_all.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/untrim_manual.f3d default 240",
+    "surfacebounds-ac801bb00fae/untrim_manual.f3d default 274",
+    "surfacebounds-ac801bb00fae/untrim_manual.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/ruled_tangent.f3d default 243",
+    "surfacebounds-ac801bb00fae/ruled_tangent.f3d default 285",
+    "surfacebounds-ac801bb00fae/ruled_tangent.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/ruled_normal.f3d default 243",
+    "surfacebounds-ac801bb00fae/ruled_normal.f3d default 285",
+    "surfacebounds-ac801bb00fae/ruled_normal.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/ruled_direction.f3d default 243",
+    "surfacebounds-ac801bb00fae/ruled_direction.f3d default 285",
+    "surfacebounds-ac801bb00fae/ruled_direction.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/ruled_mitered.f3d default 243",
+    "surfacebounds-ac801bb00fae/ruled_mitered.f3d default 285",
+    "surfacebounds-ac801bb00fae/ruled_mitered.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/trim_positive.f3d default 243",
+    "surfacebounds-ac801bb00fae/trim_positive.f3d default 297",
+    "surfacebounds-ac801bb00fae/trim_positive.f3d no Line false candidate",
+    "surfacebounds-ac801bb00fae/trim_negative.f3d default 243",
+    "surfacebounds-ac801bb00fae/trim_negative.f3d default 297",
+    "surfacebounds-ac801bb00fae/trim_negative.f3d no Line false candidate",
+    "surfacebounds-8804bbf80755/extend_no_chain.f3d default 243",
+    "surfacebounds-8804bbf80755/extend_no_chain.f3d default 285",
+    "surfacebounds-8804bbf80755/extend_no_chain.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/patch_rectangle.f3d default 243",
+    "surfacetools-856ca50cf4c7/patch_rectangle.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/patch_circle.f3d default 234",
+    "surfacetools-856ca50cf4c7/patch_circle.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/offset_positive.f3d default 243",
+    "surfacetools-856ca50cf4c7/offset_positive.f3d default 285",
+    "surfacetools-856ca50cf4c7/offset_positive.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/offset_negative.f3d default 243",
+    "surfacetools-856ca50cf4c7/offset_negative.f3d default 285",
+    "surfacetools-856ca50cf4c7/offset_negative.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/offset_rounded.f3d default 243",
+    "surfacetools-856ca50cf4c7/offset_rounded.f3d default 285",
+    "surfacetools-856ca50cf4c7/offset_rounded.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/stitch_tight.f3d default 243",
+    "surfacetools-856ca50cf4c7/stitch_tight.f3d default 325",
+    "surfacetools-856ca50cf4c7/stitch_tight.f3d default 365",
+    "surfacetools-856ca50cf4c7/stitch_tight.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/stitch_loose.f3d default 243",
+    "surfacetools-856ca50cf4c7/stitch_loose.f3d default 325",
+    "surfacetools-856ca50cf4c7/stitch_loose.f3d default 365",
+    "surfacetools-856ca50cf4c7/stitch_loose.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/unstitch_face.f3d default 282",
+    "surfacetools-856ca50cf4c7/unstitch_face.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/unstitch_chain.f3d default 282",
+    "surfacetools-856ca50cf4c7/unstitch_chain.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/reverse_normal.f3d default 243",
+    "surfacetools-856ca50cf4c7/reverse_normal.f3d default 285",
+    "surfacetools-856ca50cf4c7/reverse_normal.f3d no Line false candidate",
+    "surfacetools-856ca50cf4c7/delete_opening.f3d default 282",
+    "surfacetools-856ca50cf4c7/delete_opening.f3d no Line false candidate",
+    "surfacetrimtools-c507461585b5/sheet_face.f3d whole FaceBody summary exact",
+    "surfacetrimtools-c507461585b5/sheet_face.f3d historical golden exact",
+    "surfacetrimtools-c507461585b5/sheet_face.f3d no Line candidate",
+    "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d whole FaceBody summary exact",
+    "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d historical golden exact",
+    "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d no Line candidate",
+    "surfacetrimtools-560510587441/sheet_face.f3d whole FaceBody summary exact",
+    "surfacetrimtools-560510587441/sheet_face.f3d no Line candidate",
+    "surfacetrimtools-ca26d21e7ad9/sheet_body.f3d whole FaceBody summary exact",
+    "surfacetrimtools-ca26d21e7ad9/sheet_body.f3d no Line candidate"
+  ],
+  "source_sha256": {
+    "decode_surface_tools.py": "93094acafaa29f85256c0f6a7e2f1efa63f9c3d8c344a9acb104c5259735f73f",
+    "decode_surface_trim_lines.py": "074edd7ec024dfb9f771e28d5ea16b300b35ac2222326995b83f2ca047a5b66f",
+    "decode_surface_trim_line_sources.py": "793be0a321d0da958a45a1ecd4bba0c9f684c9f52f0dd86393b75a6689029307",
+    "validate_surface_trim_lines.py": "b8f807ce62cc6144786897e6014cebb76bcd8edcae16ece77d92c90798d20ff7"
+  },
+  "validation": {
+    "actual_exports": 3,
+    "healthy_features": 3,
+    "owned_closes_true": 3,
+    "terminal_complete_batches": 2,
+    "opaque_recipe_bytes_replayed": 2103,
+    "check_count": 153,
+    "malformed_guards": 14,
+    "exact_legacy_surface_files": 28,
+    "exact_face_body_controls": 4,
+    "no_live_calls": true,
+    "no_main_calls": true
+  },
+  "limitations": [
+    "Only singleton canonical SketchLine source tools are qualified. Natural line endpoint orientation/offset remain separate from Trim cell/side semantics.",
+    "Selected API cell enumeration indices and the exact raw native recipe are retained without pairing. Target persistent topology and lifecycle remain unresolved.",
+    "API endpoints corroborate identity established by typed sketch/tag references; coordinates do not choose identity. Derived interior samples are not independently measured API evaluator samples.",
+    "Successful lifecycle-repaired captures do not establish universal process stability or a universal crash cause. Original interrupted Face/Body captures remain historical PartialNoTerminalMarker evidence."
+  ]
+}

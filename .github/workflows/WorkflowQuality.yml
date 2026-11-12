@@ -1,0 +1,137 @@
+name: Workflow quality
+
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: WorkflowQuality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pr-ci-reuse:
+    name: PR CI reuse (Workflow quality)
+    if: github.event_name == 'merge_group'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read # Reads immutable PR CI evidence from its originating run.
+      statuses: read # Reads legacy commit-status contexts.
+      checks: read # Verifies current PR check health before reuse.
+      pull-requests: read # Reads queued PR heads and compares candidate membership.
+    outputs:
+      reuse: ${{ steps.reports.outputs.reuse }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.merge_group.base_sha }}
+
+      - name: Verify reusable PR CI reports
+        id: reports
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const Reports = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CiReports.cjs`);
+            await Reports.SetReuse({ github, context, core });
+
+  policy:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Verify CI policy and pytest compatibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --all-groups --all-extras --python 3.11
+
+      - name: Verify repository CI contracts at process boundaries
+        run: >-
+          uv run pytest tests/Policy/CodeqlPolicyTests.py
+          tests/Policy/CiReportsTests.py tests/Policy/QueueAggregationTests.py
+          tests/Policy/ReviewerAggregationTests.py tests/steering/AgentSkillsMigrationTests.py
+          tests/convert/api/ApiMetadataTests.py
+
+      - name: Exercise native file reading and writing
+        run: >-
+          uv run pytest
+          tests/convert/solidworks
+          tests/convert/formats/ParasolidTests.py
+          tests/steering/RationaleCommentsTests.py
+
+  zizmor:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Zizmor
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --all-groups --all-extras --python 3.11
+
+      - name: Run Zizmor Actions audit
+        run: uv run zizmor --pedantic .github/workflows
+
+  actionlint:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: actionlint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pinned actionlint
+        env:
+          ActionlintVersion: "1.7.12"
+          ActionlintSha256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+        run: |
+          set -euo pipefail
+          ArchivePath="${RUNNER_TEMP}/actionlint_${ActionlintVersion}_linux_amd64.tar.gz"
+          curl --fail --silent --show-error --location \
+            --output "${ArchivePath}" \
+            "https://github.com/rhysd/actionlint/releases/download/v${ActionlintVersion}/actionlint_${ActionlintVersion}_linux_amd64.tar.gz"
+          echo "${ActionlintSha256}  ${ArchivePath}" | sha256sum --check --
+          tar --extract --gzip --file "${ArchivePath}" --directory "${RUNNER_TEMP}" actionlint
+          chmod u+x "${RUNNER_TEMP}/actionlint"
+
+      - name: Run actionlint workflow analysis
+        run: '"${RUNNER_TEMP}/actionlint"'

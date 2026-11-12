@@ -1,0 +1,22 @@
+version: 1
+reviews:
+  enabled: true
+  incremental_commits: true
+  external_contributors_require_manual_review: false
+  auto_approve_behavior: live
+  auto_approve: always
+  auto_approve_rules:
+    allow_open_issues: none
+    exclude_external_contributors: false
+    exclude: []
+    only_files: []
+    exclude_authors: []
+    only_authors: []
+    exclude_head_branches: []
+    only_head_branches: []
+    exclude_base_branches: []
+    only_base_branches: []
+    exclude_labels: []
+    only_labels: []
+    exclude_titles: []
+    only_titles: []

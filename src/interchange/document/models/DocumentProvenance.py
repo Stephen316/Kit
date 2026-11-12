@@ -1,12 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from collections.abc import Iterable as IterableBase
+from collections.abc import Iterator
 from collections.abc import Mapping as MappingBase
 from dataclasses import is_dataclass as IsDataClass
 from typing import cast as CastValue
@@ -17,12 +10,18 @@ from interchange.records.RecordProvenance import Provenance
 
 # capability inference needs provenance detection across arbitrary nested records
 def HasProvenance(SourceValue: object) -> bool:
+    return next(IterProvenance(SourceValue), None) is not None
+
+
+# independent source auditing needs every contributing record in a neutral graph
+def IterProvenance(SourceValue: object) -> Iterator[Provenance]:
     PendingValues: list[object] = [SourceValue]
     SeenValues: set[int] = set()
     while PendingValues:
         ItemValue = PendingValues.pop()
         if isinstance(ItemValue, Provenance):
-            return True
+            yield ItemValue
+            continue
         if ItemValue is None or isinstance(ItemValue, (str, bytes, int, float, bool)):
             continue
         IdentityValue = id(ItemValue)
@@ -40,4 +39,3 @@ def HasProvenance(SourceValue: object) -> bool:
         elif isinstance(ItemValue, (tuple, list, set, frozenset)):
             ItemValues = CastValue(IterableBase[object], ItemValue)
             PendingValues.extend(ItemValues)
-    return False

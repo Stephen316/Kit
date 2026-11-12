@@ -1,11 +1,3 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from __future__ import annotations as Annotations
 from dataclasses import dataclass as Dataclass
 from pathlib import Path as FilePath
@@ -17,6 +9,17 @@ from convert.adapters.solidworks.container.Format import (
     CONTAINER_VERSIONS as ContainerVersions,
     RELATIONSHIPS_STREAM as RelationshipsStream,
 )
+from convert.adapters.solidworks.container.DecodeScanned import DecodeScanned
+from convert.adapters.solidworks.container.DecodeName import DecodeName
+from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat
+from convert.adapters.solidworks.container.StreamRecord import (
+    StreamRecord as StreamRecord,
+)
+from convert.adapters.solidworks.container.StreamLimits import (
+    KMaxNameBytes,
+    KMaxUncompressedStream,
+)
+from convert.adapters.solidworks.container.RotateBytes import RotateBytes
 
 # this binding exists because shared behavior needs one stable value
 KLocalSignaturePrefix = bytes.fromhex("140006000800")
@@ -53,18 +56,7 @@ KMaxStreamCount = 100000
 KMaxFolderStreamCount = 65535
 
 # this binding exists because shared behavior needs one stable value
-KMaxNameBytes = 16384
-
-# this binding exists because shared behavior needs one stable value
-KMaxUncompressedStream = 1 << 31
-
-# this binding exists because shared behavior needs one stable value
 KMaxArchiveOffset = 4294967295
-
-
-# this definition exists because focused behavior needs one stable owner
-class SldprtFormat(ValueError):
-    KSlots = ()
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -79,19 +71,6 @@ def Container(BlobValue: bytes | bytearray) -> tuple[bytes, bytes, bytes]:
     DataValue = bytes(BlobValue)
     Signatures, _ = TemplateFields(DataValue, SldprtArchive.from_bytes(DataValue))
     return Signatures
-
-
-# this definition exists because focused behavior needs one stable owner
-@Dataclass(frozen=True, slots=True)
-class StreamRecord:
-    name: str
-    data: bytes
-    offset: int
-    payload_offset: int
-    compressed_size: int
-    uncompressed_size: int
-    crc32: int
-    signature: bytes
 
 
 # compat protocol marker exempts paired wrappers from naming constraints
@@ -207,7 +186,7 @@ def BuildSldprt(
     Streams: Mapping[str, bytes] | Iterable[tuple[str, bytes]],
     *,
     FileId: int | None = None,
-    FormatVersion: int = 4,
+    FormatVersion: int | None = None,
     Template: bytes | bytearray | None = None,
     Signatures: tuple[bytes, bytes, bytes] | None = None,
     **Options: object,
@@ -222,8 +201,8 @@ def BuildSldprt(
         raise TypeError(f"BuildSldprt() got an unexpected keyword argument '{Unknown}'")
     if FileIdValue is not None and not isinstance(FileIdValue, int):
         raise TypeError("file_id must be an integer or None")
-    if not isinstance(VersionValue, int):
-        raise TypeError("format_version must be an integer")
+    if VersionValue is not None and not isinstance(VersionValue, int):
+        raise TypeError("format_version must be an integer or None")
     if TemplateValue is not None and not isinstance(TemplateValue, (bytes, bytearray)):
         raise TypeError("template must be bytes or None")
     if SignatureValue is not None:
@@ -243,9 +222,13 @@ def BuildSldprt(
     else:
         Signatures = None
     FileId = FileIdValue
-    FormatVersion = VersionValue
     Template = TemplateValue
     FileId, SignatureSet, TypeIds = ResolveBuild(FileId, Template, Signatures)
+    FormatVersion = (
+        VersionValue
+        if VersionValue is not None
+        else Struct.unpack_from(">I", Template, 4)[0] if Template else 4
+    )
     if not 0 <= FileId <= 4294967295:
         raise ValueError("SLDPRT file id must fit in 32 bits")
     if FormatVersion not in ContainerVersions:
@@ -306,6 +289,8 @@ def ValidateStreams(Items: list[tuple[str, bytes]]) -> None:
         raise ValueError("SLDPRT stream names must be unique")
     if len(Items) > KMaxFolderStreamCount:
         raise ValueError("SLDPRT stream count must fit in the native directory")
+    if sum(len(Payload) for _, Payload in Items) > KMaxUncompressedStream:
+        raise ValueError("SLDPRT decoded archive exceeds the size limit")
 
 
 # this definition exists because local record emission is separate from directory finalization
@@ -324,7 +309,7 @@ def EmitSldprt(
         DataValue = bytes(Payload)
         LocalOffset = len(Output) - KArchiveOffset
         Record, CrcThreeTwoValue, CompressedSize = EncodeRecord(
-            NameValue, DataValue, TypeId
+            NameValue, DataValue, TypeId, FormatVersion
         )
         Output.extend(LocalSignature)
         Output.extend(Record)
@@ -352,7 +337,7 @@ def FinishArcMut(
     if CentralOffset > KMaxArchiveOffset:
         raise ValueError("SLDPRT local records exceed the native offset range")
     for Record in Encoded:
-        Output.extend(EncodeFolder(*Record, CentralSignature))
+        Output.extend(EncodeFolder(*Record, CentralSignature, Output[7]))
     CentralSize = len(Output) - KArchiveOffset - CentralOffset
     if CentralSize > KMaxArchiveOffset:
         raise ValueError("SLDPRT directory exceeds the native size range")
@@ -369,6 +354,7 @@ def FinishArcMut(
 def ScanRecords(BlobValue: bytes) -> tuple[StreamRecord, ...]:
     Candidates: list[StreamRecord] = []
     Cursor = 0
+    DecodedSize = 0
     while True:
         Offset = BlobValue.find(KLocalSignaturePrefix, Cursor)
         if Offset < 0:
@@ -378,9 +364,13 @@ def ScanRecords(BlobValue: bytes) -> tuple[StreamRecord, ...]:
         if SignatureEnd > len(BlobValue):
             continue
         Signature = BlobValue[Offset:SignatureEnd]
-        Record = DecodeScanned(BlobValue, Offset, Signature)
+        Record = DecodeScanned(
+            BlobValue, Offset, Signature, KMaxUncompressedStream - DecodedSize
+        )
         if Record is None:
             continue
+        Cursor = Record.payload_offset + Record.compressed_size
+        DecodedSize += Record.uncompressed_size
         Candidates.append(Record)
         if len(Candidates) > KMaxStreamCount:
             raise SldprtFormat("unreasonable number of streams")
@@ -413,74 +403,29 @@ def UniqueRecMut(Candidates: list[StreamRecord]) -> tuple[StreamRecord, ...]:
 
 
 # this definition exists because focused behavior needs one stable owner
-def DecodeScanned(
-    BlobValue: bytes, Offset: int, Signature: bytes
-) -> StreamRecord | None:
-    HeaderOffset = Offset + len(Signature)
-    if HeaderOffset + 16 > len(BlobValue):
-        return None
-    CrcThreeTwoValue, CompressedSize, UncompressedSize, NameSize = Struct.unpack_from(
-        "<IIII", BlobValue, HeaderOffset
-    )
-    if not 0 < NameSize <= KMaxNameBytes:
-        return None
-    if not 0 <= UncompressedSize <= KMaxUncompressedStream:
-        return None
-    NameOffset = HeaderOffset + 16
-    PayloadOffset = NameOffset + NameSize
-    PayloadEnd = PayloadOffset + CompressedSize
-    if PayloadEnd > len(BlobValue):
-        return None
-    try:
-        NameValue = NibbleSwap(BlobValue[NameOffset:PayloadOffset]).decode("utf-8")
-    except UnicodeDecodeError:
-        return None
-    if not NameValue or any((ord(Character) < 32 for Character in NameValue)):
-        return None
-    try:
-        DataValue = ZlibValue.decompress(BlobValue[PayloadOffset:PayloadEnd], wbits=-15)
-    except ZlibValue.error:
-        return None
-    if len(DataValue) != UncompressedSize:
-        return None
-    if ZlibValue.crc32(DataValue) & 4294967295 != CrcThreeTwoValue:
-        return None
-    return StreamRecord(
-        name=NameValue,
-        data=DataValue,
-        offset=Offset,
-        payload_offset=PayloadOffset,
-        compressed_size=CompressedSize,
-        uncompressed_size=UncompressedSize,
-        crc32=CrcThreeTwoValue,
-        signature=Signature,
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
 def NibbleSwap(DataValue: bytes) -> bytes:
-    return bytes((Value >> 4 | (Value & 15) << 4 for Value in DataValue))
+    return RotateBytes(DataValue, 4)
 
 
 # this definition exists because focused behavior needs one stable owner
-def EncodedName(NameValue: str) -> bytes:
+def EncodedName(NameValue: str, FormatVersion: int = 4) -> bytes:
     if not NameValue or any((ord(Character) < 32 for Character in NameValue)):
         raise ValueError("SLDPRT stream name must contain printable characters")
     Value = NameValue.encode("utf-8")
     if len(Value) > KMaxNameBytes:
         raise ValueError("SLDPRT stream name is too long")
-    return NibbleSwap(Value)
+    return RotateBytes(Value, -FormatVersion)
 
 
 # this definition exists because focused behavior needs one stable owner
 def EncodeRecord(
-    NameValue: str, DataValue: bytes, TypeId: int
+    NameValue: str, DataValue: bytes, TypeId: int, FormatVersion: int = 4
 ) -> tuple[bytes, int, int]:
     if len(DataValue) > KMaxUncompressedStream:
         raise ValueError("SLDPRT stream is too large")
     Compressor = ZlibValue.compressobj(level=1, wbits=-15)
     Compressed = Compressor.compress(DataValue) + Compressor.flush()
-    EncodedBytes = EncodedName(NameValue)
+    EncodedBytes = EncodedName(NameValue, FormatVersion)
     CrcThreeTwoValue = ZlibValue.crc32(DataValue) & 4294967295
     Record = b"".join(
         (
@@ -510,8 +455,9 @@ def EncodeFolder(
     SizeValue: int,
     LocalOffset: int,
     Signature: bytes,
+    FormatVersion: int = 4,
 ) -> bytes:
-    EncodedBytes = EncodedName(NameValue)
+    EncodedBytes = EncodedName(NameValue, FormatVersion)
     PackageSection = int(
         NameValue == ContentTypesStream
         or NameValue == RelationshipsStream
@@ -607,9 +553,8 @@ def CentralMarks(
         NameEnd = NameStart + NameSize
         if NameEnd > len(BlobValue):
             continue
-        try:
-            NameValue = NibbleSwap(BlobValue[NameStart:NameEnd]).decode("utf-8")
-        except UnicodeDecodeError:
+        NameValue = DecodeName(BlobValue[NameStart:NameEnd], BlobValue[7])
+        if NameValue is None:
             continue
         if (NameValue, CrcThreeTwoValue, CompressedSize, SizeValue) in Expected:
             CentralMarkers.append(Marker)

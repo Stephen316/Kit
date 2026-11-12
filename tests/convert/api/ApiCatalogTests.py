@@ -1,20 +1,19 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
-
 from inspect import isabstract as IsAbstract
 from typing import cast
 
 import pytest as Pytest
 
 from convert import available_adapters as GetAdapters
-from convert.adapters import AdapterInfo, AdapterRegistry
+from convert.adapters import AdapterInfo, AdapterNotFoundError, AdapterRegistry
+from convert.adapters.base.AdapterProtocols import CadReaderAdapter, CadWriterAdapter
 from interchange import Capability
 from tests.convert.api.ApiTestHelpers import GetPackNames, ListFormatPacks
+from tests.convert.api.CatalogAliases import AssertAliases
+
+# existing bidirectional formats retain their established reader and writer capabilities
+KLegacyFormats = frozenset(
+    {"catia.v5", "freecad.fcstd", "interchange.json", "solidworks.sldprt"}
+)
 
 
 # deterministic introspection prevents import order from changing the public format catalog
@@ -27,17 +26,21 @@ def CheckDiscovery() -> None:
     ReaderValues = FirstRegistry.readers()
     WriterValues = FirstRegistry.writers()
     assert PackageNames
-    assert GetPackNames(ReaderValues, PackageNames) == set(PackageNames)
-    assert GetPackNames(WriterValues, PackageNames) == set(PackageNames)
-    assert FirstIds == SecondIds == tuple(sorted(FirstIds))
-    assert tuple(ValueData.info.format_id for ValueData in ReaderValues) == FirstIds
-    assert tuple(ValueData.info.format_id for ValueData in WriterValues) == FirstIds
-    for ReaderData in ReaderValues:
-        for FormatId in (ReaderData.info.format_id, *ReaderData.info.aliases):
-            assert FirstRegistry.reader(FormatId) is ReaderData
-    for WriterData in WriterValues:
-        for FormatId in (WriterData.info.format_id, *WriterData.info.aliases):
-            assert FirstRegistry.writer(FormatId) is WriterData
+    assert GetPackNames((*ReaderValues, *WriterValues), PackageNames) == set(
+        PackageNames
+    )
+    ReaderIds = tuple(ValueData.info.format_id for ValueData in ReaderValues)
+    WriterIds = tuple(ValueData.info.format_id for ValueData in WriterValues)
+    assert ReaderIds == tuple(sorted(set(ReaderIds)))
+    assert WriterIds == tuple(sorted(set(WriterIds)))
+    assert FirstIds == SecondIds == tuple(sorted(set(ReaderIds) | set(WriterIds)))
+    assert KLegacyFormats <= set(ReaderIds) & set(WriterIds)
+    assert "fusion.f3d" not in ReaderIds
+    for FormatId in ("f3d", "fusion.f3d"):
+        with Pytest.raises(AdapterNotFoundError):
+            _ = FirstRegistry.reader(FormatId)
+    assert "fusion.f3d" not in WriterIds
+    AssertAliases(FirstRegistry)
     assert FirstRegistry.introspect() == FirstIds
     assert FirstRegistry.readers() == ReaderValues
     assert FirstRegistry.writers() == WriterValues
@@ -46,13 +49,17 @@ def CheckDiscovery() -> None:
         and not getattr(type(AdapterData), "_is_protocol", False)
         for AdapterData in (*ReaderValues, *WriterValues)
     )
+    AssertCaps((*ReaderValues, *WriterValues))
+
+
+# the registry advertises capabilities consistently across discovered adapter families
+def AssertCaps(
+    Adapters: tuple[CadReaderAdapter | CadWriterAdapter, ...],
+) -> None:
     assert all(
-        ReaderData.info.capabilities == frozenset(Capability)
-        for ReaderData in ReaderValues
-    )
-    assert all(
-        WriterData.info.capabilities == frozenset(Capability)
-        for WriterData in WriterValues
+        AdapterData.info.capabilities == frozenset(Capability)
+        for AdapterData in Adapters
+        if AdapterData.info.format_id in KLegacyFormats
     )
 
 
