@@ -29,12 +29,8 @@ The aggregate waits for acceptance and static validation.
 This dependency direction avoids a cycle.
 Failures, unexpected skips, cancellations, timeouts, and missing or pending acceptance block the aggregate.
 
-PR aggregation requires every configured native reviewer report on the current head SHA.
-A matching name from another app or revision cannot satisfy that requirement.
-Other review providers remain excluded.
-Queue candidates do not require native reviewer reports on the synthetic commit.
-PR evidence reuse checks the native result on each contributing PR head.
-This enforcement does not request another review or change the configured reviewer.
+This repair originally required native reviewer reports on PR heads and during PR evidence reuse.
+[The CI allowlist](CiReviewerExclusions.md) supersedes that behavior.
 
 The immediate artifact-verification client also permits four retries for transient 404 responses.
 The [publication record](ArtifactPublication.md) documents failures at metadata and ZIP download boundaries.

@@ -16,62 +16,60 @@ KReviewers = JsonCodec.loads(
 
 
 @Pytest.mark.parametrize(
-    "Verdict", ("success", "failure", "neutral", "skipped", "cancelled", "timed_out")
+    "Verdict",
+    (
+        "missing",
+        "pending",
+        "success",
+        "failure",
+        "neutral",
+        "skipped",
+        "cancelled",
+        "timed_out",
+    ),
 )
-@Pytest.mark.parametrize("ReviewerIndex", tuple(map(str, range(len(KReviewers)))))
-def TestPrReview(Verdict: str, ReviewerIndex: str) -> None:
-    RootPath = FilePath(__file__).resolve().parents[2]
-    ScriptPath = RootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
+@Pytest.mark.parametrize("CaseMode", ("reviews", "queue-reviews"))
+def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
+    ScriptPath = KRootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
     with Tempfile.TemporaryDirectory() as TempPath:
         ResultInfo = Subprocess.run(
-            ["node", str(ScriptPath), "review", Verdict, ReviewerIndex],
-            cwd=RootPath,
+            ["node", str(ScriptPath), CaseMode, Verdict],
+            cwd=KRootPath,
             env={**SystemEnv.environ, "RUNNER_TEMP": TempPath},
             capture_output=True,
             text=True,
             check=False,
             timeout=20,
         )
-        assert (FilePath(TempPath) / "PrCiEvidence/Evidence.json").exists() == (
-            Verdict == "success"
-        )
-    assert ResultInfo.returncode == (
-        0 if Verdict == "success" else 1
-    ), ResultInfo.stderr
-    assert ("CI passed" in ResultInfo.stdout) == (Verdict == "success")
+        EvidencePath = FilePath(TempPath) / "PrCiEvidence/Evidence.json"
+        assert EvidencePath.exists() == (CaseMode == "reviews"), ResultInfo.stderr
+    assert ResultInfo.returncode == 0, ResultInfo.stderr
+    assert "CI passed" in ResultInfo.stdout
+    for Reviewer in KReviewers:
+        for ReportName in Reviewer["Checks"] + Reviewer["Statuses"]:
+            assert ReportName not in ResultInfo.stdout
 
 
 @Pytest.mark.parametrize(
-    "CaseMode,Verdict,ReviewerIndex",
-    tuple(
-        (CaseMode, Verdict, str(Index))
-        for Index, Reviewer in enumerate(KReviewers)
-        for CaseMode, Verdict in (
-            ("review", "pending"),
-            ("review-stale", "success"),
-            ("review-spoof", "success"),
-            ("review-missing", "success"),
-            ("review-partial", "success"),
-            ("queue", "pending"),
-            ("queue-missing", "success"),
-        )
-        if CaseMode != "review-partial"
-        or len(Reviewer["Checks"]) + len(Reviewer["Statuses"]) > 1
+    "CaseMode,Verdict,PendingCheck",
+    (
+        ("queue", "pending", "Scorecard"),
+        ("spoof", "success", "Ruff"),
+        ("queue-missing", "success", "Merge queue acceptance"),
     ),
 )
-def TestPendingGate(CaseMode: str, Verdict: str, ReviewerIndex: str) -> None:
-    RootPath = FilePath(__file__).resolve().parents[2]
-    ScriptPath = RootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
+def TestPendingGate(CaseMode: str, Verdict: str, PendingCheck: str) -> None:
+    ScriptPath = KRootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
     with Tempfile.TemporaryDirectory() as TempPath:
         with Pytest.raises(Subprocess.TimeoutExpired) as ErrorInfo:
             ResultInfo = Subprocess.run(
-                ["node", str(ScriptPath), CaseMode, Verdict, ReviewerIndex],
-                cwd=RootPath,
+                ["node", str(ScriptPath), CaseMode, Verdict, PendingCheck],
+                cwd=KRootPath,
                 env={**SystemEnv.environ, "RUNNER_TEMP": TempPath},
                 capture_output=True,
                 check=False,
                 timeout=2,
             )
-            assert ResultInfo.returncode != 0
-        assert b"CI passed" not in (ErrorInfo.value.stdout or b"")
+            Pytest.fail(f"CI aggregate exited early with {ResultInfo.returncode}")
+        assert f"Waiting for {PendingCheck}".encode() in (ErrorInfo.value.stdout or b"")
         assert not (FilePath(TempPath) / "PrCiEvidence/Evidence.json").exists()

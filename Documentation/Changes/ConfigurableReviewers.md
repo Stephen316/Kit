@@ -9,7 +9,8 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 [ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json) defines requested reviewer identities, exact request text, native report names, and report exclusions.
 The `Reviewers` array includes both requested integrations.
-Instructions, CI aggregation, and process-boundary fixtures read that array without embedding provider identifiers.
+This change originally used that array in instructions, CI aggregation, and process-boundary fixtures.
+[The CI allowlist](CiReviewerExclusions.md) supersedes the original aggregation behavior.
 
 A ready PR requires successful native reports and an actual `APPROVED` review from every configured reviewer on the current head.
 Fix every finding or answer it with evidence.

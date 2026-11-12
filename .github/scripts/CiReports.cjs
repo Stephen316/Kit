@@ -5,73 +5,36 @@ const Fs = require("node:fs");
 const Path = require("node:path");
 const Crypto = require("node:crypto");
 const Process = require("node:child_process");
-const { IsReviewApp, IsReviewUser } = require("./ReviewProviders.cjs");
-const { BuildRequired } = require("./ReviewerReports.cjs");
+const { CiWorkflows, WorkflowPath } = require("./CiAllowlist.cjs");
 
-const StaticChecks = [
-  "Ruff",
-  "Black",
-  "Pyright",
-  "Mypy",
-  "Python steering",
-  "Reject Python wildcard imports",
-  "Verify path policies",
-  "Verify repository skill",
-  "Verify immutable workflow dependencies",
-  "Verify changed file headers",
-  "Verify rationale comments on changed sources",
-  "Zizmor",
-  "actionlint",
-  "Verify CI policy and pytest compatibility",
-  "Reject unresolved SPDX header failure",
-];
-const PrChecks = [
-  "Analyze (python)",
-  "Analyze (java-kotlin)",
-  "Label CI changes",
-  "Label test changes",
-  "Label dependency changes",
-  "Label documentation changes",
-  "Label changed LOC ratio",
-  "Label declared breaking changes",
-  "Label dominant change direction",
-];
-const ConditionalChecks = new Set([
-  "Remediate missing SPDX headers",
-  "Reject unresolved SPDX header failure",
-  "Inactive aggregate bootstrap",
-]);
-const ReusableChecks = StaticChecks.filter(
-  (Name) =>
-    ![
-      "Verify changed file headers",
-      "Reject unresolved SPDX header failure",
-      "Verify path policies",
-      "Verify rationale comments on changed sources",
-    ].includes(Name),
-);
-const WorkflowPath = ".github/workflows/PullRequest.yml";
-
-async function ReadReports(
-  Github,
-  Context,
-  Refs,
-  Expected,
-  Reused = false,
-  ReviewSha = null,
-) {
+async function ReadReports(Github, Context, Refs, Workflows, Reused = false) {
   const Repository = Context.repo;
-  const Runs = [];
+  const LatestRuns = new Map();
   const Checks = [];
-  const Statuses = [];
-  for (const Ref of new Set(Refs)) {
-    Runs.push(
-      ...(await Github.paginate(Github.rest.actions.listWorkflowRunsForRepo, {
+  const ReportRefs = new Set(Refs);
+  for (const Ref of ReportRefs) {
+    const Runs = await Github.paginate(
+      Github.rest.actions.listWorkflowRunsForRepo,
+      {
         ...Repository,
         head_sha: Ref,
         per_page: 100,
-      })),
+      },
     );
+    for (const Run of Runs) {
+      const Workflow = Run.path?.split("@")[0];
+      const Spec = Workflows.get(Workflow);
+      if (
+        !Spec ||
+        Run.id === Context.runId ||
+        Run.head_sha !== Ref ||
+        Spec.event !== Run.event
+      )
+        continue;
+      const Key = `${Workflow}:${Ref}`;
+      if (!LatestRuns.has(Key) || LatestRuns.get(Key).id < Run.id)
+        LatestRuns.set(Key, { ...Run, workflow: Workflow });
+    }
     Checks.push(
       ...(await Github.paginate(Github.rest.checks.listForRef, {
         ...Repository,
@@ -80,45 +43,35 @@ async function ReadReports(
         per_page: 100,
       })),
     );
-    const RefStatuses = await Github.paginate(
-      Github.rest.repos.listCommitStatusesForRef,
-      {
-        ...Repository,
-        ref: Ref,
-        per_page: 100,
-      },
-    );
-    Statuses.push(...RefStatuses.map((Status) => ({ ...Status, ref: Ref })));
   }
-  const LatestRuns = new Map();
-  for (const Run of Runs) {
-    const Key = `${Run.workflow_id}:${Run.event}:${Run.head_sha}`;
-    if (!LatestRuns.has(Key) || LatestRuns.get(Key).id < Run.id)
-      LatestRuns.set(Key, Run);
-  }
-  const LatestIds = new Set([...LatestRuns.values()].map((Run) => Run.id));
-  const RunsBySuite = new Map(Runs.map((Run) => [Run.check_suite_id, Run]));
+
+  const RunsBySuite = new Map(
+    [...LatestRuns.values()].map((Run) => [Run.check_suite_id, Run]),
+  );
   const Rows = [];
   const Seen = new Set();
   for (const Check of Checks) {
-    if (Seen.has(Check.id) || IsReviewApp(Check.app)) continue;
-    Seen.add(Check.id);
-    const Run = RunsBySuite.get(Check.check_suite.id);
-    if (Run && (!LatestIds.has(Run.id) || Run.id === Context.runId)) continue;
-    if (Check.details_url?.includes(`/actions/runs/${Context.runId}/`))
+    if (
+      Seen.has(Check.id) ||
+      Check.app?.id !== 15368 ||
+      !ReportRefs.has(Check.head_sha)
+    )
       continue;
-    const Deferred =
-      Run?.event === "pull_request" &&
-      Run?.path?.split("@")[0] === ".github/workflows/MergeQueue.yml";
+    const Run = RunsBySuite.get(Check.check_suite?.id);
+    if (!Run) continue;
+    const Spec = Workflows.get(Run.workflow);
+    const Required = Spec.required.includes(Check.name);
+    const Preflight = Spec.preflight && Check.name === Spec.preflight;
+    if (!Required && !Preflight && !Spec.optional?.includes(Check.name))
+      continue;
+    Seen.add(Check.id);
     const AllowedSkip =
-      ConditionalChecks.has(Check.name) ||
-      Deferred ||
-      (Run?.event !== "merge_group" &&
-        Check.name.startsWith("PR CI reuse (")) ||
-      (Reused && ReusableChecks.includes(Check.name));
+      Spec.skip?.includes(Check.name) ||
+      (Preflight && Run.event === "pull_request") ||
+      (Reused && Required && Spec.preflight);
     Rows.push({
       name: Check.name,
-      app: Check.app?.id,
+      workflow: Run.workflow,
       state:
         Check.status !== "completed"
           ? "pending"
@@ -130,41 +83,8 @@ async function ReadReports(
       url: Check.html_url || Check.details_url || "",
     });
   }
-  const LatestStatuses = new Map();
-  for (const Status of Statuses) {
-    if (IsReviewUser(Status.creator)) continue;
-    const Key = `${Status.ref}:${Status.context}`;
-    if (!LatestStatuses.has(Key) || LatestStatuses.get(Key).id < Status.id)
-      LatestStatuses.set(Key, Status);
-  }
-  for (const Status of LatestStatuses.values())
-    Rows.push({
-      name: Status.context,
-      state:
-        Status.state === "pending"
-          ? "pending"
-          : Status.state === "success"
-            ? "pass"
-            : "fail",
-      conclusion: Status.state,
-      url: Status.target_url || "",
-    });
   for (const Run of LatestRuns.values()) {
-    if (Run.id === Context.runId) continue;
-    const InactiveBootstrap =
-      Run.event === "pull_request" &&
-      Run.path?.split("@")[0] === WorkflowPath &&
-      Checks.some(
-        (Check) =>
-          Check.check_suite.id === Run.check_suite_id &&
-          Check.name === "Inactive aggregate bootstrap" &&
-          Check.conclusion === "skipped",
-      );
-    if (
-      Run.status !== "completed" ||
-      (Run.conclusion !== "success" &&
-        !(Run.conclusion === "skipped" && InactiveBootstrap))
-    )
+    if (Run.status !== "completed" || Run.conclusion !== "success")
       Rows.push({
         name: Run.name,
         state: Run.status !== "completed" ? "pending" : "fail",
@@ -172,17 +92,20 @@ async function ReadReports(
         url: Run.html_url,
       });
   }
-  for (const Name of Expected) {
-    if (!Rows.some((Row) => Row.name === Name && Row.app === 15368)) {
-      Rows.push({
-        name: Name,
-        state: "pending",
-        conclusion: "missing",
-        url: "",
-      });
+  for (const [Workflow, Spec] of Workflows) {
+    const Expected = Spec.preflight
+      ? [...Spec.required, Spec.preflight]
+      : Spec.required;
+    for (const Name of Expected) {
+      if (!Rows.some((Row) => Row.name === Name && Row.workflow === Workflow))
+        Rows.push({
+          name: Name,
+          state: "pending",
+          conclusion: "missing",
+          url: "",
+        });
     }
   }
-  if (ReviewSha) Rows.push(...BuildRequired(Checks, Statuses, ReviewSha));
   return Rows;
 }
 
@@ -339,9 +262,7 @@ async function FindReuse(Github, Context, Core) {
       Github,
       Context,
       HealthRefs,
-      [...StaticChecks, ...PrChecks, "CI Agg", "Merge queue acceptance"],
-      false,
-      Pull.headRefOid,
+      CiWorkflows(true, true),
     );
     if (Health.some((Row) => Row.state !== "pass")) {
       return {
@@ -454,11 +375,11 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
         ...(ReportMerge ? [ReportMerge] : []),
       ]
     : [Context.sha];
-  const Expected = [
-    ...StaticChecks,
-    "Merge queue acceptance",
-    ...(IsPull ? PrChecks : []),
-  ];
+  const Workflows = CiWorkflows(
+    IsPull,
+    false,
+    Context.payload.action === "opened",
+  );
   let Reuse = { reuse: false };
   if (!IsPull) {
     try {
@@ -485,14 +406,7 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
       )
         throw new Error("The PR head changed during CI aggregation");
     }
-    Rows = await ReadReports(
-      Github,
-      Context,
-      Refs,
-      Expected,
-      Reuse.reuse,
-      IsPull ? Context.payload.pull_request.head.sha : null,
-    );
+    Rows = await ReadReports(Github, Context, Refs, Workflows, Reuse.reuse);
     const Failed = Rows.filter((Row) => Row.state === "fail");
     if (Failed.length) {
       await Core.summary
@@ -519,9 +433,6 @@ async function Aggregate({ github: Github, context: Context, core: Core }) {
   }
   await Core.summary
     .addHeading("CI passed")
-    .addRaw(
-      "All applicable CI passed; PR heads also require successful native reports from every configured reviewer.\n",
-    )
     .addTable([
       ["Check", "Conclusion", "Report"],
       ...Rows.map((Row) => [Row.name, Row.conclusion || "unknown", Row.url]),

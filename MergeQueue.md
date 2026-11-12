@@ -10,12 +10,10 @@ Kit uses GitHub's native merge queue for `main`. The desired settings live in
 outside Git history: merging this configuration PR does not activate them.
 
 The live `Protect` ruleset requires both `CI Agg` and `Merge queue acceptance`
-from GitHub Actions (`15368`). Its direct native-review requirement was
-removed because GitHub also applies it to synthetic queue commits, where the app
-does not report. Instead, `CI Agg` requires the configured native reviewer results on PR
-heads, as described below. The checked-in desired ruleset and live rules must
-still be inspected separately. Existing approvals, bypass actors, and other live
-settings were preserved.
+from GitHub Actions (`15368`). GitHub applies required checks to synthetic
+queue commits, where PR reviewers do not report. Native review requirements
+apply to PR readiness through the reviewer workflow below. Inspect the
+checked-in desired ruleset and live rules separately.
 
 ## Validation phases
 
@@ -37,31 +35,25 @@ remain separate from CI health. Changing the JSON does not install integrations
 or modify live rulesets.
 
 [`Pull Request / CI Agg`](.github/workflows/PullRequest.yml) reports overall CI
-health for the exact PR revision. General review reports are excluded by the
-immutable GitHub app and status-creator IDs in `Reviewers` and `ExcludedReports`.
-Only `Reviewers` entries are requested reviewers with readiness requirements;
-`ExcludedReports` records existing unrelated review integrations, not additional
-review requests. Every check in each reviewer's `Checks` and every status in
-`Statuses` is explicitly required on PR heads and during PR evidence reuse.
-Missing or pending reports keep the aggregate pending; only completed `success`
-results pass. Failed, neutral, skipped, cancelled, or timed-out reports fail.
-Stale results, matching names from another identity, and test-merge results cannot
-substitute. The newest matching report controls the result. Queue aggregation
-does not require reviewer reports on synthetic candidates; evidence reuse checks
-every required report on each contributing PR head.
+health for the exact revision using the [CI allowlist](.github/scripts/CiAllowlist.cjs).
+A check must come from GitHub Actions and match its workflow path, event, and
+job name. The aggregate also checks the outcome of each listed workflow run.
+It reads check runs and workflow runs. Commit statuses and unlisted reports
+cannot satisfy a required CI job.
 
-[ReviewProviders.cjs](.github/scripts/ReviewProviders.cjs) reads identities from the
-JSON rather than maintaining a separate registry. Display names, logins, and
-report URLs never exclude unrelated CI. The same filtering applies during PR
-aggregation, merge-group aggregation, and PR evidence reuse. The aggregate
-waits for every expected static, policy, label, and GitHub-managed Code Quality
-check, and inventories additional check runs and commit statuses. Failed,
-cancelled, timed-out, missing, and unexpectedly skipped reports cannot pass.
-The managed Code Quality workflow's required check names are `Analyze (python)`
-and `Analyze (java-kotlin)`; `Code Quality` is a workflow label, not an additional
-check context. Both actual check names are explicitly expected by the aggregate.
-The summary links the individual reports. CI execution stays in the existing
-workflows; the aggregate does not replace their assertions or thresholds.
+PR aggregation includes lint, formatting, types, repository policies, metadata
+labels, release artifact validation, and GitHub-managed Code Quality for Python,
+Java/Kotlin, and JavaScript/TypeScript. The first-time contributor label applies
+on PR creation. Merge-group aggregation includes the static checks and their
+reuse preflights, the full test suite, both candidate CodeQL jobs, all security
+and SBOM scans, and the acceptance gate. PR runs of the queue workflow report
+the acceptance gate with the heavy jobs deferred. Missing jobs keep the
+aggregate pending. Unexpected skips, cancellations, timeouts, and failures
+fail the aggregate. The summary links individual reports.
+
+When adding or renaming CI, update the allowlist alongside the workflow and
+register each job under the event that runs it. Keep automated review outside
+those workflows and verify its reports during PR review follow-up.
 
 The existing provider settings file identified by `SettingsFile` in the JSON is
 preserved. Its approval policy allows no open findings and is read from the

@@ -5,7 +5,9 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Review provider exclusions
 
-## Behavior
+[The CI allowlist](CiReviewerExclusions.md) supersedes this provider-based implementation.
+
+## Original behavior
 
 `Pull Request / CI Agg` separates automated review reports from ordinary CI.
 Provider identities come from `Reviewers` and `ExcludedReports` in [ReviewBot.json](../../.agents/skills/standard-pr-practice/ReviewBot.json).

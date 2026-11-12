@@ -8,21 +8,31 @@ const KProviders = [...Reviewers, ...ExcludedReports];
 function BuildReviews(Verdict) {
   const Checks = [];
   const Statuses = [];
-  for (const { AppId, UserId, AppSlug, UserLogin } of KProviders) {
-    Checks.push({
-      id: Checks.length + 1,
-      name: "Review report",
-      app: { id: AppId, slug: AppSlug },
-      check_suite: { id: 2 },
-      status: Verdict === "pending" ? "in_progress" : "completed",
-      conclusion: Verdict === "pending" ? null : Verdict,
-    });
-    Statuses.push({
-      id: Statuses.length + 1,
-      context: `review-${AppSlug}`,
-      creator: { id: UserId, login: UserLogin },
-      state: Verdict === "neutral" ? "error" : Verdict,
-    });
+  if (Verdict === "missing") return { Checks, Statuses };
+  const StatusVerdict = ["pending", "success", "failure"].includes(Verdict)
+    ? Verdict
+    : "error";
+  for (const Provider of KProviders) {
+    for (const Name of ["Review report", ...(Provider.Checks ?? [])])
+      Checks.push({
+        id: 100 + Checks.length,
+        name: Name,
+        app: { id: Provider.AppId, slug: Provider.AppSlug },
+        head_sha: "a".repeat(40),
+        check_suite: { id: 2 },
+        status: Verdict === "pending" ? "in_progress" : "completed",
+        conclusion: Verdict === "pending" ? null : Verdict,
+      });
+    for (const Context of [
+      `review-${Provider.AppSlug}`,
+      ...(Provider.Statuses ?? []),
+    ])
+      Statuses.push({
+        id: 100 + Statuses.length,
+        context: Context,
+        creator: { id: Provider.UserId, login: Provider.UserLogin },
+        state: StatusVerdict,
+      });
   }
   return { Checks, Statuses };
 }
