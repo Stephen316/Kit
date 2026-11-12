@@ -3,18 +3,17 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-<p align="center">
-  <img alt="banner" src="https://github.com/TryParashell/Kit/blob/e93626c79ab6667753f9fccfe4d7c5245cbc457b/files/Banner.png">
-</p>
-
 # Kit
 
 Kit by Parashell is an open-source CAD interchange SDK for translating geometry, feature trees, assemblies and more between proprietary formats.
 
+[Wiki](https://github.com/TryUniCAD/Kit/wiki)
+
+[![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
+
 ## Documentation
 
-Read the [documentation index](Documentation/Index.md), [getting-started guide](Documentation/GettingStarted.md),
-and [GitHub wiki](https://github.com/TryUniCAD/Kit/wiki). Contributors must add
+Read the [documentation index](Documentation/Index.md) and [getting-started guide](Documentation/GettingStarted.md). Contributors must add
 [documentation entries](Documentation/Changes/Index.md) for new additions and record
 new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
 
@@ -77,6 +76,10 @@ vendor loadable, with nothing dropped and no unmet requirements:
 ```python
 result = convert("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
 ```
+
+## Star history
+
+[![Kit star history](https://api.star-history.com/svg?repos=TryUniCAD/Kit&type=Date)](https://www.star-history.com/#TryUniCAD/Kit&Date)
 
 ## Distribution
 
