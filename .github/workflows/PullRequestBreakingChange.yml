@@ -11,8 +11,8 @@ on:
 permissions: {}
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}-${{ github.event.action }}
+  cancel-in-progress: false
 
 jobs:
   label-breaking-change:
@@ -30,45 +30,68 @@ jobs:
           script: |
             const LabelName = "Breaking Change";
             const PullNumber = context.payload.pull_request.number;
-            const PullTitle = context.payload.pull_request.title;
-            const PullText = `${PullTitle}\n${context.payload.pull_request.body ?? ""}`;
-            const IsMatched =
-              /(?:^|\n)BREAKING(?: |-)?CHANGE:\s+\S/im.test(PullText) ||
-              /^[a-z][a-z0-9-]*(?:\([^\r\n)]+\))?!:/i.test(PullTitle) ||
-              /^\[breaking(?: change)?\]/i.test(PullTitle);
+            const PullTarget = { ...context.repo, pull_number: PullNumber };
+            const IssueTarget = { ...context.repo, issue_number: PullNumber };
+            const RepositoryLabel = { ...context.repo, name: LabelName };
 
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: LabelName,
-              });
-            } catch (ErrorInfo) {
-              if (ErrorInfo.status !== 404) throw ErrorInfo;
-              await github.rest.issues.createLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: LabelName,
-                color: "b60205",
-              });
+            async function EnsureLabel() {
+              try {
+                await github.rest.issues.getLabel(RepositoryLabel);
+              } catch (ErrorInfo) {
+                if (ErrorInfo.status !== 404) throw ErrorInfo;
+                try {
+                  await github.rest.issues.createLabel({
+                    ...RepositoryLabel,
+                    color: "b60205",
+                  });
+                } catch (CreateError) {
+                  if (CreateError.status !== 422) throw CreateError;
+                  await github.rest.issues.getLabel(RepositoryLabel);
+                }
+              }
             }
 
-            if (IsMatched) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: PullNumber,
-                labels: [LabelName],
-              });
-            } else {
+            async function ApplyLabel(IsDeclared) {
+              if (IsDeclared) {
+                await github.rest.issues.addLabels({
+                  ...IssueTarget,
+                  labels: [LabelName],
+                });
+                return;
+              }
               try {
                 await github.rest.issues.removeLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: PullNumber,
+                  ...IssueTarget,
                   name: LabelName,
                 });
               } catch (ErrorInfo) {
                 if (ErrorInfo.status !== 404) throw ErrorInfo;
               }
+            }
+
+            function IsBreaking(PullRequest) {
+              const PullText = `${PullRequest.title}\n${PullRequest.body ?? ""}`;
+              return (
+                /(?:^|\n)BREAKING(?: |-)?CHANGE:\s+\S/im.test(PullText) ||
+                /^[a-z][a-z0-9-]*(?:\([^\r\n)]+\))?!:/i.test(PullRequest.title) ||
+                /^\[breaking(?: change)?\]/i.test(PullRequest.title)
+              );
+            }
+
+            function HasBreakLabel(PullRequest) {
+              return PullRequest.labels.some(
+                (Label) => Label.name.toLowerCase() === LabelName.toLowerCase(),
+              );
+            }
+
+            await EnsureLabel();
+            let { data: PullRequest } = await github.rest.pulls.get(PullTarget);
+            for (let Attempt = 0; Attempt < 3; Attempt += 1) {
+              const IsDeclared = IsBreaking(PullRequest);
+              if (IsDeclared === HasBreakLabel(PullRequest)) return;
+              await ApplyLabel(IsDeclared);
+              ({ data: PullRequest } = await github.rest.pulls.get(PullTarget));
+            }
+            if (IsBreaking(PullRequest) !== HasBreakLabel(PullRequest)) {
+              throw new Error("Breaking change label did not match current PR metadata");
             }
