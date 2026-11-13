@@ -71,6 +71,7 @@ jobs:
           tests/Policy/CiReportsTests.py tests/Policy/QueueAggregationTests.py
           tests/Policy/ReviewerAggregationTests.py tests/steering/AgentSkillsMigrationTests.py
           tests/convert/api/ApiMetadataTests.py tests/Policy/DiffBreakdownTests.py
+          tests/Policy/ShardPlanTests.py
 
       - name: Exercise native file reading and writing
         run: >-

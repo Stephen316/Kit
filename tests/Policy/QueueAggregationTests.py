@@ -7,7 +7,16 @@ import pytest as Pytest
 
 
 @Pytest.mark.parametrize(
-    "CheckName", ("Scorecard", "dlint", "Analyze python", "Run the complete test suite")
+    "CheckName",
+    (
+        "Scorecard",
+        "dlint",
+        "Analyze python",
+        "Run the complete test suite",
+        "Test suite / Plan",
+        "Test suite / Shard (2)",
+        "Test suite / Report",
+    ),
 )
 @Pytest.mark.parametrize(
     "Verdict", ("success", "failure", "neutral", "skipped", "cancelled", "timed_out")

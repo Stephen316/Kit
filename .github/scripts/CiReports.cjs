@@ -59,7 +59,13 @@ async function ReadReports(Github, Context, Refs, Workflows, Reused = false) {
     const Spec = Workflows.get(Run.workflow);
     const Required = Spec.required.includes(Check.name);
     const Preflight = Spec.preflight && Check.name === Spec.preflight;
-    if (!Required && !Preflight && !Spec.optional?.includes(Check.name))
+    const Matched = Spec.matching?.some((Pattern) => Pattern.test(Check.name));
+    if (
+      !Required &&
+      !Preflight &&
+      !Matched &&
+      !Spec.optional?.includes(Check.name)
+    )
       continue;
     Seen.add(Check.id);
     const AllowedSkip =

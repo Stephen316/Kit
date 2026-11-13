@@ -131,6 +131,16 @@ timeouts, and unexpected skips fail the gate. Fast CI additionally runs the exis
 process checks, catching stale workflow references before enrollment. Static checks retain their required
 contexts on the merge group and either execute or use verified equivalent PR evidence.
 
+The pytest suite runs as [runtime-planned shards](Documentation/Changes/ShardedTestSuite.md).
+`Test suite / Plan` collects the candidate's tests and sizes the shard matrix.
+Each shard holds at most 300 tests.
+Each `Test suite / Shard (n)` job runs only its planned node IDs.
+`Test suite / Report` fails unless every planned test ran exactly once.
+The acceptance gate requires the plan, every shard, and the report to succeed.
+`Run the complete test suite` remains as a compatibility job that requires the same three jobs.
+The trusted-base `CI Agg` of the first sharded candidate still requires that name.
+The CI allowlist matches shard check names by pattern because the shard count changes with the suite.
+
 The checked-in desired queue has no bypass actors, uses squash merges, requires `ALLGREEN`, builds
 at most two candidates concurrently, and merges one entry at a time. Its
 90-minute response timeout allows the existing 60-minute analyses plus runner
