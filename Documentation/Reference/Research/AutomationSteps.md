@@ -4,9 +4,10 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-**Current step: A04 — SOLIDWORKS → neutral reader integration.**
+**Current step: A04c — initial profile semantic qualification (blocked).**
 The current request authorizes remaining deterministic work in dependency order on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
-A04a–A04b are owned by jdharcourt on task branch `feat/research-plan-followthrough-20261113`.
+A04a–A04b and A03e are verified at code checkpoint `eba0ab488a6a00e2a31fd5ed8ab0bee564b371db`.
+Task branch: `feat/research-plan-followthrough-20261113`.
 A02's corpus tooling and paired specifications are complete; independent capture qualification remains blocked.
 Claim subsequent runnable child steps explicitly.
 Model execution and policy exceptions retain the approvals described in the plan.
@@ -37,8 +38,8 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | --- | ------------------------------------------------------ | ------------------------------------ | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A01 | Neutral contract and capability audit                  | None                                 | jdharcourt | complete | Existing fields, demonstrated gaps, version scope and independent acceptance requirements documented                                                                                                                               |
 | A02 | Pinned corpus and paired authoring specifications      | A01                                  | jdharcourt | blocked  | Hashed inputs, actual measurements, missing dependencies and independent holdout families recorded                                                                                                                                 |
-| A03 | Durable evidence store and job controller              | A01                                  | jdharcourt | checking | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
-| A04 | SOLIDWORKS → neutral reader integration                | A01, A02a                            | jdharcourt | active   | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
+| A03 | Durable evidence store and job controller              | A01                                  | jdharcourt | complete | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
+| A04 | SOLIDWORKS → neutral reader integration                | A01, A02a                            | jdharcourt | blocked  | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
 | A05 | Fusion → neutral reader integration                    | A01, A02a                            | Unassigned | planned  | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
 | A06 | Semantic graph comparison                              | A02c, A04, A05                       | Unassigned | planned  | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
 | A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Unassigned | planned  | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
@@ -91,17 +92,18 @@ Task branch: `feat/a03-durable-research-controller-20261113`; publication remain
 A03 depends on completed A01, so it can proceed while A02c–A02d wait for captures.
 The [controller guide](ResearchController.md) records the implemented protocol and limits.
 
-| Child ID | Deliverable                                             | Status   | Remaining evidence                                                                              |
-| -------- | ------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------- |
-| A03a     | SQLite metadata and immutable hashed artifacts          | complete | Remote persistence, integrity, rollback and schema-upgrade checks passed at `6a846c7d`          |
-| A03b     | Dependency fingerprints and transitive invalidation     | complete | Remote reuse, changed inputs/rules, cycle checks and incremental large-queue execution passed   |
-| A03c     | Claims, leases, bounded retries and exclusive resources | complete | Remote concurrency, interruption recovery, waits, backoff, fencing and resource recovery passed |
-| A03d     | Controller workflow and maintained usage information    | checking | Process workflow passed; valid current-head approval remains a separate publication gate        |
+| Child ID | Deliverable                                             | Status   | Remaining evidence                                                                                            |
+| -------- | ------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| A03a     | SQLite metadata and immutable hashed artifacts          | complete | Remote persistence, integrity, rollback and schema-upgrade checks passed at `6a846c7d`                        |
+| A03b     | Dependency fingerprints and transitive invalidation     | complete | Remote reuse, changed inputs/rules, cycle checks and incremental large-queue execution passed                 |
+| A03c     | Claims, leases, bounded retries and exclusive resources | complete | Remote concurrency, interruption recovery, waits, backoff, fencing and resource recovery passed               |
+| A03d     | Controller workflow and maintained usage information    | complete | Process workflow and configured approval passed at `eba0ab48`; current PR readiness remains separate          |
+| A03e     | Metadata-only lease renewal                             | complete | Twelve controller process scenarios passed at `eba0ab48`, including a 64 MiB payload and corruption rejection |
 
-A03e is an active review repair owned by jdharcourt on PR #94.
+A03e is the review repair owned by jdharcourt on PR #94.
 It removes artifact-content reads from heartbeat renewal while retaining token, deadline and prerequisite checks.
 Claims, result submission, status and artifact access retain integrity checks.
-The new 64 MiB process scenario must pass remotely before A03e completes.
+The 64 MiB process scenario passed remotely without a schema change.
 See [the change entry](../../Changes/Research/MetadataOnlyLeaseRenewal.md).
 
 **A03 design decision:** adopt standard-library SQLite metadata and SHA-256 files in the existing `re/automation/` tree.
@@ -111,23 +113,29 @@ No model, CAD worker launcher, decoder integration or neutral schema change is a
 The [remote controller verification job](https://github.com/TryUniCAD/Kit/actions/runs/43427628978/job/131892879264) passed all eleven process scenarios on Python 3.14 at `6a846c7d1a6e144cf04a7c30e32261c7be84ea68`.
 Coverage includes 250 completed steps in a 10,000-job chain, 300 individual submissions and schema upgrades, as well as the lifecycle/integrity scenarios.
 All verified review findings on that code revision are addressed and its threads are resolved.
-Its configured approval was dismissed; successful reports do not replace a valid approval.
-Keep A03 in checking until its publication gate is satisfied.
-Its recorded technical evidence permits independent authorized A04 work, whose dependencies are A01 and A02a.
+The earlier approval was dismissed.
+At `eba0ab48`, all 26 displayed checks passed and configured review `5894929093` was `APPROVED` for that exact head.
+The [updated workflow-quality job](https://github.com/TryUniCAD/Kit/actions/runs/43467308910/job/132029763989) passed twelve controller scenarios in 71.61 seconds.
+All configured findings were resolved.
+GitHub separately reported `REVIEW_REQUIRED` under its enforced review rules despite that configured approval.
+Current-head PR readiness and deferred merge-group acceptance remain separate from the completed artifact scope recorded here.
 
 ## A04 integration and semantic qualification
 
-| Child ID | Deliverable                                          | Depends on                              | Owner      | Status   | Exit criterion or remaining evidence                                                                                                               |
-| -------- | ---------------------------------------------------- | --------------------------------------- | ---------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A04a     | Pinned SLDPRT reader and typed neutral serialization | A01, A02a                               | jdharcourt | checking | Exact Git object/hash/size checks, strict SDK read, typed reconstruction and overwrite rejection pass remotely                                     |
-| A04b     | Separate field-path evidence and unresolved census   | A04a                                    | jdharcourt | checking | Native-only records, retained bytes, native codes, diagnostics and unqualified direction/frame mappings remain explicit in remote process receipts |
-| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | Unassigned | blocked  | Independently establish required P01–P05 semantics, direction, frames, termination, constraints and dependency bindings                            |
+| Child ID | Deliverable                                          | Depends on                              | Owner      | Status   | Exit criterion or remaining evidence                                                                                         |
+| -------- | ---------------------------------------------------- | --------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| A04a     | Pinned SLDPRT reader and typed neutral serialization | A01, A02a                               | jdharcourt | complete | All 58 pinned parts decoded/reconstructed; strict per-asset success, overwrite and tamper checks passed at `eba0ab48`        |
+| A04b     | Separate field-path evidence and unresolved census   | A04a                                    | jdharcourt | complete | Remote receipts at `eba0ab48` retain native-only content, bytes, codes, diagnostics and unqualified direction/frame mappings |
+| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | blocked  | Independently establish required P01–P05 semantics, direction, frames, termination, constraints and dependency bindings      |
 
 The [reader guide](SolidworksResearchReader.md) defines the command and its research-only receipt.
 A04a–A04b do not close A04c or qualify native conversion.
 The reader does not infer missing constraints, repair the SDK mappings, launch applications or execute models.
 A04c needs independent source inventories and distinguishing evidence rather than agreement with the same reader.
 Its blocked status does not prevent A05 integration or A08a implementation.
+The updated workflow-quality job passed all three reader scenarios in 60.15 seconds with 58 decoded and zero rejected.
+The earlier sequential process harness took 172.97 seconds on `7f8a7425`; these are CI observations, not a universal speed guarantee.
+A05 and A08a are the next runnable deterministic steps and remain unclaimed here.
 
 ## Parallel-session child steps
 
@@ -144,7 +152,7 @@ They are not implemented by documenting the rows.
 | A10b     | Selector, failure log and tier routing                                               | A10a                                                 | Unassigned | planned  | Separate infrastructure/model failures, exact cache keys, stable packet prefixes, budgets and two-failure escalation                  |
 | A10c     | Screening, token-efficiency ranking and consistency updates                          | A10b, A09                                            | Unassigned | planned  | Measured full/screening sets, exclusions, dominance, repeat cadence and evidence-backed route changes                                 |
 | A10d     | Optional Claude API and Claude Code runners                                          | A08a, A07, A09; applicable authorization             | Unassigned | planned  | Provider validation, serving-model attribution, bounded errors and private-data/policy gates                                          |
-| A14a     | Controller and corpus process gates                                                  | A03 technical substeps                               | jdharcourt | checking | Existing remote scenarios linked from A02/A03; extend as interfaces change and retain exact-revision evidence                         |
+| A14a     | Controller and corpus process gates                                                  | A03 technical substeps                               | jdharcourt | complete | Corpus and twelve controller scenarios passed at `eba0ab48`; extend the gate when interfaces change                                   |
 | A14b     | Reader, comparator and writer regression gates                                       | A04a, A05; A06 for paired gates                      | Unassigned | planned  | Pinned-input process checks plus independent semantic evidence reject unsupported/stale results                                       |
 | A15a     | Two-week deterministic operating pilot, with optional enabled model pools            | A07, A08b, A14; A10c/A10d only when enabled          | Unassigned | planned  | Measured throughput, recovery, no-progress parking, blockers and verified capability gains; model spend only if enabled               |
 
@@ -201,11 +209,11 @@ Do not use same-format success to close a cross-format conversion step.
 The current change aligns the plan, adds this register and records contributor instructions.
 A01 now supplies the audited neutral-format decision and capability boundaries.
 PR #94 now includes A02 corpus tooling, specifications and remote process coverage.
-A03's durable metadata/lease protocol passed remote process verification at the recorded code checkpoint; publication review remains separate.
+A03 and its heartbeat repair passed remote process verification at the recorded code checkpoints; PR readiness remains separate.
 A04 adds a research reader boundary and evidence receipt around the existing codec.
 No comparator, schema extension or application worker is established by that integration.
 Native capture qualification remains blocked separately.
-A04a–A04b are in verification; A04c awaits independent evidence.
+A04a–A04b passed remote verification; A04c awaits independent evidence.
 Later deterministic child steps remain available when their prerequisites pass.
 Formatting and source-link review do not replace the remote process checks.
 Remote CI, configured review and merge-group acceptance remain separate publication evidence.
