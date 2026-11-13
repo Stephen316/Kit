@@ -9,8 +9,9 @@ The [A03 controller](ResearchController.md) is the first adapter for that interf
 It also describes how Codex and Claude runners execute optional model investigations from the [plan](AutomationPlan.md#optional-model-investigations).
 Each model runner has its own ranked model ladder; see [Starting model rankings](#starting-model-rankings).
 No step starts because of this page.
-A07, A08, A10 and A15 still require an explicit request.
-The child steps in [Delivery](#delivery) are proposals until a contributor claims them in the [step register](AutomationSteps.md).
+The [step register](AutomationSteps.md) records authorization, ownership and status.
+Claim a runnable child step there and on PR #94 before implementation.
+Optional model execution and the proposed model-command exception require their separate authorizations.
 
 ## Terms
 
@@ -120,7 +121,13 @@ This example shows its proposed shape:
   "runners": {
     "decode.sldprt": {
       "pool": "decode",
-      "argv": ["python3", "-I", "re/automation/runners/DecodeSldprt.py", "--session", "{session}"],
+      "argv": [
+        "python3",
+        "-I",
+        "re/automation/runners/DecodeSldprt.py",
+        "--session",
+        "{session}"
+      ],
       "result_schema": "re/automation/schemas/DecodeResult.json",
       "threads": 1,
       "initial_peak_memory_mib": 2048
@@ -412,22 +419,54 @@ Store the model candidates of each runner in a supervisor configuration file, fo
 {
   "codex": {
     "candidates": [
-      { "model": "<model-a>", "effort": "medium", "max_seconds": 600, "max_output_tokens": 20000 },
-      { "model": "<model-b>", "effort": "high", "max_seconds": 1800, "max_output_tokens": 60000 }
+      {
+        "model": "<model-a>",
+        "effort": "medium",
+        "max_seconds": 600,
+        "max_output_tokens": 20000
+      },
+      {
+        "model": "<model-b>",
+        "effort": "high",
+        "max_seconds": 1800,
+        "max_output_tokens": 60000
+      }
     ],
-    "token_weights": { "default": { "uncached_input": 1, "cached_input": 1, "output": 1 } },
-    "budget": { "per_question_weighted_tokens": 2000000, "per_day_weighted_tokens": 20000000 },
+    "token_weights": {
+      "default": { "uncached_input": 1, "cached_input": 1, "output": 1 }
+    },
+    "budget": {
+      "per_question_weighted_tokens": 2000000,
+      "per_day_weighted_tokens": 20000000
+    },
     "pause_at_usage_percent": 90
   },
   "claude": {
     "candidates": [
-      { "model": "<model-c>", "effort": "medium", "max_seconds": 600, "max_output_tokens": 16000 },
-      { "model": "<model-d>", "effort": "high", "max_seconds": 1800, "max_output_tokens": 64000 }
+      {
+        "model": "<model-c>",
+        "effort": "medium",
+        "max_seconds": 600,
+        "max_output_tokens": 16000
+      },
+      {
+        "model": "<model-d>",
+        "effort": "high",
+        "max_seconds": 1800,
+        "max_output_tokens": 64000
+      }
     ],
     "token_weights": {
-      "<model-c>": { "uncached_input": 0.0000001, "cached_input": 0.00000001, "output": 0.0000005 }
+      "<model-c>": {
+        "uncached_input": 0.0000001,
+        "cached_input": 0.00000001,
+        "output": 0.0000005
+      }
     },
-    "budget": { "per_question_weighted_tokens": 5, "per_day_weighted_tokens": 50 }
+    "budget": {
+      "per_question_weighted_tokens": 5,
+      "per_day_weighted_tokens": 50
+    }
   }
 }
 ```
@@ -726,15 +765,18 @@ A claim of the wrong job kind would consume an attempt in the wrong pool.
 
 ## Delivery
 
-| Proposed ID | Deliverable                                                                               | Depends on       |
-| ----------- | ----------------------------------------------------------------------------------------- | ---------------- |
-| A08a        | Supervisor, session directories, pools, controller interface and A03 adapter              | A03              |
-| A08b        | Capacity limits, adaptive start and calibration                                           | A08a             |
-| A10a        | Codex runner, sandbox options and private data boundary                                   | A08a, A07, A09   |
-| A10b        | Candidate validation, selector, failure log and tier routes                               | A10a             |
-| A10c        | Ranking set, token-efficiency ranking, dominated-model removal and consistency re-ranking | A10b, A09        |
-| A10d        | Claude runner in API mode and Claude Code mode, with its error handling                   | A08a, A07, A09   |
-| A15a        | Two-week pilot with measured capacity and model spend                                     | A08b, A10c, A10d |
+| Proposed ID | Deliverable                                                                               | Depends on                                  |
+| ----------- | ----------------------------------------------------------------------------------------- | ------------------------------------------- |
+| A08a        | Supervisor, session directories, pools, controller interface and A03 adapter              | A03                                         |
+| A08b        | Capacity limits, adaptive start and calibration                                           | A08a                                        |
+| A10a        | Codex runner, sandbox options and private data boundary                                   | A08a, A07, A09                              |
+| A10b        | Candidate validation, selector, failure log and tier routes                               | A10a                                        |
+| A10c        | Ranking set, token-efficiency ranking, dominated-model removal and consistency re-ranking | A10b, A09                                   |
+| A10d        | Claude runner in API mode and Claude Code mode, with its error handling                   | A08a, A07, A09                              |
+| A15a        | Two-week pilot with measured capacity; model spend only for enabled model pools           | A07, A08b, A14; A10c/A10d only when enabled |
+
+The step register also separates A08c application workers and A14 remote gates.
+A models-off pilot does not depend on model runners.
 
 ## Verification
 

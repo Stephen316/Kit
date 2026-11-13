@@ -79,3 +79,5 @@ Do not publish an unmeasured hypothesis as product support.
 - [Runtime trace tool](../../../re/tooling/windbg/Multitrace.py)
 - [Serialization harness](../../../re/tooling/harness/Serialize.py)
 - [Program generation](../../../re/tooling/ProgramDecomposition/GeneratePrograms.py)
+
+The [pinned SOLIDWORKS reader](SolidworksResearchReader.md) emits neutral JSON and a separate unresolved-evidence receipt.

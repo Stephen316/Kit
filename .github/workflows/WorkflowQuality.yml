@@ -86,6 +86,9 @@ jobs:
           uv run python re/automation/Corpus.py check --manifest re/automation/Corpus.json
           uv run pytest tests/Research/CorpusFlowTests.py -q
 
+      - name: Verify pinned SOLIDWORKS research reader through process boundaries
+        run: uv run --frozen python -m pytest tests/Research/Reader*Tests.py -q -s
+
       - name: Verify durable research controller through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14

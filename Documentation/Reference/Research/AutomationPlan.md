@@ -2,11 +2,11 @@
 
 ## Status and purpose
 
-This document is a design for future implementation.
-PR #94 contains the plan and the [completed A01 contract audit](NeutralContractAudit.md).
-A01 introduces no runtime or schema change.
+This document defines the research design and its implementation boundaries.
+The [A01 contract audit](NeutralContractAudit.md) selects the existing neutral model without a schema change.
 Implemented steps have their own guides, for example the [corpus guide](PinnedCorpus.md) and the [durable research controller](ResearchController.md).
-A04–A16 require a subsequent explicit request.
+The current request authorizes remaining deterministic work in dependency order.
+Optional model execution and policy exceptions retain their separate authorization requirements.
 All implementation steps in this programme stay on PR #94 by explicit user instruction.
 The [step register](AutomationSteps.md) records identifiable deliverables, dependencies and progress.
 It is the only maintained record of step status.
@@ -143,7 +143,8 @@ Research orchestration belongs under the existing `re/automation/`; the producti
 SQLite and content-addressed artifacts are the selected A03 implementation choices, not new repository-wide standards.
 Record any evidence-based revision to those choices in the step register and PR comments.
 The A03 controller uses SQLite for transactional job metadata and files for large immutable artifacts.
-A single controller owns database writes and workers return structured results.
+Only the controller interface changes database state.
+The supervisor calls that interface, and worker sessions return structured files without controller access or lease tokens.
 Bind SQL parameters and validate all external job records.
 
 Jobs record dependencies, exact inputs, rule versions, attempts, leases and execution receipts.
@@ -210,7 +211,19 @@ Record each routing change in the log with the entries that caused it.
 Lower a raised starting tier only when a new tool, rule, runner or model version changes that signature's prerequisites.
 When the highest tier fails, or the budget runs out, park the question as above.
 
-The [parallel sessions design](ParallelSessions.md) describes the Codex runner, tier selector, error handling and session capacity limits.
+The [parallel sessions design](ParallelSessions.md) owns the supervisor and optional runner details.
+Its child deliverables are identified in the step register.
+A08a adds counted resources, pool-filtered claims and a distinct stale-lease outcome through a version-3-to-4 migration.
+A03 remains the initial adapter, with other controllers required to preserve the same transactional guarantees.
+A08b adds resource headroom, adaptive capacity, calibration and small-file grouping with separate leases and crash fallback.
+
+Optional model work includes separate Codex and Claude runners, measured token-efficiency ladders and consistency-based routing.
+Use stable packet prefixes, candidate screening and reduced repeat checks only as that design specifies.
+Starting model rankings and prices are provisional until checked against the installed runner and provider during integration.
+Operator exclusions remain exclusions, including during re-ranking.
+Infrastructure errors do not count as failed semantic hypotheses.
+Keep models disabled until the relevant authorization, private-data isolation and policy requirements are satisfied.
+The proposed sandboxed model-command exception is not approved by this documentation alignment.
 
 ## Application workers and independent writers
 
@@ -272,7 +285,8 @@ Approval requires a change to the repository rules before the first local run.
 
 ## Delivery and forecast
 
-Implement the [step register](AutomationSteps.md) after implementation is explicitly authorized.
+Implement authorized work in the dependency order recorded in the [step register](AutomationSteps.md).
+Use remote process gates alongside each implementation, rather than waiting until the final pilot.
 First replay a solved SOLIDWORKS family through the research machinery without model calls.
 Then qualify paired neutral examples and expand cross-format native output.
 Add richer sketches, constraints, cuts, revolutions, finishing operations, patterns, configurations and assemblies through demonstrated prerequisites.

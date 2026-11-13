@@ -7,11 +7,8 @@ All implementation and current-step progress are tracked on [PR #94](https://git
 The inventory tool reads Git objects, hashes their unchanged bytes and indexes recorded evidence.
 It does not decode CAD, convert files, run models or start applications.
 
-**A02 is active, with capture qualification blocked.**
-The inventory and authoring specifications are implemented.
-Independently authored matched captures and exact-source measurement receipts are still missing.
+Use the [step register](AutomationSteps.md) for current implementation status and missing capture evidence.
 No conversion capability is established by this inventory.
-A03–A16 have not started through this change.
 
 ## Pinned inputs
 

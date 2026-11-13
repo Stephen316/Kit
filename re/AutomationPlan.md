@@ -14,5 +14,5 @@ The maintained [automation plan](../Documentation/Reference/Research/AutomationP
 The [implementation steps](../Documentation/Reference/Research/AutomationSteps.md) provide stable work identifiers and completion criteria.
 Read [contributor instructions](AGENTS.md) before working on these steps.
 
-This PR contains planning documentation only.
-The documented controller, workers and new conversion capabilities are not implemented by this change.
+Use the step register for current implementation status.
+The maintained guides distinguish implemented research tools from unqualified conversion capabilities.
