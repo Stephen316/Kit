@@ -26,6 +26,7 @@ Prettier 3.6.2 and Black 26.10.1 checks passed on the applicable changed files.
 Python syntax, local Markdown targets and Git whitespace were inspected without importing the SDK.
 No local tests, SDK execution or application experiments ran.
 Remote process coverage is added for real-repository snapshot creation, verification, tamper rejection and the missing-pair gate.
+The [consolidated PR verification job](https://github.com/TryUniCAD/Kit/actions/runs/43419522392/job/131865721189) passed pinned-object verification and all three process cases at `0dd47cdab9d51d24b87acae61ffb1f174ba44d81`.
 The registered workflow-quality job runs the coverage; current-head results and current-step progress are recorded directly on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 Product acceptance remains a separate merge-group requirement.
 Source-only documentation review does not establish rendered usability or full language conformance.

@@ -62,18 +62,20 @@ A02 source checkpoint: `93bbf684c323e28176f7bb329ab04b092e097b37`, consolidated 
 The corpus pins main `74a0bc353421c25f7a6c539897baadf593a05766`.
 All A01–A16 code, documentation and progress stay on PR #94; no separate step PRs are used.
 
-| Child ID | Deliverable                                                 | Status   | Evidence or remaining requirement                                                                                                                |
-| -------- | ----------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| A02a     | Hashed native inputs and historical evidence index          | checking | 778 native files, 232 JSON evidence files and two historical notes pinned; exact-head remote checks tracked on PR #94                            |
-| A02b     | Five paired recipes and controlled-variation specifications | checking | Explicit parameters, frames, constraints, edits, analytic expectations, tolerances and reserved family splits; remote checks pending             |
-| A02c     | Independently authored and measured native pairs            | blocked  | Capture slots are empty; require exact-source hashes, application builds, healthy controls and independent edit/rebuild/save/reopen observations |
-| A02d     | Independent qualification and holdout ancestry              | blocked  | Imported lineage reservations are provisional; audit authorship and descendants before evaluating generalization                                 |
+| Child ID | Deliverable                                                 | Status   | Evidence or remaining requirement                                                                                                                     |
+| -------- | ----------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A02a     | Hashed native inputs and historical evidence index          | complete | 778 native files, 232 JSON evidence files and two historical notes pinned; remote corpus verification passed at `0dd47cda`                            |
+| A02b     | Five paired recipes and controlled-variation specifications | complete | Explicit parameters, frames, constraints, edits, analytic expectations, tolerances and reserved family splits; source review and digest checks passed |
+| A02c     | Independently authored and measured native pairs            | blocked  | Capture slots are empty; require exact-source hashes, application builds, healthy controls and independent edit/rebuild/save/reopen observations      |
+| A02d     | Independent qualification and holdout ancestry              | blocked  | Imported lineage reservations are provisional; audit authorship and descendants before evaluating generalization                                      |
 
 Historical measurements retain their original values and failures.
 Relative filenames do not establish capture-time hash bindings.
 Analytic expectations are labelled separately from observed values.
 Zero native pairs are currently qualified; no conversion capability is claimed.
 No A03–A16 implementation is included.
+The [remote workflow-quality job](https://github.com/TryUniCAD/Kit/actions/runs/43419522392/job/131865721189) passed pinned-object verification and all three process cases at `0dd47cdab9d51d24b87acae61ffb1f174ba44d81`.
+That observation completes the A02a–A02b artifact criteria; it does not qualify the missing captures or prove product acceptance.
 
 ## Required PR progress comments
 
