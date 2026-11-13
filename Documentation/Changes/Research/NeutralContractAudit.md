@@ -2,7 +2,7 @@
 
 ## Decision
 
-The [A01 audit](../Reference/Research/NeutralContractAudit.md) selects existing `CadDocument` interchange JSON as the neutral format.
+The [A01 audit](../../Reference/Research/NeutralContractAudit.md) selects existing `CadDocument` interchange JSON as the neutral format.
 It retains schema `1.0`, registered wire records, source provenance and explicit unresolved information.
 A future separate research receipt records exact-source and capability evidence without replacing the neutral model.
 
@@ -12,7 +12,7 @@ The audit inventories current fields, adapter boundaries, demonstrated gaps G01â
 It separates main capabilities from the pinned unmerged Fusion work.
 Use it to prepare paired examples and later reader/writer mappings.
 It defines independent acceptance requirements for both cross-format routes.
-The [capability-presence gotcha](../Gotchas/Conversion/CapabilityPresenceIsNotSemanticCoverage.md) records a specific source-inspection finding.
+The [capability-presence gotcha](../../Gotchas/Conversion/CapabilityPresenceIsNotSemanticCoverage.md) records a specific source-inspection finding.
 
 This change introduces no schema field, codec, comparator, controller, runtime dependency or native conversion capability.
 The audit completes the design deliverable only; its listed implementation gaps remain open.

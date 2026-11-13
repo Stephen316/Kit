@@ -2,15 +2,15 @@
 
 ## Behavior and scope
 
-The maintained [plan](../Reference/Research/AutomationPlan.md) aligns SOLIDWORKS and Fusion research around the existing neutral document contract.
+The maintained [plan](../../Reference/Research/AutomationPlan.md) aligns SOLIDWORKS and Fusion research around the existing neutral document contract.
 It defines paired semantic comparison, deterministic investigation, optional model escalation and independent native writers.
 Cross-format native acceptance governs the initial bidirectional conversion milestone.
 Same-format checks remain supporting evidence.
 
-The [step register](../Reference/Research/AutomationSteps.md) provides A01–A16 identifiers, dependencies, owners, statuses and exit criteria.
+The [step register](../../Reference/Research/AutomationSteps.md) provides A01–A16 identifiers, dependencies, owners, statuses and exit criteria.
 A01 is complete; A02 started in [implementation PR #109](https://github.com/TryUniCAD/Kit/pull/109) and remains blocked on independently authored captures and measurement qualification.
 A03–A16 remain planned and unassigned.
-The [research instructions](../../re/AGENTS.md) require progress comments on PR #94 and evidence-backed handoffs.
+The [research instructions](../../../re/AGENTS.md) require progress comments on PR #94 and evidence-backed handoffs.
 The existing research entry point links to the maintained plan.
 
 ## Usage and limits
