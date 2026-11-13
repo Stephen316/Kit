@@ -516,6 +516,8 @@ The supervisor also measures three consistency signals:
 | Token spread        | High token use ÷ median weighted tokens of one attempt                                         | More than 3             |
 
 To measure repeat disagreement, send 1 in 10 questions to the same candidate a second time.
+After 30 repeats on one route key without a repeat-disagreement flag, send only 1 in 50.
+Return to 1 in 10 when any flag appears or the model version changes.
 Send the repeat only when the first answer passes, so that the repeat costs no escalation.
 A repeat answer is not used as a result; it only measures consistency.
 Each repeat counts toward the budget.

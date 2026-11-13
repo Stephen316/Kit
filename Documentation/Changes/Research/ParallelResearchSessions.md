@@ -14,6 +14,7 @@ Separate starting ladders for Codex and Claude come from published model descrip
 Only starting-ladder candidates answer the full ranking set; other candidates pass a 5-question screen first.
 The Astra and Fable models are ruled out of both ladders by operator decision.
 Repeat disagreement, pass-rate drift and token spread re-rank an inconsistent candidate automatically for each task type.
+Repeat checks drop from 1 in 10 to 1 in 50 questions once a candidate is consistent.
 The Codex and Claude error tables separate model failures from infrastructure failures.
 A stable packet prefix lets both providers reuse cached input.
 
