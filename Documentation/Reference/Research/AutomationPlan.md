@@ -243,6 +243,18 @@ Do not run local tests, collection or ad hoc verification substitutes.
 Pending CI cannot be relabeled as passed research verification.
 Research inspection and ordinary decoding remain local workloads.
 
+### Proposed fast local checks
+
+This proposal is not in effect.
+Until the repository owners approve it, the current rule applies: do not run local tests.
+
+Remote CI gives slow feedback for small changes to research tooling.
+The proposal permits one short local check of `re/automation/` before a push.
+It covers only the controller, corpus and supervisor process tests.
+It uses no CAD application, model call or network connection.
+A local result never replaces remote CI evidence or a configured review.
+Approval requires a change to the repository rules before the first local run.
+
 ## Failure handling
 
 | Failure                                | Automatic action                                             | Boundary                                                        |
