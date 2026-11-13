@@ -1,6 +1,6 @@
 # `moRelMgr_c` — the equation list in `Contents/Config-0`
 
-Read-only analysis of a licensed SOLIDWORKS 2025 install and of the `examples/` corpus. No
+Read-only analysis of a licensed SOLIDWORKS 2025 install and of the `re/solidworks/examples/` corpus. No
 SOLIDWORKS binary was modified. Everything below is reproduced by
 `.rescratch/eqn_Layout.py`, `.rescratch/eqn_census.py` and `.rescratch/eqn_relation.py`, whose
 raw output is `.rescratch/eqn_layout.txt`, `.rescratch/eqn_census.json` /

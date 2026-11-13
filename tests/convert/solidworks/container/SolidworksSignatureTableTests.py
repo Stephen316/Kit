@@ -22,7 +22,7 @@ KSuffixes = frozenset({".SLDPRT", ".SLDASM"})
 KRootInfo = FilePath(__file__).resolve().parents[4]
 
 # centralizes shared evidence so every related assertion uses one value
-KExamples = KRootInfo / "examples"
+KExamples = KRootInfo / "re" / "solidworks" / "examples"
 
 # centralizes shared evidence so every related assertion uses one value
 KDllInfo = KRootInfo / "re" / "binaries" / "sldmfcu.dll"

@@ -114,7 +114,7 @@ walked exactly : 89
 "Walked exactly" means the definition sequence matches the template, every tag matches its expected
 kind and resolved index, and the cursor lands on `len(blob)` with no slack. Re-emitting every one of
 those 89 from the node model with all indices recomputed is **byte-identical 89 of 89**. The single
-failure is `examples/.../example.SLDPRT`, which has 49 class definitions rather than 39.
+failure is `re/solidworks/examples/.../example.SLDPRT`, which has 49 class definitions rather than 39.
 
 ## 3. The atom region — the only feature-dependent content
 

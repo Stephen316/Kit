@@ -31,11 +31,11 @@ from interchange.geometry.models.Sketch import SketchEntity
 
 # centralizes shared evidence so every related assertion uses one value
 KSample = (
-    FilePath(__file__).resolve().parents[4] / "examples" / ".SLDPRT" / "example.SLDPRT"
+    FilePath(__file__).resolve().parents[4] / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT"
 )
 
 # centralizes shared evidence so every related assertion uses one value
-KCorpus = FilePath(__file__).resolve().parents[4] / "examples" / "Random"
+KCorpus = FilePath(__file__).resolve().parents[4] / "re" / "solidworks" / "examples" / "Random"
 
 # centralizes shared evidence so every related assertion uses one value
 KTwoZeroTwoSix = frozenset(
@@ -531,7 +531,7 @@ def TestAAMARNJ() -> None:
     reason="the SOLIDWORKS corpus is not present in this checkout",
 )
 def TestELSCD() -> None:
-    Examples = FilePath(__file__).resolve().parents[4] / "examples"
+    Examples = FilePath(__file__).resolve().parents[4] / "re" / "solidworks" / "examples"
     Parts = sorted(
         (
             TargetPath

@@ -10,7 +10,14 @@ from convert.adapters.solidworks.container.Format import (
 )
 from tests.convert.solidworks.container.FrameFixture import FrameFixture
 
-KSample = FilePath(__file__).parents[4] / "examples" / ".SLDPRT" / "example.SLDPRT"
+KSample = (
+    FilePath(__file__).parents[4]
+    / "re"
+    / "solidworks"
+    / "examples"
+    / ".SLDPRT"
+    / "example.SLDPRT"
+)
 
 
 @TestMark.parametrize("Chained", (True, False))

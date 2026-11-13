@@ -15,7 +15,7 @@ grammar at all.
 
 ## 1. Corpus
 
-673 CAD files under `examples/`, `.rescratch/**`, `files/` and `tests/fixtures/solidworks/` carry
+673 CAD files under `re/solidworks/examples/`, `.rescratch/**`, `files/` and `tests/fixtures/solidworks/` carry
 the stream: **194 distinct payloads across 21 sizes**.
 
 Size is a function of exactly five things, none of them geometric:

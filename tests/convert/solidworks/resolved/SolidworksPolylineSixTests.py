@@ -30,9 +30,9 @@ KRepoRoot = FilePath(__file__).resolve().parents[4]
 # centralizes shared evidence so every related assertion uses one value
 KDonorStream = (
     KRepoRoot
-    / "examples"
+    / "re"
+    / "solidworks"
     / "Fixtures"
-    / "SolidWorks"
     / "donors"
     / "poly6_boss"
     / "resolved.bin"

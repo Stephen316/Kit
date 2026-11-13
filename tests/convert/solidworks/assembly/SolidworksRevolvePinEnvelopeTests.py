@@ -23,9 +23,9 @@ from convert.adapters.solidworks.envelopes.revolve.pin.default.Envelope import (
 # centralizes shared evidence so every related assertion uses one value
 KFixtureRoot = (
     FilePath(__file__).resolve().parents[4]
-    / "examples"
+    / "re"
+    / "solidworks"
     / "Fixtures"
-    / "SolidWorks"
     / "donors"
 )
 

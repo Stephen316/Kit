@@ -70,35 +70,46 @@ KFinDescriptor: TypeAlias = tuple[str, str]
 KFaceOrders: TypeAlias = dict[int, tuple[int, int, int]]
 
 # this binding exists because shared behavior needs one stable value
-KRootValue = PathValue(__file__).parents[3]
-
-# this binding exists because shared behavior needs one stable value
-KCrankshaft = KRootValue / "examples" / "Random" / "Crank" / "Crankshaft.SLDPRT"
-
-# this binding exists because shared behavior needs one stable value
-KFuelInjector = (
-    KRootValue / "examples" / "Random" / "Cylinder_heads" / "Fuel_injector.SLDPRT"
+KRandomRoot = (
+    PathValue(__file__).parents[3] / "re" / "solidworks" / "examples" / "Random"
 )
 
 # this binding exists because shared behavior needs one stable value
-KPoppet = KRootValue / "examples" / "Random" / "Cylinder_heads" / "Poppet.SLDPRT"
+KCrankshaft = KRandomRoot / "Crank" / "Crankshaft.SLDPRT"
+
+# this binding exists because shared behavior needs one stable value
+KFuelInjector = KRandomRoot / "Cylinder_heads" / "Fuel_injector.SLDPRT"
+
+# this binding exists because shared behavior needs one stable value
+KPoppet = KRandomRoot / "Cylinder_heads" / "Poppet.SLDPRT"
 
 # this binding exists because shared behavior needs one stable value
 KIntersectionParts = (
-    (KRootValue / "examples" / "Random" / "Engine_mount_support.SLDPRT", 27, 2),
-    (KRootValue / "examples" / "Random" / "Pistons" / "Conrod.SLDPRT", 43, 2),
+    (
+        KRandomRoot / "Engine_mount_support.SLDPRT",
+        27,
+        2,
+    ),
+    (
+        KRandomRoot / "Pistons" / "Conrod.SLDPRT",
+        43,
+        2,
+    ),
 )
 
 # this binding exists because shared behavior needs one stable value
 KCompactFinParts = (
     (KCrankshaft, 1),
     (
-        KRootValue / "examples" / "Random" / "Cylinder_heads" / "Inlet_manifold.SLDPRT",
+        KRandomRoot / "Cylinder_heads" / "Inlet_manifold.SLDPRT",
         16,
     ),
-    (KRootValue / "examples" / "Random" / "Engine_Block.SLDPRT", 78),
     (
-        KRootValue / "examples" / "Random" / "Supercharger" / "Screw_2.SLDPRT",
+        KRandomRoot / "Engine_Block.SLDPRT",
+        78,
+    ),
+    (
+        KRandomRoot / "Supercharger" / "Screw_2.SLDPRT",
         1,
     ),
 )
@@ -106,25 +117,17 @@ KCompactFinParts = (
 # these cases isolate the cylinder head and valve surface corpus
 KNurbsHeadParts = (
     (
-        KRootValue / "examples" / "Random" / "Cylinder_heads" / "Cylinder_head.SLDPRT",
+        KRandomRoot / "Cylinder_heads" / "Cylinder_head.SLDPRT",
         16,
         16,
     ),
     (
-        KRootValue
-        / "examples"
-        / "Random"
-        / "Cylinder_heads"
-        / "Exhaust_manifold.SLDPRT",
+        KRandomRoot / "Cylinder_heads" / "Exhaust_manifold.SLDPRT",
         9,
         9,
     ),
     (
-        KRootValue
-        / "examples"
-        / "Random"
-        / "Cylinder_heads"
-        / "Exhaust_manifold_2.SLDPRT",
+        KRandomRoot / "Cylinder_heads" / "Exhaust_manifold_2.SLDPRT",
         9,
         9,
     ),
@@ -133,23 +136,23 @@ KNurbsHeadParts = (
 
 # these cases isolate the supercharger surface corpus
 KNurbsChargerParts = (
-    (KRootValue / "examples" / "Random" / "Supercharger" / "Screw_1.SLDPRT", 6, 6),
     (
-        KRootValue / "examples" / "Random" / "Supercharger" / "Screw_2.SLDPRT",
+        KRandomRoot / "Supercharger" / "Screw_1.SLDPRT",
+        6,
+        6,
+    ),
+    (
+        KRandomRoot / "Supercharger" / "Screw_2.SLDPRT",
         12,
         12,
     ),
     (
-        KRootValue
-        / "examples"
-        / "Random"
-        / "Supercharger"
-        / "Supercharger_housing.SLDPRT",
+        KRandomRoot / "Supercharger" / "Supercharger_housing.SLDPRT",
         3,
         1,
     ),
     (
-        KRootValue / "examples" / "Random" / "Supercharger" / "Throttle_housing.SLDPRT",
+        KRandomRoot / "Supercharger" / "Throttle_housing.SLDPRT",
         1,
         1,
     ),
@@ -160,31 +163,31 @@ KNurbsSurfaceParts = KNurbsHeadParts + KNurbsChargerParts
 
 # this binding exists because shared behavior needs one stable value
 KNurbsCurveParts = (
-    (KRootValue / "examples" / "Random" / "Supercharger" / "Screw_1.SLDPRT", 18, 6),
-    (KRootValue / "examples" / "Random" / "Supercharger" / "Screw_2.SLDPRT", 30, 12),
+    (
+        KRandomRoot / "Supercharger" / "Screw_1.SLDPRT",
+        18,
+        6,
+    ),
+    (
+        KRandomRoot / "Supercharger" / "Screw_2.SLDPRT",
+        30,
+        12,
+    ),
 )
 
 # this binding exists because shared behavior needs one stable value
-KWaterPump = KRootValue / "examples" / "Random" / "Addons" / "Water_pump.SLDPRT"
+KWaterPump = KRandomRoot / "Addons" / "Water_pump.SLDPRT"
 
 # this binding exists because shared behavior needs one stable value
 KIntersectionSupportParts = (
     (
-        KRootValue
-        / "examples"
-        / "Random"
-        / "Cylinder_heads"
-        / "Cylinder_head_cover.SLDPRT",
+        KRandomRoot / "Cylinder_heads" / "Cylinder_head_cover.SLDPRT",
         144,
         99,
         71,
     ),
     (
-        KRootValue
-        / "examples"
-        / "Random"
-        / "Cylinder_heads"
-        / "Cylinder_head_cover_2.SLDPRT",
+        KRandomRoot / "Cylinder_heads" / "Cylinder_head_cover_2.SLDPRT",
         148,
         103,
         72,

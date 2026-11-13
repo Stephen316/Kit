@@ -33,7 +33,13 @@ from interchange import (
 )
 
 # centralizes shared evidence so every related assertion uses one value
-KRandom = FilePath(__file__).resolve().parents[4] / "examples" / "Random"
+KRandom = (
+    FilePath(__file__).resolve().parents[4]
+    / "re"
+    / "solidworks"
+    / "examples"
+    / "Random"
+)
 
 # centralizes shared evidence so every related assertion uses one value
 KAssembly = KRandom / "V8_engine.SLDASM"

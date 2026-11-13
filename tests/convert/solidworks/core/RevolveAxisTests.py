@@ -10,6 +10,8 @@ from convert.adapters.solidworks.container.Container import SldprtArchive
 
 KSample = (
     FilePath(__file__).parents[4]
+    / "re"
+    / "solidworks"
     / "examples"
     / "Single Turbo Dual Overhead Cam V8 - KDP - 2024"
     / "10MM x 20MM x 13MM head 316 Stainless Steel Socket Head Screw.SLDPRT"

@@ -75,7 +75,7 @@ mm³, 1 body, zero load errors — healthy in all six batches).
 
 ### Reference: the vendor original
 
-`examples/Random/Pistons/Piston.SLDASM` — opened, no load errors or warnings, 4 components all
+`re/solidworks/examples/Random/Pistons/Piston.SLDASM` — opened, no load errors or warnings, 4 components all
 `fully-resolved`, 6 mates, rebuild true, 4 bodies, volume `94147.19377093748` mm³, centre of mass
 `(0.000379, 32.304601, -0.000207)` mm. The three Kit-emitted sibling parts are byte-preserved vendor
 `.SLDPRT` files and each opens cleanly: `88776.64112962573`, `140.58627124813898`,
@@ -147,7 +147,7 @@ the vendor's 6, so `Capability.ASSEMBLY_MATES` is claimed but not delivered.
 `envelope_complete` round-trips the generated header through `decode_native_model_header`, but that
 decoder cannot read the real vendor assembly header at all — it raises
 `native SOLIDWORKS header layout is unexpected` on
-`examples/Random/Pistons/Piston.SLDASM`'s `Contents/Config-0-ModelHeader`. The check therefore only
+`re/solidworks/examples/Random/Pistons/Piston.SLDASM`'s `Contents/Config-0-ModelHeader`. The check therefore only
 proves Kit round-trips its own dialect. `structure_complete` and the `COMPINSTANCETREE` re-parse
 behind `Capability.ASSEMBLIES` are equally self-referential; the substitution table above shows both
 of those streams are in fact fine, so neither was ever the thing at risk.
@@ -174,7 +174,7 @@ written back, `_source_template` returns the vendor bytes and `_generated_stream
 `Contents/Config-0-ModelHeader`, `Header2` — come through byte-identical, and Kit's rejected
 synthesised model header is never written.
 
-`write_document(read_sldprt("examples/Random/Pistons/Piston.SLDASM"), out)` produces a 45-stream file
+`write_document(read_sldprt("re/solidworks/examples/Random/Pistons/Piston.SLDASM"), out)` produces a 45-stream file
 that differs from the vendor original in exactly three streams: `Kit/Interchange`, `Kit/Native`,
 `swXmlContents/COMPINSTANCETREE`.
 
@@ -229,7 +229,7 @@ and the four `absent_vendor_stream:` entries plus
 
 ### `V8_engine.SLDASM`
 
-`examples/Random/V8_engine.SLDASM` writes a 52-stream donor-carried file with 53 sibling parts. It
+`re/solidworks/examples/Random/V8_engine.SLDASM` writes a 52-stream donor-carried file with 53 sibling parts. It
 declines for two independent reasons: 14 components are Toolbox parts with no reachable source, so
 the bundle is incomplete and the write downgrades to a carrier; and the output **adds**
 `Contents/Config-0-Partition`, a stream the vendor assembly does not have, which the gate reports as

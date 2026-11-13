@@ -71,16 +71,24 @@ from tests.interchange.brep.BrepTests import triangle_brep as TriangleBrep
 KRootValue = FilePath(__file__).parents[3]
 
 # this binding exists because shared behavior needs one stable value
-KCatparts = KRootValue / "examples" / ".CATPart"
+KCatparts = KRootValue / "re" / "catia" / "examples" / ".CATPart"
 
 # this binding exists because shared behavior needs one stable value
-KCatproducts = KRootValue / "examples" / ".CATProduct"
+KCatproducts = KRootValue / "re" / "catia" / "examples" / ".CATProduct"
 
 # this binding exists because shared behavior needs one stable value
-KSldprt = KRootValue / "examples" / ".SLDPRT" / "example.SLDPRT"
+KSldprt = KRootValue / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT"
 
 # this binding exists because shared behavior needs one stable value
-KSldasm = KRootValue / "examples" / "Random" / "Pistons" / "Piston.SLDASM"
+KSldasm = (
+    KRootValue
+    / "re"
+    / "solidworks"
+    / "examples"
+    / "Random"
+    / "Pistons"
+    / "Piston.SLDASM"
+)
 
 
 # this definition exists because focused behavior needs one stable owner

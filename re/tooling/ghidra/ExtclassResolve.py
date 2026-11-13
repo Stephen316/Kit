@@ -26,7 +26,7 @@ KSegments = KRootInfo / "re" / "data" / "segments"
 KCorpusRoots = (
     KRootInfo / ".rescratch" / "corpus" / "parts",
     KRootInfo / ".rescratch" / "corpus2" / "parts",
-    KRootInfo / "examples" / "Single Turbo Dual Overhead Cam V8 - KDP - 2024",
+    KRootInfo / "re" / "solidworks" / "examples" / "Single Turbo Dual Overhead Cam V8 - KDP - 2024",
 )
 
 # needed to keep reverse engineering responsibilities isolated and maintainable

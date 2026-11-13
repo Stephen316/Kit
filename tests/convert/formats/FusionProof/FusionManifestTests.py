@@ -33,7 +33,12 @@ KCaptureFolder = (
 
 # this independent capture uses the alternate observed manifest header words
 KExampleFile = (
-    FilePath(__file__).resolve().parents[4] / "examples" / ".f3d" / "example2.f3d"
+    FilePath(__file__).resolve().parents[4]
+    / "re"
+    / "Fusion"
+    / "examples"
+    / ".f3d"
+    / "example2.f3d"
 )
 
 

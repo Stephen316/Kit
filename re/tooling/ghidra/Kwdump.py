@@ -13,7 +13,7 @@ def MainRun():
     for NameTextInfo in System.argv[1:]:
         HitsInfo = list((KRootInfo / ".rescratch").rglob(NameTextInfo + ".SLDPRT"))
         if not HitsInfo:
-            HitsInfo = list((KRootInfo / "examples").rglob(NameTextInfo + ".SLDPRT"))
+            HitsInfo = list((KRootInfo / "re/solidworks/examples").rglob(NameTextInfo + ".SLDPRT"))
         if not HitsInfo:
             print(NameTextInfo, "missing")
             continue

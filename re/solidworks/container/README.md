@@ -46,7 +46,7 @@ distinct file_ids 1000 of 1000
 parts=184 match=184 mismatch=0 unknown=0 unreadable=0
 ```
 
-Every `.SLDPRT`/`.SLDASM` under `examples/` plus the four authored corpora was read through the
+Every `.SLDPRT`/`.SLDASM` under `re/solidworks/examples/` plus the four authored corpora was read through the
 project's real container parser and compared against the extracted table: every file id is present,
 and all three of its signatures are exactly the parallel entry. Nothing was hand-verified.
 

@@ -21,7 +21,14 @@ from interchange import (
 )
 
 # this binding exists because shared behavior needs one stable value
-KExamples = PathValue(__file__).parents[3] / "examples" / "Random" / "V8_engine"
+KExamples = (
+    PathValue(__file__).parents[3]
+    / "re"
+    / "solidworks"
+    / "examples"
+    / "Random"
+    / "V8_engine"
+)
 
 
 # this definition exists because focused behavior needs one stable owner

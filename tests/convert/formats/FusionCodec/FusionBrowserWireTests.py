@@ -139,7 +139,7 @@ def TestBadModel() -> None:
     ("RelativeName", "FolderCounts", "Flags"),
     (
         ("re/Fusion/Study/planedefinitions-6cd0820a832e/offset.f3d", (1, 5), {0}),
-        ("examples/.f3d/example2.f3d", (5, 1), {0, 1}),
+        ("re/Fusion/examples/.f3d/example2.f3d", (5, 1), {0, 1}),
     ),
 )
 def TestSavedReplay(

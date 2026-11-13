@@ -10,8 +10,8 @@ partial arc's radius, centre, and endpoints in the record family it could segmen
 differential located the arc representation. Kit still has no arbitrary partial-arc feature program,
 so those source histories fail closed; there is no donor library or donor fallback.
 
-Corpus: `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts) plus
-`examples/Random/**` (53 parts) = **110** parts with a resolved-features lane and a
+Corpus: `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts) plus
+`re/solidworks/examples/Random/**` (53 parts) = **110** parts with a resolved-features lane and a
 `swXmlContents/KeyWords`. Tools in this directory; nothing under `src/` was changed for the
 investigation itself.
 
@@ -123,7 +123,7 @@ lane also carries **1134** `sg*` class definitions:
 
 `sgArcHandle` is defined in **96 of 110** parts, so arcs are serialized as `sgArcHandle` objects.
 Dissecting the first such object (`firstobjects.py`, on the smallest arc-bearing part,
-`examples/Random/Pistons/Piston_ring.SLDPRT`, 14 109 bytes) shows the object body is 64 bytes of
+`re/solidworks/examples/Random/Pistons/Piston_ring.SLDPRT`, 14 109 bytes) shows the object body is 64 bytes of
 base-class data followed by a nested `ff ff 1f 00 03` entity record; the coordinate record that
 `sketch_coordinates()` finds sits _inside_ that nested record. The arc's own parameters are in the
 `sgArcHandle` body, whose byte extent cannot be computed without the per-class `Serialize` layout.

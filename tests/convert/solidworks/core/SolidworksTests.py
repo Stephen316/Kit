@@ -25,7 +25,7 @@ from interchange import (
 from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
 
 # centralizes shared evidence so every related assertion uses one value
-KSample = FilePath(__file__).parents[4] / "examples" / ".SLDPRT" / "example.SLDPRT"
+KSample = FilePath(__file__).parents[4] / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT"
 
 
 

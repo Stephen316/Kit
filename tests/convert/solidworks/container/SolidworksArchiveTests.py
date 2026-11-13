@@ -66,7 +66,7 @@ KLayouts = KRootInfo / "re" / "data" / "Layouts" / "ClassLayouts.json"
 KSegments = KRootInfo / "re" / "data" / "segments" / "Streams"
 
 # centralizes shared evidence so every related assertion uses one value
-KDonors = KRootInfo / "examples" / "Fixtures" / "SolidWorks" / "donors"
+KDonors = KRootInfo / "re" / "solidworks" / "Fixtures" / "donors"
 
 # centralizes shared evidence so every related assertion uses one value
 KLabels = (
@@ -164,7 +164,9 @@ def TracePartPath(Payload: RecordedArchive) -> FilePath:
         return Original
     Parts = PureWindowsPath(Payload["part"]).parts
     for Index, Value in enumerate(Parts):
-        if Value in {"examples", ".rescratch"}:
+        if Value == "examples":
+            return KRootInfo.joinpath("re", "solidworks", *Parts[Index:])
+        if Value == ".rescratch":
             return KRootInfo.joinpath(*Parts[Index:])
     return Original
 

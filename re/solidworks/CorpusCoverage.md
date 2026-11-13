@@ -130,9 +130,9 @@ All five FCStd documents detected as assemblies currently fail the portable nati
 
 - `.rescratch/out.FCStd`;
 - `.rescratch/freecad/FreeCAD_1.1.3-Windows-x86_64-py311/data/examples/AssemblyExample.FCStd`;
-- `examples/Random/V8_engine.FCStd`;
-- `examples/Random/V8_engine/Conrod_2.FCStd`; and
-- `examples/Random/V8_engine/Piston_2.FCStd`.
+- `re/solidworks/examples/Random/V8_engine.FCStd`;
+- `re/solidworks/examples/Random/V8_engine/Conrod_2.FCStd`; and
+- `re/solidworks/examples/Random/V8_engine/Piston_2.FCStd`.
 
 The assembly writer has a typed zero-opaque core, but these inputs require unsupported component
 feature histories or assembly semantics. They are therefore not counted as vendor-loadable.

@@ -23,7 +23,14 @@ from interchange.enums.EnumValues import ValueKind
 from interchange.payloads.PayloadRoles import PayloadRole
 
 # this binding exists because shared behavior needs one stable value
-KRandom = PathValue(__file__).parents[3] / "examples" / "Random" / "V8_engine.SLDASM"
+KRandom = (
+    PathValue(__file__).parents[3]
+    / "re"
+    / "solidworks"
+    / "examples"
+    / "Random"
+    / "V8_engine.SLDASM"
+)
 
 # this binding exists because shared behavior needs one stable value
 KOracle = GetFreecadPath()

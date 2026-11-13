@@ -1,6 +1,6 @@
 # SOLIDWORKS corpus static inventory
 
-Corpus: `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`
+Corpus: `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`
 
 63 files scanned: 57 `.SLDPRT` and 6 `.SLDASM`. Pure static container parsing through Kit's own code, no COM API.
 

@@ -37,10 +37,10 @@ the `profiles` list. `_last_node_in_range()` picks the last profile node before 
 part where a revolve precedes an extrude, the extrude gets the **revolve's** node handed to it as
 its sketch, and `_points_in_range` / `_arcs_in_range` then collect the wrong coordinate span.
 
-Exposed parts (revolves and extrudes in the same lane): `examples/Random/Cylinder_heads/Cylinder_head.SLDPRT`,
-`examples/Random/Engine_Block.SLDPRT`, `examples/Random/Addons/Belt_tensioner.SLDPRT`,
-`examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/VÁLVULA.SLDPRT`,
-`examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/PISTÓN.SLDPRT`.
+Exposed parts (revolves and extrudes in the same lane): `re/solidworks/examples/Random/Cylinder_heads/Cylinder_head.SLDPRT`,
+`re/solidworks/examples/Random/Engine_Block.SLDPRT`, `re/solidworks/examples/Random/Addons/Belt_tensioner.SLDPRT`,
+`re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/VÁLVULA.SLDPRT`,
+`re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/PISTÓN.SLDPRT`.
 `Belt_tensioner.SLDPRT` is the clearest single case: tree order is `Sketch1`(26) → `Revolve1`(50,
 flags `0x40000000`, node offset 31628) → `Fillet1`(68) → `Sketch2`(86) → `Boss-Extrude2`(108) → …
 so the revolve node sits in the profile list between two real sketches.
