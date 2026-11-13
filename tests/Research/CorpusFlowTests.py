@@ -29,7 +29,7 @@ def CheckCorpusFlow(CaseMode: str) -> None:
         assert Payload["summary"]["native_by_format"]["f3d"] > 0
         if CaseMode == "tampered":
             Payload["assets"][0]["sha256"] = "0" * 64
-            Manifest.write_text(JsonCodec.dumps(Payload), encoding="utf-8")
+            _ = Manifest.write_text(JsonCodec.dumps(Payload), encoding="utf-8")
         Checked = Subprocess.run(
             Command
             + ["check", "--manifest", str(Manifest)]
