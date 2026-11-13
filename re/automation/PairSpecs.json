@@ -1,0 +1,343 @@
+{
+  "specification_version": 1,
+  "step": "A02",
+  "status": "awaiting_independent_authoring",
+  "coordinate_system": "Right-handed world XYZ in millimetres; sketch XY normal +Z; named planes must be mapped by basis, not vendor labels",
+  "capture_policy": {
+    "source_formats": ["sldprt", "f3d"],
+    "author_independently": true,
+    "conversion_generated_sources_allowed": false,
+    "required_metadata": [
+      "exact_application_build",
+      "authoring_recipe_sha256",
+      "native_sha256",
+      "authoring_origin",
+      "document_units",
+      "world_basis",
+      "configuration",
+      "save_sequence",
+      "measurement_receipt_sha256"
+    ],
+    "required_observations": [
+      "healthy_control_before",
+      "unchanged_rebuild",
+      "load_errors",
+      "load_warnings",
+      "body_count",
+      "volume_with_units",
+      "center_of_mass_with_units",
+      "feature_tree",
+      "all_sketch_entities",
+      "all_constraints",
+      "all_driving_parameters_and_bindings",
+      "expressions_and_dependencies",
+      "suppression_states",
+      "each_independent_parameter_edit_and_restore",
+      "save_and_fresh_reopen",
+      "healthy_control_after"
+    ],
+    "missing_observation": "block qualification; never substitute an analytic expectation or recorded cache",
+    "native_samples": "not_yet_captured",
+    "application_workers": "not_connected_by_A02"
+  },
+  "comparison_tolerances": {
+    "length_mm_absolute": 0.000001,
+    "angle_rad_absolute": 0.000000001,
+    "volume_mm3_absolute": 0.000001,
+    "volume_relative": 0.000000001,
+    "numeric_rule": "absolute_difference <= max(absolute_tolerance, relative_tolerance * max(abs(left), abs(right))); relative tolerance applies only to volume",
+    "topology_history_constraints_bindings": "exact semantic correspondence; no tolerance or name masking",
+    "status": "declared_for_future_comparison; not measured adapter accuracy"
+  },
+  "repeat_and_variation_protocol": [
+    {
+      "id": "repeat-save",
+      "change": "Save the unchanged baseline twice with an application close/reopen between saves",
+      "purpose": "Identify save/session noise without assuming timestamps explain all differences"
+    },
+    {
+      "id": "driving-values",
+      "change": "Change each driving parameter independently using the recipe edits; rebuild, measure and restore before the next edit",
+      "purpose": "Distinguish a driving value from caches, unrelated doubles and coupled fields"
+    },
+    {
+      "id": "direction",
+      "change": "For blind bosses only, reverse +Z to -Z without changing depth magnitude",
+      "purpose": "Separate direction, support basis and additive operation"
+    },
+    {
+      "id": "plane",
+      "change": "Reauthor the complete baseline on YZ with basis u=+Y, v=+Z, n=+X",
+      "purpose": "Identify support-plane semantics and transformed center of mass"
+    },
+    {
+      "id": "units",
+      "change": "Change display units to inches while retaining identical physical geometry; record expressions and bindings",
+      "purpose": "Separate display units from storage units and evaluated quantities"
+    },
+    {
+      "id": "termination",
+      "change": "Reauthor the blind cut as through-all in a separately labelled variant",
+      "purpose": "Distinguish termination grammar; through-all is outside the initial blind-cut profile"
+    }
+  ],
+  "split_policy": {
+    "unit": "whole recipe family and every native authoring lineage, including repeat saves, edits and descendants",
+    "discovery": ["rectangular-history"],
+    "qualification": ["circular-sketch"],
+    "holdout": ["annular-revolution"],
+    "rule": "Do not fit rules on holdout captures; changing the split requires a new specification digest and a new independent family",
+    "existing_inputs": "Provisional lineage reservations only; imported authorship and independence remain unverified; byte duplicates cannot cross splits"
+  },
+  "recipes": [
+    {
+      "id": "P01",
+      "name": "Dimensioned rectangular sketch",
+      "family": "rectangular-history",
+      "split": "discovery",
+      "driving_parameters": { "width_mm": 40, "height_mm": 20 },
+      "geometry": {
+        "plane": "XY",
+        "vertices_uv_mm": [
+          [0, 0],
+          [40, 0],
+          [40, 20],
+          [0, 20]
+        ],
+        "closed_edges": 4
+      },
+      "constraints": [
+        "Four endpoint coincidences close the loop",
+        "Two horizontal and two vertical edge constraints",
+        "Lower-left vertex coincident with origin",
+        "Driving width on lower horizontal edge",
+        "Driving height on left vertical edge"
+      ],
+      "feature_history": ["rectangle-sketch"],
+      "analytic_expectations": {
+        "classification": "expected_not_measured",
+        "body_count": 0,
+        "volume_mm3": null,
+        "center_of_mass_mm": null,
+        "sketch_area_mm2": 800
+      },
+      "independent_edits": [
+        { "parameter": "width_mm", "value": 41, "expected_area_mm2": 820 },
+        { "parameter": "height_mm", "value": 23, "expected_area_mm2": 920 }
+      ],
+      "capture_slots": { "solidworks": null, "fusion": null }
+    },
+    {
+      "id": "P02",
+      "name": "Dimensioned circular sketch",
+      "family": "circular-sketch",
+      "split": "qualification",
+      "driving_parameters": { "diameter_mm": 10 },
+      "geometry": { "plane": "XY", "center_uv_mm": [0, 0], "radius_mm": 5 },
+      "constraints": [
+        "Circle center coincident with origin",
+        "Driving diameter; retain the diameter-to-radius binding"
+      ],
+      "feature_history": ["circle-sketch"],
+      "analytic_expectations": {
+        "classification": "expected_not_measured",
+        "body_count": 0,
+        "volume_mm3": null,
+        "center_of_mass_mm": null,
+        "sketch_area_mm2_formula": "pi * diameter_mm^2 / 4"
+      },
+      "independent_edits": [
+        {
+          "parameter": "diameter_mm",
+          "value": 16,
+          "expected_area_mm2_formula": "64*pi"
+        }
+      ],
+      "capture_slots": { "solidworks": null, "fusion": null }
+    },
+    {
+      "id": "P03",
+      "name": "One-sided blind additive extrusion",
+      "family": "rectangular-history",
+      "split": "discovery",
+      "sketch_recipe": "P01",
+      "driving_parameters": { "width_mm": 40, "height_mm": 20, "depth_mm": 10 },
+      "operation": {
+        "kind": "add",
+        "new_body": true,
+        "direction_world": [0, 0, 1],
+        "termination": "blind",
+        "start_offset_mm": 0,
+        "taper_rad": 0,
+        "symmetric": false
+      },
+      "feature_history": ["rectangle-sketch", "blind-boss"],
+      "analytic_expectations": {
+        "classification": "expected_not_measured",
+        "body_count": 1,
+        "volume_mm3": 8000,
+        "center_of_mass_mm": [20, 10, 5]
+      },
+      "independent_edits": [
+        {
+          "parameter": "width_mm",
+          "value": 41,
+          "expected_volume_mm3": 8200,
+          "expected_center_mm": [20.5, 10, 5]
+        },
+        {
+          "parameter": "height_mm",
+          "value": 23,
+          "expected_volume_mm3": 9200,
+          "expected_center_mm": [20, 11.5, 5]
+        },
+        {
+          "parameter": "depth_mm",
+          "value": 12,
+          "expected_volume_mm3": 9600,
+          "expected_center_mm": [20, 10, 6]
+        }
+      ],
+      "capture_slots": { "solidworks": null, "fusion": null }
+    },
+    {
+      "id": "P04",
+      "name": "Blind rectangular cut with parent body",
+      "family": "rectangular-history",
+      "split": "discovery",
+      "parent_recipe": "P03",
+      "driving_parameters": {
+        "width_mm": 40,
+        "height_mm": 20,
+        "depth_mm": 10,
+        "cut_width_mm": 10,
+        "cut_height_mm": 8,
+        "cut_depth_mm": 4
+      },
+      "cut_sketch": {
+        "support": "top planar face of parent boss at z=depth_mm",
+        "frame": "u=+X,v=+Y,n=+Z",
+        "center_uv_mm": [20, 10],
+        "vertices_uv_mm": [
+          [15, 6],
+          [25, 6],
+          [25, 14],
+          [15, 14]
+        ],
+        "constraints": [
+          "Closed rectangular loop with horizontal/vertical edges",
+          "Center follows parent width/2 and height/2 through expressions",
+          "Driving cut width and cut height"
+        ],
+        "dependency": "support face and center expressions refer to the parent; do not replace by a coincident independent plane"
+      },
+      "operation": {
+        "kind": "cut",
+        "direction_world": [0, 0, -1],
+        "termination": "blind",
+        "taper_rad": 0
+      },
+      "feature_history": [
+        "rectangle-sketch",
+        "blind-boss",
+        "face-supported-cut-sketch",
+        "blind-cut"
+      ],
+      "analytic_expectations": {
+        "classification": "expected_not_measured",
+        "body_count": 1,
+        "volume_mm3": 7680,
+        "center_of_mass_mm": [20, 10, 4.875],
+        "volume_formula": "width*height*depth - cut_width*cut_height*cut_depth",
+        "center_z_formula": "(width*height*depth^2/2 - cut_width*cut_height*cut_depth*(depth-cut_depth/2)) / volume"
+      },
+      "independent_edits": [
+        { "parameter": "width_mm", "value": 44 },
+        { "parameter": "height_mm", "value": 24 },
+        { "parameter": "depth_mm", "value": 12 },
+        { "parameter": "cut_width_mm", "value": 12 },
+        { "parameter": "cut_height_mm", "value": 10 },
+        { "parameter": "cut_depth_mm", "value": 5 }
+      ],
+      "capture_slots": { "solidworks": null, "fusion": null }
+    },
+    {
+      "id": "P05",
+      "name": "Full annular revolution about explicit axis",
+      "family": "annular-revolution",
+      "split": "holdout",
+      "driving_parameters": {
+        "inner_radius_mm": 2,
+        "outer_radius_mm": 6,
+        "height_mm": 12,
+        "angle_deg": 360
+      },
+      "geometry": {
+        "plane": "XZ",
+        "basis": "u=+X,v=+Z,n=-Y",
+        "profile_vertices_uv_mm": [
+          [2, 0],
+          [6, 0],
+          [6, 12],
+          [2, 12]
+        ],
+        "axis_world": { "origin_mm": [0, 0, 0], "direction": [0, 0, 1] },
+        "positive_sweep": "right-handed about +Z starting at +X toward +Y"
+      },
+      "constraints": [
+        "Four coincident endpoint pairs close the rectangle",
+        "Two horizontal and two vertical edges",
+        "Lower edge on z=0",
+        "Driving inner radius, outer radius and height",
+        "Axis explicitly bound to world Z; do not infer from labels"
+      ],
+      "operation": { "kind": "add", "new_body": true, "symmetric": false },
+      "feature_history": ["axis-bound-rectangular-sketch", "revolution"],
+      "analytic_expectations": {
+        "classification": "expected_not_measured",
+        "body_count": 1,
+        "volume_mm3_formula": "384*pi",
+        "center_of_mass_mm": [0, 0, 6],
+        "general_volume_formula": "angle_rad*(outer_radius^2-inner_radius^2)*height/2",
+        "general_center_xy_formula": "k*[sin(angle_rad),1-cos(angle_rad)] where k=2*(outer_radius^3-inner_radius^3)/(3*angle_rad*(outer_radius^2-inner_radius^2))"
+      },
+      "independent_edits": [
+        { "parameter": "inner_radius_mm", "value": 3 },
+        { "parameter": "outer_radius_mm", "value": 7 },
+        { "parameter": "height_mm", "value": 14 },
+        {
+          "parameter": "angle_deg",
+          "value": 90,
+          "qualification": "separately scoped partial-angle variant"
+        }
+      ],
+      "capture_slots": { "solidworks": null, "fusion": null }
+    }
+  ],
+  "missing_dependencies": [
+    {
+      "id": "native-pairs",
+      "status": "missing",
+      "unblocks": "Matched semantic comparison fixtures",
+      "required": "Both independently authored native captures for every recipe, with repeat saves and controlled edits"
+    },
+    {
+      "id": "measurement-binding",
+      "status": "missing",
+      "unblocks": "Qualification of historical or new observations",
+      "required": "Receipts bind exact native SHA-256, recipe digest, application build and healthy controls"
+    },
+    {
+      "id": "historical-solidworks-scratch",
+      "status": "not_tracked",
+      "unblocks": "Reproduction of historical controlled SOLIDWORKS observations",
+      "required": "Original .rescratch corpora and their capture provenance; old report paths alone are insufficient"
+    },
+    {
+      "id": "application-workers",
+      "status": "not_connected",
+      "unblocks": "Fresh independent authoring and measurement",
+      "required": "Explicit isolated authoring/acceptance worker access in A08; never a production conversion dependency"
+    }
+  ]
+}

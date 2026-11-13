@@ -72,6 +72,7 @@ Do not publish an unmeasured hypothesis as product support.
 
 ## Sources
 
+- [Pinned corpus and paired authoring specifications](PinnedCorpus.md)
 - [Research index](../../../re/README.md)
 - [Ghidra setup](../../../re/tooling/ghidra/Setup.md)
 - [Runtime trace tool](../../../re/tooling/windbg/Multitrace.py)
