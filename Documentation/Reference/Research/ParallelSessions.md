@@ -556,19 +556,22 @@ These tables are the starting ladders before the ranking set runs.
 They come from the published model descriptions and prices, not from measurement.
 The [token-efficiency ranking](#model-ranking-by-token-efficiency) replaces each order after the ranking set.
 An excluded model enters the ranking set only when the operator adds it again.
+The operator ruled out the Astra and Fable models.
+The supervisor never adds a ruled-out model back, and never sends a question to one.
+So the strongest tier of each runner is now `xhigh` on its best remaining model.
+A question that fails that tier is parked, as the plan requires.
 
 ### Codex ladder
 
 The source is the Codex model list of 2026-11-13, read from the local Codex installation.
 
-| Tier | Model           | Effort   | Reason for this position                                                   |
-| ---- | --------------- | -------- | -------------------------------------------------------------------------- |
-| 1    | `gpt-6-luna`    | `medium` | Described as fast and affordable for easier tasks                          |
-| 2    | `gpt-6.1-terra` | `medium` | Newest generation; the older Terra model is described as balanced          |
-| 3    | `gpt-6.1-sol`   | `medium` | Described as the latest workhorse, near the frontier model at a lower cost |
-| 4    | `gpt-6.1-sol`   | `high`   | The same model with deeper reasoning, before the frontier model            |
-| 5    | `gpt-6-astra`   | `high`   | Described as frontier intelligence for the most demanding work             |
-| 6    | `gpt-6-astra`   | `xhigh`  | The last tier                                                              |
+| Tier | Model           | Effort   | Reason for this position                                          |
+| ---- | --------------- | -------- | ----------------------------------------------------------------- |
+| 1    | `gpt-6-luna`    | `medium` | Described as fast and affordable for easier tasks                 |
+| 2    | `gpt-6.1-terra` | `medium` | Newest generation; the older Terra model is described as balanced |
+| 3    | `gpt-6.1-sol`   | `medium` | Described as the latest workhorse for coding and everyday work    |
+| 4    | `gpt-6.1-sol`   | `high`   | The same model with deeper reasoning                              |
+| 5    | `gpt-6.1-sol`   | `xhigh`  | The last tier                                                     |
 
 The position of `gpt-6.1-terra` is an inference from the description of the older Terra model.
 The `max` and `ultra` efforts start excluded.
@@ -576,6 +579,7 @@ Add them only when the ranking set shows a pass-rate gain over `xhigh`.
 
 | Excluded model                                 | Reason                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------------- |
+| `gpt-6-astra`                                  | Ruled out by operator decision                                      |
 | `gpt-6-sol`                                    | Previous-generation workhorse; `gpt-6.1-sol` has the same role      |
 | `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` | Older generation; a newer model with the same role is in the ladder |
 | `gpt-reserve`                                  | Hidden in the model list                                            |
@@ -587,14 +591,13 @@ The source is the Anthropic first-party price table cached on 2026-11-03.
 Prices are US dollars for one million input and output tokens.
 Check the current prices during integration.
 
-| Tier | Model               | Effort   | Price (input / output) | Reason for this position                                        |
-| ---- | ------------------- | -------- | ---------------------- | --------------------------------------------------------------- |
-| 1    | `claude-haiku-5-5`  | `medium` | $0.10 / $0.50          | Lowest price; its default effort                                |
-| 2    | `claude-sonnet-5-5` | `medium` | $2 / $10               | Everyday coding and agent work                                  |
-| 3    | `claude-opus-5-5`   | `medium` | $4 / $20               | Current Opus model; its default effort                          |
-| 4    | `claude-opus-5-5`   | `high`   | $4 / $20               | The same model with deeper reasoning                            |
-| 5    | `claude-fable-5-2`  | `high`   | $8 / $40               | Most capable widely released model; recommended start at `high` |
-| 6    | `claude-fable-5-2`  | `xhigh`  | $8 / $40               | Only when the ranking set shows a gain over `high`              |
+| Tier | Model               | Effort   | Price (input / output) | Reason for this position               |
+| ---- | ------------------- | -------- | ---------------------- | -------------------------------------- |
+| 1    | `claude-haiku-5-5`  | `medium` | $0.10 / $0.50          | Lowest price; its default effort       |
+| 2    | `claude-sonnet-5-5` | `medium` | $2 / $10               | Everyday coding and agent work         |
+| 3    | `claude-opus-5-5`   | `medium` | $4 / $20               | Current Opus model; its default effort |
+| 4    | `claude-opus-5-5`   | `high`   | $4 / $20               | The same model with deeper reasoning   |
+| 5    | `claude-opus-5-5`   | `xhigh`  | $4 / $20               | The last tier                          |
 
 The ranking set also measures `claude-opus-5-5` at `low`.
 A stronger model at low effort can use fewer tokens per pass than a weaker model at a high effort.
@@ -602,7 +605,7 @@ The `max` effort starts excluded on every model.
 
 | Excluded model                                                           | Reason                                                |
 | ------------------------------------------------------------------------ | ----------------------------------------------------- |
-| `claude-fable-5-1`, `claude-fable-5`                                     | Older than `claude-fable-5-2` and $10 / $50           |
+| `claude-fable-5-2`, `claude-fable-5-1`, `claude-fable-5`                 | Ruled out by operator decision                        |
 | `claude-opus-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-opus-4-6` | Older than `claude-opus-5-5` and $5 / $25             |
 | `claude-sonnet-5`                                                        | Older than `claude-sonnet-5-5` at the same price      |
 | `claude-sonnet-4-6`                                                      | Older than `claude-sonnet-5-5` and $3 / $15           |
