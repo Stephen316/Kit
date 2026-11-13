@@ -18,6 +18,8 @@ Check existing claims before claiming overlapping work.
 Coordinate shared files explicitly and preserve other contributors' changes.
 
 The document is the durable register.
+It is the only maintained record of step status.
+Other pages link here instead of repeating status.
 PR comments provide the event history and evidence links.
 Update the owner and status cells when an accepted documentation change records a new claim or disposition.
 The controller's SQLite ledger is a separate runtime artifact.

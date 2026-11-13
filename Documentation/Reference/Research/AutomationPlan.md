@@ -5,12 +5,11 @@
 This document is a design for future implementation.
 PR #94 contains the plan and the [completed A01 contract audit](NeutralContractAudit.md).
 A01 introduces no runtime or schema change.
-A02 is now authorized and implemented within [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
-Its offline corpus tooling and paired specifications are implemented; independent captures and measurement bindings remain outstanding.
-A03 is now authorized and implements the [durable research controller](ResearchController.md); remote verification is tracked in the step register.
+Implemented steps have their own guides, for example the [corpus guide](PinnedCorpus.md) and the [durable research controller](ResearchController.md).
 A04–A16 require a subsequent explicit request.
 All implementation steps in this programme stay on PR #94 by explicit user instruction.
 The [step register](AutomationSteps.md) records identifiable deliverables, dependencies and progress.
+It is the only maintained record of step status.
 
 Use one portable `CadDocument` contract and its existing JSON serialization.
 Native readers populate that contract independently.

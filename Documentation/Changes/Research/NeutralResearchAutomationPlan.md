@@ -9,8 +9,7 @@ Cross-format native acceptance governs the initial bidirectional conversion mile
 Same-format checks remain supporting evidence.
 
 The [step register](../../Reference/Research/AutomationSteps.md) provides A01–A16 identifiers, dependencies, owners, statuses and exit criteria.
-A01 is complete; A02 is implemented on [PR #94](https://github.com/TryUniCAD/Kit/pull/94) and remains blocked on independently authored captures and measurement qualification.
-A03–A16 remain planned and unassigned.
+The step register is the only maintained record of the current status of each step.
 The [research instructions](../../../re/AGENTS.md) require progress comments on PR #94 and evidence-backed handoffs.
 The existing research entry point links to the maintained plan.
 
