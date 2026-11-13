@@ -550,6 +550,22 @@ A new question uses the start tier of its route key, because its failing check i
 Lower a start tier only when a tool, rule, runner or model version changes for that signature.
 Record each routing change with the failure log entries that caused it.
 
+### Shared packet prefix
+
+Most of a packet is the same for every question of one kind.
+That part contains the instructions, the output schema and the shared format evidence.
+Put that stable part first, in a fixed byte order, and the question-specific part last.
+Then the provider can reuse its cached copy of the stable part.
+
+For Claude API mode, mark the end of the stable part with a cache breakpoint.
+Check `usage.cache_read_input_tokens` after the first questions of each kind.
+If it stays at zero, a changing value is in the stable part, for example a time or an unsorted list.
+For Codex, the stable part reaches the provider at the start of the packet on standard input.
+Codex reports cached input tokens in its token events.
+
+Cached input tokens have their own weight in `token_weights`.
+So caching lowers the tokens per pass and changes the ranking only through measured use.
+
 ## Starting model rankings
 
 These tables are the starting ladders before the ranking set runs.

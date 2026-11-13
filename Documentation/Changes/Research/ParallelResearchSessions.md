@@ -14,6 +14,7 @@ Separate starting ladders for Codex and Claude come from published model descrip
 The Astra and Fable models are ruled out of both ladders by operator decision.
 Repeat disagreement, pass-rate drift and token spread re-rank an inconsistent candidate automatically for each task type.
 The Codex and Claude error tables separate model failures from infrastructure failures.
+A stable packet prefix lets both providers reuse cached input.
 
 ## Usage and limits
 
