@@ -76,6 +76,7 @@ Use the result procedure before making a product acceptance claim.
 - [Documentation feedback](Maintenance/Feedback.md)
 - [Publishing and generated imports](Publishing.md)
 - [GitHub releases and PyPI publishing](Changes/CommitReleases.md)
+- [Version release tags](Changes/Packaging/VersionReleaseTags.md)
 - [Change entries](Changes/Index.md)
 - [Known gotchas](Gotchas/README.md)
 

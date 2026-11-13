@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
-      contents: write # Creates the commit tag and uploads the release assets.
+      contents: write # Creates the version tag and uploads the release assets.
     steps:
       - name: Download GitHub release assets
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
@@ -84,14 +84,14 @@ jobs:
           path: ${{ runner.temp }}/release
           merge-multiple: true
 
-      - name: Publish the commit release and its assets
+      - name: Publish the version release and its assets
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           PackageVersion: ${{ needs.build.outputs.package-version }}
         shell: bash
         run: |
-          ReleaseTag="commit-${GITHUB_SHA}"
+          ReleaseTag="v${PackageVersion}"
           RefEndpoint="repos/${GH_REPO}/git/ref/tags/${ReleaseTag}"
           if ! TaggedSha="$(gh api "${RefEndpoint}" --jq '.object.sha')"; then
             TaggedSha="$(gh api --method POST "repos/${GH_REPO}/git/refs" \
