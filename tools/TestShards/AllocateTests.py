@@ -5,6 +5,7 @@ import math as MathLib
 from collections.abc import Mapping, Sequence
 
 from tools.TestShards.EstimateTests import EstimateTests
+from tools.TestShards.PairExtremes import PairExtremes
 from tools.TestShards.ShardPlan import ShardPlan
 
 
@@ -24,7 +25,7 @@ def AllocateTests(
     return [
         ShardPlan(
             ShardPos + 1,
-            tuple(TestIds[Position] for Position in sorted(Positions)),
+            tuple(TestIds[Position] for Position in PairExtremes(Positions)),
             sum(Weights[Position] for Position in Positions),
         )
         for ShardPos, Positions in Members.items()

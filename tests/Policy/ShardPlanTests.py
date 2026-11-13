@@ -1,5 +1,6 @@
 import json as JsonLib
 import shutil as ShellUtil
+import statistics as StatsLib
 import subprocess as Subprocess
 import sys as System
 import tempfile as Tempfile
@@ -58,6 +59,15 @@ def PlanSample(SuitePath: FilePath) -> tuple[FilePath, list[str]]:
     return PlanPath, Collected.stdout.split("\n\n")[0].split("\n")
 
 
+def ReadWorkers(ReportPath: FilePath) -> set[str]:
+    WorkerIds: set[str] = set()
+    for LineText in ReportPath.read_text(encoding="utf-8").splitlines():
+        Entry = JsonLib.loads(LineText)
+        if Entry.get("$report_type") == "TestReport":
+            WorkerIds.add(Entry["worker_id"])
+    return WorkerIds
+
+
 def RunShards(PlanPath: FilePath, SuitePath: FilePath) -> list[str]:
     PlanData = JsonLib.loads(PlanPath.read_text(encoding="utf-8"))
     ShardIds: list[str] = []
@@ -68,10 +78,12 @@ def RunShards(PlanPath: FilePath, SuitePath: FilePath) -> list[str]:
             "\n".join(ShardData["TestIds"]) + "\n", encoding="utf-8"
         )
         ReportPath = SuitePath / "Reports" / IndexText / "ShardReport.jsonl"
-        ShardArgs = ["-m", "pytest", "-p", "no:cacheprovider"]
+        ShardArgs = ["-m", "pytest", "-p", "no:cacheprovider", "--numprocesses", "2"]
+        ShardArgs += ["--dist", "load", "--maxschedchunk", "1"]
         ShardArgs += [f"--report-log={ReportPath}", f"@{ArgsPath}"]
         ResultInfo = RunCommand(ShardArgs, SuitePath)
         assert ResultInfo.returncode == 0, ResultInfo.stdout + ResultInfo.stderr
+        assert ReadWorkers(ReportPath) == {"gw0", "gw1"}
         ShardIds.extend(ShardData["TestIds"])
     return ShardIds
 
@@ -115,7 +127,7 @@ def TestShardCap() -> None:
         CollectedText = "\n".join(TestIds) + "\n\n650 tests collected in 0.10s\n"
         _ = (WorkPath / "Collected.txt").write_text(CollectedText, encoding="utf-8")
         SlowIds = TestIds[:3]
-        History = {TestId: 0.1 for TestId in TestIds[3:600]}
+        History = {TestIds[Index]: 0.1 + Index / 1e4 for Index in range(3, 600)}
         History.update({TestId: 90.0 for TestId in SlowIds})
         HistoryText = JsonLib.dumps({"Durations": History})
         _ = (WorkPath / "History.json").write_text(HistoryText, encoding="utf-8")
@@ -130,7 +142,11 @@ def TestShardCap() -> None:
         assert all(len(Shard["TestIds"]) <= 300 for Shard in Shards)
         Assigned = [TestId for Shard in Shards for TestId in Shard["TestIds"]]
         assert sorted(Assigned) == sorted(TestIds)
+        Median = StatsLib.median(History.values())
         for Shard in Shards:
             assert len(set(SlowIds) & set(Shard["TestIds"])) == 1
-            Positions = [TestIds.index(TestId) for TestId in Shard["TestIds"]]
-            assert Positions == sorted(Positions)
+            assert Shard["TestIds"][0] in SlowIds
+            Weights = [History.get(TestId, Median) for TestId in Shard["TestIds"]]
+            assert Weights[0::2] == sorted(Weights[0::2], reverse=True)
+            assert Weights[1::2] == sorted(Weights[1::2])
+            assert Weights[1] == min(Weights)
