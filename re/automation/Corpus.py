@@ -65,25 +65,28 @@ def family(path):
 
 
 def reserve_splits(assets):
-    duplicates = {}
-    for item in assets:
-        if item["kind"] == "native":
-            duplicates.setdefault(item["sha256"], []).append(item)
-    while True:
-        conflicts = {
-            item["lineage"]
-            for group in duplicates.values()
-            if len({item["split"] for item in group}) > 1
-            for item in group
-        }
-        changed = False
-        for item in assets:
-            if item.get("lineage") in conflicts and item["split"] != "quarantine":
-                item["split"] = "quarantine"
-                item["split_reason"] = "byte_duplicate_connects_reserved_lineages"
-                changed = True
-        if not changed:
-            return
+    natives = [item for item in assets if item["kind"] == "native"]
+    splits = {item["lineage"]: item["split"] for item in natives}
+    parents = {lineage: lineage for lineage in splits}
+
+    def root(lineage):
+        while parents[lineage] != lineage:
+            parents[lineage] = parents[parents[lineage]]
+            lineage = parents[lineage]
+        return lineage
+
+    first_by_hash = {}
+    for item in natives:
+        first = first_by_hash.setdefault(item["sha256"], item["lineage"])
+        parents[root(item["lineage"])] = root(first)
+    reserved = {}
+    for lineage, split in splits.items():
+        if split != "quarantine":
+            reserved.setdefault(root(lineage), set()).add(split)
+    for item in natives:
+        if item["split"] != "quarantine" and len(reserved[root(item["lineage"])]) > 1:
+            item["split"] = "quarantine"
+            item["split_reason"] = "byte_duplicate_connects_reserved_lineages"
 
 
 def snapshot(root, revision, specs_path):

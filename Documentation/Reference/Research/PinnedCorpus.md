@@ -123,6 +123,7 @@ Existing imported-study files are reserved for discovery.
 The complete SOLIDWORKS V8 project and Fusion external-example group are reserved as holdouts.
 Unclassified lineages are quarantined.
 If byte-identical native files connect different reserved splits, the tool quarantines the entire affected lineages, including connected duplicate groups.
+Connections pass through quarantined lineages, but a duplicate shared only with a quarantined lineage leaves the reserved lineage in place.
 These reservations do not prove independent authorship or prevent all semantic near-duplicates.
 Audit native ancestry and independent authoring before using any reserved group to claim generalization.
 
