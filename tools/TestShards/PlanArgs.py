@@ -17,4 +17,10 @@ def BuildPlanArgs() -> ArgParse.ArgumentParser:
         "--output", dest="OutputPath", type=FilePath, required=True
     )
     _ = ParserInfo.add_argument("--summary", dest="SummaryPath", type=FilePath)
+    _ = ParserInfo.add_argument("--cache", dest="CachePath", type=FilePath)
+    _ = ParserInfo.add_argument("--tree", dest="TreePath", type=FilePath)
+    _ = ParserInfo.add_argument("--carried", dest="CarriedPath", type=FilePath)
+    _ = ParserInfo.add_argument(
+        "--max-age-days", dest="MaxAge", type=float, default=7.0
+    )
     return ParserInfo

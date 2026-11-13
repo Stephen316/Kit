@@ -7,6 +7,7 @@ from tools.TestShards.FindProblems import FindProblems
 from tools.TestShards.FormatSummary import FormatSummary
 from tools.TestShards.MergeArgs import BuildMergeArgs
 from tools.TestShards.ReadPlan import ReadPlan
+from tools.TestShards.ReadReuse import ReadReuse
 from tools.TestShards.ReadReportLog import ReadReportLog
 from tools.TestShards.TallyReports import TallyReports
 from tools.TestShards.WriteDurations import WriteDurations
@@ -17,14 +18,15 @@ def MainRun(ArgList: list[str] | None = None) -> int:
     ReportsPath: FilePath = ArgsInfo.ReportsPath
     try:
         Plans = ReadPlan(ArgsInfo.PlanPath)
+        Reused = ReadReuse(ArgsInfo.PlanPath, Plans)
         LogPaths = sorted(ReportsPath.rglob("*.jsonl")) if ReportsPath.is_dir() else []
         Tally = TallyReports([ReadReportLog(LogPath) for LogPath in LogPaths])
     except (OSError, UnicodeError, ValueError) as ErrorInfo:
         print(f"test shard report input error: {ErrorInfo}", file=System.stderr)
         return 2
-    Problems = FindProblems(Plans, Tally, len(LogPaths))
-    WriteDurations(ArgsInfo.OutputPath, Plans, Tally.Durations)
-    SummaryText = FormatSummary(Plans, Tally, Problems)
+    Problems = FindProblems(Plans, Tally, len(LogPaths), Reused)
+    WriteDurations(ArgsInfo.OutputPath, Plans, Tally.Durations, Reused)
+    SummaryText = FormatSummary(Plans, Tally, Problems, Reused)
     print(SummaryText)
     SummaryPath: FilePath | None = ArgsInfo.SummaryPath
     if SummaryPath is not None:

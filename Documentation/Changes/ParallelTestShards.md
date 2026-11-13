@@ -23,6 +23,7 @@ The shard jobs now use every CPU of their runner:
 4. `uv sync --compile-bytecode` compiles the installed packages.
    A `compileall` step then compiles `src`, `tools`, and `tests` on all CPUs.
    The workers load the compiled files and do not each compile the same modules.
+   The [queue build cache](QueueTestReuse.md) skips this step when it restores bytecode from `main`.
 5. pytest runs with `-p no:cacheprovider` because the runner is discarded after the job.
 6. The shard summary records the number of planned tests and the CPU count.
 
@@ -96,7 +97,8 @@ uv run python -m tools.TestShards.PlanShards --collected Collected.txt \
   --history TestDurations.json --max-tests 1200 --output ShardPlan.json
 ```
 
-Run one shard with the queue command:
+Run one shard with the xdist options of the queue.
+The queue also loads the [dependency recorder](QueueTestReuse.md).
 
 ```sh
 uv run pytest -p no:cacheprovider --numprocesses logical --dist load \
