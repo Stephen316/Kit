@@ -231,6 +231,7 @@ jobs:
     permissions:
       actions: read # Reads workflow metadata for CodeQL Actions analysis.
       contents: read
+      security-events: read # Lets CodeQL query its Action API endpoints.
     strategy:
       fail-fast: false
       matrix:
