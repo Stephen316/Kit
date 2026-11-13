@@ -53,6 +53,8 @@ def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
         ("queue", "pending", "Scorecard"),
         ("spoof", "success", "Ruff"),
         ("queue-missing", "success", "Merge queue acceptance"),
+        ("quality-missing", "success", "Code Quality"),
+        ("quality-empty", "success", "Code Quality analysis"),
     ),
 )
 def TestPendingGate(CaseMode: str, Verdict: str, PendingCheck: str) -> None:

@@ -1,0 +1,52 @@
+name: Queue cache
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: QueueCache-${{ github.sha }}
+
+jobs:
+  warm:
+    name: Warm the merge-queue build cache
+    if: github.repository == 'TryUniCAD/Kit' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+          cache-suffix: queue-python-3.14
+          cache-python: true
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14 --compile-bytecode
+
+      - name: Compile repository bytecode with source hashes
+        run: >-
+          uv run --no-sync --python 3.14 python -m compileall -q -j 0
+          --invalidation-mode checked-hash src tools tests
+
+      - name: Save the compiled repository bytecode
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            src/**/__pycache__
+            tools/**/__pycache__
+            tests/**/__pycache__
+          key: queue-bytecode-${{ github.sha }}

@@ -43,11 +43,14 @@ The [PR diff breakdown](Documentation/Reference/Operations/DiffBreakdown.md)
 publishes an immutable composition report for each new PR head from trusted base code.
 
 PR aggregation includes lint, formatting, types, repository policies, metadata
-labels, release artifact validation, and GitHub-managed Code Quality for Python,
-Java/Kotlin, and JavaScript/TypeScript. The first-time contributor label applies
-on PR creation. Merge-group aggregation includes the static checks and their
-reuse preflights, the full test suite, both candidate CodeQL jobs, all security
-and SBOM scans, and the acceptance gate. PR runs of the queue workflow report
+labels, release artifact validation, and each GitHub-managed Code Quality
+`Analyze (<language>)` job that GitHub reports. The aggregate waits for a Code
+Quality run only on same-repository PRs that change analyzed source. See
+[applicable Code Quality checks](Documentation/Changes/CodeQualityApplicability.md).
+The first-time contributor label applies on PR creation. Merge-group
+aggregation includes the static checks and their reuse preflights, the full
+test suite, both candidate CodeQL jobs, all security and SBOM scans, and the
+acceptance gate. PR runs of the queue workflow report
 the acceptance gate with the heavy jobs deferred. Missing jobs keep the
 aggregate pending. Unexpected skips, cancellations, timeouts, and failures
 fail the aggregate. The summary links individual reports.
@@ -133,9 +136,15 @@ contexts on the merge group and either execute or use verified equivalent PR evi
 
 The pytest suite runs as [runtime-planned shards](Documentation/Changes/ShardedTestSuite.md).
 `Test suite / Plan` collects the candidate's tests and sizes the shard matrix.
-Each shard holds at most 300 tests.
+The plan [reuses verified results](Documentation/Changes/QueueTestReuse.md) of test modules whose recorded files and folders did not change since an accepted ancestor candidate.
+Every other collected test runs in a shard.
+Each shard holds at most 1,200 tests, which is 300 tests for each CPU of its 4-CPU runner.
 Each `Test suite / Shard (n)` job runs only its planned node IDs.
-`Test suite / Report` fails unless every planned test ran exactly once.
+The shard runs them [in parallel on every CPU](Documentation/Changes/ParallelTestShards.md) with pytest-xdist.
+The plan orders each shard so that a fast test follows each slow test.
+`Test suite / Report` fails unless every planned test ran exactly once and the planned and reused tests cover the collected suite.
+The report then records the dependencies of the passing modules for later candidates.
+The `Queue cache` workflow saves the Python 3.14 install, the uv cache, and the compiled bytecode from each `main` commit for the queue jobs.
 The acceptance gate requires the plan, every shard, and the report to succeed.
 `Run the complete test suite` remains as a compatibility job that requires the same three jobs.
 The trusted-base `CI Agg` of the first sharded candidate still requires that name.
