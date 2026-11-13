@@ -43,11 +43,14 @@ The [PR diff breakdown](Documentation/Reference/Operations/DiffBreakdown.md)
 publishes an immutable composition report for each new PR head from trusted base code.
 
 PR aggregation includes lint, formatting, types, repository policies, metadata
-labels, release artifact validation, and GitHub-managed Code Quality for Python,
-Java/Kotlin, and JavaScript/TypeScript. The first-time contributor label applies
-on PR creation. Merge-group aggregation includes the static checks and their
-reuse preflights, the full test suite, both candidate CodeQL jobs, all security
-and SBOM scans, and the acceptance gate. PR runs of the queue workflow report
+labels, release artifact validation, and each GitHub-managed Code Quality
+`Analyze (<language>)` job that GitHub reports. The aggregate waits for a Code
+Quality run only on same-repository PRs that change analyzed source. See
+[applicable Code Quality checks](Documentation/Changes/CodeQualityApplicability.md).
+The first-time contributor label applies on PR creation. Merge-group
+aggregation includes the static checks and their reuse preflights, the full
+test suite, both candidate CodeQL jobs, all security and SBOM scans, and the
+acceptance gate. PR runs of the queue workflow report
 the acceptance gate with the heavy jobs deferred. Missing jobs keep the
 aggregate pending. Unexpected skips, cancellations, timeouts, and failures
 fail the aggregate. The summary links individual reports.
