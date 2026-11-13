@@ -31,7 +31,7 @@ git show --no-patch --no-show-signature --format=%B "${GITHUB_SHA}" > "${RUNNER_
   tar --list --gzip --file "${ArchiveName}.tar.gz" > "${RUNNER_TEMP}/TarContents.txt"
   for ContentsPath in "${RUNNER_TEMP}/ZipContents.txt" "${RUNNER_TEMP}/TarContents.txt"; do
     grep -Fxq "${ArchiveName}/pyproject.toml" "${ContentsPath}"
-    if grep -Eq "^${ArchiveName}/(re|examples/Fixtures/SolidWorks/donors)(/|$)" "${ContentsPath}"; then
+    if grep -Eq "^${ArchiveName}/re(/|$)" "${ContentsPath}"; then
       echo "Research or donor fixtures leaked into ${ContentsPath}" >&2
       exit 1
     fi

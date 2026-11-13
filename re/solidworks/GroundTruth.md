@@ -1,6 +1,6 @@
 # Real-world SOLIDWORKS corpus: ground truth
 
-Source corpus: `Kit/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`
+Source corpus: `Kit/re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024`
 57 `.SLDPRT` + 6 `.SLDASM`, authored in SOLIDWORKS 2020-2024, `swVersion="14000"`.
 Census tooling: `Kit/.rescratch/census.py` -> `Kit/.rescratch/census/census.txt`, `PerFile.json`.
 

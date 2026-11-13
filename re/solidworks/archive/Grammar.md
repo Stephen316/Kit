@@ -1,7 +1,7 @@
 # `Contents/Config-0-ResolvedFeatures` — serialization grammar
 
 SOLIDWORKS 2025 (`18000`), corpus `.rescratch/corpus/parts` (31 parts) + `.rescratch/corpus2/parts`
-(20 parts) + `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts).
+(20 parts) + `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts).
 Tools in `.rescratch/grammar/`. Nothing under `src/` or `tests/` was modified.
 
 This builds on `.rescratch/corpus/REPORT.md` (report 1) and `.rescratch/corpus2/REPORT.md`

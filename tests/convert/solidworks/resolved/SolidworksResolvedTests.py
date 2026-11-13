@@ -61,6 +61,8 @@ KPatched = KCorpusA / "patched"
 # centralizes shared evidence so every related assertion uses one value
 KCorpus = (
     FilePath(__file__).resolve().parents[4]
+    / "re"
+    / "solidworks"
     / "examples"
     / "Single Turbo Dual Overhead Cam V8 - KDP - 2024"
 )

@@ -325,7 +325,7 @@ Reproduction: `.rescratch/para417_sigrel/` holds 23 scripts, one family per file
 
 ### Verification
 
-`Sigtable.py` extracts all 1000 pairs, then reads every `.SLDPRT` / `.SLDASM` under `examples/`,
+`Sigtable.py` extracts all 1000 pairs, then reads every `.SLDPRT` / `.SLDASM` under `re/solidworks/examples/`,
 `.rescratch/corpus/parts`, `.rescratch/corpus2`, `.rescratch/trace/parts` and `.rescratch/re/parts`
 with the project's own `Container.py` (`SldprtArchive` plus `_template_fields`, so the signatures
 are the ones the real parser extracts, not a guess) and compares:

@@ -136,7 +136,7 @@ byte-exact against the traced `stream_length`:
 | `vendor_ring`     | `Piston Ring KF.SLDPRT`           | 25998        |
 | `vendor_cojinete` | `COJINETE INFERIOR.SLDPRT`        | 17601        |
 
-So no fixture substitution was needed and no approximate match was used. `examples/Fixtures/SolidWorks/donors/boss1_front_rect_blind/resolved.bin` is 11073 bytes against `baseline`'s
+So no fixture substitution was needed and no approximate match was used. `re/solidworks/Fixtures/donors/boss1_front_rect_blind/resolved.bin` is 11073 bytes against `baseline`'s
 11075 and is **not** the same part; it was not used. The `boss1..boss3` fixtures do back the
 `Config-0` node sequences of §2, which came from the `Multistream.md` trace of that family.
 

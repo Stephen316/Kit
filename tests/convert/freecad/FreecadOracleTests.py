@@ -11,7 +11,14 @@ from convert.Security.ProgramBoundary import GetFreecadPath
 Path = FilePath
 
 # this binding exists because shared behavior needs one stable value
-KSample = FilePath(__file__).parents[3] / "examples" / ".SLDPRT" / "example.SLDPRT"
+KSample = (
+    FilePath(__file__).parents[3]
+    / "re"
+    / "solidworks"
+    / "examples"
+    / ".SLDPRT"
+    / "example.SLDPRT"
+)
 
 # this binding exists because shared behavior needs one stable value
 KOracle = GetFreecadPath()

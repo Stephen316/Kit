@@ -131,21 +131,23 @@ from tests.interchange.brep.BrepTests import triangle_brep as TriangleBrep
 from tests.interchange.document.DocumentTests import document as Document
 
 # centralizes shared evidence so every related assertion uses one value
-KSample = FilePath(__file__).parents[4] / "examples" / ".SLDPRT" / "example.SLDPRT"
+KSample = FilePath(__file__).parents[4] / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT"
 
 # centralizes shared evidence so every related assertion uses one value
 KAssembly = (
-    FilePath(__file__).parents[4] / "examples" / "Random" / "Pistons" / "Piston.SLDASM"
+    FilePath(__file__).parents[4] / "re" / "solidworks" / "examples" / "Random" / "Pistons" / "Piston.SLDASM"
 )
 
 # centralizes shared evidence so every related assertion uses one value
 KConrod = (
-    FilePath(__file__).parents[4] / "examples" / "Random" / "Pistons" / "Conrod.SLDASM"
+    FilePath(__file__).parents[4] / "re" / "solidworks" / "examples" / "Random" / "Pistons" / "Conrod.SLDASM"
 )
 
 # centralizes shared evidence so every related assertion uses one value
 KRingInfo = (
     FilePath(__file__).parents[4]
+    / "re"
+    / "solidworks"
     / "examples"
     / "Random"
     / "Pistons"
@@ -154,7 +156,7 @@ KRingInfo = (
 
 # centralizes shared evidence so every related assertion uses one value
 KCatproduct = (
-    FilePath(__file__).parents[4] / "examples" / ".CATProduct" / "Tilton_Set.CATProduct"
+    FilePath(__file__).parents[4] / "re" / "catia" / "examples" / ".CATProduct" / "Tilton_Set.CATProduct"
 )
 
 # centralizes shared evidence so every related assertion uses one value

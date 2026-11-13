@@ -4,8 +4,8 @@ Static corpus analysis only. **SOLIDWORKS was never launched**; no COM, no `test
 debugger. The independent ground truth is `swXmlContents/KeyWords`, which is plain XML in every
 part and carries the feature id, the feature name and the revolve angle.
 
-Corpus: **111 `.SLDPRT`** under `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts),
-`examples/Random/**` (53 parts) and `examples/.SLDPRT` (1 part). **40 parts** contain revolves,
+Corpus: **111 `.SLDPRT`** under `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts),
+`re/solidworks/examples/Random/**` (53 parts) and `re/solidworks/examples/.SLDPRT` (1 part). **40 parts** contain revolves,
 **67 revolve features** in total (**39** revolved bosses, **28** revolved cuts).
 
 Everything here builds on `.rescratch/grammar/Grammar.md`, `.rescratch/corpus/REPORT.md` (report 1)
@@ -44,9 +44,9 @@ A revolve is **not** an `<Extrusion>` element. It is a `<Feature>` with `Type="R
 <Feature id="144" Name="Revolve1" Type="Revolve"><Dimension Name="D1">360°</Dimension></Feature>
 ```
 
-- `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/10MM x 20MM x 13MM head 316 Stainless Steel Socket Head Screw.SLDPRT`
+- `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/10MM x 20MM x 13MM head 316 Stainless Steel Socket Head Screw.SLDPRT`
   carries `Revolve1` id 144 and `Revolve2` id 256, both `360°`.
-- `examples/Random/Addons/Idle_pulley.SLDPRT` carries `Revolve1` id 50, `360.00°`.
+- `re/solidworks/examples/Random/Addons/Idle_pulley.SLDPRT` carries `Revolve1` id 50, `360.00°`.
 
 Localisation affects the `Name` only (`Revolución1`, `Cortar-Revolución1`); `Type` stays English.
 The angle text always ends in `°` and is written either `360°` or `360.00°`, so a reader must strip
@@ -102,8 +102,8 @@ The value is in **RADIANS**, not degrees and not the metres-like scaling the ext
 
 | part                                           | lane offset | raw `float64`     | `degrees(raw)` | `KeyWords` |
 | ---------------------------------------------- | ----------- | ----------------- | -------------- | ---------- |
-| `examples/Random/Addons/Idle_pulley.SLDPRT`    | **8608**    | `6.2831853071796` | 360.000000     | `360.00°`  |
-| `examples/Random/Addons/Belt_tensioner.SLDPRT` | **33761**   | `6.2831853071796` | 360.000000     | `360.00°`  |
+| `re/solidworks/examples/Random/Addons/Idle_pulley.SLDPRT`    | **8608**    | `6.2831853071796` | 360.000000     | `360.00°`  |
+| `re/solidworks/examples/Random/Addons/Belt_tensioner.SLDPRT` | **33761**   | `6.2831853071796` | 360.000000     | `360.00°`  |
 
 `degrees(raw)` equals the `KeyWords` angle in **67/67** features
 (`summary.angle_matches_keywords`). An exhaustive byte-aligned `float64` scan of every lane found
@@ -122,7 +122,7 @@ record-data-start `+32`, exactly parallel to the extrude depth at `moLengthParam
 = data `+32`; the one-byte difference is only the class-name length (`moAngleParameter_c` is 18
 characters, `moLengthParameter_c` is 19).
 
-Record layout, from `examples/Random/Addons/Idle_pulley.SLDPRT` marker **8552**, record span 1084
+Record layout, from `re/solidworks/examples/Random/Addons/Idle_pulley.SLDPRT` marker **8552**, record span 1084
 bytes (full hex dump in `.rescratch/revolve/angleparam.txt`):
 
 ```
@@ -244,14 +244,14 @@ Grammar.md §2.1 describes.
 
 Evidence:
 
-- `examples/Random/Addons/Idle_pulley.SLDPRT` — end-spec data at 7920, first instance, token 7900.
+- `re/solidworks/examples/Random/Addons/Idle_pulley.SLDPRT` — end-spec data at 7920, first instance, token 7900.
   At **7755** (= token − 145): `1a 00 00 00` = 26 = the id of tree node `Sketch1`, followed by
   `be 0f b9 61` = `time_t` 1639387582. This part has no reference axis at all.
-- `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/RUEDA DE TURBINA.SLDPRT` — three revolve
+- `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/RUEDA DE TURBINA.SLDPRT` — three revolve
   objects at 69165 (first instance, token 69145), 138859 (token 138857) and 177564 (token 177562).
   At **69014**, **138726** and **177431** (each = token − 131): `2e 00 00 00` = 46 = the id of tree
   node `Eje1`, each followed by `time_t` 0x5c39a692.
-- `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/CUBIERTA.SLDPRT` is the mixed case:
+- `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/CUBIERTA.SLDPRT` is the mixed case:
   `Cortar-Revolución1` uses the sketch slot, `Cortar-Revolución2` and `Cortar-Revolución3` use the
   reference-axis slot (`Eje1`, id 193).
 
@@ -348,8 +348,8 @@ report 2 §6.4 found.
 
 ### 7.3 Two parts have no sketch geometry in this lane at all
 
-`examples/Random/Addons/Idle_pulley.SLDPRT` and
-`examples/Random/Addons/Power_steering_pump_pulley.SLDPRT` contain `moProfileFeature_c`,
+`re/solidworks/examples/Random/Addons/Idle_pulley.SLDPRT` and
+`re/solidworks/examples/Random/Addons/Power_steering_pump_pulley.SLDPRT` contain `moProfileFeature_c`,
 `moSketchChain_c` and a `Sketch1` tree node, but **zero** sketch-coordinate records and **zero**
 `sg*` geometry classes in `Contents/Config-0-ResolvedFeatures`. Whatever holds their sketch
 geometry, it is not this lane. Several other parts are close to that state
