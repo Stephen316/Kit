@@ -161,7 +161,7 @@ def snapshot(root, revision, specs_path):
 
 
 def check_manifest(root, manifest, specs_path):
-    if manifest.get("manifest_version") != 1:
+    if not isinstance(manifest, dict) or manifest.get("manifest_version") != 1:
         raise ValueError("unsupported manifest version")
     actual = snapshot(root, manifest["source_revision"], specs_path)
     if manifest != actual:
@@ -185,9 +185,14 @@ def main():
             if args.manifest.exists():
                 raise ValueError("snapshot destination already exists; select a new path")
             manifest = snapshot(args.root, args.revision, args.specifications)
-            with args.manifest.open("x", encoding="utf-8") as output:
-                json.dump(manifest, output, ensure_ascii=False, indent=2, allow_nan=False)
-                output.write("\n")
+            text = json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+            output = args.manifest.open("x", encoding="utf-8")
+            try:
+                with output:
+                    output.write(text)
+            except BaseException:
+                args.manifest.unlink(missing_ok=True)
+                raise
             summary = manifest["summary"]
         else:
             manifest = load_json(args.manifest)
