@@ -63,7 +63,11 @@ Do not change live rulesets as part of this workflow.
 
 A successful PR aggregate publishes a small immutable evidence artifact bound
 to its repository, PR number, head repository, head SHA and tree, event base SHA,
-base ancestry, workflow event, workflow run, and attempt. The merge queue
+base ancestry, workflow event, workflow run, and attempt. A queued PR is
+included when its head is an ancestor of the candidate or when the candidate's
+`gh-readonly-queue/<branch>/pr-<number>-<sha>` ref names it. Squash candidates
+never contain the PR head as an ancestor, so the ref is the only membership
+signal for them. The merge queue
 checks current CI health for every included PR and validates the artifact's
 origin and SHA-256 digest. Reuse requires identical candidate and PR-head trees,
 identical base commits, and ancestry from that base to the PR head. With that

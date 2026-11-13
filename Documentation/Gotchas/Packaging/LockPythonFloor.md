@@ -1,0 +1,3 @@
+# Lock Python floor
+
+An override to a patched version might appear to remove a vulnerable version from `uv.lock`. If the patched release needs a newer Python than the project floor, uv forks the lock. It keeps the vulnerable version for the older Python range, and OSV-Scanner still reports it. `soupsieve` 4 needs Python 3.11.5, and the project floor is 3.11. Limit `[tool.uv].environments` as well as overriding, and check that the old version is gone from the lock. Advisories also appear without a code change, so an identical candidate can fail a later queue run. See [the repair](../../Changes/SoupsieveAdvisories.md).

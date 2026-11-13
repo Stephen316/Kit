@@ -1,0 +1,3 @@
+# CodeQL local sources
+
+Runner-provided values might appear trusted to CodeQL. The configuration uses `threat-models: local`, so environment variables and command-line arguments are untrusted. A regular expression on `GITHUB_REPOSITORY` failed as polynomial ReDoS. A file path from `argv` or the environment that a script opens is a path-injection sink. In privileged workflow `run` blocks, the Actions query also flags `cat` of a file, even when the output goes to the step summary or standard error. Validate without backtracking regular expressions, keep script paths fixed, and read report files in a pinned script action. See [the repair](../../Changes/DiffBreakdownCodeql.md).
