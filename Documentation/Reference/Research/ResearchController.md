@@ -158,8 +158,11 @@ Actual remote evidence is recorded on the PR and in the step register.
 | `failed`              | Retry budget exhausted for the current prerequisite generation                         |
 
 A fingerprint binds the full job definition, selected input digests and dependency receipt/result digests.
-Reconciliation builds one adjacency graph and visits each registered job and dependency edge once per sweep.
-Unchanged reads within the same transaction reuse that sweep.
+Definition changes validate the dependency graph with one adjacency traversal.
+Execution uses a persistent queue of affected jobs and indexed reverse bindings/resources/dependencies.
+Claims, heartbeats and completions do not rebuild or traverse the full graph.
+Unchanged targeted status and heartbeat responses report `reconciled_jobs: 0`.
+The counter records prerequisite evaluations in that command's transaction, not CAD coverage.
 An unchanged definition and unchanged bindings reuse the completed result.
 Changing evidence, options, a rule/tool version or a dependency result invalidates affected jobs transitively.
 Old attempt receipts and their immutable definitions/snapshots remain available after invalidation.
@@ -188,12 +191,15 @@ Worker transport, process termination and physical application control belong to
 ## Evidence and remaining scope
 
 A03 adds remote process checks for restart persistence, idempotent reuse, transitive invalidation, stale-result fencing, competing claims, global capacity, exclusive resources, expiry/backoff limits, parked jobs, changed rule versions, cycle rollback and corrupt objects.
-The scaling scenario submits a 10,000-job chain in bounded batches and exercises targeted status, root completion and dependent claims through the real command interface.
+The scaling scenario submits a 10,000-job chain in bounded batches and completes 250 steps through the real command interface.
+It checks that idle targeted reads and heartbeats reconcile no unrelated jobs and each completion updates only its direct dependent.
 They execute through the real CLI and filesystem/database boundaries.
 No local tests or collection run under repository policy.
 
-The SQLite schema is version 1; unknown versions are rejected.
-No migration, distributed worker service, model provider, CAD adapter, neutral schema change or capability promotion is added.
+The SQLite schema is version 2; version 1 stores migrate transactionally to the persistent queue and reverse indexes.
+The migration retains jobs, attempts, receipts and artifacts and initially queues existing jobs for reconciliation.
+Unknown versions are rejected.
+No distributed worker service, model provider, CAD adapter, neutral schema change or capability promotion is added.
 Worker-reported completion and a valid receipt do not prove the worker's assertion.
 Domain verification and native acceptance remain separate later steps.
 

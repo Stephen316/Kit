@@ -47,10 +47,10 @@ def CheckAppExpiry() -> None:
         )
         _ = Client.RunCli("submit", str(JobFile))
         TimeClock.sleep(2.1)
-        assert (
-            JsonCodec.loads(Client.RunCli("status"))["jobs"][0]["state"]
-            == "waiting_application"
-        )
+        assert {
+            JobInfo["id"]: JobInfo["state"]
+            for JobInfo in JsonCodec.loads(Client.RunCli("status"))["jobs"]
+        } == {"application": "waiting_application", "a-queued": "waiting_application"}
         assert (
             JsonCodec.loads(
                 Client.RunCli(

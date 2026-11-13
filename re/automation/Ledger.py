@@ -26,7 +26,7 @@ class Ledger:
         self.db.row_factory = sqlite3.Row
         try:
             version = self.db.execute("PRAGMA user_version").fetchone()[0]
-            if version not in (0, 1):
+            if version not in (0, 1, 2):
                 raise ValueError("unsupported research store version")
             self.db.execute("PRAGMA foreign_keys=ON")
             self.db.execute("PRAGMA journal_mode=DELETE")
@@ -40,7 +40,16 @@ class Ledger:
                     if statement.strip():
                         self.db.execute(statement)
                 self.db.execute("INSERT INTO settings VALUES (?,?)", ("max_running", bounded(max_running, 1, 64)))
-                self.db.execute("PRAGMA user_version=1")
+            if version in (0, 1):
+                for statement in Path(__file__).with_name("QueueSchema.sql").read_text().split(";"):
+                    if statement.strip():
+                        self.db.execute(statement)
+                for row in self.db.execute("SELECT id,definition FROM jobs").fetchall():
+                    spec = specification(json.loads(row["definition"]))
+                    self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(row["id"], name) for name in set(spec["inputs"].values())])
+                    self.db.executemany("INSERT INTO job_resources VALUES (?,?)", [(row["id"], name) for name in spec["resources"]])
+                self.db.execute("INSERT INTO dirty SELECT id FROM jobs")
+                self.db.execute("PRAGMA user_version=2")
             self.db.execute("COMMIT")
             os.chmod(database, 0o600)
         except BaseException:
@@ -50,7 +59,7 @@ class Ledger:
     def __enter__(self):
         self.db.execute("BEGIN IMMEDIATE")
         self.checked = set()
-        self.refreshed = False
+        self.reconciled = 0
         return self
 
     def __exit__(self, kind, value, traceback):
@@ -67,25 +76,33 @@ class Ledger:
             self.objects.verify(sha256)
             self.checked.add(sha256)
 
+    def enqueue_children(self, job_id):
+        self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM dependencies WHERE dependency=?", (job_id,))
+
+    def change_resource(self, name, available):
+        previous = self.db.execute("SELECT available FROM resources WHERE name=?", (name,)).fetchone()
+        if previous is not None and previous[0] == int(available):
+            return
+        self.db.execute("INSERT INTO resources VALUES (?,?) ON CONFLICT(name) DO UPDATE SET available=excluded.available", (name, int(available)))
+        if available:
+            self.db.execute("UPDATE jobs SET parked=0 WHERE state='waiting_application' AND parked=1 AND id IN (SELECT job_id FROM job_resources WHERE resource=?)", (name,))
+        self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM job_resources WHERE resource=?", (name,))
+        self.event(None, "resource", {"name": name, "available": bool(available)})
+
     def bind(self, name, path):
         name = label(name)
         sha256 = self.objects.put_file(path)
+        previous = self.db.execute("SELECT sha256 FROM bindings WHERE name=?", (name,)).fetchone()
         self.db.execute("INSERT INTO bindings VALUES (?,?) ON CONFLICT(name) DO UPDATE SET sha256=excluded.sha256", (name, sha256))
-        self.refreshed = False
+        if previous is None or previous[0] != sha256:
+            self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM job_inputs WHERE binding=?", (name,))
         self.event(None, "binding", {"name": name, "sha256": sha256})
         self.refresh()
         return {"name": name, "sha256": sha256}
 
     def resource(self, name, available):
         name = label(name)
-        previous = self.db.execute("SELECT available FROM resources WHERE name=?", (name,)).fetchone()
-        self.db.execute("INSERT INTO resources VALUES (?,?) ON CONFLICT(name) DO UPDATE SET available=excluded.available", (name, int(available)))
-        if available and (previous is None or not previous[0]):
-            for row in self.db.execute("SELECT id,definition FROM jobs WHERE state='waiting_application' AND parked=1").fetchall():
-                if name in json.loads(row["definition"])["resources"]:
-                    self.db.execute("UPDATE jobs SET parked=0 WHERE id=?", (row["id"],))
-        self.refreshed = False
-        self.event(None, "resource", {"name": name, "available": bool(available)})
+        self.change_resource(name, available)
         self.refresh()
         return {"name": name, "available": bool(available)}
 
@@ -103,7 +120,11 @@ class Ledger:
         self.db.execute("DELETE FROM dependencies WHERE job_id=?", (spec["id"],))
         self.db.executemany("INSERT INTO dependencies VALUES (?,?)", [(spec["id"], item) for item in spec["depends_on"]])
         self.event(spec["id"], "submitted", {"definition_hash": digest(spec)})
-        self.refreshed = False
+        self.db.execute("DELETE FROM job_inputs WHERE job_id=?", (spec["id"],))
+        self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(spec["id"], name) for name in set(spec["inputs"].values())])
+        self.db.execute("DELETE FROM job_resources WHERE job_id=?", (spec["id"],))
+        self.db.executemany("INSERT INTO job_resources VALUES (?,?)", [(spec["id"], name) for name in spec["resources"]])
+        self.db.execute("INSERT OR IGNORE INTO dirty VALUES (?)", (spec["id"],))
 
     def submit_many(self, values):
         if not isinstance(values, list) or not 1 <= len(values) <= 10000:
@@ -116,6 +137,7 @@ class Ledger:
         count, size = self.db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(definition AS BLOB))),0) FROM jobs").fetchone()
         if count > 10000 or size > 16 * 1024 * 1024:
             raise ValueError("store job metadata limit exceeded")
+        self.check_graph()
         self.refresh()
         return {"submitted": len(specs)}
 
@@ -153,7 +175,7 @@ class Ledger:
                     self.verify_object(prior_hash)
                     prior_spec = json.loads(self.objects.path(prior_hash).read_text(encoding="utf-8"))
                     for resource in prior_spec["resources"]:
-                        self.db.execute("UPDATE resources SET available=0 WHERE name=?", (resource,))
+                        self.change_resource(resource, False)
                         self.event(None, "resource_recovery_required", {"name": resource})
                 receipt = self.objects.put_record({
                     "receipt_version": 1, "job_id": row["id"], "generation": row["generation"],
@@ -166,69 +188,86 @@ class Ledger:
         self.db.execute("UPDATE jobs SET worker=NULL,token_hash=NULL,lease_until=NULL,deadline=NULL,active_attempt=NULL WHERE id=?", (row["id"],))
         return receipt
 
-    def refresh(self):
-        if self.refreshed:
-            return
-        pending = {row["id"]: row for row in self.db.execute("SELECT * FROM jobs ORDER BY id").fetchall()}
-        specs = {name: json.loads(row["definition"]) for name, row in pending.items()}
-        children = {name: [] for name in pending}
-        indegree = {name: 0 for name in pending}
-        for name, spec in specs.items():
-            for parent in spec["depends_on"]:
-                if parent in pending:
-                    children[parent].append(name)
-                    indegree[name] += 1
-        ready = deque(name for name in pending if indegree[name] == 0)
+    def check_graph(self):
+        children = {row[0]: [] for row in self.db.execute("SELECT id FROM jobs")}
+        indegree = {name: 0 for name in children}
+        for row in self.db.execute("SELECT job_id,dependency FROM dependencies"):
+            if row["dependency"] in children:
+                children[row["dependency"]].append(row["job_id"])
+                indegree[row["job_id"]] += 1
+        ready = deque(name for name in children if indegree[name] == 0)
         visited = 0
         while ready:
-            name = ready.popleft()
-            row = pending[name]
-            spec = specs[name]
-            snapshot = self.snapshot(spec)
-            fingerprint = digest(snapshot) if snapshot is not None else None
-            if fingerprint is not None and row["fingerprint"] == fingerprint:
-                self.verify_object(fingerprint)
-            if row["fingerprint"] != fingerprint:
-                self.revoke(row, "invalidated")
-                if snapshot is not None:
-                    self.objects.put_record(snapshot)
-                self.db.execute(
-                    "UPDATE jobs SET generation=generation+1,fingerprint=?,snapshot=?,attempts=0,parked=0,next_run=0,"
-                    "receipt=NULL,result=NULL,state='queued',reason=? WHERE id=?",
-                    (fingerprint, canonical(snapshot) if snapshot is not None else None, "prerequisites changed", name),
-                )
-                self.event(name, "invalidated", {"fingerprint": fingerprint})
-                row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
-            if row["state"] == "running" and min(row["lease_until"], row["deadline"]) <= time.time():
-                self.expire(row, spec)
-                row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
-            unavailable = any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in spec["resources"])
-            if row["state"] == "running" and unavailable:
-                receipt = self.revoke(row, "resource_unavailable")
-                self.db.execute("UPDATE jobs SET state='waiting_application',parked=0,receipt=?,result=NULL,reason=? WHERE id=?", (receipt, "resource unavailable", name))
-                row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
-            if row["state"] == "completed":
-                self.verify_object(row["receipt"])
-                self.verify_object(row["result"])
-            elif row["state"] != "running" and not row["parked"] and row["state"] not in ("failed", "rejected"):
-                state = "waiting_evidence" if snapshot is None else "waiting_application" if unavailable else "queued"
-                self.db.execute("UPDATE jobs SET state=? WHERE id=?", (state, name))
             visited += 1
-            for child in children[name]:
+            for child in children[ready.popleft()]:
                 indegree[child] -= 1
                 if indegree[child] == 0:
                     ready.append(child)
-        if visited != len(pending):
+        if visited != len(children):
             raise ValueError("job dependency cycle")
-        for row in self.db.execute("SELECT id FROM jobs WHERE parked=0 AND fingerprint IS NOT NULL AND state IN ('queued','waiting_application')").fetchall():
-            unavailable = any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in specs[row["id"]]["resources"])
-            self.db.execute("UPDATE jobs SET state=? WHERE id=?", ("waiting_application" if unavailable else "queued", row["id"]))
-        self.refreshed = True
+
+    def reconcile_job(self, row):
+        self.reconciled += 1
+        name = row["id"]
+        spec = json.loads(row["definition"])
+        before = (row["receipt"], row["result"]) if row["state"] == "completed" else None
+        snapshot = self.snapshot(spec)
+        fingerprint = digest(snapshot) if snapshot is not None else None
+        if fingerprint is not None and row["fingerprint"] == fingerprint:
+            self.verify_object(fingerprint)
+        if row["fingerprint"] != fingerprint:
+            self.revoke(row, "invalidated")
+            if snapshot is not None:
+                self.objects.put_record(snapshot)
+            self.db.execute(
+                "UPDATE jobs SET generation=generation+1,fingerprint=?,snapshot=?,attempts=0,parked=0,next_run=0,"
+                "receipt=NULL,result=NULL,state='queued',reason=? WHERE id=?",
+                (fingerprint, canonical(snapshot) if snapshot is not None else None, "prerequisites changed", name),
+            )
+            self.event(name, "invalidated", {"fingerprint": fingerprint})
+            row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
+        if row["state"] == "running" and min(row["lease_until"], row["deadline"]) <= time.time():
+            self.expire(row, spec)
+            row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
+        unavailable = any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in spec["resources"])
+        if row["state"] == "running" and unavailable:
+            receipt = self.revoke(row, "resource_unavailable")
+            self.db.execute("UPDATE jobs SET state='waiting_application',parked=0,receipt=?,result=NULL,reason=? WHERE id=?", (receipt, "resource unavailable", name))
+            row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
+        if row["state"] == "completed":
+            self.verify_object(row["receipt"])
+            self.verify_object(row["result"])
+        elif row["state"] != "running" and not row["parked"] and row["state"] not in ("failed", "rejected"):
+            state = "waiting_evidence" if snapshot is None else "waiting_application" if unavailable else "queued"
+            self.db.execute("UPDATE jobs SET state=? WHERE id=?", (state, name))
+        after = self.db.execute("SELECT state,receipt,result FROM jobs WHERE id=?", (name,)).fetchone()
+        after = (after["receipt"], after["result"]) if after["state"] == "completed" else None
+        if before != after:
+            self.enqueue_children(name)
+
+    def refresh(self):
+        self.db.execute("INSERT OR IGNORE INTO dirty SELECT id FROM jobs WHERE state='running' AND (lease_until<=? OR deadline<=?)", (time.time(), time.time()))
+        while True:
+            dirty = self.db.execute("SELECT job_id FROM dirty ORDER BY job_id LIMIT 1").fetchone()
+            if dirty is None:
+                return
+            self.db.execute("DELETE FROM dirty WHERE job_id=?", (dirty[0],))
+            self.reconcile_job(self.db.execute("SELECT * FROM jobs WHERE id=?", (dirty[0],)).fetchone())
+
+    def verify_job(self, row):
+        snapshot = self.snapshot(json.loads(row["definition"]))
+        if (digest(snapshot) if snapshot is not None else None) != row["fingerprint"]:
+            raise ValueError("job prerequisites require reconciliation")
+        if row["fingerprint"] is not None:
+            self.verify_object(row["fingerprint"])
+        if row["state"] == "completed":
+            self.verify_object(row["receipt"])
+            self.verify_object(row["result"])
 
     def expire(self, row, spec):
         receipt = self.revoke(row, "expired")
         for resource in spec["resources"]:
-            self.db.execute("UPDATE resources SET available=0 WHERE name=?", (resource,))
+            self.change_resource(resource, False)
             self.event(None, "resource_recovery_required", {"name": resource})
         state = "failed" if row["attempts"] >= spec["max_attempts"] else "queued"
         delay = min(300, spec["retry_base_seconds"] * 2 ** (row["attempts"] - 1))
@@ -239,16 +278,20 @@ class Ledger:
         worker = label(worker)
         self.refresh()
         maximum = self.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]
-        running = self.db.execute("SELECT * FROM jobs WHERE state='running'").fetchall()
-        if len(running) >= maximum:
+        running = self.db.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
+        if running >= maximum:
             return {"job": None, "reason": "concurrency limit"}
-        busy = {resource for row in running for resource in json.loads(row["definition"])["resources"]}
-        for row in self.db.execute("SELECT * FROM jobs WHERE state='queued' AND next_run<=? ORDER BY created,id", (time.time(),)).fetchall():
+        while True:
+            row = self.db.execute(
+                "SELECT j.* FROM jobs j WHERE j.state='queued' AND j.next_run<=? "
+                "AND NOT EXISTS (SELECT 1 FROM job_resources r LEFT JOIN resources a ON a.name=r.resource WHERE r.job_id=j.id AND COALESCE(a.available,0)=0) "
+                "AND NOT EXISTS (SELECT 1 FROM job_resources r JOIN job_resources held ON held.resource=r.resource JOIN jobs owner ON owner.id=held.job_id WHERE r.job_id=j.id AND owner.state='running') "
+                "ORDER BY j.created,j.id LIMIT 1", (time.time(),)
+            ).fetchone()
+            if row is None:
+                return {"job": None, "reason": "no runnable jobs"}
+            self.verify_job(row)
             spec = json.loads(row["definition"])
-            if any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in spec["resources"]):
-                continue
-            if busy.intersection(spec["resources"]):
-                continue
             if row["attempts"] >= spec["max_attempts"]:
                 self.db.execute("UPDATE jobs SET state='failed',reason=? WHERE id=?", ("attempt budget exhausted", row["id"]))
                 continue
@@ -264,10 +307,8 @@ class Ledger:
                 "UPDATE jobs SET state='running',attempts=attempts+1,worker=?,token_hash=?,lease_until=?,deadline=?,active_attempt=?,reason=NULL,receipt=NULL,result=NULL WHERE id=?",
                 (worker, hashlib.sha256(token.encode()).hexdigest(), lease_until, deadline, attempt, row["id"]),
             )
-            self.refreshed = False
             self.event(row["id"], "claimed", {"attempt": row["attempts"] + 1, "worker": worker})
             return {"job": spec, "generation": row["generation"], "attempt": row["attempts"] + 1, "fingerprint": row["fingerprint"], "snapshot": json.loads(row["snapshot"]), "lease_token": token, "lease_until": lease_until, "deadline": deadline}
-        return {"job": None, "reason": "no runnable jobs"}
 
     def leased(self, job_id, token):
         self.refresh()
@@ -277,6 +318,7 @@ class Ledger:
         row = self.db.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchone()
         if row is None or row["state"] != "running" or not hmac.compare_digest(row["token_hash"], hashlib.sha256(token.encode()).hexdigest()):
             raise ValueError("stale or invalid lease")
+        self.verify_job(row)
         return row
 
     def heartbeat(self, job_id, token):
@@ -284,7 +326,7 @@ class Ledger:
         spec = json.loads(row["definition"])
         lease_until = min(time.time() + spec["lease_seconds"], row["deadline"])
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
-        return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"]}
+        return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled}
 
     def finish(self, job_id, token, outcome, result, reason):
         row = self.leased(job_id, token)
@@ -307,7 +349,7 @@ class Ledger:
             state = "failed" if row["attempts"] >= spec["max_attempts"] else "queued"
         if outcome == "waiting_application":
             for resource in spec["resources"]:
-                self.db.execute("UPDATE resources SET available=0 WHERE name=?", (resource,))
+                self.change_resource(resource, False)
                 self.event(None, "resource_recovery_required", {"name": resource})
         delay = min(300, spec["retry_base_seconds"] * 2 ** (row["attempts"] - 1)) if outcome == "retry" else 0
         self.db.execute("UPDATE attempts SET ended=?,outcome=?,receipt=? WHERE id=?", (time.time(), outcome, receipt, row["active_attempt"]))
@@ -316,7 +358,7 @@ class Ledger:
             "UPDATE jobs SET state=?,receipt=?,result=?,reason=?,parked=?,next_run=? WHERE id=?",
             (state, receipt, result_hash, reason, int(state.startswith("waiting_") or state == "rejected"), time.time() + delay, job_id),
         )
-        self.refreshed = False
+        self.enqueue_children(job_id)
         self.event(job_id, "finished", {"outcome": outcome, "state": state, "receipt": receipt})
         self.refresh()
         return self.status(job_id)
@@ -327,12 +369,14 @@ class Ledger:
         if after is not None:
             label(after)
         self.refresh()
-        rows = self.db.execute(
-            "SELECT id,state,generation,fingerprint,attempts,receipt,result,reason,lease_until,deadline FROM jobs "
-            "WHERE (? IS NULL OR id=?) AND (? IS NULL OR id>?) ORDER BY id LIMIT 101",
-            (job_id, job_id, after, after),
-        ).fetchall()
-        return {"jobs": [dict(row) for row in rows[:100]], "next_after": rows[99]["id"] if len(rows) > 100 else None}
+        if job_id is not None:
+            rows = self.db.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchall()
+        else:
+            rows = self.db.execute("SELECT * FROM jobs WHERE id>? ORDER BY id LIMIT 101", (after or "",)).fetchall()
+        for row in rows[:100]:
+            self.verify_job(row)
+        fields = ("id", "state", "generation", "fingerprint", "attempts", "receipt", "result", "reason", "lease_until", "deadline")
+        return {"jobs": [{key: row[key] for key in fields} for row in rows[:100]], "next_after": rows[99]["id"] if len(rows) > 100 else None, "reconciled_jobs": self.reconciled}
 
     def events(self):
         return {"events": [dict(row) for row in self.db.execute("SELECT * FROM events ORDER BY id DESC LIMIT 100").fetchall()]}

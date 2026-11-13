@@ -35,41 +35,55 @@ def CheckLargeQueue() -> None:
                 ]
                 == 1000
             )
+        StatusInfo = JsonCodec.loads(Client.RunCli("status", "--job", "chain:09999"))
+        assert StatusInfo["jobs"][0]["state"] == "waiting_evidence"
+        assert StatusInfo["reconciled_jobs"] == 0
+        ResultFile = RootPath / "Result.json"
+        _ = ResultFile.write_text('{"fixture":true}', encoding="utf-8")
+        for Index in range(250):
+            LeaseFile = RootPath / f"Lease{Index}.json"
+            assert (
+                JsonCodec.loads(
+                    Client.RunCli(
+                        "claim",
+                        "--worker",
+                        "worker:chain",
+                        "--claim-file",
+                        str(LeaseFile),
+                    )
+                )["job"]
+                == f"chain:{Index:05d}"
+            )
+            assert (
+                JsonCodec.loads(Client.RunCli("heartbeat", "--lease", str(LeaseFile)))[
+                    "reconciled_jobs"
+                ]
+                == 0
+            )
+            Finished = JsonCodec.loads(
+                Client.RunCli(
+                    "finish",
+                    "--lease",
+                    str(LeaseFile),
+                    "--result",
+                    str(ResultFile),
+                    "--outcome",
+                    "completed",
+                    "--reason",
+                    "fixture chain step",
+                )
+            )
+            assert Finished["jobs"][0]["state"] == "completed"
+            assert Finished["reconciled_jobs"] == 1
         assert (
-            JsonCodec.loads(Client.RunCli("status", "--job", "chain:09999"))["jobs"][0][
+            JsonCodec.loads(Client.RunCli("status", "--job", "chain:00250"))["jobs"][0][
                 "state"
             ]
-            == "waiting_evidence"
-        )
-        LeaseFile = RootPath / "Root.json"
-        assert (
-            JsonCodec.loads(
-                Client.RunCli(
-                    "claim", "--worker", "worker:root", "--claim-file", str(LeaseFile)
-                )
-            )["job"]
-            == "chain:00000"
-        )
-        _ = Client.RunCli(
-            "finish",
-            "--lease",
-            str(LeaseFile),
-            "--result",
-            str(BatchFile),
-            "--outcome",
-            "completed",
-            "--reason",
-            "fixture root complete",
+            == "queued"
         )
         assert (
-            JsonCodec.loads(
-                Client.RunCli(
-                    "claim",
-                    "--worker",
-                    "worker:next",
-                    "--claim-file",
-                    str(RootPath / "Next.json"),
-                )
-            )["job"]
-            == "chain:00001"
+            JsonCodec.loads(Client.RunCli("status", "--job", "chain:09999"))[
+                "reconciled_jobs"
+            ]
+            == 0
         )
