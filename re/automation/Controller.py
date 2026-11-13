@@ -47,7 +47,7 @@ def main():
     try:
         with Ledger(args.store, args.command == "init", getattr(args, "max_running", 4)) as ledger:
             if args.command == "init":
-                response = {"store_version": 2, "max_running": ledger.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]}
+                response = {"store_version": 3, "max_running": ledger.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]}
             elif args.command == "bind":
                 response = ledger.bind(args.name, args.file)
             elif args.command == "submit":

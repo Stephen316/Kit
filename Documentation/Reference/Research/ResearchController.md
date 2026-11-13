@@ -158,11 +158,14 @@ Actual remote evidence is recorded on the PR and in the step register.
 | `failed`              | Retry budget exhausted for the current prerequisite generation                         |
 
 A fingerprint binds the full job definition, selected input digests and dependency receipt/result digests.
-Definition changes validate the dependency graph with one adjacency traversal.
+Definition changes check newly added edges that can close a cycle, using indexed reachability over their affected ancestor region.
+Appending a new leaf and resubmitting unchanged edges require no ancestor search.
+Quota counters update transactionally instead of scanning every stored definition.
 Execution uses a persistent queue of affected jobs and indexed reverse bindings/resources/dependencies.
 Claims, heartbeats and completions do not rebuild or traverse the full graph.
 Unchanged targeted status and heartbeat responses report `reconciled_jobs: 0`.
 The counter records prerequisite evaluations in that command's transaction, not CAD coverage.
+`cycle_searches` records changed-edge ancestor searches, not a general format-coverage metric.
 An unchanged definition and unchanged bindings reuse the completed result.
 Changing evidence, options, a rule/tool version or a dependency result invalidates affected jobs transitively.
 Old attempt receipts and their immutable definitions/snapshots remain available after invalidation.
@@ -196,8 +199,9 @@ It checks that idle targeted reads and heartbeats reconcile no unrelated jobs an
 They execute through the real CLI and filesystem/database boundaries.
 No local tests or collection run under repository policy.
 
-The SQLite schema is version 2; version 1 stores migrate transactionally to the persistent queue and reverse indexes.
-The migration retains jobs, attempts, receipts and artifacts and initially queues existing jobs for reconciliation.
+The SQLite schema is version 3; versions 1 and 2 migrate transactionally to the queue, reverse indexes and quota counters they require.
+The migration retains jobs, attempts, receipts and artifacts.
+Version 1 migration seeds the queue; version 2 already has it and receives the maintained counters.
 Unknown versions are rejected.
 No distributed worker service, model provider, CAD adapter, neutral schema change or capability promotion is added.
 Worker-reported completion and a valid receipt do not prove the worker's assertion.

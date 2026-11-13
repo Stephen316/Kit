@@ -5,7 +5,6 @@ import os
 import secrets
 import sqlite3
 import time
-from collections import deque
 from pathlib import Path
 
 from Artifacts import Artifacts
@@ -26,7 +25,7 @@ class Ledger:
         self.db.row_factory = sqlite3.Row
         try:
             version = self.db.execute("PRAGMA user_version").fetchone()[0]
-            if version not in (0, 1, 2):
+            if version not in (0, 1, 2, 3):
                 raise ValueError("unsupported research store version")
             self.db.execute("PRAGMA foreign_keys=ON")
             self.db.execute("PRAGMA journal_mode=DELETE")
@@ -49,7 +48,10 @@ class Ledger:
                     self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(row["id"], name) for name in set(spec["inputs"].values())])
                     self.db.executemany("INSERT INTO job_resources VALUES (?,?)", [(row["id"], name) for name in spec["resources"]])
                 self.db.execute("INSERT INTO dirty SELECT id FROM jobs")
-                self.db.execute("PRAGMA user_version=2")
+            if version in (0, 1, 2):
+                count, size = self.db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(definition AS BLOB))),0) FROM jobs").fetchone()
+                self.db.executemany("INSERT INTO settings VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value", [("job_count", count), ("definition_bytes", size)])
+                self.db.execute("PRAGMA user_version=3")
             self.db.execute("COMMIT")
             os.chmod(database, 0o600)
         except BaseException:
@@ -60,6 +62,7 @@ class Ledger:
         self.db.execute("BEGIN IMMEDIATE")
         self.checked = set()
         self.reconciled = 0
+        self.cycle_searches = 0
         return self
 
     def __exit__(self, kind, value, traceback):
@@ -108,7 +111,7 @@ class Ledger:
 
     def store_spec(self, spec):
         encoded = canonical(spec)
-        previous = self.db.execute("SELECT definition_hash FROM jobs WHERE id=?", (spec["id"],)).fetchone()
+        previous = self.db.execute("SELECT definition_hash,length(CAST(definition AS BLOB)) AS size FROM jobs WHERE id=?", (spec["id"],)).fetchone()
         if previous is not None and previous[0] == digest(spec):
             return
         self.objects.put_record(spec)
@@ -117,6 +120,7 @@ class Ledger:
             "ON CONFLICT(id) DO UPDATE SET definition=excluded.definition,definition_hash=excluded.definition_hash",
             (spec["id"], encoded, digest(spec), time.time()),
         )
+        old_parents = {row[0] for row in self.db.execute("SELECT dependency FROM dependencies WHERE job_id=?", (spec["id"],))}
         self.db.execute("DELETE FROM dependencies WHERE job_id=?", (spec["id"],))
         self.db.executemany("INSERT INTO dependencies VALUES (?,?)", [(spec["id"], item) for item in spec["depends_on"]])
         self.event(spec["id"], "submitted", {"definition_hash": digest(spec)})
@@ -125,6 +129,11 @@ class Ledger:
         self.db.execute("DELETE FROM job_resources WHERE job_id=?", (spec["id"],))
         self.db.executemany("INSERT INTO job_resources VALUES (?,?)", [(spec["id"], name) for name in spec["resources"]])
         self.db.execute("INSERT OR IGNORE INTO dirty VALUES (?)", (spec["id"],))
+        self.db.executemany("UPDATE settings SET value=value+? WHERE key=?", [(int(previous is None), "job_count"), (len(encoded.encode("utf-8")) - (previous["size"] if previous is not None else 0), "definition_bytes")])
+        added = set(spec["depends_on"]) - old_parents
+        if added and self.db.execute("SELECT 1 FROM dependencies WHERE dependency=? LIMIT 1", (spec["id"],)).fetchone():
+            return spec["id"], added
+        return None
 
     def submit_many(self, values):
         if not isinstance(values, list) or not 1 <= len(values) <= 10000:
@@ -132,12 +141,13 @@ class Ledger:
         specs = [specification(value) for value in values]
         if len({spec["id"] for spec in specs}) != len(specs):
             raise ValueError("batch contains duplicate job identifiers")
-        for spec in specs:
-            self.store_spec(spec)
-        count, size = self.db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(definition AS BLOB))),0) FROM jobs").fetchone()
+        checks = [check for spec in specs if (check := self.store_spec(spec)) is not None]
+        count = self.db.execute("SELECT value FROM settings WHERE key='job_count'").fetchone()[0]
+        size = self.db.execute("SELECT value FROM settings WHERE key='definition_bytes'").fetchone()[0]
         if count > 10000 or size > 16 * 1024 * 1024:
             raise ValueError("store job metadata limit exceeded")
-        self.check_graph()
+        for job_id, parents in checks:
+            self.check_edges(job_id, parents)
         self.refresh()
         return {"submitted": len(specs)}
 
@@ -188,23 +198,16 @@ class Ledger:
         self.db.execute("UPDATE jobs SET worker=NULL,token_hash=NULL,lease_until=NULL,deadline=NULL,active_attempt=NULL WHERE id=?", (row["id"],))
         return receipt
 
-    def check_graph(self):
-        children = {row[0]: [] for row in self.db.execute("SELECT id FROM jobs")}
-        indegree = {name: 0 for name in children}
-        for row in self.db.execute("SELECT job_id,dependency FROM dependencies"):
-            if row["dependency"] in children:
-                children[row["dependency"]].append(row["job_id"])
-                indegree[row["job_id"]] += 1
-        ready = deque(name for name in children if indegree[name] == 0)
-        visited = 0
-        while ready:
-            visited += 1
-            for child in children[ready.popleft()]:
-                indegree[child] -= 1
-                if indegree[child] == 0:
-                    ready.append(child)
-        if visited != len(children):
-            raise ValueError("job dependency cycle")
+    def check_edges(self, job_id, parents):
+        for parent in parents:
+            if self.db.execute("SELECT 1 FROM jobs WHERE id=?", (parent,)).fetchone() is None:
+                continue
+            self.cycle_searches += 1
+            if self.db.execute(
+                "WITH RECURSIVE ancestors(id) AS (SELECT ? UNION SELECT d.dependency FROM dependencies d JOIN ancestors a ON d.job_id=a.id) "
+                "SELECT 1 FROM ancestors WHERE id=? LIMIT 1", (parent, job_id)
+            ).fetchone():
+                raise ValueError("job dependency cycle")
 
     def reconcile_job(self, row):
         self.reconciled += 1
@@ -326,7 +329,7 @@ class Ledger:
         spec = json.loads(row["definition"])
         lease_until = min(time.time() + spec["lease_seconds"], row["deadline"])
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
-        return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled}
+        return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches}
 
     def finish(self, job_id, token, outcome, result, reason):
         row = self.leased(job_id, token)
@@ -376,7 +379,7 @@ class Ledger:
         for row in rows[:100]:
             self.verify_job(row)
         fields = ("id", "state", "generation", "fingerprint", "attempts", "receipt", "result", "reason", "lease_until", "deadline")
-        return {"jobs": [{key: row[key] for key in fields} for row in rows[:100]], "next_after": rows[99]["id"] if len(rows) > 100 else None, "reconciled_jobs": self.reconciled}
+        return {"jobs": [{key: row[key] for key in fields} for row in rows[:100]], "next_after": rows[99]["id"] if len(rows) > 100 else None, "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches}
 
     def events(self):
         return {"events": [dict(row) for row in self.db.execute("SELECT * FROM events ORDER BY id DESC LIMIT 100").fetchall()]}

@@ -46,6 +46,9 @@ def CheckStoreMove() -> None:
             _ = SchemaDb.execute("DROP TABLE job_resources")
             _ = SchemaDb.execute("DROP INDEX jobs_claim")
             _ = SchemaDb.execute("DROP INDEX jobs_leases")
+            _ = SchemaDb.execute(
+                "DELETE FROM settings WHERE key IN ('job_count','definition_bytes')"
+            )
             _ = SchemaDb.execute("PRAGMA user_version=1")
             SchemaDb.commit()
         assert (
@@ -54,8 +57,15 @@ def CheckStoreMove() -> None:
             ]
             == "completed"
         )
-        assert JsonCodec.loads(Client.RunCli("init"))["store_version"] == 2
+        assert JsonCodec.loads(Client.RunCli("init"))["store_version"] == 3
         with Closing(Sqlite.connect(RootPath / "State/ledger.sqlite3")) as SchemaDb:
-            _ = SchemaDb.execute("PRAGMA user_version=3")
+            _ = SchemaDb.execute(
+                "DELETE FROM settings WHERE key IN ('job_count','definition_bytes')"
+            )
+            _ = SchemaDb.execute("PRAGMA user_version=2")
+            SchemaDb.commit()
+        assert JsonCodec.loads(Client.RunCli("init"))["store_version"] == 3
+        with Closing(Sqlite.connect(RootPath / "State/ledger.sqlite3")) as SchemaDb:
+            _ = SchemaDb.execute("PRAGMA user_version=4")
             SchemaDb.commit()
         _ = Client.RunCli("status", ExitCode=1)
