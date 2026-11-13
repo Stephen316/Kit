@@ -10,10 +10,11 @@ Cross-format editable native acceptance governs conversion completion.
 Same-format fixed points and model confidence do not substitute for that evidence.
 
 A01 is complete as a neutral contract and capability audit without runtime or schema changes.
-The current request authorizes A02: pinned corpus tooling and paired authoring specifications.
+The current request authorizes A03: the durable evidence store and job controller.
 Its implementation belongs on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 Record missing independent captures and measurement bindings explicitly; do not report A02 complete until its evidence criteria pass.
-Do not start A03–A16, controller/adapters or model extensions until explicitly requested.
+Keep A02c–A02d capture qualification blocked until matching evidence is available.
+Do not start A04–A16, adapter integration or model extensions until explicitly requested.
 After implementation is authorized, claim a stable step ID and check existing ownership before editing shared files.
 By explicit user instruction, keep all code, documentation and progress for A01–A16 on PR #94.
 Do not open separate implementation PRs for this programme.

@@ -7,7 +7,8 @@ PR #94 contains the plan and the [completed A01 contract audit](NeutralContractA
 A01 introduces no runtime or schema change.
 A02 is now authorized and implemented within [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 Its offline corpus tooling and paired specifications are implemented; independent captures and measurement bindings remain outstanding.
-A03–A16 require a subsequent explicit request.
+A03 is now authorized and implements the [durable research controller](ResearchController.md); remote verification is tracked in the step register.
+A04–A16 require a subsequent explicit request.
 All implementation steps in this programme stay on PR #94 by explicit user instruction.
 The [step register](AutomationSteps.md) records identifiable deliverables, dependencies and progress.
 
@@ -138,11 +139,11 @@ Do not reuse holdout results repeatedly to tune a hypothesis.
 
 Use Python with uv and an initial Python 3.14 research environment for ZIP Zstandard support.
 Keep the existing SDK compatibility requirements unchanged.
-Research orchestration belongs under proposed `re/Automation/`; the production SDK must not import it.
+Research orchestration belongs under the existing `re/automation/`; the production SDK must not import it.
 
-SQLite and content-addressed artifacts are proposed implementation choices for A01 and A03, not new repository-wide standards.
+SQLite and content-addressed artifacts are the selected A03 implementation choices, not new repository-wide standards.
 Record any evidence-based revision to those choices in the step register and PR comments.
-The proposed controller uses SQLite for transactional job metadata and files for large immutable artifacts.
+The A03 controller uses SQLite for transactional job metadata and files for large immutable artifacts.
 A single controller owns database writes and workers return structured results.
 Bind SQL parameters and validate all external job records.
 
