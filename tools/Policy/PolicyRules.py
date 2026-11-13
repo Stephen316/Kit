@@ -19,6 +19,7 @@ KToolPathSet = frozenset(
         ".github/dependabot.yml",
         ".gitignore",
         ".gitleaksignore",
+        ".greptile/config.json",
         ".hoplite/settings.json",
         ".kiro/settings/mcp.json",
         "pyproject.toml",
