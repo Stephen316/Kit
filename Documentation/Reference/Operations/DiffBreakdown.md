@@ -123,9 +123,12 @@ If the image service is unavailable, the category table still contains every cou
 
 [DiffBreakdownTests.py](../../../tests/Policy/DiffBreakdownTests.py) runs the engine against a temporary Git repository.
 It checks the categories, the excluded totals, and the trusted publication guard.
+It also checks the `GITHUB_REPOSITORY` identity guard with rejected and accepted values.
 
 ## Related information
 
 - [Change entry](../../Changes/DiffBreakdownReports.md)
+- [CodeQL repair](../../Changes/DiffBreakdownCodeql.md)
+- [Repository guard coverage](../../Changes/RepoGuardCoverage.md)
 - [CI allowlist](../../../.github/scripts/CiAllowlist.cjs)
 - [Repository policy](Policy.md)
