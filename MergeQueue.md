@@ -136,8 +136,10 @@ contexts on the merge group and either execute or use verified equivalent PR evi
 
 The pytest suite runs as [runtime-planned shards](Documentation/Changes/ShardedTestSuite.md).
 `Test suite / Plan` collects the candidate's tests and sizes the shard matrix.
-Each shard holds at most 300 tests.
+Each shard holds at most 1,200 tests, which is 300 tests for each CPU of its 4-CPU runner.
 Each `Test suite / Shard (n)` job runs only its planned node IDs.
+The shard runs them [in parallel on every CPU](Documentation/Changes/ParallelTestShards.md) with pytest-xdist.
+The plan orders each shard so that a fast test follows each slow test.
 `Test suite / Report` fails unless every planned test ran exactly once.
 The acceptance gate requires the plan, every shard, and the report to succeed.
 `Run the complete test suite` remains as a compatibility job that requires the same three jobs.
