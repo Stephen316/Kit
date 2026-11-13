@@ -30,7 +30,12 @@ The prefix is recorded evidence; it is not a container-validity assertion.
 The snapshot includes tracked native files under `re/`, Fusion `ground_truth.json` files, SOLIDWORKS measurement JSON, the historical census and corpus notes.
 It excludes untracked scratch files, vendor binaries, donor-stream fixtures and other native formats.
 
-The evidence index retains 2,961 recorded measurement fields and 1,116 native-file references with JSON pointers.
+The evidence index retains 2,961 recorded measurement fields and 1,179 native-file references with JSON pointers.
+References are taken from string values, list items and member names; `recorded_as` says which.
+The 63 census rows keyed by filename are recorded as `member_name` references.
+Each relative reference is resolved against the evidence file's directory and every ancestor up to the repository root.
+All matching tracked native paths are kept as candidates; 746 references currently have one.
+Absolute capture-machine paths are recorded but never resolved.
 Values, units embedded in field names, null measurements and failures remain unchanged.
 All historical observations remain unqualified.
 Relative-path associations identify candidate source files but do not prove that those exact bytes were measured.
