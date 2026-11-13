@@ -57,7 +57,7 @@ A16 is an expansion milestone, not a promise of universal support.
 ## A02 implementation and remaining evidence
 
 Work branch: `feat/a02-pinned-research-corpus-20261113`.
-Implementation revision: `f3b6e0ff5045dd207ed272eb590fc766f460b64c` in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
+Implementation revision: `93bbf684c323e28176f7bb329ab04b092e097b37` in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
 The implementation PR starts from main `74a0bc353421c25f7a6c539897baadf593a05766`; this planning PR contains the tracking update only.
 
 | Child ID | Deliverable                                                 | Status   | Evidence or remaining requirement                                                                                                                |
