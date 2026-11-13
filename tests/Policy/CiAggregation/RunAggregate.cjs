@@ -4,8 +4,9 @@ const Inputs = BuildReports(process.argv[2], process.argv[3], process.argv[4]);
 const PullData = {
   number: 42,
   state: "open",
-  head: { sha: "a".repeat(40), repo: { id: 1 } },
+  head: { sha: "a".repeat(40), repo: { id: Inputs.Forked ? 2 : 1 } },
   base: { sha: "b".repeat(40) },
+  changed_files: Inputs.Files.length,
 };
 const Context = {
   eventName: process.argv[2].startsWith("queue")
@@ -25,6 +26,7 @@ const Responses = {
   listWorkflowRunsForRepo: Inputs.Runs,
   listForRef: Inputs.Checks,
   listCommitStatusesForRef: Inputs.Statuses,
+  listFiles: Inputs.Files,
 };
 const Github = {
   graphql: async () => ({ repository: { mergeQueue: null } }),
@@ -35,7 +37,10 @@ const Github = {
       listCommitStatusesForRef: "listCommitStatusesForRef",
       compareCommits: async () => ({ data: { status: "ahead" } }),
     },
-    pulls: { get: async () => ({ data: PullData }) },
+    pulls: {
+      get: async () => ({ data: PullData }),
+      listFiles: "listFiles",
+    },
     git: {
       getCommit: async () => ({ data: { tree: { sha: "c".repeat(40) } } }),
     },

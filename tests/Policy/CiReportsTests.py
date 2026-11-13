@@ -17,6 +17,9 @@ import pytest as Pytest
         ("check", "Analyze (javascript-typescript)"),
         ("check", "Build and verify release artifacts"),
         ("check", "Label first-time contributors"),
+        ("quality-fork", "Ruff"),
+        ("quality-docs", "Ruff"),
+        ("quality-subset", "Ruff"),
     ),
 )
 def CheckReportFlow(CaseMode: str, CheckName: str) -> None:
