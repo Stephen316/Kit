@@ -185,6 +185,32 @@ Use allowlisted tools with validated arguments; never execute model-supplied she
 After bounded failures, park the question with all evidence and continue other work.
 Resume only when an applicable tool, rule or new sample changes its prerequisites.
 
+### Model escalation and failure log
+
+Configure model runners as ordered tiers, from the least costly to the most capable.
+Each question starts at the lowest tier unless the failure log routes it higher.
+An attempt fails when its output is malformed, exceeds a limit or does not pass the question's machine-checkable success criteria.
+
+Record every failed attempt in an append-only failure log before any retry.
+Store the log in the durable evidence store with the job's attempts.
+Each entry records:
+
+- The question, its evidence fingerprint, job and attempt
+- The tier, runner, model and model version
+- The rejected output or proposal
+- The check that failed and its exact failure output
+- A failure signature: question kind, CAD format, feature family and failed check
+
+After a failure, send the same question to the next tier.
+Include the logged failure in that packet as a prior failed hypothesis.
+The stronger model's answer must pass the same checks; its confidence is not evidence either.
+
+When the log holds two or more failures with the same signature at one tier, start later questions with that signature one tier higher.
+Repeat this for each tier, so a signature that keeps failing moves steadily to stronger models.
+Record each routing change in the log with the entries that caused it.
+Lower a raised starting tier only when a new tool, rule, runner or model version changes that signature's prerequisites.
+When the highest tier fails, or the budget runs out, park the question as above.
+
 ## Application workers and independent writers
 
 A SOLIDWORKS research worker can author and measure controlled samples through the existing Windows harness.
@@ -225,7 +251,7 @@ Research inspection and ordinary decoding remain local workloads.
 | Unproved normalization                 | Request a distinguishing repeat save                         | Preserve the original span and park unresolved noise            |
 | Segmentation or references             | Compare spans and retrieve matching traces                   | Bound retries and scope findings to the exact build             |
 | Formula or semantic contradiction      | Retain the counterexample and refine the experiment          | Never promote a fit that fails independent evidence             |
-| Model error or budget exhaustion       | Bounded retry, then park                                     | No credential or budget is required for remaining offline work  |
+| Model error or budget exhaustion       | Log the failure, escalate one tier, then park                | No credential or budget is required for remaining offline work  |
 | Writer, load or edit failure           | Localize the failed native structure in the isolated harness | Diagnostic substitutions never become production output         |
 | Regression                             | Quarantine the candidate and retain the last verified rule   | Revert only task-owned commits when authorized                  |
 | Unsupported input                      | Reject the conversion with a specific reason                 | Preserve inputs and add a deduplicated backlog item             |
