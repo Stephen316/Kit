@@ -211,6 +211,8 @@ Record each routing change in the log with the entries that caused it.
 Lower a raised starting tier only when a new tool, rule, runner or model version changes that signature's prerequisites.
 When the highest tier fails, or the budget runs out, park the question as above.
 
+The [parallel sessions design](ParallelSessions.md) describes the Codex runner, tier selector, error handling and session capacity limits.
+
 ## Application workers and independent writers
 
 A SOLIDWORKS research worker can author and measure controlled samples through the existing Windows harness.
@@ -287,6 +289,7 @@ Use those observations to update the forecast and priorities.
 ## Related information
 
 - [Implementation steps and contributor progress](AutomationSteps.md)
+- [Parallel research sessions and Codex runners](ParallelSessions.md)
 - [Research automation agent instructions](../../../re/AGENTS.md)
 - [Research method](Methodology.md)
 - [Oracle evidence](Oracles.md)
