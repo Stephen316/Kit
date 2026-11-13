@@ -46,7 +46,7 @@ read its complete standards index and every applicable rule before coding.
 - Use `Pull Request / CI Agg` for overall CI health. Register every applicable
   PR and merge-queue CI job in the [CI allowlist](.github/scripts/CiAllowlist.cjs).
   Keep automated review out of the allowlist and its workflows. Reuse healthy
-  PR reports in the queue only with verified identical inputs. Change-range verification and heavy acceptance always execute on the candidate.
+  PR reports in the queue only with verified identical inputs. Change-range verification, security scans, and test planning always execute on the candidate. A test module reuses a passing result only from an accepted ancestor candidate when every file and folder that it recorded is unchanged. Every other test executes on the candidate.
 - Read every entry in `Reviewers` from
   [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the sole
   source of reviewer identities, report names, and exact request comments.

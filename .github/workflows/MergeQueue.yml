@@ -35,9 +35,22 @@ jobs:
           version: "0.12.5"
           enable-cache: true
           cache-dependency-glob: uv.lock
+          cache-suffix: queue-python-3.14
+          cache-python: true
 
       - name: Synchronize the locked environment
         run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Restore compiled repository bytecode
+        id: bytecode
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            src/**/__pycache__
+            tools/**/__pycache__
+            tests/**/__pycache__
+          key: queue-bytecode-${{ github.event.merge_group.base_sha }}
+          restore-keys: queue-bytecode-
 
       - name: Collect the complete test suite
         run: |
@@ -72,13 +85,54 @@ jobs:
           fi
           gh run download "$RunId" --repo "$GITHUB_REPOSITORY" --name TestDurations --dir "${RUNNER_TEMP}/History"
 
+      - name: Fetch test results that an accepted ancestor verified
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mapfile -t Candidates < <(
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=TestCache&per_page=100" --jq '
+              [
+                .artifacts[]
+                | select(.expired | not)
+                | select((.workflow_run.head_branch // "") | startswith("gh-readonly-queue/"))
+                | select(.workflow_run.head_repository_id == .workflow_run.repository_id)
+              ]
+              | sort_by(.created_at)
+              | reverse
+              | .[:20][]
+              | "\(.workflow_run.id) \(.workflow_run.head_sha)"
+            '
+          )
+          for Candidate in "${Candidates[@]}"; do
+            read -r RunId RunSha <<< "$Candidate"
+            RunSource="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${RunId}" --jq '"\(.event) \(.path)"')"
+            if [ "$RunSource" != "merge_group .github/workflows/MergeQueue.yml" ]; then
+              continue
+            fi
+            Ancestry="$(gh api "repos/${GITHUB_REPOSITORY}/compare/${RunSha}...${GITHUB_SHA}?per_page=1" --jq .status)"
+            if [ "$Ancestry" != "ahead" ] && [ "$Ancestry" != "identical" ]; then
+              continue
+            fi
+            gh run download "$RunId" --repo "$GITHUB_REPOSITORY" --name TestCache --dir "${RUNNER_TEMP}/TestCache"
+            echo "Test results can come from merge-group run ${RunId} at ancestor ${RunSha}" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          done
+          echo "No accepted ancestor recorded test results; every test runs" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Plan test shards
         id: plan
         run: |
           set -euo pipefail
+          git ls-tree -r -z HEAD > "${RUNNER_TEMP}/Tree.bin"
           uv run --no-sync --python 3.14 python -m tools.TestShards.PlanShards \
             --collected "${RUNNER_TEMP}/Collected.txt" \
             --history "${RUNNER_TEMP}/History/TestDurations.json" \
+            --cache "${RUNNER_TEMP}/TestCache/TestCache.json" \
+            --tree "${RUNNER_TEMP}/Tree.bin" \
+            --carried "${RUNNER_TEMP}/ShardPlan/Carried.json" \
+            --max-age-days 7 \
             --max-tests 1200 \
             --output "${RUNNER_TEMP}/ShardPlan/ShardPlan.json" \
             --summary "$GITHUB_STEP_SUMMARY"
@@ -88,7 +142,7 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ShardPlan
-          path: ${{ runner.temp }}/ShardPlan/ShardPlan.json
+          path: ${{ runner.temp }}/ShardPlan
           if-no-files-found: error
           retention-days: 7
 
@@ -114,11 +168,25 @@ jobs:
           version: "0.12.5"
           enable-cache: true
           cache-dependency-glob: uv.lock
+          cache-suffix: queue-python-3.14
+          cache-python: true
 
       - name: Synchronize the locked environment
         run: uv sync --frozen --no-default-groups --extra dev --python 3.14 --compile-bytecode
 
+      - name: Restore compiled repository bytecode
+        id: bytecode
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            src/**/__pycache__
+            tools/**/__pycache__
+            tests/**/__pycache__
+          key: queue-bytecode-${{ github.event.merge_group.base_sha }}
+          restore-keys: queue-bytecode-
+
       - name: Precompile repository bytecode
+        if: steps.bytecode.outputs.cache-matched-key == ''
         run: uv run --no-sync --python 3.14 python -m compileall -q -j 0 src tools tests
 
       - name: Download the shard plan
@@ -141,8 +209,9 @@ jobs:
       - name: Run this shard's tests
         id: tests
         run: >-
-          uv run --no-sync --python 3.14 pytest
-          -p no:cacheprovider
+          uv run --no-sync --python 3.14 python -m pytest
+          -p no:cacheprovider -p tools.TestShards.Reuse.Track.TrackHooks
+          --test-deps="${RUNNER_TEMP}/ShardReport"
           --numprocesses logical --dist load --maxschedchunk 1
           --report-log="${RUNNER_TEMP}/ShardReport/ShardReport.jsonl"
           "@${RUNNER_TEMP}/ShardTests.txt"
@@ -152,7 +221,7 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: TestReport-${{ matrix.shard }}
-          path: ${{ runner.temp }}/ShardReport/ShardReport.jsonl
+          path: ${{ runner.temp }}/ShardReport
           if-no-files-found: error
           retention-days: 7
 
@@ -174,6 +243,8 @@ jobs:
           version: "0.12.5"
           enable-cache: true
           cache-dependency-glob: uv.lock
+          cache-suffix: queue-python-3.14
+          cache-python: true
 
       - name: Synchronize the locked environment
         run: uv sync --frozen --no-default-groups --extra dev --python 3.14
@@ -208,6 +279,31 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
+      - name: Record test dependencies for later candidates
+        id: cache
+        if: steps.verify.outcome == 'success' && needs.test-shard.result == 'success'
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          git ls-tree -r -z HEAD > "${RUNNER_TEMP}/Tree.bin"
+          uv run --no-sync --python 3.14 python -m tools.TestShards.Reuse.Cache.BuildCache \
+            --plan "${RUNNER_TEMP}/ShardPlan/ShardPlan.json" \
+            --carried "${RUNNER_TEMP}/ShardPlan/Carried.json" \
+            --reports "${RUNNER_TEMP}/ShardReports" \
+            --tree "${RUNNER_TEMP}/Tree.bin" \
+            --run "$GITHUB_RUN_ID" \
+            --output "${RUNNER_TEMP}/TestCache/TestCache.json" \
+            --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish the test cache for later candidates
+        if: steps.cache.outcome == 'success'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: TestCache
+          path: ${{ runner.temp }}/TestCache/TestCache.json
+          if-no-files-found: ignore
+          retention-days: 8
+
   verify-end-to-end:
     if: ${{ !cancelled() && github.event_name == 'merge_group' }}
     needs: [test-plan, test-shard, test-report]
@@ -221,7 +317,7 @@ jobs:
         run: |
           set -euo pipefail
           echo "$JOB_RESULTS" | jq --exit-status 'length == 3 and all(.[]; .result == "success")'
-          echo "The planned shards ran the complete test suite" >> "$GITHUB_STEP_SUMMARY"
+          echo "The planned shards and verified reuse covered the complete test suite" >> "$GITHUB_STEP_SUMMARY"
 
   analyze:
     if: github.event_name == 'merge_group'
