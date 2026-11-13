@@ -1,8 +1,9 @@
 import json as JsonCodec
-import subprocess as Subprocess
-import sys as System
 import tempfile as TempFiles
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path as FilePath
+
+from tests.Research.ReaderClient import ReaderClient
 
 
 def CheckReadCorpus() -> None:
@@ -12,35 +13,24 @@ def CheckReadCorpus() -> None:
         Asset for Asset in Manifest["assets"] if Asset.get("format") == "sldprt"
     ]
     assert len(AssetList) == 58
-    Counts = {"decoded": 0, "rejected": 0}
     with TempFiles.TemporaryDirectory() as TempPath:
-        for Index, Asset in enumerate(AssetList):
-            OutputPath = FilePath(TempPath) / str(Index)
-            ResultInfo = Subprocess.run(
-                [
-                    System.executable,
-                    str(RootPath / "re/automation/SolidworksReader.py"),
-                    "--asset",
-                    Asset["path"],
-                    "--output",
-                    str(OutputPath),
-                ],
-                capture_output=True,
-                text=True,
-                timeout=120,
-                check=False,
+        Client = ReaderClient(FilePath(TempPath))
+        with ThreadPoolExecutor(max_workers=4) as WorkerPool:
+            Results = list(
+                WorkerPool.map(Client.ReadAsset, [Asset["path"] for Asset in AssetList])
             )
-            assert ResultInfo.returncode in (0, 1), ResultInfo.stderr
-            if ResultInfo.returncode:
-                assert not OutputPath.exists()
-                assert JsonCodec.loads(ResultInfo.stderr)["error"]
-                Counts["rejected"] += 1
-                continue
+        for Asset, (AssetPath, ResultInfo) in zip(AssetList, Results, strict=True):
+            assert AssetPath == Asset["path"]
+            assert ResultInfo.returncode == 0, (AssetPath, ResultInfo.stderr)
+            OutputPath = FilePath(JsonCodec.loads(ResultInfo.stdout)["output"])
             Receipt = JsonCodec.loads((OutputPath / "receipt.json").read_text())
             assert Receipt["source"] == Asset
             assert Receipt["semantic_qualification"] == "unverified"
             assert Receipt["unresolved"]
             assert Receipt["portable_complete"] is False
-            Counts["decoded"] += 1
-        assert Counts["decoded"] > 0
-        print(JsonCodec.dumps({"reader_corpus": Counts}, sort_keys=True))
+        print(
+            JsonCodec.dumps(
+                {"reader_corpus": {"decoded": len(Results), "rejected": 0}},
+                sort_keys=True,
+            )
+        )

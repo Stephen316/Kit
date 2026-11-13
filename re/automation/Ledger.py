@@ -61,6 +61,7 @@ class Ledger:
     def __enter__(self):
         self.db.execute("BEGIN IMMEDIATE")
         self.checked = set()
+        self.bytes_hashed = 0
         self.reconciled = 0
         self.cycle_searches = 0
         return self
@@ -76,7 +77,7 @@ class Ledger:
 
     def verify_object(self, sha256):
         if sha256 not in self.checked:
-            self.objects.verify(sha256)
+            self.bytes_hashed += self.objects.verify(sha256)
             self.checked.add(sha256)
 
     def enqueue_children(self, job_id):
@@ -155,22 +156,25 @@ class Ledger:
         self.submit_many([value])
         return self.status(value["id"])
 
-    def snapshot(self, spec):
-        self.verify_object(digest(spec))
+    def snapshot(self, spec, verify_artifacts=True):
+        if verify_artifacts:
+            self.verify_object(digest(spec))
         inputs = {}
         for role, name in spec["inputs"].items():
             row = self.db.execute("SELECT sha256 FROM bindings WHERE name=?", (name,)).fetchone()
             if row is None:
                 return None
-            self.verify_object(row[0])
+            if verify_artifacts:
+                self.verify_object(row[0])
             inputs[role] = {"binding": name, "sha256": row[0]}
         dependencies = {}
         for name in spec["depends_on"]:
             row = self.db.execute("SELECT state,receipt,result FROM jobs WHERE id=?", (name,)).fetchone()
             if row is None or row["state"] != "completed":
                 return None
-            self.verify_object(row["receipt"])
-            self.verify_object(row["result"])
+            if verify_artifacts:
+                self.verify_object(row["receipt"])
+                self.verify_object(row["result"])
             dependencies[name] = {"receipt": row["receipt"], "result": row["result"]}
         return {"definition_hash": digest(spec), "inputs": inputs, "dependencies": dependencies}
 
@@ -257,13 +261,13 @@ class Ledger:
             self.db.execute("DELETE FROM dirty WHERE job_id=?", (dirty[0],))
             self.reconcile_job(self.db.execute("SELECT * FROM jobs WHERE id=?", (dirty[0],)).fetchone())
 
-    def verify_job(self, row):
-        snapshot = self.snapshot(json.loads(row["definition"]))
+    def verify_job(self, row, verify_artifacts=True):
+        snapshot = self.snapshot(json.loads(row["definition"]), verify_artifacts)
         if (digest(snapshot) if snapshot is not None else None) != row["fingerprint"]:
             raise ValueError("job prerequisites require reconciliation")
-        if row["fingerprint"] is not None:
+        if verify_artifacts and row["fingerprint"] is not None:
             self.verify_object(row["fingerprint"])
-        if row["state"] == "completed":
+        if verify_artifacts and row["state"] == "completed":
             self.verify_object(row["receipt"])
             self.verify_object(row["result"])
 
@@ -313,23 +317,26 @@ class Ledger:
             self.event(row["id"], "claimed", {"attempt": row["attempts"] + 1, "worker": worker})
             return {"job": spec, "generation": row["generation"], "attempt": row["attempts"] + 1, "fingerprint": row["fingerprint"], "snapshot": json.loads(row["snapshot"]), "lease_token": token, "lease_until": lease_until, "deadline": deadline}
 
-    def leased(self, job_id, token):
-        self.refresh()
+    def leased(self, job_id, token, verify_artifacts=True):
+        if verify_artifacts:
+            self.refresh()
         label(job_id)
         if not isinstance(token, str) or len(token) != 64:
             raise ValueError("invalid lease token")
         row = self.db.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchone()
         if row is None or row["state"] != "running" or min(row["lease_until"], row["deadline"]) <= time.time() or not hmac.compare_digest(row["token_hash"], hashlib.sha256(token.encode()).hexdigest()):
             raise ValueError("stale or invalid lease")
-        self.verify_job(row)
+        self.verify_job(row, verify_artifacts)
+        if min(row["lease_until"], row["deadline"]) <= time.time():
+            raise ValueError("stale or invalid lease")
         return row
 
     def heartbeat(self, job_id, token):
-        row = self.leased(job_id, token)
+        row = self.leased(job_id, token, verify_artifacts=False)
         spec = json.loads(row["definition"])
         lease_until = min(time.time() + spec["lease_seconds"], row["deadline"])
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
-        return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches}
+        return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches, "artifact_bytes_hashed": self.bytes_hashed}
 
     def finish(self, job_id, token, outcome, result, reason):
         row = self.leased(job_id, token)

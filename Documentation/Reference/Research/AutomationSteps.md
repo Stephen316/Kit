@@ -98,6 +98,12 @@ The [controller guide](ResearchController.md) records the implemented protocol a
 | A03c     | Claims, leases, bounded retries and exclusive resources | complete | Remote concurrency, interruption recovery, waits, backoff, fencing and resource recovery passed |
 | A03d     | Controller workflow and maintained usage information    | checking | Process workflow passed; valid current-head approval remains a separate publication gate        |
 
+A03e is an active review repair owned by jdharcourt on PR #94.
+It removes artifact-content reads from heartbeat renewal while retaining token, deadline and prerequisite checks.
+Claims, result submission, status and artifact access retain integrity checks.
+The new 64 MiB process scenario must pass remotely before A03e completes.
+See [the change entry](../../Changes/Research/MetadataOnlyLeaseRenewal.md).
+
 **A03 design decision:** adopt standard-library SQLite metadata and SHA-256 files in the existing `re/automation/` tree.
 Use a local rollback journal, explicit write transactions and full synchronization; do not introduce a second case-variant research directory.
 Worker result submission uses the controller protocol, not direct database writes.

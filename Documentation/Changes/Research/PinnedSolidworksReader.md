@@ -30,6 +30,7 @@ See [the retained-evidence gotcha](../../Gotchas/Research/ReaderReplayIsNotPorta
 
 Source inspection, Python syntax, formatting, static typing of new process coverage and local Markdown targets are checked before publication.
 No local tests, test collection, CAD experiments or model calls run.
-Remote process scenarios cover the command boundary, tampered pins and the 58-part corpus.
+Remote process scenarios cover the command boundary, tampered pins and every part in the 58-part corpus.
+The corpus gate requires success per asset, with no allowed rejection count.
 Exact-revision results are recorded in the step register and PR comments after CI completes.
 Full semantic qualification, native acceptance, rendered usability and full language conformance remain unverified.

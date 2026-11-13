@@ -180,6 +180,11 @@ CI semantics are supplied by later workers and evidence bindings; A03 does not p
 
 Status and claim requests reconcile prerequisites and expired leases transactionally.
 Each heartbeat is capped by the original execution deadline.
+Heartbeat renewal checks the current token, deadline and prerequisite digests in SQLite without reading artifact contents.
+It reports `artifact_bytes_hashed: 0` and does not reconcile unrelated jobs.
+Claims, result submission, status and explicit artifact reads retain content-integrity verification.
+A heartbeat is a control-plane renewal, not artifact validation or result acceptance.
+Use `finish` to validate and submit a result, even after successful heartbeats.
 Expired attempts retain a receipt, consume their attempt budget and enter bounded backoff or failure.
 A stale token cannot complete a replacement execution or publish a result as current.
 The controller does not terminate an external process; it refuses that process's late result.
@@ -198,6 +203,7 @@ The scaling scenario submits a 10,000-job chain in bounded batches and completes
 It checks that idle targeted reads and heartbeats reconcile no unrelated jobs and each completion updates only its direct dependent.
 They execute through the real CLI and filesystem/database boundaries.
 No local tests or collection run under repository policy.
+The large-input scenario renews a lease over a 64 MiB input without payload hashing and rejects corrupted evidence at result submission.
 
 The SQLite schema is version 3; versions 1 and 2 migrate transactionally to the queue, reverse indexes and quota counters they require.
 The migration retains jobs, attempts, receipts and artifacts.

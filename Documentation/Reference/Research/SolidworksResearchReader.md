@@ -98,7 +98,10 @@ No successful receipt is written for a rejected attempt.
 ## Verification boundaries
 
 Remote process coverage exercises actual pinned files, typed reconstruction, tamper rejection and overwrite refusal.
-The corpus scenario records decoded and rejected outcomes for all 58 pinned parts without interpreting rejection as support.
+The corpus scenario requires every one of the 58 pinned parts to decode and reconstruct successfully.
+Any individual rejection fails that gate rather than passing through an aggregate success threshold.
+Four concurrent CLI processes bound execution overhead without changing the expected outcomes.
+This requirement covers the existing research projection, not independent semantic qualification.
 These checks run in the existing workflow-quality job.
 No local tests or CAD experiments ran for this implementation.
 Use the step register and PR comments for exact-revision results.
