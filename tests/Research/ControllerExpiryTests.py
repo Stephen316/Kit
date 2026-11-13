@@ -20,8 +20,8 @@ def CheckAppExpiry() -> None:
                     "rule_version": "rule@1",
                     "tool_version": "tool@1",
                     "resources": ["application:fixture"],
-                    "lease_seconds": 1,
-                    "timeout_seconds": 2,
+                    "lease_seconds": 2,
+                    "timeout_seconds": 4,
                 }
             ),
             encoding="utf-8",
@@ -32,7 +32,21 @@ def CheckAppExpiry() -> None:
         _ = Client.RunCli(
             "claim", "--worker", "worker:lost", "--claim-file", str(FirstFile)
         )
-        TimeClock.sleep(1.1)
+        _ = JobFile.write_text(
+            JsonCodec.dumps(
+                {
+                    "id": "a-queued",
+                    "kind": "fixture.inspect",
+                    "inputs": {},
+                    "rule_version": "rule@1",
+                    "tool_version": "tool@1",
+                    "resources": ["application:fixture"],
+                }
+            ),
+            encoding="utf-8",
+        )
+        _ = Client.RunCli("submit", str(JobFile))
+        TimeClock.sleep(2.1)
         assert (
             JsonCodec.loads(Client.RunCli("status"))["jobs"][0]["state"]
             == "waiting_application"

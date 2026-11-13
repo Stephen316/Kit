@@ -5,6 +5,7 @@ import os
 import secrets
 import sqlite3
 import time
+from collections import deque
 from pathlib import Path
 
 from Artifacts import Artifacts
@@ -49,6 +50,7 @@ class Ledger:
     def __enter__(self):
         self.db.execute("BEGIN IMMEDIATE")
         self.checked = set()
+        self.refreshed = False
         return self
 
     def __exit__(self, kind, value, traceback):
@@ -69,6 +71,7 @@ class Ledger:
         name = label(name)
         sha256 = self.objects.put_file(path)
         self.db.execute("INSERT INTO bindings VALUES (?,?) ON CONFLICT(name) DO UPDATE SET sha256=excluded.sha256", (name, sha256))
+        self.refreshed = False
         self.event(None, "binding", {"name": name, "sha256": sha256})
         self.refresh()
         return {"name": name, "sha256": sha256}
@@ -81,20 +84,16 @@ class Ledger:
             for row in self.db.execute("SELECT id,definition FROM jobs WHERE state='waiting_application' AND parked=1").fetchall():
                 if name in json.loads(row["definition"])["resources"]:
                     self.db.execute("UPDATE jobs SET parked=0 WHERE id=?", (row["id"],))
+        self.refreshed = False
         self.event(None, "resource", {"name": name, "available": bool(available)})
         self.refresh()
         return {"name": name, "available": bool(available)}
 
-    def submit(self, value):
-        spec = specification(value)
+    def store_spec(self, spec):
         encoded = canonical(spec)
         previous = self.db.execute("SELECT definition_hash FROM jobs WHERE id=?", (spec["id"],)).fetchone()
         if previous is not None and previous[0] == digest(spec):
-            self.refresh()
-            return self.status(spec["id"])
-        count, size = self.db.execute("SELECT COUNT(*),COALESCE(SUM(length(definition)),0) FROM jobs").fetchone()
-        if (previous is None and count >= 10000) or size + len(encoded.encode()) > 16 * 1024 * 1024:
-            raise ValueError("store job metadata limit exceeded")
+            return
         self.objects.put_record(spec)
         self.db.execute(
             "INSERT INTO jobs(id,definition,definition_hash,state,fingerprint,created) VALUES (?,?,?,'queued','',?) "
@@ -103,16 +102,26 @@ class Ledger:
         )
         self.db.execute("DELETE FROM dependencies WHERE job_id=?", (spec["id"],))
         self.db.executemany("INSERT INTO dependencies VALUES (?,?)", [(spec["id"], item) for item in spec["depends_on"]])
-        cycle = self.db.execute(
-            "WITH RECURSIVE ancestors(id) AS (SELECT dependency FROM dependencies WHERE job_id=? "
-            "UNION SELECT d.dependency FROM dependencies d JOIN ancestors a ON d.job_id=a.id) SELECT 1 FROM ancestors WHERE id=?",
-            (spec["id"], spec["id"]),
-        ).fetchone()
-        if cycle:
-            raise ValueError("job dependency cycle")
         self.event(spec["id"], "submitted", {"definition_hash": digest(spec)})
+        self.refreshed = False
+
+    def submit_many(self, values):
+        if not isinstance(values, list) or not 1 <= len(values) <= 10000:
+            raise ValueError("batch must contain 1–10000 job records")
+        specs = [specification(value) for value in values]
+        if len({spec["id"] for spec in specs}) != len(specs):
+            raise ValueError("batch contains duplicate job identifiers")
+        for spec in specs:
+            self.store_spec(spec)
+        count, size = self.db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(definition AS BLOB))),0) FROM jobs").fetchone()
+        if count > 10000 or size > 16 * 1024 * 1024:
+            raise ValueError("store job metadata limit exceeded")
         self.refresh()
-        return self.status(spec["id"])
+        return {"submitted": len(specs)}
+
+    def submit(self, value):
+        self.submit_many([value])
+        return self.status(value["id"])
 
     def snapshot(self, spec):
         self.verify_object(digest(spec))
@@ -139,6 +148,13 @@ class Ledger:
             previous = self.db.execute("SELECT ended,receipt FROM attempts WHERE id=?", (row["active_attempt"],)).fetchone()
             receipt = previous["receipt"]
             if previous["ended"] is None:
+                if reason in ("invalidated", "resource_unavailable"):
+                    prior_hash = json.loads(row["snapshot"])["definition_hash"]
+                    self.verify_object(prior_hash)
+                    prior_spec = json.loads(self.objects.path(prior_hash).read_text(encoding="utf-8"))
+                    for resource in prior_spec["resources"]:
+                        self.db.execute("UPDATE resources SET available=0 WHERE name=?", (resource,))
+                        self.event(None, "resource_recovery_required", {"name": resource})
                 receipt = self.objects.put_record({
                     "receipt_version": 1, "job_id": row["id"], "generation": row["generation"],
                     "attempt": row["attempts"], "execution_id": row["active_attempt"],
@@ -151,43 +167,63 @@ class Ledger:
         return receipt
 
     def refresh(self):
-        pending = {row["id"]: row for row in self.db.execute("SELECT * FROM jobs").fetchall()}
-        while pending:
-            ready = [name for name, row in pending.items() if all(item not in pending for item in json.loads(row["definition"])["depends_on"])]
-            if not ready:
-                raise ValueError("job dependency cycle")
-            for name in sorted(ready):
-                row = pending.pop(name)
-                spec = json.loads(row["definition"])
-                snapshot = self.snapshot(spec)
-                fingerprint = digest(snapshot) if snapshot is not None else None
-                if fingerprint is not None and row["fingerprint"] == fingerprint:
-                    self.verify_object(fingerprint)
-                if row["fingerprint"] != fingerprint:
-                    self.revoke(row, "invalidated")
-                    if snapshot is not None:
-                        self.objects.put_record(snapshot)
-                    self.db.execute(
-                        "UPDATE jobs SET generation=generation+1,fingerprint=?,snapshot=?,attempts=0,parked=0,next_run=0,"
-                        "receipt=NULL,result=NULL,state='queued',reason=? WHERE id=?",
-                        (fingerprint, canonical(snapshot) if snapshot is not None else None, "prerequisites changed", name),
-                    )
-                    self.event(name, "invalidated", {"fingerprint": fingerprint})
-                    row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
-                if row["state"] == "running" and min(row["lease_until"], row["deadline"]) <= time.time():
-                    self.expire(row, spec)
-                    row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
-                unavailable = any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in spec["resources"])
-                if row["state"] == "running" and unavailable:
-                    receipt = self.revoke(row, "resource_unavailable")
-                    self.db.execute("UPDATE jobs SET state='waiting_application',parked=0,receipt=?,result=NULL,reason=? WHERE id=?", (receipt, "resource unavailable", name))
-                    row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
-                if row["state"] == "completed":
-                    self.verify_object(row["receipt"])
-                    self.verify_object(row["result"])
-                elif row["state"] != "running" and not row["parked"] and row["state"] not in ("failed", "rejected"):
-                    state = "waiting_evidence" if snapshot is None else "waiting_application" if unavailable else "queued"
-                    self.db.execute("UPDATE jobs SET state=? WHERE id=?", (state, name))
+        if self.refreshed:
+            return
+        pending = {row["id"]: row for row in self.db.execute("SELECT * FROM jobs ORDER BY id").fetchall()}
+        specs = {name: json.loads(row["definition"]) for name, row in pending.items()}
+        children = {name: [] for name in pending}
+        indegree = {name: 0 for name in pending}
+        for name, spec in specs.items():
+            for parent in spec["depends_on"]:
+                if parent in pending:
+                    children[parent].append(name)
+                    indegree[name] += 1
+        ready = deque(name for name in pending if indegree[name] == 0)
+        visited = 0
+        while ready:
+            name = ready.popleft()
+            row = pending[name]
+            spec = specs[name]
+            snapshot = self.snapshot(spec)
+            fingerprint = digest(snapshot) if snapshot is not None else None
+            if fingerprint is not None and row["fingerprint"] == fingerprint:
+                self.verify_object(fingerprint)
+            if row["fingerprint"] != fingerprint:
+                self.revoke(row, "invalidated")
+                if snapshot is not None:
+                    self.objects.put_record(snapshot)
+                self.db.execute(
+                    "UPDATE jobs SET generation=generation+1,fingerprint=?,snapshot=?,attempts=0,parked=0,next_run=0,"
+                    "receipt=NULL,result=NULL,state='queued',reason=? WHERE id=?",
+                    (fingerprint, canonical(snapshot) if snapshot is not None else None, "prerequisites changed", name),
+                )
+                self.event(name, "invalidated", {"fingerprint": fingerprint})
+                row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
+            if row["state"] == "running" and min(row["lease_until"], row["deadline"]) <= time.time():
+                self.expire(row, spec)
+                row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
+            unavailable = any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in spec["resources"])
+            if row["state"] == "running" and unavailable:
+                receipt = self.revoke(row, "resource_unavailable")
+                self.db.execute("UPDATE jobs SET state='waiting_application',parked=0,receipt=?,result=NULL,reason=? WHERE id=?", (receipt, "resource unavailable", name))
+                row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
+            if row["state"] == "completed":
+                self.verify_object(row["receipt"])
+                self.verify_object(row["result"])
+            elif row["state"] != "running" and not row["parked"] and row["state"] not in ("failed", "rejected"):
+                state = "waiting_evidence" if snapshot is None else "waiting_application" if unavailable else "queued"
+                self.db.execute("UPDATE jobs SET state=? WHERE id=?", (state, name))
+            visited += 1
+            for child in children[name]:
+                indegree[child] -= 1
+                if indegree[child] == 0:
+                    ready.append(child)
+        if visited != len(pending):
+            raise ValueError("job dependency cycle")
+        for row in self.db.execute("SELECT id FROM jobs WHERE parked=0 AND fingerprint IS NOT NULL AND state IN ('queued','waiting_application')").fetchall():
+            unavailable = any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in specs[row["id"]]["resources"])
+            self.db.execute("UPDATE jobs SET state=? WHERE id=?", ("waiting_application" if unavailable else "queued", row["id"]))
+        self.refreshed = True
 
     def expire(self, row, spec):
         receipt = self.revoke(row, "expired")
@@ -209,6 +245,8 @@ class Ledger:
         busy = {resource for row in running for resource in json.loads(row["definition"])["resources"]}
         for row in self.db.execute("SELECT * FROM jobs WHERE state='queued' AND next_run<=? ORDER BY created,id", (time.time(),)).fetchall():
             spec = json.loads(row["definition"])
+            if any(not self.db.execute("SELECT 1 FROM resources WHERE name=? AND available=1", (resource,)).fetchone() for resource in spec["resources"]):
+                continue
             if busy.intersection(spec["resources"]):
                 continue
             if row["attempts"] >= spec["max_attempts"]:
@@ -226,6 +264,7 @@ class Ledger:
                 "UPDATE jobs SET state='running',attempts=attempts+1,worker=?,token_hash=?,lease_until=?,deadline=?,active_attempt=?,reason=NULL,receipt=NULL,result=NULL WHERE id=?",
                 (worker, hashlib.sha256(token.encode()).hexdigest(), lease_until, deadline, attempt, row["id"]),
             )
+            self.refreshed = False
             self.event(row["id"], "claimed", {"attempt": row["attempts"] + 1, "worker": worker})
             return {"job": spec, "generation": row["generation"], "attempt": row["attempts"] + 1, "fingerprint": row["fingerprint"], "snapshot": json.loads(row["snapshot"]), "lease_token": token, "lease_until": lease_until, "deadline": deadline}
         return {"job": None, "reason": "no runnable jobs"}
@@ -277,6 +316,7 @@ class Ledger:
             "UPDATE jobs SET state=?,receipt=?,result=?,reason=?,parked=?,next_run=? WHERE id=?",
             (state, receipt, result_hash, reason, int(state.startswith("waiting_") or state == "rejected"), time.time() + delay, job_id),
         )
+        self.refreshed = False
         self.event(job_id, "finished", {"outcome": outcome, "state": state, "receipt": receipt})
         self.refresh()
         return self.status(job_id)

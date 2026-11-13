@@ -13,9 +13,13 @@ def canonical(value):
 
 def read_record(path):
     path = Path(path)
-    if not path.is_file() or path.stat().st_size > 1024 * 1024:
+    if not path.is_file():
         raise ValueError("record must be a regular JSON file no larger than 1 MiB")
-    value = json.loads(path.read_text(encoding="utf-8"))
+    with path.open("rb") as source:
+        content = source.read(1024 * 1024 + 1)
+    if len(content) > 1024 * 1024:
+        raise ValueError("record exceeds 1 MiB")
+    value = json.loads(content.decode("utf-8"))
     if not isinstance(value, dict):
         raise ValueError("record must be a JSON object")
     canonical(value)

@@ -20,6 +20,8 @@ def main():
     binding.add_argument("file", type=Path)
     submit = commands.add_parser("submit")
     submit.add_argument("file", type=Path)
+    batch = commands.add_parser("submit-batch")
+    batch.add_argument("file", type=Path)
     resource = commands.add_parser("resource")
     resource.add_argument("name")
     availability = resource.add_mutually_exclusive_group(required=True)
@@ -50,6 +52,11 @@ def main():
                 response = ledger.bind(args.name, args.file)
             elif args.command == "submit":
                 response = ledger.submit(read_record(args.file))
+            elif args.command == "submit-batch":
+                record = read_record(args.file)
+                if set(record) != {"jobs"}:
+                    raise ValueError("batch record must contain only jobs")
+                response = ledger.submit_many(record["jobs"])
             elif args.command == "resource":
                 response = ledger.resource(args.name, args.available)
             elif args.command == "claim":

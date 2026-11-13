@@ -47,6 +47,9 @@ Optional fields are `depends_on`, `resources`, `options`, `max_attempts`, `lease
 Unknown top-level fields are rejected.
 Dependencies and resources are arrays of labels; `options` is a JSON object.
 Forward dependencies are allowed, but cycles roll back the submission.
+Use `submit-batch <file>` with a JSON object containing only `jobs`, an array of job records, to submit a group atomically.
+Duplicate identifiers within a batch are rejected.
+The same record-size and store limits apply; split large catalogues into bounded batches.
 
 | Limit                                          | Value                                                           |
 | ---------------------------------------------- | --------------------------------------------------------------- |
@@ -155,6 +158,8 @@ Actual remote evidence is recorded on the PR and in the step register.
 | `failed`              | Retry budget exhausted for the current prerequisite generation                         |
 
 A fingerprint binds the full job definition, selected input digests and dependency receipt/result digests.
+Reconciliation builds one adjacency graph and visits each registered job and dependency edge once per sweep.
+Unchanged reads within the same transaction reuse that sweep.
 An unchanged definition and unchanged bindings reuse the completed result.
 Changing evidence, options, a rule/tool version or a dependency result invalidates affected jobs transitively.
 Old attempt receipts and their immutable definitions/snapshots remain available after invalidation.
@@ -176,13 +181,14 @@ The controller does not terminate an external process; it refuses that process's
 All resource labels are exclusive while a job is running.
 Unknown resources begin unavailable; offline jobs can continue.
 Use `resource <name> --available` or `--unavailable` to record actual worker availability.
-An expired resource-owning attempt or an application-wait outcome makes its resources unavailable.
+An expired or invalidated resource-owning attempt, or an application-wait outcome, makes its resources unavailable.
 Do not re-enable an installation until an isolated worker verifies that the previous execution has stopped and its controls are healthy.
 Worker transport, process termination and physical application control belong to A08.
 
 ## Evidence and remaining scope
 
 A03 adds remote process checks for restart persistence, idempotent reuse, transitive invalidation, stale-result fencing, competing claims, global capacity, exclusive resources, expiry/backoff limits, parked jobs, changed rule versions, cycle rollback and corrupt objects.
+The scaling scenario submits a 10,000-job chain in bounded batches and exercises targeted status, root completion and dependent claims through the real command interface.
 They execute through the real CLI and filesystem/database boundaries.
 No local tests or collection run under repository policy.
 
