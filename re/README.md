@@ -8,6 +8,8 @@ captures and validation evidence, with its source history preserved.
 `Methodology.md` is the reusable playbook — read it first if your target is AutoCAD, CATIA, NX or
 Creo. The existing SOLIDWORKS directories provide the worked example that the playbook was
 distilled from. `Fusion/` preserves a separate native-file study and its original commit history.
+The [automation plan](../Documentation/Reference/Research/AutomationPlan.md) defines the neutral-first research pipeline.
+The [implementation steps](../Documentation/Reference/Research/AutomationSteps.md) track ownership, dependencies and evidence.
 
 ## Size
 

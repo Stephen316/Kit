@@ -58,6 +58,9 @@ Use the result procedure before making a product acceptance claim.
 - [Repository policy](Reference/Operations/Policy.md)
 - [Translation verification](Reference/Operations/Testing.md)
 - [Research method](Reference/Research/Methodology.md)
+- [Neutral-first automation plan](Reference/Research/AutomationPlan.md)
+- [Automation implementation steps](Reference/Research/AutomationSteps.md)
+- [A01 neutral contract and capability audit](Reference/Research/NeutralContractAudit.md)
 - [Research tools](Reference/Research/Tooling.md)
 - [Oracle evidence and fixtures](Reference/Research/Oracles.md)
 

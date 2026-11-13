@@ -76,6 +76,8 @@ It does not establish production readiness.
 
 ## Related information
 
+- [Neutral-first automation plan](AutomationPlan.md)
+- [Implementation steps and progress comments](AutomationSteps.md)
 - [Research tools](Tooling.md)
 - [Oracle evidence](Oracles.md)
 - [Product verification](../Operations/Testing.md)

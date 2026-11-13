@@ -25,6 +25,10 @@ updates; generated docs must be reviewed and must not overwrite manual entries.
 
 ## Repository workflow
 
+For research automation tracked in PR #94, also read [the scoped contributor instructions](re/AGENTS.md)
+and [the implementation step register](Documentation/Reference/Research/AutomationSteps.md).
+Claim authorized steps and post evidence-backed progress comments on that PR as those instructions require.
+
 Agents MUST activate [standard-pr-practice](.agents/skills/standard-pr-practice/SKILL.md)
 every time they work on this repository, before any task, including investigation,
 documentation, skill edits, implementation, and PR follow-up. It is the only repository skill and the
