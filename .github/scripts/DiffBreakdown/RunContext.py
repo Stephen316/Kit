@@ -1,17 +1,23 @@
 from __future__ import annotations
 
 import os as OsLib
-import re as Regex
+import string as StringLib
 
 from RequireSha import RequireSha
 
-KRepoPattern = r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+"
+KRepoCharacters = frozenset(StringLib.ascii_letters + StringLib.digits + "_.-")
 
 
 def ReadContext() -> dict[str, object]:
     EnvValues = OsLib.environ
     Repository = EnvValues["GITHUB_REPOSITORY"]
-    if Regex.fullmatch(KRepoPattern, Repository) is None:
+    OwnerName, Separator, RepoName = Repository.partition("/")
+    if not (
+        Separator
+        and OwnerName
+        and RepoName
+        and set(OwnerName + RepoName) <= KRepoCharacters
+    ):
         raise ValueError("Invalid repository identity")
     return {
         "Repository": Repository,

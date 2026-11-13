@@ -181,10 +181,19 @@ async function FindReuse(Github, Context, Core) {
       ? Queue.entries.pageInfo.endCursor
       : null;
   } while (Cursor);
+  const QueueRef = (Group.head_ref ?? "").match(
+    /^(?:refs\/heads\/)?gh-readonly-queue\/(.+)\/pr-(\d+)-[0-9a-f]{40}$/,
+  );
+  const QueuedNumber =
+    QueueRef && QueueRef[1] === Branch ? Number(QueueRef[2]) : null;
   const Pulls = [];
   for (const Entry of Entries) {
     const Pull = Entry.pullRequest;
     if (!Pull || Pull.state !== "OPEN" || Pull.baseRefName !== Branch) continue;
+    if (Pull.number === QueuedNumber) {
+      Pulls.push(Pull);
+      continue;
+    }
     const Compared = await Github.rest.repos.compareCommits({
       ...Repository,
       base: Pull.headRefOid,
