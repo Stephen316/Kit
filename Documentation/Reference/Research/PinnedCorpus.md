@@ -16,6 +16,7 @@ A03–A16 have not started through this change.
 ## Pinned inputs
 
 The [manifest](../../../re/automation/Corpus.json) pins commit `74a0bc353421c25f7a6c539897baadf593a05766`.
+`.gitattributes` marks the manifest as generated, so GitHub collapses it in pull request diffs.
 It contains 1,012 assets: 778 native files, 232 JSON evidence files and two historical corpus notes.
 
 | Native format | Files |
