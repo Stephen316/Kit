@@ -1,5 +1,23 @@
 import json
+import posixpath
+import re
 from pathlib import PurePosixPath
+
+NATIVE_SUFFIXES = (".f3d", ".f3z", ".sldprt", ".sldasm", ".fcstd")
+
+
+def resolve_candidates(path, name, native_paths):
+    if name.startswith("/") or re.match(r"[A-Za-z]:/", name):
+        return []
+    candidates = []
+    directory = posixpath.dirname(path)
+    while True:
+        candidate = posixpath.normpath(posixpath.join(directory, name))
+        if candidate in native_paths and candidate not in candidates:
+            candidates.append(candidate)
+        if not directory:
+            return candidates
+        directory = posixpath.dirname(directory)
 
 
 def inspect_evidence(path, content, native_paths):
@@ -15,10 +33,28 @@ def inspect_evidence(path, content, native_paths):
         "center_of_mass_cm", "surface_area_mm2", "rebuilt", "opened", "load_errors", "load_warnings",
     }
 
+    def record_reference(text, pointer, recorded_as):
+        if not isinstance(text, str):
+            return
+        name = text.replace("\\", "/")
+        if PurePosixPath(name).suffix.lower() not in NATIVE_SUFFIXES:
+            return
+        candidates = resolve_candidates(path, name, native_paths)
+        references.append({
+            "pointer": pointer,
+            "recorded_as": recorded_as,
+            "recorded_path": text,
+            "candidate_paths": candidates,
+            "association": "relative_path_only" if candidates else "unavailable_or_unbound",
+            "capture_hash_binding": "not_established",
+        })
+
     def walk(value, pointer=""):
         if isinstance(value, list):
             for index, child in enumerate(value):
-                walk(child, f"{pointer}/{index}")
+                location = f"{pointer}/{index}"
+                record_reference(child, location, "value")
+                walk(child, location)
         elif isinstance(value, dict):
             for key, child in value.items():
                 location = pointer + "/" + key.replace("~", "~0").replace("/", "~1")
@@ -33,21 +69,8 @@ def inspect_evidence(path, content, native_paths):
                             for part in location.split("/")
                         ) else "recorded_unqualified",
                     })
-                if isinstance(child, str) and PurePosixPath(child.replace("\\", "/")).suffix.lower() in (
-                    ".f3d", ".f3z", ".sldprt", ".sldasm", ".fcstd"
-                ):
-                    name = child.replace("\\", "/")
-                    candidate = str(PurePosixPath(path).parent / name)
-                    candidates = [candidate] if candidate in native_paths else []
-                    if name in native_paths:
-                        candidates = [name]
-                    references.append({
-                        "pointer": location,
-                        "recorded_path": child,
-                        "candidate_paths": candidates,
-                        "association": "relative_path_only" if candidates else "unavailable_or_unbound",
-                        "capture_hash_binding": "not_established",
-                    })
+                record_reference(key, location, "member_name")
+                record_reference(child, location, "value")
                 walk(child, location)
 
     walk(data)

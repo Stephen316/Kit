@@ -39,7 +39,10 @@ def CheckCorpusFlow(CaseMode: str) -> None:
             check=False,
             timeout=120,
         )
-    assert (
-        Checked.returncode
-        == {"intact": 0, "tampered": 1, "pairs-required": 2}[CaseMode]
-    ), Checked.stderr
+    ExpectedCode, ExpectedMessage = {
+        "intact": (0, ""),
+        "tampered": (1, "manifest differs from pinned Git objects"),
+        "pairs-required": (2, "blocked: independently authored"),
+    }[CaseMode]
+    assert Checked.returncode == ExpectedCode, Checked.stderr
+    assert ExpectedMessage in Checked.stderr, Checked.stderr
