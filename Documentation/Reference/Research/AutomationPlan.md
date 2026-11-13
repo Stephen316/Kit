@@ -5,7 +5,9 @@
 This document is a design for future implementation.
 PR #94 contains the plan and the [completed A01 contract audit](NeutralContractAudit.md).
 A01 introduces no runtime or schema change.
-A02–A16 and application experiments require their own explicit authorization.
+A02 is now authorized and started in [implementation PR #109](https://github.com/TryUniCAD/Kit/pull/109).
+Its offline corpus tooling and paired specifications are implemented; independent captures and measurement bindings remain outstanding.
+A03–A16 require a subsequent explicit request.
 The [step register](AutomationSteps.md) records identifiable deliverables, dependencies and progress.
 
 Use one portable `CadDocument` contract and its existing JSON serialization.

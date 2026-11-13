@@ -4,8 +4,9 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-All other implementation steps remain planned and unassigned.
-The current request authorizes A01 only, not A02–A16 or runtime/schema implementation.
+A02 is authorized and owned by jdharcourt in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
+Its corpus tooling and paired specifications are implemented; independent capture qualification is blocked.
+A03–A16 remain planned and unassigned and require a subsequent request.
 Read the [A01 decision and evidence](NeutralContractAudit.md) before claiming subsequent authorized work.
 
 Keep identifiers stable when splitting work or revising estimates.
@@ -30,7 +31,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | ID  | Deliverable                                            | Depends on                 | Owner      | Status   | Exit criterion                                                                                                                                                                                                                     |
 | --- | ------------------------------------------------------ | -------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A01 | Neutral contract and capability audit                  | None                       | jdharcourt | complete | Existing fields, demonstrated gaps, version scope and independent acceptance requirements documented                                                                                                                               |
-| A02 | Pinned corpus and paired authoring specifications      | A01                        | Unassigned | planned  | Hashed inputs, actual measurements, missing dependencies and independent holdout families recorded                                                                                                                                 |
+| A02 | Pinned corpus and paired authoring specifications      | A01                        | jdharcourt | blocked  | Hashed inputs, actual measurements, missing dependencies and independent holdout families recorded                                                                                                                                 |
 | A03 | Durable evidence store and job controller              | A01                        | Unassigned | planned  | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
 | A04 | SOLIDWORKS → neutral reader integration                | A01, A02                   | Unassigned | planned  | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
 | A05 | Fusion → neutral reader integration                    | A01, A02                   | Unassigned | planned  | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
@@ -52,6 +53,25 @@ A08 can wait for application access while saved-file research continues.
 A10 remains optional and never blocks deterministic operation.
 A13 requires actual application evidence and cannot pass in offline-only mode.
 A16 is an expansion milestone, not a promise of universal support.
+
+## A02 implementation and remaining evidence
+
+Work branch: `feat/a02-pinned-research-corpus-20261113`.
+Implementation revision: `f3b6e0ff5045dd207ed272eb590fc766f460b64c` in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
+The implementation PR starts from main `74a0bc353421c25f7a6c539897baadf593a05766`; this planning PR contains the tracking update only.
+
+| Child ID | Deliverable                                                 | Status   | Evidence or remaining requirement                                                                                                                |
+| -------- | ----------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| A02a     | Hashed native inputs and historical evidence index          | checking | 778 native files, 232 JSON evidence files and two historical notes pinned; exact-head remote checks tracked in PR #109                           |
+| A02b     | Five paired recipes and controlled-variation specifications | checking | Explicit parameters, frames, constraints, edits, analytic expectations, tolerances and reserved family splits; remote checks pending             |
+| A02c     | Independently authored and measured native pairs            | blocked  | Capture slots are empty; require exact-source hashes, application builds, healthy controls and independent edit/rebuild/save/reopen observations |
+| A02d     | Independent qualification and holdout ancestry              | blocked  | Imported lineage reservations are provisional; audit authorship and descendants before evaluating generalization                                 |
+
+Historical measurements retain their original values and failures.
+Relative filenames do not establish capture-time hash bindings.
+Analytic expectations are labelled separately from observed values.
+Zero native pairs are currently qualified; no conversion capability is claimed.
+No A03–A16 implementation is included.
 
 ## Required PR progress comments
 
@@ -98,7 +118,8 @@ Do not use same-format success to close a cross-format conversion step.
 
 The current change aligns the plan, adds this register and records contributor instructions.
 A01 now supplies the audited neutral-format decision and capability boundaries.
-No controller, codec, comparator, schema extension or application worker has been implemented.
-A02–A16 have not started.
+No controller, codec, comparator, schema extension or application worker has been implemented through this plan.
+A02 tooling and specifications started in separate PR #109; native capture qualification remains blocked.
+A03–A16 have not started.
 Formatting and source-link review concern documentation only.
 Remote CI, configured review and merge-group acceptance remain separate publication evidence.
