@@ -11,6 +11,7 @@ A Claude runner uses the Messages API without tools for hypotheses and Claude Co
 The tier selector, failure log and tier routes implement the plan's model escalation rule.
 The supervisor ranks model candidates by measured tokens per passed answer and removes candidates that another candidate dominates.
 Separate starting ladders for Codex and Claude come from published model descriptions and prices.
+Only starting-ladder candidates answer the full ranking set; other candidates pass a 5-question screen first.
 The Astra and Fable models are ruled out of both ladders by operator decision.
 Repeat disagreement, pass-rate drift and token spread re-rank an inconsistent candidate automatically for each task type.
 The Codex and Claude error tables separate model failures from infrastructure failures.

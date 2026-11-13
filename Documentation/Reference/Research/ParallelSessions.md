@@ -464,7 +464,11 @@ The supervisor calculates these values for each candidate:
 A new candidate first answers a ranking set.
 The ranking set contains at least 20 questions with known answers from solved families, for example the A09 pad-then-pad family.
 Every candidate gets the same packets and the same checks.
-A candidate enters the ladder only after it completes the ranking set.
+Only the candidates in the starting ladder answer the full ranking set at first.
+Each other candidate first answers 5 screening questions from the ranking set.
+It continues to the full ranking set only when it passes at least 4 of them.
+A candidate enters the ladder only after it completes the full ranking set.
+After that, attempts on real questions keep its values current, so no full ranking set runs again unless its model version changes.
 
 Remove a dominated candidate from the ladder.
 Candidate X is dominated when another candidate Y meets both of these conditions:
