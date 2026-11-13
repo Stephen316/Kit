@@ -134,6 +134,26 @@ Formula fits are hypotheses until independent evidence establishes meaning.
 Use exact comparisons for integer grammar and declared tolerances for appropriate numeric relationships.
 Do not reuse holdout results repeatedly to tune a hypothesis.
 
+### Field search method
+
+Stage 7 searches for encoded values before it scans every offset.
+Encode each experiment value once in each candidate type, byte order and unit.
+Encode integer types only when the converted value is a whole number.
+Also encode the nearest representable neighbors of each floating-point value.
+Search each stream for these byte patterns with the Python built-in byte search.
+Keep a hit only when it follows the experiment grid at a consistent location across all saves.
+Chance matches of short patterns do not follow the grid, so this check rejects them.
+
+Scan the remaining unexplained spans with numpy.
+Read each span as arrays of each candidate type and compare them to the expected values within the declared tolerance.
+This scan finds rounding differences and scaled or offset storage that the byte patterns miss.
+Packed bit fields, nested compression and derived formulas need their own bounded searches.
+
+A synthetic trial searched 50 random 2 MiB buffers for 44 patterns in about 2 s with plain Python.
+This result is an indication only, so measure real experiment grids before tuning.
+numpy is already a pinned development dependency in `pyproject.toml`.
+Consider compiled extension code only when measurements show that formula search or object alignment dominates run time.
+
 ## Durable controller and evidence
 
 Use Python with uv and an initial Python 3.14 research environment for ZIP Zstandard support.

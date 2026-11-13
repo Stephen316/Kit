@@ -7,6 +7,7 @@ It defines paired semantic comparison, deterministic investigation, optional mod
 Model escalation starts at the least costly tier, logs every failed attempt and moves a repeatedly failing signature to a stronger tier.
 Cross-format native acceptance governs the initial bidirectional conversion milestone.
 Same-format checks remain supporting evidence.
+The field search encodes known experiment values as byte patterns before a numpy scan of unexplained spans.
 
 The [step register](../../Reference/Research/AutomationSteps.md) provides A01–A16 identifiers, dependencies, owners, statuses and exit criteria.
 The step register is the only maintained record of the current status of each step.
