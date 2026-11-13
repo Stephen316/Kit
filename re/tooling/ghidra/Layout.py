@@ -39,7 +39,7 @@ def LoadData(LabelInfo):
             KRootInfo / ".rescratch/corpus/parts",
             KRootInfo / ".rescratch/corpus2",
             KRootInfo / ".rescratch/trace/parts",
-            KRootInfo / "examples",
+            KRootInfo / "re/solidworks/examples",
             KRootInfo / ".rescratch",
         ):
             HitsInfo = list(BaseInfo.rglob(PartInfoInfo.name))

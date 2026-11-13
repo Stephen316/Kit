@@ -239,10 +239,12 @@ def TestSuppliedThe() -> None:
     Expected = {
         PathValue
         for PathValue in Expected
-        if (KRootValue / "examples" / PathValue).is_file()
+        if (KRootValue / "re" / "solidworks" / "examples" / PathValue).is_file()
     }
     Accepted: set[str] = set()
-    for Source in sorted((KRootValue / "examples").rglob("*.SLDPRT")):
+    for Source in sorted(
+        (KRootValue / "re" / "solidworks" / "examples").rglob("*.SLDPRT")
+    ):
         if not Source.is_file() or Source.name.startswith("~$"):
             continue
         DocValue = OpenDoc(Source)
@@ -253,7 +255,9 @@ def TestSuppliedThe() -> None:
         except FreeCadBrepWriteError:
             continue
         assert IsStructurallyValidAscii(Encoded)
-        Accepted.add(Source.relative_to(KRootValue / "examples").as_posix())
+        Accepted.add(
+            Source.relative_to(KRootValue / "re" / "solidworks" / "examples").as_posix()
+        )
     assert Accepted == Expected
 
 

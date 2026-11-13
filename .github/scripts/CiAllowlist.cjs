@@ -4,6 +4,8 @@ const QueuePath = WorkflowRoot + "MergeQueue.yml";
 const QueueGate = "Merge queue acceptance";
 const QueueJobs = [
   "Run the complete test suite",
+  "Test suite / Plan",
+  "Test suite / Report",
   "Analyze actions",
   "Analyze python",
   "Bandit",
@@ -22,6 +24,7 @@ const QueueJobs = [
   "Trivy",
   "TruffleHog",
 ];
+const ShardJobs = /^Test suite \/ Shard \(\d+\)$/;
 const StaticChecks = {
   "PythonQuality.yml": {
     required: ["Ruff", "Black", "Pyright", "Mypy"],
@@ -56,7 +59,7 @@ const StaticChecks = {
     preflight: "PR CI reuse (Workflow quality)",
   },
 };
-const LabelChecks = {
+const TargetChecks = {
   "PullRequestCI.yml": "Label CI changes",
   "PullRequestTests.yml": "Label test changes",
   "PullRequestDependencies.yml": "Label dependency changes",
@@ -64,6 +67,7 @@ const LabelChecks = {
   "PullRequestSize.yml": "Label changed LOC ratio",
   "PullRequestBreakingChange.yml": "Label declared breaking changes",
   "PullRequestDirection.yml": "Label dominant change direction",
+  "PullRequestDiffBreakdown.yml": "Publish diff breakdown",
 };
 
 function CiWorkflows(IsPull, IncludeAgg = false, Opened = false) {
@@ -78,11 +82,16 @@ function CiWorkflows(IsPull, IncludeAgg = false, Opened = false) {
     Workflows.set(QueuePath, {
       event: Event,
       required: [QueueGate, ...QueueJobs],
+      matching: [ShardJobs],
     });
     return Workflows;
   }
 
-  const Deferred = [...QueueJobs, "Analyze ${{ matrix.language }}"];
+  const Deferred = [
+    ...QueueJobs,
+    "Analyze ${{ matrix.language }}",
+    "Test suite / Shard (${{ matrix.shard }})",
+  ];
   Workflows.set(QueuePath, {
     event: Event,
     required: [QueueGate],
@@ -101,7 +110,7 @@ function CiWorkflows(IsPull, IncludeAgg = false, Opened = false) {
       "Analyze (javascript-typescript)",
     ],
   });
-  for (const [File, Name] of Object.entries(LabelChecks))
+  for (const [File, Name] of Object.entries(TargetChecks))
     Workflows.set(WorkflowRoot + File, {
       event: "pull_request_target",
       required: [Name],

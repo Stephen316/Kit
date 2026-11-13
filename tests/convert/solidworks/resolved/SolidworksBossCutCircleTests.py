@@ -28,9 +28,9 @@ KRepoRoot = FilePath(__file__).resolve().parents[4]
 # centralizes shared evidence so every related assertion uses one value
 KOracleStream = (
     KRepoRoot
-    / "examples"
+    / "re"
+    / "solidworks"
     / "Fixtures"
-    / "SolidWorks"
     / "donors"
     / "boss_cut_cut_blind"
     / "resolved.bin"
@@ -131,4 +131,4 @@ def TestBCCPCNVB() -> None:
     assert "b85decode" not in SourceText
     assert "opaque" not in SourceText.casefold()
     assert ".rescratch" not in SourceText
-    assert "examples/Fixtures/SolidWorks/donors" not in SourceText
+    assert "re/solidworks/Fixtures/donors" not in SourceText

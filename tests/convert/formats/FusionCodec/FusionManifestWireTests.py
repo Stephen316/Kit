@@ -152,7 +152,7 @@ def TestReadGuards() -> None:
             (30, 709099584),
             5,
         ),
-        ("examples/.f3d/example2.f3d", (36, 708837440), 7),
+        ("re/Fusion/examples/.f3d/example2.f3d", (36, 708837440), 7),
     ),
 )
 def TestWireReplay(

@@ -35,7 +35,7 @@ from tests.convert.catia.MetadataAccess import GetObjectRows, GetString
 KRootValue = FilePath(__file__).parents[3]
 
 # this binding exists because shared behavior needs one stable value
-KCatproducts = KRootValue / "examples" / ".CATProduct"
+KCatproducts = KRootValue / "re" / "catia" / "examples" / ".CATProduct"
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -155,7 +155,7 @@ def TestCatproductI() -> None:
 
 # this definition exists because focused behavior needs one stable owner
 def TestCatproductG(TmpPath: FilePath) -> None:
-    Source = KRootValue / "examples" / ".CATPart" / "4876.CATPart"
+    Source = KRootValue / "re" / "catia" / "examples" / ".CATPart" / "4876.CATPart"
     Renamed = TmpPath / "unrelated-name.CATPart"
     _ = Renamed.write_bytes(Source.read_bytes())
     DocValue = CatiaAdapter().read(
@@ -175,7 +175,7 @@ def TestCatproductG(TmpPath: FilePath) -> None:
 
 # this definition exists because focused behavior needs one stable owner
 def TestCatproductJ(TmpPath: FilePath) -> None:
-    Source = KRootValue / "examples" / ".CATPart" / "4876.CATPart"
+    Source = KRootValue / "re" / "catia" / "examples" / ".CATPart" / "4876.CATPart"
     First = TmpPath / "a.CATPart"
     Second = TmpPath / "b.CATPart"
     _ = First.write_bytes(Source.read_bytes())
@@ -392,7 +392,7 @@ def TestCatproductD() -> None:
         ({"component_search_max_total_bytes": 1}, "total_bytes"),
         (
             {
-                "component_search_root": KRootValue / "examples",
+                "component_search_root": KRootValue / "re" / "catia" / "examples",
                 "component_search_max_depth": 0,
             },
             "depth",
@@ -422,7 +422,8 @@ def TestCatproductC(TmpPath: FilePath) -> None:
     LinkValue = TmpPath / "outside-parts"
     try:
         LinkValue.symlink_to(
-            KRootValue / "examples" / ".CATPart", target_is_directory=True
+            KRootValue / "re" / "catia" / "examples" / ".CATPart",
+            target_is_directory=True,
         )
     except OSError:
         Pytest.skip("directory symlinks are unavailable")

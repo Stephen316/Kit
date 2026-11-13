@@ -151,11 +151,13 @@ if zstd is not None:
         "ConeSurface", "PlaneSurface", "SphereSurface", "TorusSurface",
     ]
 cases = (
-    (root / "examples" / ".SLDPRT" / "example.SLDPRT", ".FCStd"),
+    (root / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT", ".FCStd"),
     (output / "conversion_0.FCStd", ".CATPart"),
-    (root / "examples" / ".CATPart" / "Banjo.CATPart", ".SLDPRT"),
+    (root / "re" / "catia" / "examples" / ".CATPart" / "Banjo.CATPart", ".SLDPRT"),
     (
         root
+        / "re"
+        / "solidworks"
         / "examples"
         / "Single Turbo Dual Overhead Cam V8 - KDP - 2024"
         / "Cylinder Head Assy 1.SLDASM",
@@ -163,6 +165,8 @@ cases = (
     ),
     (
         root
+        / "re"
+        / "catia"
         / "examples"
         / ".CATProduct"
         / "Brake_Pedal_Assembly - Backup 2.CATProduct",

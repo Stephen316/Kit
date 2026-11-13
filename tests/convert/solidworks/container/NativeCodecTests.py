@@ -7,7 +7,14 @@ from convert.adapters.solidworks.container.Container import BuildSldprt, SldprtA
 from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat
 from tests.convert.solidworks.container.CodecFixture import CodecFixture
 
-KSample = FilePath(__file__).parents[4] / "examples" / ".SLDPRT" / "example.SLDPRT"
+KSample = (
+    FilePath(__file__).parents[4]
+    / "re"
+    / "solidworks"
+    / "examples"
+    / ".SLDPRT"
+    / "example.SLDPRT"
+)
 
 
 @TestMark.parametrize("Version", (3, 4))

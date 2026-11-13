@@ -1,7 +1,7 @@
 # `Core.py` findings: feature flag words and the arc/circle record
 
 Scope: `src/convert/adapters/solidworks/resolved/Core.py` and `tests/convert/solidworks/resolved/SolidworksResolvedTests.py` only.
-Evidence corpus: `examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts, 54 with
+Evidence corpus: `re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024` (57 parts, 54 with
 `Contents/Config-0-ResolvedFeatures`), plus `.rescratch/corpus2` for the byte-identity round trips.
 
 ## 1. Bit 31 is not part of the feature kind

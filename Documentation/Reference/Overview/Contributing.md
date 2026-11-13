@@ -48,6 +48,11 @@ Report unavailable review evidence separately from independently enforced GitHub
 Every configured reviewer must pass all its native reports and submit an actual `APPROVED` review on the current head.
 Missing, pending, failed, stale, or dismissed evidence blocks readiness.
 
+Automated review does not examine files in `Documentation/` or `re/`.
+[REVIEW.md](../../../REVIEW.md) and the [path configuration](../../../.greptile/config.json) set this scope.
+Use the [documentation review procedure](../../Maintenance/Review.md) for changes in `Documentation/`.
+See [review path exclusions](../../Changes/ReviewPathExclusions.md).
+
 ## Validation
 
 Do not run tests locally.

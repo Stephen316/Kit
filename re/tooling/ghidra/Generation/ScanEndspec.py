@@ -116,7 +116,7 @@ def MainRun():
         ".rescratch/corpus/parts",
         ".rescratch/corpus2",
         ".rescratch/trace/parts",
-        "examples",
+        "re/solidworks/examples",
     ]
     Klass = "moEndSpec_c"
     Needle = Marker(Klass)

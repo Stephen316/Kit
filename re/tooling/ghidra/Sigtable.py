@@ -76,7 +76,7 @@ def FinishMain(FileId, GetRows, IndexInfo, Table, TripInfo):
     for IndexInfo, FileId, TripInfo in GetRows[709:714] + GetRows[748:753]:
         print(IndexInfo, f"0x{FileId:08x}", [TextData.hex() for TextData in TripInfo])
     Roots = System.argv[1:] or [
-        "examples",
+        "re/solidworks/examples",
         ".rescratch/corpus/parts",
         ".rescratch/corpus2",
         ".rescratch/trace/parts",

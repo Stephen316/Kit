@@ -13,11 +13,16 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  verify-end-to-end:
+  test-plan:
     if: github.event_name == 'merge_group'
-    name: Run the complete test suite
+    name: Test suite / Plan
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 15
+    permissions:
+      actions: read # Reads earlier merge-group test durations to balance shards.
+      contents: read
+    outputs:
+      shards: ${{ steps.plan.outputs.shards }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -34,8 +39,184 @@ jobs:
       - name: Synchronize the locked environment
         run: uv sync --frozen --no-default-groups --extra dev --python 3.14
 
-      - name: Run all tests
-        run: uv run --no-sync --python 3.14 pytest
+      - name: Collect the complete test suite
+        run: |
+          set -euo pipefail
+          if ! uv run --no-sync --python 3.14 pytest --collect-only -q > "${RUNNER_TEMP}/Collected.txt"; then
+            cat "${RUNNER_TEMP}/Collected.txt"
+            exit 1
+          fi
+          tail -n 1 "${RUNNER_TEMP}/Collected.txt"
+
+      - name: Fetch earlier merge-group test durations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          RunId="$(
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=TestDurations&per_page=100" --jq '
+              [
+                .artifacts[]
+                | select(.expired | not)
+                | select((.workflow_run.head_branch // "") | startswith("gh-readonly-queue/"))
+                | select(.workflow_run.head_repository_id == .workflow_run.repository_id)
+              ]
+              | sort_by(.created_at)
+              | last
+              | .workflow_run.id // empty
+            '
+          )"
+          if [ -z "$RunId" ]; then
+            echo "No earlier merge-group test durations exist; shards balance by test count" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          gh run download "$RunId" --repo "$GITHUB_REPOSITORY" --name TestDurations --dir "${RUNNER_TEMP}/History"
+
+      - name: Plan test shards
+        id: plan
+        run: |
+          set -euo pipefail
+          uv run --no-sync --python 3.14 python -m tools.TestShards.PlanShards \
+            --collected "${RUNNER_TEMP}/Collected.txt" \
+            --history "${RUNNER_TEMP}/History/TestDurations.json" \
+            --max-tests 300 \
+            --output "${RUNNER_TEMP}/ShardPlan/ShardPlan.json" \
+            --summary "$GITHUB_STEP_SUMMARY"
+          echo "shards=$(jq -c '[.Shards[].Index]' "${RUNNER_TEMP}/ShardPlan/ShardPlan.json")" >> "$GITHUB_OUTPUT"
+
+      - name: Upload the shard plan
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ShardPlan
+          path: ${{ runner.temp }}/ShardPlan/ShardPlan.json
+          if-no-files-found: error
+          retention-days: 7
+
+  test-shard:
+    if: github.event_name == 'merge_group'
+    needs: test-plan
+    name: Test suite / Shard (${{ matrix.shard }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.test-plan.outputs.shards) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Download the shard plan
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: ShardPlan
+          path: ${{ runner.temp }}/ShardPlan
+
+      - name: Select this shard's tests
+        env:
+          SHARD_INDEX: ${{ matrix.shard }}
+        run: |
+          set -euo pipefail
+          jq -r --argjson ShardIndex "$SHARD_INDEX" \
+            '.Shards[] | select(.Index == $ShardIndex) | .TestIds[]' \
+            "${RUNNER_TEMP}/ShardPlan/ShardPlan.json" > "${RUNNER_TEMP}/ShardTests.txt"
+          test -s "${RUNNER_TEMP}/ShardTests.txt"
+          echo "Running $(wc -l < "${RUNNER_TEMP}/ShardTests.txt") planned tests"
+
+      - name: Run this shard's tests
+        id: tests
+        run: >-
+          uv run --no-sync --python 3.14 pytest
+          --report-log="${RUNNER_TEMP}/ShardReport/ShardReport.jsonl"
+          "@${RUNNER_TEMP}/ShardTests.txt"
+
+      - name: Upload this shard's report log
+        if: always() && steps.tests.outcome != 'skipped'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: TestReport-${{ matrix.shard }}
+          path: ${{ runner.temp }}/ShardReport/ShardReport.jsonl
+          if-no-files-found: error
+          retention-days: 7
+
+  test-report:
+    if: ${{ !cancelled() && github.event_name == 'merge_group' && needs.test-plan.result == 'success' }}
+    needs: [test-plan, test-shard]
+    name: Test suite / Report
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Download the shard plan
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: ShardPlan
+          path: ${{ runner.temp }}/ShardPlan
+
+      - name: Download shard report logs
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: TestReport-*
+          path: ${{ runner.temp }}/ShardReports
+
+      - name: Verify every planned test ran exactly once
+        id: verify
+        run: >-
+          uv run --no-sync --python 3.14 python -m tools.TestShards.MergeReports
+          --plan "${RUNNER_TEMP}/ShardPlan/ShardPlan.json"
+          --reports "${RUNNER_TEMP}/ShardReports"
+          --output "${RUNNER_TEMP}/TestDurations/TestDurations.json"
+          --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish measured durations for later plans
+        if: always() && steps.verify.outcome != 'skipped'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: TestDurations
+          path: ${{ runner.temp }}/TestDurations/TestDurations.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  verify-end-to-end:
+    if: ${{ !cancelled() && github.event_name == 'merge_group' }}
+    needs: [test-plan, test-shard, test-report]
+    name: Run the complete test suite
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      JOB_RESULTS: ${{ toJSON(needs) }}
+    steps:
+      - name: Require the plan, every shard, and the completeness report
+        run: |
+          set -euo pipefail
+          echo "$JOB_RESULTS" | jq --exit-status 'length == 3 and all(.[]; .result == "success")'
+          echo "The planned shards ran the complete test suite" >> "$GITHUB_STEP_SUMMARY"
 
   analyze:
     if: github.event_name == 'merge_group'
@@ -617,6 +798,9 @@ jobs:
     if: always()
     needs:
       [
+        test-plan,
+        test-shard,
+        test-report,
         verify-end-to-end,
         analyze,
         bandit,

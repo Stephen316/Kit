@@ -132,7 +132,7 @@ def GetMetaText(Metadata: TypeMap[str, object], KeyValue: str) -> str:
 KRootValue = PathValue(__file__).parents[3]
 
 # this binding exists because shared behavior needs one stable value
-KExamples = KRootValue / "examples"
+KResearch = KRootValue / "re"
 
 # this binding exists because shared behavior needs one stable value
 KFormatBySuffix = {
@@ -164,9 +164,19 @@ KExpectedSuffixCounts = {
 # this binding exists because shared behavior needs one stable value
 KFcstdAssemblies = frozenset(
     {
-        KExamples / "Random" / "V8_engine" / "Conrod_2.FCStd",
-        KExamples / "Random" / "V8_engine" / "Piston_2.FCStd",
-        KExamples / "Random" / "V8_engine.FCStd",
+        KResearch
+        / "solidworks"
+        / "examples"
+        / "Random"
+        / "V8_engine"
+        / "Conrod_2.FCStd",
+        KResearch
+        / "solidworks"
+        / "examples"
+        / "Random"
+        / "V8_engine"
+        / "Piston_2.FCStd",
+        KResearch / "solidworks" / "examples" / "Random" / "V8_engine.FCStd",
     }
 )
 
@@ -175,36 +185,55 @@ KPartSources = (
     (
         "sldprt",
         ".SLDPRT",
-        KExamples / ".SLDPRT" / "example.SLDPRT",
+        KResearch / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT",
         False,
     ),
     (
         "fcstd_part",
         ".FCStd",
-        KExamples / "Random" / "V8_engine" / "hex bolt gradeb_iso.FCStd",
+        KResearch
+        / "solidworks"
+        / "examples"
+        / "Random"
+        / "V8_engine"
+        / "hex bolt gradeb_iso.FCStd",
         False,
     ),
     (
         "catpart",
         ".CATPart",
-        KExamples / ".CATPart" / "Banjo.CATPart",
+        KResearch / "catia" / "examples" / ".CATPart" / "Banjo.CATPart",
         False,
     ),
 )
 
 # these sources exercise every supported assembly format reader
 KAssemblySources = (
-    ("sldasm", ".SLDASM", KExamples / "Random" / "Pistons" / "Piston.SLDASM", True),
+    (
+        "sldasm",
+        ".SLDASM",
+        KResearch / "solidworks" / "examples" / "Random" / "Pistons" / "Piston.SLDASM",
+        True,
+    ),
     (
         "fcstd_assembly",
         ".FCStd",
-        KExamples / "Random" / "V8_engine" / "Conrod_2.FCStd",
+        KResearch
+        / "solidworks"
+        / "examples"
+        / "Random"
+        / "V8_engine"
+        / "Conrod_2.FCStd",
         True,
     ),
     (
         "catproduct",
         ".CATProduct",
-        KExamples / ".CATProduct" / "Brake_Pedal_Assembly - Backup 2.CATProduct",
+        KResearch
+        / "catia"
+        / "examples"
+        / ".CATProduct"
+        / "Brake_Pedal_Assembly - Backup 2.CATProduct",
         True,
     ),
 )
@@ -223,7 +252,8 @@ KMatrixCases = tuple(
 KCorpusFiles = tuple(
     sorted(
         PathValueA
-        for PathValueA in KExamples.rglob("*")
+        for Vendor in ("solidworks", "catia")
+        for PathValueA in (KResearch / Vendor / "examples").rglob("*")
         if PathValueA.is_file()
         and PathValueA.suffix.casefold()
         in {Value.casefold() for Value in KSupportedSuffixes}
@@ -232,7 +262,9 @@ KCorpusFiles = tuple(
 
 # this binding exists because shared behavior needs one stable value
 KMissingReferenceFiles = {
-    KExamples
+    KResearch
+    / "solidworks"
+    / "examples"
     / "Single Turbo Dual Overhead Cam V8 - KDP - 2024"
     / "ENSAMBLAJE DE MOTOR V8.SLDASM": "ENSAMBLAJE TURBO.SLDASM",
 }
@@ -504,7 +536,7 @@ def TestSFMRADK() -> None:
     assert set(KPartSuffixes) | set(KAssemblySuffixes) == set(KFormatBySuffix)
     assert set(KPartSuffixes) & set(KAssemblySuffixes) == {".FCStd"}
     Counts = Counter(Suffix(PathValueA) for PathValueA in KCorpusFiles)
-    if not (KExamples / "Random").is_dir():
+    if not (KResearch / "solidworks" / "examples" / "Random").is_dir():
         Pytest.skip("bundled random example corpus is unavailable")
     MissingSuffixes = tuple(
         SuffixName
@@ -578,11 +610,11 @@ def TestEVFSRBD(
 @Pytest.mark.parametrize(
     "Source",
     tuple(KMissingReferenceFiles),
-    ids=lambda PathValueA: str(PathValueA.relative_to(KExamples)),
+    ids=lambda PathValueA: str(PathValueA.relative_to(KResearch)),
 )
 def TestAMIRFARBN(Source: PathValue) -> None:
     Missing = KMissingReferenceFiles[Source]
-    assert not tuple(KExamples.rglob(Missing))
+    assert not tuple((KResearch / "solidworks" / "examples").rglob(Missing))
     with Pytest.raises(SldprtFormatError) as Captured:
         _ = OpenDocument(Source)
     Message = str(Captured.value)
@@ -594,7 +626,7 @@ def TestAMIRFARBN(Source: PathValue) -> None:
 @Pytest.mark.parametrize(
     "Source",
     KSupportedFiles,
-    ids=lambda PathValueA: str(PathValueA.relative_to(KExamples)),
+    ids=lambda PathValueA: str(PathValueA.relative_to(KResearch)),
 )
 def TestESESTEVFAB(
     Source: PathValue,

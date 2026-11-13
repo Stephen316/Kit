@@ -9,7 +9,7 @@ from convert.adapters.solidworks.core.Display import (
 )
 
 # centralizes shared evidence so every related assertion uses one value
-KAssembly = FilePath(__file__).parents[4] / "examples" / "Random" / "V8_engine.SLDASM"
+KAssembly = FilePath(__file__).parents[4] / "re" / "solidworks" / "examples" / "Random" / "V8_engine.SLDASM"
 
 
 

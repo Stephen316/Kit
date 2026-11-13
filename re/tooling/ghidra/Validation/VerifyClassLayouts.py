@@ -64,7 +64,7 @@ def PartPath(DocInfo: dict) -> Pathlib.Path:
         KRootInfo / ".rescratch/corpus/parts",
         KRootInfo / ".rescratch/corpus2",
         KRootInfo / ".rescratch/trace/parts",
-        KRootInfo / "examples",
+        KRootInfo / "re/solidworks/examples",
         KRootInfo / ".rescratch",
     ):
         if not BaseInfo.is_dir():

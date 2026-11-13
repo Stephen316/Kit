@@ -39,6 +39,9 @@ cannot satisfy a required CI job.
 The [breaking change label check](Documentation/Changes/BreakingChangeLabelChecks.md)
 separates PR event types into different concurrency groups and reads current metadata.
 
+The [PR diff breakdown](Documentation/Reference/Operations/DiffBreakdown.md)
+publishes an immutable composition report for each new PR head from trusted base code.
+
 PR aggregation includes lint, formatting, types, repository policies, metadata
 labels, release artifact validation, and GitHub-managed Code Quality for Python,
 Java/Kotlin, and JavaScript/TypeScript. The first-time contributor label applies
@@ -60,7 +63,11 @@ Do not change live rulesets as part of this workflow.
 
 A successful PR aggregate publishes a small immutable evidence artifact bound
 to its repository, PR number, head repository, head SHA and tree, event base SHA,
-base ancestry, workflow event, workflow run, and attempt. The merge queue
+base ancestry, workflow event, workflow run, and attempt. A queued PR is
+included when its head is an ancestor of the candidate or when the candidate's
+`gh-readonly-queue/<branch>/pr-<number>-<sha>` ref names it. Squash candidates
+never contain the PR head as an ancestor, so the ref is the only membership
+signal for them. The merge queue
 checks current CI health for every included PR and validates the artifact's
 origin and SHA-256 digest. Reuse requires identical candidate and PR-head trees,
 identical base commits, and ancestry from that base to the PR head. With that
@@ -123,6 +130,16 @@ requires every acceptance and heavy security job to succeed; failures, cancellat
 timeouts, and unexpected skips fail the gate. Fast CI additionally runs the existing CodeQL policy and pytest compatibility
 process checks, catching stale workflow references before enrollment. Static checks retain their required
 contexts on the merge group and either execute or use verified equivalent PR evidence.
+
+The pytest suite runs as [runtime-planned shards](Documentation/Changes/ShardedTestSuite.md).
+`Test suite / Plan` collects the candidate's tests and sizes the shard matrix.
+Each shard holds at most 300 tests.
+Each `Test suite / Shard (n)` job runs only its planned node IDs.
+`Test suite / Report` fails unless every planned test ran exactly once.
+The acceptance gate requires the plan, every shard, and the report to succeed.
+`Run the complete test suite` remains as a compatibility job that requires the same three jobs.
+The trusted-base `CI Agg` of the first sharded candidate still requires that name.
+The CI allowlist matches shard check names by pattern because the shard count changes with the suite.
 
 The checked-in desired queue has no bypass actors, uses squash merges, requires `ALLGREEN`, builds
 at most two candidates concurrently, and merges one entry at a time. Its

@@ -116,7 +116,7 @@ parts in the corpus and are **rejected** — their lane holds zero sketch-coordi
 
 ### 4.1 Primary: a revolved boss about a sketch centerline
 
-`examples/Random/Cylinder_heads/Timing_belt_roller.SLDPRT`
+`re/solidworks/examples/Random/Cylinder_heads/Timing_belt_roller.SLDPRT`
 
 - lane `Contents/Config-0-ResolvedFeatures`, **25 200 bytes** — the smallest usable revolve stream
   in the corpus by a wide margin.
@@ -130,7 +130,7 @@ parts in the corpus and are **rejected** — their lane holds zero sketch-coordi
 
 ### 4.2 Primary: a revolved cut about a sketch centerline
 
-`examples/Random/Crank/Journal_bearig_crank.SLDPRT`
+`re/solidworks/examples/Random/Crank/Journal_bearig_crank.SLDPRT`
 
 - lane **50 787 bytes**; one feature `Cut-Revolve1`, `Type="Cut-Revolve"`, 360°, flags `0x40000000`.
 - 28 sketch-coordinate records, 11 `sg*` classes; profile point count attributed to the revolve: 11.
@@ -144,7 +144,7 @@ parts in the corpus and are **rejected** — their lane holds zero sketch-coordi
 
 ### 4.3 Optional: a revolved cut about a reference axis
 
-`examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/CUBIERTA DE TURBINA 1.SLDPRT`
+`re/solidworks/examples/Single Turbo Dual Overhead Cam V8 - KDP - 2024/CUBIERTA DE TURBINA 1.SLDPRT`
 
 - lane **574 406 bytes**. This is the smallest single-revolve reference-axis part, and it is 23×
   the primary boss donor. `TAPA RECTANGULAR DE LA CUBIERTA DE LA TURBINA.SLDPRT` (594 111) and

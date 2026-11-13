@@ -43,7 +43,7 @@ or copy any oracle part or stream.
 ## Recorded stream family
 
 The fixture below is reverse-engineering and test evidence. Its bytes are prohibited from every
-production path. Static hashes agree with `examples/Fixtures/SolidWorks/donors/manifest.json`.
+production path. Static hashes agree with `re/solidworks/Fixtures/donors/manifest.json`.
 
 | Stream                               |  Bytes | SHA-256                                                            |
 | ------------------------------------ | -----: | ------------------------------------------------------------------ |

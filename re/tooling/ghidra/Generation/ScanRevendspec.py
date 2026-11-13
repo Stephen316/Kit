@@ -47,7 +47,7 @@ def MainRun():
     Roots = System.argv[1:] or [
         ".rescratch/corpus/parts",
         ".rescratch/corpus2",
-        "examples",
+        "re/solidworks/examples",
     ]
     Needle = Marker(KLASS)
     Histogram = Collects.Counter()
