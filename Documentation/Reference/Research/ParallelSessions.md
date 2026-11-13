@@ -161,6 +161,19 @@ A comparison job depends on the two decode jobs of its pair.
 The controller starts it only after both decode jobs complete.
 Each pool then runs as many sessions as its capacity permits.
 
+### Small files in one session
+
+Starting a process for each small file wastes time.
+The supervisor can claim up to 20 decode jobs of one kind and run them in one session.
+It groups only files smaller than 1 MiB, unless the runner registry sets another `group_limit_bytes`.
+Each file keeps its own job, lease and result.
+The runner writes one result file for each job in the session directory.
+The supervisor renews and finishes each lease separately.
+A grouped session counts as one session for the CPU and memory limits.
+It counts as one running job for each file against the controller's running-job limit.
+If a grouped session crashes, the supervisor retries each of its jobs in its own session.
+So one bad file cannot fail the other files again.
+
 ## Capacity: how many sessions run at the same time
 
 ### Limits for each pool

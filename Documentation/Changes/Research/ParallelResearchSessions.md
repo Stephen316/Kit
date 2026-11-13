@@ -6,6 +6,7 @@ Adds a [design](../../Reference/Research/ParallelSessions.md) for many concurren
 A supervisor claims jobs through a controller interface, runs registered runners in separate pools and finishes each job.
 A03 is the first controller adapter; another controller can replace it when it keeps the same guarantees.
 Pool capacity uses CPU, memory, controller, provider and resource limits, an adaptive start and a calibration command.
+Up to 20 small decode jobs can share one session, with a separate lease and result for each job.
 A Codex runner executes optional model investigations through `codex exec` with a sandbox, an output schema and an event stream.
 A Claude runner uses the Messages API without tools for hypotheses and Claude Code in a disposable worktree for candidate patches.
 The tier selector, failure log and tier routes implement the plan's model escalation rule.
