@@ -316,7 +316,7 @@ class Ledger:
         if not isinstance(token, str) or len(token) != 64:
             raise ValueError("invalid lease token")
         row = self.db.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchone()
-        if row is None or row["state"] != "running" or not hmac.compare_digest(row["token_hash"], hashlib.sha256(token.encode()).hexdigest()):
+        if row is None or row["state"] != "running" or min(row["lease_until"], row["deadline"]) <= time.time() or not hmac.compare_digest(row["token_hash"], hashlib.sha256(token.encode()).hexdigest()):
             raise ValueError("stale or invalid lease")
         self.verify_job(row)
         return row
