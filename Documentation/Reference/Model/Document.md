@@ -76,6 +76,12 @@ Preserved bytes can support replay or inspection.
 They do not establish decoded semantics or native output in another format.
 See [serialization](../Data/Serialization.md).
 
+## Neutral-first research contract
+
+The [A01 audit](../Research/NeutralContractAudit.md) selects the existing typed JSON representation for paired native-file research.
+It records current fields, adapter boundaries, demonstrated gaps and independent acceptance requirements.
+It does not extend schema `1.0` or declare new conversion support.
+
 ## Sources
 
 - [Root model](../../../src/interchange/document/models/DocumentModel.py)

@@ -9,8 +9,9 @@ Use the existing `CadDocument` contract for both native readers and all destinat
 Cross-format editable native acceptance governs conversion completion.
 Same-format fixed points and model confidence do not substitute for that evidence.
 
-The current authorization is documentation only.
-Do not implement the controller, adapters, model extensions or application experiments until explicitly requested.
+The current request authorizes A01: the neutral contract and capability audit.
+A01 adds no runtime or schema change.
+Do not start A02–A16, controller/adapters, model extensions or application experiments until explicitly requested.
 After implementation is authorized, claim a stable step ID and check existing ownership before editing shared files.
 Use isolated task worktrees and separate normal implementation PRs, unless the user explicitly directs an existing target PR.
 
