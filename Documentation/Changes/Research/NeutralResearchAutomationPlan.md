@@ -4,6 +4,7 @@
 
 The maintained [plan](../../Reference/Research/AutomationPlan.md) aligns SOLIDWORKS and Fusion research around the existing neutral document contract.
 It defines paired semantic comparison, deterministic investigation, optional model escalation and independent native writers.
+Model escalation starts at the least costly tier, logs every failed attempt and moves a repeatedly failing signature to a stronger tier.
 Cross-format native acceptance governs the initial bidirectional conversion milestone.
 Same-format checks remain supporting evidence.
 
