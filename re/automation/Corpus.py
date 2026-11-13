@@ -127,6 +127,9 @@ def snapshot(root, revision, specs_path):
                 if item["kind"] == "evidence":
                     evidence.append((path, content))
                 assets.append(item)
+        except BaseException:
+            process.kill()
+            raise
         finally:
             process.stdin.close()
             process.stdin = None
