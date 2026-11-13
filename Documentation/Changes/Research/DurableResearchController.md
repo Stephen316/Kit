@@ -29,6 +29,7 @@ The scaling case submits a 10,000-job dependency chain and completes 250 steps w
 Schema versions 1 and 2 migrate transactionally to version 3; remote process coverage preserves a completed result across those upgrades and rejects unknown future versions.
 The individual-ingestion scenario appends 300 jobs without ancestor searches, rejects a closing cycle and verifies atomic dependency replacement.
 The existing registered workflow-quality job runs these checks remotely; results and exact revisions are recorded in PR #94 comments.
+At `6a846c7d1a6e144cf04a7c30e32261c7be84ea68`, [the remote workflow job](https://github.com/TryUniCAD/Kit/actions/runs/43427628978/job/131892879264) passed all eleven controller scenarios on Python 3.14.
 Current-head CI and configured review must pass before publication readiness is claimed.
 Merge-group product acceptance remains separate and deferred.
 

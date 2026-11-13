@@ -33,7 +33,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | --- | ------------------------------------------------------ | -------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A01 | Neutral contract and capability audit                  | None                       | jdharcourt | complete | Existing fields, demonstrated gaps, version scope and independent acceptance requirements documented                                                                                                                               |
 | A02 | Pinned corpus and paired authoring specifications      | A01                        | jdharcourt | blocked  | Hashed inputs, actual measurements, missing dependencies and independent holdout families recorded                                                                                                                                 |
-| A03 | Durable evidence store and job controller              | A01                        | jdharcourt | active   | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
+| A03 | Durable evidence store and job controller              | A01                        | jdharcourt | checking | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
 | A04 | SOLIDWORKS → neutral reader integration                | A01, A02                   | Unassigned | planned  | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
 | A05 | Fusion → neutral reader integration                    | A01, A02                   | Unassigned | planned  | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
 | A06 | Semantic graph comparison                              | A04, A05                   | Unassigned | planned  | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
@@ -83,17 +83,22 @@ Task branch: `feat/a03-durable-research-controller-20261113`; publication remain
 A03 depends on completed A01, so it can proceed while A02c–A02d wait for captures.
 The [controller guide](ResearchController.md) records the implemented protocol and limits.
 
-| Child ID | Deliverable                                             | Status   | Remaining evidence                                                                   |
-| -------- | ------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------ |
-| A03a     | SQLite metadata and immutable hashed artifacts          | checking | Remote persistence, integrity and rollback-boundary checks                           |
-| A03b     | Dependency fingerprints and transitive invalidation     | checking | Remote unchanged reuse, changed inputs/rules and stale-result fencing                |
-| A03c     | Claims, leases, bounded retries and exclusive resources | checking | Remote competing claims, interruption recovery, waits, backoff and resource recovery |
-| A03d     | Controller workflow and maintained usage information    | checking | Current-head CI and configured review                                                |
+| Child ID | Deliverable                                             | Status   | Remaining evidence                                                                              |
+| -------- | ------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------- |
+| A03a     | SQLite metadata and immutable hashed artifacts          | complete | Remote persistence, integrity, rollback and schema-upgrade checks passed at `6a846c7d`          |
+| A03b     | Dependency fingerprints and transitive invalidation     | complete | Remote reuse, changed inputs/rules, cycle checks and incremental large-queue execution passed   |
+| A03c     | Claims, leases, bounded retries and exclusive resources | complete | Remote concurrency, interruption recovery, waits, backoff, fencing and resource recovery passed |
+| A03d     | Controller workflow and maintained usage information    | checking | Process workflow passed; valid current-head approval remains a separate publication gate        |
 
 **A03 design decision:** adopt standard-library SQLite metadata and SHA-256 files in the existing `re/automation/` tree.
 Use a local rollback journal, explicit write transactions and full synchronization; do not introduce a second case-variant research directory.
 Worker result submission uses the controller protocol, not direct database writes.
 No model, CAD worker launcher, decoder integration or neutral schema change is added by this step.
+The [remote controller verification job](https://github.com/TryUniCAD/Kit/actions/runs/43427628978/job/131892879264) passed all eleven process scenarios on Python 3.14 at `6a846c7d1a6e144cf04a7c30e32261c7be84ea68`.
+Coverage includes 250 completed steps in a 10,000-job chain, 300 individual submissions and schema upgrades, as well as the lifecycle/integrity scenarios.
+All verified review findings on that code revision are addressed and its threads are resolved.
+Its configured approval was dismissed; successful reports do not replace a valid approval.
+Keep A03 in checking until its publication gate is satisfied; do not start A04–A16 automatically.
 
 ## Required PR progress comments
 
@@ -142,7 +147,7 @@ Do not use same-format success to close a cross-format conversion step.
 The current change aligns the plan, adds this register and records contributor instructions.
 A01 now supplies the audited neutral-format decision and capability boundaries.
 PR #94 now includes A02 corpus tooling, specifications and remote process coverage.
-A03 now implements the durable metadata/lease protocol; remote verification is pending.
+A03's durable metadata/lease protocol passed remote process verification at the recorded code checkpoint; publication review remains separate.
 No codec integration, comparator, schema extension or application worker has been implemented through these steps.
 Native capture qualification remains blocked separately.
 A04–A16 have not started.
