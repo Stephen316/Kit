@@ -8,7 +8,7 @@ Cross-format native acceptance governs the initial bidirectional conversion mile
 Same-format checks remain supporting evidence.
 
 The [step register](../../Reference/Research/AutomationSteps.md) provides A01–A16 identifiers, dependencies, owners, statuses and exit criteria.
-A01 is complete; A02 started in [implementation PR #109](https://github.com/TryUniCAD/Kit/pull/109) and remains blocked on independently authored captures and measurement qualification.
+A01 is complete; A02 is implemented on [PR #94](https://github.com/TryUniCAD/Kit/pull/94) and remains blocked on independently authored captures and measurement qualification.
 A03–A16 remain planned and unassigned.
 The [research instructions](../../../re/AGENTS.md) require progress comments on PR #94 and evidence-backed handoffs.
 The existing research entry point links to the maintained plan.
@@ -17,7 +17,9 @@ The existing research entry point links to the maintained plan.
 
 Read the plan and register before claiming authorized implementation work.
 Use the documented PR comment template for progress and blockers.
-This change authorizes documentation only and adds no executable command, controller or conversion capability.
+The original planning work added no executable command or conversion capability.
+A02 tooling is now included in the same PR; see [its change entry](PinnedResearchCorpus.md).
+All A01–A16 implementation stays on PR #94 by explicit user instruction.
 Models and application workers remain optional dependencies of future job classes.
 Unavailable native acceptance cannot be represented as a passed conversion.
 Delivery ranges are provisional estimates until the operating pilot supplies evidence.

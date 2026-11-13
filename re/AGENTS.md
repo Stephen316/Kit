@@ -11,11 +11,13 @@ Same-format fixed points and model confidence do not substitute for that evidenc
 
 A01 is complete as a neutral contract and capability audit without runtime or schema changes.
 The current request authorizes A02: pinned corpus tooling and paired authoring specifications.
-Its implementation is tracked in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
+Its implementation belongs on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 Record missing independent captures and measurement bindings explicitly; do not report A02 complete until its evidence criteria pass.
 Do not start A03–A16, controller/adapters or model extensions until explicitly requested.
 After implementation is authorized, claim a stable step ID and check existing ownership before editing shared files.
-Use isolated task worktrees and separate normal implementation PRs, unless the user explicitly directs an existing target PR.
+By explicit user instruction, keep all code, documentation and progress for A01–A16 on PR #94.
+Do not open separate implementation PRs for this programme.
+Use isolated task worktrees, fetch and verify the current PR head, preserve concurrent contributions and push normally to its existing `docs/automation-plan` branch in `Stephen316/Kit`.
 
 Post progress comments on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 Use the template in the step register.
@@ -23,6 +25,7 @@ Comment when claiming work, after meaningful progress or accepted pushes, and wh
 Post a handoff when work pauses or changes owner.
 During sustained work, post a consolidated update at least once per working day.
 Include the step ID, owner, exact revision, completed work, evidence, remaining work, blockers and next action.
+Start each progress comment with the current step and its status so a reader can identify the active work immediately.
 Keep document status and PR evidence consistent.
 Do not claim another contributor's work is complete without its required verification.
 

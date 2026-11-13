@@ -4,7 +4,8 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-A02 is authorized and owned by jdharcourt in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
+**Current step: A02 — pinned corpus and paired authoring specifications.**
+A02 is authorized and owned by jdharcourt on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 Its corpus tooling and paired specifications are implemented; independent capture qualification is blocked.
 A03–A16 remain planned and unassigned and require a subsequent request.
 Read the [A01 decision and evidence](NeutralContractAudit.md) before claiming subsequent authorized work.
@@ -56,13 +57,14 @@ A16 is an expansion milestone, not a promise of universal support.
 
 ## A02 implementation and remaining evidence
 
-Work branch: `feat/a02-pinned-research-corpus-20261113`.
-Implementation revision: `93bbf684c323e28176f7bb329ab04b092e097b37` in [PR #109](https://github.com/TryUniCAD/Kit/pull/109).
-The implementation PR starts from main `74a0bc353421c25f7a6c539897baadf593a05766`; this planning PR contains the tracking update only.
+Shared PR head: `Stephen316/Kit:docs/automation-plan` on PR #94.
+A02 source checkpoint: `93bbf684c323e28176f7bb329ab04b092e097b37`, consolidated into this PR with its implementation history preserved.
+The corpus pins main `74a0bc353421c25f7a6c539897baadf593a05766`.
+All A01–A16 code, documentation and progress stay on PR #94; no separate step PRs are used.
 
 | Child ID | Deliverable                                                 | Status   | Evidence or remaining requirement                                                                                                                |
 | -------- | ----------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| A02a     | Hashed native inputs and historical evidence index          | checking | 778 native files, 232 JSON evidence files and two historical notes pinned; exact-head remote checks tracked in PR #109                           |
+| A02a     | Hashed native inputs and historical evidence index          | checking | 778 native files, 232 JSON evidence files and two historical notes pinned; exact-head remote checks tracked on PR #94                            |
 | A02b     | Five paired recipes and controlled-variation specifications | checking | Explicit parameters, frames, constraints, edits, analytic expectations, tolerances and reserved family splits; remote checks pending             |
 | A02c     | Independently authored and measured native pairs            | blocked  | Capture slots are empty; require exact-source hashes, application builds, healthy controls and independent edit/rebuild/save/reopen observations |
 | A02d     | Independent qualification and holdout ancestry              | blocked  | Imported lineage reservations are provisional; audit authorship and descendants before evaluating generalization                                 |
@@ -80,13 +82,14 @@ Post updates after a meaningful result, accepted push, failed verification, bloc
 During sustained work, post at least one consolidated update per working day.
 Do not post repetitive polling messages.
 Implementation step IDs must appear in PR descriptions, relevant commits and progress comments.
-Implementation PRs link back to PR #94 and the matching register rows.
+All implementation stays on PR #94 and identifies the matching register rows.
+Do not open separate PRs for A01–A16 unless the user changes this instruction.
 
 Use a short, readable Markdown comment with these sections.
 Replace every bracketed value and link evidence directly.
 
 ```markdown
-### Axx — [step name]
+### Current step: Axx — [step name]
 
 **Status:** [active / blocked / checking / complete]
 **Owner:** [github login]
@@ -118,8 +121,9 @@ Do not use same-format success to close a cross-format conversion step.
 
 The current change aligns the plan, adds this register and records contributor instructions.
 A01 now supplies the audited neutral-format decision and capability boundaries.
-No controller, codec, comparator, schema extension or application worker has been implemented through this plan.
-A02 tooling and specifications started in separate PR #109; native capture qualification remains blocked.
+PR #94 now includes A02 corpus tooling, specifications and remote process coverage.
+No controller, codec, comparator, schema extension or application worker has been implemented through these steps.
+Native capture qualification remains blocked.
 A03–A16 have not started.
-Formatting and source-link review concern documentation only.
+Formatting and source-link review do not replace the remote process checks.
 Remote CI, configured review and merge-group acceptance remain separate publication evidence.
