@@ -1,0 +1,213 @@
+name: Pull request diff breakdown
+
+on:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] Fetches PR commits as Git objects and runs only trusted base code.
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  diff-breakdown:
+    name: Publish diff breakdown
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    permissions:
+      contents: read # Fetches PR commits as Git objects for the trusted analysis.
+      pull-requests: write # Publishes immutable analysis comments from trusted base code.
+    steps:
+      - name: Enforce this runner budget
+        shell: bash
+        run: |
+          sudo -n env GITHUB_ACTIONS="$GITHUB_ACTIONS" RUNNER_TEMP="$RUNNER_TEMP" python3 - <<'PYTHON'
+          import os as OsLib
+          import signal as SignalLib
+          import subprocess as Subprocess
+          import time as TimeLib
+          from pathlib import Path as FilePath
+
+          KBudgetSeconds = 90
+
+
+          def ElapsedSeconds(ValueText):
+              DayText, Separator, ClockText = ValueText.strip().rpartition("-")
+              ClockParts = [int(PartText) for PartText in ClockText.split(":")]
+              Seconds = sum(
+                  PartValue * 60**Position
+                  for Position, PartValue in enumerate(reversed(ClockParts))
+              )
+              return Seconds + (int(DayText) * 86400 if Separator else 0)
+
+
+          def ProcessTree():
+              RowList = Subprocess.check_output(
+                  ["ps", "-eo", "pid=,ppid=,etime=,args="], text=True
+              ).splitlines()
+              TreeMap = {}
+              for RowText in RowList:
+                  Fields = RowText.strip().split(None, 3)
+                  if len(Fields) == 4:
+                      TreeMap[int(Fields[0])] = (int(Fields[1]), Fields[2], Fields[3])
+              return TreeMap
+
+
+          def FindRunner(TreeMap, ProcessId):
+              SeenIds = set()
+              while ProcessId in TreeMap and ProcessId not in SeenIds:
+                  SeenIds.add(ProcessId)
+                  ParentId, AgeText, CommandText = TreeMap[ProcessId]
+                  if "Runner.Worker" in CommandText.split()[0]:
+                      return ProcessId, ElapsedSeconds(AgeText)
+                  ProcessId = ParentId
+              raise RuntimeError("Cannot identify this job's runner process")
+
+
+          def FindDescendants(TreeMap, RootId):
+              FoundIds = set()
+              PendingIds = [RootId]
+              for ParentId in PendingIds:
+                  for ProcessId, ProcessInfo in TreeMap.items():
+                      if ProcessInfo[0] == ParentId and ProcessId not in FoundIds:
+                          FoundIds.add(ProcessId)
+                          PendingIds.append(ProcessId)
+              return FoundIds
+
+
+          def ProcessIdentity(ProcessId):
+              ResultInfo = Subprocess.run(
+                  ["ps", "-p", str(ProcessId), "-o", "lstart=,comm="],
+                  text=True,
+                  capture_output=True,
+                  check=False,
+              )
+              return ResultInfo.stdout.strip() if ResultInfo.returncode == 0 else None
+
+
+          def OpenHandles(Victims):
+              Handles = {}
+              for ProcessId in Victims:
+                  try:
+                      Handles[ProcessId] = (
+                          OsLib.pidfd_open(ProcessId)
+                          if hasattr(OsLib, "pidfd_open")
+                          else ProcessIdentity(ProcessId)
+                      )
+                  except ProcessLookupError:
+                      continue
+                  except PermissionError:
+                      Handles[ProcessId] = ProcessIdentity(ProcessId)
+              return Handles
+
+
+          def KillProcesses(Victims):
+              Handles = OpenHandles(Victims)
+              try:
+                  for ProcessId, Handle in Handles.items():
+                      try:
+                          if isinstance(Handle, int):
+                              SignalLib.pidfd_send_signal(Handle, SignalLib.SIGKILL)
+                          elif Handle is not None and ProcessIdentity(ProcessId) == Handle:
+                              OsLib.kill(ProcessId, SignalLib.SIGKILL)
+                      except ProcessLookupError:
+                          pass
+                      except PermissionError as ErrorInfo:
+                          print(f"Cannot terminate process {ProcessId}: {ErrorInfo}", flush=True)
+              finally:
+                  for Handle in Handles.values():
+                      if isinstance(Handle, int):
+                          OsLib.close(Handle)
+
+
+          def EnforceBudget(RunnerId, StartedAt, TempPath):
+              MarkerPath = TempPath / "ci-job-budget-exceeded"
+              while RunnerId in (TreeMap := ProcessTree()):
+                  if ElapsedSeconds(TreeMap[RunnerId][1]) + 2 < TimeLib.monotonic() - StartedAt:
+                      return
+                  Remaining = KBudgetSeconds - (TimeLib.monotonic() - StartedAt)
+                  if Remaining > 0:
+                      TimeLib.sleep(min(Remaining, 0.2))
+                      continue
+                  MarkerPath.write_text(
+                      f"This job exceeded its own {KBudgetSeconds}-second runner budget\n"
+                  )
+                  Protected = FindDescendants(TreeMap, OsLib.getpid()) | {OsLib.getpid()}
+                  Victims = FindDescendants(TreeMap, RunnerId) - Protected
+                  if Victims:
+                      KillProcesses(Victims)
+                  TimeLib.sleep(0.05)
+
+
+          def ArmBudget():
+              if OsLib.environ.get("GITHUB_ACTIONS") != "true":
+                  raise RuntimeError("The runner budget only runs inside GitHub Actions")
+              if OsLib.geteuid() != 0:
+                  raise RuntimeError("The deadline guard needs permission to stop privileged setup")
+              TempPath = FilePath(OsLib.environ["RUNNER_TEMP"])
+              RunnerId, RunnerAge = FindRunner(ProcessTree(), OsLib.getpid())
+              StartedAt = TimeLib.monotonic() - RunnerAge
+              print(f"Arming this runner's {KBudgetSeconds}-second deadline after {RunnerAge}s of setup", flush=True)
+              if OsLib.fork():
+                  return
+              OsLib.setsid()
+              with open(OsLib.devnull, "rb") as SourceFile, open(
+                  TempPath / "ci-job-budget.log", "ab", buffering=0
+              ) as LogFile:
+                  OsLib.dup2(SourceFile.fileno(), 0)
+                  OsLib.dup2(LogFile.fileno(), 1)
+                  OsLib.dup2(LogFile.fileno(), 2)
+              EnforceBudget(RunnerId, StartedAt, TempPath)
+              OsLib._exit(0)
+
+
+          if __name__ == "__main__":
+              ArmBudget()
+          PYTHON
+
+      - name: Checkout trusted base revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/config/DiffBreakdown.json
+            /.github/config/DiffRules.txt
+            /.github/scripts/DiffBreakdown/
+          persist-credentials: false
+
+      - name: Publish immutable diff breakdown
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PULL_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          python3 .github/scripts/DiffBreakdown/LaunchReport.py --publish
+          if [ -f DiffBreakdownResults/Report.md ]; then
+            cat DiffBreakdownResults/Report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve complete snapshot
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: diff-breakdown-${{ github.event.pull_request.number }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: DiffBreakdownResults/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Require runner budget
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          if [ -f "$RUNNER_TEMP/ci-job-budget-exceeded" ]; then
+            cat "$RUNNER_TEMP/ci-job-budget-exceeded" >&2
+            exit 1
+          fi

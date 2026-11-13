@@ -39,6 +39,9 @@ cannot satisfy a required CI job.
 The [breaking change label check](Documentation/Changes/BreakingChangeLabelChecks.md)
 separates PR event types into different concurrency groups and reads current metadata.
 
+The [PR diff breakdown](Documentation/Reference/Operations/DiffBreakdown.md)
+publishes an immutable composition report for each new PR head from trusted base code.
+
 PR aggregation includes lint, formatting, types, repository policies, metadata
 labels, release artifact validation, and GitHub-managed Code Quality for Python,
 Java/Kotlin, and JavaScript/TypeScript. The first-time contributor label applies

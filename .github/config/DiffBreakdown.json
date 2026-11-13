@@ -1,0 +1,33 @@
+{
+  "Version": 1,
+  "Unknown": "Unclassified",
+  "Binary": "Binary Assets",
+  "Formatting": "Whitespace Only",
+  "ReviewThreshold": 2500,
+  "TopFiles": 10,
+  "DetailFiles": 30,
+  "Categories": {
+    "Source": { "Policy": "review", "Color": "0D9488" },
+    "Tests": { "Policy": "review", "Color": "D97706" },
+    "Tools": { "Policy": "review", "Color": "3B82F6" },
+    "GitHub": {
+      "Policy": "review",
+      "Color": "60A5FA",
+      "Risk": "CI and repository automation changes can affect credentials and validation gates"
+    },
+    "Agents": {
+      "Policy": "review",
+      "Color": "14B8A6",
+      "Risk": "Agent instruction and skill changes alter how automated contributors work"
+    },
+    "Documentation": { "Policy": "excluded", "Color": "A78BFA" },
+    "Reverse Engineering": { "Policy": "excluded", "Color": "8B5CF6" },
+    "Unclassified": { "Policy": "review", "Color": "CBD5E1" },
+    "Binary Assets": { "Policy": "separate", "Color": "EC4899" },
+    "Whitespace Only": {
+      "Policy": "review",
+      "Color": "9CA3AF",
+      "Risk": "Whitespace can be semantic; inspect indentation-sensitive languages"
+    }
+  }
+}
