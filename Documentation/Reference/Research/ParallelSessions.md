@@ -3,7 +3,9 @@
 ## Status and purpose
 
 This page is a design for future implementation.
-It describes how one machine runs many decoding sessions at the same time on top of the [A03 controller](ResearchController.md).
+It describes how one machine runs many decoding sessions at the same time on top of a job controller.
+The supervisor uses the controller only through the [controller interface](#controller-interface).
+The [A03 controller](ResearchController.md) is the first adapter for that interface, but another controller can replace it.
 It also describes how a Codex runner executes optional model investigations from the [plan](AutomationPlan.md#optional-model-investigations).
 No step starts because of this page.
 A07, A08, A10 and A15 still require an explicit request.
@@ -17,14 +19,15 @@ The child steps in [Delivery](#delivery) are proposals until a contributor claim
 | Runner     | A registered program that executes one job kind, for example a decoder script or Codex               |
 | Pool       | A named group of sessions that share one capacity limit                                              |
 | Supervisor | The local process that claims jobs, starts sessions, renews leases, stops sessions and finishes jobs |
-| Tier       | One model setting: model, reasoning effort and per-attempt limits                                    |
+| Candidate  | One model with one reasoning effort and per-attempt limits                                           |
+| Tier       | One position in the ranked ladder of candidates                                                      |
 | Headroom   | Free CPU and memory after the operator's reserve                                                     |
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    L[(A03 ledger)] <--> S[Supervisor]
+    L[(Job controller: A03 or another adapter)] <--> S[Supervisor]
     S --> P1[Decode pool]
     S --> P2[Codex pool]
     S --> P3[Application pool]
@@ -41,21 +44,21 @@ flowchart LR
     F[(Failure log and tier routes)] <--> S
 ```
 
-The supervisor is the only process that calls controller commands.
-Sessions never write to the ledger and never hold lease tokens.
+The supervisor is the only process that calls controller operations.
+Sessions never write to the controller store and never hold lease tokens.
 Each session reads a private session directory and writes result files to it.
-The supervisor validates those files and then calls `finish`.
-This keeps the A03 rule that a single controller owns database writes.
+The supervisor validates those files and then finishes the job through the controller.
+This keeps the plan rule that a single controller owns its database writes.
 
-Run one supervisor for each store.
-The supervisor takes an exclusive lock file in the store directory at startup.
+Run one supervisor for each controller store.
+The supervisor takes an exclusive lock file in its state directory at startup.
 A second supervisor for the same store exits with a clear error.
 
 ## Session lifecycle
 
 1. The supervisor selects a pool that has free capacity and machine headroom.
-2. It claims one job for that pool through `claim --pool <name>`.
-3. It creates a private session directory under the store.
+2. It claims one job for that pool through the controller interface.
+3. It creates a private session directory under its state directory.
 4. It copies the claimed input artifacts and writes `job.json` into that directory.
 5. It starts the runner as an argument list, never through a shell.
 6. It starts the runner in a new process group with an allowlisted environment.
@@ -91,7 +94,7 @@ The supervisor stops a session in these conditions:
 To stop a session, send `SIGTERM` to its process group.
 After a 10-second grace period, send `SIGKILL` to that group.
 Then finish the job with `retry` and the stop reason.
-The controller already refuses a late result from an old lease.
+The controller must refuse a late result from an old lease.
 
 ### Supervisor restart
 
@@ -148,8 +151,8 @@ The supervisor does not change that outcome.
 
 ### Many files at once
 
-A decode campaign submits one job for each native file through `submit-batch`.
-Split large campaigns into batches that obey the A03 limits.
+A decode campaign submits one job for each native file through the controller's batch submission.
+Split large campaigns into batches that obey the controller's limits.
 A comparison job depends on the two decode jobs of its pair.
 The controller starts it only after both decode jobs complete.
 Each pool then runs as many sessions as its capacity permits.
@@ -161,18 +164,19 @@ Each pool then runs as many sessions as its capacity permits.
 The supervisor calculates the capacity of each pool every 5 seconds.
 The capacity is the smallest of these limits:
 
-| Limit               | Calculation                                                                      |
-| ------------------- | -------------------------------------------------------------------------------- |
-| Configured maximum  | `max_sessions` for the pool in the supervisor configuration                      |
-| CPU                 | `(logical CPUs − reserved CPUs) ÷ threads per session`, rounded down             |
-| Memory              | `(available memory − reserved memory) ÷ peak memory estimate`, rounded down      |
-| Controller          | A03 `max_running` minus the sessions that other pools use                        |
-| Provider            | For the Codex pool only: the current provider allowance and the remaining budget |
-| Exclusive resources | For the application pool only: the number of verified available installations    |
+| Limit               | Calculation                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
+| Configured maximum  | `max_sessions` for the pool in the supervisor configuration                   |
+| CPU                 | `(logical CPUs − reserved CPUs) ÷ threads per session`, rounded down          |
+| Memory              | `(available memory − reserved memory) ÷ peak memory estimate`, rounded down   |
+| Controller          | The controller's running-job limit minus the sessions that other pools use    |
+| Provider            | For the Codex pool only: the provider's usage window and the remaining budget |
+| Exclusive resources | For the application pool only: the number of verified available installations |
 
 The default reserve is 2 logical CPUs and 4 GiB of memory.
 The operator can change the reserve in the supervisor configuration.
-Set A03 `max_running` to at least the sum of all pool maximums.
+Set the controller's running-job limit to at least the sum of all pool maximums.
+For A03, that limit is `max_running`.
 
 ### Peak memory estimate
 
@@ -246,7 +250,10 @@ codex exec --ignore-user-config --ignore-rules --ephemeral --skip-git-repo-check
 
 The runner writes the packet to standard input.
 It stores the JSONL event stream from standard output as an artifact.
-It reads token use from the completion event of that stream.
+It reads token use from the token events of that stream.
+It records uncached input, cached input, output and reasoning tokens separately.
+Local Codex 0.160.1 history shows token events that also report the used percentage, length and reset time of each usage window.
+The supervisor pauses the Codex pool when a window reaches `pause_at_usage_percent`.
 Check the actual event names against the installed Codex version during integration.
 
 Each option has one purpose:
@@ -296,38 +303,99 @@ Before external transmission is enabled, run the Codex runner under a dedicated 
 That account can read only the session directory and the Codex authentication file.
 Verify that boundary during integration before the first real packet.
 
-### Model selector
+### Model candidates
 
-Store the tier ladder in a supervisor configuration file, for example `ModelTiers.json`:
+Store the model candidates in a supervisor configuration file, for example `ModelTiers.json`:
 
 ```json
 {
-  "tiers": [
-    { "id": "t1", "model": "<lower-cost-model>", "effort": "low", "max_seconds": 600, "max_output_tokens": 20000 },
-    { "id": "t2", "model": "<lower-cost-model>", "effort": "high", "max_seconds": 1200, "max_output_tokens": 40000 },
-    { "id": "t3", "model": "<most-capable-model>", "effort": "medium", "max_seconds": 1800, "max_output_tokens": 60000 },
-    { "id": "t4", "model": "<most-capable-model>", "effort": "xhigh", "max_seconds": 3600, "max_output_tokens": 100000 }
+  "candidates": [
+    { "model": "<model-a>", "effort": "low", "max_seconds": 600, "max_output_tokens": 20000 },
+    { "model": "<model-a>", "effort": "high", "max_seconds": 1200, "max_output_tokens": 40000 },
+    { "model": "<model-b>", "effort": "medium", "max_seconds": 1800, "max_output_tokens": 60000 },
+    { "model": "<model-b>", "effort": "xhigh", "max_seconds": 3600, "max_output_tokens": 100000 }
   ],
-  "budget": { "per_question_usd": 5, "per_day_usd": 50 }
+  "token_weights": { "uncached_input": 1, "cached_input": 1, "output": 1 },
+  "budget": { "per_question_weighted_tokens": 2000000, "per_day_weighted_tokens": 20000000 },
+  "pause_at_usage_percent": 90
 }
 ```
 
-The operator selects the order and the model names.
-A tier can raise the reasoning effort of the same model before it changes the model.
+Each candidate is one model with one reasoning effort.
+The same model at two efforts is two candidates.
+The operator lists the candidates and the supervisor ranks them.
 The values above are examples, not recommendations or measured prices.
 
-At startup, the supervisor validates each tier.
+At startup, the supervisor validates each candidate.
 Each model must appear in the model list of the installed Codex version.
 Each effort must appear in the supported levels of that model.
-If a tier fails validation, the Codex pool does not start.
+If a candidate fails validation, the Codex pool does not start.
 The decode and application pools continue.
+
+### Model ranking by token efficiency
+
+The Codex model list gives the display order and context window of each model.
+It gives no token use or price, so the supervisor measures token efficiency itself.
+
+The weighted tokens of one attempt use the `token_weights` values:
+
+```text
+weighted tokens = uncached input × uncached_input + cached input × cached_input + output × output
+```
+
+Output includes reasoning tokens.
+Set the weights from the provider's current prices or usage rates during integration.
+Until then, every weight is 1.
+
+The supervisor calculates these values for each candidate:
+
+| Value              | Calculation                                       |
+| ------------------ | ------------------------------------------------- |
+| Pass rate          | Passed attempts ÷ all attempts                    |
+| Tokens per attempt | Mean weighted tokens of one attempt               |
+| Tokens per pass    | Weighted tokens of all attempts ÷ passed attempts |
+
+A new candidate first answers a ranking set.
+The ranking set contains at least 20 questions with known answers from solved families, for example the A09 pad-then-pad family.
+Every candidate gets the same packets and the same checks.
+A candidate enters the ladder only after it completes the ranking set.
+
+Remove a dominated candidate from the ladder.
+Candidate X is dominated when another candidate Y meets both of these conditions:
+
+- The pass rate of Y is equal to or higher than the pass rate of X.
+- The tokens per pass of Y are at least 10% lower than the tokens per pass of X.
+
+Both candidates need at least 20 ranked questions before this comparison applies.
+For example, remove `gpt-5.6-luna` if `gpt-6-luna` passes at least as often and uses at least 10% fewer tokens per pass.
+Record each removal with the numbers that caused it.
+
+Sort the remaining candidates by tokens per pass, from lowest to highest.
+That order is the tier ladder.
+After dominated candidates are removed, the pass rate rises along the ladder.
+
+Use the values of one route key when each tier has at least 20 attempts for that route key.
+Otherwise, use the ranking-set values.
+Rank again after every 50 new attempts and after any model version change.
+A removed candidate returns only when a new model version or new measurements change the comparison.
+
+The expected tokens to a pass from start tier `s` include the attempts that fail before a pass:
+
+```text
+expected(s) = T(s) + (1 − P(s)) × T(s+1) + (1 − P(s)) × (1 − P(s+1)) × T(s+2) + …
+```
+
+`T(i)` is the tokens per attempt and `P(i)` is the pass rate of tier `i`.
+A cheap tier that seldom passes can cost more than a stronger tier that passes the first time.
+
+### Model selector
 
 The selector takes these steps for each question:
 
 1. Calculate the route key: question kind, CAD format and feature family.
-2. Read the start tier for that route key from the tier routes. The default is the first tier.
+2. Select the start tier. It is the higher of the routed tier from the failure log and the tier with the lowest `expected(s)`.
 3. Look for a cached answer with the same packet fingerprint, model and model version. Use it if it exists.
-4. Estimate the maximum cost of one attempt at the tier. If the remaining budget is smaller, park the question.
+4. Estimate the maximum weighted tokens of one attempt at the tier. If the remaining budget is smaller, park the question.
 5. Run the attempt.
 6. Check the result in this order: exit status, output schema, then the machine-checkable success criteria.
 7. If all checks pass, record the answer and submit its verification jobs.
@@ -381,20 +449,53 @@ Those changes require a new job definition.
 ## Fairness
 
 A07 will own priority ordering.
-Until A07 exists, claims within one pool follow the A03 creation order.
+Until A07 exists, claims within one pool follow the controller's order.
+For A03, that order is the job creation order.
 Separate pools prevent long Codex sessions from blocking fast decode work.
 Give each feature family a minimum share of each pool so that rare features also run.
 
-## Required controller changes
+## Controller interface
 
-A03 needs three small additions for this design:
+The supervisor needs these operations from a job controller:
+
+| Operation        | Required behavior                                                             |
+| ---------------- | ----------------------------------------------------------------------------- |
+| Submit jobs      | Accepts a bounded batch atomically, with dependencies between jobs            |
+| Claim for a pool | Returns one runnable job whose kind belongs to the pool, with a unique lease  |
+| Renew a lease    | Extends the lease up to the deadline, or returns a distinct stale-lease error |
+| Finish           | Accepts one outcome for the current lease and refuses a stale lease           |
+| Pool capacity    | Holds a counted capacity for each shared resource, such as the Codex provider |
+| Resource state   | Marks a resource available or unavailable and parks the jobs that need it     |
+| Status           | Reports job states, attempts and reasons                                      |
+
+The controller must also keep these guarantees:
+
+- A job runs under at most one valid lease at a time.
+- An attempt budget limits retries for one set of prerequisites.
+- Changed inputs invalidate dependent jobs and their old leases.
+- Each operation is transactional, so an interrupted supervisor leaves no partial state.
+
+An adapter translates these operations into the commands of one controller.
+The supervisor contains no controller-specific logic outside its adapter.
+
+### A03 adapter
+
+A03 supplies most of the interface through `submit-batch`, `claim`, `heartbeat`, `finish`, `resource` and `status`.
+It needs three additions:
 
 - Counted resources: `resource <name> --capacity <count>`. A03 resources are exclusive today, so a shared provider resource allows only one session.
 - Pool-filtered claims: `claim --pool <name>` returns only jobs whose kind belongs to that pool.
 - A distinct stale-lease error code from `heartbeat`, so that the supervisor can stop an invalidated session immediately.
 
-These additions change the schema to version 4 and require a version 3 migration.
+These additions change the A03 schema to version 4 and require a version 3 migration.
 They belong to A08a, because A03 is in its publication gate.
+
+### Another controller
+
+A different controller can replace A03 when it keeps every guarantee above.
+Write a new adapter for it and run the same remote process tests against that adapter.
+If a controller cannot filter claims by pool, the adapter cannot use it.
+A claim of the wrong job kind would consume an attempt in the wrong pool.
 
 ## Status report
 
@@ -403,22 +504,28 @@ They belong to A08a, because A03 is in its publication gate.
 - Running sessions, active limit, calculated capacity and the limit that applies
 - Measured peak memory estimate for each job kind
 - Pause state, pause reason and resume time
-- Codex spend for the current question and the current day
+- Weighted tokens for the current question and the current day
+- The used percentage of each Codex usage window
+- The current tier ladder, with pass rate and tokens per pass for each candidate
+- Each removed candidate and the candidate that dominated it
 
 ## Delivery
 
-| Proposed ID | Deliverable                                                     | Depends on     |
-| ----------- | --------------------------------------------------------------- | -------------- |
-| A08a        | Supervisor, session directories, pools and controller additions | A03            |
-| A08b        | Capacity limits, adaptive start and calibration                 | A08a           |
-| A10a        | Codex runner, sandbox options and private data boundary         | A08a, A07, A09 |
-| A10b        | Tier validation, selector, failure log and tier routes          | A10a           |
-| A15a        | Two-week pilot with measured capacity and model spend           | A08b, A10b     |
+| Proposed ID | Deliverable                                                                  | Depends on     |
+| ----------- | ---------------------------------------------------------------------------- | -------------- |
+| A08a        | Supervisor, session directories, pools, controller interface and A03 adapter | A03            |
+| A08b        | Capacity limits, adaptive start and calibration                              | A08a           |
+| A10a        | Codex runner, sandbox options and private data boundary                      | A08a, A07, A09 |
+| A10b        | Candidate validation, selector, failure log and tier routes                  | A10a           |
+| A10c        | Ranking set, token-efficiency ranking and dominated-model removal            | A10b, A09      |
+| A15a        | Two-week pilot with measured capacity and model spend                        | A08b, A10c     |
 
 ## Verification
 
 Remote process tests use runner programs that sleep, allocate memory, exit with an error, ignore `SIGTERM` or write invalid results.
 A test-only Codex substitute writes recorded event streams and exit statuses to exercise each row of the Codex error table.
+Recorded ranking data checks the dominance rule, the ladder order and the `expected(s)` start-tier choice.
+A second adapter test runs the supervisor process tests against a minimal in-test controller.
 These tests run in remote CI under the repository policy.
 A real Codex session runs only in an authorized A15a pilot.
 Calibration results and pilot measurements are recorded on PR #94 as observations, not as test evidence.
