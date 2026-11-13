@@ -31,6 +31,9 @@ function ReadWorkflows(IsQueue) {
       const Name = Block.match(/^    name: (.+)$/m)?.[1];
       if (!Name) throw new Error(`Unnamed CI job in ${File}`);
       const Matrix = "Analyze ${{ matrix.language }}";
+      const ShardMatrix = "Test suite / Shard (${{ matrix.shard }})";
+      if (IsQueue && Name === ShardMatrix)
+        return [1, 2, 3].map((Index) => `Test suite / Shard (${Index})`);
       if (!IsQueue || Name !== Matrix) return [Name];
       return [...Block.matchAll(/^\s+- language: ([\w-]+)$/gm)].map(
         ([, Language]) => `Analyze ${Language}`,
