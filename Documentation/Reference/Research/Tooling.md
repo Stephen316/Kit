@@ -6,6 +6,13 @@ The research tools support decompilation, runtime tracing, and controlled vendor
 They belong to research or validation workflows.
 They are not production conversion dependencies.
 
+## Decode files without a research runtime
+
+Use [the Kit CLI](../../Tasks/CommandLine.md) to inspect neutral documents, container members, and supported Fusion native records.
+`kit decode SOURCE --layer container` inventories Fusion and SOLIDWORKS files.
+The command uses production codecs and does not run vendor applications.
+Use the tools below for new format discovery, decompilation, tracing, and controlled measurements.
+
 ## Tool map
 
 | Location              | Purpose                                | Required context                       |

@@ -7,6 +7,7 @@ Use the Git commit to identify the exact revision.
 The package version alone does not identify every source change.
 
 Start with [getting started](GettingStarted.md).
+For terminal workflows, use [the command-line interface](Tasks/CommandLine.md).
 Read [the standards scope](Standards/Scope.md) for the language and conformance boundary.
 Public sources support this revision's standards mapping.
 Complete ASD-STE100 and ISO/IEC/IEEE 2651x conformance remains unverified.
