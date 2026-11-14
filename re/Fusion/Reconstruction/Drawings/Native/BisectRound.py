@@ -9,13 +9,14 @@ Variants/Bisect<tag>.json.
 
 import argparse
 import json
+import os
 import subprocess
 import tempfile
 import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-VARIANTS = Path(tempfile.gettempdir()) / 'KitFusionDrawings' / 'Variants'
+VARIANTS = Path(os.environ.get('KIT_DRAWING_OUT', str(Path(tempfile.gettempdir()) / 'KitFusionDrawings'))) / 'Variants'
 RUNNER = HERE / 'RunGuarded.mjs'
 
 
