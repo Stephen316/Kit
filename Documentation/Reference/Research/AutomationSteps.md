@@ -5,6 +5,7 @@
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
 **Current step: A04c — initial profile semantic qualification (blocked).**
+A05 — Fusion → neutral reader integration — is active under Stephen316.
 The current request authorizes remaining deterministic work in dependency order on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 A04a–A04b and A03e are verified at code checkpoint `eba0ab488a6a00e2a31fd5ed8ab0bee564b371db`.
 Task branch: `feat/research-plan-followthrough-20261113`.
@@ -40,7 +41,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A02 | Pinned corpus and paired authoring specifications      | A01                                  | jdharcourt | blocked  | Hashed inputs, actual measurements, missing dependencies and independent holdout families recorded                                                                                                                                 |
 | A03 | Durable evidence store and job controller              | A01                                  | jdharcourt | complete | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
 | A04 | SOLIDWORKS → neutral reader integration                | A01, A02a                            | jdharcourt | blocked  | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
-| A05 | Fusion → neutral reader integration                    | A01, A02a                            | Unassigned | planned  | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
+| A05 | Fusion → neutral reader integration                    | A01, A02a                            | Stephen316 | active   | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
 | A06 | Semantic graph comparison                              | A02c, A04, A05                       | Unassigned | planned  | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
 | A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Unassigned | planned  | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
 | A08 | Controlled sample and trace workers                    | A02b, A03                            | Unassigned | planned  | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
@@ -135,7 +136,22 @@ A04c needs independent source inventories and distinguishing evidence rather tha
 Its blocked status does not prevent A05 integration or A08a implementation.
 The updated workflow-quality job passed all three reader scenarios in 60.15 seconds with 58 decoded and zero rejected.
 The earlier sequential process harness took 172.97 seconds on `7f8a7425`; these are CI observations, not a universal speed guarantee.
-A05 and A08a are the next runnable deterministic steps and remain unclaimed here.
+A05 is claimed separately below.
+A08a remains the next unclaimed runnable deterministic step.
+
+## A05 integration and semantic qualification
+
+| Child ID | Deliverable                                                        | Depends on                              | Owner      | Status  | Exit criterion or remaining evidence                                                                         |
+| -------- | ------------------------------------------------------------------ | --------------------------------------- | ---------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| A05a     | Pinned F3D/F3Z reader, run summary and typed neutral serialization | A01, A02a                               | Stephen316 | active  | Remote flow, pin, selection and 714-file corpus scenarios pass on Python 3.14                                |
+| A05b     | Exact per-file outcome gate                                        | A05a                                    | Stephen316 | planned | Record the remote census as expected outcomes and reject any unexplained change                              |
+| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked | Independently establish required P01–P05 semantics, frames, termination, constraints and dependency bindings |
+
+The [reader guide](FusionResearchReader.md) defines the command, its run summary and its research-only receipts.
+A05a uses the strict SDK reader first and accepts the partial legacy reader only with an explicit option.
+A05a does not close A05b or A05c or qualify native conversion.
+A05c needs independent source inventories and distinguishing evidence rather than agreement with the same reader.
+See [the change entry](../../Changes/Research/PinnedFusionReader.md).
 
 ## Parallel-session child steps
 

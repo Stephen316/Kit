@@ -82,3 +82,4 @@ Do not publish an unmeasured hypothesis as product support.
 - [Program generation](../../../re/tooling/ProgramDecomposition/GeneratePrograms.py)
 
 The [pinned SOLIDWORKS reader](SolidworksResearchReader.md) emits neutral JSON and a separate unresolved-evidence receipt.
+The [pinned Fusion reader](FusionResearchReader.md) emits the same evidence for batches of F3D and F3Z files.
