@@ -1,5 +1,7 @@
 from __future__ import annotations as Annotations
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
+from convert.adapters.solidworks.core.InchScalar import IsRoundedInch
+from convert.adapters.solidworks.core.LinearDisplay import LinearDisplay
 from dataclasses import dataclass as Dataclass, field as Field, replace as Replace
 import hashlib as Hashlib
 import itertools as Itertools
@@ -1228,6 +1230,7 @@ class NativeModel:
     equations: tuple[NativeEquation, ...] = Field(default_factory=tuple)
     active_configuration_id: int | None = None
     bounding_box: NativeBoundingBox | None = None
+    linear_display: LinearDisplay | None = None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1483,6 +1486,7 @@ def BuildNativeList(
     Classes: tuple[NativeClass, ...],
     Scalars: tuple[NativeScalar, ...],
     ResolvedStream: str,
+    Display: LinearDisplay | None = None,
 ) -> tuple[
     dict[int, NativeName],
     dict[int, tuple[NativeScalar, ...]],
@@ -1511,7 +1515,7 @@ def BuildNativeList(
         Owned = ScalarOwner.get(Feature.object_id, ())
         Dimensions = tuple(
             (
-                BindDimension(ItemValue, Owned)
+                BindDimension(ItemValue, Owned, Display)
                 for ItemValue in Semantic(Feature.kind, tuple(Feature.dimensions))
             )
         )
@@ -1546,6 +1550,7 @@ def BuildNativeList(
 def RebindDimsMut(
     NativeFeatures: list[NativeFeature],
     ScalarOwner: dict[int, tuple[NativeScalar, ...]],
+    Display: LinearDisplay | None = None,
 ) -> dict[int, int]:
     FeatureIndexes = {
         Feature.object_id: Index for Index, Feature in enumerate(NativeFeatures)
@@ -1558,7 +1563,7 @@ def RebindDimsMut(
         Rebound = tuple(
             (
                 (
-                    BindDimension(Dimension, ChildScalars)
+                    BindDimension(Dimension, ChildScalars, Display)
                     if Dimension.native_offset is None
                     else Dimension
                 )
@@ -1685,6 +1690,7 @@ def DecodeNative(
     ConfigId: int | None = None,
     ResolvedStream: str = ResolvedFeaturesStream,
     ConfigStream: str = "",
+    Display: LinearDisplay | None = None,
     **LegacyValues: object,
 ) -> NativeModel:
     UnknownValues = set(LegacyValues) - {
@@ -1723,9 +1729,9 @@ def DecodeNative(
     Classes = ParseClasses(Resolved)
     Scalars = ParseScalars(Resolved, Names)
     RecordById, ScalarOwner, NativeFeatures = BuildNativeList(
-        XmlFeatures, Names, Resolved, Classes, Scalars, ResolvedStream
+        XmlFeatures, Names, Resolved, Classes, Scalars, ResolvedStream, Display
     )
-    FeatureIndexes = RebindDimsMut(NativeFeatures, ScalarOwner)
+    FeatureIndexes = RebindDimsMut(NativeFeatures, ScalarOwner, Display)
     StateData, Author, Planes, UnframedPlanes = CreateState(
         Resolved,
         ResolvedStream,
@@ -1759,6 +1765,7 @@ def DecodeNative(
         equations=Equations,
         active_configuration_id=ActiveConfigId,
         bounding_box=BoundingBox(Resolved, Classes),
+        linear_display=Display,
     )
 
 
@@ -2130,8 +2137,11 @@ def ScalarOwners(
 
 # this definition exists because focused behavior needs one stable owner
 def BindDimension(
-    Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...]
+    Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...],
+    Display: LinearDisplay | None = None,
 ) -> NativeDimension:
+    if Display is not None and Display.UnitName == "in" and Dimension.kind == "length":
+        return BindInch(Dimension, Scalars, Display.Decimals)
     Target = (
         Dimension.value_mm
         if Dimension.kind == "instance_count"
@@ -2160,6 +2170,31 @@ def BindDimension(
         value_mm=Dimension.value_mm,
         kind=Dimension.kind,
         source_text=Dimension.source_text,
+        native_value=Scalar.value,
+        native_offset=Scalar.value_offset,
+        native_role=Scalar.role,
+        operands=Scalar.operands,
+    )
+
+
+def BindInch(
+    Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...], Decimals: int | None
+) -> NativeDimension:
+    if not Dimension.name or Decimals is None:
+        return Dimension
+    Named = [Scalar for Scalar in Scalars if Scalar.name == Dimension.name]
+    if len(Named) != 1:
+        return Dimension
+    Scalar = Named[0]
+    if (
+        Scalar.object_id is None
+        or Scalar.role == "display"
+        or not IsRoundedInch(Dimension.source_text, Scalar.value, Decimals)
+    ):
+        return Dimension
+    return Replace(
+        Dimension,
+        value_mm=Scalar.value * KMillimetres,
         native_value=Scalar.value,
         native_offset=Scalar.value_offset,
         native_role=Scalar.role,

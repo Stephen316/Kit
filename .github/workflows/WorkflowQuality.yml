@@ -102,6 +102,11 @@ jobs:
           uv run --frozen python re/automation/SolidworksCensus.py
           --check-rectangle-edges "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
 
+      - name: Check SOLIDWORKS resolved-feature inch lengths
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --check-resolved-lengths "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
       - name: Exercise native file reading and writing
         run: >-
           uv run pytest

@@ -11,6 +11,7 @@ from SolidworksCensusCompare import (
     compare, require_boss_directions, require_equation_bindings, require_rectangle_edges,
 )
 from SolidworksCensusInputs import capture_inputs, digest
+from SolidworksCensusLengths import require_resolved_lengths
 from SolidworksCensusRead import native_read, neutral_read
 
 
@@ -96,9 +97,10 @@ def main():
     outputs.add_argument("--check-directions", type=Path)
     outputs.add_argument("--check-equations", type=Path)
     outputs.add_argument("--check-rectangle-edges", type=Path)
+    outputs.add_argument("--check-resolved-lengths", type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
-    check_report = args.check_equations or args.check_directions or args.check_rectangle_edges
+    check_report = args.check_equations or args.check_directions or args.check_rectangle_edges or args.check_resolved_lengths
     if check_report is not None:
         report = json.loads(check_report.read_bytes())
         revision = git(root, "rev-parse", "HEAD").decode().strip()
@@ -108,6 +110,7 @@ def main():
             (args.check_equations, require_equation_bindings),
             (args.check_directions, require_boss_directions),
             (args.check_rectangle_edges, require_rectangle_edges),
+            (args.check_resolved_lengths, require_resolved_lengths),
         )
         check = next(check for option, check in checks if option is not None)
         check(report["captures"])

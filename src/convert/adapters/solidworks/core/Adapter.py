@@ -137,6 +137,10 @@ from convert.adapters.solidworks.core.FeatureKindByNative import KFeatureKindByN
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from convert.adapters.solidworks.core.BuildRevolve import BuildRevolve as BuildRevolve
 from convert.adapters.solidworks.core.EquationLinks import EquationData
+from convert.adapters.solidworks.core.LinearDisplay import (
+    KInformationStream,
+    ParseDisplay,
+)
 from convert.adapters.solidworks.core.SketchIdentity import (
     MarkerId as MarkerId,
 )
@@ -389,6 +393,14 @@ def ReadNativePart(
                 "native_name_record_count": len(Model.names),
                 "native_scalar_count": len(Model.scalars),
                 "stream_names": tuple((Record.name for Record in Archive.records)),
+                **(
+                    {
+                        "source_display_units": Model.linear_display.UnitName,
+                        "source_display_units_stream": KInformationStream,
+                    }
+                    if Model.linear_display is not None
+                    else {}
+                ),
             }
         ),
         units=UnitSystem.MILLIMETER,
@@ -2008,6 +2020,7 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
         configuration_id=SelectedId,
         resolved_stream=SelectedStream,
         configuration_stream=ConfigStream,
+        Display=ParseDisplay(Archive.get(KInformationStream) or b""),
     )
 
 

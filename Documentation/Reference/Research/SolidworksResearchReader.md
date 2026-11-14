@@ -109,6 +109,8 @@ The `boundary` field records whether the low-level native model and the process-
 
 Mass and centroid values are copied from the independent measurement evidence for context. The census does not calculate them or run either CAD application. It checks both P04 cut-centering equation bindings against each saved part's measured source. Other semantic mismatches and decoder rejections appear as research findings unless they affect a required check. Unverifiable inputs and invalid reader receipts fail the census. Use [the change entry](../../Changes/Research/SolidWorksDiscoveryCensus.md) for scope and evidence.
 
+The inch-length check verifies seven named, feature-owned resolved dimensions and three blind depths in the inch variants. Display metadata identifies the source unit and its native property stream. P04's six sketch dimensions remain outside this check while their configuration-stream ownership is unresolved. [Resolved-feature inch lengths](../../Changes/Research/SolidWorksResolvedInchLengths.md)
+
 ### Historical corpus
 
 Remote process coverage exercises actual pinned files, typed reconstruction, tamper rejection and overwrite refusal.
