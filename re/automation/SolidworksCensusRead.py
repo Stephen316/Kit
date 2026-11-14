@@ -31,14 +31,7 @@ def native_read(content, path):
             }
             for item in model.features for dim in item.dimensions
         ],
-        "sketches": [
-            {
-                "name": item.name, "support_kind": item.support_kind,
-                "support_source": item.support_source, "support_plane_id": item.support_plane_id,
-                "profiles": len(item.profiles), "constraint_count": len(item.constraints),
-            }
-            for item in model.sketches
-        ],
+        "sketches": [native_sketch(item, archive) for item in model.sketches],
         "operations": [
             {
                 "name": item.name, "kind": item.kind, "profile_id": item.profile_id,
@@ -55,6 +48,40 @@ def native_read(content, path):
             for item in model.equations
         ],
         "diagnostics": list(model.diagnostics),
+    }
+
+
+def native_sketch(item, archive):
+    return {
+        "name": item.name, "id": item.object_id, "support_kind": item.support_kind,
+        "support_source": item.support_source, "support_plane_id": item.support_plane_id,
+        "profiles": len(item.profiles), "constraint_count": len(item.constraints),
+        "stream_span": {
+            "stream": item.native_stream, "offset": item.native_offset,
+            "end": item.native_end, "stream_size": len(archive.require(item.native_stream)),
+        },
+        "markers": [
+            {
+                "index": index, "offset": marker.offset, "length": marker.length,
+                "prefix": marker.prefix, "locus": marker.locus, "native_kind": marker.native_kind,
+                "profile_role": marker.profile_role, "semantic": marker.semantic,
+                "construction": marker.construction, "endpoint_indices": marker.endpoint_indices,
+                "coordinates_mm": marker.coordinates_mm, "object_index": marker.object_index,
+                "local_id": marker.local_id,
+            }
+            for index, marker in enumerate(item.markers)
+        ],
+        "profile_records": [
+            {"kind": profile.kind, "coordinates_mm": profile.coordinates, "marker_offsets": profile.marker_offsets}
+            for profile in item.profiles
+        ],
+        "rule_records": [
+            {
+                "id": rule.id, "kind": rule.kind, "native_code": rule.native_code,
+                "offset": rule.native_offset, "references": rule.references, "parameter": rule.parameter,
+            }
+            for rule in item.constraints
+        ],
     }
 
 
@@ -167,10 +194,52 @@ def world_point(point, transform):
     )
 
 
-def neutral_sketch(item, plane, selections, feature_names):
+def provenance(value):
+    if value is None:
+        return None
+    return {
+        "native_id": value.native_id,
+        "spans": [
+            {
+                "stream": span.stream, "offset": span.offset,
+                "length": span.length, "record_kind": span.record_kind,
+            }
+            for span in value.spans
+        ],
+    }
+
+
+def neutral_entity(entity, transform):
     from interchange.geometry.models.GeometryCurves import LineGeometry
 
+    segment = None
+    if isinstance(entity.geometry, LineGeometry):
+        segment = (
+            world_point(entity.geometry.start, transform),
+            world_point(entity.geometry.end, transform),
+        )
+    return {
+        "id": entity.id, "kind": str(entity.kind), "construction": entity.construction,
+        "world_segment_mm": segment, "provenance": provenance(entity.provenance),
+    }
+
+
+def neutral_relation(rule):
+    native_code = rule.attributes.get("native_code")
+    inferred = rule.attributes.get("inferred", False) or (
+        rule.kind in {"horizontal", "vertical"} and native_code is None
+    )
+    return {
+        "id": rule.id, "kind": rule.kind, "parameter_id": rule.parameter_id, "driving": rule.driving,
+        "reference_count": len(rule.references), "inferred": inferred, "native_code": native_code,
+        "references": [{"entity_id": ref.entity_id, "point": ref.point} for ref in rule.references],
+        "provenance": provenance(rule.provenance),
+    }
+
+
+def neutral_sketch(item, plane, selections, feature_names):
     support = selections.get(plane.support_selection_id)
+    entities = [neutral_entity(entity, plane.transform) for entity in item.entities]
     return {
         "name": item.name, "id": item.id, "support_name": plane.name,
         "support_selection_id": plane.support_selection_id,
@@ -190,16 +259,11 @@ def neutral_sketch(item, plane, selections, feature_names):
             "v": vector(plane.transform.y_axis), "normal": vector(plane.transform.z_axis),
         },
         "world_segments_mm": [
-            (world_point(entity.geometry.start, plane.transform), world_point(entity.geometry.end, plane.transform))
-            for entity in item.entities
-            if not entity.construction and isinstance(entity.geometry, LineGeometry)
+            entity["world_segment_mm"] for entity in entities
+            if not entity["construction"] and entity["world_segment_mm"] is not None
         ],
+        "entities": entities,
+        "closed_profile_entity_ids": item.closed_profile_entity_ids,
         "parameter_ids": item.parameter_ids,
-        "relations": [
-            {
-                "kind": rel.kind, "parameter_id": rel.parameter_id, "driving": rel.driving,
-                "reference_count": len(rel.references), "inferred": rel.attributes.get("inferred", False),
-            }
-            for rel in item.constraints
-        ],
+        "relations": [neutral_relation(rule) for rule in item.constraints],
     }
