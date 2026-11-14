@@ -74,8 +74,7 @@ def WriteConfig(
         "registry": str(RegistryFile),
         "worker": "supervisor:fixture",
         "pools": {
-            PoolName: {"max_sessions": Limit}
-            for PoolName, Limit in PoolLimits.items()
+            PoolName: {"max_sessions": Limit} for PoolName, Limit in PoolLimits.items()
         },
         "stop_grace_seconds": 1,
         "poll_seconds": 0.1,

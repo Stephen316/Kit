@@ -63,7 +63,9 @@ def CheckEarlyStore(Client: JobClient, Database: FilePath) -> None:
         CountsSql,
     )
     assert (
-        JsonCodec.loads(Client.RunCli("status", "--job", "migrated"))["jobs"][0]["state"]
+        JsonCodec.loads(Client.RunCli("status", "--job", "migrated"))["jobs"][0][
+            "state"
+        ]
         == "completed"
     )
     assert JsonCodec.loads(Client.RunCli("init"))["store_version"] == 4

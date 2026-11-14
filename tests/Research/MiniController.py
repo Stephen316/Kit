@@ -261,9 +261,7 @@ def IsJobReady(
     )
 
 
-def BuildClaim(
-    JobName: str, Entry: JobEntry, Current: StoreState
-) -> dict[str, object]:
+def BuildClaim(JobName: str, Entry: JobEntry, Current: StoreState) -> dict[str, object]:
     return {
         "job": dict(
             Entry.RawSpec,
@@ -307,9 +305,7 @@ def StartLeaseMut(Entry: JobEntry, Worker: str, Token: str) -> None:
     Entry.Reason = f"claimed by {Worker}"
 
 
-def WriteClaim(
-    ClaimPath: FilePath, ClaimInfo: dict[str, object], Token: str
-) -> None:
+def WriteClaim(ClaimPath: FilePath, ClaimInfo: dict[str, object], Token: str) -> None:
     Handle = OsLayer.open(
         ClaimPath, OsLayer.O_CREAT | OsLayer.O_EXCL | OsLayer.O_WRONLY, 0o600
     )
