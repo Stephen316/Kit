@@ -1,11 +1,10 @@
 from convert.adapters.base.AdapterInfo import AdapterInfo
 from interchange.enums.EnumDocument import Capability
 
-# registration advertises only categories represented in the partial native reader
 KReaderInfo = AdapterInfo(
     format_id="fusion.f3d",
     name="Autodesk Fusion",
-    version="1.0",
+    version="2.0",
     aliases=("f3d",),
     extensions=(".f3d",),
     part_extensions=(".f3d",),
@@ -13,6 +12,11 @@ KReaderInfo = AdapterInfo(
     capabilities=frozenset(
         {
             Capability.KParameters,
+            Capability.KParamHistory,
+            Capability.KEditableSketches,
+            Capability.KConfigurations,
+            Capability.KExpressions,
+            Capability.KMaterials,
             Capability.KSupportPlanes,
             Capability.KSelections,
             Capability.KBodyStructure,

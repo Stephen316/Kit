@@ -1,0 +1,83 @@
+{
+ "scope": "Unchanged documents saved repeatedly by local Fusion; compares decoded ACT records and the bytes after the final record",
+ "fusion_version": "2706.1.17",
+ "python": "3.14.7",
+ "cases": [
+  {
+   "name": "Fresh",
+   "saves": [
+    {
+     "file": "re/Fusion/LocalOracle/ActSlack/Saves/FreshFirst.f3d",
+     "records": 8,
+     "final_object": 7,
+     "final_type_code": 264,
+     "slack_bytes": 0,
+     "slack_sha256": null,
+     "slack_zero": true
+    },
+    {
+     "file": "re/Fusion/LocalOracle/ActSlack/Saves/FreshSecond.f3d",
+     "records": 8,
+     "final_object": 7,
+     "final_type_code": 264,
+     "slack_bytes": 0,
+     "slack_sha256": null,
+     "slack_zero": true,
+     "records_equal_first": true,
+     "slack_equal_first": true,
+     "final_fields_equal_first": true
+    },
+    {
+     "file": "re/Fusion/LocalOracle/ActSlack/Saves/FreshReopened.f3d",
+     "records": 8,
+     "final_object": 7,
+     "final_type_code": 264,
+     "slack_bytes": 2,
+     "slack_sha256": "aa4fb8a61cab7db73f42671f2bb987a7291a436929b3d5f17ffe05f96be13371",
+     "slack_zero": false,
+     "records_equal_first": false,
+     "slack_equal_first": false,
+     "final_fields_equal_first": true
+    }
+   ]
+  },
+  {
+   "name": "Plane",
+   "saves": [
+    {
+     "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneFirst.f3d",
+     "records": 9,
+     "final_object": 8,
+     "final_type_code": 263,
+     "slack_bytes": 2,
+     "slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "slack_zero": true
+    },
+    {
+     "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneSecond.f3d",
+     "records": 9,
+     "final_object": 8,
+     "final_type_code": 263,
+     "slack_bytes": 2,
+     "slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+     "slack_zero": true,
+     "records_equal_first": true,
+     "slack_equal_first": true,
+     "final_fields_equal_first": true
+    },
+    {
+     "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneReopened.f3d",
+     "records": 9,
+     "final_object": 8,
+     "final_type_code": 262,
+     "slack_bytes": 2,
+     "slack_sha256": "047ccb73bd5552a12c254b4c31a5f50e1333745b87560a9db9d3dab473a5d2e3",
+     "slack_zero": false,
+     "records_equal_first": false,
+     "slack_equal_first": false,
+     "final_fields_equal_first": true
+    }
+   ]
+  }
+ ]
+}

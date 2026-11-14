@@ -1,0 +1,677 @@
+[
+  {
+    "ClassGuid": "1B7920A0-725B-4368-9448-E4D323D53E7C",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "frame",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B47597BB-C85F-4C05-AD92-BC64FD1B746A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rVSurface",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "FA1F0081-C9A1-4E14-8F25-D12DD868ED90"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tess",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2BF3AA37-63FB-4DDA-ACC7-32BBDEA702F4"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SubDSurfaceBase",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "22709494-9149-4A70-A829-7D748A7B5DB1",
+    "BaseGuid": "1B7920A0-725B-4368-9448-E4D323D53E7C",
+    "SchemaVersion": 7,
+    "Members": [
+      {
+        "FieldName": "bConversionFailed",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bUseG0CapSettingsInPreview",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "chainRefI",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "ePartitionMode",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSerializer",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06571"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rTSplinePipeSectionData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "965F0A35-457C-428C-A8AB-15BA2DC69C02"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "TsSurface",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2BF3AA37-63FB-4DDA-ACC7-32BBDEA702F4",
+    "BaseGuid": "AE2E07F4-CE59-4098-8886-77B5471433A6",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SurfaceTessellation",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ControlFrameEntity",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "508CD3DA-48EF-47B5-93FC-3958BD60F195",
+    "BaseGuid": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+    "SchemaVersion": 5,
+    "Members": [
+      {
+        "FieldName": "rMesh",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B47597BB-C85F-4C05-AD92-BC64FD1B746A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tsID",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ControlFrameEdge",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "6C90740C-229E-4EE5-8F35-A4E5AE4F7C73",
+    "BaseGuid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+    "SchemaVersion": 5,
+    "Members": [
+      {
+        "FieldName": "bIsAGDFormFeature",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "computableActions",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rTSplineToolBody",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "E079B079-016A-43C2-ACC7-9627B32A8960"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "subDInfoMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "FA1F0081-C9A1-4E14-8F25-D12DD868ED90"
+            },
+            {
+              "KindValue": "pair",
+              "Arguments": [
+                {
+                  "KindValue": "u64"
+                },
+                {
+                  "KindValue": "ref",
+                  "ClassGuid": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA"
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcTSplineFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "82423792-0D50-46D9-A0AC-B9686497B157",
+    "BaseGuid": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "rMesh",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B47597BB-C85F-4C05-AD92-BC64FD1B746A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tsID",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ControlFrameGrip",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "824F8CA4-91A4-4968-9B88-AEE23418A0C3",
+    "BaseGuid": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "rMesh",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B47597BB-C85F-4C05-AD92-BC64FD1B746A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tsID",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ControlFrameVertex",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06571",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "partName",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSurface",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "22709494-9149-4A70-A829-7D748A7B5DB1"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "TSplineSerializer",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "A95DF847-7544-45A4-A48A-E6AC5FABE00B",
+    "BaseGuid": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+    "SchemaVersion": 7,
+    "Members": [
+      {
+        "FieldName": "rMesh",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B47597BB-C85F-4C05-AD92-BC64FD1B746A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tsID",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "visualMaterial",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "EA46307F-1FD6-4B11-9C97-353B74F5E413"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ControlFrameFacet",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "AE2E07F4-CE59-4098-8886-77B5471433A6",
+    "BaseGuid": "FF921574-8B16-42AA-A002-53CC6D10D368",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "activePatchID",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "Mesh",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "B10FD0AF-2BC2-493D-8128-7844C355B743",
+    "BaseGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SubDSurfaceNodeBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "b251c722-3d64-45d3-bb0f-f70b21d6d64e",
+    "BaseGuid": "d0edef7c-5879-45a4-9651-900659cc4fdd",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "TSplineTextureMapping",
+    "ClassSpace": "Scene"
+  },
+  {
+    "ClassGuid": "B47597BB-C85F-4C05-AD92-BC64FD1B746A",
+    "BaseGuid": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "edges",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "508CD3DA-48EF-47B5-93FC-3958BD60F195"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "facets",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "A95DF847-7544-45A4-A48A-E6AC5FABE00B"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "grips",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "82423792-0D50-46D9-A0AC-B9686497B157"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rMapping",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "C73246BF-27EA-4980-A1B6-0A91B05D8ABF"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "rSurface",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "1B7920A0-725B-4368-9448-E4D323D53E7C"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "vertices",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "824F8CA4-91A4-4968-9B88-AEE23418A0C3"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ControlFrameMesh",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "C24A96DD-1839-4B09-88A8-90C8510A6172",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "IRayIntersectable",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "C5369F86-3DD9-4566-80B9-275C5072D082",
+    "BaseGuid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "entityType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tsEntityProgenitors",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "DB2BFABD-CBFB-468E-BACE-D66F3BD59E87"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "TSplineEntityProgenitor",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "DB2BFABD-CBFB-468E-BACE-D66F3BD59E87",
+    "BaseGuid": "",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "faceIndex",
+        "ValueType": {
+          "KindValue": "u64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "uHigh",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "uLow",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "vHigh",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "vLow",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "TsEntityProgInfoValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "E079B079-016A-43C2-ACC7-9627B32A8960",
+    "BaseGuid": "60F291CB-499B-4AB1-B0E5-340368671724",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rTSplineFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "6C90740C-229E-4EE5-8F35-A4E5AE4F7C73"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcTSplineToolBody",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "FA1F0081-C9A1-4E14-8F25-D12DD868ED90",
+    "BaseGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "SchemaVersion": 11,
+    "Members": [
+      {
+        "FieldName": "creationIndex",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "faceVisualMaterialByAttrTagID",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "utf16"
+            },
+            {
+              "KindValue": "object",
+              "ClassGuid": "EA46307F-1FD6-4B11-9C97-353B74F5E413"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isNodeVisible",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSelectable",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isVisible",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "opacity",
+        "ValueType": {
+          "KindValue": "f32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "physicalMaterial",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rDcTSplineFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "6C90740C-229E-4EE5-8F35-A4E5AE4F7C73"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rGroupParent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSurface",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "1B7920A0-725B-4368-9448-E4D323D53E7C"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "textureMapping",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "userName",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "visualMaterial",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "EA46307F-1FD6-4B11-9C97-353B74F5E413"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SubDSurfaceNode",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "FF921574-8B16-42AA-A002-53CC6D10D368",
+    "BaseGuid": "C24A96DD-1839-4B09-88A8-90C8510A6172",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "IMesh",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "isActivated",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rDirectModelingData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "493A89BA-E146-498D-9033-2783FE727AF4"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rLastFeatureBeforeActivate",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+        },
+        "IsSaved": false
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcDMActivationFeature",
+    "ClassSpace": "Fusion"
+  }
+]

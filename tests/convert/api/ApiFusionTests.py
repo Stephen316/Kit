@@ -83,7 +83,7 @@ def CheckFusWriter(TmpPath: FilePath) -> None:
     Document = OpenDocument(HistoryArchive(), SourceFormat="f3d", StrictMode=False)
     TargetPath = TmpPath / "blocked.f3d"
     for FormatId in ("fusion.f3d", "f3d"):
-        with Pytest.raises(AdapterNotFoundError, match="no writer registered"):
+        with Pytest.raises(AdapterNotFoundError, match="does not support"):
             _ = WriteDocument(Document, TargetPath, destination_format=FormatId)
     with Pytest.raises(AdapterNotFoundError, match="no writer supports"):
         _ = WriteDocument(Document, TargetPath)

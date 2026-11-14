@@ -63,6 +63,7 @@ Do not bypass failed or pending acceptance.
 
 Production conversion must remain independent of CAD applications.
 Output must not use unrelated donor bytes.
+The [Fusion donor data ban](../Research/FusionDonorBan.md) lists banned data and the review checklist.
 Lossless acceptance requires geometry, history, editability, and target-application evidence.
 The research exemption under `re/` does not waive those product requirements.
 

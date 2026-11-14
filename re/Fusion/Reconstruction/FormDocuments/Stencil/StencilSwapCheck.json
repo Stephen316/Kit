@@ -1,0 +1,38 @@
+{
+ "scope": "SwapFormCage on the Fusion base archive of each probe cage, written and read back, against the Fusion archive converted from the same variant cage",
+ "python": "3.14.7",
+ "cages": [
+  {
+   "cage": "CreasedPlane",
+   "base_sha256": "75a4728c58e9f0721af9e7faf09038bc6ab64569d0088368f40ea36daa418608",
+   "variants": 44,
+   "refused": [],
+   "roundtrip_equal": true,
+   "gaps": {
+    "entities/IntcurveNode.Curve/SubtypeNode.Body/BsCurve.Poles": 4.440892098500626e-16,
+    "entities/PcurveNode.Curve/SubtypeNode.Body": 9.057654461423997e-16,
+    "entities/PcurveNode.Curve/SubtypeNode.Body/BsCurve.Poles": 2.220446049250313e-16,
+    "entities/SplineNode.Surface/TsplineSurf.Cache/NubsSurface.Points": 4.440892098500626e-16
+   },
+   "other_differences": {
+    "entities/EdgeNode.Convexity": 2
+   }
+  },
+  {
+   "cage": "Valence5Warped",
+   "base_sha256": "f48925ebe7956ab4704a71cfa18d95ffe76854392604f0d9a1411606ae1a5c4b",
+   "variants": 2,
+   "refused": [],
+   "roundtrip_equal": true,
+   "gaps": {
+    "entities/IntcurveNode.Curve/SubtypeNode.Body/BsCurve.Poles": 1.3322676295501878e-15,
+    "entities/PcurveNode.Curve/SubtypeNode.Body": 4.385511886566954e-16,
+    "entities/PcurveNode.Curve/SubtypeNode.Body/BsCurve.Poles": 6.661338147750939e-16,
+    "entities/PcurveNode.Curve/SubtypeNode.Body/TsplineSurf.Cache/NubsSurface.Points": 1.887379141862766e-15,
+    "entities/PointNode.PositionCm": 5.551115123125783e-16,
+    "entities/SplineNode.Surface/TsplineSurf.Cache/NubsSurface.Points": 2.4424906541753444e-15
+   },
+   "other_differences": {}
+  }
+ ]
+}

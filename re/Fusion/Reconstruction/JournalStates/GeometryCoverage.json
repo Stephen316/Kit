@@ -1,0 +1,867 @@
+{
+  "schema": "FusionNextGeometryVocabulary/1",
+  "source": "re/Fusion/Reconstruction/BrepCoverage/Inventory.json.xz",
+  "sourceSha256": "a72b79bd16cb9b5a9f46d7be0fda01296c69838fbe7164b32cee1b7cc04da67e",
+  "scope": "Reuse of all 1170 indexed BRep initial tables; vocabulary and existing ownership evidence only, not product reader execution or semantic/native acceptance",
+  "totals": {
+    "members": 1170,
+    "archives": 582,
+    "uniqueBlobs": 1083,
+    "histories": 565,
+    "snapshots": 605
+  },
+  "initialRecordTypes": {
+    "coedge": 45507,
+    "ATTRIB_CUSTOM-attrib": 37058,
+    "edge": 26129,
+    "straight-curve": 22303,
+    "point": 19935,
+    "vertex": 19927,
+    "loop": 13338,
+    "face": 12548,
+    "plane-surface": 11086,
+    "shell": 3994,
+    "lump": 3982,
+    "body": 3828,
+    "ellipse-curve": 2475,
+    "pcurve": 2076,
+    "intcurve-curve": 1242,
+    "asmheader": 1170,
+    "cone-surface": 748,
+    "spline-surface": 475,
+    "transform": 305,
+    "no_merge_attribute-st-attrib": 18,
+    "tcoedge-coedge": 16,
+    "torus-surface": 14,
+    "sphere-surface": 10,
+    "tedge-edge": 8,
+    "tvertex-vertex": 8,
+    "wire": 5,
+    "stitch_hint-sys-attrib": 4,
+    "vertedge-sys-attrib": 4,
+    "int64_attrib-name_attrib-gen-attrib": 1
+  },
+  "initialAttributeTypes": {
+    "sketch_attrib_def": 21717,
+    "generic_tag_attrib_def": 13968,
+    "Timestamp_attrib_def": 1249,
+    "FPM_tracked_attrib_def": 96,
+    "FDM_feature_attrib_def": 28
+  },
+  "additiveVocabularyCandidates": {
+    "known-kind-vocabulary": {
+      "members": 850,
+      "archives": 473,
+      "uniqueBlobs": 772,
+      "histories": 396,
+      "snapshots": 454,
+      "archivesWhoseEveryBrepInitialTableMeetsVocabulary": 375
+    },
+    "plus-transform": {
+      "members": 1007,
+      "archives": 523,
+      "uniqueBlobs": 921,
+      "histories": 462,
+      "snapshots": 545,
+      "archivesWhoseEveryBrepInitialTableMeetsVocabulary": 476
+    },
+    "plus-transform-sphere-torus": {
+      "members": 1019,
+      "archives": 528,
+      "uniqueBlobs": 933,
+      "histories": 469,
+      "snapshots": 550,
+      "archivesWhoseEveryBrepInitialTableMeetsVocabulary": 483
+    },
+    "plus-fdm-attribute": {
+      "members": 1035,
+      "archives": 528,
+      "uniqueBlobs": 949,
+      "histories": 485,
+      "snapshots": 550,
+      "archivesWhoseEveryBrepInitialTableMeetsVocabulary": 499
+    }
+  },
+  "knownPlanarTables": {
+    "members": 498,
+    "archives": 263,
+    "uniqueBlobs": 443,
+    "histories": 227,
+    "snapshots": 271
+  },
+  "oneBodyPlanarHistories": {
+    "members": 102,
+    "archives": 85,
+    "uniqueBlobs": 102,
+    "histories": 102,
+    "snapshots": 0
+  },
+  "oneBodyNonboxPlanarHistories": {
+    "members": 40,
+    "archives": 40,
+    "uniqueBlobs": 40,
+    "histories": 40,
+    "snapshots": 0
+  },
+  "smallestNonboxExamples": [
+    {
+      "path": "re/Fusion/Study/sweepprofiles-8d489fe02d2d/open_sketch_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8cf886b5-0412-4325-969e-ab1fdc92dd4f.smbh",
+      "sha256": "e3bb20438abcb82e5fcf826689363000da3847081ee8ce3e3ee09bf0325ab66e",
+      "size": 4969,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 0,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 1,
+        "loops": 1,
+        "coedges": 4,
+        "edges": 4,
+        "vertices": 4,
+        "ringLengths": [
+          4
+        ],
+        "surfaces": {
+          "plane-surface": 1
+        },
+        "curves": {
+          "straight-curve": 4
+        },
+        "boundsCm": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            3.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/sweepprofiles-b2b7a2774752/open_sketch_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8b7714cf-5a36-4d6d-a3e1-298d9f0a59e3.smbh",
+      "sha256": "749e5775fe3b186eed5b2f46570e89c59ff92baebceb2d839a3c6eaae2057cca",
+      "size": 4969,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 0,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 1,
+        "loops": 1,
+        "coedges": 4,
+        "edges": 4,
+        "vertices": 4,
+        "ringLengths": [
+          4
+        ],
+        "surfaces": {
+          "plane-surface": 1
+        },
+        "curves": {
+          "straight-curve": 4
+        },
+        "boundsCm": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            3.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/meshconverts-4b42d39fb1d5/faceted_open.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dfe435a7-6983-474c-812a-56d2eea09764.smbh",
+      "sha256": "6cef8cd05e1a534f160a9da90b0994099a6c0f87b8ff3493e181bb91cd33d215",
+      "size": 6426,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 25,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 3,
+        "loops": 3,
+        "coedges": 9,
+        "edges": 6,
+        "vertices": 4,
+        "ringLengths": [
+          3,
+          3,
+          3
+        ],
+        "surfaces": {
+          "plane-surface": 3
+        },
+        "curves": {
+          "straight-curve": 6
+        },
+        "boundsCm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.0,
+            3.0,
+            4.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/meshconvertoperations-5af73924aa60/base_feature_closed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.009e2294-ae4b-4439-a2dd-6adcd9afbef5.smbh",
+      "sha256": "ea9af87806a35d00858327168631200eb520b17e86fa43f6dc549eacbc100afe",
+      "size": 7383,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 30,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 4,
+        "loops": 4,
+        "coedges": 12,
+        "edges": 6,
+        "vertices": 4,
+        "ringLengths": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "surfaces": {
+          "plane-surface": 4
+        },
+        "curves": {
+          "straight-curve": 6
+        },
+        "boundsCm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.0,
+            3.0,
+            4.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.284868a5-5b8b-41da-871b-2d80983ca7d7.smbh",
+      "sha256": "68e30de4207ea13fc4f3aa505a14772503caee32f9a6f1c41dc4ccf2946b51c9",
+      "size": 7383,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 30,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 4,
+        "loops": 4,
+        "coedges": 12,
+        "edges": 6,
+        "vertices": 4,
+        "ringLengths": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "surfaces": {
+          "plane-surface": 4
+        },
+        "curves": {
+          "straight-curve": 6
+        },
+        "boundsCm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.0,
+            3.0,
+            4.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/meshconvertoperations-5af73924aa60/base_feature_open.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4d8ca507-238c-46a6-8dc9-70e433f70e73.smbh",
+      "sha256": "87bcab76e6cdc5c53e7a94b28874016b0b749fd5fa91a7b5f3530bd09580210a",
+      "size": 7802,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 25,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 3,
+        "loops": 3,
+        "coedges": 9,
+        "edges": 6,
+        "vertices": 4,
+        "ringLengths": [
+          3,
+          3,
+          3
+        ],
+        "surfaces": {
+          "plane-surface": 3
+        },
+        "curves": {
+          "straight-curve": 6
+        },
+        "boundsCm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.0,
+            3.0,
+            4.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/pipemodes-87cfa7d8d82b/triangular.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.038e0fee-eddd-4a0d-ad88-3cc6cc1bcbbc.smbh",
+      "sha256": "26ebfcf743b59b8b1284bdde4b67eb253e7c41d7ce34f998d6d558893235d175",
+      "size": 9768,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 0,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 5,
+        "loops": 5,
+        "coedges": 18,
+        "edges": 9,
+        "vertices": 6,
+        "ringLengths": [
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "surfaces": {
+          "plane-surface": 5
+        },
+        "curves": {
+          "straight-curve": 9
+        },
+        "boundsCm": [
+          [
+            0.0,
+            -0.3464101615137755,
+            -0.30000000000000004
+          ],
+          [
+            6.0,
+            0.3464101615137755,
+            0.30000000000000004
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    },
+    {
+      "path": "re/Fusion/Study/sweeps-5f87eff25e24/line_surface.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.801555e4-85a5-4bcd-ba32-f9a9dd655e2d.smbh",
+      "sha256": "cfd0e83a0a8d4c37e9fc2cde414210a6a1aa2f23cb26dd66dcd4ba891715e3b9",
+      "size": 11913,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 0,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 4,
+        "loops": 4,
+        "coedges": 16,
+        "edges": 12,
+        "vertices": 8,
+        "ringLengths": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "surfaces": {
+          "plane-surface": 4
+        },
+        "curves": {
+          "straight-curve": 12
+        },
+        "boundsCm": [
+          [
+            0.0,
+            -0.2,
+            -0.3
+          ],
+          [
+            5.0,
+            0.2,
+            0.3
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      },
+      "historyRecordTypes": {
+        "history_stream": 1,
+        "delta_state": 2,
+        "End-of-ASM-data": 1
+      }
+    }
+  ],
+  "missingKindGroups": [
+    {
+      "recordKinds": [],
+      "attributeKinds": [],
+      "members": 850,
+      "archives": 473,
+      "uniqueBlobs": 772,
+      "histories": 396,
+      "snapshots": 454,
+      "smallestExample": {
+        "path": "re/Fusion/Study/constructionmodes-e355ad6031c0/point_center.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ef3f839f-dc8b-477d-9dc8-8bd0376d1e94.smb",
+        "sha256": "feaf1742be8176496d7157b824758d1ded3b418d6edf92a37c454ce656a47b65",
+        "size": 1385,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "transform"
+      ],
+      "attributeKinds": [],
+      "members": 157,
+      "archives": 110,
+      "uniqueBlobs": 149,
+      "histories": 66,
+      "snapshots": 91,
+      "smallestExample": {
+        "path": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/construction_sharp_start.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.338c67b6-f798-4e21-ad2d-953be4d4303d.smb",
+        "sha256": "70237eb46aef1e0daa2866628060f37ea9d1316d2b273422acb107edf061cfc6",
+        "size": 4815,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "intcurve-curve",
+        "pcurve",
+        "spline-surface",
+        "transform"
+      ],
+      "attributeKinds": [],
+      "members": 54,
+      "archives": 39,
+      "uniqueBlobs": 54,
+      "histories": 16,
+      "snapshots": 38,
+      "smallestExample": {
+        "path": "re/Fusion/Study/loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.077fa8eb-edaf-42b2-9eda-12fb6c24871b.smb",
+        "sha256": "5b866657116f851517f52575e44ddf0913dd7414abb65187428fec1d118740e4",
+        "size": 12099,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "intcurve-curve",
+        "pcurve",
+        "spline-surface"
+      ],
+      "attributeKinds": [],
+      "members": 49,
+      "archives": 43,
+      "uniqueBlobs": 49,
+      "histories": 42,
+      "snapshots": 7,
+      "smallestExample": {
+        "path": "re/Fusion/Study/loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.21ce2a1b-db1c-4536-8ebe-f8e58a175b7c.smbh",
+        "sha256": "4a37024d976a76b33d5bdae2a28b6f002970baf79a6c74e2013097cf5f962aaa",
+        "size": 11056,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [],
+      "attributeKinds": [
+        "FDM_feature_attrib_def"
+      ],
+      "members": 16,
+      "archives": 16,
+      "uniqueBlobs": 16,
+      "histories": 16,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/threadmodes-6b6a0a9b4a69/partial_high.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6ba43899-473c-4e7e-932a-832f35cdbec9.smbh",
+        "sha256": "4d38ecb36cf3595d809c4bccd0ca489f04dc8e3a23261b7beecf20ca40aa95a0",
+        "size": 9592,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "no_merge_attribute-st-attrib"
+      ],
+      "attributeKinds": [],
+      "members": 12,
+      "archives": 10,
+      "uniqueBlobs": 11,
+      "histories": 9,
+      "snapshots": 3,
+      "smallestExample": {
+        "path": "re/Fusion/Study/splitfacemodes-4fc4adf2a868/line.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9bf20e82-0686-492b-9d9d-1e57fe5142e5.smbh",
+        "sha256": "cfa3ef3e55da1acbf6c5297393e1d3fc6a59c3f95b9f0e9ac3108275e77bd057",
+        "size": 18617,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "torus-surface"
+      ],
+      "attributeKinds": [],
+      "members": 8,
+      "archives": 4,
+      "uniqueBlobs": 8,
+      "histories": 4,
+      "snapshots": 4,
+      "smallestExample": {
+        "path": "re/Fusion/Study/pipepaths-3d11bd427946/composite_circular.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.49b3597e-00b0-41b8-a205-9fe8163a634b.smb",
+        "sha256": "63f6cc74fc5a69f8106b038534eb735a3396d5133ab734dcb59b1c3c84e62c29",
+        "size": 4110,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "intcurve-curve",
+        "pcurve",
+        "spline-surface",
+        "stitch_hint-sys-attrib"
+      ],
+      "attributeKinds": [],
+      "members": 4,
+      "archives": 2,
+      "uniqueBlobs": 4,
+      "histories": 2,
+      "snapshots": 2,
+      "smallestExample": {
+        "path": "re/Fusion/Study/patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0fe6384e-1436-4bb3-a550-ff30240d0188.smb",
+        "sha256": "4a3012e2629eb0ac68d8be61634279e07caed4daaef927ab1ff973fec745d8f8",
+        "size": 24410,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "sphere-surface",
+        "torus-surface"
+      ],
+      "attributeKinds": [],
+      "members": 3,
+      "archives": 2,
+      "uniqueBlobs": 3,
+      "histories": 2,
+      "snapshots": 1,
+      "smallestExample": {
+        "path": "re/Fusion/Study/analytic-86a12b291d0a/analytic.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.66dea2e4-f2cf-4d43-8c2d-62117e12e1a6.smbh",
+        "sha256": "05fbeb278d30623129b861533e99f54fa94527c37cf42e71f5b7496aa02757b7",
+        "size": 6462,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "pcurve",
+        "spline-surface",
+        "transform"
+      ],
+      "attributeKinds": [],
+      "members": 3,
+      "archives": 2,
+      "uniqueBlobs": 3,
+      "histories": 1,
+      "snapshots": 2,
+      "smallestExample": {
+        "path": "re/Fusion/Study/loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.95e73f51-3670-40ec-b728-a0e997e50ece.smb",
+        "sha256": "0eb1ea29fef60a09ebed88d0744156df256125752d6e29c2abb3f0e8585b9f53",
+        "size": 21547,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "wire"
+      ],
+      "attributeKinds": [],
+      "members": 3,
+      "archives": 3,
+      "uniqueBlobs": 3,
+      "histories": 3,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.31e3dd8b-588f-4ad9-a9a0-95d3e42fce8e.smbh",
+        "sha256": "478847884f254534d632403ee0a0f66a161b23e6cd5e33bc1fe96287a2c061b2",
+        "size": 24114,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "intcurve-curve",
+        "pcurve",
+        "spline-surface",
+        "tcoedge-coedge",
+        "tedge-edge",
+        "transform",
+        "tvertex-vertex"
+      ],
+      "attributeKinds": [],
+      "members": 2,
+      "archives": 1,
+      "uniqueBlobs": 2,
+      "histories": 1,
+      "snapshots": 1,
+      "smallestExample": {
+        "path": "re/Fusion/Study/solidsweeps-7d2677669e3d/solid_twist.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dd4e60ad-b3a3-4f7d-a558-0afa7b5b531f.smb",
+        "sha256": "ae2a84121182b35d76cffa413c2eb74390a36af5969556522fb2b2a7b7fdcbd1",
+        "size": 121454,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "no_merge_attribute-st-attrib",
+        "wire"
+      ],
+      "attributeKinds": [],
+      "members": 2,
+      "archives": 2,
+      "uniqueBlobs": 2,
+      "histories": 2,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/splitfacemodes-4fc4adf2a868/along_vector.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c69b3cdc-6962-4034-89d7-ad69c19c15cb.smbh",
+        "sha256": "43b040d656315b71ab6e521a8d19231d243d78e7706668a974e107c8978e8ed1",
+        "size": 19671,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "intcurve-curve",
+        "pcurve",
+        "spline-surface"
+      ],
+      "attributeKinds": [
+        "FDM_feature_attrib_def"
+      ],
+      "members": 2,
+      "archives": 2,
+      "uniqueBlobs": 2,
+      "histories": 2,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/threadmodes-d51d2ae60564/modeled_full.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7369d28b-2150-4279-8aaa-bcfbde1e1a33.smbh",
+        "sha256": "f7f4ccac9ac6696ed59707ccd97ff2a7b684906317fd61a408eed38445b00e3a",
+        "size": 27055,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "int64_attrib-name_attrib-gen-attrib"
+      ],
+      "attributeKinds": [],
+      "members": 1,
+      "archives": 1,
+      "uniqueBlobs": 1,
+      "histories": 1,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/boundaryfills-a0953038318b/plane_first.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+        "sha256": "c7d2142ab34cc54c31b59da2b4864f91fa65da59169ba6352071d71f8d57ebf4",
+        "size": 101708,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "pcurve",
+        "spline-surface"
+      ],
+      "attributeKinds": [],
+      "members": 1,
+      "archives": 1,
+      "uniqueBlobs": 1,
+      "histories": 1,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.34f2b055-35c0-41df-8190-679502aaa921.smbh",
+        "sha256": "2c206b87fdd3c6a12b4a59536230f0116dde41cf745030defb102fdb71dffcf0",
+        "size": 18388,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "vertedge-sys-attrib"
+      ],
+      "attributeKinds": [],
+      "members": 1,
+      "archives": 1,
+      "uniqueBlobs": 1,
+      "histories": 0,
+      "snapshots": 1,
+      "smallestExample": {
+        "path": "re/Fusion/Study/sketchpatternmodes-5b83cb71a99d/rectangular_two_circles.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d83f0a45-2199-4185-b14c-85c5368f37e4.smb",
+        "sha256": "b0771ba4a4fb0736011b1a2a5104db10ba79fa77b0f11e6b2c83d99501850276",
+        "size": 12085,
+        "extension": ".smb"
+      }
+    },
+    {
+      "recordKinds": [
+        "sphere-surface"
+      ],
+      "attributeKinds": [],
+      "members": 1,
+      "archives": 1,
+      "uniqueBlobs": 1,
+      "histories": 1,
+      "snapshots": 0,
+      "smallestExample": {
+        "path": "re/Fusion/Study/specialfillets-d50f7a4f04e0/rule_all_rounds.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7ce2ba6b-2c72-4876-9295-ad7daa28fbec.smbh",
+        "sha256": "64bf15fd5bc3283d0ea84062a28109fd2ba7c437418918c77aaeda557a51be6b",
+        "size": 61284,
+        "extension": ".smbh"
+      }
+    },
+    {
+      "recordKinds": [
+        "intcurve-curve",
+        "vertedge-sys-attrib"
+      ],
+      "attributeKinds": [],
+      "members": 1,
+      "archives": 1,
+      "uniqueBlobs": 1,
+      "histories": 0,
+      "snapshots": 1,
+      "smallestExample": {
+        "path": "re/Fusion/Study/splines-9a18bae21127/splines.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+        "sha256": "b03c64905f0419137307e0e1cf74b2d84f9fa107c7e4f59f3ff1b5947c04a298",
+        "size": 5160,
+        "extension": ".smb"
+      }
+    }
+  ]
+}

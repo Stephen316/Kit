@@ -1,0 +1,4685 @@
+{
+  "schema": "FusionControlledTaperedHistory/1",
+  "scope": "Read-only complete field decoding of two native source histories; no production execution or native calls",
+  "samples": [
+    {
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/distance_positive.f3d",
+      "sourceSha256": "dd9067920bccc513668d479ae4e32c88456aac037c2dcf976e5d9d7dc310ffe0",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.78c4a6cb-708e-4d67-b9c5-6b12f06a115a.smbh",
+      "memberSha256": "e7c4d17d9c9cd7b3cf9d7b889effd2d9f96fb5a9f25cb697e3012f3103bca56a",
+      "header": {
+        "save_format": 23200,
+        "stored_records": 0,
+        "top_level_entity_count": 2,
+        "flags": 3,
+        "magic": "ASM BinaryFile8",
+        "integer_width": 8,
+        "tagged_values": [
+          {
+            "offset": 47,
+            "size": 18,
+            "tag": 7,
+            "kind": "short_string",
+            "value": "Autodesk Neutron"
+          },
+          {
+            "offset": 65,
+            "size": 23,
+            "tag": 7,
+            "kind": "short_string",
+            "value": "ASM 232.5.0.65535 OSX"
+          },
+          {
+            "offset": 88,
+            "size": 26,
+            "tag": 7,
+            "kind": "short_string",
+            "value": "Tue Oct 20 18:12:36 2026"
+          },
+          {
+            "offset": 114,
+            "size": 9,
+            "tag": 6,
+            "kind": "double",
+            "value": 50.0
+          },
+          {
+            "offset": 123,
+            "size": 9,
+            "tag": 6,
+            "kind": "double",
+            "value": 1e-06
+          },
+          {
+            "offset": 132,
+            "size": 9,
+            "tag": 6,
+            "kind": "double",
+            "value": 1e-10
+          }
+        ]
+      },
+      "initialRecordCount": 35,
+      "recordTypes": {
+        "asmheader": 1,
+        "body": 1,
+        "ATTRIB_CUSTOM-attrib": 9,
+        "lump": 1,
+        "shell": 1,
+        "face": 3,
+        "loop": 4,
+        "cone-surface": 1,
+        "plane-surface": 2,
+        "coedge": 4,
+        "edge": 2,
+        "vertex": 2,
+        "ellipse-curve": 2,
+        "point": 2
+      },
+      "journal": {
+        "preamble": [
+          4,
+          4,
+          0,
+          1,
+          -1,
+          0,
+          1,
+          -1
+        ],
+        "currentPrefix": [
+          4,
+          1,
+          0,
+          -1,
+          1,
+          0,
+          -1,
+          0,
+          false,
+          1,
+          0,
+          2
+        ],
+        "currentTrailer": [
+          0,
+          0,
+          0
+        ],
+        "initialState": [
+          2,
+          1,
+          0,
+          0,
+          -1,
+          1,
+          -1,
+          0,
+          false,
+          0,
+          0
+        ],
+        "fieldCount": 117,
+        "insertionCount": 34,
+        "insertionOnly": true,
+        "coversInitialRecords": true,
+        "typedFieldsMatch": true,
+        "simpleInsertionJournal": true,
+        "insertionIds": [
+          3,
+          5,
+          6,
+          7,
+          8,
+          10,
+          9,
+          11,
+          12,
+          14,
+          13,
+          15,
+          16,
+          17,
+          19,
+          18,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          1,
+          4,
+          2
+        ],
+        "initialCurrentIds": [
+          2,
+          4
+        ]
+      },
+      "records": [
+        {
+          "ordinal": 0,
+          "recordType": "asmheader",
+          "byteOffset": 141,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "qualifiedIdentity",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "version",
+              "tag": 7,
+              "value": "232.5.0.65535"
+            }
+          ]
+        },
+        {
+          "ordinal": 1,
+          "recordType": "body",
+          "byteOffset": 186,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 2
+            },
+            {
+              "name": "bodyKey",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstLump",
+              "tag": 12,
+              "value": 3
+            },
+            {
+              "name": "firstWire",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "transform",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 247,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": 4
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 1
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "Timestamp_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "authoredUnixMicros",
+              "tag": 6,
+              "value": 1792516356424487.0
+            }
+          ],
+          "genericGroups": []
+        },
+        {
+          "ordinal": 3,
+          "recordType": "lump",
+          "byteOffset": 356,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLump",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstShell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "body",
+              "tag": 12,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "ordinal": 4,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 417,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": 2
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 1
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "301"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 4
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 3,
+              "primaryId": "301",
+              "secondaryId": 4,
+              "operationIds": [],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "recordType": "shell",
+          "byteOffset": 612,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextShell",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstSubshell",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstFace",
+              "tag": 12,
+              "value": 6
+            },
+            {
+              "name": "wire",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "lump",
+              "tag": 12,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "ordinal": 6,
+          "recordType": "face",
+          "byteOffset": 692,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 7
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextFace",
+              "tag": 12,
+              "value": 8
+            },
+            {
+              "name": "firstLoop",
+              "tag": 12,
+              "value": 9
+            },
+            {
+              "name": "shell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "qualifiedNull",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "surface",
+              "tag": 12,
+              "value": 10
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "doubleSided",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 7,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 773,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 6
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "3"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 1,
+              "primaryId": "3",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 8,
+          "recordType": "face",
+          "byteOffset": 975,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 11
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextFace",
+              "tag": 12,
+              "value": 12
+            },
+            {
+              "name": "firstLoop",
+              "tag": 12,
+              "value": 13
+            },
+            {
+              "name": "shell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "qualifiedNull",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "surface",
+              "tag": 12,
+              "value": 14
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "doubleSided",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 9,
+          "recordType": "loop",
+          "byteOffset": 1056,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": 15
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 6
+            }
+          ]
+        },
+        {
+          "ordinal": 10,
+          "recordType": "cone-surface",
+          "byteOffset": 1117,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "centerCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "axis",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "majorVectorCm",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "ratio",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "ellipseHasLowerBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "ellipseHasUpperBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "sineAngle",
+              "tag": 6,
+              "value": 0.0
+            },
+            {
+              "name": "cosineAngle",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "parameterScaleCm",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "reversedSense",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMax",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMax",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 11,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 1278,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 8
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "2"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 1,
+              "primaryId": "2",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 12,
+          "recordType": "face",
+          "byteOffset": 1480,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 17
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextFace",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstLoop",
+              "tag": 12,
+              "value": 18
+            },
+            {
+              "name": "shell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "qualifiedNull",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "surface",
+              "tag": 12,
+              "value": 19
+            },
+            {
+              "name": "reversed",
+              "tag": 10,
+              "value": true
+            },
+            {
+              "name": "doubleSided",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 13,
+          "recordType": "loop",
+          "byteOffset": 1561,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ordinal": 14,
+          "recordType": "plane-surface",
+          "byteOffset": 1622,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "originCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                1.7000000000000002
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "referenceVector",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "vSense",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMax",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMax",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 15,
+          "recordType": "loop",
+          "byteOffset": 1746,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 6
+            }
+          ]
+        },
+        {
+          "ordinal": 16,
+          "recordType": "coedge",
+          "byteOffset": 1807,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "reversed",
+              "tag": 10,
+              "value": true
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 9
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 17,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 1907,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 12
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "1"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 1,
+              "primaryId": "1",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 18,
+          "recordType": "loop",
+          "byteOffset": 2109,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 12
+            }
+          ]
+        },
+        {
+          "ordinal": 19,
+          "recordType": "plane-surface",
+          "byteOffset": 2170,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "originCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "referenceVector",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "vSense",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMax",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMax",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 20,
+          "recordType": "coedge",
+          "byteOffset": 2294,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 13
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 21,
+          "recordType": "coedge",
+          "byteOffset": 2394,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 24
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 15
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 22,
+          "recordType": "edge",
+          "byteOffset": 2494,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 26
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "startVertex",
+              "tag": 12,
+              "value": 27
+            },
+            {
+              "name": "startParameter",
+              "tag": 6,
+              "value": -3.141592653589793
+            },
+            {
+              "name": "endVertex",
+              "tag": 12,
+              "value": 27
+            },
+            {
+              "name": "endParameter",
+              "tag": 6,
+              "value": 3.141592653589793
+            },
+            {
+              "name": "ownerCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "curve",
+              "tag": 12,
+              "value": 28
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "convexity",
+              "tag": 7,
+              "value": "unknown"
+            }
+          ]
+        },
+        {
+          "ordinal": 23,
+          "recordType": "coedge",
+          "byteOffset": 2592,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 29
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "reversed",
+              "tag": 10,
+              "value": true
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 18
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 24,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 2692,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "sketch_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "payloadForm",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "sourceCurveTuple",
+              "tag": 7,
+              "value": "102 0 0 0 1 1"
+            }
+          ],
+          "genericGroups": []
+        },
+        {
+          "ordinal": 25,
+          "recordType": "edge",
+          "byteOffset": 2822,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 30
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "startVertex",
+              "tag": 12,
+              "value": 31
+            },
+            {
+              "name": "startParameter",
+              "tag": 6,
+              "value": -3.141592653589793
+            },
+            {
+              "name": "endVertex",
+              "tag": 12,
+              "value": 31
+            },
+            {
+              "name": "endParameter",
+              "tag": 6,
+              "value": 3.141592653589793
+            },
+            {
+              "name": "ownerCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "curve",
+              "tag": 12,
+              "value": 32
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "convexity",
+              "tag": 7,
+              "value": "unknown"
+            }
+          ]
+        },
+        {
+          "ordinal": 26,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 2920,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 2
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "-1"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 2,
+              "primaryId": "-1",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 27,
+          "recordType": "vertex",
+          "byteOffset": 3123,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "ownerEdge",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "ownerEndpointIndex",
+              "tag": 4,
+              "value": 2
+            },
+            {
+              "name": "point",
+              "tag": 12,
+              "value": 33
+            }
+          ]
+        },
+        {
+          "ordinal": 28,
+          "recordType": "ellipse-curve",
+          "byteOffset": 3186,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "centerCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                1.7000000000000002
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "majorVectorCm",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "ratio",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "hasLowerBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUpperBound",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 29,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 3316,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "sketch_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "payloadForm",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "sourceCurveTuple",
+              "tag": 7,
+              "value": "102 0 0 0 1 1"
+            }
+          ],
+          "genericGroups": []
+        },
+        {
+          "ordinal": 30,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 3446,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 4
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "-102"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 4,
+              "primaryId": "-102",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 31,
+          "recordType": "vertex",
+          "byteOffset": 3651,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "ownerEdge",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "ownerEndpointIndex",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "point",
+              "tag": 12,
+              "value": 34
+            }
+          ]
+        },
+        {
+          "ordinal": 32,
+          "recordType": "ellipse-curve",
+          "byteOffset": 3714,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "centerCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "majorVectorCm",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "ratio",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "hasLowerBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUpperBound",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 33,
+          "recordType": "point",
+          "byteOffset": 3844,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "positionCm",
+              "tag": 19,
+              "value": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.7000000000000002
+              ]
+            }
+          ]
+        },
+        {
+          "ordinal": 34,
+          "recordType": "point",
+          "byteOffset": 3904,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "positionCm",
+              "tag": 19,
+              "value": [
+                -1.0,
+                -1.2246467991473532e-16,
+                0.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/taper.f3d",
+      "sourceSha256": "d5e776fa897782747e699b1ed366f9bf51bf6652c19a21001676651c2cd4118f",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.299112e4-f409-4233-89b9-e59b88e80317.smbh",
+      "memberSha256": "4922e923b5fc1515732922c843edb42eec2b92ba5243413027334880ce2475e1",
+      "header": {
+        "save_format": 23200,
+        "stored_records": 0,
+        "top_level_entity_count": 2,
+        "flags": 3,
+        "magic": "ASM BinaryFile8",
+        "integer_width": 8,
+        "tagged_values": [
+          {
+            "offset": 47,
+            "size": 18,
+            "tag": 7,
+            "kind": "short_string",
+            "value": "Autodesk Neutron"
+          },
+          {
+            "offset": 65,
+            "size": 23,
+            "tag": 7,
+            "kind": "short_string",
+            "value": "ASM 232.5.0.65535 OSX"
+          },
+          {
+            "offset": 88,
+            "size": 26,
+            "tag": 7,
+            "kind": "short_string",
+            "value": "Tue Oct 20 18:12:40 2026"
+          },
+          {
+            "offset": 114,
+            "size": 9,
+            "tag": 6,
+            "kind": "double",
+            "value": 50.0
+          },
+          {
+            "offset": 123,
+            "size": 9,
+            "tag": 6,
+            "kind": "double",
+            "value": 1e-06
+          },
+          {
+            "offset": 132,
+            "size": 9,
+            "tag": 6,
+            "kind": "double",
+            "value": 1e-10
+          }
+        ]
+      },
+      "initialRecordCount": 35,
+      "recordTypes": {
+        "asmheader": 1,
+        "body": 1,
+        "ATTRIB_CUSTOM-attrib": 9,
+        "lump": 1,
+        "shell": 1,
+        "face": 3,
+        "loop": 4,
+        "cone-surface": 1,
+        "plane-surface": 2,
+        "coedge": 4,
+        "edge": 2,
+        "vertex": 2,
+        "ellipse-curve": 2,
+        "point": 2
+      },
+      "journal": {
+        "preamble": [
+          4,
+          4,
+          0,
+          1,
+          -1,
+          0,
+          1,
+          -1
+        ],
+        "currentPrefix": [
+          4,
+          1,
+          0,
+          -1,
+          1,
+          0,
+          -1,
+          0,
+          false,
+          1,
+          0,
+          2
+        ],
+        "currentTrailer": [
+          0,
+          0,
+          0
+        ],
+        "initialState": [
+          2,
+          1,
+          0,
+          0,
+          -1,
+          1,
+          -1,
+          0,
+          false,
+          0,
+          0
+        ],
+        "fieldCount": 117,
+        "insertionCount": 34,
+        "insertionOnly": true,
+        "coversInitialRecords": true,
+        "typedFieldsMatch": true,
+        "simpleInsertionJournal": true,
+        "insertionIds": [
+          3,
+          5,
+          6,
+          7,
+          8,
+          10,
+          9,
+          11,
+          12,
+          14,
+          13,
+          15,
+          16,
+          17,
+          19,
+          18,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          1,
+          4,
+          2
+        ],
+        "initialCurrentIds": [
+          2,
+          4
+        ]
+      },
+      "records": [
+        {
+          "ordinal": 0,
+          "recordType": "asmheader",
+          "byteOffset": 141,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "qualifiedIdentity",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "version",
+              "tag": 7,
+              "value": "232.5.0.65535"
+            }
+          ]
+        },
+        {
+          "ordinal": 1,
+          "recordType": "body",
+          "byteOffset": 186,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 2
+            },
+            {
+              "name": "bodyKey",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstLump",
+              "tag": 12,
+              "value": 3
+            },
+            {
+              "name": "firstWire",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "transform",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 247,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": 4
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 1
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "Timestamp_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "authoredUnixMicros",
+              "tag": 6,
+              "value": 1792516360435897.0
+            }
+          ],
+          "genericGroups": []
+        },
+        {
+          "ordinal": 3,
+          "recordType": "lump",
+          "byteOffset": 356,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLump",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstShell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "body",
+              "tag": 12,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "ordinal": 4,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 417,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": 2
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 1
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "301"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 4
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 3,
+              "primaryId": "301",
+              "secondaryId": 4,
+              "operationIds": [],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "recordType": "shell",
+          "byteOffset": 612,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextShell",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstSubshell",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstFace",
+              "tag": 12,
+              "value": 6
+            },
+            {
+              "name": "wire",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "lump",
+              "tag": 12,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "ordinal": 6,
+          "recordType": "face",
+          "byteOffset": 692,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 7
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextFace",
+              "tag": 12,
+              "value": 8
+            },
+            {
+              "name": "firstLoop",
+              "tag": 12,
+              "value": 9
+            },
+            {
+              "name": "shell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "qualifiedNull",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "surface",
+              "tag": 12,
+              "value": 10
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "doubleSided",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 7,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 773,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 6
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "3"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 1,
+              "primaryId": "3",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 8,
+          "recordType": "face",
+          "byteOffset": 975,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 11
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextFace",
+              "tag": 12,
+              "value": 12
+            },
+            {
+              "name": "firstLoop",
+              "tag": 12,
+              "value": 13
+            },
+            {
+              "name": "shell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "qualifiedNull",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "surface",
+              "tag": 12,
+              "value": 14
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "doubleSided",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 9,
+          "recordType": "loop",
+          "byteOffset": 1056,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": 15
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 6
+            }
+          ]
+        },
+        {
+          "ordinal": 10,
+          "recordType": "cone-surface",
+          "byteOffset": 1117,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "centerCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "axis",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "majorVectorCm",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "ratio",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "ellipseHasLowerBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "ellipseHasUpperBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "sineAngle",
+              "tag": 6,
+              "value": 0.12186934340514748
+            },
+            {
+              "name": "cosineAngle",
+              "tag": 6,
+              "value": 0.992546151641322
+            },
+            {
+              "name": "parameterScaleCm",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "reversedSense",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMax",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMax",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 11,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 1278,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 8
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "2"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 1,
+              "primaryId": "2",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 12,
+          "recordType": "face",
+          "byteOffset": 1480,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 17
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextFace",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstLoop",
+              "tag": 12,
+              "value": 18
+            },
+            {
+              "name": "shell",
+              "tag": 12,
+              "value": 5
+            },
+            {
+              "name": "qualifiedNull",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "surface",
+              "tag": 12,
+              "value": 19
+            },
+            {
+              "name": "reversed",
+              "tag": 10,
+              "value": true
+            },
+            {
+              "name": "doubleSided",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 13,
+          "recordType": "loop",
+          "byteOffset": 1561,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ordinal": 14,
+          "recordType": "plane-surface",
+          "byteOffset": 1622,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "originCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                1.7000000000000002
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "referenceVector",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "vSense",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMax",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMax",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 15,
+          "recordType": "loop",
+          "byteOffset": 1746,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 6
+            }
+          ]
+        },
+        {
+          "ordinal": 16,
+          "recordType": "coedge",
+          "byteOffset": 1807,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 9
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 17,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 1907,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 12
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "1"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 1,
+              "primaryId": "1",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 18,
+          "recordType": "loop",
+          "byteOffset": 2109,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextLoop",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "firstCoedge",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "face",
+              "tag": 12,
+              "value": 12
+            }
+          ]
+        },
+        {
+          "ordinal": 19,
+          "recordType": "plane-surface",
+          "byteOffset": 2170,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "originCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "referenceVector",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "vSense",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUMax",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMin",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasVMax",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 20,
+          "recordType": "coedge",
+          "byteOffset": 2294,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 20
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "reversed",
+              "tag": 10,
+              "value": true
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 13
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 21,
+          "recordType": "coedge",
+          "byteOffset": 2394,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 24
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 15
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 22,
+          "recordType": "edge",
+          "byteOffset": 2494,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 26
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "startVertex",
+              "tag": 12,
+              "value": 27
+            },
+            {
+              "name": "startParameter",
+              "tag": 6,
+              "value": -3.141592653589793
+            },
+            {
+              "name": "endVertex",
+              "tag": 12,
+              "value": 27
+            },
+            {
+              "name": "endParameter",
+              "tag": 6,
+              "value": 3.141592653589793
+            },
+            {
+              "name": "ownerCoedge",
+              "tag": 12,
+              "value": 16
+            },
+            {
+              "name": "curve",
+              "tag": 12,
+              "value": 28
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "convexity",
+              "tag": 7,
+              "value": "unknown"
+            }
+          ]
+        },
+        {
+          "ordinal": 23,
+          "recordType": "coedge",
+          "byteOffset": 2592,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 29
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "nextCoedge",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "previousCoedge",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "partner",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "edge",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "reversed",
+              "tag": 10,
+              "value": true
+            },
+            {
+              "name": "loop",
+              "tag": 12,
+              "value": 18
+            },
+            {
+              "name": "qualifiedZero",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "pcurve",
+              "tag": 12,
+              "value": -1
+            }
+          ]
+        },
+        {
+          "ordinal": 24,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 2692,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "sketch_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "payloadForm",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "sourceCurveTuple",
+              "tag": 7,
+              "value": "102 0 0 0 1 1"
+            }
+          ],
+          "genericGroups": []
+        },
+        {
+          "ordinal": 25,
+          "recordType": "edge",
+          "byteOffset": 2822,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": 30
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "startVertex",
+              "tag": 12,
+              "value": 31
+            },
+            {
+              "name": "startParameter",
+              "tag": 6,
+              "value": -3.141592653589793
+            },
+            {
+              "name": "endVertex",
+              "tag": 12,
+              "value": 31
+            },
+            {
+              "name": "endParameter",
+              "tag": 6,
+              "value": 3.141592653589793
+            },
+            {
+              "name": "ownerCoedge",
+              "tag": 12,
+              "value": 21
+            },
+            {
+              "name": "curve",
+              "tag": 12,
+              "value": 32
+            },
+            {
+              "name": "reversed",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "convexity",
+              "tag": 7,
+              "value": "unknown"
+            }
+          ]
+        },
+        {
+          "ordinal": 26,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 2920,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 2
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "-1"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 2,
+              "primaryId": "-1",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 27,
+          "recordType": "vertex",
+          "byteOffset": 3123,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "ownerEdge",
+              "tag": 12,
+              "value": 22
+            },
+            {
+              "name": "ownerEndpointIndex",
+              "tag": 4,
+              "value": 2
+            },
+            {
+              "name": "point",
+              "tag": 12,
+              "value": 33
+            }
+          ]
+        },
+        {
+          "ordinal": 28,
+          "recordType": "ellipse-curve",
+          "byteOffset": 3186,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "centerCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                1.7000000000000002
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                -0.0,
+                -0.0,
+                -1.0
+              ]
+            },
+            {
+              "name": "majorVectorCm",
+              "tag": 20,
+              "value": [
+                1.2087337535349378,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "ratio",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "hasLowerBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUpperBound",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 29,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 3316,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 23
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "sketch_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "payloadForm",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "sourceCurveTuple",
+              "tag": 7,
+              "value": "102 0 0 0 1 1"
+            }
+          ],
+          "genericGroups": []
+        },
+        {
+          "ordinal": 30,
+          "recordType": "ATTRIB_CUSTOM-attrib",
+          "byteOffset": 3446,
+          "fields": [
+            {
+              "name": "reserved",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "marker",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "next",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "previous",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "owner",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "family",
+              "tag": 7,
+              "value": "generic_tag_attrib_def"
+            },
+            {
+              "name": "schema",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "schemaDuplicate",
+              "tag": 4,
+              "value": 3
+            },
+            {
+              "name": "reservedVersion",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "repeatedFamily",
+              "tag": 7,
+              "value": "generic_tag_attrib_def "
+            },
+            {
+              "name": "groupCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "primaryByteLength",
+              "tag": 4,
+              "value": 4
+            },
+            {
+              "name": "primaryId",
+              "tag": 7,
+              "value": "-102"
+            },
+            {
+              "name": "secondaryId",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "operationCount",
+              "tag": 4,
+              "value": 1
+            },
+            {
+              "name": "operationId",
+              "tag": 4,
+              "value": 301
+            },
+            {
+              "name": "approachId",
+              "tag": 4,
+              "value": 0
+            }
+          ],
+          "genericGroups": [
+            {
+              "primaryByteLength": 4,
+              "primaryId": "-102",
+              "secondaryId": 0,
+              "operationIds": [
+                301
+              ],
+              "approachId": 0,
+              "byteLengthMatches": true
+            }
+          ]
+        },
+        {
+          "ordinal": 31,
+          "recordType": "vertex",
+          "byteOffset": 3651,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "ownerEdge",
+              "tag": 12,
+              "value": 25
+            },
+            {
+              "name": "ownerEndpointIndex",
+              "tag": 4,
+              "value": 0
+            },
+            {
+              "name": "point",
+              "tag": 12,
+              "value": 34
+            }
+          ]
+        },
+        {
+          "ordinal": 32,
+          "recordType": "ellipse-curve",
+          "byteOffset": 3714,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "centerCm",
+              "tag": 19,
+              "value": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "normal",
+              "tag": 20,
+              "value": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "name": "majorVectorCm",
+              "tag": 20,
+              "value": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "name": "ratio",
+              "tag": 6,
+              "value": 1.0
+            },
+            {
+              "name": "hasLowerBound",
+              "tag": 11,
+              "value": false
+            },
+            {
+              "name": "hasUpperBound",
+              "tag": 11,
+              "value": false
+            }
+          ]
+        },
+        {
+          "ordinal": 33,
+          "recordType": "point",
+          "byteOffset": 3844,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "positionCm",
+              "tag": 19,
+              "value": [
+                -1.2087337535349378,
+                -1.4802719222879273e-16,
+                1.7000000000000002
+              ]
+            }
+          ]
+        },
+        {
+          "ordinal": 34,
+          "recordType": "point",
+          "byteOffset": 3904,
+          "fields": [
+            {
+              "name": "attribute",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "entityId",
+              "tag": 4,
+              "value": -1
+            },
+            {
+              "name": "pattern",
+              "tag": 12,
+              "value": -1
+            },
+            {
+              "name": "positionCm",
+              "tag": 19,
+              "value": [
+                -1.0,
+                -1.2246467991473532e-16,
+                0.0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "ordinal": 2,
+      "recordType": "ATTRIB_CUSTOM-attrib",
+      "field": "authoredUnixMicros",
+      "before": 1792516356424487.0,
+      "after": 1792516360435897.0
+    },
+    {
+      "ordinal": 10,
+      "recordType": "cone-surface",
+      "field": "sineAngle",
+      "before": 0.0,
+      "after": 0.12186934340514748
+    },
+    {
+      "ordinal": 10,
+      "recordType": "cone-surface",
+      "field": "cosineAngle",
+      "before": 1.0,
+      "after": 0.992546151641322
+    },
+    {
+      "ordinal": 16,
+      "recordType": "coedge",
+      "field": "reversed",
+      "before": true,
+      "after": false
+    },
+    {
+      "ordinal": 20,
+      "recordType": "coedge",
+      "field": "reversed",
+      "before": false,
+      "after": true
+    },
+    {
+      "ordinal": 28,
+      "recordType": "ellipse-curve",
+      "field": "normal",
+      "before": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "after": [
+        -0.0,
+        -0.0,
+        -1.0
+      ]
+    },
+    {
+      "ordinal": 28,
+      "recordType": "ellipse-curve",
+      "field": "majorVectorCm",
+      "before": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "after": [
+        1.2087337535349378,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "ordinal": 33,
+      "recordType": "point",
+      "field": "positionCm",
+      "before": [
+        -1.0,
+        -1.2246467991473532e-16,
+        1.7000000000000002
+      ],
+      "after": [
+        -1.2087337535349378,
+        -1.4802719222879273e-16,
+        1.7000000000000002
+      ]
+    }
+  ],
+  "identicalJournal": true
+}

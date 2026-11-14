@@ -4,7 +4,7 @@ from typing import cast
 import pytest as Pytest
 
 from convert import available_adapters as GetAdapters
-from convert.adapters import AdapterInfo, AdapterNotFoundError, AdapterRegistry
+from convert.adapters import AdapterInfo, AdapterRegistry
 from convert.adapters.base.AdapterProtocols import CadReaderAdapter, CadWriterAdapter
 from interchange import Capability
 from tests.convert.api.ApiTestHelpers import GetPackNames, ListFormatPacks
@@ -35,11 +35,11 @@ def CheckDiscovery() -> None:
     assert WriterIds == tuple(sorted(set(WriterIds)))
     assert FirstIds == SecondIds == tuple(sorted(set(ReaderIds) | set(WriterIds)))
     assert KLegacyFormats <= set(ReaderIds) & set(WriterIds)
-    assert "fusion.f3d" not in ReaderIds
+    assert "fusion.f3d" in ReaderIds
     for FormatId in ("f3d", "fusion.f3d"):
-        with Pytest.raises(AdapterNotFoundError):
-            _ = FirstRegistry.reader(FormatId)
-    assert "fusion.f3d" not in WriterIds
+        assert FirstRegistry.reader(FormatId).info.format_id == "fusion.f3d"
+        assert FirstRegistry.writer(FormatId).info.format_id == "fusion.f3d"
+    assert "fusion.f3d" in WriterIds
     AssertAliases(FirstRegistry)
     assert FirstRegistry.introspect() == FirstIds
     assert FirstRegistry.readers() == ReaderValues

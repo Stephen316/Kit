@@ -1,0 +1,1510 @@
+{
+  "scope": "Schema-only Form vocabulary derived from native reflection; no entity values or payload bytes",
+  "reflection": "re/Fusion/LocalOracle/TSplineReflection/Versions.json",
+  "reflection_sha256": "0cbea08b778a74e85d80ce7039ac6c5343e81bcd042ce60c5415b091e46eadee",
+  "target": "src/convert/formats/Fusion/DocumentCodec/Vocabulary/FormClasses.json",
+  "target_sha256": "71ec911ad1c308978a84bb1ecc36fe862b432c4b8bd54d7748d96595bc175dc9",
+  "added_classes": [
+    {
+      "name": "SubDSurfaceBase",
+      "identifier": "1B7920A0-725B-4368-9448-E4D323D53E7C",
+      "version": 1,
+      "base": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+      "members": [
+        "frame",
+        "rVSurface",
+        "tess"
+      ]
+    },
+    {
+      "name": "TsSurface",
+      "identifier": "22709494-9149-4A70-A829-7D748A7B5DB1",
+      "version": 7,
+      "base": "1B7920A0-725B-4368-9448-E4D323D53E7C",
+      "members": [
+        "bConversionFailed",
+        "bUseG0CapSettingsInPreview",
+        "chainRefI",
+        "ePartitionMode",
+        "rSerializer",
+        "rTSplinePipeSectionData"
+      ]
+    },
+    {
+      "name": "SurfaceTessellation",
+      "identifier": "2BF3AA37-63FB-4DDA-ACC7-32BBDEA702F4",
+      "version": 0,
+      "base": "AE2E07F4-CE59-4098-8886-77B5471433A6",
+      "members": []
+    },
+    {
+      "name": "ControlFrameEntity",
+      "identifier": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+      "version": 0,
+      "base": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+      "members": []
+    },
+    {
+      "name": "ControlFrameEdge",
+      "identifier": "508CD3DA-48EF-47B5-93FC-3958BD60F195",
+      "version": 5,
+      "base": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+      "members": [
+        "rMesh",
+        "tsID"
+      ]
+    },
+    {
+      "name": "DcTSplineFeature",
+      "identifier": "6C90740C-229E-4EE5-8F35-A4E5AE4F7C73",
+      "version": 5,
+      "base": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+      "members": [
+        "bIsAGDFormFeature",
+        "computableActions",
+        "rTSplineToolBody",
+        "subDInfoMap"
+      ]
+    },
+    {
+      "name": "ControlFrameGrip",
+      "identifier": "82423792-0D50-46D9-A0AC-B9686497B157",
+      "version": 2,
+      "base": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+      "members": [
+        "rMesh",
+        "tsID"
+      ]
+    },
+    {
+      "name": "ControlFrameVertex",
+      "identifier": "824F8CA4-91A4-4968-9B88-AEE23418A0C3",
+      "version": 2,
+      "base": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+      "members": [
+        "rMesh",
+        "tsID"
+      ]
+    },
+    {
+      "name": "TSplineSerializer",
+      "identifier": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06571",
+      "version": 0,
+      "base": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+      "members": [
+        "partName",
+        "rSurface"
+      ]
+    },
+    {
+      "name": "ControlFrameFacet",
+      "identifier": "A95DF847-7544-45A4-A48A-E6AC5FABE00B",
+      "version": 7,
+      "base": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+      "members": [
+        "rMesh",
+        "tsID",
+        "visualMaterial"
+      ]
+    },
+    {
+      "name": "Mesh",
+      "identifier": "AE2E07F4-CE59-4098-8886-77B5471433A6",
+      "version": 0,
+      "base": "FF921574-8B16-42AA-A002-53CC6D10D368",
+      "members": [
+        "activePatchID"
+      ]
+    },
+    {
+      "name": "SubDSurfaceNodeBrowserEntry",
+      "identifier": "B10FD0AF-2BC2-493D-8128-7844C355B743",
+      "version": 0,
+      "base": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD",
+      "members": []
+    },
+    {
+      "name": "TSplineTextureMapping",
+      "identifier": "b251c722-3d64-45d3-bb0f-f70b21d6d64e",
+      "version": 0,
+      "base": "d0edef7c-5879-45a4-9651-900659cc4fdd",
+      "members": []
+    },
+    {
+      "name": "ControlFrameMesh",
+      "identifier": "B47597BB-C85F-4C05-AD92-BC64FD1B746A",
+      "version": 2,
+      "base": "5052BF45-02FB-446F-82D5-A9C81125BC94",
+      "members": [
+        "edges",
+        "facets",
+        "grips",
+        "rMapping",
+        "rSurface",
+        "vertices"
+      ]
+    },
+    {
+      "name": "IRayIntersectable",
+      "identifier": "C24A96DD-1839-4B09-88A8-90C8510A6172",
+      "version": 0,
+      "base": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+      "members": []
+    },
+    {
+      "name": "TSplineEntityProgenitor",
+      "identifier": "C5369F86-3DD9-4566-80B9-275C5072D082",
+      "version": 1,
+      "base": "5C069ACB-169F-4555-9792-815B4671DDA0",
+      "members": [
+        "entityType",
+        "tsEntityProgenitors"
+      ]
+    },
+    {
+      "name": "TsEntityProgInfoValue",
+      "identifier": "DB2BFABD-CBFB-468E-BACE-D66F3BD59E87",
+      "version": 1,
+      "base": "",
+      "members": [
+        "faceIndex",
+        "uHigh",
+        "uLow",
+        "vHigh",
+        "vLow"
+      ]
+    },
+    {
+      "name": "DcTSplineToolBody",
+      "identifier": "E079B079-016A-43C2-ACC7-9627B32A8960",
+      "version": 0,
+      "base": "60F291CB-499B-4AB1-B0E5-340368671724",
+      "members": [
+        "rTSplineFeature"
+      ]
+    },
+    {
+      "name": "SubDSurfaceNode",
+      "identifier": "FA1F0081-C9A1-4E14-8F25-D12DD868ED90",
+      "version": 11,
+      "base": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+      "members": [
+        "creationIndex",
+        "faceVisualMaterialByAttrTagID",
+        "isNodeVisible",
+        "isSelectable",
+        "isVisible",
+        "opacity",
+        "physicalMaterial",
+        "rDcTSplineFeature",
+        "rGroupParent",
+        "rSurface",
+        "textureMapping",
+        "userName",
+        "visualMaterial"
+      ]
+    },
+    {
+      "name": "IMesh",
+      "identifier": "FF921574-8B16-42AA-A002-53CC6D10D368",
+      "version": 0,
+      "base": "C24A96DD-1839-4B09-88A8-90C8510A6172",
+      "members": []
+    },
+    {
+      "name": "DcDMActivationFeature",
+      "identifier": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+      "version": 0,
+      "base": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+      "members": [
+        "isActivated",
+        "rDirectModelingData",
+        "rLastFeatureBeforeActivate"
+      ]
+    }
+  ],
+  "existing_schemas_reverified": 201,
+  "existing_schemas_refined_by_production": 3,
+  "archives": [
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/Box.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/Box.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/Box.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/Plane.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/Plane.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/Plane.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/SymmetricBox.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/SymmetricBox.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/SymmetricBox.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageAuthored.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageAuthored.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageAuthored.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageNativePrimitive.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageNativePrimitive.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageNativePrimitive.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedControl.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedControl.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedControl.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxReemitted.f3d",
+      "segment": "FusionDesignSegmentType1",
+      "classes": 160,
+      "added": [
+        "ControlFrameEdgeMetaType",
+        "ControlFrameEntityMetaType",
+        "ControlFrameFacetMetaType",
+        "ControlFrameGripMetaType",
+        "ControlFrameMeshMetaType",
+        "ControlFrameVertexMetaType",
+        "DcTSplineFeatureMetaType",
+        "DcTSplineToolBodyMetaType",
+        "IMeshMetaType",
+        "IRayIntersectableMetaType",
+        "MeshMetaType",
+        "SubDSurfaceBaseMetaType",
+        "SubDSurfaceNodeMetaType",
+        "SurfaceTessellationMetaType",
+        "TSplineEntityProgenitorMetaType",
+        "TSplineSerializerMetaType",
+        "TSplineTextureMappingMetaType",
+        "TsEntityProgInfoValueMetaType",
+        "TsSurfaceMetaType"
+      ]
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxReemitted.f3d",
+      "segment": "FusionACTSegmentType1",
+      "classes": 15,
+      "added": []
+    },
+    {
+      "archive": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxReemitted.f3d",
+      "segment": "FusionBrowserSegmentType1",
+      "classes": 44,
+      "added": [
+        "SubDSurfaceNodeBrowserEntryMetaType"
+      ]
+    }
+  ]
+}

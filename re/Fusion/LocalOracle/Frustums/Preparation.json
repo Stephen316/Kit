@@ -1,0 +1,221 @@
+{
+  "scope": "Production frustum generation from dimensions only; no source archive, template or CAD runtime",
+  "cases": [
+    {
+      "name": "Expanding",
+      "format": "smt",
+      "file": "Expanding.smt",
+      "sha256": "7d72fc08cedf73a8d13a7f1d420b07a07174b0657fc243160db1856423cfe4a6",
+      "bytes": 1385,
+      "input_mm": {
+        "bottom_radius": 10.0,
+        "top_radius": 14.0,
+        "height": 17.0,
+        "base": [
+          20.0,
+          -30.0,
+          5.0
+        ]
+      },
+      "expected": {
+        "volume_cm3": 7.761828249469183,
+        "area_cm2": 22.466847928965418,
+        "center_cm": [
+          2.0,
+          -3.0,
+          1.443577981651376
+        ],
+        "min_cm": [
+          0.6,
+          -4.4,
+          0.5
+        ],
+        "max_cm": [
+          3.4,
+          -1.6,
+          2.2
+        ]
+      }
+    },
+    {
+      "name": "Expanding",
+      "format": "smb",
+      "file": "Expanding.smb",
+      "sha256": "f65b48d956ffd756e318f91f5e624fd5984b2174bbc8de290d1955d8e4e5fff3",
+      "bytes": 2408,
+      "input_mm": {
+        "bottom_radius": 10.0,
+        "top_radius": 14.0,
+        "height": 17.0,
+        "base": [
+          20.0,
+          -30.0,
+          5.0
+        ]
+      },
+      "expected": {
+        "volume_cm3": 7.761828249469183,
+        "area_cm2": 22.466847928965418,
+        "center_cm": [
+          2.0,
+          -3.0,
+          1.443577981651376
+        ],
+        "min_cm": [
+          0.6,
+          -4.4,
+          0.5
+        ],
+        "max_cm": [
+          3.4,
+          -1.6,
+          2.2
+        ]
+      }
+    },
+    {
+      "name": "Shrinking",
+      "format": "smt",
+      "file": "Shrinking.smt",
+      "sha256": "31444e0c7f0c3cd6068ed0b3a05f0581e70943e5b58bbf56857bf25b25c3bc2b",
+      "bytes": 1418,
+      "input_mm": {
+        "bottom_radius": 14.0,
+        "top_radius": 8.0,
+        "height": 23.0,
+        "base": [
+          -12.0,
+          7.0,
+          -4.0
+        ]
+      },
+      "expected": {
+        "volume_cm3": 8.95982224803809,
+        "area_cm2": 24.5965979769835,
+        "center_cm": [
+          -1.2,
+          0.7,
+          0.5459677419354838
+        ],
+        "min_cm": [
+          -2.6,
+          -0.7,
+          -0.4
+        ],
+        "max_cm": [
+          0.2,
+          2.1,
+          1.9
+        ]
+      }
+    },
+    {
+      "name": "Shrinking",
+      "format": "smb",
+      "file": "Shrinking.smb",
+      "sha256": "d6d9c703a36839a5e916db75d4324acc9caa92eccff957e69eadcedb866ee8ef",
+      "bytes": 2408,
+      "input_mm": {
+        "bottom_radius": 14.0,
+        "top_radius": 8.0,
+        "height": 23.0,
+        "base": [
+          -12.0,
+          7.0,
+          -4.0
+        ]
+      },
+      "expected": {
+        "volume_cm3": 8.95982224803809,
+        "area_cm2": 24.5965979769835,
+        "center_cm": [
+          -1.2,
+          0.7,
+          0.5459677419354838
+        ],
+        "min_cm": [
+          -2.6,
+          -0.7,
+          -0.4
+        ],
+        "max_cm": [
+          0.2,
+          2.1,
+          1.9
+        ]
+      }
+    },
+    {
+      "name": "CylindricalLimit",
+      "format": "smt",
+      "file": "CylindricalLimit.smt",
+      "sha256": "c5793f8c7d349a7b147a392cbef5bdc6f6d630c2ae4b4757727210feb7456b26",
+      "bytes": 1362,
+      "input_mm": {
+        "bottom_radius": 9.0,
+        "top_radius": 9.0,
+        "height": 11.0,
+        "base": [
+          1.0,
+          2.0,
+          3.0
+        ]
+      },
+      "expected": {
+        "volume_cm3": 2.799159054348505,
+        "area_cm2": 11.309733552923255,
+        "center_cm": [
+          0.1,
+          0.2,
+          0.85
+        ],
+        "min_cm": [
+          -0.8,
+          -0.7,
+          0.3
+        ],
+        "max_cm": [
+          1.0,
+          1.1,
+          1.4
+        ]
+      }
+    },
+    {
+      "name": "CylindricalLimit",
+      "format": "smb",
+      "file": "CylindricalLimit.smb",
+      "sha256": "3b6bee364165241e5a3a8b66820f04722c26953cfe7191dd8ed34640d8583ac2",
+      "bytes": 2408,
+      "input_mm": {
+        "bottom_radius": 9.0,
+        "top_radius": 9.0,
+        "height": 11.0,
+        "base": [
+          1.0,
+          2.0,
+          3.0
+        ]
+      },
+      "expected": {
+        "volume_cm3": 2.799159054348505,
+        "area_cm2": 11.309733552923255,
+        "center_cm": [
+          0.1,
+          0.2,
+          0.85
+        ],
+        "min_cm": [
+          -0.8,
+          -0.7,
+          0.3
+        ],
+        "max_cm": [
+          1.0,
+          1.1,
+          1.4
+        ]
+      }
+    }
+  ]
+}

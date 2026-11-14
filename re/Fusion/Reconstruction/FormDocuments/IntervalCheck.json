@@ -1,0 +1,867 @@
+{
+ "scope": "Production ConvertForm against the converted bodies Fusion stored for plane grid and box cages with non-unit knot intervals, labels excluded and progenitor windows compared within their rounding gap. For refused plane grids with mixed intervals, the boundary jump study gives the parametric third-derivative jump of each stored boundary curve and its part across the control polygon direction",
+ "python": "3.14.7",
+ "probe_status": "completed",
+ "documents_after": 0,
+ "archives": [
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Base.f3d",
+   "sha256": "4c07ad7e88b9637349bf3c0b53b67ba2010b6bd78997d2a4045d7d7f63cd834a",
+   "read": "ok",
+   "saved_intervals": {
+    "1.0": 40
+   },
+   "convert": "ok",
+   "regions_equal": true,
+   "point_gap_cm": 0.0,
+   "surface_gap_cm": 8.881784197001252e-16,
+   "curve_gap_cm": 4.440892098500626e-16,
+   "pcurve_gap": 0.0,
+   "window_gap": 0.0,
+   "differences": [],
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     3.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     3.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Uniform2.f3d",
+   "sha256": "ce665798c22a3c12e4295ff334ceaa46b45e3087be32d737614757cc87f67a21",
+   "read": "ok",
+   "saved_intervals": {
+    "2.0": 40
+   },
+   "convert": "ok",
+   "regions_equal": true,
+   "point_gap_cm": 0.0,
+   "surface_gap_cm": 8.881784197001252e-16,
+   "curve_gap_cm": 4.440892098500626e-16,
+   "pcurve_gap": 0.0,
+   "window_gap": 0.0,
+   "differences": [],
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     2.0,
+     4.0,
+     6.0,
+     8.0,
+     8.0,
+     8.0,
+     8.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     2.0,
+     4.0,
+     6.0,
+     8.0,
+     8.0,
+     8.0,
+     8.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Half.f3d",
+   "sha256": "af33aeaabc6dc1694e8e93378571b54d7c7342f4e5e95bb81cb3e6ceb30277e0",
+   "read": "ValueError: invalid literal for int() with base 10: '0.5'",
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.5,
+     1.0,
+     1.5,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.5,
+     1.0,
+     1.5,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Column1.f3d",
+   "sha256": "6040e8e1fb227daadeff59ae5d9403a4204513de22225fbf52429a3b7fb5f12a",
+   "read": "ok",
+   "saved_intervals": {
+    "1.0": 35,
+    "2.0": 5
+   },
+   "convert": "ValueError: Fusion grid conversion needs one knot interval for every edge",
+   "boundary_jump_study": [
+    {
+     "edge": 0,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": 1.0,
+       "third_jump": 0.46875000000000006,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 3.0,
+       "third_jump": 0.17361111111111222,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 4.0,
+       "third_jump": 0.3125000000000018,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 1,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": 1.0,
+       "third_jump": 4.440892098500626e-16,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 2.0,
+       "third_jump": 1.7763568394002505e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 3.0,
+       "third_jump": 2.220446049250313e-15,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 2,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": -4.0,
+       "third_jump": 0.3125000000000018,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -3.0,
+       "third_jump": 0.17361111111111222,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -1.0,
+       "third_jump": 0.46875000000000006,
+       "jump_across_tangent": 5.551115123125783e-17
+      }
+     ]
+    },
+    {
+     "edge": 3,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": -3.0,
+       "third_jump": 2.220446049250313e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -2.0,
+       "third_jump": 1.7763568394002505e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -1.0,
+       "third_jump": 4.440892098500626e-16,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    }
+   ],
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     3.0,
+     4.0,
+     5.0,
+     5.0,
+     5.0,
+     5.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     3.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Column0.f3d",
+   "sha256": "cc07b6bf343c19df6a28781d5c9812d295156021d1688f8cd4a03954c431e660",
+   "read": "ok",
+   "saved_intervals": {
+    "2.0": 5,
+    "1.0": 35
+   },
+   "convert": "ValueError: Fusion grid conversion needs one knot interval for every edge",
+   "boundary_jump_study": [
+    {
+     "edge": 0,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": 2.0,
+       "third_jump": 0.15624999999999958,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 3.0,
+       "third_jump": 0.277777777777776,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 4.0,
+       "third_jump": 0.15624999999999778,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 1,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": 1.0,
+       "third_jump": 4.440892098500626e-16,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 2.0,
+       "third_jump": 1.7763568394002505e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 3.0,
+       "third_jump": 2.220446049250313e-15,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 2,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": -4.0,
+       "third_jump": 0.15624999999999778,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -3.0,
+       "third_jump": 0.277777777777776,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -2.0,
+       "third_jump": 0.15624999999999958,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 3,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": -3.0,
+       "third_jump": 2.220446049250313e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -2.0,
+       "third_jump": 1.7763568394002505e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -1.0,
+       "third_jump": 4.440892098500626e-16,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    }
+   ],
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     2.0,
+     3.0,
+     4.0,
+     5.0,
+     5.0,
+     5.0,
+     5.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     3.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Row2.f3d",
+   "sha256": "e928bbff42178f2ebb1f996d8c6f8b805f1766a0bd82eca8fe56fcf33d495999",
+   "read": "ok",
+   "saved_intervals": {
+    "1.0": 35,
+    "3.0": 5
+   },
+   "convert": "ValueError: Fusion grid conversion needs one knot interval for every edge",
+   "boundary_jump_study": [
+    {
+     "edge": 0,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": 1.0,
+       "third_jump": 4.440892098500626e-16,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 2.0,
+       "third_jump": 1.7763568394002505e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 3.0,
+       "third_jump": 2.220446049250313e-15,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 1,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": 1.0,
+       "third_jump": 0.5,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 2.0,
+       "third_jump": 0.2604166666666667,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": 5.0,
+       "third_jump": 0.6666666666666679,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 2,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": -3.0,
+       "third_jump": 2.220446049250313e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -2.0,
+       "third_jump": 1.7763568394002505e-15,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -1.0,
+       "third_jump": 4.440892098500626e-16,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    },
+    {
+     "edge": 3,
+     "stored_lists": [
+      [],
+      [],
+      []
+     ],
+     "knots": [
+      {
+       "knot": -5.0,
+       "third_jump": 0.6666666666666679,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -2.0,
+       "third_jump": 0.2604166666666667,
+       "jump_across_tangent": 0.0
+      },
+      {
+       "knot": -1.0,
+       "third_jump": 0.5,
+       "jump_across_tangent": 0.0
+      }
+     ]
+    }
+   ],
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     3.0,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     5.0,
+     6.0,
+     6.0,
+     6.0,
+     6.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/ColumnRow.f3d",
+   "sha256": "084c0d2c9e3fb7317503d17f438489a7183a61ec84d2310d9a24a0b8af38d5d0",
+   "read": "ValueError: invalid literal for int() with base 10: '0.5'",
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     3.0,
+     4.0,
+     5.0,
+     5.0,
+     5.0,
+     5.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     2.5,
+     3.5,
+     3.5,
+     3.5,
+     3.5
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Single.f3d",
+   "sha256": "0cc77886bc661c9c37000614dc7ab5d64813f55b39556fcecba7d555372db0cc",
+   "read": "ValueError: TSM record order or kind is unsupported: tol",
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     2.0588235294117645,
+     3.0588235294117645,
+     4.0588235294117645,
+     4.0588235294117645,
+     4.0588235294117645,
+     4.0588235294117645
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.9999999999999998,
+     1.9999999999999996,
+     2.999999999999999,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Base.f3d",
+   "sha256": "0f765320ca7e08a91002d6162dd0cf43fea1dcf97a045f9c2d0075973b863779",
+   "read": "ok",
+   "saved_intervals": {
+    "1.0": 48
+   },
+   "convert": "ok",
+   "regions_equal": true,
+   "point_gap_cm": 1.3322676295501878e-15,
+   "surface_gap_cm": 6.217248937900877e-15,
+   "curve_gap_cm": 5.773159728050814e-15,
+   "pcurve_gap": 0.0,
+   "window_gap": 0.0,
+   "differences": [],
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.25,
+     0.25,
+     0.5,
+     0.5,
+     1.0,
+     1.5,
+     1.5,
+     1.75,
+     1.75,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.25,
+     0.25,
+     0.5,
+     0.5,
+     1.0,
+     1.5,
+     1.5,
+     1.75,
+     1.75,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Uniform2.f3d",
+   "sha256": "ea2495bf176e9845309a4af79ddffc3365e70b6ea7f6c67f445e2b74cf8da2eb",
+   "read": "ok",
+   "saved_intervals": {
+    "2.0": 48
+   },
+   "convert": "ValueError: Fusion Form stencil conversion needs unit knot intervals",
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.5,
+     0.5,
+     1.0,
+     1.0,
+     2.0,
+     3.0,
+     3.0,
+     3.5,
+     3.5,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.5,
+     0.5,
+     1.0,
+     1.0,
+     2.0,
+     3.0,
+     3.0,
+     3.5,
+     3.5,
+     4.0,
+     4.0,
+     4.0,
+     4.0
+    ]
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Single.f3d",
+   "sha256": "07e17a88513b7ebe8ee3098ae439e5b2eb9abff022f71dc47fea86ed4c29e73d",
+   "read": "ValueError: TSM record order or kind is unsupported: tol",
+   "api_knots": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.25000000000000006,
+     0.25000000000000006,
+     0.5000000000000001,
+     0.5000000000000001,
+     1.0000000000000002,
+     1.5,
+     1.5,
+     1.75,
+     1.75,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.24999999999999994,
+     0.24999999999999994,
+     0.4999999999999999,
+     0.4999999999999999,
+     1.0,
+     1.5,
+     1.5,
+     1.7499999999999998,
+     1.7499999999999998,
+     2.0,
+     2.0,
+     2.0,
+     2.0
+    ]
+   ]
+  }
+ ],
+ "documents": {
+  "acceptance_status": "accepted",
+  "documents_after": 0,
+  "archives": [
+   {
+    "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Loaded/OraclePlane2x5Interval3.f3d",
+    "sha256": "74e9a482385e93eca999de828ffa5ce733f2ef5f03fa4c24afec16fe31a2e999",
+    "read": "ok",
+    "saved_intervals": {
+     "3.0": 27
+    },
+    "convert": "ok",
+    "regions_equal": true,
+    "point_gap_cm": 0.0,
+    "surface_gap_cm": 1.5543122344752192e-15,
+    "curve_gap_cm": 8.881784197001252e-16,
+    "pcurve_gap": 4.611896090744153e-17,
+    "window_gap": 4.611896090744153e-17,
+    "differences": []
+   },
+   {
+    "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Loaded/OraclePlane4x4Interval2.f3d",
+    "sha256": "48192acef8fc3d132529aa3d1e808a7f1f82059ccc62b99240b9bd29a94a95e4",
+    "read": "ok",
+    "saved_intervals": {
+     "2.0": 40
+    },
+    "convert": "ok",
+    "regions_equal": true,
+    "point_gap_cm": 0.0,
+    "surface_gap_cm": 1.7763568394002505e-15,
+    "curve_gap_cm": 4.440892098500626e-16,
+    "pcurve_gap": 3.924569558244579e-17,
+    "window_gap": 3.924569558244579e-17,
+    "differences": []
+   },
+   {
+    "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/KitPlane2x5Interval3.f3d",
+    "sha256": "53e525b7fbf2d265349d88b4d6d4cc1de552839dffa56ef244fb33d5e2f23ca6",
+    "read": "ok",
+    "saved_intervals": {
+     "3.0": 27
+    },
+    "convert": "ok",
+    "regions_equal": true,
+    "point_gap_cm": 0.0,
+    "surface_gap_cm": 2.6645352591003757e-15,
+    "curve_gap_cm": 4.440892098500626e-16,
+    "pcurve_gap": 3.093741269112013e-18,
+    "window_gap": 3.093741269112013e-18,
+    "differences": []
+   },
+   {
+    "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/KitPlane4x4Interval2.f3d",
+    "sha256": "a4923fc7ffa2a934ca51bc042235f57e434d65df569901fa20f30e60e1be3563",
+    "read": "ok",
+    "saved_intervals": {
+     "2.0": 40
+    },
+    "convert": "ok",
+    "regions_equal": true,
+    "point_gap_cm": 0.0,
+    "surface_gap_cm": 1.7763568394002505e-15,
+    "curve_gap_cm": 4.440892098500626e-16,
+    "pcurve_gap": 8.881784197001252e-16,
+    "window_gap": 8.881784197001252e-16,
+    "differences": []
+   },
+   {
+    "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/OraclePlane2x5Interval3.f3d",
+    "sha256": "da9a7fd3edbf9e77e9510b9ced2f716f8c6893260b84a844ce7898436b82aa02",
+    "read": "ok",
+    "saved_intervals": {
+     "3.0": 27
+    },
+    "convert": "ok",
+    "regions_equal": true,
+    "point_gap_cm": 0.0,
+    "surface_gap_cm": 2.6645352591003757e-15,
+    "curve_gap_cm": 4.440892098500626e-16,
+    "pcurve_gap": 3.093741269112013e-18,
+    "window_gap": 3.093741269112013e-18,
+    "differences": []
+   },
+   {
+    "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/OraclePlane4x4Interval2.f3d",
+    "sha256": "3537ab0afeb775a9606eaf1c4de328d56e04f6ae20b9966d1196ad7dac43389b",
+    "read": "ok",
+    "saved_intervals": {
+     "2.0": 40
+    },
+    "convert": "ok",
+    "regions_equal": true,
+    "point_gap_cm": 0.0,
+    "surface_gap_cm": 1.7763568394002505e-15,
+    "curve_gap_cm": 4.440892098500626e-16,
+    "pcurve_gap": 8.881784197001252e-16,
+    "window_gap": 8.881784197001252e-16,
+    "differences": []
+   }
+  ]
+ }
+}

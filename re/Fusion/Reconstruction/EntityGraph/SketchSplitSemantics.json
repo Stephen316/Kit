@@ -1,0 +1,94 @@
+{
+  "schema": "FusionSketchSplitSemantics/1",
+  "method": "Full saved-corpus research decoding; no production codec execution, local tests, or native calls. The earlier static library inspection was removed.",
+  "corpusEvidence": "SketchSplitSamples.json",
+  "fields": [
+    {
+      "name": "splitSequenceId",
+      "wireType": "uint32",
+      "meaning": "One-based ordinal of this fragment in the ordered split of the source curve"
+    },
+    {
+      "name": "splitTotalNumber",
+      "wireType": "uint32",
+      "meaning": "Number of fragments in that split of the source curve"
+    }
+  ],
+  "domain": {
+    "invariant": "1 <= splitSequenceId <= splitTotalNumber <= 4294967295",
+    "unsplitDefault": [
+      1,
+      1
+    ],
+    "observedMaximumIsNotFormatMaximum": true,
+    "evidence": [
+      "Every one of the 84 split tags in the saved corpus satisfies 1 <= splitSequenceId <= splitTotalNumber",
+      "The corpus holds both non-final fragments such as (1,2) and final fragments such as (2,2) and (4,4)"
+    ],
+    "caveat": "The field names and the producer invariant came from removed static evidence. The corpus is consistent with them, but they are not confirmed by a black-box experiment. A semantic reader can reject malformed pairs, but must not replace real split pairs with (1,1)."
+  },
+  "direction": {
+    "wireType": "uint32",
+    "qualifiedValues": [
+      0,
+      1,
+      4294967295
+    ],
+    "wildcard": 4294967295,
+    "evidence": "The saved corpus holds the values 0, 1 and 4294967295. Treating 4294967295 as a wildcard came from removed static evidence and is not confirmed by a black-box experiment.",
+    "corpusCounts": {
+      "0": 2099,
+      "1": 2964,
+      "4294967295": 14
+    },
+    "restriction": "Do not narrow the persisted direction callback to a Boolean"
+  },
+  "secondaryTag": {
+    "wireType": "uint64",
+    "meaning": "Second identifier of the source sketch curve key; the role came from removed static evidence and is not confirmed by a black-box experiment",
+    "corpusNonzeroCount": 0,
+    "limitation": "This study does not establish nonzero secondary-ID allocation semantics. Retaining the existing zero-qualified profile is supported by this corpus."
+  },
+  "corpus": {
+    "archives": 712,
+    "tagValues": 5077,
+    "splitTagValues": 84,
+    "outsideInvariant": 0,
+    "archiveFailures": 0,
+    "splitPairs": [
+      [
+        1,
+        1,
+        4993
+      ],
+      [
+        1,
+        2,
+        32
+      ],
+      [
+        2,
+        2,
+        36
+      ],
+      [
+        2,
+        3,
+        8
+      ],
+      [
+        2,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        4
+      ]
+    ],
+    "version": 3,
+    "allSecondaryIdsZero": true,
+    "allTopologyRoleFlagsZero": true
+  }
+}

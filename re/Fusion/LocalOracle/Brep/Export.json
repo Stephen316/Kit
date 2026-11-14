@@ -1,0 +1,15 @@
+{
+  "fusion_version": "2706.1.17",
+  "source": "Features/extrude_07mm.f3d",
+  "source_sha256": "ff7730152b56ef608e690df79788ee5658473d59b33e398dc96743e306adacd1",
+  "exports": [
+    {
+      "file": "cylinder_07mm.smt",
+      "bytes": 2142,
+      "sha256": "7b84db7cb8b30b7d708cd3cdace0d11009ffc9029ce5c0dd72a1040f624801d2"
+    }
+  ],
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/ExportBrep.py\", line 25, in <module>\n    if not design.exportManager.execute(create(str(target), design.rootComponent)):\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 38247, in execute\n    return _fusion.ExportManager_execute(self, exportOptions)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 3 : Cannot execute the export operation to create the file in the format specified by the ExportOptions as the user is restricted.\n",
+  "documents_after": 0
+}

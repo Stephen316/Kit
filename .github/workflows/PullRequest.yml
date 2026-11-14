@@ -41,6 +41,7 @@ jobs:
       - name: Aggregate all applicable CI
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
+          retries: 3
           script: |
             const Reports = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CiReports.cjs`);
             await Reports.Aggregate({ github, context, core });

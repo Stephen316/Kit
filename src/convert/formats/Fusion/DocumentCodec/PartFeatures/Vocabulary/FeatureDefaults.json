@@ -1,0 +1,310 @@
+{
+  "ASMRecipe": {},
+  "BrepProgenitor": {
+    "m_brepRecipe": null
+  },
+  "BrepRef": {
+    "bAlwaysRecompute": false,
+    "bDirReversedAgainstRefEntity": false,
+    "rRecipe": null
+  },
+  "DRBody": {
+    "rRecipe": null
+  },
+  "DRPoint": {
+    "boundingboxIndex": 0,
+    "pickPtParam": null
+  },
+  "DRVector": {
+    "resizeType": 0
+  },
+  "DcChamferData": {
+    "bflip": false,
+    "chamferAngleParam": null,
+    "chamferDistanceOneParam": null,
+    "chamferDistanceTwoParam": null,
+    "rInputEdgesRef": null,
+    "rInputFacesRef": null,
+    "rInputFeatureRef": null
+  },
+  "DcChamferFeature": {
+    "isSheetMetalChamfer": false,
+    "rChamferData": []
+  },
+  "DcCircularPattern": {},
+  "DcCircularPatternData": {
+    "isMid": false,
+    "rAngle": null,
+    "rAxisDir": null
+  },
+  "DcCombineFeature": {
+    "deletedBodies": [],
+    "isKeepTools": false,
+    "isNewComponent": false,
+    "toolBodiesDateRefs": []
+  },
+  "DcDraftFeature": {
+    "m_bFlipped": false,
+    "m_draftAngle1": null,
+    "m_draftAngle2": null,
+    "m_facesRef": null,
+    "m_rFixedEdgesDataRef": null,
+    "m_rRefPlaneDataRef": null,
+    "rPartingLineToolDataRef": null
+  },
+  "DcFilletEdgeData": {
+    "bAsymmetric": false,
+    "bChord": false,
+    "bFlip": false,
+    "bG2Blend": false,
+    "bRuleFillet": false,
+    "chordLen": null,
+    "connectedEdgeRef": null,
+    "curveChainStartPoint": null,
+    "edgeOffset1Value": null,
+    "edgeOffset2Value": null,
+    "edgeSequence": [],
+    "midPointParams": [],
+    "pointParams": [],
+    "pointRadii": [],
+    "rFaceRef": null,
+    "rFeatureRef": null,
+    "rFullRoundRef": null,
+    "rRuleRef": null,
+    "radiusValue": null,
+    "scopeOption": 0,
+    "selSetIndex": 0,
+    "tangencyWeight": null,
+    "topologyOption": 0
+  },
+  "DcFilletEdgeFeature": {
+    "filletEdgeData": [],
+    "filletType": 0,
+    "isSheetMetalFillet": false,
+    "rParamRadius": null,
+    "scopeOption": 0,
+    "topologyOption": 0
+  },
+  "DcHoleFeature": {
+    "HoleTapType": 0,
+    "bThroughAll": false,
+    "bUseFastener": false,
+    "fastenerFamily": "",
+    "fastenerFit": "",
+    "fastenerSize": "",
+    "fastenerType": "",
+    "holeType": 0,
+    "isFlipDir": false,
+    "originRefType": 0,
+    "origins2IDs": [],
+    "rCBDepth": null,
+    "rCBDiameter": null,
+    "rCSAngle": null,
+    "rCSDiameter": null,
+    "rDRMultipleOrigins": [],
+    "rDRNormal": null,
+    "rHoleDepth": null,
+    "rHoleDiameter": null,
+    "rHoleToolBody": null,
+    "rOriginGeomRef": null,
+    "rRefDim1": null,
+    "rRefDim2": null,
+    "rRefObj1": null,
+    "rRefObj2": null,
+    "rThreadFeature": null,
+    "rTipAngle": null,
+    "rToEntityRefs": [],
+    "taperDepthTol": 0.0
+  },
+  "DcHoleToolBody": {
+    "rHoleFeature": null
+  },
+  "DcIntParameter": {},
+  "DcLoftFeature": {
+    "centerLineRef": null,
+    "endRailsTakeOffOption": 0,
+    "endSectionEdgeAlignmentOption": 0,
+    "endSectionTakeOffAngle": null,
+    "endSectionTakeOffOption": 0,
+    "endSectionWeight": null,
+    "guidRailRefs": [],
+    "isClosedLoft": false,
+    "mappingCount": 0,
+    "rLoftToolBody": null,
+    "sectionDatas": [],
+    "startRailsTakeOffOption": 0,
+    "startSectionEdgeAlignmentOption": 0,
+    "startSectionTakeOffAngle": null,
+    "startSectionTakeOffOption": 0,
+    "startSectionWeight": null
+  },
+  "DcLoftSectionData": {
+    "mappingPoints": [],
+    "paramOnEdges": [],
+    "rParentFeature": null,
+    "rSectionRef": null
+  },
+  "DcLoftToolBody": {
+    "rLoftFeature": null
+  },
+  "DcMirrorPattern": {},
+  "DcMirrorPatternData": {
+    "Combine": false,
+    "mirrorStitchTolerance": null,
+    "rRefPlaneDataRef": null
+  },
+  "DcMoveFeature": {
+    "dcMoveMatrix": null
+  },
+  "DcMoveMatrix": {
+    "alignAngle": 0.0,
+    "alignGeometryOrigin": null,
+    "alignGeometryTarget": null,
+    "alignOriginDataRef": null,
+    "alignPointOrigin": null,
+    "alignPointTarget": null,
+    "alignSense": 0,
+    "alignTargetDataRef": null,
+    "moveDirectionType": 0,
+    "point2PointOrigin": null,
+    "point2PointTarget": null,
+    "point2PositionPoint": null,
+    "rFeature": null,
+    "rotateAngle": null,
+    "rotateAxis": null,
+    "translateAnchorOccRef": null,
+    "translateAxis": null,
+    "translateDistance": null,
+    "translateSharedFirstComponentFrame": false,
+    "translateX": null,
+    "translateY": null,
+    "translateZ": null
+  },
+  "DcOffsetFacesFeature": {
+    "rParamDistance": null
+  },
+  "DcPatternBaseData": {
+    "additionalAffectedBodies": [],
+    "cachedDcCIs": [],
+    "cachedWorkGeometriesByOccTagId": [],
+    "extengType": false,
+    "patternOccurrences": [],
+    "rCountUParam": null,
+    "rDcFeature": null,
+    "rSourceRef": null,
+    "suppressedOccIds": []
+  },
+  "DcPatternBodyOccurrence": {},
+  "DcPatternFeature": {
+    "rPatternBaseData": null,
+    "rPatternSource": null
+  },
+  "DcPatternOccurrence": {
+    "rPatternData": null
+  },
+  "DcPatternSource": {
+    "adjacentFaceCaches": [],
+    "patternFeature": null
+  },
+  "DcRectangularPattern": {},
+  "DcRectangularPatternData": {
+    "computedRectVector": [],
+    "dirU": null,
+    "dirV": null,
+    "isMidU": false,
+    "isMidV": false,
+    "rCountVParam": null,
+    "rUDirMR": null,
+    "rVDirMR": null
+  },
+  "DcRevolveFeature": {
+    "isFullRevolve": false,
+    "isProjectAxis": false,
+    "isSymmetric": false,
+    "isTwoSide": false,
+    "rAgainstAngle": null,
+    "rAlongAngle": null,
+    "rAxisDataRef": null,
+    "rFromEntityRef": null,
+    "rRevolveToolBody": null,
+    "rToEntityRef": null
+  },
+  "DcRevolveToolBody": {
+    "rRevolveFeature": null
+  },
+  "DcShellFeature": {
+    "TangentPropagation": false,
+    "UseDistanceFieldShell": false,
+    "rParamInnerThickness": null,
+    "rParamOuterThickness": null
+  },
+  "DcSplitBodyFeature": {},
+  "DcSplitFeature": {
+    "toolBodiesDR": []
+  },
+  "DcSweepFeature": {
+    "isEndtoEndMatching": false,
+    "isLinearMapping": false,
+    "rAgainstDistance": null,
+    "rAgainstRailDistance": null,
+    "rAlongDistance": null,
+    "rAlongRailDistance": null,
+    "rSweepGuideSurfacesRef": null,
+    "rSweepPathsRef": null,
+    "rSweepRailsRef": null,
+    "rSweepToolBody": null,
+    "rTaperAngle": null,
+    "rTwistAngle": null
+  },
+  "DcSweepToolBody": {
+    "isAgainstDistanceParameterValid": false,
+    "isAgainstRailDistanceParameterValid": false,
+    "isAlongRailDistanceParameterValid": false,
+    "rSweepFeature": null
+  },
+  "DcWorkAxis": {
+    "rWorkAxis": null,
+    "rWorkAxisRef": null
+  },
+  "DcWorkGeometry": {},
+  "DcWorkPlane": {
+    "creationType": 0,
+    "extraOffset": null,
+    "rWorkPlane": null,
+    "rWorkPlaneMatrix": null
+  },
+  "DcWorkPoint": {
+    "creationType": 0,
+    "pointOnPathType": 0,
+    "rWorkPoint": null,
+    "rWorkPointRef": null
+  },
+  "ETCachedCircleArc": {},
+  "ETCachedCurve3d": {
+    "endPtProgenitor": null,
+    "rCachedEdge": null,
+    "startPtProgenitor": null
+  },
+  "ETCachedLineSeg3d": {},
+  "ETCachedPoint3d": {},
+  "LoftProgenitor": {
+    "sectionProgenitors": []
+  },
+  "OccurrenceDataRef": {
+    "bEnableACTTracking": false,
+    "cachedOccurrence": null,
+    "contextFeature": null,
+    "parentFeature": null,
+    "recipe": null,
+    "referenceType": 0,
+    "updateFlag": 0
+  },
+  "SketchCurveEntityRecipe": {},
+  "SketchEntityRecipe": {},
+  "SweepFaceProgenitor": {
+    "guideFaceProg": null,
+    "pathProg": null,
+    "profileProg": null,
+    "vertexProg": null
+  }
+}

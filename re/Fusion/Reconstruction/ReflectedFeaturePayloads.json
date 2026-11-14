@@ -1,0 +1,2843 @@
+{
+  "schema": "FusionReflectedFeaturePayloads/1",
+  "extractorSha256": "471f7dce0c9dd6ef91222510392319c1f880f7457e390bd6445f1b37d43e1ffb",
+  "reflectionSha256": "af3a3710f487db21ff5d745023c1e6beb8b45d71df024a46418e18f0b9478869",
+  "applicationVersion": "2706.1.17",
+  "coverage": {
+    "archiveCount": 3,
+    "primaryRecords": 5,
+    "continuationRecords": 5,
+    "decodedRecords": 10,
+    "byteIdenticalRecords": 10,
+    "payloadBytes": 1734,
+    "semanticFieldsCompared": 238,
+    "semanticDifferences": 0
+  },
+  "typedValueEvidence": [
+    {
+      "metatype": "IntrinsicMetaTypeUuid",
+      "wireEncoding": "u32 UTF-16 code-unit count followed by canonical UUID string in UTF-16LE",
+      "controlledObservation": "associationId consumes 76 bytes: 4-byte length 36 and 72 UTF-16LE bytes, matching native UUID text"
+    },
+    {
+      "metatype": "AcGeVector3dValueMetaType",
+      "wireEncoding": "three little-endian IEEE754 binary64 coordinates x, y, z",
+      "controlledObservation": "profileNormal consumes 24 bytes at offset31 and equals the native x0,y0,z1 vector"
+    }
+  ],
+  "method": "Read bounded indexed payloads, decode reflected persisted members lexically per inherited member set, JSON-serialize typed values, and independently re-encode them with no original payload or residual byte argument. Compare all decoded members against native entity properties.",
+  "limitations": [
+    "Research codec for controlled current-version sketch and extrusion records",
+    "Only null or same-segment numeric references are supported",
+    "Nonempty name/value metadata, unknown member types and unexplained bytes are rejected",
+    "Continuation splitting is derived from indexed class identities",
+    "No vendor import acceptance or complete archive writer is established"
+  ],
+  "samples": [
+    {
+      "file": "circle_sketch.f3d",
+      "archiveSha256": "b2e1f2213abae29960f87c5b5db8b9ae2760e5b61c1aba95273b18414ea01156",
+      "metadataSha256": "a0734008bbe492456f51d37f0f132f538d2c9773628fe55884151c319f0dc7c5",
+      "bulkSha256": "849f01f8c335cad1dbc07c826b810249e9090344646e7c22ddec17180f3f29c4",
+      "nativeGraphPath": "re/Fusion/LocalOracle/Features/circle_sketch.entities.json",
+      "nativeGraphSha256": "3dc80d73065e61b56afec15b0f1160bdf08a955fd16bd9916696275e5926cd7f",
+      "records": [
+        {
+          "identity": 208,
+          "primary": true,
+          "classIdentifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "recordBulkOffset": 23477,
+          "payloadBulkOffset": 23492,
+          "payloadLength": 253,
+          "payloadSha256": "bb6a565009b7297a24c0b112406931149b1a97b064c00fe07fb645fb88c074f9",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "bb6a565009b7297a24c0b112406931149b1a97b064c00fe07fb645fb88c074f9",
+          "semanticFieldsCompared": 35,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": "",
+              "hasSubjects": false,
+              "subjects": [],
+              "hasNamedMetadata": false,
+              "namedMetadata": []
+            },
+            "sets": [
+              {
+                "identifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                "values": {
+                  "bIsAGDDcSketchFeature": false,
+                  "dcParameters": [],
+                  "isVisibleBeforeRollback": true,
+                  "meshSections": [],
+                  "rSketch": {
+                    "entityId": 203
+                  },
+                  "rSketchPlaneMatrix": {
+                    "entityId": 216
+                  },
+                  "sketchIsoCurves": [],
+                  "sketchProjects": [],
+                  "sketchSurfaces": []
+                }
+              },
+              {
+                "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "values": {
+                  "associationId": "00000000-0000-0000-0000-000000000000",
+                  "bDisabled": false,
+                  "bLockedForTimelineReorder": false,
+                  "bLockedForTimelineRoll": false,
+                  "childNodes": [
+                    {
+                      "entityId": 212
+                    },
+                    {
+                      "entityId": 216
+                    }
+                  ],
+                  "endModelHS": -1,
+                  "featureBaseName": "Sketch",
+                  "featureIndex": 1,
+                  "featureUserName": "",
+                  "groupMembers": [],
+                  "isImplicitlySuppressed": false,
+                  "isSuppressed": false,
+                  "isZombieFeature": false,
+                  "rProgenitorTable": {
+                    "entityId": 211
+                  },
+                  "rReferencedContext": null,
+                  "startModelHS": -1
+                }
+              },
+              {
+                "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "values": {
+                  "birthday": 260,
+                  "computeTime": 0.017969875,
+                  "firstBirthday": 260,
+                  "status": {
+                    "entityId": 210
+                  }
+                }
+              },
+              {
+                "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "values": {}
+              },
+              {
+                "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "values": {
+                  "isActive": true,
+                  "isEdited": false,
+                  "isEliminated": false,
+                  "rDynamicUpdateData": {
+                    "entityId": 209
+                  },
+                  "rGroupRepresentative": null,
+                  "rParentFeature": null
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "Entity.hasEntitySubjects",
+              "wireType": "bool",
+              "offset": 4,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "Entity.hasNameValuePair",
+              "wireType": "bool",
+              "offset": 5,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcSketchMetaType.bIsAGDDcSketchFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 6,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcSketchMetaType.dcParameters",
+              "wireType": "Vector",
+              "offset": 7,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.isVisibleBeforeRollback",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 11,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcSketchMetaType.meshSections",
+              "wireType": "Vector",
+              "offset": 12,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.rSketch",
+              "wireType": "StrongRefMetaType",
+              "offset": 16,
+              "length": 11,
+              "value": {
+                "entityId": 203
+              }
+            },
+            {
+              "name": "DcSketchMetaType.rSketchPlaneMatrix",
+              "wireType": "StrongRefMetaType",
+              "offset": 27,
+              "length": 11,
+              "value": {
+                "entityId": 216
+              }
+            },
+            {
+              "name": "DcSketchMetaType.sketchIsoCurves",
+              "wireType": "Vector",
+              "offset": 38,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.sketchProjects",
+              "wireType": "Vector",
+              "offset": 42,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.sketchSurfaces",
+              "wireType": "Vector",
+              "offset": 46,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.associationId",
+              "wireType": "IntrinsicMetaTypeUuid",
+              "offset": 50,
+              "length": 76,
+              "value": "00000000-0000-0000-0000-000000000000"
+            },
+            {
+              "name": "DcFeatureMetaType.bDisabled",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 126,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineReorder",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 127,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineRoll",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 128,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.childNodes",
+              "wireType": "List",
+              "offset": 129,
+              "length": 26,
+              "value": [
+                {
+                  "entityId": 212
+                },
+                {
+                  "entityId": 216
+                }
+              ]
+            },
+            {
+              "name": "DcFeatureMetaType.endModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 155,
+              "length": 4,
+              "value": -1
+            },
+            {
+              "name": "DcFeatureMetaType.featureBaseName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 159,
+              "length": 16,
+              "value": "Sketch"
+            },
+            {
+              "name": "DcFeatureMetaType.featureIndex",
+              "wireType": "IntrinsicMetaTypeuint64",
+              "offset": 175,
+              "length": 8,
+              "value": 1
+            },
+            {
+              "name": "DcFeatureMetaType.featureUserName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 183,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "DcFeatureMetaType.groupMembers",
+              "wireType": "List",
+              "offset": 187,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.isImplicitlySuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 191,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isSuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 192,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isZombieFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 193,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.rProgenitorTable",
+              "wireType": "StrongRefMetaType",
+              "offset": 194,
+              "length": 11,
+              "value": {
+                "entityId": 211
+              }
+            },
+            {
+              "name": "DcFeatureMetaType.rReferencedContext",
+              "wireType": "PassiveRefMetaType",
+              "offset": 205,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcFeatureMetaType.startModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 206,
+              "length": 4,
+              "value": -1
+            },
+            {
+              "name": "DcComputableActionMetaType.birthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 210,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.computeTime",
+              "wireType": "IntrinsicMetaTypedouble",
+              "offset": 214,
+              "length": 8,
+              "value": 0.017969875
+            },
+            {
+              "name": "DcComputableActionMetaType.firstBirthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 222,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.status",
+              "wireType": "StrongRefMetaType",
+              "offset": 226,
+              "length": 11,
+              "value": {
+                "entityId": 210
+              }
+            },
+            {
+              "name": "DcNodeMetaType.isActive",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 237,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcNodeMetaType.isEdited",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 238,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.isEliminated",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 239,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.rDynamicUpdateData",
+              "wireType": "StrongRefMetaType",
+              "offset": 240,
+              "length": 11,
+              "value": {
+                "entityId": 209
+              }
+            },
+            {
+              "name": "DcNodeMetaType.rGroupRepresentative",
+              "wireType": "PassiveRefMetaType",
+              "offset": 251,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcNodeMetaType.rParentFeature",
+              "wireType": "PassiveRefMetaType",
+              "offset": 252,
+              "length": 1,
+              "value": null
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 208,
+          "primary": false,
+          "classIdentifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+          "recordBulkOffset": 23745,
+          "payloadBulkOffset": 23760,
+          "payloadLength": 15,
+          "payloadSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "semanticFieldsCompared": 1,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": ""
+            },
+            "sets": [
+              {
+                "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "values": {
+                  "rParent": {
+                    "entityId": 27
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "ManagedEntityMetaType.rParent",
+              "wireType": "PassiveRefMetaType",
+              "offset": 4,
+              "length": 11,
+              "value": {
+                "entityId": 27
+              }
+            }
+          ],
+          "unexplainedBytes": 0
+        }
+      ]
+    },
+    {
+      "file": "extrude_07mm.f3d",
+      "archiveSha256": "ff7730152b56ef608e690df79788ee5658473d59b33e398dc96743e306adacd1",
+      "metadataSha256": "7d11dbbc7fa8a5176c9ebb5bd1083e14c6a5d36e3f6399545c4665f03819343e",
+      "bulkSha256": "c53c010a756ec6e2e505a12cfb53db17a3d1ceee8364b79f03277cdfb0d4e070",
+      "nativeGraphPath": "re/Fusion/LocalOracle/Features/extrude_07mm.entities.json",
+      "nativeGraphSha256": "37107efba7d93814ed8e234d4bbbcd5e78bae1810d4bfa0c46bbe4c9484c28bc",
+      "records": [
+        {
+          "identity": 208,
+          "primary": true,
+          "classIdentifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "recordBulkOffset": 24449,
+          "payloadBulkOffset": 24464,
+          "payloadLength": 253,
+          "payloadSha256": "3586308dd12a2135136bb15670ccaacf043c78626ad9613a094cc3fdba8d7eb5",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "3586308dd12a2135136bb15670ccaacf043c78626ad9613a094cc3fdba8d7eb5",
+          "semanticFieldsCompared": 35,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": "",
+              "hasSubjects": false,
+              "subjects": [],
+              "hasNamedMetadata": false,
+              "namedMetadata": []
+            },
+            "sets": [
+              {
+                "identifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                "values": {
+                  "bIsAGDDcSketchFeature": false,
+                  "dcParameters": [],
+                  "isVisibleBeforeRollback": true,
+                  "meshSections": [],
+                  "rSketch": {
+                    "entityId": 203
+                  },
+                  "rSketchPlaneMatrix": {
+                    "entityId": 216
+                  },
+                  "sketchIsoCurves": [],
+                  "sketchProjects": [],
+                  "sketchSurfaces": []
+                }
+              },
+              {
+                "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "values": {
+                  "associationId": "00000000-0000-0000-0000-000000000000",
+                  "bDisabled": false,
+                  "bLockedForTimelineReorder": false,
+                  "bLockedForTimelineRoll": false,
+                  "childNodes": [
+                    {
+                      "entityId": 212
+                    },
+                    {
+                      "entityId": 216
+                    }
+                  ],
+                  "endModelHS": -1,
+                  "featureBaseName": "Sketch",
+                  "featureIndex": 1,
+                  "featureUserName": "",
+                  "groupMembers": [],
+                  "isImplicitlySuppressed": false,
+                  "isSuppressed": false,
+                  "isZombieFeature": false,
+                  "rProgenitorTable": {
+                    "entityId": 211
+                  },
+                  "rReferencedContext": null,
+                  "startModelHS": -1
+                }
+              },
+              {
+                "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "values": {
+                  "birthday": 260,
+                  "computeTime": 0.0003545,
+                  "firstBirthday": 260,
+                  "status": {
+                    "entityId": 210
+                  }
+                }
+              },
+              {
+                "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "values": {}
+              },
+              {
+                "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "values": {
+                  "isActive": true,
+                  "isEdited": false,
+                  "isEliminated": false,
+                  "rDynamicUpdateData": {
+                    "entityId": 209
+                  },
+                  "rGroupRepresentative": null,
+                  "rParentFeature": null
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "Entity.hasEntitySubjects",
+              "wireType": "bool",
+              "offset": 4,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "Entity.hasNameValuePair",
+              "wireType": "bool",
+              "offset": 5,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcSketchMetaType.bIsAGDDcSketchFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 6,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcSketchMetaType.dcParameters",
+              "wireType": "Vector",
+              "offset": 7,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.isVisibleBeforeRollback",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 11,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcSketchMetaType.meshSections",
+              "wireType": "Vector",
+              "offset": 12,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.rSketch",
+              "wireType": "StrongRefMetaType",
+              "offset": 16,
+              "length": 11,
+              "value": {
+                "entityId": 203
+              }
+            },
+            {
+              "name": "DcSketchMetaType.rSketchPlaneMatrix",
+              "wireType": "StrongRefMetaType",
+              "offset": 27,
+              "length": 11,
+              "value": {
+                "entityId": 216
+              }
+            },
+            {
+              "name": "DcSketchMetaType.sketchIsoCurves",
+              "wireType": "Vector",
+              "offset": 38,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.sketchProjects",
+              "wireType": "Vector",
+              "offset": 42,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.sketchSurfaces",
+              "wireType": "Vector",
+              "offset": 46,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.associationId",
+              "wireType": "IntrinsicMetaTypeUuid",
+              "offset": 50,
+              "length": 76,
+              "value": "00000000-0000-0000-0000-000000000000"
+            },
+            {
+              "name": "DcFeatureMetaType.bDisabled",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 126,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineReorder",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 127,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineRoll",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 128,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.childNodes",
+              "wireType": "List",
+              "offset": 129,
+              "length": 26,
+              "value": [
+                {
+                  "entityId": 212
+                },
+                {
+                  "entityId": 216
+                }
+              ]
+            },
+            {
+              "name": "DcFeatureMetaType.endModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 155,
+              "length": 4,
+              "value": -1
+            },
+            {
+              "name": "DcFeatureMetaType.featureBaseName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 159,
+              "length": 16,
+              "value": "Sketch"
+            },
+            {
+              "name": "DcFeatureMetaType.featureIndex",
+              "wireType": "IntrinsicMetaTypeuint64",
+              "offset": 175,
+              "length": 8,
+              "value": 1
+            },
+            {
+              "name": "DcFeatureMetaType.featureUserName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 183,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "DcFeatureMetaType.groupMembers",
+              "wireType": "List",
+              "offset": 187,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.isImplicitlySuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 191,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isSuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 192,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isZombieFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 193,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.rProgenitorTable",
+              "wireType": "StrongRefMetaType",
+              "offset": 194,
+              "length": 11,
+              "value": {
+                "entityId": 211
+              }
+            },
+            {
+              "name": "DcFeatureMetaType.rReferencedContext",
+              "wireType": "PassiveRefMetaType",
+              "offset": 205,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcFeatureMetaType.startModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 206,
+              "length": 4,
+              "value": -1
+            },
+            {
+              "name": "DcComputableActionMetaType.birthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 210,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.computeTime",
+              "wireType": "IntrinsicMetaTypedouble",
+              "offset": 214,
+              "length": 8,
+              "value": 0.0003545
+            },
+            {
+              "name": "DcComputableActionMetaType.firstBirthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 222,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.status",
+              "wireType": "StrongRefMetaType",
+              "offset": 226,
+              "length": 11,
+              "value": {
+                "entityId": 210
+              }
+            },
+            {
+              "name": "DcNodeMetaType.isActive",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 237,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcNodeMetaType.isEdited",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 238,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.isEliminated",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 239,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.rDynamicUpdateData",
+              "wireType": "StrongRefMetaType",
+              "offset": 240,
+              "length": 11,
+              "value": {
+                "entityId": 209
+              }
+            },
+            {
+              "name": "DcNodeMetaType.rGroupRepresentative",
+              "wireType": "PassiveRefMetaType",
+              "offset": 251,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcNodeMetaType.rParentFeature",
+              "wireType": "PassiveRefMetaType",
+              "offset": 252,
+              "length": 1,
+              "value": null
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 208,
+          "primary": false,
+          "classIdentifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+          "recordBulkOffset": 24717,
+          "payloadBulkOffset": 24732,
+          "payloadLength": 15,
+          "payloadSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "semanticFieldsCompared": 1,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": ""
+            },
+            "sets": [
+              {
+                "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "values": {
+                  "rParent": {
+                    "entityId": 27
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "ManagedEntityMetaType.rParent",
+              "wireType": "PassiveRefMetaType",
+              "offset": 4,
+              "length": 11,
+              "value": {
+                "entityId": 27
+              }
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 235,
+          "primary": true,
+          "classIdentifier": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+          "recordBulkOffset": 26361,
+          "payloadBulkOffset": 26376,
+          "payloadLength": 450,
+          "payloadSha256": "ef80b9a31b5d671c89c4468b7c7a1dbce63a7ca47c0c80112ba2b43ccc61c99d",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "ef80b9a31b5d671c89c4468b7c7a1dbce63a7ca47c0c80112ba2b43ccc61c99d",
+          "semanticFieldsCompared": 64,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": "",
+              "hasSubjects": false,
+              "subjects": [],
+              "hasNamedMetadata": true,
+              "namedMetadata": []
+            },
+            "sets": [
+              {
+                "identifier": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+                "values": {
+                  "ProfileFromEntityRef": null,
+                  "bIsAGDExtrudeFeature": false,
+                  "bPreviewNormal": false,
+                  "booleanOperation": 4,
+                  "directionType": 1,
+                  "extendFaceOption": 2,
+                  "isFlipDirection": false,
+                  "isSolidOperation": true,
+                  "profileLocaltionType": 0,
+                  "profileNormal": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 1.0
+                  },
+                  "profileOffset": null,
+                  "rAgainstDistance": null,
+                  "rAlongDistance": {
+                    "entityId": 244
+                  },
+                  "rExtrudeToolBody": {
+                    "entityId": 249
+                  },
+                  "rFromEntityRef": null,
+                  "rTaperAngle": {
+                    "entityId": 247
+                  },
+                  "rToEntityRef": null,
+                  "side1ExtentType": 1,
+                  "side1Offset": null,
+                  "side1SolutionType": 0,
+                  "side2ExtendFaceOption": 0,
+                  "side2ExtentType": 0,
+                  "side2FlipDirection": false,
+                  "side2Offset": null,
+                  "side2SolutionType": 0,
+                  "side2TaperAngle": null,
+                  "startDirectionFlip": false,
+                  "symmetricMeasurementType": 0,
+                  "thinExtrude": false,
+                  "thinExtrudeSide1WallLocation": 0,
+                  "thinExtrudeSide1WallThickness": null,
+                  "thinExtrudeSide2WallLocation": 0,
+                  "thinExtrudeSide2WallThickness": null
+                }
+              },
+              {
+                "identifier": "3FED63D9-CDC5-4334-A5C5-6C10271320D5",
+                "values": {
+                  "profileDataRefs": [
+                    {
+                      "entityId": 236
+                    }
+                  ]
+                }
+              },
+              {
+                "identifier": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+                "values": {
+                  "cachedDcBodies": [],
+                  "dcBodies": [
+                    {
+                      "entityId": 267
+                    }
+                  ],
+                  "removedBodies": []
+                }
+              },
+              {
+                "identifier": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+                "values": {
+                  "targetDataRefs": []
+                }
+              },
+              {
+                "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "values": {
+                  "associationId": "00000000-0000-0000-0000-000000000000",
+                  "bDisabled": false,
+                  "bLockedForTimelineReorder": false,
+                  "bLockedForTimelineRoll": false,
+                  "childNodes": [
+                    {
+                      "entityId": 236
+                    },
+                    {
+                      "entityId": 239
+                    },
+                    {
+                      "entityId": 244
+                    },
+                    {
+                      "entityId": 247
+                    },
+                    {
+                      "entityId": 249
+                    }
+                  ],
+                  "endModelHS": 4,
+                  "featureBaseName": "Extrude",
+                  "featureIndex": 1,
+                  "featureUserName": "ControlledExtrusion",
+                  "groupMembers": [],
+                  "isImplicitlySuppressed": false,
+                  "isSuppressed": false,
+                  "isZombieFeature": false,
+                  "rProgenitorTable": {
+                    "entityId": 254
+                  },
+                  "rReferencedContext": null,
+                  "startModelHS": 2
+                }
+              },
+              {
+                "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "values": {
+                  "birthday": 260,
+                  "computeTime": 0.00018575000000000015,
+                  "firstBirthday": 260,
+                  "status": {
+                    "entityId": 253
+                  }
+                }
+              },
+              {
+                "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "values": {}
+              },
+              {
+                "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "values": {
+                  "isActive": true,
+                  "isEdited": false,
+                  "isEliminated": false,
+                  "rDynamicUpdateData": {
+                    "entityId": 252
+                  },
+                  "rGroupRepresentative": null,
+                  "rParentFeature": null
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "Entity.hasEntitySubjects",
+              "wireType": "bool",
+              "offset": 4,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "Entity.hasNameValuePair",
+              "wireType": "bool",
+              "offset": 5,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "Entity.nameValuePairCount",
+              "wireType": "u32",
+              "offset": 6,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.ProfileFromEntityRef",
+              "wireType": "StrongRefMetaType",
+              "offset": 10,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.bIsAGDExtrudeFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 11,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.bPreviewNormal",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 12,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.booleanOperation",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 13,
+              "length": 4,
+              "value": 4
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.directionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 17,
+              "length": 4,
+              "value": 1
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.extendFaceOption",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 21,
+              "length": 4,
+              "value": 2
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.isFlipDirection",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 25,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.isSolidOperation",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 26,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.profileLocaltionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 27,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.profileNormal",
+              "wireType": "AcGeVector3dValueMetaType",
+              "offset": 31,
+              "length": 24,
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.profileOffset",
+              "wireType": "StrongRefMetaType",
+              "offset": 55,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rAgainstDistance",
+              "wireType": "StrongRefMetaType",
+              "offset": 56,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rAlongDistance",
+              "wireType": "StrongRefMetaType",
+              "offset": 57,
+              "length": 11,
+              "value": {
+                "entityId": 244
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rExtrudeToolBody",
+              "wireType": "StrongRefMetaType",
+              "offset": 68,
+              "length": 11,
+              "value": {
+                "entityId": 249
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rFromEntityRef",
+              "wireType": "StrongRefMetaType",
+              "offset": 79,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rTaperAngle",
+              "wireType": "StrongRefMetaType",
+              "offset": 80,
+              "length": 11,
+              "value": {
+                "entityId": 247
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rToEntityRef",
+              "wireType": "StrongRefMetaType",
+              "offset": 91,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side1ExtentType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 92,
+              "length": 4,
+              "value": 1
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side1Offset",
+              "wireType": "StrongRefMetaType",
+              "offset": 96,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side1SolutionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 97,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2ExtendFaceOption",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 101,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2ExtentType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 105,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2FlipDirection",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 109,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2Offset",
+              "wireType": "StrongRefMetaType",
+              "offset": 110,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2SolutionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 111,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2TaperAngle",
+              "wireType": "StrongRefMetaType",
+              "offset": 115,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.startDirectionFlip",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 116,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.symmetricMeasurementType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 117,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrude",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 121,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide1WallLocation",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 122,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide1WallThickness",
+              "wireType": "StrongRefMetaType",
+              "offset": 126,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide2WallLocation",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 127,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide2WallThickness",
+              "wireType": "StrongRefMetaType",
+              "offset": 131,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcProfileBasedFeatureMetaType.profileDataRefs",
+              "wireType": "Vector",
+              "offset": 132,
+              "length": 15,
+              "value": [
+                {
+                  "entityId": 236
+                }
+              ]
+            },
+            {
+              "name": "DcMultiBodyFeatureMetaType.cachedDcBodies",
+              "wireType": "Set",
+              "offset": 147,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcMultiBodyFeatureMetaType.dcBodies",
+              "wireType": "Vector",
+              "offset": 151,
+              "length": 15,
+              "value": [
+                {
+                  "entityId": 267
+                }
+              ]
+            },
+            {
+              "name": "DcMultiBodyFeatureMetaType.removedBodies",
+              "wireType": "Vector",
+              "offset": 166,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcBodyFeatureMetaType.targetDataRefs",
+              "wireType": "Vector",
+              "offset": 170,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.associationId",
+              "wireType": "IntrinsicMetaTypeUuid",
+              "offset": 174,
+              "length": 76,
+              "value": "00000000-0000-0000-0000-000000000000"
+            },
+            {
+              "name": "DcFeatureMetaType.bDisabled",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 250,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineReorder",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 251,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineRoll",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 252,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.childNodes",
+              "wireType": "List",
+              "offset": 253,
+              "length": 59,
+              "value": [
+                {
+                  "entityId": 236
+                },
+                {
+                  "entityId": 239
+                },
+                {
+                  "entityId": 244
+                },
+                {
+                  "entityId": 247
+                },
+                {
+                  "entityId": 249
+                }
+              ]
+            },
+            {
+              "name": "DcFeatureMetaType.endModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 312,
+              "length": 4,
+              "value": 4
+            },
+            {
+              "name": "DcFeatureMetaType.featureBaseName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 316,
+              "length": 18,
+              "value": "Extrude"
+            },
+            {
+              "name": "DcFeatureMetaType.featureIndex",
+              "wireType": "IntrinsicMetaTypeuint64",
+              "offset": 334,
+              "length": 8,
+              "value": 1
+            },
+            {
+              "name": "DcFeatureMetaType.featureUserName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 342,
+              "length": 42,
+              "value": "ControlledExtrusion"
+            },
+            {
+              "name": "DcFeatureMetaType.groupMembers",
+              "wireType": "List",
+              "offset": 384,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.isImplicitlySuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 388,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isSuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 389,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isZombieFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 390,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.rProgenitorTable",
+              "wireType": "StrongRefMetaType",
+              "offset": 391,
+              "length": 11,
+              "value": {
+                "entityId": 254
+              }
+            },
+            {
+              "name": "DcFeatureMetaType.rReferencedContext",
+              "wireType": "PassiveRefMetaType",
+              "offset": 402,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcFeatureMetaType.startModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 403,
+              "length": 4,
+              "value": 2
+            },
+            {
+              "name": "DcComputableActionMetaType.birthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 407,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.computeTime",
+              "wireType": "IntrinsicMetaTypedouble",
+              "offset": 411,
+              "length": 8,
+              "value": 0.00018575000000000015
+            },
+            {
+              "name": "DcComputableActionMetaType.firstBirthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 419,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.status",
+              "wireType": "StrongRefMetaType",
+              "offset": 423,
+              "length": 11,
+              "value": {
+                "entityId": 253
+              }
+            },
+            {
+              "name": "DcNodeMetaType.isActive",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 434,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcNodeMetaType.isEdited",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 435,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.isEliminated",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 436,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.rDynamicUpdateData",
+              "wireType": "StrongRefMetaType",
+              "offset": 437,
+              "length": 11,
+              "value": {
+                "entityId": 252
+              }
+            },
+            {
+              "name": "DcNodeMetaType.rGroupRepresentative",
+              "wireType": "PassiveRefMetaType",
+              "offset": 448,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcNodeMetaType.rParentFeature",
+              "wireType": "PassiveRefMetaType",
+              "offset": 449,
+              "length": 1,
+              "value": null
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 235,
+          "primary": false,
+          "classIdentifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+          "recordBulkOffset": 26826,
+          "payloadBulkOffset": 26841,
+          "payloadLength": 15,
+          "payloadSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "semanticFieldsCompared": 1,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": ""
+            },
+            "sets": [
+              {
+                "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "values": {
+                  "rParent": {
+                    "entityId": 27
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "ManagedEntityMetaType.rParent",
+              "wireType": "PassiveRefMetaType",
+              "offset": 4,
+              "length": 11,
+              "value": {
+                "entityId": 27
+              }
+            }
+          ],
+          "unexplainedBytes": 0
+        }
+      ]
+    },
+    {
+      "file": "extrude_13mm.f3d",
+      "archiveSha256": "25a1547213e492f7887f32f029673d287cba3fe435aa64a508038951a65b0f55",
+      "metadataSha256": "77da6686e594f3b5c817a4338b98430ba069a22ac75ec406b96a41f6c4ece73b",
+      "bulkSha256": "3b3ab80aecae54d59db3cd5f0f81b56532ac6b83b52c03feff8bbb31bc1949fc",
+      "nativeGraphPath": "re/Fusion/LocalOracle/Features/extrude_13mm.entities.json",
+      "nativeGraphSha256": "742f05f3031c1e3195581f6fc7eb909dd88968190fd65461f0b523b4f3d26576",
+      "records": [
+        {
+          "identity": 208,
+          "primary": true,
+          "classIdentifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "recordBulkOffset": 24451,
+          "payloadBulkOffset": 24466,
+          "payloadLength": 253,
+          "payloadSha256": "7bb52e2f0b3664e9b1aa40c5b2e0dba5389961101af85b8228becfded90fdfc5",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "7bb52e2f0b3664e9b1aa40c5b2e0dba5389961101af85b8228becfded90fdfc5",
+          "semanticFieldsCompared": 35,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": "",
+              "hasSubjects": false,
+              "subjects": [],
+              "hasNamedMetadata": false,
+              "namedMetadata": []
+            },
+            "sets": [
+              {
+                "identifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                "values": {
+                  "bIsAGDDcSketchFeature": false,
+                  "dcParameters": [],
+                  "isVisibleBeforeRollback": true,
+                  "meshSections": [],
+                  "rSketch": {
+                    "entityId": 203
+                  },
+                  "rSketchPlaneMatrix": {
+                    "entityId": 216
+                  },
+                  "sketchIsoCurves": [],
+                  "sketchProjects": [],
+                  "sketchSurfaces": []
+                }
+              },
+              {
+                "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "values": {
+                  "associationId": "00000000-0000-0000-0000-000000000000",
+                  "bDisabled": false,
+                  "bLockedForTimelineReorder": false,
+                  "bLockedForTimelineRoll": false,
+                  "childNodes": [
+                    {
+                      "entityId": 212
+                    },
+                    {
+                      "entityId": 216
+                    }
+                  ],
+                  "endModelHS": -1,
+                  "featureBaseName": "Sketch",
+                  "featureIndex": 1,
+                  "featureUserName": "",
+                  "groupMembers": [],
+                  "isImplicitlySuppressed": false,
+                  "isSuppressed": false,
+                  "isZombieFeature": false,
+                  "rProgenitorTable": {
+                    "entityId": 211
+                  },
+                  "rReferencedContext": null,
+                  "startModelHS": -1
+                }
+              },
+              {
+                "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "values": {
+                  "birthday": 260,
+                  "computeTime": 0.000487417,
+                  "firstBirthday": 260,
+                  "status": {
+                    "entityId": 210
+                  }
+                }
+              },
+              {
+                "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "values": {}
+              },
+              {
+                "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "values": {
+                  "isActive": true,
+                  "isEdited": false,
+                  "isEliminated": false,
+                  "rDynamicUpdateData": {
+                    "entityId": 209
+                  },
+                  "rGroupRepresentative": null,
+                  "rParentFeature": null
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "Entity.hasEntitySubjects",
+              "wireType": "bool",
+              "offset": 4,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "Entity.hasNameValuePair",
+              "wireType": "bool",
+              "offset": 5,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcSketchMetaType.bIsAGDDcSketchFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 6,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcSketchMetaType.dcParameters",
+              "wireType": "Vector",
+              "offset": 7,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.isVisibleBeforeRollback",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 11,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcSketchMetaType.meshSections",
+              "wireType": "Vector",
+              "offset": 12,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.rSketch",
+              "wireType": "StrongRefMetaType",
+              "offset": 16,
+              "length": 11,
+              "value": {
+                "entityId": 203
+              }
+            },
+            {
+              "name": "DcSketchMetaType.rSketchPlaneMatrix",
+              "wireType": "StrongRefMetaType",
+              "offset": 27,
+              "length": 11,
+              "value": {
+                "entityId": 216
+              }
+            },
+            {
+              "name": "DcSketchMetaType.sketchIsoCurves",
+              "wireType": "Vector",
+              "offset": 38,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.sketchProjects",
+              "wireType": "Vector",
+              "offset": 42,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcSketchMetaType.sketchSurfaces",
+              "wireType": "Vector",
+              "offset": 46,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.associationId",
+              "wireType": "IntrinsicMetaTypeUuid",
+              "offset": 50,
+              "length": 76,
+              "value": "00000000-0000-0000-0000-000000000000"
+            },
+            {
+              "name": "DcFeatureMetaType.bDisabled",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 126,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineReorder",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 127,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineRoll",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 128,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.childNodes",
+              "wireType": "List",
+              "offset": 129,
+              "length": 26,
+              "value": [
+                {
+                  "entityId": 212
+                },
+                {
+                  "entityId": 216
+                }
+              ]
+            },
+            {
+              "name": "DcFeatureMetaType.endModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 155,
+              "length": 4,
+              "value": -1
+            },
+            {
+              "name": "DcFeatureMetaType.featureBaseName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 159,
+              "length": 16,
+              "value": "Sketch"
+            },
+            {
+              "name": "DcFeatureMetaType.featureIndex",
+              "wireType": "IntrinsicMetaTypeuint64",
+              "offset": 175,
+              "length": 8,
+              "value": 1
+            },
+            {
+              "name": "DcFeatureMetaType.featureUserName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 183,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "DcFeatureMetaType.groupMembers",
+              "wireType": "List",
+              "offset": 187,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.isImplicitlySuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 191,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isSuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 192,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isZombieFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 193,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.rProgenitorTable",
+              "wireType": "StrongRefMetaType",
+              "offset": 194,
+              "length": 11,
+              "value": {
+                "entityId": 211
+              }
+            },
+            {
+              "name": "DcFeatureMetaType.rReferencedContext",
+              "wireType": "PassiveRefMetaType",
+              "offset": 205,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcFeatureMetaType.startModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 206,
+              "length": 4,
+              "value": -1
+            },
+            {
+              "name": "DcComputableActionMetaType.birthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 210,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.computeTime",
+              "wireType": "IntrinsicMetaTypedouble",
+              "offset": 214,
+              "length": 8,
+              "value": 0.000487417
+            },
+            {
+              "name": "DcComputableActionMetaType.firstBirthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 222,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.status",
+              "wireType": "StrongRefMetaType",
+              "offset": 226,
+              "length": 11,
+              "value": {
+                "entityId": 210
+              }
+            },
+            {
+              "name": "DcNodeMetaType.isActive",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 237,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcNodeMetaType.isEdited",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 238,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.isEliminated",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 239,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.rDynamicUpdateData",
+              "wireType": "StrongRefMetaType",
+              "offset": 240,
+              "length": 11,
+              "value": {
+                "entityId": 209
+              }
+            },
+            {
+              "name": "DcNodeMetaType.rGroupRepresentative",
+              "wireType": "PassiveRefMetaType",
+              "offset": 251,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcNodeMetaType.rParentFeature",
+              "wireType": "PassiveRefMetaType",
+              "offset": 252,
+              "length": 1,
+              "value": null
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 208,
+          "primary": false,
+          "classIdentifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+          "recordBulkOffset": 24719,
+          "payloadBulkOffset": 24734,
+          "payloadLength": 15,
+          "payloadSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "semanticFieldsCompared": 1,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": ""
+            },
+            "sets": [
+              {
+                "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "values": {
+                  "rParent": {
+                    "entityId": 27
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "ManagedEntityMetaType.rParent",
+              "wireType": "PassiveRefMetaType",
+              "offset": 4,
+              "length": 11,
+              "value": {
+                "entityId": 27
+              }
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 235,
+          "primary": true,
+          "classIdentifier": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+          "recordBulkOffset": 26363,
+          "payloadBulkOffset": 26378,
+          "payloadLength": 450,
+          "payloadSha256": "7c9e31cd91ab9ee9c2e38d17546644b7b8d1f6577951ec6a6f08164ab314e7ef",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "7c9e31cd91ab9ee9c2e38d17546644b7b8d1f6577951ec6a6f08164ab314e7ef",
+          "semanticFieldsCompared": 64,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": "",
+              "hasSubjects": false,
+              "subjects": [],
+              "hasNamedMetadata": true,
+              "namedMetadata": []
+            },
+            "sets": [
+              {
+                "identifier": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+                "values": {
+                  "ProfileFromEntityRef": null,
+                  "bIsAGDExtrudeFeature": false,
+                  "bPreviewNormal": false,
+                  "booleanOperation": 4,
+                  "directionType": 1,
+                  "extendFaceOption": 2,
+                  "isFlipDirection": false,
+                  "isSolidOperation": true,
+                  "profileLocaltionType": 0,
+                  "profileNormal": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 1.0
+                  },
+                  "profileOffset": null,
+                  "rAgainstDistance": null,
+                  "rAlongDistance": {
+                    "entityId": 244
+                  },
+                  "rExtrudeToolBody": {
+                    "entityId": 249
+                  },
+                  "rFromEntityRef": null,
+                  "rTaperAngle": {
+                    "entityId": 247
+                  },
+                  "rToEntityRef": null,
+                  "side1ExtentType": 1,
+                  "side1Offset": null,
+                  "side1SolutionType": 0,
+                  "side2ExtendFaceOption": 0,
+                  "side2ExtentType": 0,
+                  "side2FlipDirection": false,
+                  "side2Offset": null,
+                  "side2SolutionType": 0,
+                  "side2TaperAngle": null,
+                  "startDirectionFlip": false,
+                  "symmetricMeasurementType": 0,
+                  "thinExtrude": false,
+                  "thinExtrudeSide1WallLocation": 0,
+                  "thinExtrudeSide1WallThickness": null,
+                  "thinExtrudeSide2WallLocation": 0,
+                  "thinExtrudeSide2WallThickness": null
+                }
+              },
+              {
+                "identifier": "3FED63D9-CDC5-4334-A5C5-6C10271320D5",
+                "values": {
+                  "profileDataRefs": [
+                    {
+                      "entityId": 236
+                    }
+                  ]
+                }
+              },
+              {
+                "identifier": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+                "values": {
+                  "cachedDcBodies": [],
+                  "dcBodies": [
+                    {
+                      "entityId": 267
+                    }
+                  ],
+                  "removedBodies": []
+                }
+              },
+              {
+                "identifier": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+                "values": {
+                  "targetDataRefs": []
+                }
+              },
+              {
+                "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+                "values": {
+                  "associationId": "00000000-0000-0000-0000-000000000000",
+                  "bDisabled": false,
+                  "bLockedForTimelineReorder": false,
+                  "bLockedForTimelineRoll": false,
+                  "childNodes": [
+                    {
+                      "entityId": 236
+                    },
+                    {
+                      "entityId": 239
+                    },
+                    {
+                      "entityId": 244
+                    },
+                    {
+                      "entityId": 247
+                    },
+                    {
+                      "entityId": 249
+                    }
+                  ],
+                  "endModelHS": 6,
+                  "featureBaseName": "Extrude",
+                  "featureIndex": 1,
+                  "featureUserName": "ControlledExtrusion",
+                  "groupMembers": [],
+                  "isImplicitlySuppressed": false,
+                  "isSuppressed": false,
+                  "isZombieFeature": false,
+                  "rProgenitorTable": {
+                    "entityId": 254
+                  },
+                  "rReferencedContext": null,
+                  "startModelHS": 2
+                }
+              },
+              {
+                "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+                "values": {
+                  "birthday": 260,
+                  "computeTime": 0.000209917,
+                  "firstBirthday": 260,
+                  "status": {
+                    "entityId": 253
+                  }
+                }
+              },
+              {
+                "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+                "values": {}
+              },
+              {
+                "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+                "values": {
+                  "isActive": true,
+                  "isEdited": false,
+                  "isEliminated": false,
+                  "rDynamicUpdateData": {
+                    "entityId": 252
+                  },
+                  "rGroupRepresentative": null,
+                  "rParentFeature": null
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "Entity.hasEntitySubjects",
+              "wireType": "bool",
+              "offset": 4,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "Entity.hasNameValuePair",
+              "wireType": "bool",
+              "offset": 5,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "Entity.nameValuePairCount",
+              "wireType": "u32",
+              "offset": 6,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.ProfileFromEntityRef",
+              "wireType": "StrongRefMetaType",
+              "offset": 10,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.bIsAGDExtrudeFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 11,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.bPreviewNormal",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 12,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.booleanOperation",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 13,
+              "length": 4,
+              "value": 4
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.directionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 17,
+              "length": 4,
+              "value": 1
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.extendFaceOption",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 21,
+              "length": 4,
+              "value": 2
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.isFlipDirection",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 25,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.isSolidOperation",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 26,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.profileLocaltionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 27,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.profileNormal",
+              "wireType": "AcGeVector3dValueMetaType",
+              "offset": 31,
+              "length": 24,
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.profileOffset",
+              "wireType": "StrongRefMetaType",
+              "offset": 55,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rAgainstDistance",
+              "wireType": "StrongRefMetaType",
+              "offset": 56,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rAlongDistance",
+              "wireType": "StrongRefMetaType",
+              "offset": 57,
+              "length": 11,
+              "value": {
+                "entityId": 244
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rExtrudeToolBody",
+              "wireType": "StrongRefMetaType",
+              "offset": 68,
+              "length": 11,
+              "value": {
+                "entityId": 249
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rFromEntityRef",
+              "wireType": "StrongRefMetaType",
+              "offset": 79,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rTaperAngle",
+              "wireType": "StrongRefMetaType",
+              "offset": 80,
+              "length": 11,
+              "value": {
+                "entityId": 247
+              }
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.rToEntityRef",
+              "wireType": "StrongRefMetaType",
+              "offset": 91,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side1ExtentType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 92,
+              "length": 4,
+              "value": 1
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side1Offset",
+              "wireType": "StrongRefMetaType",
+              "offset": 96,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side1SolutionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 97,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2ExtendFaceOption",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 101,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2ExtentType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 105,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2FlipDirection",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 109,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2Offset",
+              "wireType": "StrongRefMetaType",
+              "offset": 110,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2SolutionType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 111,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.side2TaperAngle",
+              "wireType": "StrongRefMetaType",
+              "offset": 115,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.startDirectionFlip",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 116,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.symmetricMeasurementType",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 117,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrude",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 121,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide1WallLocation",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 122,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide1WallThickness",
+              "wireType": "StrongRefMetaType",
+              "offset": 126,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide2WallLocation",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 127,
+              "length": 4,
+              "value": 0
+            },
+            {
+              "name": "DcExtrudeFeatureMetaType.thinExtrudeSide2WallThickness",
+              "wireType": "StrongRefMetaType",
+              "offset": 131,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcProfileBasedFeatureMetaType.profileDataRefs",
+              "wireType": "Vector",
+              "offset": 132,
+              "length": 15,
+              "value": [
+                {
+                  "entityId": 236
+                }
+              ]
+            },
+            {
+              "name": "DcMultiBodyFeatureMetaType.cachedDcBodies",
+              "wireType": "Set",
+              "offset": 147,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcMultiBodyFeatureMetaType.dcBodies",
+              "wireType": "Vector",
+              "offset": 151,
+              "length": 15,
+              "value": [
+                {
+                  "entityId": 267
+                }
+              ]
+            },
+            {
+              "name": "DcMultiBodyFeatureMetaType.removedBodies",
+              "wireType": "Vector",
+              "offset": 166,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcBodyFeatureMetaType.targetDataRefs",
+              "wireType": "Vector",
+              "offset": 170,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.associationId",
+              "wireType": "IntrinsicMetaTypeUuid",
+              "offset": 174,
+              "length": 76,
+              "value": "00000000-0000-0000-0000-000000000000"
+            },
+            {
+              "name": "DcFeatureMetaType.bDisabled",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 250,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineReorder",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 251,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.bLockedForTimelineRoll",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 252,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.childNodes",
+              "wireType": "List",
+              "offset": 253,
+              "length": 59,
+              "value": [
+                {
+                  "entityId": 236
+                },
+                {
+                  "entityId": 239
+                },
+                {
+                  "entityId": 244
+                },
+                {
+                  "entityId": 247
+                },
+                {
+                  "entityId": 249
+                }
+              ]
+            },
+            {
+              "name": "DcFeatureMetaType.endModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 312,
+              "length": 4,
+              "value": 6
+            },
+            {
+              "name": "DcFeatureMetaType.featureBaseName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 316,
+              "length": 18,
+              "value": "Extrude"
+            },
+            {
+              "name": "DcFeatureMetaType.featureIndex",
+              "wireType": "IntrinsicMetaTypeuint64",
+              "offset": 334,
+              "length": 8,
+              "value": 1
+            },
+            {
+              "name": "DcFeatureMetaType.featureUserName",
+              "wireType": "IntrinsicMetaTypeIString",
+              "offset": 342,
+              "length": 42,
+              "value": "ControlledExtrusion"
+            },
+            {
+              "name": "DcFeatureMetaType.groupMembers",
+              "wireType": "List",
+              "offset": 384,
+              "length": 4,
+              "value": []
+            },
+            {
+              "name": "DcFeatureMetaType.isImplicitlySuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 388,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isSuppressed",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 389,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.isZombieFeature",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 390,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcFeatureMetaType.rProgenitorTable",
+              "wireType": "StrongRefMetaType",
+              "offset": 391,
+              "length": 11,
+              "value": {
+                "entityId": 254
+              }
+            },
+            {
+              "name": "DcFeatureMetaType.rReferencedContext",
+              "wireType": "PassiveRefMetaType",
+              "offset": 402,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcFeatureMetaType.startModelHS",
+              "wireType": "IntrinsicMetaTypeint32",
+              "offset": 403,
+              "length": 4,
+              "value": 2
+            },
+            {
+              "name": "DcComputableActionMetaType.birthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 407,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.computeTime",
+              "wireType": "IntrinsicMetaTypedouble",
+              "offset": 411,
+              "length": 8,
+              "value": 0.000209917
+            },
+            {
+              "name": "DcComputableActionMetaType.firstBirthday",
+              "wireType": "IntrinsicMetaTypeuint32",
+              "offset": 419,
+              "length": 4,
+              "value": 260
+            },
+            {
+              "name": "DcComputableActionMetaType.status",
+              "wireType": "StrongRefMetaType",
+              "offset": 423,
+              "length": 11,
+              "value": {
+                "entityId": 253
+              }
+            },
+            {
+              "name": "DcNodeMetaType.isActive",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 434,
+              "length": 1,
+              "value": true
+            },
+            {
+              "name": "DcNodeMetaType.isEdited",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 435,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.isEliminated",
+              "wireType": "IntrinsicMetaTypebool",
+              "offset": 436,
+              "length": 1,
+              "value": false
+            },
+            {
+              "name": "DcNodeMetaType.rDynamicUpdateData",
+              "wireType": "StrongRefMetaType",
+              "offset": 437,
+              "length": 11,
+              "value": {
+                "entityId": 252
+              }
+            },
+            {
+              "name": "DcNodeMetaType.rGroupRepresentative",
+              "wireType": "PassiveRefMetaType",
+              "offset": 448,
+              "length": 1,
+              "value": null
+            },
+            {
+              "name": "DcNodeMetaType.rParentFeature",
+              "wireType": "PassiveRefMetaType",
+              "offset": 449,
+              "length": 1,
+              "value": null
+            }
+          ],
+          "unexplainedBytes": 0
+        },
+        {
+          "identity": 235,
+          "primary": false,
+          "classIdentifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+          "recordBulkOffset": 26828,
+          "payloadBulkOffset": 26843,
+          "payloadLength": 15,
+          "payloadSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "status": "decoded",
+          "byteIdenticalReencoding": true,
+          "encodedSha256": "14e207f778f8cbf575714026a7e22e5abe1bc3d469ac89d7e23835fd293f9efc",
+          "semanticFieldsCompared": 1,
+          "nativeSemanticDifferences": [],
+          "value": {
+            "frame": {
+              "rootId": ""
+            },
+            "sets": [
+              {
+                "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+                "values": {
+                  "rParent": {
+                    "entityId": 27
+                  }
+                }
+              }
+            ]
+          },
+          "fields": [
+            {
+              "name": "Entity.rootId",
+              "wireType": "u32 byte count + ASCII",
+              "offset": 0,
+              "length": 4,
+              "value": ""
+            },
+            {
+              "name": "ManagedEntityMetaType.rParent",
+              "wireType": "PassiveRefMetaType",
+              "offset": 4,
+              "length": 11,
+              "value": {
+                "entityId": 27
+              }
+            }
+          ],
+          "unexplainedBytes": 0
+        }
+      ]
+    }
+  ]
+}

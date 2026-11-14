@@ -1,0 +1,23 @@
+{
+  "archive": "EnvelopeEvidence.tar.xz",
+  "archive_sha256": "b7b71dcd636e82e4fccb98bcdcf4c9172d71aa73f3aca2c53424792e676bd121",
+  "entries": [
+    {
+      "name": "EnvelopeMaterial.json",
+      "bytes": 1146560,
+      "sha256": "b80beb5dc147a77ad06cb79bc76560c1dde841f694c2f1829585b331ddd37dfb"
+    },
+    {
+      "name": "EnvelopeTyped.json",
+      "bytes": 1104244,
+      "sha256": "0930e1b30bdb903256ba8358a5a7d7d4d63468ff09f7b21b0f9e3fe9042bedd0"
+    },
+    {
+      "name": "EnvelopeInventory.json",
+      "bytes": 725514,
+      "sha256": "bc14d5b17d550c1f650b72b076f1dd2ca45b8e9b3c6e3f76b1817d41e58dd272"
+    }
+  ],
+  "purpose": "Exact generated field and byte-offset evidence, archived to keep code review focused on implementation and readable interpretation",
+  "extraction": "tar -xJf re/Fusion/Reconstruction/DocumentEnvelope/EnvelopeEvidence.tar.xz -C re/Fusion/Reconstruction/DocumentEnvelope"
+}

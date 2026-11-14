@@ -1,0 +1,871 @@
+{
+  "$type": "CadDocument",
+  "assembly": null,
+  "bodies": {
+    "$tuple": [
+      {
+        "$type": "Body",
+        "attributes": {},
+        "final_feature_id": "extrude",
+        "id": "body",
+        "material_id": "material",
+        "name": "Public Solid",
+        "provenance": null,
+        "topology": {
+          "$type": "TopologySummary",
+          "bounding_box": {
+            "$type": "BoundingBox",
+            "maximum": {
+              "$type": "Vector3",
+              "x": 13.487307279940708,
+              "y": 13.487307279940708,
+              "z": 17.0
+            },
+            "minimum": {
+              "$type": "Vector3",
+              "x": -13.487307279940708,
+              "y": -13.487307279940708,
+              "z": 0.0
+            }
+          },
+          "edge_count": 2,
+          "face_count": 3,
+          "shell_count": 1,
+          "solid_count": 1,
+          "surface_area": 2390.2705815680474,
+          "valid": true,
+          "vertex_count": 2,
+          "volume": 8683.191888674633
+        }
+      }
+    ]
+  },
+  "brep": {
+    "$type": "BrepModel",
+    "bodies": {
+      "$tuple": [
+        {
+          "$type": "BrepBody",
+          "attributes": {},
+          "design_body_id": "body",
+          "id": "body-sweep-body",
+          "provenance": null,
+          "region_ids": {
+            "$tuple": [
+              "body-sweep-region"
+            ]
+          },
+          "transform": {
+            "$type": "Transform",
+            "origin": {
+              "$type": "Vector3",
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "x_axis": {
+              "$type": "Vector3",
+              "x": 1.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "y_axis": {
+              "$type": "Vector3",
+              "x": 0.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "z_axis": {
+              "$type": "Vector3",
+              "x": 0.0,
+              "y": 0.0,
+              "z": 1.0
+            }
+          },
+          "vertex_ids": {
+            "$tuple": []
+          },
+          "wire_ids": {
+            "$tuple": []
+          }
+        }
+      ]
+    },
+    "coedges": {
+      "$tuple": [
+        {
+          "$type": "BrepCoedge",
+          "attributes": {},
+          "edge_id": "body-sweep-orbit-1-edge",
+          "id": "body-sweep-side-0-loop-0-use",
+          "pcurve_id": "",
+          "provenance": null,
+          "reversed": true
+        },
+        {
+          "$type": "BrepCoedge",
+          "attributes": {},
+          "edge_id": "body-sweep-orbit-1-edge",
+          "id": "body-sweep-side-1-loop-0-use",
+          "pcurve_id": "",
+          "provenance": null,
+          "reversed": false
+        },
+        {
+          "$type": "BrepCoedge",
+          "attributes": {},
+          "edge_id": "body-sweep-orbit-2-edge",
+          "id": "body-sweep-side-1-loop-1-use",
+          "pcurve_id": "",
+          "provenance": null,
+          "reversed": true
+        },
+        {
+          "$type": "BrepCoedge",
+          "attributes": {},
+          "edge_id": "body-sweep-orbit-2-edge",
+          "id": "body-sweep-side-2-loop-0-use",
+          "pcurve_id": "",
+          "provenance": null,
+          "reversed": false
+        }
+      ]
+    },
+    "curves": {
+      "$tuple": [
+        {
+          "$type": "CircleCurve",
+          "attributes": {},
+          "axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "center": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "id": "body-sweep-orbit-1-curve",
+          "provenance": null,
+          "radius": 12.0,
+          "reference_direction": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "$type": "CircleCurve",
+          "attributes": {},
+          "axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "center": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 17.0
+          },
+          "id": "body-sweep-orbit-2-curve",
+          "provenance": null,
+          "radius": 13.487307279940708,
+          "reference_direction": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ]
+    },
+    "edges": {
+      "$tuple": [
+        {
+          "$type": "BrepEdge",
+          "attributes": {},
+          "curve_id": "body-sweep-orbit-1-curve",
+          "degenerate": false,
+          "end_parameter": 6.283185307179586,
+          "end_vertex_id": "body-sweep-orbit-1-vertex",
+          "id": "body-sweep-orbit-1-edge",
+          "provenance": null,
+          "start_parameter": 0.0,
+          "start_vertex_id": "body-sweep-orbit-1-vertex",
+          "tolerance": 0.0
+        },
+        {
+          "$type": "BrepEdge",
+          "attributes": {},
+          "curve_id": "body-sweep-orbit-2-curve",
+          "degenerate": false,
+          "end_parameter": 6.283185307179586,
+          "end_vertex_id": "body-sweep-orbit-2-vertex",
+          "id": "body-sweep-orbit-2-edge",
+          "provenance": null,
+          "start_parameter": 0.0,
+          "start_vertex_id": "body-sweep-orbit-2-vertex",
+          "tolerance": 0.0
+        }
+      ]
+    },
+    "face_uses": {
+      "$tuple": [
+        {
+          "$type": "BrepFaceUse",
+          "attributes": {},
+          "face_id": "body-sweep-side-0-face",
+          "id": "body-sweep-side-0-face-use",
+          "provenance": null,
+          "reversed": false
+        },
+        {
+          "$type": "BrepFaceUse",
+          "attributes": {},
+          "face_id": "body-sweep-side-1-face",
+          "id": "body-sweep-side-1-face-use",
+          "provenance": null,
+          "reversed": false
+        },
+        {
+          "$type": "BrepFaceUse",
+          "attributes": {},
+          "face_id": "body-sweep-side-2-face",
+          "id": "body-sweep-side-2-face-use",
+          "provenance": null,
+          "reversed": false
+        }
+      ]
+    },
+    "faces": {
+      "$tuple": [
+        {
+          "$type": "BrepFace",
+          "attributes": {},
+          "id": "body-sweep-side-0-face",
+          "loop_ids": {
+            "$tuple": [
+              "body-sweep-side-0-loop-0"
+            ]
+          },
+          "provenance": null,
+          "same_sense": true,
+          "surface_id": "body-sweep-side-0-surface",
+          "tolerance": 0.0
+        },
+        {
+          "$type": "BrepFace",
+          "attributes": {},
+          "id": "body-sweep-side-1-face",
+          "loop_ids": {
+            "$tuple": [
+              "body-sweep-side-1-loop-0",
+              "body-sweep-side-1-loop-1"
+            ]
+          },
+          "provenance": null,
+          "same_sense": true,
+          "surface_id": "body-sweep-side-1-surface",
+          "tolerance": 0.0
+        },
+        {
+          "$type": "BrepFace",
+          "attributes": {},
+          "id": "body-sweep-side-2-face",
+          "loop_ids": {
+            "$tuple": [
+              "body-sweep-side-2-loop-0"
+            ]
+          },
+          "provenance": null,
+          "same_sense": true,
+          "surface_id": "body-sweep-side-2-surface",
+          "tolerance": 0.0
+        }
+      ]
+    },
+    "loops": {
+      "$tuple": [
+        {
+          "$type": "BrepLoop",
+          "attributes": {},
+          "coedge_ids": {
+            "$tuple": [
+              "body-sweep-side-0-loop-0-use"
+            ]
+          },
+          "id": "body-sweep-side-0-loop-0",
+          "outer": true,
+          "provenance": null
+        },
+        {
+          "$type": "BrepLoop",
+          "attributes": {},
+          "coedge_ids": {
+            "$tuple": [
+              "body-sweep-side-1-loop-0-use"
+            ]
+          },
+          "id": "body-sweep-side-1-loop-0",
+          "outer": true,
+          "provenance": null
+        },
+        {
+          "$type": "BrepLoop",
+          "attributes": {},
+          "coedge_ids": {
+            "$tuple": [
+              "body-sweep-side-1-loop-1-use"
+            ]
+          },
+          "id": "body-sweep-side-1-loop-1",
+          "outer": false,
+          "provenance": null
+        },
+        {
+          "$type": "BrepLoop",
+          "attributes": {},
+          "coedge_ids": {
+            "$tuple": [
+              "body-sweep-side-2-loop-0-use"
+            ]
+          },
+          "id": "body-sweep-side-2-loop-0",
+          "outer": true,
+          "provenance": null
+        }
+      ]
+    },
+    "pcurves": {
+      "$tuple": []
+    },
+    "regions": {
+      "$tuple": [
+        {
+          "$type": "BrepRegion",
+          "attributes": {},
+          "id": "body-sweep-region",
+          "provenance": null,
+          "shell_use_ids": {
+            "$tuple": [
+              "body-sweep-shell-use"
+            ]
+          },
+          "solid": true
+        }
+      ]
+    },
+    "schema_version": "1.0",
+    "shell_uses": {
+      "$tuple": [
+        {
+          "$type": "BrepShellUse",
+          "attributes": {},
+          "id": "body-sweep-shell-use",
+          "provenance": null,
+          "reversed": false,
+          "shell_id": "body-sweep-shell"
+        }
+      ]
+    },
+    "shells": {
+      "$tuple": [
+        {
+          "$type": "BrepShell",
+          "attributes": {},
+          "closed": true,
+          "face_use_ids": {
+            "$tuple": [
+              "body-sweep-side-0-face-use",
+              "body-sweep-side-1-face-use",
+              "body-sweep-side-2-face-use"
+            ]
+          },
+          "id": "body-sweep-shell",
+          "provenance": null
+        }
+      ]
+    },
+    "surfaces": {
+      "$tuple": [
+        {
+          "$type": "PlaneSurface",
+          "attributes": {},
+          "id": "body-sweep-side-0-surface",
+          "normal": {
+            "$type": "Vector3",
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "provenance": null,
+          "reference_direction": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "$type": "ConeSurface",
+          "attributes": {},
+          "axis": {
+            "$type": "Vector3",
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "half_angle": 0.08726646259971649,
+          "id": "body-sweep-side-1-surface",
+          "origin": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "provenance": null,
+          "radius": 12.0,
+          "reference_direction": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "$type": "PlaneSurface",
+          "attributes": {},
+          "id": "body-sweep-side-2-surface",
+          "normal": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "origin": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 17.0
+          },
+          "provenance": null,
+          "reference_direction": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ]
+    },
+    "vertices": {
+      "$tuple": [
+        {
+          "$type": "BrepVertex",
+          "attributes": {},
+          "id": "body-sweep-orbit-1-vertex",
+          "point": {
+            "$type": "Vector3",
+            "x": 12.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "provenance": null,
+          "tolerance": 0.0
+        },
+        {
+          "$type": "BrepVertex",
+          "attributes": {},
+          "id": "body-sweep-orbit-2-vertex",
+          "point": {
+            "$type": "Vector3",
+            "x": 13.487307279940708,
+            "y": 0.0,
+            "z": 17.0
+          },
+          "provenance": null,
+          "tolerance": 0.0
+        }
+      ]
+    },
+    "wires": {
+      "$tuple": []
+    }
+  },
+  "brep_payloads": {
+    "$tuple": []
+  },
+  "capabilities": {
+    "$frozenset": []
+  },
+  "configurations": {
+    "$tuple": [
+      {
+        "$type": "Configuration",
+        "active": true,
+        "attributes": {},
+        "id": "default",
+        "name": "Public frustum",
+        "overrides": {
+          "$tuple": []
+        },
+        "parent_id": null,
+        "suppressed_feature_ids": {
+          "$tuple": []
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "$tuple": []
+  },
+  "feature_timeline": {
+    "$tuple": [
+      {
+        "$type": "FeatureStep",
+        "attributes": {},
+        "configuration_states": {
+          "$tuple": []
+        },
+        "definition": null,
+        "id": "sketch",
+        "input_feature_ids": {
+          "$tuple": []
+        },
+        "kind": {
+          "$enum": "FeatureKind",
+          "value": "reference"
+        },
+        "name": "Public Profile",
+        "operation": null,
+        "order": 0,
+        "parameter_ids": {
+          "$tuple": []
+        },
+        "provenance": null,
+        "selection_ids": {
+          "$tuple": []
+        },
+        "sketch_id": "sketch",
+        "suppressed": false
+      },
+      {
+        "$type": "FeatureStep",
+        "attributes": {},
+        "configuration_states": {
+          "$tuple": []
+        },
+        "definition": {
+          "$type": "DistanceExtrude",
+          "against_parameter_id": null,
+          "along_parameter_id": "along",
+          "direction": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "second_taper_id": null,
+          "side_mode": "one_sided",
+          "start_offset_id": null,
+          "taper_parameter_id": "taper"
+        },
+        "id": "extrude",
+        "input_feature_ids": {
+          "$tuple": [
+            "sketch"
+          ]
+        },
+        "kind": {
+          "$enum": "FeatureKind",
+          "value": "extrusion"
+        },
+        "name": "Public Extrusion",
+        "operation": {
+          "$enum": "BooleanOperation",
+          "value": "create"
+        },
+        "order": 1,
+        "parameter_ids": {
+          "$tuple": [
+            "along",
+            "taper"
+          ]
+        },
+        "provenance": null,
+        "selection_ids": {
+          "$tuple": []
+        },
+        "sketch_id": "sketch",
+        "suppressed": false
+      }
+    ]
+  },
+  "materials": {
+    "$tuple": [
+      {
+        "$type": "MaterialRecord",
+        "color_value": {
+          "$tuple": [
+            0.2,
+            0.4,
+            0.6,
+            1.0
+          ]
+        },
+        "density": 2870.0,
+        "id": "material",
+        "name": "Public Material"
+      }
+    ]
+  },
+  "meshes": {
+    "$tuple": []
+  },
+  "metadata": {
+    "fusion.authoring": {
+      "spec": {
+        "fields": {
+          "BodyName": "Public Solid",
+          "ConstrainRectangle": false,
+          "DepthMm": 23.0,
+          "DepthParamName": "rectangleDepth",
+          "ExtrusionName": "Public Extrusion",
+          "LengthMm": 17.0,
+          "Material": {
+            "fields": {
+              "Color": {
+                "fields": {
+                  "AlphaValue": 1.0,
+                  "BlueValue": 0.6,
+                  "GreenValue": 0.4,
+                  "RedValue": 0.2
+                },
+                "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue"
+              },
+              "Density": 2870.0,
+              "NameValue": "Public Material"
+            },
+            "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec"
+          },
+          "ParamComment": "",
+          "ParamName": "publicHeight",
+          "ProfileKind": "frustum",
+          "RadiusMm": 12.0,
+          "SketchName": "Public Profile",
+          "TaperDegrees": 5.0,
+          "Title": "Public frustum",
+          "WidthMm": 19.0,
+          "WidthParamName": "rectangleWidth"
+        },
+        "record": "convert.formats.Fusion.DocumentCodec.Model.DocumentSpec.DocumentSpec"
+      },
+      "version": 1
+    }
+  },
+  "parameters": {
+    "$tuple": [
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": null,
+        "id": "length",
+        "name": "publicHeight",
+        "owner_id": "",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 17.0
+        }
+      },
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": {
+          "$type": "Expression",
+          "language": "kit",
+          "parameter_ids": {
+            "$tuple": [
+              "length"
+            ]
+          },
+          "source": "publicHeight"
+        },
+        "id": "along",
+        "name": "AlongDistance",
+        "owner_id": "extrude",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 17.0
+        }
+      },
+      {
+        "$type": "Parameter",
+        "attributes": {},
+        "expression": null,
+        "id": "taper",
+        "name": "TaperAngle",
+        "owner_id": "extrude",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "angle"
+          },
+          "unit": "rad",
+          "value": 0.08726646259971647
+        }
+      }
+    ]
+  },
+  "schema_version": "1.0",
+  "selections": {
+    "$tuple": []
+  },
+  "sketches": {
+    "$tuple": [
+      {
+        "$type": "Sketch",
+        "attributes": {},
+        "closed_profile_entity_ids": {
+          "$tuple": [
+            {
+              "$tuple": [
+                "circle"
+              ]
+            }
+          ]
+        },
+        "constraints": {
+          "$tuple": []
+        },
+        "entities": {
+          "$tuple": [
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "CircleGeometry",
+                "center": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "radius": 12.0
+              },
+              "id": "circle",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "circle"
+              },
+              "provenance": null
+            }
+          ]
+        },
+        "id": "sketch",
+        "name": "Public Profile",
+        "parameter_ids": {
+          "$tuple": []
+        },
+        "provenance": null,
+        "support_plane_id": "plane",
+        "suppressed": false
+      }
+    ]
+  },
+  "source": {
+    "$type": "CadSource",
+    "application_version": "",
+    "attributes": {},
+    "container_version": "",
+    "format_id": "fusion.f3d",
+    "path": "",
+    "sha256": ""
+  },
+  "support_planes": {
+    "$tuple": [
+      {
+        "$type": "SupportPlane",
+        "attributes": {},
+        "id": "plane",
+        "name": "XY",
+        "offset_parameter_id": null,
+        "provenance": null,
+        "support_selection_id": null,
+        "transform": {
+          "$type": "Transform",
+          "origin": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "x_axis": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "y_axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          },
+          "z_axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "units": {
+    "$enum": "UnitSystem",
+    "value": "mm"
+  }
+}

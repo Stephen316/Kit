@@ -1,0 +1,797 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native observation of same-source controls whose BRep journal was truncated before later features; measures what Fusion shows on open and after computeAll",
+  "cases": [
+    {
+      "name": "FilletWithoutFilletState",
+      "control": "Fillet",
+      "sha256": "f45e44860e7a5ef5ff551b9d96126a4714d6ce1ce2393bb13824ab4a9fa8402d",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.961372,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "ExtrudeCutWithoutCutState",
+      "control": "ExtrudeCut",
+      "sha256": "f9f14c306afa16541b1466f358b7ed92ae43353e9adba6e66afec13c6e9db824",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Hole sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Hole extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          22.429204,
+          7,
+          14,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Hole sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Hole extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 22.429203673205038,
+            "area_cm2": 56.71238898038469,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 4,
+          "bodies": [
+            [
+              22.429204,
+              7,
+              14,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          22.429204,
+          7,
+          14,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "MultiFeatureBaseStateOnly",
+      "control": "MultiFeature",
+      "sha256": "6f7d8aa143dae2bf5347cf89a0f1f4ace8e235987b47d89efa57efeee6652108",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/ObserveRecompute.py\", line 43, in <module>\n    case[\"opened\"] = observe(design)\n                     ~~~~~~~^^^^^^^^\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/ObserveRecompute.py\", line 26, in observe\n    \"bodies\": [{\"name\": b.name, \"volume_cm3\": b.volume, \"area_cm2\": b.area, \"faces\": b.faces.count, \"edges\": b.edges.count, \"vertices\": b.vertices.count, \"min_cm\": b.boundingBox.minPoint.asArray(), \"max_cm\": b.boundingBox.maxPoint.asArray()} for b in comp.bRepBodies],\n                                              ^^^^^^^^\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 18293, in _get_volume\n    return _fusion.BRepBody__get_volume(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : The body has no geometry\n"
+    },
+    {
+      "name": "ShellWithoutShellState",
+      "control": "Shell",
+      "sha256": "182cbaf01e44b00f4ec4859e5f8166e4360340e2bc0da9628b05c977799ebbb4",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Open shell",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          7.152,
+          11,
+          24,
+          16
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Open shell",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 7.152000000000008,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              7.152,
+              11,
+              24,
+              16
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          7.152,
+          11,
+          24,
+          16
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "RectPatternWithoutPatternState",
+      "control": "RectPattern",
+      "sha256": "3ae4146d0bbf8e010e722a862a63a7a1eef7a736f22a05056a12c5ba7d9bdd38",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Pocket sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Pocket extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Pocket grid",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.434513322353816,
+            "area_cm2": 55.20442450666159,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          20.60708,
+          12,
+          24,
+          20
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Pocket sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Pocket extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Pocket grid",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 20.60707993412288,
+            "area_cm2": 71.22654703996953,
+            "faces": 12,
+            "edges": 24,
+            "vertices": 20,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 4,
+          "bodies": [
+            [
+              23.434513,
+              7,
+              14,
+              10
+            ]
+          ]
+        },
+        {
+          "position": 5,
+          "bodies": [
+            [
+              20.60708,
+              12,
+              24,
+              20
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          20.60708,
+          12,
+          24,
+          20
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "ChamferWithoutChamferState",
+      "control": "Chamfer",
+      "sha256": "f1cdd7c7b050a6fd1a50d94b2d00069b3064fb308595a5d004741032e68a1570",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner chamfer",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.91,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner chamfer",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.91,
+            "area_cm2": 51.558528137423856,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.91,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.91,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "MirrorBodyWithoutMirrorState",
+      "control": "MirrorBody",
+      "sha256": "357902fd757660aa2b063c9a596786cbcb4b63989c85685543afb5cc3731b6c7",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/ObserveRecompute.py\", line 43, in <module>\n    case[\"opened\"] = observe(design)\n                     ~~~~~~~^^^^^^^^\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/ObserveRecompute.py\", line 26, in observe\n    \"bodies\": [{\"name\": b.name, \"volume_cm3\": b.volume, \"area_cm2\": b.area, \"faces\": b.faces.count, \"edges\": b.edges.count, \"vertices\": b.vertices.count, \"min_cm\": b.boundingBox.minPoint.asArray(), \"max_cm\": b.boundingBox.maxPoint.asArray()} for b in comp.bRepBodies],\n                                              ^^^^^^^^\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 18293, in _get_volume\n    return _fusion.BRepBody__get_volume(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : The body has no geometry\n"
+    }
+  ],
+  "status": "observed",
+  "documents_after": 0
+}

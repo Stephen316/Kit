@@ -1,0 +1,691 @@
+[
+  {
+    "ClassGuid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+    "BaseGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+    "SchemaVersion": 14,
+    "Members": [
+      {
+        "FieldName": "LinearOffsetOnPeriodicFace",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignUpDirection",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "arcLengthForPeriodicFace",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "axisFlipped",
+        "ValueType": {
+          "KindValue": "u8"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bUseUDirection",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "definerCreator",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2D8D253B-4D92-4AFF-ABA8-B4162BD0C4F5"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "extraOffset",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "globalParamU",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "globalParamV",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "globalReorientParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "globalReorientParam1",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isInferredXAxis",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isInferredZAxis",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isZFlip",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "matrix3d",
+        "ValueType": {
+          "KindValue": "matrix",
+          "HasMatrixRows": true
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "oldRotation",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "pickpoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rEdgeReferences",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rOrigin",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rPlaneReferences",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "7F737807-0FC9-4E3D-9A14-4C20E2AEC72E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rXAxis",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rZAxis",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "refType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "resizeType",
+        "ValueType": {
+          "KindValue": "u8"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "values",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DRMatrix",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "D956D02C-2806-4E57-8B2E-EFA323A5C2B8",
+    "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "ACTInstances",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F01D16CF-95D5-4239-A488-00448AC88023"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "actIdentifier",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "designComponent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "name",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "reffingInstances",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": false
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTComponent",
+    "ClassSpace": "CommonData"
+  },
+  {
+    "ClassGuid": "596618BE-CD74-4BC9-A627-2DA799696C2D",
+    "BaseGuid": "5EAF2F0F-4AEE-4F20-B569-119A7BD1F36D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ACTComponentsRoot",
+    "ClassSpace": "CommonData"
+  },
+  {
+    "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6",
+    "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "ACTRef",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "actIdentifier",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bSoftDeleted",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "designInstance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "instanceId",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "targetComponent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D956D02C-2806-4E57-8B2E-EFA323A5C2B8"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTInstance",
+    "ClassSpace": "CommonData"
+  },
+  {
+    "ClassGuid": "F01D16CF-95D5-4239-A488-00448AC88023",
+    "BaseGuid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "ACTInstancesMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u32"
+            },
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "rDesignInstances",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "softDeletedInstances",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTInstances",
+    "ClassSpace": "CommonData"
+  },
+  {
+    "ClassGuid": "F3E2665C-F3E1-4BA7-8676-8B90579B56D3",
+    "BaseGuid": "5EAF2F0F-4AEE-4F20-B569-119A7BD1F36D",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "instancesMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u32"
+            },
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "nextInstanceId",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTInstancesRoot",
+    "ClassSpace": "CommonData"
+  },
+  {
+    "ClassGuid": "7F5A0426-1D2A-4DC4-9F06-58631F69D2F5",
+    "BaseGuid": "b96995c7-216b-4189-a583-c4d39d0da2c8",
+    "SchemaVersion": 5,
+    "Members": [
+      {
+        "FieldName": "dofRotate0",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dofRotate1",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dofRotate2",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dofSlide0",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dofSlide1",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dofSlide2",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "type",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "Joint",
+    "ClassSpace": "Component"
+  },
+  {
+    "ClassGuid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+    "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+    "SchemaVersion": 8,
+    "Members": [
+      {
+        "FieldName": "UserDefaultUnit",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "birthday",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "booleanValue",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "comment",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "creationIndex",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dcParameter",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "expression",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "expressionType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "group",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A3B7F2E1-9C4D-4A8B-B5E6-1D2F3A4B5C6D"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isDirty",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isDriven",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isFavourite",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isOrphan",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isUserDefined",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "name",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "textValue",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "unit",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "userName",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "value",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "Parameter",
+    "ClassSpace": "CommonData"
+  }
+]

@@ -74,6 +74,7 @@ from convert.formats.Fusion.AssetCodec.AssetPlan import AssetPlan
 from convert.formats.Fusion.AssetCodec.EmitAsset import EmitAsset
 from convert.formats.Fusion.AssetCodec.SegmentPlan import SegmentPlan
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.formats.Fusion.ContainerCodec.ContainerLayout import KCoreSegments
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Browser.EmitBrowserRoot import EmitBrowserRoot
 from convert.formats.Fusion.SegmentCodec.Browser.ReadBrowserRoot import ReadBrowserRoot
@@ -91,6 +92,7 @@ adapters = {adapter.format_id for adapter in available_adapters()}
 assert adapters == {
     "catia.v5",
     "freecad.fcstd",
+    "fusion.f3d",
     "interchange.json",
     "solidworks.sldprt",
 }
@@ -119,7 +121,7 @@ if zstd is not None:
         root_meta = ReadRootWire(archive.read("Manifest.dat"))
         asset_meta = ReadAssetWire(archive.read("FusionAssetName[Active]/Manifest.dat"))
         segment_plans = {}
-        for segment in SegmentKind:
+        for segment in KCoreSegments:
             prefix = f"FusionAssetName[Active]/{segment.value}1/"
             bulk_data = archive.read(prefix + "BulkStream.dat")
             meta_data = archive.read(prefix + "MetaStream.dat")

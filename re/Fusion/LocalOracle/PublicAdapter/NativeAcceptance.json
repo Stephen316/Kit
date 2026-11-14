@@ -1,0 +1,2192 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Complete public writer\u2192strict reader\u2192neutral JSON\u2192writer artifacts, independently authored with no carrier; native load, edits, rollback/rebuild and save/reopen",
+  "cases": [
+    {
+      "kind": "parameter",
+      "source_sha256": "11c175f89ad9677816cf4c21b0f8d7f1abb179444109d4bb120200a6bdecff07",
+      "stages": {
+        "opened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            }
+          ],
+          "timeline": [],
+          "sketches": [],
+          "bodies": []
+        },
+        "rebuilt": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            }
+          ],
+          "timeline": [],
+          "sketches": [],
+          "bodies": []
+        },
+        "edited": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            }
+          ],
+          "timeline": [],
+          "sketches": [],
+          "bodies": []
+        },
+        "reopened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            }
+          ],
+          "timeline": [],
+          "sketches": [],
+          "bodies": []
+        }
+      },
+      "saved_sha256": "42a5b2dd2f1fe47588b9a7e3296c6c90ed5a79028b159c2d8b4f23d0eab15697",
+      "status": "accepted"
+    },
+    {
+      "kind": "circle",
+      "source_sha256": "78139d9d93a0b0cffcb1dd95bbfce6d4ed79548151b18034445cdfc54c8cf33c",
+      "stages": {
+        "opened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": []
+        },
+        "rebuilt": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": []
+        },
+        "edited": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.4
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": []
+        },
+        "reopened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.4
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": []
+        }
+      },
+      "saved_sha256": "699c12b242a416a6ae761b6186759246df9b09a5b6501cd58c04dc4a340db14e",
+      "status": "accepted"
+    },
+    {
+      "kind": "rectangle",
+      "source_sha256": "dabcd2f455d0ee302fa31dfcc0ee928e7b5467efe4660fe00a30519e67c8e4c0",
+      "stages": {
+        "opened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 1.9000000000000001,
+              "expression": "19.0 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.3000000000000003,
+              "expression": "23.0 mm"
+            },
+            {
+              "name": "d4",
+              "value": 1.9000000000000001,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d5",
+              "value": 2.3000000000000003,
+              "expression": "rectangleDepth"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d4",
+                  "expression": "rectangleWidth",
+                  "value": 1.9000000000000001
+                },
+                {
+                  "name": "d5",
+                  "expression": "rectangleDepth",
+                  "value": 2.3000000000000003
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": []
+        },
+        "rebuilt": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 1.9000000000000001,
+              "expression": "19.0 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.3000000000000003,
+              "expression": "23.0 mm"
+            },
+            {
+              "name": "d4",
+              "value": 1.9000000000000001,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d5",
+              "value": 2.3000000000000003,
+              "expression": "rectangleDepth"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d4",
+                  "expression": "rectangleWidth",
+                  "value": 1.9000000000000001
+                },
+                {
+                  "name": "d5",
+                  "expression": "rectangleDepth",
+                  "value": 2.3000000000000003
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": []
+        },
+        "edited": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 2.2,
+              "expression": "22 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.9000000000000004,
+              "expression": "29 mm"
+            },
+            {
+              "name": "d4",
+              "value": 2.2,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d5",
+              "value": 2.9000000000000004,
+              "expression": "rectangleDepth"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d4",
+                  "expression": "rectangleWidth",
+                  "value": 2.2
+                },
+                {
+                  "name": "d5",
+                  "expression": "rectangleDepth",
+                  "value": 2.9000000000000004
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": []
+        },
+        "reopened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 2.2,
+              "expression": "22 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.9000000000000004,
+              "expression": "29 mm"
+            },
+            {
+              "name": "d4",
+              "value": 2.2,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d5",
+              "value": 2.9000000000000004,
+              "expression": "rectangleDepth"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d4",
+                  "expression": "rectangleWidth",
+                  "value": 2.2
+                },
+                {
+                  "name": "d5",
+                  "expression": "rectangleDepth",
+                  "value": 2.9000000000000004
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": []
+        }
+      },
+      "saved_sha256": "2989e4fe254e6e0a36adc446d1917f096c7040f736daa0f252e7f6be762523c6",
+      "status": "accepted"
+    },
+    {
+      "kind": "extrusion",
+      "source_sha256": "f9aa0cd9ca84d468fbce73f49ebe2cbb9d31dfaa8dc3e9eb460a010c6f8b3566",
+      "stages": {
+        "opened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 7.690618815988144,
+              "area_cm2": 21.86548486898496,
+              "mass_kg": 0.022072076001885023,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                0.0,
+                0.0,
+                0.8499999999999999
+              ],
+              "min_cm": [
+                -1.2,
+                -1.2,
+                0.0
+              ],
+              "max_cm": [
+                1.2,
+                1.2,
+                1.7
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        },
+        "rollback": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": []
+        },
+        "rebuilt": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 7.690618815988144,
+              "area_cm2": 21.86548486898496,
+              "mass_kg": 0.022072076001885974,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.2548154382501974e-10,
+                0.0,
+                0.8500000000000001
+              ],
+              "min_cm": [
+                -1.2,
+                -1.2,
+                0.0
+              ],
+              "max_cm": [
+                1.2,
+                1.2,
+                1.7000000000000002
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        },
+        "edited": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "d2",
+              "value": 2.1,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 9.500176184455942,
+              "area_cm2": 24.88141381643116,
+              "mass_kg": 0.02726550564938855,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.2548138984028572e-10,
+                -1.8698146275504883e-16,
+                1.0499999999999998
+              ],
+              "min_cm": [
+                -1.2,
+                -1.2,
+                0.0
+              ],
+              "max_cm": [
+                1.2,
+                1.2,
+                2.1
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        },
+        "reopened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "d2",
+              "value": 2.1,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 9.500176184455942,
+              "area_cm2": 24.88141381643116,
+              "mass_kg": 0.02726550564938855,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.2548138984028572e-10,
+                -1.8698146275504883e-16,
+                1.0499999999999998
+              ],
+              "min_cm": [
+                -1.2,
+                -1.2,
+                0.0
+              ],
+              "max_cm": [
+                1.2,
+                1.2,
+                2.1
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        }
+      },
+      "saved_sha256": "33e7b098ddb6677b3bd9816b3c6133ccc850aea9d5d58fcd65b445c796ecc3a5",
+      "status": "accepted"
+    },
+    {
+      "kind": "cuboid",
+      "source_sha256": "ea09e975bd4550924e1a06baf0863f7336b52ce481099aea0a1e46bb74fe3e37",
+      "stages": {
+        "opened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 1.9000000000000001,
+              "expression": "19.0 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.3000000000000003,
+              "expression": "23.0 mm"
+            },
+            {
+              "name": "d6",
+              "value": 1.9000000000000001,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d7",
+              "value": 2.3000000000000003,
+              "expression": "rectangleDepth"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d6",
+                  "expression": "rectangleWidth",
+                  "value": 1.9000000000000001
+                },
+                {
+                  "name": "d7",
+                  "expression": "rectangleDepth",
+                  "value": 2.3000000000000003
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 7.428999999999999,
+              "area_cm2": 23.02,
+              "mass_kg": 0.021321229999999997,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                0.95,
+                1.15,
+                0.85
+              ],
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                1.9,
+                2.3,
+                1.7
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8
+            }
+          ]
+        },
+        "rollback": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 1.9000000000000001,
+              "expression": "19.0 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.3000000000000003,
+              "expression": "23.0 mm"
+            },
+            {
+              "name": "d6",
+              "value": 1.9000000000000001,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d7",
+              "value": 2.3000000000000003,
+              "expression": "rectangleDepth"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d6",
+                  "expression": "rectangleWidth",
+                  "value": 1.9000000000000001
+                },
+                {
+                  "name": "d7",
+                  "expression": "rectangleDepth",
+                  "value": 2.3000000000000003
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": []
+        },
+        "rebuilt": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 1.9000000000000001,
+              "expression": "19.0 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.3000000000000003,
+              "expression": "23.0 mm"
+            },
+            {
+              "name": "d6",
+              "value": 1.9000000000000001,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d7",
+              "value": 2.3000000000000003,
+              "expression": "rectangleDepth"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d6",
+                  "expression": "rectangleWidth",
+                  "value": 1.9000000000000001
+                },
+                {
+                  "name": "d7",
+                  "expression": "rectangleDepth",
+                  "value": 2.3000000000000003
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    1.9,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.3,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 7.428999999999999,
+              "area_cm2": 23.019999999999996,
+              "mass_kg": 0.021321229999999997,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                0.95,
+                1.15,
+                0.8500000000000002
+              ],
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                1.9,
+                2.3,
+                1.7000000000000002
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8
+            }
+          ]
+        },
+        "edited": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 2.2,
+              "expression": "22 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.9000000000000004,
+              "expression": "29 mm"
+            },
+            {
+              "name": "d6",
+              "value": 2.2,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d7",
+              "value": 2.9000000000000004,
+              "expression": "rectangleDepth"
+            },
+            {
+              "name": "d2",
+              "value": 2.1,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d6",
+                  "expression": "rectangleWidth",
+                  "value": 2.2
+                },
+                {
+                  "name": "d7",
+                  "expression": "rectangleDepth",
+                  "value": 2.9000000000000004
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 13.398000000000005,
+              "area_cm2": 34.18000000000001,
+              "mass_kg": 0.03845226000000001,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.1,
+                1.4500000000000002,
+                1.05
+              ],
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.2,
+                2.9000000000000004,
+                2.1
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8
+            }
+          ]
+        },
+        "reopened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "rectangleWidth",
+              "value": 2.2,
+              "expression": "22 mm"
+            },
+            {
+              "name": "rectangleDepth",
+              "value": 2.9000000000000004,
+              "expression": "29 mm"
+            },
+            {
+              "name": "d6",
+              "value": 2.2,
+              "expression": "rectangleWidth"
+            },
+            {
+              "name": "d7",
+              "value": 2.9000000000000004,
+              "expression": "rectangleDepth"
+            },
+            {
+              "name": "d2",
+              "value": 2.1,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.0,
+              "expression": "0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": true,
+              "profiles": 1,
+              "dimensions": [
+                {
+                  "name": "d6",
+                  "expression": "rectangleWidth",
+                  "value": 2.2
+                },
+                {
+                  "name": "d7",
+                  "expression": "rectangleDepth",
+                  "value": 2.9000000000000004
+                }
+              ],
+              "circles": [],
+              "lines": [
+                {
+                  "start_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    0.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    2.2,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ]
+                },
+                {
+                  "start_cm": [
+                    0.0,
+                    2.9000000000000004,
+                    0.0
+                  ],
+                  "end_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 13.398000000000005,
+              "area_cm2": 34.18000000000001,
+              "mass_kg": 0.03845226000000001,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.1,
+                1.4500000000000002,
+                1.05
+              ],
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.2,
+                2.9000000000000004,
+                2.1
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8
+            }
+          ]
+        }
+      },
+      "saved_sha256": "359625d185c9ad2a23504430d9eb534cc445c7820b390649ecfecc2b972db12a",
+      "status": "accepted"
+    },
+    {
+      "kind": "frustum",
+      "source_sha256": "59ea741f54f5d47d87f67981d9756511931add01234dc806bfec5ea52c1701ed",
+      "stages": {
+        "opened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.08726646259971647,
+              "expression": "5.0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 8.68319188867505,
+              "area_cm2": 23.902705815680473,
+              "mass_kg": 0.024920760720497395,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.5779522326413348e-10,
+                0.0,
+                0.8830302400116156
+              ],
+              "min_cm": [
+                -1.3487307279940708,
+                -1.3487307279940708,
+                0.0
+              ],
+              "max_cm": [
+                1.3487307279940708,
+                1.3487307279940708,
+                1.7
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        },
+        "rollback": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.08726646259971647,
+              "expression": "5.0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": []
+        },
+        "rebuilt": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 1.7000000000000002,
+              "expression": "17.0 mm"
+            },
+            {
+              "name": "d2",
+              "value": 1.7000000000000002,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": 0.08726646259971647,
+              "expression": "5.0 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 8.683191888675053,
+              "area_cm2": 23.902705815680477,
+              "mass_kg": 0.024920760720497398,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.57795427838311e-10,
+                -4.091483551612034e-16,
+                0.8830302400116153
+              ],
+              "min_cm": [
+                -1.3487307279940708,
+                -1.3487307279940708,
+                0.0
+              ],
+              "max_cm": [
+                1.3487307279940708,
+                1.3487307279940708,
+                1.7000000000000002
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        },
+        "edited": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "d2",
+              "value": 2.1,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": -0.05235987755982989,
+              "expression": "-3 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 8.655517248010467,
+              "area_cm2": 23.384314014759717,
+              "mass_kg": 0.024841334501790036,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.0320190926700436e-10,
+                2.0522827099773372e-16,
+                1.016383380368247
+              ],
+              "min_cm": [
+                -1.2,
+                -1.2,
+                0.0
+              ],
+              "max_cm": [
+                1.2,
+                1.2,
+                2.1
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        },
+        "reopened": {
+          "parameters": [
+            {
+              "name": "publicHeight",
+              "value": 2.1,
+              "expression": "21 mm"
+            },
+            {
+              "name": "d2",
+              "value": 2.1,
+              "expression": "publicHeight"
+            },
+            {
+              "name": "d3",
+              "value": -0.05235987755982989,
+              "expression": "-3 deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "Public Profile",
+              "health": 0,
+              "message": ""
+            },
+            {
+              "name": "Public Extrusion",
+              "health": 0,
+              "message": ""
+            }
+          ],
+          "sketches": [
+            {
+              "name": "Public Profile",
+              "fully_constrained": false,
+              "profiles": 1,
+              "dimensions": [],
+              "circles": [
+                {
+                  "center_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.2
+                }
+              ],
+              "lines": []
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Public Solid",
+              "volume_cm3": 8.655517248010467,
+              "area_cm2": 23.384314014759717,
+              "mass_kg": 0.024841334501790036,
+              "density_kg_per_cm3": 0.0028699999999999997,
+              "center_cm": [
+                1.0320190926700436e-10,
+                2.0522827099773372e-16,
+                1.016383380368247
+              ],
+              "min_cm": [
+                -1.2,
+                -1.2,
+                0.0
+              ],
+              "max_cm": [
+                1.2,
+                1.2,
+                2.1
+              ],
+              "material": "Public Material",
+              "color_rgba": [
+                51,
+                102,
+                153,
+                255
+              ],
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2
+            }
+          ]
+        }
+      },
+      "saved_sha256": "bc85b3edc96328a0c906cd413f7dac75e83b1e35104d8c21a2d711b5bfb473b2",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

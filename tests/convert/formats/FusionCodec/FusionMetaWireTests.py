@@ -11,6 +11,7 @@ from convert.formats.Fusion.MetaIndex import (
     ReadMetaIndex,
     SegmentKind,
 )
+from convert.formats.Fusion.SegmentCodec.Metadata.MetaContext import MetaContext
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaHeader import MetaHeader
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import (
     MetaClass,
@@ -45,8 +46,18 @@ def MakeMetaModel(Segment: SegmentKind) -> MetaSegment:
         (MetaOffset(9, 30), MetaOffset(41, 0), MetaOffset(7, 45)),
         (MetaOffset(41, 15),),
         90,
-        0x76543210,
+        1,
         (MetaProperty("Zeta", 7), MetaProperty("Alpha", 10)),
+        (
+            MetaContext(
+                (1 << 63) + 0x76543210,
+                "7a654321-1111-4222-8333-abcdef654321",
+                "7d654321-1111-4222-8333-abcdef654321",
+                "urn:adsk.wipprod:fs.file:vf.SyntheticMetaKey000?version=2",
+                "7c654321-1111-4222-8333-abcdef654321",
+                0,
+            ),
+        ),
     )
 
 

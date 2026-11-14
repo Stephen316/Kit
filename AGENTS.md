@@ -85,6 +85,16 @@ vendor-loadability, and target-application acceptance requirements. Research
 experiments may remain unrestricted in `re/`; their location does not qualify
 them for shipping or establish acceptance evidence.
 
+Donor data is banned. Writers MUST make every emitted byte from
+reverse-engineered format knowledge. Do not ship donor files, donor blocks,
+templates, captured rows, or values captured from or fitted to one document,
+in `src/`, in package data, or in writer output. A "generic" template and a
+fallback to donor data are also banned. `re/` may keep vendor-saved controls
+and captured tables for research, but production code MUST NOT load them.
+Read the [no donor blocks standard](.agents/skills/standard-pr-practice/references/Standards/Portable/NoDonorBlocks.md)
+and the [Fusion donor data ban](Documentation/Reference/Research/FusionDonorBan.md)
+before writer work.
+
 An administrator's explicit merge request remains valid through repairs and
 authorizes a supported admin override when independently enforced protections
 otherwise block a fully green, conflict-free PR. It never authorizes bypassing

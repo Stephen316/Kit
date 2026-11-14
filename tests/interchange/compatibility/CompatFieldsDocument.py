@@ -20,6 +20,7 @@ KCompatFieldsDocument = (
             "schema_version",
             "assembly",
             "brep",
+            "materials",
         ),
     ),
 )

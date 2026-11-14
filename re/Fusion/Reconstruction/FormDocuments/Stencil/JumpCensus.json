@@ -1,0 +1,61 @@
+{
+ "scope": "Discontinuity lists of every converted Form body surface and exact boundary curve against the lowest jumping derivative order rule with slack 1e-10. Probe outputs live in the ignored Stencil tmp folder and are rebuilt by PrepareStencil and ProbeStencil",
+ "python": "3.14.7",
+ "groups": {
+  "committed": {
+   "files": 78,
+   "totals": {
+    "curve_lists_nonempty": 1411,
+    "curves": 844,
+    "mismatches": 1,
+    "surface_lists_nonempty": 1168,
+    "surfaces": 362,
+    "unreadable": 241
+   },
+   "mismatched_files": [
+    {
+     "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfShifted.f3d",
+     "sha256": "81c4ac56521bc0c6ffef7bbca49999767fd3374b70c302775250c05396000997",
+     "misses": [
+      {
+       "kind": "surface",
+       "face": 0,
+       "stored": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ],
+       "computed": [
+        [],
+        [],
+        [
+         1.0
+        ],
+        [],
+        [],
+        [
+         1.0,
+         2.0
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "probe_outputs": {
+   "files": 341,
+   "totals": {
+    "curve_lists_nonempty": 17432,
+    "curves": 8982,
+    "mismatches": 0,
+    "surface_lists_nonempty": 11392,
+    "surfaces": 3927
+   },
+   "mismatched_files": []
+  }
+ }
+}

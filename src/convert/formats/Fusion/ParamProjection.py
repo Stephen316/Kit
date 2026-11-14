@@ -59,6 +59,7 @@ def ProjectParam(ParamData: NativeParam, SpanValue: RecordSpan) -> Parameter:
                 "fusion.native_role": ParamData.RoleName,
                 "fusion.binding_id": ParamData.BindingId,
                 "fusion.parameter_index": ParamData.NativeIndex,
+                "fusion.collection_id": ParamData.CollectionId,
                 "fusion.expression_metadata": ParamData.Metadata.hex(),
                 "fusion.comment": ParamData.Comment,
             }

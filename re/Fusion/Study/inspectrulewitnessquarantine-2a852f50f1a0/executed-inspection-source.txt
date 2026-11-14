@@ -19,8 +19,8 @@ RECOVERY = '_fusion_study_rule_surface_recovery_halted_native_handles'
 CAPTURE = 'rulefilletsurfaces-9dd46198ca8a'
 RECOVERY_CAPTURE = 'recoverrulesurfacewitness-b0a35766ba60'
 EXECUTED_SOURCE_SHA256 = '6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305'
-EXECUTED_RECOVERY_SHA256 = '6d8b0963db1caa7ac2050152b1ebd27528ed82b40a5201b3964ae7216491272a'
-ARCHIVE_SHA256 = 'e4920ced5f952f99fe0bed8eda71ead47098afa4d26308fdd53dc3141f35fd52'
+EXECUTED_RECOVERY_SHA256 = 'ac3972301f02d93a298e284cdae6cac7d4bf54b94a2193a192a52f1c2485a0cb'
+ARCHIVE_SHA256 = '9ef641d04fd0c86aef4083fa9c1a13c7ee320c722d36c56075a9b8a1e238a6d4'
 HANDLE_KEYS = frozenset(('design', 'root', 'offsets', 'source_face', 'source_body', 'entities',
     'distance', 'inputs', 'input_entities', 'input_face', 'input_distance', 'parameter',
     'previous', 'feature', 'looked_up_feature'))

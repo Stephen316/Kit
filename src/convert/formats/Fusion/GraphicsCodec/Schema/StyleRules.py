@@ -1,0 +1,43 @@
+from convert.formats.Fusion.GraphicsCodec.Schema.FieldRule import FieldRule
+
+KStyleRules: dict[str, tuple[FieldRule, ...]] = {
+    "TextStyle": (
+        FieldRule("Typeface", "text"),
+        FieldRule("Charset", "i32"),
+        FieldRule("Pitch", "i32"),
+        FieldRule("Family", "i32"),
+        FieldRule("IsSHX", "bool"),
+        FieldRule("Color", "f32", 4),
+        FieldRule("Height", "f32"),
+        FieldRule("Weight", "i32"),
+        FieldRule("WidthFactor", "f32"),
+        FieldRule("CharSacingFactor", "f32"),
+        FieldRule("Italic", "bool"),
+        FieldRule("ObliqueAngle", "f32"),
+        FieldRule("Underline", "bool"),
+        FieldRule("Strikethrough", "bool"),
+        FieldRule("Overline", "bool"),
+        FieldRule("BaselineOffset", "f32"),
+        FieldRule("BackgroundColor", "f32", 4),
+        FieldRule("Orientation", "f32"),
+    ),
+    "ParagraphStyle": (
+        FieldRule("LeftIndent", "f32"),
+        FieldRule("RightIndent", "f32"),
+        FieldRule("FirstLineIndent", "f32"),
+        FieldRule("TabStopCount", "zero"),
+        FieldRule("LineSpace", "f32"),
+        FieldRule("Ascent", "f32"),
+        FieldRule("Descent", "f32"),
+        FieldRule("AlignmentType", "i32"),
+        FieldRule("LineSpaceType", "i32"),
+    ),
+    "BlockStyle": (
+        FieldRule("Baseline direction", "i32"),
+        FieldRule("Flow direction", "i32"),
+        FieldRule("Baseline alignment", "i32"),
+        FieldRule("Flow alignment", "i32"),
+        FieldRule("Escapement", "f32"),
+        FieldRule("IsHorizontalBaseline", "bool"),
+    ),
+}

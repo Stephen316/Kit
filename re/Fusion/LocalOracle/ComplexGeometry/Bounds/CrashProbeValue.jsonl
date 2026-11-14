@@ -1,0 +1,8 @@
+{"step": "begin", "fusion_version": "2706.1.17", "documents_before": 0}
+{"step": "import", "phase": "start"}
+{"step": "import", "phase": "done", "value": "<class 'adsk.fusion.Design'>"}
+{"step": "opened", "phase": "start"}
+{"step": "opened", "phase": "done", "value": {"marker": 5, "timeline": [["EmbossTextTargetSection", 0], ["EmbossTextTargetExtrude", 0], ["Plane1", 0], ["EmbossTextInputs", 0], ["ProbeEmbossText", 0]], "bodies": [["EmbossTextTargetBody", true, 113, 306]]}}
+{"step": "parameters", "phase": "start"}
+{"step": "end", "status": "failed", "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/ProbeBoundsCrash.py\", line 82, in <module>\n    step('parameters', lambda: [(value.name, value.value) for value in design.allParameters])\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/ProbeBoundsCrash.py\", line 37, in step\n    value = action()\n  File \"<repo>/re/Fusion/LocalOracle/ProbeBoundsCrash.py\", line 82, in <lambda>\n    step('parameters', lambda: [(value.name, value.value) for value in design.allParameters])\n                                             ^^^^^^^^^^^\n  File \"<Fusion.app>/Contents/Api/Python/packages/adsk/fusion.py\", line 59207, in _get_value\n    return _fusion.Parameter__get_value(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Parameter is not numeric type\n"}
+{"step": "finally", "documents_after": 0}

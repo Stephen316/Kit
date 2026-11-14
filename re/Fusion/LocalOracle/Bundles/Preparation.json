@@ -1,0 +1,67 @@
+{
+  "purpose": "Prepare the production F3Z envelope artifact for authorized native upload acceptance",
+  "operation": "ReadBundle(source) then EmitBundle(typed_model)",
+  "source": "examples/.f3z/example1.f3z",
+  "source_sha256": "e14866ac96457805a93e63fa269beb4dc8c69caa80c819de4a195db45ccc23c6",
+  "source_bytes": 9063269,
+  "output": "re/Fusion/LocalOracle/Bundles/kit_production_example1.f3z",
+  "output_sha256": "33a42876f25ecc72844cf37af3ab35cb17ed6bfe621ff4e21ce4b3a62c6afe54",
+  "output_bytes": 9295119,
+  "producer": "convert.formats.Fusion.BundleCodec.EmitBundle",
+  "reader": "convert.formats.Fusion.BundleCodec.ReadBundle",
+  "root_member": "3cb733fc-f1dc-4b67-ae97-9c7b04d8aa2f.f3d",
+  "root_ids": [
+    1545802
+  ],
+  "document_count": 9,
+  "relationship_count": 8,
+  "documents": [
+    {
+      "member": "493cf72b-d089-4666-a611-d2c3681f1b8d.f3d",
+      "bytes": 103207,
+      "sha256": "8ca812327c31332da79ec2931f6fb3846454baf1c478b8e17b4ba2b5d6df76d8"
+    },
+    {
+      "member": "fb0cc53e-203f-4ddd-ad08-d9f084254514.f3d",
+      "bytes": 186528,
+      "sha256": "740f6124273408e81547a09f46296f11f7ae4a7310b854e6aefa1c17b7b2f63f"
+    },
+    {
+      "member": "a6c2896e-582e-40c2-9869-fdc585f9e989.f3d",
+      "bytes": 166903,
+      "sha256": "08a896309b19e9eebdf62dac536e5967a9fd81f627edffc108a56fcbedd9e72a"
+    },
+    {
+      "member": "3cb733fc-f1dc-4b67-ae97-9c7b04d8aa2f.f3d",
+      "bytes": 3327545,
+      "sha256": "490f0f83fa66bbe9139cafb975015647453def19d10e57a678a9ce20c54c46dd"
+    },
+    {
+      "member": "6f49b1e0-926b-4882-b5a3-0245029c96f5.f3d",
+      "bytes": 207994,
+      "sha256": "558c215a7e09cc60d6e1f278841a396bf071f26a9918f52e20591b0a092915c0"
+    },
+    {
+      "member": "3c280e4b-50d5-4966-9110-879f89804fdd.f3d",
+      "bytes": 52254,
+      "sha256": "23eac33ccc6cdf0025100b104c74161d7e360fe97a761d401cc7b319722722a3"
+    },
+    {
+      "member": "95f3986f-e0f2-45c1-a298-87d647dea72e.f3d",
+      "bytes": 205565,
+      "sha256": "2eed87ebae08272a2c9178f2275434981632f539f90e5b14783dd8fcace444b6"
+    },
+    {
+      "member": "dcff0751-999a-429b-9fcc-83dbf44f7704.f3d",
+      "bytes": 4375092,
+      "sha256": "0a8aa2591406a620c25495ce1c1f185a5d6cec889c8792da35c727bd7fd1e867"
+    },
+    {
+      "member": "f6d34c77-9365-4e70-9d0b-51f47adba91d.f3d",
+      "bytes": 657854,
+      "sha256": "3ac614766e3c53faae15b344d908c6495adab9c184caa5cf08e1bf61cc7af85d"
+    }
+  ],
+  "scope": "Reconstructed JSON and ZIP bundle envelope; complete source document members explicitly supplied and preserved, not a nested-document conversion claim",
+  "native_acceptance": "accepted: NativeBundleAcceptance.json"
+}

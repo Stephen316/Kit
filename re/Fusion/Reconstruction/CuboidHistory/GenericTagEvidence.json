@@ -1,0 +1,102 @@
+{
+  "schema": "FusionGenericTagNativeSemantics/1",
+  "scope": "Read-only candidate decoding; no native calls, product execution, or tests. The earlier static symbol and instruction analysis of installed Fusion libraries was removed. Field names came from it and are not confirmed by a black-box experiment.",
+  "fields": [
+    {
+      "name": "primaryByteLength",
+      "wireType": "tag4 signed64 in ASM BinaryFile8",
+      "meaning": "number of primaryId bytes; equals the stored text length in every scoped corpus group; not entity class or topology selector"
+    },
+    {
+      "name": "primaryId",
+      "wireType": "tag7 counted string in scoped corpus",
+      "meaning": "primary identifier spelling; decimal operation id for controlled body, decimal face name or negative edge name for other controlled owners"
+    },
+    {
+      "name": "secondaryId",
+      "wireType": "tag4 signed64 in ASM BinaryFile8",
+      "meaning": "secondary identifier; exact fresh-body allocation rule is not established by this read-only analysis"
+    },
+    {
+      "name": "operationIds",
+      "wireType": "tag4 signed64 count followed by tag4 signed64 values",
+      "meaning": "ordered operation id sequence, empty for controlled body"
+    },
+    {
+      "name": "approachId",
+      "wireType": "tag4 signed64 in ASM BinaryFile8",
+      "meaning": "approach identifier, zero for all 441 groups in scoped corpus; not an undifferentiated group terminator"
+    }
+  ],
+  "controlExamples": {
+    "cuboidBody": [
+      3,
+      "301",
+      7,
+      0,
+      0
+    ],
+    "cuboidFace": [
+      1,
+      "6",
+      0,
+      1,
+      301,
+      0
+    ],
+    "cylinderBottomEdge": [
+      4,
+      "-102",
+      0,
+      1,
+      301,
+      0
+    ]
+  },
+  "corpusEvidence": "CandidateSummary.json",
+  "corpusGroupCount": 441,
+  "byteLengthMismatches": 0,
+  "proposedProductionCorrections": [
+    {
+      "old": "FeatureTag.Selector",
+      "new": "PrimaryLength or derived len(PrimaryId.encode())",
+      "reason": "length is mechanically derived; retaining supplied field requires equality validation"
+    },
+    {
+      "old": "FeatureTag.Label",
+      "new": "PrimaryId",
+      "reason": "matches the field name Kit uses; opaque labels are not topology-type selectors; the name is not confirmed by a black-box experiment"
+    },
+    {
+      "old": "BodyIdentity.GenerationRef",
+      "new": "SecondaryId",
+      "reason": "name from removed static evidence; not confirmed by a black-box experiment"
+    },
+    {
+      "old": "AuthorPolicy.GenerationRef",
+      "new": "BodySecondaryId",
+      "reason": "document author must provide the same explicit body identity value as the control"
+    },
+    {
+      "old": "MakeBodyTag literal3",
+      "new": "len(str(OperationId).encode())",
+      "reason": "four-digit ids need4; old constant passes only three-byte ids"
+    },
+    {
+      "old": "MakeFeatureTag group_reserved/group_end zeros",
+      "new": "explicit qualified SecondaryId=0/ApproachId=0",
+      "reason": "both are explicit fields in the group grammar"
+    },
+    {
+      "old": "body-specific discriminator3 grammar",
+      "new": "same general tag_data group grammar as face/edge",
+      "reason": "body no-operation form is the zero-length operation-vector case, not a different type layout"
+    }
+  ],
+  "limitations": [
+    "The corpus decode establishes the byte framing and the length equality, not the member identities or operation-specific allocation rules",
+    "No claim of general embedded-NUL or arbitrary Unicode acceptance",
+    "Current accepted cylinder bytes remain unchanged when correctly named values retain their original values",
+    "No production files were edited by this research task"
+  ]
+}

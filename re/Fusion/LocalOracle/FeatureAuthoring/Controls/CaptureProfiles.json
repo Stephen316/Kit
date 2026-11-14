@@ -1,0 +1,1049 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native profile, extent and hole controls created through the Fusion API and exported locally; evidence for Kit feature authoring, not Kit acceptance",
+  "controls": [
+    {
+      "name": "ProfileSlot",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Slot sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Slot extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.283185307179586,
+            "area_cm2": 34.84955592153876,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              2.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ProfileSlot.f3d",
+      "sha256": "61e6ef08ce8fa6e9147469c4ab2fb912f3aeb415c7f8262534cdd6407312da0d",
+      "bytes": 77235
+    },
+    {
+      "name": "ProfileConcave",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Notch sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Notch extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 20.858407346410207,
+            "area_cm2": 51.14159265358979,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ProfileConcave.f3d",
+      "sha256": "c64c27ad2f35a67170a6fb495a15b40ba0af2c6eca2233ffe30904311cd47976",
+      "bytes": 81462
+    },
+    {
+      "name": "ExtrudeTwoSided",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              -0.5
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ExtrudeTwoSided.f3d",
+      "sha256": "dde60bb1a0b016c1277f98a1be8b14b3c457171b2cf6c6c01c53981cde6f55ba",
+      "bytes": 80369
+    },
+    {
+      "name": "ExtrudeFlip",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "-( 20 mm )",
+            "value": -2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              -2.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              0.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ExtrudeFlip.f3d",
+      "sha256": "42d08cd5b4e0e197ebcc68adc3d21076ede4a834c25c69a7d5fa9ea9990c72ae",
+      "bytes": 77300
+    },
+    {
+      "name": "ExtrudeBlindCut",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.21460183660252,
+            "area_cm2": 55.1415926535898,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "ExtrudeBlindCut.f3d",
+      "sha256": "51f490b458e20ee450bbae2b28cc4ff99411d9d52595e7494fb5e565d193a6a8",
+      "bytes": 79859
+    },
+    {
+      "name": "ExtrudeSlotCut",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Slot sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Slot extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 20.4292036732051,
+            "area_cm2": 58.71238898038469,
+            "faces": 10,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "ExtrudeSlotCut.f3d",
+      "sha256": "b9a2c681ec04205fb4a8b2a77384bcca677bfb75c67d6094127626f6ca9f4d0d",
+      "bytes": 91709
+    },
+    {
+      "name": "ExtrudeSymmetricCut",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.21460183660252,
+            "area_cm2": 55.1415926535898,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "ExtrudeSymmetricCut.f3d",
+      "sha256": "ebdf81b742e5658fb6643943eac66d7dfc6385e7d22ea1f28a3cc264b13adc6d",
+      "bytes": 79590
+    },
+    {
+      "name": "HoleThrough",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.994690350851222,
+            "area_cm2": 56.02123859659494,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleThrough.f3d",
+      "sha256": "cb422883b6c3598b040f25445e391f732bf536a7abbe56922f0ce80e69591b9b",
+      "bytes": 85612
+    },
+    {
+      "name": "HoleFlat",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm"
+          },
+          {
+            "name": "d5",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.49734517542561,
+            "area_cm2": 54.513274122871834,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleFlat.f3d",
+      "sha256": "5588a6d759e911b921cbc0d16f89dd05c225eab93202a9575a01c81a24911b58",
+      "bytes": 85193
+    },
+    {
+      "name": "HoleCounterbore",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm"
+          },
+          {
+            "name": "d6",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.23345139252406,
+            "area_cm2": 55.70707933123596,
+            "faces": 9,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleCounterbore.f3d",
+      "sha256": "c97d0cb30dccd886a63c1761c07288ee88011fb21f8b2dfad32557303fb52dac",
+      "bytes": 90087
+    },
+    {
+      "name": "HoleCounterboreFlat",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm"
+          },
+          {
+            "name": "d5",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm"
+          },
+          {
+            "name": "d7",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.516194731347152,
+            "area_cm2": 54.387610416728236,
+            "faces": 10,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleCounterboreFlat.f3d",
+      "sha256": "13fb5e81bcac9bf75dc22af83f836a1018bf80252ea7582202cac87370fa3d22",
+      "bytes": 88487
+    },
+    {
+      "name": "HoleCountersink",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg"
+          },
+          {
+            "name": "d5",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm"
+          },
+          {
+            "name": "d6",
+            "expression": "90 deg",
+            "value": 1.5707963267948966,
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.388436630101122,
+            "area_cm2": 55.03563983376179,
+            "faces": 8,
+            "edges": 15,
+            "vertices": 11,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleCountersink.f3d",
+      "sha256": "ae85a41b11a7c050674c58ebd12fc8b6028047e41421c66a77a765af4936fdea",
+      "bytes": 99099
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

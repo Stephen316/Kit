@@ -1,0 +1,3933 @@
+{
+  "CommonSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "CommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "URL",
+        "Attributes": [
+          ["id", "AdvancedUIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "AssetLibID"],
+          ["label", "AssetLibID"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["definitionIteratorData", "true"],
+          ["id", "BaseSchema"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Uuid",
+        "Attributes": [
+          ["id", "ExchangeGUID"],
+          ["label", "ExchangeGUID"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Boolean",
+        "Attributes": [
+          ["definitionIteratorData", "true"],
+          ["id", "Hidden"],
+          ["public", "false"],
+          ["val", "false"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "4"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "URL",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["definitionIteratorData", "true"],
+          ["id", "UIName"],
+          ["local", "true"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Uuid",
+        "Attributes": [
+          ["definitionIteratorData", "true"],
+          ["id", "VersionGUID"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "assettype"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["allowmultiplevalues", "true"],
+          ["definitionIteratorData", "true"],
+          ["id", "category"],
+          ["local", "true"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["definitionIteratorData", "true"],
+          ["id", "description"],
+          ["local", "true"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["allowmultiplevalues", "true"],
+          ["definitionIteratorData", "true"],
+          ["id", "keyword"],
+          ["local", "true"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "revision"],
+          ["public", "false"],
+          ["val", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "URL",
+        "Attributes": [
+          ["allowmultiplevalues", "true"],
+          ["definitionIteratorData", "true"],
+          ["id", "thumbnail"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "version"],
+          ["public", "false"],
+          ["val", "1"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "PhysMatSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "PhysMatSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "CommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "physicalmaterial"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "PhysicalMat/PhysMatUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Physical Material"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Material"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Comments"],
+          ["label", "Comments"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Cost"],
+          ["label", "Cost"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Keynote"],
+          ["label", "Keynote"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Keywords"],
+          ["label", "Keywords"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Label"],
+          ["label", "Label"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Manufacturer"],
+          ["label", "Manufacturer"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Mark"],
+          ["label", "Mark"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_Model"],
+          ["label", "Model"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "physmat_Type"],
+          ["label", "Type"],
+          ["val", "physmat_generic"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_plastic"],
+              ["label", "Plastic"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_metal"],
+              ["label", "Metal"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_wood"],
+              ["label", "Wood"],
+              ["val", "2"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_glass"],
+              ["label", "Glass"],
+              ["val", "3"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_ceramic"],
+              ["label", "Ceramic"],
+              ["val", "4"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_stone"],
+              ["label", "Stone"],
+              ["val", "5"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_liquid"],
+              ["label", "Liquid"],
+              ["val", "6"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_gas"],
+              ["label", "Gas"],
+              ["val", "7"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_masonry"],
+              ["label", "Masonry"],
+              ["val", "8"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_textile"],
+              ["label", "Textile"],
+              ["val", "9"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_paint"],
+              ["label", "Paint/Coating"],
+              ["val", "10"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_earth"],
+              ["label", "Earth"],
+              ["val", "11"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_generic"],
+              ["label", "Generic"],
+              ["val", "12"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "physmat_concrete"],
+              ["label", "Concrete"],
+              ["val", "13"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_URL"],
+          ["label", "URL"],
+          ["metadata", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Reference",
+        "Attributes": [
+          ["allowconnectedassets", "multiple"],
+          ["id", "physmat_aspects"],
+          ["label", "Physical Aspects"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_class"],
+          ["label", "Class"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "physmat_classification"],
+          ["label", "physmat_classification"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Reference",
+        "Attributes": [
+          ["allowconnectedassets", "multiple"],
+          ["id", "physmat_deleted_aspects"],
+          ["label", "Physical Aspects"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "PrismCommonSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "PrismCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "CommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "6"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "interior_model"],
+          ["label", "Material Type"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "surface_albedo"],
+          ["label", "Color"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "surface_albedo_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "surface_albedo_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "surface_anisotropy"],
+          ["label", "Anisotropy"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "surface_anisotropy_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Reference",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "surface_cutout"],
+          ["label", "Image"],
+          ["type", "texture"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "surface_cutout_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "surface_ndf_type"],
+          ["label", "NDF"],
+          ["val", "surface_ndf_ggx"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "surface_ndf_beckmann"],
+              ["label", "BECKMANN"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "surface_ndf_ggx"],
+              ["label", "GGX"],
+              ["val", "1"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Reference",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "surface_normal"],
+          ["label", "Image"],
+          ["type", "texture"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "surface_normal_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "surface_rotation"],
+          ["label", "Rotation"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "surface_rotation_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "surface_roughness"],
+          ["label", "Roughness"],
+          ["val", "0.2000000000000000111"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "surface_roughness_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "swatch"],
+          ["public", "false"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "PrismLayeredSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "PrismLayeredSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "PrismCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "materialappearance"]],
+        "Children": []
+      },
+      {
+        "TagName": "implementation",
+        "Attributes": [
+          ["id", "ImplementationGeneric"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismLayered/Generic.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismLayered/PrismLayeredUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_anisotropy"],
+          ["label", "Anisotropy"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_anisotropy_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_bottom_f0"],
+          ["label", "Color"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "layered_bottom_f0_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_bottom_f0_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_diffuse"],
+          ["label", "Color"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "layered_diffuse_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_diffuse_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_f0"],
+          ["label", "Clearcoat reflectance"],
+          ["val", "0.02000000000000000042"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_f0_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_fraction"],
+          ["label", "Fraction"],
+          ["val", "0.5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_fraction_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "layered_ndf_type"],
+          ["label", "NDF"],
+          ["val", "layered_ndf_ggx"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "layered_ndf_beckmann"],
+              ["label", "BECKMANN"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "layered_ndf_ggx"],
+              ["label", "GGX"],
+              ["val", "1"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Reference",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_normal"],
+          ["label", "Image"],
+          ["type", "texture"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_normal_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_rotation"],
+          ["label", "Rotation"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_rotation_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "layered_roughness"],
+          ["label", "Roughness"],
+          ["val", "0.2000000000000000111"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "layered_roughness_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Layered"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Appearance"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "PrismMetalSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "PrismMetalSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "PrismCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "materialappearance"]],
+        "Children": []
+      },
+      {
+        "TagName": "implementation",
+        "Attributes": [
+          ["id", "ImplementationGeneric"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismMetal/Generic.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismMetal/PrismMetalUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Metal"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Appearance"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "metal_f0"],
+          ["label", "Reflectance"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "metal_f0_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "metal_f0_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "PrismOpaqueSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "PrismOpaqueSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "PrismCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "materialappearance"]],
+        "Children": []
+      },
+      {
+        "TagName": "implementation",
+        "Attributes": [
+          ["id", "ImplementationGeneric"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismOpaque/Generic.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "9"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismOpaque/PrismOpaqueUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Opaque"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Appearance"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "opaque_albedo"],
+          ["label", "Color"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "opaque_albedo_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "opaque_albedo_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Boolean",
+        "Attributes": [
+          ["id", "opaque_emission"],
+          ["label", "Emission"],
+          ["val", "false"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "opaque_f0"],
+          ["label", "Specular reflectance"],
+          ["val", "0.02000000000000000042"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "opaque_f0_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "opaque_luminance"],
+          ["label", "Emissive Luminance"],
+          ["unit", "CandelasPerSquareMeter"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "opaque_luminance_modifier"],
+          ["label", "Luminance Scale"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "opaque_luminance_modifier_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "opaque_luminance_modifier_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Distance",
+        "Attributes": [
+          ["id", "opaque_mfp"],
+          ["label", "Translucency Depth"],
+          ["unit", "MilliMeter"],
+          ["val", "0.5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["allowconnectedassets", "single"],
+          ["id", "opaque_mfp_modifier"],
+          ["label", "Translucency Weight"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "opaque_mfp_modifier_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "opaque_mfp_modifier_urn"],
+          ["label", "URN"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Boolean",
+        "Attributes": [
+          ["id", "opaque_translucency"],
+          ["label", "Translucency"],
+          ["val", "false"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "PrismTransparentSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "PrismTransparentSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "PrismCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "materialappearance"]],
+        "Children": []
+      },
+      {
+        "TagName": "implementation",
+        "Attributes": [
+          ["id", "ImplementationGeneric"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismTransparent/Generic.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Mats/PrismTransparent/PrismTransparentUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Transparent"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Appearance"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Color",
+        "Attributes": [
+          ["id", "transparent_color"],
+          ["label", "Color"],
+          ["valA", "1"],
+          ["valB", "1"],
+          ["valG", "1"],
+          ["valR", "1"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "transparent_color_colorspace"],
+          ["label", "Color space"],
+          ["val", "colorspace_not_specified"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_not_specified"],
+              ["label", "Not specified"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_sRGB_gamma24"],
+              ["label", "sRBG gamma 2.4"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "colorspace_linear"],
+              ["label", "Linear"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Distance",
+        "Attributes": [
+          ["id", "transparent_distance"],
+          ["label", "Transparent Distance"],
+          ["unit", "Inch"],
+          ["val", "0.125"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "transparent_ior"],
+          ["label", "IOR"],
+          ["val", "1.5"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralAdvancedSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralAdvancedSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Advanced"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "structural_Behavior"],
+          ["label", "Behavior"],
+          ["val", "structural_isotropic"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_isotropic"],
+              ["label", "Isotropic"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_orthotropic"],
+              ["label", "Orthotropic"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_transverse_isotropic"],
+              ["label", "Transverse Isotropic"],
+              ["val", "2"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Minimum_tensile_strength"],
+          ["label", "Tensile Strength"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Minimum_yield_stress"],
+          ["label", "Yield Strength"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "10000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Poisson_ratio"],
+          ["label", "Poisson's Ratio"],
+          ["unit", "Unitless"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "0.5"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "-1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Poisson_ratio_12"],
+          ["label", "Poisson's Ratio 12"],
+          ["unit", "Unitless"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "-1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Poisson_ratio_23"],
+          ["label", "Poisson's Ratio 23"],
+          ["unit", "Unitless"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "-1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Poisson_ratio_X"],
+          ["label", "Poisson's Ratio X"],
+          ["unit", "Unitless"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "-1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Poisson_ratio_Y"],
+          ["label", "Poisson's Ratio Y"],
+          ["unit", "Unitless"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "-1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Poisson_ratio_Z"],
+          ["label", "Poisson's Ratio Z"],
+          ["unit", "Unitless"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "-1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Shear_modulus"],
+          ["label", "Shear Modulus"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.0005000000000000000104"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Shear_modulus_12"],
+          ["label", "Shear Modulus 12"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.0005000000000000000104"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Shear_modulus_X"],
+          ["label", "Shear Modulus X"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.0005000000000000000104"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Shear_modulus_Y"],
+          ["label", "Shear Modulus Y"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.0005000000000000000104"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Shear_modulus_Z"],
+          ["label", "Shear Modulus Z"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.0005000000000000000104"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_conductivity_X"],
+          ["label", "Thermal Conductivity X"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_conductivity_Y"],
+          ["label", "Thermal Conductivity Y"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_conductivity_Z"],
+          ["label", "Thermal Conductivity Z"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient"],
+          ["label", "Thermal Expansion Coefficient"],
+          ["unit", "MicrometerPerMeterCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient_1"],
+          ["label", "Thermal Expansion Coefficient 1"],
+          ["unit", "MicrometerPerMeterCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient_2"],
+          ["label", "Thermal Expansion Coefficient 2"],
+          ["unit", "MicrometerPerMeterCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient_X"],
+          ["label", "Thermal Expansion Coefficient X"],
+          ["unit", "MicrometerPerMeterCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient_Y"],
+          ["label", "Thermal Expansion Coefficient Y"],
+          ["unit", "MicrometerPerMeterCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient_Z"],
+          ["label", "Thermal Expansion Coefficient Z"],
+          ["unit", "MicrometerPerMeterCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Young_modulus"],
+          ["label", "Young's Modulus"],
+          ["unit", "Kilopascal"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1300000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Young_modulus_1"],
+          ["label", "Young's Modulus 1"],
+          ["unit", "Kilopascal"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1300000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Young_modulus_2"],
+          ["label", "Young's Modulus 2"],
+          ["unit", "Kilopascal"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1300000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Young_modulus_X"],
+          ["label", "Young's Modulus X"],
+          ["unit", "Kilopascal"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1300000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Young_modulus_Y"],
+          ["label", "Young's Modulus Y"],
+          ["unit", "Kilopascal"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1300000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Young_modulus_Z"],
+          ["label", "Young's Modulus Z"],
+          ["unit", "Kilopascal"],
+          ["val", "0.02999999999999999889"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1300000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "structural_source"],
+          ["label", "Source"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "structural_sourceURL"],
+          ["label", "Source URL"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralBasicSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralBasicSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "6"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Basic/BasicStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Basic"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralCommonSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "CommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "6"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "common_Shared_Asset"],
+          ["label", "Sharing"],
+          ["val", "common_shared"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "common_shared"],
+              ["label", "Shared"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "common_independent"],
+              ["label", "Independent"],
+              ["val", "1"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Common Structural"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Physical"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Damping_coefficient"],
+          ["label", "Damping Coefficient"],
+          ["unit", "Unitless"],
+          ["val", "0"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Density"],
+          ["label", "Density"],
+          ["unit", "KilogramPerCubicMeter"],
+          ["val", "100"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "25000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "structural_ExternalMaterialID"],
+          ["label", "External Material ID"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Specific_heat"],
+          ["label", "Specific Heat"],
+          ["unit", "JoulePerGramCelsius"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "15"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_conductivity"],
+          ["label", "Thermal Conductivity"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "structural_subclass"],
+          ["label", "Subclass"],
+          ["local", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralGasSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralGasSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "6"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Gas/GasStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Gas"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient"],
+          ["label", "Thermal Expansion Coefficient"],
+          ["unit", "InvCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      }
+    ]
+  },
+  "StructuralGenericSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralGenericSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralAdvancedSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Generic/GenericStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Generic"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralLiquidSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralLiquidSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "6"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Liquid/LiquidStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Liquid"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_Thermal_expansion_coefficient"],
+          ["label", "Thermal Expansion Coefficient"],
+          ["unit", "InvCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "500"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      }
+    ]
+  },
+  "StructuralMetalSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralMetalSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralAdvancedSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Metal/MetalStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Metal"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Boolean",
+        "Attributes": [
+          ["id", "structural_Thermally_treated"],
+          ["label", "Thermally Treated"],
+          ["val", "false"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralPlasticSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralPlasticSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralAdvancedSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Plastic/PlasticStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Plastic"]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "StructuralWoodSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "StructuralWoodSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "StructuralAdvancedSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Structural"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "7"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Structural/Wood/WoodStructuralUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Wood"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_Average_modulus"],
+          ["label", "Average Modulus"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "130000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_Bending"],
+          ["label", "Bending"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "structural_wood_Construction_Property"],
+          ["label", "Construction"],
+          ["val", "structural_wood_natural"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_wood_natural"],
+              ["label", "Natural"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_wood_glued"],
+              ["label", "Glued"],
+              ["val", "1"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_wood_glued_kertoS"],
+              ["label", "Glued KertoS"],
+              ["val", "2"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_wood_glued_kertoQ"],
+              ["label", "Glued KertoQ"],
+              ["val", "3"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "structural_wood_lvl"],
+              ["label", "LVL"],
+              ["val", "4"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_compression_parallel"],
+          ["label", "Compression Parallel to Grain"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_compression_perpendicular"],
+          ["label", "Compression Perpendicular to Grain"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_shear_parallel"],
+          ["label", "Shear Parallel to Grain"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_tension_parallel"],
+          ["label", "Tension Parallel to Grain"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "structural_wood_tension_perpendicular"],
+          ["label", "Tension Perpendicular to Grain"],
+          ["unit", "Kilopascal"],
+          ["val", "0.01000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.01000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "stuctural_wood_Species"],
+          ["label", "Species"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "stuctural_wood_Strength_grade"],
+          ["label", "Strength Grade"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "ThermalCommonSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "ThermalCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "CommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Thermal"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "common_Shared_Asset"],
+          ["label", "Sharing"],
+          ["val", "common_shared"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "common_shared"],
+              ["label", "Shared"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "common_independent"],
+              ["label", "Independent"],
+              ["val", "1"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Common Thermal"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localtype"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Thermal"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Density"],
+          ["label", "Density"],
+          ["unit", "KilogramPerCubicMeter"],
+          ["val", "100"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "25000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Emissivity"],
+          ["label", "Emissivity"],
+          ["unit", "Unitless"],
+          ["val", "0.001000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Specific_heat"],
+          ["label", "Specific Heat"],
+          ["unit", "JoulePerGramCelsius"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "15"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Thermal_conductivity"],
+          ["label", "Thermal Conductivity"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "0.001000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "thermal_source"],
+          ["label", "Source"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "thermal_sourceURL"],
+          ["label", "Source URL"],
+          ["val", ""]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "thermal_subclass"],
+          ["label", "Subclass"],
+          ["local", "true"],
+          ["val", ""]
+        ],
+        "Children": []
+      }
+    ]
+  },
+  "ThermalGasSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "ThermalGasSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "ThermalCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Thermal"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Thermal/Gas/GasThermalUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Gas"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Compressibility"],
+          ["label", "Compressibility"],
+          ["unit", "Unitless"],
+          ["val", "0"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "3"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Gas_viscosity"],
+          ["label", "Gas Viscosity"],
+          ["unit", "Centipoise"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      }
+    ]
+  },
+  "ThermalLiquidSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "ThermalLiquidSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "ThermalCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Thermal"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Thermal/Liquid/LiquidThermalUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Liquid"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Compressibility"],
+          ["label", "Compressibility"],
+          ["unit", "Unitless"],
+          ["val", "0"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Liquid_viscosity"],
+          ["label", "Liquid Viscosity"],
+          ["unit", "Centipoise"],
+          ["val", "0.1000000000000000056"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.1000000000000000056"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Specific_heat_of_vaporization"],
+          ["label", "Specific Heat of Vaporization"],
+          ["unit", "JoulePerGram"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "3000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "1"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Vapor_pressure"],
+          ["label", "Vapor Pressure"],
+          ["unit", "Pascal"],
+          ["val", "1000"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "100000000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "1000"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      }
+    ]
+  },
+  "ThermalSolidSchema": {
+    "TagName": "AssetSchema",
+    "Attributes": [],
+    "Children": [
+      {
+        "TagName": "UID",
+        "Attributes": [["val", "ThermalSolidSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "Base",
+        "Attributes": [["val", "ThermalCommonSchema"]],
+        "Children": []
+      },
+      {
+        "TagName": "type",
+        "Attributes": [["val", "Thermal"]],
+        "Children": []
+      },
+      {
+        "TagName": "Integer",
+        "Attributes": [
+          ["id", "SchemaVersion"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "5"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "ui",
+        "Attributes": [
+          ["id", "UIDefinition"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Thermal/Solid/SolidThermalUI.xml"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "String",
+        "Attributes": [
+          ["id", "localname"],
+          ["local", "true"],
+          ["public", "false"],
+          ["readonly", "true"],
+          ["val", "Solid"]
+        ],
+        "Children": []
+      },
+      {
+        "TagName": "Choice",
+        "Attributes": [
+          ["id", "thermal_Behavior"],
+          ["label", "Behavior"],
+          ["val", "thermal_isotropic"]
+        ],
+        "Children": [
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "thermal_isotropic"],
+              ["label", "Isotropic"],
+              ["val", "0"]
+            ],
+            "Children": []
+          },
+          {
+            "TagName": "ChoiceValue",
+            "Attributes": [
+              ["id", "thermal_orthotropic"],
+              ["label", "Orthotropic"],
+              ["val", "1"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Electrical_resistivity"],
+          ["label", "Electrical Resistivity"],
+          ["unit", "OhmMeter"],
+          ["val", "1"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "9.999999999999999832e+23"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "1.000000000000000021e-08"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Permeability"],
+          ["label", "Permeability"],
+          ["unit", "NanogramPerPascalSecondSquareMeter"],
+          ["val", "0"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Porosity"],
+          ["label", "Porosity"],
+          ["unit", "Unitless"],
+          ["val", "0.001000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Reflectivity"],
+          ["label", "Reflectivity"],
+          ["unit", "Unitless"],
+          ["val", "0"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "1"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "true"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Thermal_conductivity_X"],
+          ["label", "Thermal Conductivity X"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "0.001000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Thermal_conductivity_Y"],
+          ["label", "Thermal Conductivity Y"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "0.001000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Float",
+        "Attributes": [
+          ["id", "thermal_Thermal_conductivity_Z"],
+          ["label", "Thermal Conductivity Z"],
+          ["unit", "WattPerMeterKelvin"],
+          ["val", "0.001000000000000000021"]
+        ],
+        "Children": [
+          {
+            "TagName": "Bounds",
+            "Attributes": [
+              ["incrementsize", "1"],
+              ["maximum", "5000"],
+              ["maximumisinclusive", "true"],
+              ["minimum", "0.001000000000000000021"],
+              ["minimumisinclusive", "true"],
+              ["percentage", "false"]
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "TagName": "Boolean",
+        "Attributes": [
+          ["id", "thermal_Transmits_light"],
+          ["label", "Transmits Light"],
+          ["val", "false"]
+        ],
+        "Children": []
+      }
+    ]
+  }
+}

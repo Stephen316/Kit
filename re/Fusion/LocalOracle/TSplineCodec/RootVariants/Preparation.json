@@ -1,0 +1,467 @@
+{
+  "scope": "Source-free semantic root and allocation experiments; no source TSM reads",
+  "purpose": "Isolate the native primitive versus authored cage fitting difference without changing acceptance tolerances",
+  "geometry_mm": {
+    "Width": 17,
+    "Depth": 23,
+    "Height": 31
+  },
+  "baseline": "re/Fusion/LocalOracle/TSplineCodec/AuthoredClosedCage.tsm",
+  "cases": [
+    {
+      "name": "CounterOnly",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/CounterOnly.tsm",
+      "output_sha256": "9e7979dfaf19fd5b0e6f2ba2fe2d155965476b92f5f2b6806137fd6d5a87bd84",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        3,
+        2,
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "face_origins": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ]
+    },
+    {
+      "name": "VertexRoots",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/VertexRoots.tsm",
+      "output_sha256": "159e80da20f6b9dbd67854e2fdf19ea155de723c974603c75a36dfcd255d2204",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        12,
+        13,
+        17,
+        22,
+        5,
+        19,
+        23
+      ],
+      "face_origins": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ]
+    },
+    {
+      "name": "VertexOrder",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/VertexOrder.tsm",
+      "output_sha256": "beabaadd60aac544fa2ad04e63d50886cb6a02345625c66fd2e64c222bf54167",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        1,
+        3,
+        2,
+        4,
+        7,
+        5,
+        6
+      ],
+      "face_origins": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ]
+    },
+    {
+      "name": "RootsAndVertexOrder",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/RootsAndVertexOrder.tsm",
+      "output_sha256": "0bce931a9cad60d2f1de55a10999d74c423aba527ca47c1af46adead9141e131",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        17,
+        12,
+        13,
+        22,
+        23,
+        5,
+        19
+      ],
+      "face_origins": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ]
+    },
+    {
+      "name": "FaceRoots",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/FaceRoots.tsm",
+      "output_sha256": "1ec49ab74396e576bd0b8255e9dd4a6a85a4682e50d96994b85270f958594e86",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        3,
+        2,
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "face_origins": [
+        3,
+        4,
+        8,
+        15,
+        18,
+        21
+      ]
+    },
+    {
+      "name": "RootsAndFaceOrder",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/RootsAndFaceOrder.tsm",
+      "output_sha256": "52dbb843645f5a16285ae2b445a88ea301cf30239d89fa4b3153f343da9fa59d",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        20,
+        21,
+        17,
+        10,
+        13,
+        19,
+        11
+      ],
+      "face_origins": [
+        3,
+        4,
+        9,
+        12,
+        18,
+        23
+      ]
+    },
+    {
+      "name": "AllSemanticOrders",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/RootVariants/AllSemanticOrders.tsm",
+      "output_sha256": "cb04e0425bb4abd2074f6684af1110e65233fa54855e775330424d6cff9485d6",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        17,
+        20,
+        21,
+        10,
+        11,
+        13,
+        19
+      ],
+      "face_origins": [
+        3,
+        4,
+        9,
+        12,
+        18,
+        23
+      ]
+    }
+  ]
+}

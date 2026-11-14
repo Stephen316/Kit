@@ -1,0 +1,382 @@
+{
+  "scope": "Complete TSM component regeneration and independently declared closed quad cage; explicit face-origin, vertex-orientation and edge-origin state",
+  "cases": [
+    {
+      "name": "Box",
+      "source_file": "re/Fusion/LocalOracle/TSpline/Box.tsm",
+      "source_sha256": "67dac2ffda99938b9e29e4c8958c328e6192e76d94b1d27faeff99988a9259b5",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/BoxReemitted.tsm",
+      "output_sha256": "67dac2ffda99938b9e29e4c8958c328e6192e76d94b1d27faeff99988a9259b5",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": false,
+      "creased_edges": []
+    },
+    {
+      "name": "BoxCreaseInitial",
+      "source_file": "re/Fusion/LocalOracle/TSpline/BoxCreaseInitial.tsm",
+      "source_sha256": "6e06639ed9fd38e7a9b4f79ebdcfd408afaa6f483a037dc747b81c0828e1e95b",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/BoxCreaseInitialReemitted.tsm",
+      "output_sha256": "6e06639ed9fd38e7a9b4f79ebdcfd408afaa6f483a037dc747b81c0828e1e95b",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": false,
+      "creased_edges": []
+    },
+    {
+      "name": "BoxCreased",
+      "source_file": "re/Fusion/LocalOracle/TSpline/BoxCreased.tsm",
+      "source_sha256": "110aef0865c4891fed1eb18c1c9aa28afa05fb5d585a0b7bdbc0686738a253fa",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/BoxCreasedReemitted.tsm",
+      "output_sha256": "110aef0865c4891fed1eb18c1c9aa28afa05fb5d585a0b7bdbc0686738a253fa",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": false,
+      "creased_edges": [
+        18
+      ]
+    },
+    {
+      "name": "BoxEdited",
+      "source_file": "re/Fusion/LocalOracle/TSpline/BoxEdited.tsm",
+      "source_sha256": "b5475bff094866d68b5304499ef9d6eb25503d31a000d92c0b2a7a24b485ed3d",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/BoxEditedReemitted.tsm",
+      "output_sha256": "b5475bff094866d68b5304499ef9d6eb25503d31a000d92c0b2a7a24b485ed3d",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": false,
+      "creased_edges": []
+    },
+    {
+      "name": "BoxUncreased",
+      "source_file": "re/Fusion/LocalOracle/TSpline/BoxUncreased.tsm",
+      "source_sha256": "45d1a3228e4620bad02fce131aedf42690675e7347c8d597b28dcb0a679db7b6",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/BoxUncreasedReemitted.tsm",
+      "output_sha256": "45d1a3228e4620bad02fce131aedf42690675e7347c8d597b28dcb0a679db7b6",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": false,
+      "creased_edges": []
+    },
+    {
+      "name": "Plane",
+      "source_file": "re/Fusion/LocalOracle/TSpline/Plane.tsm",
+      "source_sha256": "5690e299b6b1a1c364dcee604019b8ca8b46ecf1469fbcb2971d56d989155a00",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/PlaneReemitted.tsm",
+      "output_sha256": "5690e299b6b1a1c364dcee604019b8ca8b46ecf1469fbcb2971d56d989155a00",
+      "byte_identical": true,
+      "faces": 6,
+      "edges": 17,
+      "vertices": 12,
+      "grips": 30,
+      "symmetry": false,
+      "creased_edges": [
+        0,
+        1,
+        6,
+        7,
+        8,
+        9,
+        10,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "name": "PlaneCreaseInitial",
+      "source_file": "re/Fusion/LocalOracle/TSpline/PlaneCreaseInitial.tsm",
+      "source_sha256": "5690e299b6b1a1c364dcee604019b8ca8b46ecf1469fbcb2971d56d989155a00",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/PlaneCreaseInitialReemitted.tsm",
+      "output_sha256": "5690e299b6b1a1c364dcee604019b8ca8b46ecf1469fbcb2971d56d989155a00",
+      "byte_identical": true,
+      "faces": 6,
+      "edges": 17,
+      "vertices": 12,
+      "grips": 30,
+      "symmetry": false,
+      "creased_edges": [
+        0,
+        1,
+        6,
+        7,
+        8,
+        9,
+        10,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "name": "PlaneCreased",
+      "source_file": "re/Fusion/LocalOracle/TSpline/PlaneCreased.tsm",
+      "source_sha256": "d0cc02a77907d2280b228769c2c544ad5097af29db252252b8df368d82b514b1",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/PlaneCreasedReemitted.tsm",
+      "output_sha256": "d0cc02a77907d2280b228769c2c544ad5097af29db252252b8df368d82b514b1",
+      "byte_identical": true,
+      "faces": 6,
+      "edges": 17,
+      "vertices": 12,
+      "grips": 34,
+      "symmetry": false,
+      "creased_edges": [
+        0,
+        1,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "name": "PlaneEdited",
+      "source_file": "re/Fusion/LocalOracle/TSpline/PlaneEdited.tsm",
+      "source_sha256": "78cd22c6ef22f6e8ff67a09a17f306231da86484bfa5dc740d85e8ca348e6e66",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/PlaneEditedReemitted.tsm",
+      "output_sha256": "78cd22c6ef22f6e8ff67a09a17f306231da86484bfa5dc740d85e8ca348e6e66",
+      "byte_identical": true,
+      "faces": 6,
+      "edges": 17,
+      "vertices": 12,
+      "grips": 30,
+      "symmetry": false,
+      "creased_edges": [
+        0,
+        1,
+        6,
+        7,
+        8,
+        9,
+        10,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "name": "PlaneUncreased",
+      "source_file": "re/Fusion/LocalOracle/TSpline/PlaneUncreased.tsm",
+      "source_sha256": "63164e5c8ac6808fcb4867e9cfc02fd8a6ff3ccf763ed232a237c758904ee07a",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/PlaneUncreasedReemitted.tsm",
+      "output_sha256": "63164e5c8ac6808fcb4867e9cfc02fd8a6ff3ccf763ed232a237c758904ee07a",
+      "byte_identical": true,
+      "faces": 6,
+      "edges": 17,
+      "vertices": 12,
+      "grips": 30,
+      "symmetry": false,
+      "creased_edges": [
+        0,
+        1,
+        6,
+        7,
+        8,
+        9,
+        10,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "name": "SymmetricBox",
+      "source_file": "re/Fusion/LocalOracle/TSpline/SymmetricBox.tsm",
+      "source_sha256": "33ff3b8c0cb360b6c476d3d443f754553fc6d99f17b319341b9647091fa2be9e",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/SymmetricBoxReemitted.tsm",
+      "output_sha256": "33ff3b8c0cb360b6c476d3d443f754553fc6d99f17b319341b9647091fa2be9e",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": true,
+      "creased_edges": []
+    },
+    {
+      "name": "SymmetricBoxEdited",
+      "source_file": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.tsm",
+      "source_sha256": "0df4b2ec3de480a9a01cb96fe809a64b0f586b4232aa5ae18c5e3d9a4efadf22",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/SymmetricBoxEditedReemitted.tsm",
+      "output_sha256": "0df4b2ec3de480a9a01cb96fe809a64b0f586b4232aa5ae18c5e3d9a4efadf22",
+      "byte_identical": true,
+      "faces": 24,
+      "edges": 48,
+      "vertices": 26,
+      "grips": 26,
+      "symmetry": true,
+      "creased_edges": []
+    },
+    {
+      "name": "AuthoredClosedCage",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/AuthoredClosedCage.tsm",
+      "output_sha256": "832f488f1ea9fa961861dd24cdf8fa9934bf44d56f613ffb26843da13044e83c",
+      "source_free": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "grips": 8,
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ]
+      ],
+      "input_quad_faces": [
+        [
+          2,
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          6,
+          4
+        ],
+        [
+          0,
+          4,
+          5,
+          1
+        ],
+        [
+          4,
+          6,
+          7,
+          5
+        ],
+        [
+          5,
+          7,
+          3,
+          1
+        ],
+        [
+          6,
+          2,
+          3,
+          7
+        ]
+      ],
+      "face_origins": "first loop vertex",
+      "vertex_spokes": [
+        1,
+        5,
+        3,
+        7,
+        5,
+        1,
+        7,
+        3
+      ],
+      "edge_origins": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          3,
+          7
+        ]
+      ]
+    }
+  ]
+}

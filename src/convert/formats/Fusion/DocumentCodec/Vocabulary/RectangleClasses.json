@@ -1,0 +1,290 @@
+[
+  {
+    "ClassGuid": "DCA267ED-D615-4934-B64F-AD805E8003E2",
+    "BaseGuid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "lineCurve",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "startPoint",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "displacement",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "lineDirection",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "planeNormal",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rEndPoint",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rStartPoint",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "Line3D",
+    "ClassSpace": "Geometry"
+  },
+  {
+    "ClassGuid": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+    "BaseGuid": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "profileEdgeTagData",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "struct",
+              "Members": [
+                {
+                  "FieldName": "version",
+                  "ValueType": {
+                    "KindValue": "i32",
+                    "AllowedInts": [0]
+                  },
+                  "IsSaved": true
+                },
+                {
+                  "FieldName": "sketchTags",
+                  "ValueType": {
+                    "KindValue": "sequence",
+                    "Arguments": [
+                      {
+                        "KindValue": "sketch-tag"
+                      }
+                    ]
+                  },
+                  "IsSaved": true
+                },
+                {
+                  "FieldName": "startAdjacentPrimaryTagIds",
+                  "ValueType": {
+                    "KindValue": "set",
+                    "Arguments": [
+                      {
+                        "KindValue": "u64"
+                      }
+                    ]
+                  },
+                  "IsSaved": true
+                },
+                {
+                  "FieldName": "endAdjacentPrimaryTagIds",
+                  "ValueType": {
+                    "KindValue": "set",
+                    "Arguments": [
+                      {
+                        "KindValue": "u64"
+                      }
+                    ]
+                  },
+                  "IsSaved": true
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SketchCurveRecipe",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "FA8C53C4-4FEC-4643-8A9F-5A95FF0B9F8A",
+    "BaseGuid": "",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "faceRecipe",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "pair",
+              "Arguments": [
+                {
+                  "KindValue": "sequence",
+                  "Arguments": [
+                    {
+                      "KindValue": "sketch-tag"
+                    }
+                  ]
+                },
+                {
+                  "KindValue": "bool"
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "originalFaceRecipes",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "sequence",
+              "Arguments": [
+                {
+                  "KindValue": "pair",
+                  "Arguments": [
+                    {
+                      "KindValue": "sequence",
+                      "Arguments": [
+                        {
+                          "KindValue": "sketch-tag"
+                        }
+                      ]
+                    },
+                    {
+                      "KindValue": "bool"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "SkRegionRecipeDataValue",
+    "ClassSpace": "Fusion"
+  }
+]

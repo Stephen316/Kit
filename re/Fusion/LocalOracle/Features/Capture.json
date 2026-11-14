@@ -1,0 +1,144 @@
+{
+  "operation": "controlled_circle_extrusion_capture",
+  "fusion_version": "2706.1.17",
+  "samples": [
+    {
+      "file": "circle_sketch.f3d",
+      "sha256": "b2e1f2213abae29960f87c5b5db8b9ae2760e5b61c1aba95273b18414ea01156",
+      "parameters": [
+        {
+          "name": "depthLength",
+          "expression": "7 mm",
+          "value": 0.7000000000000001,
+          "unit": "mm"
+        }
+      ],
+      "timeline": [
+        {
+          "index": 0,
+          "name": "Radius10mm",
+          "type": "adsk::fusion::Sketch"
+        }
+      ],
+      "bodies": [],
+      "property_count": 225,
+      "property_error_count": 225
+    },
+    {
+      "file": "extrude_07mm.f3d",
+      "sha256": "ff7730152b56ef608e690df79788ee5658473d59b33e398dc96743e306adacd1",
+      "parameters": [
+        {
+          "name": "depthLength",
+          "expression": "7 mm",
+          "value": 0.7000000000000001,
+          "unit": "mm"
+        },
+        {
+          "name": "d2",
+          "expression": "depthLength",
+          "value": 0.7000000000000001,
+          "unit": "mm"
+        },
+        {
+          "name": "d3",
+          "expression": "0.0 deg",
+          "value": 0.0,
+          "unit": "deg"
+        }
+      ],
+      "timeline": [
+        {
+          "index": 0,
+          "name": "Radius10mm",
+          "type": "adsk::fusion::Sketch"
+        },
+        {
+          "index": 1,
+          "name": "ControlledExtrusion",
+          "type": "adsk::fusion::ExtrudeFeature"
+        }
+      ],
+      "bodies": [
+        {
+          "name": "Body1",
+          "volume_cm3": 2.1991148575129498,
+          "faces": 3,
+          "edges": 2,
+          "vertices": 2,
+          "min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "max_cm": [
+            1.0,
+            1.0,
+            0.7000000000000001
+          ]
+        }
+      ],
+      "property_count": 258,
+      "property_error_count": 258
+    },
+    {
+      "file": "extrude_13mm.f3d",
+      "sha256": "25a1547213e492f7887f32f029673d287cba3fe435aa64a508038951a65b0f55",
+      "parameters": [
+        {
+          "name": "depthLength",
+          "expression": "13 mm",
+          "value": 1.3,
+          "unit": "mm"
+        },
+        {
+          "name": "d2",
+          "expression": "depthLength",
+          "value": 1.3,
+          "unit": "mm"
+        },
+        {
+          "name": "d3",
+          "expression": "0.0 deg",
+          "value": 0.0,
+          "unit": "deg"
+        }
+      ],
+      "timeline": [
+        {
+          "index": 0,
+          "name": "Radius10mm",
+          "type": "adsk::fusion::Sketch"
+        },
+        {
+          "index": 1,
+          "name": "ControlledExtrusion",
+          "type": "adsk::fusion::ExtrudeFeature"
+        }
+      ],
+      "bodies": [
+        {
+          "name": "Body1",
+          "volume_cm3": 4.084070449666906,
+          "faces": 3,
+          "edges": 2,
+          "vertices": 2,
+          "min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "max_cm": [
+            1.0,
+            1.0,
+            1.3
+          ]
+        }
+      ],
+      "property_count": 258,
+      "property_error_count": 258
+    }
+  ],
+  "schema_command_result": "Current active document's all meta type schemas were successfully dumped out to file re/Fusion/LocalOracle/Features/FeatureSchema.xml",
+  "status": "captured"
+}

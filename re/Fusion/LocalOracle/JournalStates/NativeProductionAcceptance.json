@@ -1,0 +1,2798 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native comparison of complete source-specific multi-state histories emitted by production ReadJournal, EmitJournal and PermuteJournal; source-specific non-history members preserved",
+  "cases": [
+    {
+      "name": "OffsetCylinder",
+      "variants": [
+        {
+          "name": "Control",
+          "source_sha256": "383eeb7bd5fb037e6cc63967865a8704c6b0d725dc2a62c0bc1bef2e4fd3a9a5",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 9.817477042468525,
+                  "area_cm2": 25.52544031041707,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "prior_geometry": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 6.283185307179318,
+                  "area_cm2": 18.84955592153876,
+                  "bounds_cm": [
+                    [
+                      1.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      3.0,
+                      3.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "sketch_only": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": []
+            },
+            "restored": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 9.817477042468525,
+                  "area_cm2": 25.52544031041707,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "height_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 11.290098598838807,
+                  "area_cm2": 27.88163480060942,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "feature_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.35000000000000003,
+                  "expression": "3.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 13.168771005685585,
+                  "area_cm2": 30.960395601127416,
+                  "bounds_cm": [
+                    [
+                      0.6499999999999999,
+                      0.6499999999999999,
+                      0.0
+                    ],
+                    [
+                      3.35,
+                      3.35,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.35000000000000003,
+                  "expression": "3.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 13.168771005685585,
+                  "area_cm2": 30.960395601127416,
+                  "bounds_cm": [
+                    [
+                      0.6499999999999999,
+                      0.6499999999999999,
+                      0.0
+                    ],
+                    [
+                      3.35,
+                      3.35,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          "saved_sha256": "aa8598309d205cab443401d48b8fa75faf14a952e90381bb5dcf539fd47adeb9",
+          "status": "accepted"
+        },
+        {
+          "name": "Production",
+          "source_sha256": "d93f8e534b7f0e8721c98f1cb6cbccea28d1be961b9c8869a39fbb84f0a0432d",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 9.817477042468525,
+                  "area_cm2": 25.52544031041707,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "prior_geometry": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 6.283185307179318,
+                  "area_cm2": 18.84955592153876,
+                  "bounds_cm": [
+                    [
+                      1.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      3.0,
+                      3.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "sketch_only": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": []
+            },
+            "restored": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 9.817477042468525,
+                  "area_cm2": 25.52544031041707,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "height_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 11.290098598838807,
+                  "area_cm2": 27.88163480060942,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "feature_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.35000000000000003,
+                  "expression": "3.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 13.168771005685585,
+                  "area_cm2": 30.960395601127416,
+                  "bounds_cm": [
+                    [
+                      0.6499999999999999,
+                      0.6499999999999999,
+                      0.0
+                    ],
+                    [
+                      3.35,
+                      3.35,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.35000000000000003,
+                  "expression": "3.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 13.168771005685585,
+                  "area_cm2": 30.960395601127416,
+                  "bounds_cm": [
+                    [
+                      0.6499999999999999,
+                      0.6499999999999999,
+                      0.0
+                    ],
+                    [
+                      3.35,
+                      3.35,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          "saved_sha256": "119a28d69d0cebd4185b5ffcc63bec61d5d79f24bf2ca03c42f7602336c1d8df",
+          "status": "accepted"
+        },
+        {
+          "name": "ProductionPermuted",
+          "source_sha256": "42edefd871b36f8b315076cb8f0dbab1edd76bfb522f90b35854bbddf833b611",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 9.817477042468525,
+                  "area_cm2": 25.52544031041707,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "prior_geometry": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 6.283185307179318,
+                  "area_cm2": 18.84955592153876,
+                  "bounds_cm": [
+                    [
+                      1.0,
+                      1.0,
+                      0.0
+                    ],
+                    [
+                      3.0,
+                      3.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "sketch_only": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": []
+            },
+            "restored": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 9.817477042468525,
+                  "area_cm2": 25.52544031041707,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "height_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.25,
+                  "expression": "2.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 11.290098598838807,
+                  "area_cm2": 27.88163480060942,
+                  "bounds_cm": [
+                    [
+                      0.75,
+                      0.75,
+                      0.0
+                    ],
+                    [
+                      3.25,
+                      3.25,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "feature_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.35000000000000003,
+                  "expression": "3.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 13.168771005685585,
+                  "area_cm2": 30.960395601127416,
+                  "bounds_cm": [
+                    [
+                      0.6499999999999999,
+                      0.6499999999999999,
+                      0.0
+                    ],
+                    [
+                      3.35,
+                      3.35,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.35000000000000003,
+                  "expression": "3.5 mm",
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "FaceEditSeed",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeFaceEdit",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 13.168771005685585,
+                  "area_cm2": 30.960395601127416,
+                  "bounds_cm": [
+                    [
+                      0.6499999999999999,
+                      0.6499999999999999,
+                      0.0
+                    ],
+                    [
+                      3.35,
+                      3.35,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          "saved_sha256": "f5b9cf6bea843914049ba4b4126e3b73efa9820cf7292737644f635dfceb090e",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "name": "Draft",
+      "variants": [
+        {
+          "name": "Control",
+          "source_sha256": "e202bf150795df3dc4f0673229ecade94e17328f54fb2860946aa60090ec2300",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.247894567706026,
+                  "area_cm2": 16.790714234794503,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "prior_geometry": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 6.283185307179316,
+                  "area_cm2": 18.84955592153876,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "sketch_only": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": []
+            },
+            "restored": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.247894567706026,
+                  "area_cm2": 16.790714234794503,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "height_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.869211744617175,
+                  "area_cm2": 18.193062207611888,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "feature_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.12217304763960307,
+                  "expression": "7 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.377191140021575,
+                  "area_cm2": 17.263303984332705,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.12217304763960307,
+                  "expression": "7 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.377191140021575,
+                  "area_cm2": 17.263303984332705,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          "saved_sha256": "97f9c2d8f625e40ba90d1a0eea7565cd88cbd368ccac5b50332dab5fdf21732d",
+          "status": "accepted"
+        },
+        {
+          "name": "Production",
+          "source_sha256": "e684b5f22ff6dae136b5d9144a01927e1944ed0ef2ef74cb92c343cfe516ea47",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.247894567706026,
+                  "area_cm2": 16.790714234794503,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "prior_geometry": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 6.283185307179316,
+                  "area_cm2": 18.84955592153876,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "sketch_only": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": []
+            },
+            "restored": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.247894567706026,
+                  "area_cm2": 16.790714234794503,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "height_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.869211744617175,
+                  "area_cm2": 18.193062207611888,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "feature_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.12217304763960307,
+                  "expression": "7 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.377191140021575,
+                  "area_cm2": 17.263303984332705,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.12217304763960307,
+                  "expression": "7 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.377191140021575,
+                  "area_cm2": 17.263303984332705,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          "saved_sha256": "b0ebc9be707f4bb56e1e57b3ea6272449b257e06d047dcc87148cc67b22362e0",
+          "status": "accepted"
+        },
+        {
+          "name": "ProductionPermuted",
+          "source_sha256": "4fc83e11c00936607c65173c903c22dea253e0e4ffc3415acc2200cd5d60f8fc",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.247894567706026,
+                  "area_cm2": 16.790714234794503,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "prior_geometry": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 6.283185307179316,
+                  "area_cm2": 18.84955592153876,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "sketch_only": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": []
+            },
+            "restored": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.0,
+                  "expression": "20 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.247894567706026,
+                  "area_cm2": 16.790714234794503,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  ]
+                }
+              ]
+            },
+            "height_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.08726646259971647,
+                  "expression": "5 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.869211744617175,
+                  "area_cm2": 18.193062207611888,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "feature_edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.12217304763960307,
+                  "expression": "7 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.377191140021575,
+                  "area_cm2": 17.263303984332705,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.3000000000000003,
+                  "expression": "23 mm",
+                  "unit": "mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.12217304763960307,
+                  "expression": "7 deg",
+                  "unit": "deg"
+                },
+                {
+                  "name": "d4",
+                  "value": 0.0,
+                  "expression": "0.0 deg",
+                  "unit": "deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "SeedProfile",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "SeedExtrusion",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "ProbeDraft",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "faces": 3,
+                  "edges": 2,
+                  "vertices": 2,
+                  "volume_cm3": 5.377191140021575,
+                  "area_cm2": 17.263303984332705,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      0.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      2.3000000000000003
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          "saved_sha256": "b810d63b7b52db15e9a615b8f3e719e64da33e138cb79d0e440c12f0fda67829",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

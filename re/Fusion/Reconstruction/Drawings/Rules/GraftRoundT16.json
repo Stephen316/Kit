@@ -1,0 +1,1338 @@
+{
+ "fusion_version": "2706.1.17",
+ "route": "object-level grafts on the A3 control (D0Plain base, BuildEdges.py); every stored edge removed; E1 leaves the views empty, T16 writes the edges Kit computes from the control design solid",
+ "run": "Native/EdgeRound.py: upload, open, read curves and boxes, halve the base scale and restore it, read again, export DWG",
+ "held_out_directions": [
+  "T16VisibleLeftBelow",
+  "T16VisibleRightBack",
+  "T16VisibleAboveBelow",
+  "T16HiddenLeftBelow",
+  "T16HiddenRightBack",
+  "T16HiddenAboveBelow"
+ ],
+ "grafts": {
+  "E1HiddenA": {
+   "sha256": "bd19647a290fcaa205502c422c07c46f86b80c9b3d8d943b69215f414d64f98b",
+   "dwg_sha256": "2e81c2fd4620372fb1533a832039dcc79a5cd874307362374d86837e3b454aaa",
+   "objects": 361,
+   "layout": "A",
+   "style": 1,
+   "kit_edges": null
+  },
+  "T16VisibleA": {
+   "sha256": "c11f24f551087ca7cefc88ca7375d0fbd93bc52c731f695e14a6a1cc1eae6897",
+   "dwg_sha256": "0af1c00b7ca498b91b8f92e7fa630f3c68ab3395e8fcc2fba1565b32e4e45c1b",
+   "objects": 374,
+   "layout": "A",
+   "style": 2,
+   "kit_edges": {
+    "edges": [
+     5,
+     4,
+     4
+    ],
+    "unmapped": []
+   }
+  },
+  "T16HiddenA": {
+   "sha256": "bbb5537fe8e23529c68042d2c19f121b59129acf1c9cde37d926ab23b4fb783c",
+   "dwg_sha256": "15ace46a0881868fb3700457d15f15a18750a07a3252541e6a50feca7350ae73",
+   "objects": 378,
+   "layout": "A",
+   "style": 1,
+   "kit_edges": {
+    "edges": [
+     5,
+     6,
+     6
+    ],
+    "unmapped": []
+   }
+  },
+  "T16VisibleLeftBelow": {
+   "sha256": "82f9e18eab1b826e9e805d77b5bd41f73fe86bd6b9d600e821344a304f44f7fa",
+   "dwg_sha256": "56b86a5e73ce1df76fc7cad964cb070bad89469972e2dffa3c185b2bf220b740",
+   "objects": 374,
+   "layout": "V1LeftBelow",
+   "style": 2,
+   "kit_edges": {
+    "edges": [
+     5,
+     4,
+     4
+    ],
+    "unmapped": []
+   }
+  },
+  "T16HiddenLeftBelow": {
+   "sha256": "7e0b9a6b4dc7d097fc00d20216e4d13e71a21f470e404cfba0ef010d461f4127",
+   "dwg_sha256": "b577d86d7ee3d5bc88cef2401bf439e2330fa10123170c027199f8093a226423",
+   "objects": 378,
+   "layout": "V1LeftBelow",
+   "style": 1,
+   "kit_edges": {
+    "edges": [
+     5,
+     6,
+     6
+    ],
+    "unmapped": []
+   }
+  },
+  "T16VisibleRightBack": {
+   "sha256": "1bef6694506dba298a6095f20255c435bdac288242dd3444544d47e8a5bbddf7",
+   "dwg_sha256": "7cf39e9d2951f1266072dc6275527f4ebf142360f09147ea9a902ccd97e67758",
+   "objects": 375,
+   "layout": "V2RightBack",
+   "style": 2,
+   "kit_edges": {
+    "edges": [
+     5,
+     4,
+     5
+    ],
+    "unmapped": []
+   }
+  },
+  "T16HiddenRightBack": {
+   "sha256": "5a304e9bd6d315e2c502bd4d26315d63cf81adbc3642a833481402395e17798a",
+   "dwg_sha256": "290de18d7d3a47fecdc14d97ea4fa0427e430900637ac13af38d5394b9b71743",
+   "objects": 377,
+   "layout": "V2RightBack",
+   "style": 1,
+   "kit_edges": {
+    "edges": [
+     5,
+     6,
+     5
+    ],
+    "unmapped": []
+   }
+  },
+  "T16VisibleAboveBelow": {
+   "sha256": "374e702ace0243047a2e3068c8b70f2aa610ae8f0edac59665e16b5c1c13a1c5",
+   "dwg_sha256": "c4661e7f30961d859bfaf191818b7d665d91b2e460fe39b5ac57dc51d4a73b7d",
+   "objects": 374,
+   "layout": "V3AboveBelow",
+   "style": 2,
+   "kit_edges": {
+    "edges": [
+     5,
+     4,
+     4
+    ],
+    "unmapped": []
+   }
+  },
+  "T16HiddenAboveBelow": {
+   "sha256": "29941b08043bd7eb55816e815bf285c06bfb1db7bc541157284770d42dae32e1",
+   "dwg_sha256": "c5e27c4bf0082205f59d171048664c2e94851c92780659dd865c8a887137dab2",
+   "objects": 378,
+   "layout": "V3AboveBelow",
+   "style": 1,
+   "kit_edges": {
+    "edges": [
+     5,
+     6,
+     6
+    ],
+    "unmapped": []
+   }
+  }
+ },
+ "rounds": {
+  "E1": {
+   "E1HiddenA": {
+    "run": "completed",
+    "open_seconds": 4.6,
+    "modified_after_open": true,
+    "open_curves": [
+     0,
+     0,
+     0
+    ],
+    "update_curves": [
+     5,
+     6,
+     6
+    ],
+    "open_boxes": [
+     null,
+     null,
+     null
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      278.0,
+      80.6094,
+      318.0,
+      160.6094
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "open_equals_update": false,
+    "export_sha256": "4c4cda55c30bc788fb4711bdced2a578b93fc652defbb5dc5efd94468ab36821"
+   }
+  },
+  "T16": {
+   "T16VisibleA": {
+    "run": "completed",
+    "open_seconds": 4.9,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     4,
+     4
+    ],
+    "update_curves": [
+     5,
+     4,
+     4
+    ],
+    "open_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      278.0,
+      80.6094,
+      318.0,
+      160.6094
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      278.0,
+      80.6094,
+      318.0,
+      160.6094
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "101a991a651cab41a624bd4b0013f800213a10e4e7cae88ae08f050323917710"
+   },
+   "T16HiddenA": {
+    "run": "completed",
+    "open_seconds": 2.6,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     6,
+     6
+    ],
+    "update_curves": [
+     5,
+     6,
+     6
+    ],
+    "open_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      278.0,
+      80.6094,
+      318.0,
+      160.6094
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      278.0,
+      80.6094,
+      318.0,
+      160.6094
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "aacdc20cca2abf27c6a38bd067d895e6ac582f7aeeade04bcf6c5d949e245f84"
+   },
+   "T16VisibleLeftBelow": {
+    "run": "completed",
+    "open_seconds": 2.5,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     4,
+     4
+    ],
+    "update_curves": [
+     5,
+     4,
+     4
+    ],
+    "open_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      42.9375,
+      80.6094,
+      82.9375,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ]
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      42.9375,
+      80.6094,
+      82.9375,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "4841abb8f6e4a10bcda2aa31c0a8512866c0ebedb159f0c5b5ea2dc24c13395f"
+   },
+   "T16HiddenLeftBelow": {
+    "run": "completed",
+    "open_seconds": 2.3,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     6,
+     6
+    ],
+    "update_curves": [
+     5,
+     6,
+     6
+    ],
+    "open_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      42.9375,
+      80.6094,
+      82.9375,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ]
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      42.9375,
+      80.6094,
+      82.9375,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "7efcd45394b04e95f262fd186efedfcc28d466fee3bba03d4a002a783c772a6d"
+   },
+   "T16VisibleRightBack": {
+    "run": "completed",
+    "open_seconds": 2.8,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     4,
+     5
+    ],
+    "update_curves": [
+     5,
+     4,
+     5
+    ],
+    "open_boxes": [
+     [
+      23.75,
+      80.6094,
+      183.75,
+      160.6094
+     ],
+     [
+      194.25,
+      80.6094,
+      234.25,
+      160.6094
+     ],
+     [
+      244.75,
+      80.6094,
+      404.75,
+      160.6094
+     ]
+    ],
+    "update_boxes": [
+     [
+      23.75,
+      80.6094,
+      183.75,
+      160.6094
+     ],
+     [
+      194.25,
+      80.6094,
+      234.25,
+      160.6094
+     ],
+     [
+      244.75,
+      80.6094,
+      404.75,
+      160.6094
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "e86fcfb7309448b4287c23d597ca7cc0b4d51d0036d7708806ab8b5b606fa898"
+   },
+   "T16HiddenRightBack": {
+    "run": "completed",
+    "open_seconds": 2.6,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     6,
+     5
+    ],
+    "update_curves": [
+     5,
+     6,
+     5
+    ],
+    "open_boxes": [
+     [
+      23.75,
+      80.6094,
+      183.75,
+      160.6094
+     ],
+     [
+      194.25,
+      80.6094,
+      234.25,
+      160.6094
+     ],
+     [
+      244.75,
+      80.6094,
+      404.75,
+      160.6094
+     ]
+    ],
+    "update_boxes": [
+     [
+      23.75,
+      80.6094,
+      183.75,
+      160.6094
+     ],
+     [
+      194.25,
+      80.6094,
+      234.25,
+      160.6094
+     ],
+     [
+      244.75,
+      80.6094,
+      404.75,
+      160.6094
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "8dc7415b84e9341e80ef7800020de4c364f8dbe9a553f78d5b0c4b0992383af7"
+   },
+   "T16VisibleAboveBelow": {
+    "run": "completed",
+    "open_seconds": 2.5,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     4,
+     4
+    ],
+    "update_curves": [
+     5,
+     4,
+     4
+    ],
+    "open_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "9dcb86f35e8fa76d93f88990dd275e38bc83eb63ef3bf2d785fca1d2586b8870"
+   },
+   "T16HiddenAboveBelow": {
+    "run": "completed",
+    "open_seconds": 2.6,
+    "modified_after_open": true,
+    "open_curves": [
+     5,
+     6,
+     6
+    ],
+    "update_curves": [
+     5,
+     6,
+     6
+    ],
+    "open_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "update_boxes": [
+     [
+      100.4688,
+      80.6094,
+      260.4688,
+      160.6094
+     ],
+     [
+      100.4688,
+      24.0156,
+      260.4688,
+      64.0156
+     ],
+     [
+      100.4688,
+      177.2031,
+      260.4688,
+      217.2031
+     ]
+    ],
+    "open_equals_update": true,
+    "export_sha256": "17c3541abbe875dd91527051b30c1e978f2d473bb7ffaf965595eb79446b96f3"
+   }
+  }
+ },
+ "export_compare": {
+  "T16VisibleA": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      2
+     ],
+     "fusion_style": [
+      11,
+      2
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      5,
+      6,
+      7,
+      8
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      8,
+      9,
+      10,
+      11
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16HiddenA": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      1
+     ],
+     "fusion_style": [
+      11,
+      1
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      5,
+      6,
+      7,
+      8
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      8,
+      9,
+      10,
+      11
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16VisibleLeftBelow": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      2
+     ],
+     "fusion_style": [
+      11,
+      2
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      3,
+      11,
+      12,
+      13
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16HiddenLeftBelow": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      1
+     ],
+     "fusion_style": [
+      11,
+      1
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      3,
+      11,
+      12,
+      13
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      2,
+      3,
+      4,
+      5
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16VisibleRightBack": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      2
+     ],
+     "fusion_style": [
+      11,
+      2
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      5,
+      6,
+      7,
+      8
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      0,
+      4,
+      7,
+      10,
+      13
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16HiddenRightBack": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      1
+     ],
+     "fusion_style": [
+      11,
+      1
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      5,
+      6,
+      7,
+      8
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      0,
+      4,
+      7,
+      10,
+      13
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16VisibleAboveBelow": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      2
+     ],
+     "fusion_style": [
+      11,
+      2
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      8,
+      9,
+      10,
+      11
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  },
+  "T16HiddenAboveBelow": {
+   "views": 3,
+   "fusion_views": 3,
+   "per_view": [
+    {
+     "style": [
+      11,
+      1
+     ],
+     "fusion_style": [
+      11,
+      1
+     ],
+     "rows": 5,
+     "fusion_rows": 5,
+     "same": true,
+     "ids": [
+      1,
+      2,
+      6,
+      9,
+      12
+     ],
+     "hidden": 0,
+     "kinds": [
+      "CIRCLE",
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      2,
+      3,
+      4,
+      5
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      5
+     ],
+     "fusion_style": [
+      15,
+      5
+     ],
+     "rows": 6,
+     "fusion_rows": 6,
+     "same": true,
+     "ids": [
+      "0xfffffffe",
+      "0xffffffff",
+      8,
+      9,
+      10,
+      11
+     ],
+     "hidden": 2,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  }
+ },
+ "held_out_design": {
+  "design": "BoxA, 25 x 25 x 5 mm box, Fusion-saved drawing: base view sight +Z, up +X, one projected view sight +Y",
+  "compare": {
+   "views": 2,
+   "fusion_views": 2,
+   "per_view": [
+    {
+     "style": [
+      11,
+      2
+     ],
+     "fusion_style": [
+      11,
+      2
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    },
+    {
+     "style": [
+      15,
+      6
+     ],
+     "fusion_style": [
+      15,
+      6
+     ],
+     "rows": 4,
+     "fusion_rows": 4,
+     "same": true,
+     "ids": [
+      2,
+      6,
+      8,
+      10
+     ],
+     "hidden": 0,
+     "kinds": [
+      "LINE"
+     ]
+    }
+   ]
+  }
+ }
+}

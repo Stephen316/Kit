@@ -84,7 +84,8 @@ def InferCaps(
             for AssemblyValue in AssemblyValues
             for DefinitionValue in AssemblyValue.definitions
         ),
-        Capability.KMaterials: any(
+        Capability.KMaterials: any(ItemValue.materials for ItemValue in DocumentValues)
+        or any(
             BodyValue.material_id
             for ItemValue in DocumentValues
             for BodyValue in ItemValue.bodies

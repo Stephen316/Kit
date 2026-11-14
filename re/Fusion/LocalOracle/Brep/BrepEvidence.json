@@ -1,0 +1,28 @@
+{
+  "archive": "BrepEvidence.tar.xz",
+  "archive_sha256": "70b9398718beb9d1ca848fc4e9d560af7b93a0c60d63ddbde7f2fc5332dba09d",
+  "entries": [
+    {
+      "name": "extrude_07mm.tokens.json",
+      "bytes": 397031,
+      "sha256": "99ad6818831108b2ce2a2bb1e6170bd6a69eae7ea0c17d4de05ea5c5bcbafb8a"
+    },
+    {
+      "name": "extrude_07mm.semantic.json",
+      "bytes": 63644,
+      "sha256": "dbca33cfdd568427a947a581578a882cad4c26f311b08c206cc8a9d0e0240cbd"
+    },
+    {
+      "name": "kit_cylinder_15r_11h.derivation.json",
+      "bytes": 44428,
+      "sha256": "4d3feba63b9a78e14d239f713997479f8ad4641860667d06e35296cc4baf03fa"
+    },
+    {
+      "name": "kit_cylinder_15r_11h.binary-derivation.json",
+      "bytes": 42108,
+      "sha256": "b6dfadea23f34306c42a7949baf29ba780b84b14773ba230f21d89bce0b825b9"
+    }
+  ],
+  "purpose": "Exact generated field and byte-offset evidence, archived to keep code review focused on implementation and readable interpretation",
+  "extraction": "tar -xJf re/Fusion/LocalOracle/Brep/BrepEvidence.tar.xz -C re/Fusion/LocalOracle/Brep"
+}

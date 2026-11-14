@@ -1,0 +1,1939 @@
+{
+  "cases": [
+    {
+      "name": "OrdinaryRectangle",
+      "source": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "source_sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "output": "re/Fusion/LocalOracle/PrismSnapshot/OrdinaryRectangleSnapshot.f3d",
+      "output_sha256": "1b70cbd58414d0e5bb8338596d2cbf4edde41be52b8f5f9a6fa86cb47db5486b",
+      "snapshot_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.57a592de-4b4b-4322-b4b9-6144bde9a604.smb",
+      "source_snapshot_sha256": "61ef68fce375c483b477e419b7fdbf78f2c40f080ed7c192db970cfe2babf45c",
+      "snapshot": "re/Fusion/LocalOracle/PrismSnapshot/OrdinaryRectangleSnapshot.smb",
+      "snapshot_sha256": "ec212245f6143665c6695f89595b6c46177e73208acd18c873eb6777dbb54fbe",
+      "snapshot_bytes": 16557,
+      "geometry_mm": {
+        "Width": 40.0,
+        "Depth": 30.0,
+        "Height": 25.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "expected_volume_cm3": 30.0,
+      "expected_topology": {
+        "faces": 6,
+        "edges": 12,
+        "vertices": 8
+      },
+      "height_parameter": "d1",
+      "edited_height_mm": 37.0,
+      "expected_edited_volume_cm3": 44.4,
+      "typed_snapshot": {
+        "Model": {
+          "Width": 40.0,
+          "Depth": 30.0,
+          "Height": 25.0,
+          "BasePoint": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TagSet": {
+          "Faces": [
+            {
+              "PrimaryId": "1",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "2",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "4",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "6",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "3",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "5",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            }
+          ],
+          "Sketches": [
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ]
+        },
+        "Stamp": {
+          "Product": "Autodesk Neutron",
+          "Version": "ASM 232.5.0.65535 OSX",
+          "SavedAt": "Wed Oct 21 11:20:38 2026"
+        },
+        "Header": {
+          "FileVersion": 23200,
+          "RootCount": 4,
+          "Flags": 2,
+          "Scale": 10.0,
+          "AbsoluteTolerance": 1e-06,
+          "NormalTolerance": 1e-10
+        },
+        "Frame": {
+          "CornersCm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.5
+            ],
+            [
+              4.0,
+              0.0,
+              2.5
+            ],
+            [
+              0.0,
+              3.0,
+              2.5
+            ],
+            [
+              4.0,
+              3.0,
+              2.5
+            ]
+          ],
+          "FaceOrder": [
+            3,
+            5,
+            2,
+            4,
+            1,
+            0
+          ],
+          "FaceStarts": [
+            0,
+            6,
+            0,
+            3,
+            2,
+            1
+          ],
+          "FaceReverse": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "Edges": [
+            {
+              "StartCorner": 0,
+              "EndCorner": 1,
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "OwnerFace": 2,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 4.0
+              }
+            },
+            {
+              "StartCorner": 3,
+              "EndCorner": 2,
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "OwnerFace": 3,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 4.0
+              }
+            },
+            {
+              "StartCorner": 4,
+              "EndCorner": 5,
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "OwnerFace": 2,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  2.5
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 7,
+              "EndCorner": 6,
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "OwnerFace": 3,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  3.0,
+                  2.5
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 2,
+              "EndCorner": 0,
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 3.0
+              }
+            },
+            {
+              "StartCorner": 1,
+              "EndCorner": 3,
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "OwnerFace": 5,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 3.0
+              }
+            },
+            {
+              "StartCorner": 6,
+              "EndCorner": 4,
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  3.0,
+                  2.5
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 5,
+              "EndCorner": 7,
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "OwnerFace": 5,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  0.0,
+                  2.5
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 0,
+              "EndCorner": 4,
+              "LowerParam": 0.0,
+              "UpperParam": 2.5,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 1,
+              "EndCorner": 5,
+              "LowerParam": 0.0,
+              "UpperParam": 2.5,
+              "OwnerFace": 2,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 2,
+              "EndCorner": 6,
+              "LowerParam": 0.0,
+              "UpperParam": 2.5,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 3,
+              "EndCorner": 7,
+              "LowerParam": 0.0,
+              "UpperParam": 2.5,
+              "OwnerFace": 5,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            }
+          ],
+          "VertexOwners": [
+            4,
+            0,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11
+          ],
+          "Planes": [
+            {
+              "OriginCm": [
+                2.0,
+                1.5,
+                0.0
+              ],
+              "Normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Basis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                2.0,
+                1.5,
+                2.5
+              ],
+              "Normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Basis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "Basis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                4.0,
+                3.0,
+                0.0
+              ],
+              "Normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "Basis": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "Normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "Basis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                4.0,
+                0.0,
+                0.0
+              ],
+              "Normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "Basis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "ReverseV": false
+            }
+          ]
+        },
+        "Profile": {
+          "CornersCm": [
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              0.0
+            ]
+          ],
+          "Edges": [
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 3.0
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 4.0
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 3.0
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 4.0
+              }
+            }
+          ],
+          "VertexOwners": [
+            0,
+            0,
+            1,
+            2
+          ],
+          "Plane": {
+            "OriginCm": [
+              2.0,
+              1.5,
+              0.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "Basis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "ReverseV": false
+          },
+          "CoedgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ],
+          "EdgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ]
+        },
+        "Sketch": {
+          "CornersCm": [
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              0.0
+            ]
+          ],
+          "Edges": [
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 3.0
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 4.0
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 3.0,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 3.0
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 4.0,
+              "Curve": {
+                "OriginCm": [
+                  4.0,
+                  3.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 4.0
+              }
+            }
+          ],
+          "VertexOwners": [
+            3,
+            0,
+            1,
+            2
+          ],
+          "Plane": {
+            "OriginCm": [
+              2.0,
+              1.5,
+              0.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "Basis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "ReverseV": false
+          },
+          "CoedgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ],
+          "EdgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ]
+        }
+      },
+      "scope": "Only the complete snapshot is typed-decoded and independently serialized; every other member remains this same source archive, including its history, Design, materials and graphics",
+      "construction": "All 168 snapshot records regenerated from typed topology, carrier frames, generic tags, sketch links and headers; no source bytes retained by the model",
+      "native_acceptance": "not performed by this preparation script"
+    },
+    {
+      "name": "SavedCuboid",
+      "source": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionCuboid37mm.f3d",
+      "source_sha256": "62c03b7aa11ce2c79193e51376e4405e6bbfd34aa5ab8097b72043ad49f38683",
+      "output": "re/Fusion/LocalOracle/PrismSnapshot/SavedCuboidSnapshot.f3d",
+      "output_sha256": "83466b231452394a0d8f0f493da1465a0c3f31b413f135ec6aceb2dfab738d1b",
+      "snapshot_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e7ab5cd7-ccba-44fc-8ba2-242e98f36a90.smb",
+      "source_snapshot_sha256": "a7b1b5e99abf90f0bebbc146bfda5e1d65afe378068b5d95dad018a321fa430e",
+      "snapshot": "re/Fusion/LocalOracle/PrismSnapshot/SavedCuboidSnapshot.smb",
+      "snapshot_sha256": "638ce588690a96967050ed1af0e20c9244300131dd90bf00e257ed51e1965d9a",
+      "snapshot_bytes": 16557,
+      "geometry_mm": {
+        "Width": 17.0,
+        "Depth": 23.0,
+        "Height": 37.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "expected_volume_cm3": 14.467,
+      "expected_topology": {
+        "faces": 6,
+        "edges": 12,
+        "vertices": 8
+      },
+      "height_parameter": "authoredLength",
+      "edited_height_mm": 43.0,
+      "expected_edited_volume_cm3": 16.813,
+      "typed_snapshot": {
+        "Model": {
+          "Width": 17.0,
+          "Depth": 23.0,
+          "Height": 37.0,
+          "BasePoint": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TagSet": {
+          "Faces": [
+            {
+              "PrimaryId": "1",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "2",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "4",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "6",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "3",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            },
+            {
+              "PrimaryId": "5",
+              "OperationIds": [
+                301
+              ],
+              "SecondaryId": 0,
+              "ApproachId": 0
+            }
+          ],
+          "Sketches": [
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ]
+        },
+        "Stamp": {
+          "Product": "Autodesk Neutron",
+          "Version": "ASM 232.5.0.65535 OSX",
+          "SavedAt": "Thu Nov 12 06:12:23 2026"
+        },
+        "Header": {
+          "FileVersion": 23200,
+          "RootCount": 4,
+          "Flags": 2,
+          "Scale": 10.0,
+          "AbsoluteTolerance": 1e-06,
+          "NormalTolerance": 1e-10
+        },
+        "Frame": {
+          "CornersCm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.7,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.3,
+              0.0
+            ],
+            [
+              1.7,
+              2.3,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.7
+            ],
+            [
+              1.7,
+              0.0,
+              3.7
+            ],
+            [
+              0.0,
+              2.3,
+              3.7
+            ],
+            [
+              1.7,
+              2.3,
+              3.7
+            ]
+          ],
+          "FaceOrder": [
+            3,
+            5,
+            2,
+            4,
+            1,
+            0
+          ],
+          "FaceStarts": [
+            0,
+            6,
+            0,
+            3,
+            2,
+            1
+          ],
+          "FaceReverse": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "Edges": [
+            {
+              "StartCorner": 0,
+              "EndCorner": 1,
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "OwnerFace": 2,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 1.7
+              }
+            },
+            {
+              "StartCorner": 3,
+              "EndCorner": 2,
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "OwnerFace": 3,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 1.7
+              }
+            },
+            {
+              "StartCorner": 4,
+              "EndCorner": 5,
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "OwnerFace": 2,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  3.7
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 7,
+              "EndCorner": 6,
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "OwnerFace": 3,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  2.3,
+                  3.7
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 2,
+              "EndCorner": 0,
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 2.3
+              }
+            },
+            {
+              "StartCorner": 1,
+              "EndCorner": 3,
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "OwnerFace": 5,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 2.3
+              }
+            },
+            {
+              "StartCorner": 6,
+              "EndCorner": 4,
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  2.3,
+                  3.7
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 5,
+              "EndCorner": 7,
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "OwnerFace": 5,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  0.0,
+                  3.7
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 0,
+              "EndCorner": 4,
+              "LowerParam": 0.0,
+              "UpperParam": 3.7,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 1,
+              "EndCorner": 5,
+              "LowerParam": 0.0,
+              "UpperParam": 3.7,
+              "OwnerFace": 2,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 2,
+              "EndCorner": 6,
+              "LowerParam": 0.0,
+              "UpperParam": 3.7,
+              "OwnerFace": 4,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            },
+            {
+              "StartCorner": 3,
+              "EndCorner": 7,
+              "LowerParam": 0.0,
+              "UpperParam": 3.7,
+              "OwnerFace": 5,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "LowerBound": null,
+                "UpperBound": null
+              }
+            }
+          ],
+          "VertexOwners": [
+            4,
+            0,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11
+          ],
+          "Planes": [
+            {
+              "OriginCm": [
+                0.85,
+                1.15,
+                0.0
+              ],
+              "Normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Basis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                0.85,
+                1.15,
+                3.7
+              ],
+              "Normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Basis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Normal": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "Basis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                1.7,
+                2.3,
+                0.0
+              ],
+              "Normal": [
+                0.0,
+                1.0,
+                -0.0
+              ],
+              "Basis": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "Normal": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "Basis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "ReverseV": false
+            },
+            {
+              "OriginCm": [
+                1.7,
+                0.0,
+                0.0
+              ],
+              "Normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "Basis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "ReverseV": false
+            }
+          ]
+        },
+        "Profile": {
+          "CornersCm": [
+            [
+              0.0,
+              2.3,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.7,
+              0.0,
+              0.0
+            ],
+            [
+              1.7,
+              2.3,
+              0.0
+            ]
+          ],
+          "Edges": [
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 2.3
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 1.7
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 2.3
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 1.7
+              }
+            }
+          ],
+          "VertexOwners": [
+            0,
+            0,
+            1,
+            2
+          ],
+          "Plane": {
+            "OriginCm": [
+              0.85,
+              1.15,
+              0.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "Basis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "ReverseV": false
+          },
+          "CoedgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ],
+          "EdgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ]
+        },
+        "Sketch": {
+          "CornersCm": [
+            [
+              0.0,
+              2.3,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              1.7,
+              0.0,
+              0.0
+            ],
+            [
+              1.7,
+              2.3,
+              0.0
+            ]
+          ],
+          "Edges": [
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 2.3
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "Curve": {
+                "OriginCm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 1.7
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 2.3,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  0.0,
+                  0.0
+                ],
+                "DirectionCm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 2.3
+              }
+            },
+            {
+              "LowerParam": 0.0,
+              "UpperParam": 1.7,
+              "Curve": {
+                "OriginCm": [
+                  1.7,
+                  2.3,
+                  0.0
+                ],
+                "DirectionCm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "LowerBound": 0.0,
+                "UpperBound": 1.7
+              }
+            }
+          ],
+          "VertexOwners": [
+            3,
+            0,
+            1,
+            2
+          ],
+          "Plane": {
+            "OriginCm": [
+              0.85,
+              1.15,
+              0.0
+            ],
+            "Normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "Basis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "ReverseV": false
+          },
+          "CoedgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 0,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ],
+          "EdgeTags": [
+            {
+              "PrimaryId": 108,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 105,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 106,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            },
+            {
+              "PrimaryId": 107,
+              "SecondaryId": 0,
+              "Direction": 1,
+              "SplitSequenceId": 1,
+              "SplitTotalNumber": 1,
+              "TopologyRoleFlags": 0
+            }
+          ]
+        }
+      },
+      "scope": "Only the complete snapshot is typed-decoded and independently serialized; every other member remains this same source archive, including its history, Design, materials and graphics",
+      "construction": "All 168 snapshot records regenerated from typed topology, carrier frames, generic tags, sketch links and headers; no source bytes retained by the model",
+      "native_acceptance": "not performed by this preparation script"
+    }
+  ],
+  "local_execution": "Authorized artifact generation for parent-coordinated native acceptance; no local tests or native calls"
+}
