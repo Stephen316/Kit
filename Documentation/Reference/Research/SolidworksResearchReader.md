@@ -43,6 +43,7 @@ Use `--manifest PATH` for another version-1 corpus manifest.
 Exit code `0` means the SDK decoded the file and its JSON survived typed reconstruction and reference validation.
 The command prints the output path, fingerprint, document hash and evidence counts.
 It always reports `portable_complete: false`.
+Its `document.json` also carries `kit.research_read_status = unqualified` in document metadata. The public reader can open that file for inspection. Public writing and conversion reject it before staging a destination, even when the side receipt is absent. Regenerate older research artifacts to attach the marker.
 Independent semantic qualification and native acceptance remain unavailable.
 
 | File            | Content                                                                                          |

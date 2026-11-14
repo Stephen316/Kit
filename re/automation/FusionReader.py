@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 from collections import Counter
+from dataclasses import replace
 from pathlib import Path, PurePosixPath
 
 from Corpus import git, read_tree
@@ -77,8 +78,14 @@ def read_document(content, allow_partial):
 
 
 def encode_document(document):
+    from convert.adapters.registry.ResearchWrite import KResearchReadStatus
+    from interchange.core.Common import FreezeMapping
     from interchange.document.models.DocumentModel import CadDocument
 
+    document = replace(
+        document,
+        metadata=FreezeMapping({**document.metadata, KResearchReadStatus: "unqualified"}),
+    )
     document.assert_valid()
     encoded = document.to_json(indent=None).encode("utf-8")
     if len(encoded) > DOCUMENT_LIMIT:

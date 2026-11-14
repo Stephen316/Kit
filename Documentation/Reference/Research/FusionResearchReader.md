@@ -38,6 +38,7 @@ Inputs are bounded to 256 MiB, neutral JSON to 64 MiB, receipts to 32 MiB, and a
 Pin checks cover path, blob, size, SHA-256, and prefix.
 SDK source changes detected during decoding reject publication.
 `portable_complete` remains false, and native acceptance remains not established.
+Both strict and partial research outputs carry `kit.research_read_status = unqualified` in document metadata. The public reader can open them for inspection. Public writing and conversion reject marked files before staging a destination. Regenerate older research artifacts to attach the marker.
 Structural decoding and partial fallback do not qualify editable cross-format conversion.
 
 ## Recovery and related information

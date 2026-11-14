@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from dataclasses import replace
 from pathlib import Path, PurePosixPath
 
 from Corpus import git, read_tree
@@ -59,15 +60,21 @@ def decode(root, manifest_path, asset_path, configuration, output):
     staging = Path(tempfile.mkdtemp(prefix=".reader-", dir=output.parent))
     try:
         sys.path.insert(0, str(root / "src"))
+        from convert.adapters.registry.ResearchWrite import KResearchReadStatus
         from convert.adapters.solidworks.core.Adapter import ReadSldprt
         from convert.adapters.solidworks.container.Container import SldprtArchive
         from convert.adapters.solidworks.container.Format import KitDocStream
+        from interchange.core.Common import FreezeMapping
         from interchange.document.models.DocumentModel import CadDocument
 
         archive = SldprtArchive.from_bytes(content, asset_path)
         if archive.get(KitDocStream) is not None:
             raise ValueError("embedded Kit documents are not independent native reader evidence")
         document = ReadSldprt(content, Config=configuration)
+        document = replace(
+            document,
+            metadata=FreezeMapping({**document.metadata, KResearchReadStatus: "unqualified"}),
+        )
         document.assert_valid()
         encoded = document.to_json(indent=None).encode("utf-8")
         if len(encoded) > 64 * 1024 * 1024:

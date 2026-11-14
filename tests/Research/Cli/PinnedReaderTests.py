@@ -3,6 +3,7 @@ from pathlib import Path as FilePath
 from subprocess import run as RunProcess
 from sys import executable as KPythonPath
 
+from convert.adapters.registry.ResearchWrite import KResearchReadStatus
 from tests.Research.Cli.ResearchClient import KResearchRoot, ResearchCli
 from tests.Research.FusionClient import KArchiveAsset, KControlAsset
 
@@ -31,6 +32,8 @@ def CheckSwReceipts(TmpPath: FilePath) -> None:
     )
     for FileName in ("document.json", "receipt.json"):
         assert (Direct / FileName).read_bytes() == (Bridged / FileName).read_bytes()
+    Payload = LoadJson((Bridged / "document.json").read_text())
+    assert Payload["metadata"][KResearchReadStatus] == "unqualified"
     assert (
         LoadJson((Bridged / "receipt.json").read_text())["portable_complete"] is False
     )
@@ -68,6 +71,10 @@ def CheckFusReceipt(TmpPath: FilePath) -> None:
             FilePath.read_bytes()
             == (Bridged / FilePath.relative_to(Direct)).read_bytes()
         )
+        if FilePath.name == "document.json":
+            assert LoadJson(FilePath.read_text())["metadata"][KResearchReadStatus] == (
+                "unqualified"
+            )
     Summary = LoadJson((Bridged / "summary.json").read_text())
     assert Summary["counts"]["assets"] == 2
     assert Summary["counts"]["decoded"] >= 1
