@@ -166,6 +166,7 @@ They are not implemented by documenting the rows.
 | A08b     | Headroom, adaptive limits, calibration and grouped small-file sessions                     | A08a                                                 | Unassigned | planned  | CPU/memory reserves, bounded logs/process trees, per-file leases, crash isolation and remote capacity scenarios                                                               |
 | A08c     | Isolated application authoring, trace and acceptance workers                               | A02b, A08a                                           | Unassigned | planned  | Verify agent dispatch, recipe hashes, fresh-process readback and healthy controls. Recover interrupted jobs and park jobs whose worker is unavailable without operator action |
 | A08d     | Installed CLI compatibility for pinned readers and existing controller/supervisor commands | A03, A04a, A05a, A08a source interfaces              | jdharcourt | active   | Direct and CLI artifacts match; statuses, leases, configured pools, and private receipts retain process contracts                                                             |
+| A08e     | Windows host support for the supervisor and application workers                            | A08a                                                 | Unassigned | planned  | Locks, process-tree stops, peak memory and restart fencing pass on a Windows runner; Linux and macOS behavior is unchanged                                                    |
 | A10a     | Optional Codex runner and private data boundary                                            | A08a, A07, A09; explicit model-command authorization | Unassigned | planned  | Candidate validation, isolated reads, bounded packets/patch paths and verified runner contracts                                                                               |
 | A10b     | Step validation, selector, failure log and start-step routing                              | A10a                                                 | Unassigned | planned  | Separate infrastructure/model failures, exact cache keys, stable packet prefixes, budgets, fallback after a first-step failure and two-failure start-step routing             |
 | A10c     | Use report for each model step and route key                                               | A10b, A09                                            | Unassigned | planned  | Recorded attempts, passes, model failures and tokens per pass for each step. The report never changes the selected models                                                     |
@@ -177,6 +178,8 @@ They are not implemented by documenting the rows.
 
 The model pairs do not become runtime requirements for a models-off pilot.
 The coordinating agent runs remote CI in batches. See [batched remote verification](AutomationPlan.md#batched-remote-verification).
+A08c includes the [always-busy application loop](ParallelSessions.md#application-workers-that-stay-busy): continuous claims, work ahead of decoding, scheduled resets and batch controls.
+A08e lets the controller, supervisor and both applications run on one Windows host.
 The local-check proposal is not in force: all test execution remains remote.
 A10 must not silently approve model-run shell commands or transmit private designs.
 

@@ -264,6 +264,8 @@ A SOLIDWORKS research worker can author and measure controlled samples through t
 A Fusion research worker can use its existing capture and dispatcher tooling within its applicable authorization.
 Worker requests and receipts identify sample hashes, actual recipe, application version and measurement errors.
 Check that the saved sample implements the requested experiment.
+Keep each installation busy with queued grid jobs, as the [parallel-session design](ParallelSessions.md#application-workers-that-stay-busy) describes.
+Restart an application only on a schedule, after a failure or for grouped repeat-save evidence.
 
 Native writers consume portable neutral semantics and derive every required structure from understood grammar.
 The qualified Fusion writer does not yet imply support for arbitrary neutral graphs.
