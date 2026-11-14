@@ -50,40 +50,48 @@ def CheckOutcomes() -> None:
         Summary = JsonCodec.loads(JsonCodec.dumps(Events[-1]))["summary"]
         assert Summary["started"] == 6, Events
         assert Summary["finished"] == {"completed": 1, "rejected": 1, "retry": 4}
-        Complete = Harness.ReadJob("outcome:complete")
-        assert Complete["state"] == "completed", Complete
-        Stored = JsonCodec.loads(
-            JsonCodec.dumps(Harness.ReadResult("outcome:complete"))
-        )
-        assert Stored["result"]["records"] == {
-            "count": 7,
-            "inputs": [Hashing.sha256(b"evidence bytes").hexdigest()],
-            "tokenless": True,
-        }
-        assert Stored["receipt"]["exit_status"] == 0
-        assert Stored["receipt"]["signal"] is None
-        assert Stored["receipt"]["peak_memory_bytes"] > 0
-        assert Harness.ReadJob("outcome:rejected")["state"] == "rejected"
-        Invalid = Harness.ReadJob("outcome:invalid")
-        assert Invalid["state"] == "failed"
-        assert str(Invalid["reason"]).startswith("invalid result:")
-        Schema = Harness.ReadJob("outcome:schema")
-        assert Schema["state"] == "failed"
-        assert "$.records.count" in str(Schema["reason"])
-        Crash = Harness.ReadJob("outcome:crash")
-        assert Crash["state"] == "failed"
-        assert Crash["attempts"] == 2
-        assert Crash["reason"] == "runner exited with status 3"
-        CrashResult = JsonCodec.loads(
-            JsonCodec.dumps(Harness.ReadResult("outcome:crash"))
-        )
-        assert "fixture failure" in CrashResult["stderr_tail"]
-        Unpooled = Harness.ReadJob("outcome:unpooled")
-        assert Unpooled["state"] == "queued"
-        assert Unpooled["attempts"] == 0
+        CheckReceipt(Harness)
+        CheckFailedJobs(Harness)
         StatePath = RootPath / "SupervisorState"
         assert not any((StatePath / "sessions").iterdir())
         assert not any((StatePath / "claims").iterdir())
+
+
+def CheckReceipt(Harness: SessionHost) -> None:
+    Complete = Harness.ReadJob("outcome:complete")
+    assert Complete["state"] == "completed", Complete
+    Stored = JsonCodec.loads(
+        JsonCodec.dumps(Harness.ReadResult("outcome:complete"))
+    )
+    assert Stored["result"]["records"] == {
+        "count": 7,
+        "inputs": [Hashing.sha256(b"evidence bytes").hexdigest()],
+        "tokenless": True,
+    }
+    assert Stored["receipt"]["exit_status"] == 0
+    assert Stored["receipt"]["signal"] is None
+    assert Stored["receipt"]["peak_memory_bytes"] > 0
+
+
+def CheckFailedJobs(Harness: SessionHost) -> None:
+    assert Harness.ReadJob("outcome:rejected")["state"] == "rejected"
+    Invalid = Harness.ReadJob("outcome:invalid")
+    assert Invalid["state"] == "failed"
+    assert str(Invalid["reason"]).startswith("invalid result:")
+    Schema = Harness.ReadJob("outcome:schema")
+    assert Schema["state"] == "failed"
+    assert "$.records.count" in str(Schema["reason"])
+    Crash = Harness.ReadJob("outcome:crash")
+    assert Crash["state"] == "failed"
+    assert Crash["attempts"] == 2
+    assert Crash["reason"] == "runner exited with status 3"
+    CrashResult = JsonCodec.loads(
+        JsonCodec.dumps(Harness.ReadResult("outcome:crash"))
+    )
+    assert "fixture failure" in CrashResult["stderr_tail"]
+    Unpooled = Harness.ReadJob("outcome:unpooled")
+    assert Unpooled["state"] == "queued"
+    assert Unpooled["attempts"] == 0
 
 
 def CheckDeadline() -> None:

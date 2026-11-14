@@ -49,48 +49,7 @@ def HashText(Value: object) -> str:
     ).hexdigest()
 
 
-class MiniController:
-    def __init__(self, Options: dict[str, object]) -> None:
-        super().__init__()
-        self.RootPath = FilePath(str(Options["root"])).resolve()
-        (self.RootPath / "objects").mkdir(parents=True, exist_ok=True, mode=0o700)
-
-    def LockPath(self) -> FilePath:
-        return self.RootPath / "supervisor.lock"
-
-    @Contexts.contextmanager
-    def OpenState(self) -> Generator[StoreState]:
-        Handle = OsLayer.open(
-            self.RootPath / "state.lock", OsLayer.O_CREAT | OsLayer.O_RDWR, 0o600
-        )
-        try:
-            FileLocks.flock(Handle, FileLocks.LOCK_EX)
-            StatePath = self.RootPath / "state.json"
-            if StatePath.is_file():
-                RawState = JsonCodec.loads(StatePath.read_text(encoding="utf-8"))
-                Current = StoreState(
-                    JobMap={
-                        ItemName: JobEntry(**Entry)
-                        for ItemName, Entry in RawState["JobMap"].items()
-                    },
-                    Bindings=RawState["Bindings"],
-                    Pools=RawState["Pools"],
-                    Capacity=RawState["Capacity"],
-                    Counter=RawState["Counter"],
-                )
-            else:
-                Current = StoreState({}, {}, {}, {}, 0)
-            self.SettleJobs(Current)
-            yield Current
-            self.SettleJobs(Current)
-            StagePath = self.RootPath / f".state-{Secrets.token_hex(8)}"
-            _ = StagePath.write_text(
-                JsonCodec.dumps(Dataclasses.asdict(Current)), encoding="utf-8"
-            )
-            OsLayer.replace(StagePath, StatePath)
-        finally:
-            OsLayer.close(Handle)
-
+class JobLifecycle:
     def HashPrereqs(self, Current: StoreState, Entry: JobEntry) -> str:
         DepResults = {
             ItemName: (
@@ -134,6 +93,51 @@ class MiniController:
                     Entry.JobState = "failed" if Exhausted else "queued"
                     Entry.Reason = "lease or execution deadline expired"
 
+
+class MiniState(JobLifecycle):
+    def __init__(self, Options: dict[str, object]) -> None:
+        super().__init__()
+        self.RootPath = FilePath(str(Options["root"])).resolve()
+        (self.RootPath / "objects").mkdir(parents=True, exist_ok=True, mode=0o700)
+
+    def LockPath(self) -> FilePath:
+        return self.RootPath / "supervisor.lock"
+
+    @Contexts.contextmanager
+    def OpenState(self) -> Generator[StoreState]:
+        Handle = OsLayer.open(
+            self.RootPath / "state.lock", OsLayer.O_CREAT | OsLayer.O_RDWR, 0o600
+        )
+        try:
+            FileLocks.flock(Handle, FileLocks.LOCK_EX)
+            StatePath = self.RootPath / "state.json"
+            if StatePath.is_file():
+                RawState = JsonCodec.loads(StatePath.read_text(encoding="utf-8"))
+                Current = StoreState(
+                    JobMap={
+                        ItemName: JobEntry(**Entry)
+                        for ItemName, Entry in RawState["JobMap"].items()
+                    },
+                    Bindings=RawState["Bindings"],
+                    Pools=RawState["Pools"],
+                    Capacity=RawState["Capacity"],
+                    Counter=RawState["Counter"],
+                )
+            else:
+                Current = StoreState({}, {}, {}, {}, 0)
+            self.SettleJobs(Current)
+            yield Current
+            self.SettleJobs(Current)
+            StagePath = self.RootPath / f".state-{Secrets.token_hex(8)}"
+            _ = StagePath.write_text(
+                JsonCodec.dumps(Dataclasses.asdict(Current)), encoding="utf-8"
+            )
+            OsLayer.replace(StagePath, StatePath)
+        finally:
+            OsLayer.close(Handle)
+
+
+class MiniObjects(MiniState):
     def StoreBytes(self, Content: bytes) -> str:
         Digest = Hashing.sha256(Content).hexdigest()
         TargetPath = self.RootPath / "objects" / Digest
@@ -143,6 +147,23 @@ class MiniController:
             OsLayer.replace(StagePath, TargetPath)
         return Digest
 
+    def BindInput(self, BindName: str, InputPath: FilePath) -> dict[str, object]:
+        Digest = self.StoreBytes(FilePath(InputPath).read_bytes())
+        with self.OpenState() as Current:
+            Current.Bindings[BindName] = Digest
+        return {"name": BindName, "sha256": Digest}
+
+    def FetchInput(self, Digest: str, TargetPath: FilePath) -> int:
+        SourcePath = self.RootPath / "objects" / Digest
+        Content = SourcePath.read_bytes()
+        if Hashing.sha256(Content).hexdigest() != Digest:
+            raise ValueError("input object does not match its digest")
+        with SourcePath.open("rb") as Source, open(TargetPath, "xb") as Output:
+            Shutil.copyfileobj(Source, Output)
+        return len(Content)
+
+
+class MiniResources(MiniState):
     def DefinePool(self, PoolName: str, KindList: list[str]) -> dict[str, object]:
         with self.OpenState() as Current:
             for KindName in KindList:
@@ -162,6 +183,8 @@ class MiniController:
             Current.Capacity[ResName] = Capacity
         return {"name": ResName, "capacity": Capacity}
 
+
+class MiniQueue(MiniState):
     def SubmitJobs(self, BatchPath: FilePath) -> dict[str, object]:
         RawBatch = JsonCodec.loads(FilePath(BatchPath).read_text(encoding="utf-8"))
         with self.OpenState() as Current:
@@ -191,12 +214,110 @@ class MiniController:
                 Current.JobMap[str(RawSpec["id"])] = Entry
             return {"submitted": len(RawBatch["jobs"])}
 
-    def BindInput(self, BindName: str, InputPath: FilePath) -> dict[str, object]:
-        Digest = self.StoreBytes(FilePath(InputPath).read_bytes())
+    def ReadStatus(
+        self, JobName: str | None = None, After: str | None = None
+    ) -> dict[str, object]:
         with self.OpenState() as Current:
-            Current.Bindings[BindName] = Digest
-        return {"name": BindName, "sha256": Digest}
+            Names = sorted(
+                ItemName
+                for ItemName in Current.JobMap
+                if (JobName is None or ItemName == JobName)
+                and (After is None or ItemName > After)
+            )
+            return {
+                "jobs": [
+                    {
+                        "id": ItemName,
+                        "kind": Current.JobMap[ItemName].KindName,
+                        "state": Current.JobMap[ItemName].JobState,
+                        "generation": Current.JobMap[ItemName].Generation,
+                        "attempts": Current.JobMap[ItemName].Attempts,
+                        "result": Current.JobMap[ItemName].ResultHash or None,
+                        "reason": Current.JobMap[ItemName].Reason,
+                    }
+                    for ItemName in Names
+                ],
+                "next_after": None,
+            }
 
+
+def IsJobReady(
+    Entry: JobEntry, Current: StoreState, PoolName: str, Running: list[JobEntry]
+) -> bool:
+    return (
+        Entry.JobState == "queued"
+        and Current.Pools.get(Entry.KindName) == PoolName
+        and all(ItemName in Current.Bindings for ItemName in Entry.Inputs.values())
+        and all(
+            ItemName in Current.JobMap
+            and Current.JobMap[ItemName].JobState == "completed"
+            for ItemName in Entry.Depends
+        )
+        and all(
+            sum(ItemName in Other.Resources for Other in Running)
+            < Current.Capacity.get(ItemName, 0)
+            for ItemName in Entry.Resources
+        )
+    )
+
+
+def BuildClaim(
+    JobName: str, Entry: JobEntry, Current: StoreState
+) -> dict[str, object]:
+    return {
+        "job": dict(
+            Entry.RawSpec,
+            depends_on=Entry.Depends,
+            resources=Entry.Resources,
+            options=Entry.RawSpec.get("options", {}),
+            lease_seconds=Entry.LeaseSeconds,
+            timeout_seconds=Entry.TimeoutSeconds,
+            max_attempts=Entry.MaxAttempts,
+        ),
+        "generation": Entry.Generation,
+        "attempt": Entry.Attempts,
+        "fingerprint": Entry.PrintHash,
+        "snapshot": {
+            "inputs": {
+                RoleName: {
+                    "binding": ItemName,
+                    "sha256": Current.Bindings[ItemName],
+                }
+                for RoleName, ItemName in Entry.Inputs.items()
+            },
+            "dependencies": {
+                ItemName: {"result": Current.JobMap[ItemName].ResultHash}
+                for ItemName in Entry.Depends
+            },
+        },
+        "lease_until": Entry.LeaseUntil,
+        "deadline": Entry.Deadline,
+        "job_id": JobName,
+    }
+
+
+def StartLeaseMut(Entry: JobEntry, Worker: str, Token: str) -> None:
+    Started = TimeClock.time()
+    Entry.Attempts += 1
+    Entry.JobState = "running"
+    Entry.TokenHash = Hashing.sha256(Token.encode()).hexdigest()
+    Entry.ClaimHash = Entry.PrintHash
+    Entry.Deadline = Started + Entry.TimeoutSeconds
+    Entry.LeaseUntil = min(Entry.Deadline, Started + Entry.LeaseSeconds)
+    Entry.Reason = f"claimed by {Worker}"
+
+
+def WriteClaim(
+    ClaimPath: FilePath, ClaimInfo: dict[str, object], Token: str
+) -> None:
+    Handle = OsLayer.open(
+        ClaimPath, OsLayer.O_CREAT | OsLayer.O_EXCL | OsLayer.O_WRONLY, 0o600
+    )
+    with OsLayer.fdopen(Handle, "w", encoding="utf-8") as Output:
+        _ = Output.write(JsonCodec.dumps(dict(ClaimInfo, lease_token=Token)))
+
+
+class MiniClaims(MiniState):
     def ClaimJob(
         self, PoolName: str, Worker: str, ClaimPath: FilePath
     ) -> dict[str, object] | None:
@@ -211,80 +332,20 @@ class MiniController:
             for JobName, Entry in sorted(
                 Current.JobMap.items(), key=lambda JobPair: JobPair[1].Order
             ):
-                Ready = (
-                    Entry.JobState == "queued"
-                    and Current.Pools.get(Entry.KindName) == PoolName
-                    and all(
-                        ItemName in Current.Bindings
-                        for ItemName in Entry.Inputs.values()
-                    )
-                    and all(
-                        ItemName in Current.JobMap
-                        and Current.JobMap[ItemName].JobState == "completed"
-                        for ItemName in Entry.Depends
-                    )
-                    and all(
-                        sum(ItemName in Other.Resources for Other in Running)
-                        < Current.Capacity.get(ItemName, 0)
-                        for ItemName in Entry.Resources
-                    )
-                )
-                if not Ready:
+                if not IsJobReady(Entry, Current, PoolName, Running):
                     continue
                 if Entry.Attempts >= Entry.MaxAttempts:
                     Entry.JobState = "failed"
                     continue
                 Token = Secrets.token_hex(32)
-                Started = TimeClock.time()
-                Entry.Attempts += 1
-                Entry.JobState = "running"
-                Entry.TokenHash = Hashing.sha256(Token.encode()).hexdigest()
-                Entry.ClaimHash = Entry.PrintHash
-                Entry.Deadline = Started + Entry.TimeoutSeconds
-                Entry.LeaseUntil = min(Entry.Deadline, Started + Entry.LeaseSeconds)
-                Entry.Reason = f"claimed by {Worker}"
-                ClaimInfo: dict[str, object] = {
-                    "job": dict(
-                        Entry.RawSpec,
-                        depends_on=Entry.Depends,
-                        resources=Entry.Resources,
-                        options=Entry.RawSpec.get("options", {}),
-                        lease_seconds=Entry.LeaseSeconds,
-                        timeout_seconds=Entry.TimeoutSeconds,
-                        max_attempts=Entry.MaxAttempts,
-                    ),
-                    "generation": Entry.Generation,
-                    "attempt": Entry.Attempts,
-                    "fingerprint": Entry.PrintHash,
-                    "snapshot": {
-                        "inputs": {
-                            RoleName: {
-                                "binding": ItemName,
-                                "sha256": Current.Bindings[ItemName],
-                            }
-                            for RoleName, ItemName in Entry.Inputs.items()
-                        },
-                        "dependencies": {
-                            ItemName: {"result": Current.JobMap[ItemName].ResultHash}
-                            for ItemName in Entry.Depends
-                        },
-                    },
-                    "lease_until": Entry.LeaseUntil,
-                    "deadline": Entry.Deadline,
-                    "job_id": JobName,
-                }
-                Handle = OsLayer.open(
-                    ClaimPath,
-                    OsLayer.O_CREAT | OsLayer.O_EXCL | OsLayer.O_WRONLY,
-                    0o600,
-                )
-                with OsLayer.fdopen(Handle, "w", encoding="utf-8") as Output:
-                    _ = Output.write(
-                        JsonCodec.dumps(dict(ClaimInfo, lease_token=Token))
-                    )
+                StartLeaseMut(Entry, Worker, Token)
+                ClaimInfo = BuildClaim(JobName, Entry, Current)
+                WriteClaim(ClaimPath, ClaimInfo, Token)
                 return ClaimInfo
         return None
 
+
+class MiniLeases(MiniObjects):
     def CheckLease(self, Current: StoreState, ClaimPath: FilePath) -> JobEntry | None:
         ClaimInfo = JsonCodec.loads(FilePath(ClaimPath).read_text(encoding="utf-8"))
         Entry = Current.JobMap.get(str(ClaimInfo["job_id"]))
@@ -330,37 +391,6 @@ class MiniController:
             Entry.Reason = Reason
             return {"stale": False}
 
-    def FetchInput(self, Digest: str, TargetPath: FilePath) -> int:
-        SourcePath = self.RootPath / "objects" / Digest
-        Content = SourcePath.read_bytes()
-        if Hashing.sha256(Content).hexdigest() != Digest:
-            raise ValueError("input object does not match its digest")
-        with SourcePath.open("rb") as Source, open(TargetPath, "xb") as Output:
-            Shutil.copyfileobj(Source, Output)
-        return len(Content)
 
-    def ReadStatus(
-        self, JobName: str | None = None, After: str | None = None
-    ) -> dict[str, object]:
-        with self.OpenState() as Current:
-            Names = sorted(
-                ItemName
-                for ItemName in Current.JobMap
-                if (JobName is None or ItemName == JobName)
-                and (After is None or ItemName > After)
-            )
-            return {
-                "jobs": [
-                    {
-                        "id": ItemName,
-                        "kind": Current.JobMap[ItemName].KindName,
-                        "state": Current.JobMap[ItemName].JobState,
-                        "generation": Current.JobMap[ItemName].Generation,
-                        "attempts": Current.JobMap[ItemName].Attempts,
-                        "result": Current.JobMap[ItemName].ResultHash or None,
-                        "reason": Current.JobMap[ItemName].Reason,
-                    }
-                    for ItemName in Names
-                ],
-                "next_after": None,
-            }
+class MiniController(MiniResources, MiniQueue, MiniClaims, MiniLeases):
+    pass

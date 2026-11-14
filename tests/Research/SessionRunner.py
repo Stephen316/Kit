@@ -30,7 +30,7 @@ def WriteResult(SessionPath: FilePath, JobInfo: dict[str, object]) -> int:
     return 0
 
 
-def HoldInput(SessionPath: FilePath) -> bool:
+def HasHoldInput(SessionPath: FilePath) -> bool:
     Session = JsonCodec.loads((SessionPath / "job.json").read_text(encoding="utf-8"))
     return any(
         (SessionPath / str(InputInfo["path"])).read_bytes().startswith(b"hold")
@@ -58,7 +58,7 @@ def RunFixture() -> int:
         return 0
     if ModeName == "sleep-first" and int(Session["attempt"]) == 1:
         TimeClock.sleep(120)
-    if ModeName == "hold" and HoldInput(SessionPath):
+    if ModeName == "hold" and HasHoldInput(SessionPath):
         TimeClock.sleep(120)
     return WriteResult(SessionPath, JobInfo)
 

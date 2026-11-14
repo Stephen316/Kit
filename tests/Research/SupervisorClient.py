@@ -18,75 +18,81 @@ KResultSchema = {
 }
 
 
-class SessionHost:
-    def __init__(
-        self,
-        RootPath: FilePath,
-        PoolLimits: dict[str, int],
-        KindPools: dict[str, str],
-        Controller: dict[str, object] | None = None,
-    ) -> None:
-        super().__init__()
-        self.RootPath = RootPath
-        self.StorePath: FilePath | None = None
-        SchemaFile = RootPath / "ResultSchema.json"
-        _ = SchemaFile.write_text(JsonCodec.dumps(KResultSchema), encoding="utf-8")
-        RunnerArgs = [
-            System.executable,
-            str(KRepoRoot / "tests/Research/SessionRunner.py"),
-            "{session}",
-        ]
-        Registry = {
-            "runners": {
-                KindName: {
-                    "pool": PoolName,
-                    "argv": RunnerArgs,
-                    "result_schema": str(SchemaFile),
-                }
-                for KindName, PoolName in KindPools.items()
+def WriteRegistry(RootPath: FilePath, KindPools: dict[str, str]) -> FilePath:
+    SchemaFile = RootPath / "ResultSchema.json"
+    _ = SchemaFile.write_text(JsonCodec.dumps(KResultSchema), encoding="utf-8")
+    RunnerArgs = [
+        System.executable,
+        str(KRepoRoot / "tests/Research/SessionRunner.py"),
+        "{session}",
+    ]
+    Registry = {
+        "runners": {
+            KindName: {
+                "pool": PoolName,
+                "argv": RunnerArgs,
+                "result_schema": str(SchemaFile),
             }
+            for KindName, PoolName in KindPools.items()
         }
-        _ = (RootPath / "Runners.json").write_text(
-            JsonCodec.dumps(Registry), encoding="utf-8"
-        )
-        if Controller is None:
-            self.StorePath = RootPath / "Store"
-            ResultInfo = Subprocess.run(
-                [
-                    System.executable,
-                    str(KRepoRoot / "re/automation/Controller.py"),
-                    "--store",
-                    str(self.StorePath),
-                    "init",
-                    "--max-running",
-                    "8",
-                ],
-                capture_output=True,
-                text=True,
-                check=False,
-                timeout=60,
-            )
-            assert ResultInfo.returncode == 0, ResultInfo.stderr
-            Controller = {"adapter": "a03", "store": str(self.StorePath)}
-        self.ConfigFile = RootPath / "Supervisor.json"
-        ConfigInfo = {
-            "state": str(RootPath / "SupervisorState"),
-            "controller": Controller,
-            "registry": str(RootPath / "Runners.json"),
-            "worker": "supervisor:fixture",
-            "pools": {
-                PoolName: {"max_sessions": Limit}
-                for PoolName, Limit in PoolLimits.items()
-            },
-            "stop_grace_seconds": 1,
-            "poll_seconds": 0.1,
-        }
-        _ = self.ConfigFile.write_text(JsonCodec.dumps(ConfigInfo), encoding="utf-8")
+    }
+    RegistryFile = RootPath / "Runners.json"
+    _ = RegistryFile.write_text(JsonCodec.dumps(Registry), encoding="utf-8")
+    return RegistryFile
+
+
+def InitStore(StorePath: FilePath) -> dict[str, object]:
+    ResultInfo = Subprocess.run(
+        [
+            System.executable,
+            str(KRepoRoot / "re/automation/Controller.py"),
+            "--store",
+            str(StorePath),
+            "init",
+            "--max-running",
+            "8",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+    assert ResultInfo.returncode == 0, ResultInfo.stderr
+    return {"adapter": "a03", "store": str(StorePath)}
+
+
+def WriteConfig(
+    RootPath: FilePath,
+    RegistryFile: FilePath,
+    PoolLimits: dict[str, int],
+    Controller: dict[str, object],
+) -> FilePath:
+    ConfigFile = RootPath / "Supervisor.json"
+    ConfigInfo = {
+        "state": str(RootPath / "SupervisorState"),
+        "controller": Controller,
+        "registry": str(RegistryFile),
+        "worker": "supervisor:fixture",
+        "pools": {
+            PoolName: {"max_sessions": Limit}
+            for PoolName, Limit in PoolLimits.items()
+        },
+        "stop_grace_seconds": 1,
+        "poll_seconds": 0.1,
+    }
+    _ = ConfigFile.write_text(JsonCodec.dumps(ConfigInfo), encoding="utf-8")
+    return ConfigFile
+
+
+class SessionCommand:
+    def __init__(self, ConfigFile: FilePath) -> None:
+        super().__init__()
+        self.ConfigFile = ConfigFile
         self.Command = [
             System.executable,
             str(KRepoRoot / "re/automation/Supervisor.py"),
             "--config",
-            str(self.ConfigFile),
+            str(ConfigFile),
         ]
 
     def RunCli(self, *ArgItems: str, ExitCode: int = 0, Timeout: int = 60) -> str:
@@ -119,6 +125,15 @@ class SessionHost:
         )
         return [JsonCodec.loads(LineText) for LineText in Output.splitlines()]
 
+
+class SessionRecords(SessionCommand):
+    def __init__(
+        self, RootPath: FilePath, StorePath: FilePath | None, ConfigFile: FilePath
+    ) -> None:
+        super().__init__(ConfigFile)
+        self.RootPath = RootPath
+        self.StorePath = StorePath
+
     def SubmitJobs(self, JobList: list[dict[str, object]]) -> None:
         BatchFile = self.RootPath / "Batch.json"
         _ = BatchFile.write_text(JsonCodec.dumps({"jobs": JobList}), encoding="utf-8")
@@ -145,6 +160,23 @@ class SessionHost:
             ResultPath.read_text(encoding="utf-8")
         )
         return ResultInfo
+
+
+class SessionHost(SessionRecords):
+    def __init__(
+        self,
+        RootPath: FilePath,
+        PoolLimits: dict[str, int],
+        KindPools: dict[str, str],
+        Controller: dict[str, object] | None = None,
+    ) -> None:
+        RegistryFile = WriteRegistry(RootPath, KindPools)
+        StorePath = None
+        if Controller is None:
+            StorePath = RootPath / "Store"
+            Controller = InitStore(StorePath)
+        ConfigFile = WriteConfig(RootPath, RegistryFile, PoolLimits, Controller)
+        super().__init__(RootPath, StorePath, ConfigFile)
 
     def WaitReason(self, JobName: str, Reason: str, Timeout: float = 30) -> None:
         Until = TimeClock.monotonic() + Timeout
@@ -173,7 +205,7 @@ class SessionHost:
         raise AssertionError("no supervised session started")
 
 
-def ProcessGone(ProcessId: int) -> bool:
+def IsProcessGone(ProcessId: int) -> bool:
     try:
         OsLayer.kill(ProcessId, 0)
     except ProcessLookupError:
@@ -186,13 +218,13 @@ def ProcessGone(ProcessId: int) -> bool:
     return StatText[StatText.rindex(")") + 2] == "Z"
 
 
-def WaitGone(ProcessId: int, Timeout: float = 15) -> bool:
+def IsGoneByTimeout(ProcessId: int, Timeout: float = 15) -> bool:
     Until = TimeClock.monotonic() + Timeout
     while TimeClock.monotonic() < Until:
-        if ProcessGone(ProcessId):
+        if IsProcessGone(ProcessId):
             return True
         TimeClock.sleep(0.1)
-    return ProcessGone(ProcessId)
+    return IsProcessGone(ProcessId)
 
 
 def FixtureJob(JobName: str, KindName: str, **Settings: object) -> dict[str, object]:
