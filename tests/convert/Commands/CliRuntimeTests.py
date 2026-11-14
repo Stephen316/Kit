@@ -2,6 +2,7 @@ from io import BytesIO
 from json import loads as LoadJson
 from pathlib import Path as FilePath
 from sys import version_info as KPythonVersion
+from zipfile import ZIP_STORED as KZipStored
 from zipfile import ZipFile
 
 from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
@@ -14,9 +15,13 @@ def CheckFusRuntime(TmpPath: FilePath) -> None:
     _ = Source.write_bytes(EmitDocument(DocumentSpec("CLI runtime", "height", 19.0)))
     if KPythonVersion >= (3, 14):
         with ZipFile(BytesIO(Source.read_bytes())) as Original:
-            with ZipFile(Source, "w", compression=93) as Compressed:
+            with ZipFile(Source, "w") as Compressed:
                 for Member in Original.infolist():
-                    Compressed.writestr(Member.filename, Original.read(Member))
+                    Compressed.writestr(
+                        Member.filename,
+                        Original.read(Member),
+                        compress_type=KZipStored if Member.is_dir() else 93,
+                    )
     Inventory = CliProcess(TmpPath, "decode", str(Source), "--layer", "container")
     assert Inventory.returncode == 0, Inventory.stderr
     StreamName = next(
