@@ -20,7 +20,8 @@ The conversion report distinguishes writer evidence from target-application acce
 It includes transfer representations, usability claims, dropped capabilities, external requirements, and diagnostics.
 Existing SDK defaults and adapter qualification boundaries remain unchanged.
 
-The neutral decode view emits `CadDocument` JSON from any registered reader.
+The neutral decode view wraps `CadDocument` JSON from any registered reader in a development report.
+Its explicit report identity prevents accidental reuse as an accepted interchange document.
 Its explicit `--partial` switch selects the reader's research mode.
 Container decoding inventories SOLIDWORKS and Fusion members and can expose one payload as base64.
 Fusion native decoding emits the production typed document model through the static state encoder.
@@ -36,8 +37,13 @@ Use `kit formats`, `kit convert input.SLDPRT output.json`, or `kit decode input.
 Conversions do not expose partial reading or an output-policy bypass.
 Outputs require explicit `--overwrite` to replace existing files.
 The CLI rejects source/output path identity, including existing hardlink and symlink aliases.
-Decode output uses a temporary sibling and atomic publication without following archive member paths.
+Decode output uses a private sibling directory and atomic publication without following archive member paths.
+New reports respect the caller umask, while replacement retains existing permission bits.
+Home-relative paths are expanded before source alias comparisons.
 Inputs are limited to 256 MiB, individual stream exports to 16 MiB, and arguments to 4096 printable characters.
+SOLIDWORKS container inspection has a cumulative 128 MiB decoded-stream budget, checked before each inflation.
+`SldprtArchive.FromBytes(..., SizeLimit=...)` and `ScanRecords(..., SizeLimit=...)` accept the explicit decoded-byte budget.
+Their SDK default remains the previous 2 GiB limit.
 Use the SDK when larger input files require a separately managed resource policy.
 
 The CLI does not implement missing reverse-engineering semantics.
@@ -53,6 +59,7 @@ No local tests or command smoke tests were run, as required by repository policy
 
 New remote process cases cover the installed console command, module execution, adapter discovery, SOLIDWORKS-to-JSON conversion, and Fusion/JSON native round trips.
 They also cover container inventory and stream bytes, native records, partial reading, invalid arguments, malformed files, source aliases, existing outputs, and input limits.
+Review regression cases cover home-relative aliases, umask and replacement permissions, assembly labels, pre-inflation bounds, and rejection of partial development reports as conversion inputs.
 Wheel metadata checks verify both console and SDK plugin entry points.
 The existing Fusion compatibility job runs the new process cases; complete acceptance remains deferred to the merge-group candidate.
 Remote execution results and current-head review evidence are recorded in the PR.

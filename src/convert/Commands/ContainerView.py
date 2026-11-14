@@ -15,7 +15,15 @@ def ContainerView(Options: CliOptions) -> dict[str, object]:
         ".sldprt",
         ".sldasm",
     ):
-        return SolidworksView(Options.Source.read_bytes(), Options.StreamName)
+        return SolidworksView(
+            Options.Source.read_bytes(),
+            Options.StreamName,
+            (
+                "solidworks.sldasm"
+                if FormatId in ("solidworks.sldasm", "sldasm", ".sldasm")
+                else "solidworks.sldprt"
+            ),
+        )
     raise ValueError(
         "Container decoding supports Fusion F3D and SOLIDWORKS SLDPRT/SLDASM; use --from for other filenames"
     )

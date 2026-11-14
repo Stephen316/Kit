@@ -67,7 +67,10 @@ Run `kit convert --help` for the complete option list.
 ## Decode a file for development
 
 Supply the same real source before these examples.
-The neutral view works with registered readers and emits the SDK document JSON.
+The neutral view works with registered readers and emits a development report.
+Its `document` field contains the SDK document JSON.
+The report records `kind: "kit.decode"`, `layer`, and the explicit `partial` selection.
+It is not an interchange document accepted by `kit convert`.
 
 ```sh
 kit decode part.SLDPRT -o decoded.json
@@ -75,6 +78,8 @@ kit decode part.SLDPRT -o decoded.json
 
 Without `-o`, the command prints JSON to standard output.
 A saved decode file is written atomically and protected from replacement by default.
+New files respect the process umask; replacement preserves existing permission bits.
+Home-relative source and destination paths are expanded before alias validation.
 The command rejects the source itself, symlink aliases, and existing hardlink aliases as destinations.
 
 Use the container view to inspect SOLIDWORKS or Fusion archive records:
@@ -88,6 +93,8 @@ The inventory includes names, offsets, sizes, and CRC values.
 Fusion records also include the ZIP compression method and directory flag.
 `--stream` adds the exact named payload as base64 within the JSON report.
 It accepts at most 16 MiB of decoded stream data.
+SOLIDWORKS container inspection limits total decoded streams to 128 MiB before each inflation.
+Other read paths retain their existing SDK resource limits.
 The command does not extract archive-controlled filenames onto the filesystem.
 
 For a real `design.f3d` file, inspect the typed native model:

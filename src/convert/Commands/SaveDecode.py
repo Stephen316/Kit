@@ -1,19 +1,16 @@
 from os import link as LinkFile, replace as ReplaceFile
 from pathlib import Path as FilePath
-from tempfile import NamedTemporaryFile
+from stat import S_IMODE as FileMode
+from tempfile import TemporaryDirectory
 
 
 def SaveDecode(Destination: FilePath, Content: str, Overwrite: bool) -> None:
-    with NamedTemporaryFile(
-        mode="w", encoding="utf-8", dir=Destination.parent, prefix=".kit-", delete=False
-    ) as Output:
-        TempPath = FilePath(Output.name)
-        try:
-            _ = Output.write(Content + "\n")
-            Output.close()
-            if Overwrite:
-                ReplaceFile(TempPath, Destination)
-            else:
-                LinkFile(TempPath, Destination)
-        finally:
-            TempPath.unlink(missing_ok=True)
+    with TemporaryDirectory(dir=Destination.parent, prefix=".kit-") as Directory:
+        TempPath = FilePath(Directory) / "Decode.json"
+        _ = TempPath.write_text(Content + "\n", encoding="utf-8")
+        if Overwrite:
+            if Destination.exists():
+                TempPath.chmod(FileMode(Destination.stat().st_mode))
+            ReplaceFile(TempPath, Destination)
+        else:
+            LinkFile(TempPath, Destination)

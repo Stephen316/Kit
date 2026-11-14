@@ -3,10 +3,12 @@ from base64 import b64encode as EncodeBase
 from convert.adapters.solidworks.container.Container import SldprtArchive
 
 
-def SolidworksView(Payload: bytes, StreamName: str | None) -> dict[str, object]:
-    Archive = SldprtArchive.FromBytes(Payload)
+def SolidworksView(
+    Payload: bytes, StreamName: str | None, FormatId: str
+) -> dict[str, object]:
+    Archive = SldprtArchive.FromBytes(Payload, SizeLimit=128 * 1024 * 1024)
     Result: dict[str, object] = {
-        "format": "solidworks.sldprt",
+        "format": FormatId,
         "layer": "container",
         "file_id": Archive.file_id,
         "container_version": Archive.format_version,

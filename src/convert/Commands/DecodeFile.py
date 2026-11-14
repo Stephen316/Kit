@@ -1,3 +1,5 @@
+from json import loads as LoadJson
+
 from convert.api.ApiOpen import OpenDocument
 from convert.adapters.Fusion.State.EncodeState import EncodeState
 from convert.Commands.CliOptions import CliOptions
@@ -22,9 +24,15 @@ def DecodeFile(Options: CliOptions) -> object:
         ):
             raise ValueError("Native decoding currently supports Fusion F3D only")
         return EncodeState(ReadDocument(Options.Source.read_bytes()))
-    return OpenDocument(
+    Document = OpenDocument(
         Options.Source,
         SourceFormat=Options.SourceFormat,
         Configuration=Options.Configuration,
         StrictMode=not Options.Partial,
-    ).to_json()
+    )
+    return {
+        "kind": "kit.decode",
+        "layer": "neutral",
+        "partial": Options.Partial,
+        "document": LoadJson(Document.to_json()),
+    }

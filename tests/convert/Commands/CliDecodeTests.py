@@ -1,5 +1,5 @@
 from base64 import b64decode as DecodeBase
-from json import loads as LoadJson
+from json import dumps as DumpJson, loads as LoadJson
 from pathlib import Path as FilePath
 from zipfile import ZipFile
 
@@ -15,7 +15,12 @@ def CheckCliNeutral(TmpPath: FilePath) -> None:
     Result = CliProcess(TmpPath, "decode", str(KSamplePath))
     assert Result.returncode == 0, Result.stderr
     Decoded = LoadJson(Result.stdout)
-    assert CadDocument.from_json(Result.stdout).Source.FormatId == "solidworks.sldprt"
+    assert (
+        CadDocument.from_json(
+            DumpJson(LoadJson(Result.stdout)["document"])
+        ).Source.FormatId
+        == "solidworks.sldprt"
+    )
     Target = TmpPath / "decode.json"
     Saved = CliProcess(TmpPath, "decode", str(KSamplePath), "-o", str(Target))
     assert Saved.returncode == 0 and Saved.stdout == "", Saved.stderr
@@ -88,4 +93,9 @@ def CheckCliPartial(TmpPath: FilePath) -> None:
     _ = Source.write_bytes(EmitDocument(DocumentSpec("CLI parameter", "height", 19.0)))
     Result = CliProcess(TmpPath, "decode", str(Source), "--partial")
     assert Result.returncode == 0, Result.stderr
-    assert CadDocument.from_json(Result.stdout).Source.FormatId == "fusion.f3d"
+    assert (
+        CadDocument.from_json(
+            DumpJson(LoadJson(Result.stdout)["document"])
+        ).Source.FormatId
+        == "fusion.f3d"
+    )
