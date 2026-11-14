@@ -192,9 +192,10 @@ Keep per-version and per-feature-variant evidence visible.
 
 Models are disabled by default and no API credential is required for offline operation.
 Configure a provider or local runner explicitly when model investigations are enabled.
-Use the least costly configured runner suitable for the question before escalating within budget.
+Use the first step of the configured runner before escalating to its fallback within budget.
 Verify actual provider APIs, supported model settings and prices during integration.
-No specific frontier model, beta feature or price is a requirement of this design.
+Models stay optional.
+The fixed model pairs below apply only when model investigations are enabled.
 
 Send a bounded packet containing the question, relevant records, graph links, sample differences and prior failed hypotheses.
 Include relevant serializer findings and machine-checkable success criteria.
@@ -212,8 +213,15 @@ Resume only when an applicable tool, rule or new sample changes its prerequisite
 
 ### Model escalation and failure log
 
-Configure model runners as ordered tiers, from the least costly to the most capable.
-Each question starts at the lowest tier unless the failure log routes it higher.
+Each model runner uses one fixed model at two reasoning efforts.
+
+| Runner | First step                  | Fallback step              |
+| ------ | --------------------------- | -------------------------- |
+| Claude | `claude-opus-5-5`, `medium` | `claude-opus-5-5`, `xhigh` |
+| Codex  | `gpt-6.1-sol`, `medium`     | `gpt-6.1-sol`, `xhigh`     |
+
+Do not use another model or effort without a plan change.
+Each question starts at the first step unless the failure log routes it to the fallback.
 An attempt fails when its output is malformed, exceeds a limit or does not pass the question's machine-checkable success criteria.
 
 Record every failed attempt in an append-only failure log before any retry.
@@ -221,20 +229,20 @@ Store the log in the durable evidence store with the job's attempts.
 Each entry records:
 
 - The question, its evidence fingerprint, job and attempt
-- The tier, runner, model and model version
+- The step, runner, model, effort and model version
 - The rejected output or proposal
 - The check that failed and its exact failure output
 - A failure signature: question kind, CAD format, feature family and failed check
 
-After a failure, send the same question to the next tier.
+After a first-step failure, send the same question to the fallback step.
 Include the logged failure in that packet as a prior failed hypothesis.
-The stronger model's answer must pass the same checks; its confidence is not evidence either.
+The fallback answer must pass the same checks.
+Its confidence is not evidence either.
 
-When the log holds two or more failures with the same signature at one tier, start later questions with that signature one tier higher.
-Repeat this for each tier, so a signature that keeps failing moves steadily to stronger models.
+When the log holds two first-step failures with the same signature, start later questions with that signature at the fallback step.
 Record each routing change in the log with the entries that caused it.
-Lower a raised starting tier only when a new tool, rule, runner or model version changes that signature's prerequisites.
-When the highest tier fails, or the budget runs out, park the question as above.
+Return a signature to the first step only when a new tool, rule, runner or model version changes its prerequisites.
+When the fallback step fails, or the budget runs out, park the question as above.
 
 The [parallel sessions design](ParallelSessions.md) owns the supervisor and optional runner details.
 Its child deliverables are identified in the step register.
@@ -242,10 +250,9 @@ A08a adds counted resources, pool-filtered claims and a distinct stale-lease out
 A03 remains the initial adapter, with other controllers required to preserve the same transactional guarantees.
 A08b adds resource headroom, adaptive capacity, calibration and small-file grouping with separate leases and crash fallback.
 
-Optional model work includes separate Codex and Claude runners, measured token-efficiency ladders and consistency-based routing.
-Use stable packet prefixes, candidate screening and reduced repeat checks only as that design specifies.
-Starting model rankings and prices are provisional until checked against the installed runner and provider during integration.
-Operator exclusions remain exclusions, including during re-ranking.
+Optional model work includes separate Codex and Claude runners with the fixed model pairs above.
+Use stable packet prefixes as that design specifies.
+Check model availability, supported efforts and prices against the installed runner and provider during integration.
 Infrastructure errors do not count as failed semantic hypotheses.
 Keep models disabled until the relevant authorization, private-data isolation and policy requirements are satisfied.
 The proposed sandboxed model-command exception is not approved by this documentation alignment.
@@ -310,7 +317,7 @@ Approval requires a change to the repository rules before the first local run.
 | Unproved normalization                 | Request a distinguishing repeat save                         | Preserve the original span and park unresolved noise            |
 | Segmentation or references             | Compare spans and retrieve matching traces                   | Bound retries and scope findings to the exact build             |
 | Formula or semantic contradiction      | Retain the counterexample and refine the experiment          | Never promote a fit that fails independent evidence             |
-| Model error or budget exhaustion       | Log the failure, escalate one tier, then park                | No credential or budget is required for remaining offline work  |
+| Model error or budget exhaustion       | Log the failure, run the fallback step, then park            | No credential or budget is required for remaining offline work  |
 | Writer, load or edit failure           | Localize the failed native structure in the isolated harness | Diagnostic substitutions never become production output         |
 | Regression                             | Quarantine the candidate and retain the last verified rule   | Revert only task-owned commits when authorized                  |
 | Unsupported input                      | Reject the conversion with a specific reason                 | Preserve inputs and add a deduplicated backlog item             |
