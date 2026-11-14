@@ -139,6 +139,7 @@ Commands emit bounded JSON and return `0` on success.
 Invalid records, unavailable stores and corrupted evidence return `1`.
 A stale lease from `heartbeat` or `finish` returns `3` with a `controller stale lease` message.
 A lease is stale when it was replaced, revoked or finished, when it expired, or when its inputs changed.
+`finish` checks the lease before reading the worker's result JSON and checks the deadline again before storing the result.
 The [session supervisor](ResearchSupervisor.md) stops a session at once when its renewal returns `3`.
 No runnable job is a successful claim response with `job: null`; it does not consume an attempt or create a claim file.
 Existing claim files are not overwritten.

@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 
 from Artifacts import Artifacts
-from Records import StaleLease, bounded, canonical, digest, label, reason_text, specification
+from Records import StaleLease, bounded, canonical, digest, label, read_record, reason_text, specification
 
 
 class Ledger:
@@ -388,13 +388,16 @@ class Ledger:
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
         return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches, "artifact_bytes_hashed": self.bytes_hashed}
 
-    def finish(self, job_id, token, outcome, result, reason):
+    def finish(self, job_id, token, outcome, result_path, reason):
         row = self.leased(job_id, token)
         spec = json.loads(row["definition"])
         allowed = {"completed", "retry", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
         if outcome not in allowed:
             raise ValueError("unsupported outcome")
         reason = reason_text(reason)
+        result = read_record(result_path)
+        if min(row["lease_until"], row["deadline"]) <= time.time():
+            raise StaleLease("lease or execution deadline expired")
         result_hash = self.objects.put_record(result)
         receipt = self.objects.put_record({
             "receipt_version": 1, "job_id": job_id, "generation": row["generation"],

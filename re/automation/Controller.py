@@ -87,7 +87,7 @@ def main():
                 if args.command == "heartbeat":
                     response = ledger.heartbeat(job_id, token)
                 else:
-                    response = ledger.finish(job_id, token, args.outcome, read_record(args.result), args.reason)
+                    response = ledger.finish(job_id, token, args.outcome, args.result, args.reason)
             elif args.command == "status":
                 response = ledger.status(args.job, args.after)
             elif args.command == "events":
