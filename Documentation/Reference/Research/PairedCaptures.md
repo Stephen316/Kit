@@ -125,12 +125,14 @@ Send the saved parts and the filled form back for `measurements.json` and `recei
 
 [`GenerateFusion.py`](../../../re/automation/PairedCaptures/P01/GenerateFusion.py) authors P01 through the Fusion API from the recipe.
 It does not use a Kit reader, writer or source archive.
-Run it from **Utilities > Add-Ins > Scripts and Add-Ins** in Fusion.
+Open **File > View > Show Text Commands** in Fusion and select **Txt**.
+Enter `Python.RunScript "<absolute path to GenerateFusion.py>"`.
 
 The script measures the pinned Fusion control archive before and after the capture.
 It then creates and closes only its own documents.
 It writes every file in the table above into a new `fusion-<id>` folder.
 Each reading records the feature tree, sketch entities, constraints, dimensions, parameters, profile areas and health.
+Sketch entity coordinates are in sketch space, and each reading records the sketch frame.
 A repeat save follows a document close and archive reopen in the same Fusion process, not an application restart.
 The measurements file records that limit.
 
