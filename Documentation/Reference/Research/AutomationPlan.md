@@ -283,8 +283,16 @@ Until the repository owners approve it, the current rule applies: do not run loc
 
 Remote CI gives slow feedback for small changes to research tooling.
 The proposal permits one short local check of `re/automation/` before a push.
-It covers only the controller, corpus and supervisor process tests.
+It covers only the controller, corpus and supervisor process tests and the saved-shape self-check.
 It uses no CAD application, model call or network connection.
+
+The saved-shape self-check tests a reader with only the source file.
+It rebuilds supported features from the decoded neutral document with Kit code.
+It compares the result with the body cache that the source application saved in the same file.
+The comparison covers body count, vertices, volume and center of mass within declared tolerances.
+It applies only to features that Kit can rebuild without a geometry kernel.
+A pass shows that the reader agrees with the source file.
+It does not show that a target application accepts a written file.
 A local result never replaces remote CI evidence or a configured review.
 Approval requires a change to the repository rules before the first local run.
 

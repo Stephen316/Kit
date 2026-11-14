@@ -8,6 +8,7 @@ Model escalation starts at the least costly tier, logs every failed attempt and 
 Cross-format native acceptance governs the initial bidirectional conversion milestone.
 Same-format checks remain supporting evidence.
 The field search encodes known experiment values as byte patterns before a numpy scan of unexplained spans.
+The proposed local checks add a saved-shape self-check that compares rebuilt features with saved body caches.
 
 The [step register](../../Reference/Research/AutomationSteps.md) provides A01–A16 identifiers, dependencies, owners, statuses and exit criteria.
 The step register is the only maintained record of the current status of each step.
