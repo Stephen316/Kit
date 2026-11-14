@@ -2131,7 +2131,9 @@ def ApplyNativeMut(
     }
     Values: dict[str, ParamValue] = {}
     ParamIndexes = {Param.id: Index for Index, Param in enumerate(Parameters)}
-    AmbiguousKeys = frozenset() if AmbiguousDims is None else AmbiguousDims
+    AmbiguousKeys: frozenset[tuple[str, str]] = (
+        frozenset() if AmbiguousDims is None else AmbiguousDims
+    )
     for Equation in Model.equations:
         ExprValue, Evidence = EquationData(
             Equation, GlobalIds, DimensionIds, AmbiguousKeys
