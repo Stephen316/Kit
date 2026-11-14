@@ -36,3 +36,4 @@ def TestMissingLink(TmpPath: FilePath) -> None:
     with RaisesError(ValueError, match="MissingDimension@Sketch1"):
         _ = ConvertFile(SourcePath, TargetPath, overwrite=True)
     assert TargetPath.read_bytes() == b"existing destination"
+
