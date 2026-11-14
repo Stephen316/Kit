@@ -2120,7 +2120,7 @@ def ApplyNativeMut(
     Parameters: list[Parameter],
     Model: NativeModel,
     DimensionIds: Mapping[tuple[str, str], str],
-    AmbiguousDims: frozenset[tuple[str, str]] = frozenset(),
+    AmbiguousDims: frozenset[tuple[str, str]] | None = None,
 ) -> tuple[Param, ...]:
     if not Model.equations:
         return tuple(Parameters)
@@ -2131,9 +2131,10 @@ def ApplyNativeMut(
     }
     Values: dict[str, ParamValue] = {}
     ParamIndexes = {Param.id: Index for Index, Param in enumerate(Parameters)}
+    AmbiguousKeys = frozenset() if AmbiguousDims is None else AmbiguousDims
     for Equation in Model.equations:
         ExprValue, Evidence = EquationData(
-            Equation, GlobalIds, DimensionIds, AmbiguousDims
+            Equation, GlobalIds, DimensionIds, AmbiguousKeys
         )
         ProvenanceValue = Provenance(
             adapter=KFormatId,
