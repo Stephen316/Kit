@@ -28,7 +28,7 @@ These development views do not establish editable conversion coverage.
 
 ## Usage and limits
 
-Follow [the command-line procedure](../Tasks/CommandLine.md) for installation, examples, recovery, and exit statuses.
+Follow [the command-line procedure](../../Tasks/CommandLine.md) for installation, examples, recovery, and exit statuses.
 Use `kit formats`, `kit convert input.SLDPRT output.json`, or `kit decode input.f3d --layer native`.
 `--json` selects machine-readable conversion and discovery reports.
 `-o` selects a decode output file; otherwise decoding writes JSON to standard output.

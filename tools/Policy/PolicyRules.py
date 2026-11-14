@@ -23,6 +23,7 @@ KToolPathSet = frozenset(
         ".hoplite/settings.json",
         ".kiro/settings/mcp.json",
         "pyproject.toml",
+        "src/convert/__main__.py",
         "uv.lock",
         "typings/defusedxml/__init__.pyi",
     }

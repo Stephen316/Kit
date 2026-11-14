@@ -140,7 +140,7 @@ Argument errors use the parser's usage message.
 Run `kit --help` or `kit --version` for discovery.
 
 Tests execute only in remote CI.
-See the [change record](../Changes/CommandLineInterface.md) for verification evidence and limits.
+See the [change record](../Changes/Commands/CommandLineInterface.md) for verification evidence and limits.
 
 ## Related information
 
