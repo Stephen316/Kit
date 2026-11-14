@@ -252,4 +252,7 @@ The [change record](../../Changes/Research/DeterministicResearchCli.md) and [pro
 Reader and supervisor contract audits were delegated as read-only work.
 The bridge preserves A05 and A08a ownership and changes none of their implementation files.
 No automatic model runner or persistent session-artifact ingestion is claimed.
-Remote CI and current-head review evidence remain pending until recorded in PR comments.
+At `684627cb`, remote workflow-quality run [43648663920](https://github.com/TryUniCAD/Kit/actions/runs/43648663920) passed the pinned reader, controller, supervisor, and new CLI process cases.
+The same revision's Fusion compatibility checks passed.
+Follow-up review adds explicit Python 3.14 requirements for Fusion stream extraction and native inspection, with process coverage on Python 3.11 and 3.14.
+Current-head review and the follow-up cases remain pending until recorded in PR comments.

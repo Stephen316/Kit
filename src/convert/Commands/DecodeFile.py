@@ -1,4 +1,5 @@
 from json import loads as LoadJson
+from sys import version_info as KPythonVersion
 
 from convert.api.ApiOpen import OpenDocument
 from convert.adapters.Fusion.State.EncodeState import EncodeState
@@ -23,6 +24,8 @@ def DecodeFile(Options: CliOptions) -> object:
             ".f3d",
         ):
             raise ValueError("Native decoding currently supports Fusion F3D only")
+        if KPythonVersion < (3, 14):
+            raise ValueError("Fusion native decoding requires Python 3.14 or newer")
         return EncodeState(ReadDocument(Options.Source.read_bytes()))
     Document = OpenDocument(
         Options.Source,

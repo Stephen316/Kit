@@ -18,6 +18,9 @@ From a source checkout, install the command as an isolated tool:
 uv tool install .
 ```
 
+For Fusion container stream extraction or native inspection, install with `uv tool install --python 3.14 .`.
+These views require Python 3.14; container inventory remains available on older supported interpreters.
+
 For a published release containing this interface, use `uv tool install unicad-kit`.
 For repository development, follow [repository installation](Install.md), then use `uv run --frozen kit`.
 The equivalent module command is `uv run --frozen python -m convert`.
@@ -136,7 +139,7 @@ Working-file inspection reports remain distinct from committed-input documents, 
 | Destination already exists                                      | Select another path, or preserve a copy before using `--overwrite`      |
 | Format or feature is unsupported                                | Read the format reference and retain the source for implementation work |
 | Container inspection succeeds                                   | Do not infer member decoding, feature coverage, or native acceptance    |
-| ZIP method 93 cannot be decoded                                 | Use Python 3.14 for its standard-library Zstandard support              |
+| Fusion stream extraction or native inspection requires 3.14     | Install with `uv tool install --python 3.14 .`                          |
 
 The CLI adds no CAD application, debugger, or research runtime dependency.
 It exposes existing codecs and does not implement unresolved format semantics.

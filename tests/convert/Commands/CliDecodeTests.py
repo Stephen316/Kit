@@ -1,6 +1,7 @@
 from base64 import b64decode as DecodeBase
 from json import dumps as DumpJson, loads as LoadJson
 from pathlib import Path as FilePath
+from sys import version_info as KPythonVersion
 from zipfile import ZipFile
 
 from convert.adapters.solidworks.container.Container import SldprtArchive
@@ -76,12 +77,16 @@ def CheckFusViews(TmpPath: FilePath) -> None:
     Stream = CliProcess(
         TmpPath, "decode", str(Source), "--layer", "container", "--stream", StreamName
     )
+    Native = CliProcess(TmpPath, "decode", str(Source), "--layer", "native")
+    if KPythonVersion < (3, 14):
+        assert Stream.returncode == 1 and "Python 3.14" in Stream.stderr
+        assert Native.returncode == 1 and "Python 3.14" in Native.stderr
+        return
     assert Stream.returncode == 0, Stream.stderr
     with ZipFile(Source) as Archive:
         assert DecodeBase(LoadJson(Stream.stdout)["stream"]["data"]) == Archive.read(
             StreamName
         )
-    Native = CliProcess(TmpPath, "decode", str(Source), "--layer", "native")
     assert Native.returncode == 0, Native.stderr
     State = LoadJson(Native.stdout)
     assert State["record"].endswith("DocumentModel.DocumentModel")
